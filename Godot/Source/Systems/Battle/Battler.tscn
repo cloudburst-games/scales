@@ -1,0 +1,148 @@
+[gd_scene load_steps=7 format=3 uid="uid://dycfwnor58bnr"]
+
+[ext_resource type="Script" path="res://Source/Systems/Battle/Battler.cs" id="1_nsprq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7mkv6"]
+font_size = 48
+outline_size = 48
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 12
+shadow_color = Color(0.2, 0.2, 0.2, 0.176471)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7qucj"]
+font_size = 320
+outline_size = 96
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 24
+shadow_color = Color(0.2, 0.2, 0.2, 0.176471)
+
+[sub_resource type="Animation" id="Animation_orbtw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(210, 2184)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0wqkx"]
+resource_name = "Start"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("Label:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.25, 1),
+"update": 0,
+"values": [Vector2(210, 2184), Vector2(210, 22)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Label:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 1.2),
+"transitions": PackedFloat32Array(1, 4),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wise8"]
+_data = {
+"RESET": SubResource("Animation_orbtw"),
+"Start": SubResource("Animation_0wqkx")
+}
+
+[node name="Battler" type="Node2D"]
+script = ExtResource("1_nsprq")
+
+[node name="BattleHUD" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="DebugLabel" type="Label" parent="BattleHUD"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -1710.0
+offset_top = -926.0
+offset_right = 1710.0
+offset_bottom = -486.0
+grow_horizontal = 2
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_7mkv6")
+
+[node name="Control" type="Control" parent="BattleHUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 3840.0
+offset_bottom = 2160.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="BattleHUD/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 210.0
+offset_top = 2184.0
+offset_right = 3630.0
+offset_bottom = 2624.0
+grow_horizontal = 2
+text = "LET BATTLE BE JOINED"
+label_settings = SubResource("LabelSettings_7qucj")
+
+[node name="Anim" type="AnimationPlayer" parent="BattleHUD/Control"]
+libraries = {
+"": SubResource("AnimationLibrary_wise8")
+}

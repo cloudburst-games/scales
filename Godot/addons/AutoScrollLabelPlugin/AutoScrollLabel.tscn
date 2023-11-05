@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv0rmqpjblmsm"]
+
+[ext_resource type="Script" path="res://addons/AutoScrollLabelPlugin/AutoScrollLabel.cs" id="1_xfjm7"]
+
+[node name="AutoScrollLabel" type="RichTextLabel"]
+offset_left = 221.0
+offset_top = 210.0
+offset_right = 752.0
+offset_bottom = 340.0
+text = "A whole lot of text that needs to scroll down automatically. A whole lot of text that needs to scroll down automatically. A whole lot of text that needs to scroll down automatically. A whole lot of text that needs to scroll down automatically. A whole lot of text that needs to scroll down automatically. A whole lot of text that needs to scroll down automatically. A whole lot of text that needs to scroll down automatically. A whole lot of text that needs to scroll down automatically. A whole lot of text that needs to scroll down automatically. A whole lot of text that needs to scroll down automatically. A whole lot of text that needs to scroll down automatically. "
+script = ExtResource("1_xfjm7")
+_scrollSpeed = 5.0
+Start = null
+
+[node name="VScrollBar" type="VScrollBar" parent="."]
+offset_left = -144.0
+offset_top = -160.0
+offset_right = -93.0
+offset_bottom = 143.0

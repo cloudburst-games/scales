@@ -1,0 +1,295 @@
+[gd_scene load_steps=11 format=3 uid="uid://bes3oet5iq1e1"]
+
+[ext_resource type="Script" path="res://Source/Systems/SettingsManager/SettingsManager.cs" id="1_yrkw0"]
+[ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_4rrv3"]
+[ext_resource type="PackedScene" uid="uid://dkahi7sg2bq1x" path="res://Source/Systems/SettingsManager/Audio/SettingsAudio.tscn" id="2_rvyrg"]
+[ext_resource type="PackedScene" uid="uid://bc1i562j47oui" path="res://Source/Systems/SettingsManager/Controls/SettingsControl.tscn" id="3_k0f7g"]
+[ext_resource type="PackedScene" uid="uid://8i0p12smcyf" path="res://Source/Systems/SettingsManager/Graphics/SettingsGraphics.tscn" id="4_r5ubs"]
+[ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="5_4h8nn"]
+[ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="6_kbtxo"]
+[ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="7_jgsky"]
+[ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="8_3yqni"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s2vhd"]
+font_size = 56
+
+[node name="SettingsManager" type="Node"]
+script = ExtResource("1_yrkw0")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1500.0
+offset_top = -898.0
+offset_right = 1500.0
+offset_bottom = 898.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_4rrv3")
+_startClosed = true
+
+[node name="SettingsAudio" parent="Panel" instance=ExtResource("2_rvyrg")]
+layout_mode = 1
+
+[node name="SettingsControl" parent="Panel" instance=ExtResource("3_k0f7g")]
+layout_mode = 1
+
+[node name="SettingsGraphics" parent="Panel" instance=ExtResource("4_r5ubs")]
+layout_mode = 1
+
+[node name="TabBar" type="TabBar" parent="Panel"]
+layout_mode = 0
+offset_left = 39.0
+offset_top = 16.0
+offset_right = 844.0
+offset_bottom = 112.0
+theme_override_font_sizes/font_size = 64
+tab_count = 3
+tab_0/title = "Controls"
+tab_1/title = "Audio"
+tab_2/title = "Graphics"
+
+[node name="BtnClose" type="TextureButton" parent="Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_bottom = 96.0
+grow_horizontal = 0
+texture_normal = ExtResource("5_4h8nn")
+texture_pressed = ExtResource("6_kbtxo")
+texture_hover = ExtResource("7_jgsky")
+texture_disabled = ExtResource("8_3yqni")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/BtnClose"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.5
+offset_top = -40.0
+offset_right = 15.5
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "x"
+label_settings = SubResource("LabelSettings_s2vhd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -860.0
+offset_top = -110.0
+offset_right = 860.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="BtnDefault" type="TextureButton" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_4h8nn")
+texture_pressed = ExtResource("6_kbtxo")
+texture_hover = ExtResource("7_jgsky")
+texture_disabled = ExtResource("8_3yqni")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/BtnDefault"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -11.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Default
+"
+label_settings = SubResource("LabelSettings_s2vhd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnCancel" type="TextureButton" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_4h8nn")
+texture_pressed = ExtResource("6_kbtxo")
+texture_hover = ExtResource("7_jgsky")
+texture_disabled = ExtResource("8_3yqni")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/BtnCancel"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -11.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cancel
+"
+label_settings = SubResource("LabelSettings_s2vhd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnApply" type="TextureButton" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_4h8nn")
+texture_pressed = ExtResource("6_kbtxo")
+texture_hover = ExtResource("7_jgsky")
+texture_disabled = ExtResource("8_3yqni")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer/BtnApply"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -11.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Apply"
+label_settings = SubResource("LabelSettings_s2vhd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InputDisabler" type="ColorRect" parent="Panel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="PnlConfirmClose" type="Panel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -675.5
+offset_top = -330.5
+offset_right = 675.5
+offset_bottom = 330.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/PnlConfirmClose"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_right = 500.0
+offset_bottom = 499.0
+grow_horizontal = 2
+text = "Changes are unsaved. Revert to previous settings?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/PnlConfirmClose"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -274.0
+offset_top = -160.0
+offset_right = 274.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="BtnCancel" type="TextureButton" parent="Panel/PnlConfirmClose/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_4h8nn")
+texture_pressed = ExtResource("6_kbtxo")
+texture_hover = ExtResource("7_jgsky")
+texture_disabled = ExtResource("8_3yqni")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/PnlConfirmClose/HBoxContainer/BtnCancel"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.5
+offset_top = -11.5
+offset_right = 16.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cancel"
+label_settings = SubResource("LabelSettings_s2vhd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnRevert" type="TextureButton" parent="Panel/PnlConfirmClose/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("5_4h8nn")
+texture_pressed = ExtResource("6_kbtxo")
+texture_hover = ExtResource("7_jgsky")
+texture_disabled = ExtResource("8_3yqni")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Panel/PnlConfirmClose/HBoxContainer/BtnRevert"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.5
+offset_top = -10.0
+offset_right = 16.5
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Revert"
+label_settings = SubResource("LabelSettings_s2vhd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="tab_changed" from="Panel/TabBar" to="." method="OnTabChanged"]
+[connection signal="pressed" from="Panel/BtnClose" to="." method="OnBtnClosePressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/BtnDefault" to="." method="OnBtnDefaultPressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/BtnCancel" to="." method="OnBtnCancelPressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/BtnApply" to="." method="OnBtnApplyPressed"]
+[connection signal="pressed" from="Panel/PnlConfirmClose/HBoxContainer/BtnCancel" to="." method="OnBtnConfirmCancelPressed"]
+[connection signal="pressed" from="Panel/PnlConfirmClose/HBoxContainer/BtnRevert" to="." method="OnBtnRevertPressed"]

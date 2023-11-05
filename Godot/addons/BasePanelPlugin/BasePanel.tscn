@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1vn22vfrstqy"]
+
+[ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="1_ta7gh"]
+
+[node name="BasePanel" type="Panel"]
+offset_left = 243.0
+offset_top = 174.0
+offset_right = 512.0
+offset_bottom = 345.0
+script = ExtResource("1_ta7gh")

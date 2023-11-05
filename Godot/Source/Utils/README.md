@@ -1,0 +1,1 @@
+Utils are helper classes that help to streamline game development, e.g. helpful Maths methods, String manipulation, etc.

@@ -1,0 +1,1 @@
+Systems are abstract scenes that manage related entities or otherwise organise the game, e.g. a SaveSystem would coordinate saving and loading the game state.

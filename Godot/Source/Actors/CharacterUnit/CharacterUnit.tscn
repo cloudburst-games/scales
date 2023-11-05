@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqjaiy3w7l06y"]
+
+[ext_resource type="Script" path="res://Source/Actors/CharacterUnit/CharacterUnit.cs" id="1_yf2yq"]
+[ext_resource type="Resource" uid="uid://ot7oxqbgabxa" path="res://Source/Actors/CharacterUnit/DataContainer/CharacterStats.tres" id="2_ddnqj"]
+[ext_resource type="Texture2D" uid="uid://c4qfoveb6q0yo" path="res://Assets/Graphics/Sprites/Actors/Player/villager.png" id="2_mpi4t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tyb1j"]
+radius = 62.2013
+
+[node name="CharacterUnit" type="CharacterBody2D"]
+position = Vector2(1746, 1016)
+script = ExtResource("1_yf2yq")
+CharacterStats = ExtResource("2_ddnqj")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0.403922, 0.305882, 1)
+position = Vector2(0, -52.5)
+texture = ExtResource("2_mpi4t")
+region_enabled = true
+region_rect = Rect2(1062, 209, 48, 147)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+disabled = true
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+
+[node name="AnimTree" type="AnimationTree" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+debug_enabled = true
+
+[node name="ClickArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -37.0
+offset_top = -133.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LblDebug" type="Label" parent="."]
+offset_left = -67.0
+offset_top = 33.0
+offset_right = 68.0
+offset_bottom = 116.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProximityArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ProximityArea"]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_tyb1j")
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnNavAgentVelocityComputed"]
+[connection signal="gui_input" from="ClickArea" to="." method="OnClickAreaGUIInput"]

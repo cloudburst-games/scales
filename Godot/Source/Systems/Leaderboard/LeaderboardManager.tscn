@@ -1,0 +1,191 @@
+[gd_scene load_steps=15 format=3 uid="uid://c7r7vtp2ki2rx"]
+
+[ext_resource type="Script" path="res://Source/Systems/Leaderboard/score_init.gd" id="1_kn2aa"]
+[ext_resource type="Script" path="res://Source/Systems/Leaderboard/LeaderboardManager.cs" id="1_t0op2"]
+[ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_ywkco"]
+[ext_resource type="Script" path="res://Source/Systems/Leaderboard/leaderboard_controller.gd" id="3_3k457"]
+[ext_resource type="PackedScene" uid="uid://bletl0rommq4k" path="res://Source/Systems/Leaderboard/pnl_timeout.tscn" id="4_shkdj"]
+[ext_resource type="Script" path="res://Source/Systems/Leaderboard/score_saver.gd" id="5_xqfq7"]
+[ext_resource type="LabelSettings" uid="uid://cnydnjeqvs3kr" path="res://Source/Interface/Label/test_label_settings.tres" id="6_rhl1f"]
+[ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="7_5fdhu"]
+[ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="8_8nxvy"]
+[ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="8_brl30"]
+[ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="9_j5im4"]
+[ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="10_nwn2x"]
+
+[sub_resource type="Animation" id="Animation_xflfu"]
+resource_name = "loading"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ak3e"]
+_data = {
+"loading": SubResource("Animation_xflfu")
+}
+
+[node name="LeaderboardManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t0op2")
+
+[node name="score_init" type="Node" parent="."]
+script = ExtResource("1_kn2aa")
+
+[node name="PnlLeaderboard" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -993.0
+offset_top = -866.0
+offset_right = 993.0
+offset_bottom = 898.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ywkco")
+
+[node name="leaderboard_controller" type="Node" parent="PnlLeaderboard"]
+script = ExtResource("3_3k457")
+
+[node name="loading_sprite" type="Sprite2D" parent="PnlLeaderboard"]
+
+[node name="anim" type="AnimationPlayer" parent="PnlLeaderboard"]
+libraries = {
+"": SubResource("AnimationLibrary_8ak3e")
+}
+
+[node name="pnl_timeout" parent="PnlLeaderboard" instance=ExtResource("4_shkdj")]
+visible = false
+layout_mode = 0
+
+[node name="pnl_scores" type="Panel" parent="PnlLeaderboard"]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 224.0
+offset_right = 1832.0
+offset_bottom = 1592.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PnlLeaderboard/pnl_scores"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="score_saver" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -652.0
+offset_top = -368.0
+offset_right = 652.0
+offset_bottom = 368.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_xqfq7")
+
+[node name="cnt_highscore" type="Control" parent="score_saver"]
+anchors_preset = 0
+
+[node name="lbl_title" type="Label" parent="score_saver/cnt_highscore"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Congratulations, you have achieved a high score of "
+label_settings = ExtResource("6_rhl1f")
+
+[node name="lbl_name" type="Label" parent="score_saver/cnt_highscore"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 237.0
+offset_right = 57.0
+offset_bottom = 260.0
+text = "Player"
+label_settings = ExtResource("6_rhl1f")
+
+[node name="lbl_status" type="Label" parent="score_saver/cnt_highscore"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 473.0
+offset_right = 132.0
+offset_bottom = 496.0
+text = "STATUS"
+label_settings = ExtResource("6_rhl1f")
+
+[node name="led_name" type="LineEdit" parent="score_saver/cnt_highscore"]
+layout_mode = 0
+offset_left = 247.0
+offset_top = 251.0
+offset_right = 314.062
+offset_bottom = 282.0
+
+[node name="lbl_name2" type="Label" parent="score_saver/cnt_highscore"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 324.0
+offset_right = 176.0
+offset_bottom = 385.0
+text = "Player 2"
+label_settings = ExtResource("6_rhl1f")
+
+[node name="led_name2" type="LineEdit" parent="score_saver/cnt_highscore"]
+layout_mode = 0
+offset_left = 242.0
+offset_top = 336.0
+offset_right = 309.062
+offset_bottom = 367.0
+
+[node name="btn_submit" type="TextureButton" parent="score_saver/cnt_highscore"]
+layout_mode = 0
+offset_left = 495.0
+offset_top = 616.0
+offset_right = 719.0
+offset_bottom = 715.0
+texture_normal = ExtResource("7_5fdhu")
+texture_pressed = ExtResource("8_brl30")
+texture_hover = ExtResource("9_j5im4")
+texture_disabled = ExtResource("10_nwn2x")
+script = ExtResource("8_8nxvy")
+_text = "SUBMIT BUTTON"
+
+[node name="loading_sprite" type="Sprite2D" parent="score_saver/cnt_highscore"]
+
+[node name="anim" type="AnimationPlayer" parent="score_saver/cnt_highscore"]
+root_node = NodePath("../../../PnlLeaderboard")
+libraries = {
+"": SubResource("AnimationLibrary_8ak3e")
+}
+
+[node name="cnt_checking" type="Control" parent="score_saver"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="lbl_title" type="Label" parent="score_saver/cnt_checking"]
+layout_mode = 0
+offset_right = 1042.0
+offset_bottom = 61.0
+text = "Checking leaderboard..."
+label_settings = ExtResource("6_rhl1f")
+
+[node name="loading_sprite" type="Sprite2D" parent="score_saver/cnt_checking"]
+
+[node name="anim" type="AnimationPlayer" parent="score_saver/cnt_checking"]
+root_node = NodePath("../../../PnlLeaderboard")
+libraries = {
+"": SubResource("AnimationLibrary_8ak3e")
+}
+
+[node name="pnl_timeout" parent="score_saver" instance=ExtResource("4_shkdj")]
+visible = false
+layout_mode = 0
+
+[connection signal="pressed" from="score_saver/cnt_highscore/btn_submit" to="score_saver" method="_on_btn_submit_pressed"]

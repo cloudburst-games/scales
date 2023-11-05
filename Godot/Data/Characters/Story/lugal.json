@@ -1,0 +1,14 @@
+{
+    "Name": "Lugal",
+    "Description": "Lugal, often a title for kingship in Sumerian culture, symbolizes authority and rulership.",
+    "PatronGod": "Innana",
+    "Might": 15,
+    "PhysicalDamage": 5,
+    "Perks": [
+        0,
+        3,
+        4,
+        7
+    ],
+    "Level": 1
+}

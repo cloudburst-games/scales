@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccvth3hcpbssi"]
+
+[ext_resource type="PackedScene" uid="uid://byrap2l8cfdxd" path="res://Source/Systems/HexGrid/HexGrid.tscn" id="1_6ykwe"]
+[ext_resource type="PackedScene" uid="uid://bn3a2ro264dem" path="res://addons/Cam2DTopDownPlugin/Cam2DTopDown.tscn" id="2_p5ls3"]
+
+[node name="hextest" type="Node"]
+
+[node name="HexGrid" parent="." instance=ExtResource("1_6ykwe")]
+_gridSize = Vector2(8, 14)
+_sideLength = 60.0
+
+[node name="HexGrid2" parent="." instance=ExtResource("1_6ykwe")]
+_orientation = 0
+_gridSize = Vector2(8, 14)
+_startPosition = Vector2(300, 1300)
+_sideLength = 60.0
+
+[node name="HexGrid3" parent="." instance=ExtResource("1_6ykwe")]
+_orientation = 0
+_layout = 0
+_gridSize = Vector2(8, 14)
+_startPosition = Vector2(1300, 700)
+_sideLength = 60.0
+
+[node name="HexGrid4" parent="." instance=ExtResource("1_6ykwe")]
+_layout = 0
+_gridSize = Vector2(8, 14)
+_startPosition = Vector2(100, 3000)
+_sideLength = 60.0
+
+[node name="Cam2DTopDown" parent="." instance=ExtResource("2_p5ls3")]

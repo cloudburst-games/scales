@@ -1,0 +1,1 @@
+Actors are entities that have an effect or "act" on other objects in the game world

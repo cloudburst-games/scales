@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://b5jgm6ub5b6el"]
+
+[ext_resource type="Shader" path="res://Source/Effects/Rain/rain1.gdshader" id="1_wco4h"]
+[ext_resource type="Texture2D" uid="uid://daxgpyrdyuu2b" path="res://Assets/Graphics/Effects/rain_drop.png" id="2_aqlw6"]
+[ext_resource type="LabelSettings" uid="uid://cnydnjeqvs3kr" path="res://Source/Interface/Label/test_label_settings.tres" id="3_jwmxs"]
+
+[sub_resource type="GDScript" id="GDScript_eqcxe"]
+resource_name = "show_fps"
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	$CanvasLayer/Label.text = str(Engine.get_frames_per_second());
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ppqhg"]
+shader = ExtResource("1_wco4h")
+shader_parameter/count = 150
+shader_parameter/slant = 0.1
+shader_parameter/speed = 50.0
+shader_parameter/blur = 0.0025
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/size = Vector2(0.005, 0.2)
+
+[sub_resource type="Gradient" id="Gradient_84pjv"]
+offsets = PackedFloat32Array(0, 0.208494)
+colors = PackedColorArray(1, 1, 1, 0.294118, 1, 1, 1, 0.2)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ipey"]
+gradient = SubResource("Gradient_84pjv")
+
+[sub_resource type="Curve" id="Curve_xc00d"]
+max_value = 4.0
+_data = [Vector2(0.0103448, 1.93684), 0.0, 0.0, 0, 0, Vector2(0.993103, 3.03158), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xaya6"]
+curve = SubResource("Curve_xc00d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_517cl"]
+emission_shape = 3
+emission_box_extents = Vector3(2332.8, 1080, 1)
+particle_flag_disable_z = true
+direction = Vector3(0.25, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 4000.0
+initial_velocity_max = 4000.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 1500.0
+linear_accel_max = 1500.0
+angle_min = 5.0
+angle_max = 5.0
+scale_curve = SubResource("CurveTexture_xaya6")
+color_ramp = SubResource("GradientTexture1D_4ipey")
+
+[node name="rain_test_scene" type="Node2D"]
+script = SubResource("GDScript_eqcxe")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ppqhg")
+offset_right = 3851.0
+offset_bottom = 2166.0
+color = Color(1, 1, 1, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+position = Vector2(1861, 51)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_517cl")
+texture = ExtResource("2_aqlw6")
+lifetime = 0.4
+preprocess = 5.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 133.0
+offset_top = 75.0
+offset_right = 589.0
+offset_bottom = 290.0
+label_settings = ExtResource("3_jwmxs")

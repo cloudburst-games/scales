@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://w5upmeajb4vb"]
+
+[ext_resource type="Script" path="res://Source/Utils/Terrain/TerrainBuilder.cs" id="1_52ast"]
+[ext_resource type="TileSet" uid="uid://d006ck7i37dcm" path="res://Source/Utils/Terrain/Examples/SophTest/test.tres" id="2_3qyqo"]
+[ext_resource type="PackedScene" uid="uid://cpc0jojm7svgw" path="res://Source/Utils/Terrain/TerrainGrid.tscn" id="2_usapw"]
+[ext_resource type="Script" path="res://Source/Utils/Terrain/TerrainGridVisualiser.cs" id="3_njocr"]
+[ext_resource type="PackedScene" uid="uid://bn3a2ro264dem" path="res://addons/Cam2DTopDownPlugin/Cam2DTopDown.tscn" id="6_prq4k"]
+
+[node name="TerrainBuilder" type="Node2D"]
+texture_filter = 1
+script = ExtResource("1_52ast")
+_currentTileset = ExtResource("2_3qyqo")
+_gridSize = Vector2i(50, 50)
+
+[node name="Tilemaps" type="Node2D" parent="."]
+
+[node name="Level1" parent="Tilemaps" instance=ExtResource("2_usapw")]
+
+[node name="GridVisualiser" type="Node2D" parent="."]
+script = ExtResource("3_njocr")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 39.0
+grow_horizontal = 2
+
+[node name="OptionButton" type="OptionButton" parent="HUD"]
+offset_right = 224.0
+offset_bottom = 20.0
+focus_mode = 0
+item_count = 5
+selected = 0
+popup/item_0/text = "Water"
+popup/item_0/id = 0
+popup/item_1/text = "Shore"
+popup/item_1/id = 1
+popup/item_2/text = "Earth"
+popup/item_2/id = 2
+popup/item_3/text = "Snow"
+popup/item_3/id = 3
+popup/item_4/text = "Grass"
+popup/item_4/id = 4
+
+[node name="SaveDialog" type="FileDialog" parent="HUD"]
+mode = 2
+size = Vector2i(600, 400)
+min_size = Vector2i(600, 400)
+show_hidden_files = true
+
+[node name="BtnSaveTscn" type="Button" parent="HUD"]
+offset_left = 768.0
+offset_right = 859.0
+offset_bottom = 31.0
+focus_mode = 0
+text = "Save TSCN"
+
+[node name="BtnSaveTerrainData" type="Button" parent="HUD"]
+offset_left = 286.0
+offset_right = 431.0
+offset_bottom = 31.0
+focus_mode = 0
+text = "Save Terrain Data"
+
+[node name="BtnLoadTerrainData" type="Button" parent="HUD"]
+offset_left = 513.0
+offset_right = 604.0
+offset_bottom = 21.0
+focus_mode = 0
+text = "Load Terrain Data"
+
+[node name="BtnQuit" type="Button" parent="HUD"]
+offset_left = 867.0
+offset_right = 958.0
+offset_bottom = 21.0
+focus_mode = 0
+text = "Quit"
+
+[node name="Cam2DTopDown" parent="." instance=ExtResource("6_prq4k")]
+_scrollSpeed = 2500.0
+_panMouseButton = 2
+
+[connection signal="item_selected" from="HUD/OptionButton" to="." method="OnOptionButtonItemSelected"]
+[connection signal="about_to_popup" from="HUD/SaveDialog" to="." method="OnSaveDialogShow"]
+[connection signal="close_requested" from="HUD/SaveDialog" to="." method="OnSaveDialogHide"]
+[connection signal="confirmed" from="HUD/SaveDialog" to="." method="OnSaveDialogConfirmed"]
+[connection signal="pressed" from="HUD/BtnSaveTscn" to="." method="OnBtnSavePressed"]
+[connection signal="pressed" from="HUD/BtnSaveTerrainData" to="." method="OnBtnSaveDataPressed"]
+[connection signal="pressed" from="HUD/BtnLoadTerrainData" to="." method="OnBtnLoadDataPressed"]
+[connection signal="pressed" from="HUD/BtnQuit" to="." method="OnBtnQuitPressed"]

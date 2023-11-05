@@ -1,0 +1,1 @@
+Assets unprocessed for use in the game should be placed in Unprocessed, e.g. sprites that have yet to be converted or resized, audio that needs cleaning up before inclusion, etc.

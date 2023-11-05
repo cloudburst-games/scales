@@ -1,0 +1,79 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://d006ck7i37dcm"]
+
+[ext_resource type="Texture2D" uid="uid://cynf7dgid4rsd" path="res://Source/Utils/Terrain/Examples/SophTest/sophtiles.png" id="1_m61l5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5stth"]
+texture = ExtResource("1_m61l5")
+texture_region_size = Vector2i(256, 128)
+0:0/0 = 0
+0:0/0/custom_data_0 = "0000"
+0:1/0 = 0
+0:1/0/custom_data_0 = "0001-a"
+1:0/0 = 0
+1:0/0/custom_data_0 = "0001-b"
+1:1/0 = 0
+1:1/0/custom_data_0 = "0001"
+0:2/0 = 0
+0:2/0/custom_data_0 = "0010-a"
+1:2/0 = 0
+1:2/0/custom_data_0 = "0010-b"
+0:3/0 = 0
+0:3/0/custom_data_0 = "0010"
+1:3/0 = 0
+1:3/0/custom_data_0 = "0011-a"
+2:0/0 = 0
+2:0/0/custom_data_0 = "0011-b"
+2:1/0 = 0
+2:1/0/custom_data_0 = "0011"
+2:2/0 = 0
+2:2/0/custom_data_0 = "0100-a"
+2:3/0 = 0
+2:3/0/custom_data_0 = "0100-b"
+0:4/0 = 0
+0:4/0/custom_data_0 = "0100"
+1:4/0 = 0
+1:4/0/custom_data_0 = "0101-a"
+2:4/0 = 0
+2:4/0/custom_data_0 = "0101"
+0:5/0 = 0
+0:5/0/custom_data_0 = "0110"
+1:5/0 = 0
+1:5/0/custom_data_0 = "0111"
+2:5/0 = 0
+2:5/0/custom_data_0 = "1000-a"
+3:0/0 = 0
+3:0/0/custom_data_0 = "1000-b"
+3:1/0 = 0
+3:1/0/custom_data_0 = "1000"
+3:2/0 = 0
+3:2/0/custom_data_0 = "1001"
+3:3/0 = 0
+3:3/0/custom_data_0 = "1010-a"
+3:4/0 = 0
+3:4/0/custom_data_0 = "1010"
+3:5/0 = 0
+3:5/0/custom_data_0 = "1011"
+0:6/0 = 0
+0:6/0/custom_data_0 = "1100-a"
+1:6/0 = 0
+1:6/0/custom_data_0 = "1100-b"
+2:6/0 = 0
+2:6/0/custom_data_0 = "1100"
+3:6/0 = 0
+3:6/0/custom_data_0 = "1101"
+0:7/0 = 0
+0:7/0/custom_data_0 = "1110"
+1:7/0 = 0
+1:7/0/custom_data_0 = "1111-a"
+2:7/0 = 0
+2:7/0/custom_data_0 = "1111"
+
+[resource]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(128, 64)
+custom_data_layer_0/name = "rules"
+custom_data_layer_0/type = 4
+custom_data_layer_1/name = ""
+custom_data_layer_1/type = 0
+sources/0 = SubResource("TileSetAtlasSource_5stth")

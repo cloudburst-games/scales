@@ -1,0 +1,3 @@
+The code manages transitions using a number system. Each number corresponds to one quarter of the isometric (diamond) tile. In the sequence of four numbers, the first corresponds to the top part of the tile, the second corresponds to the right, third to the left, and fourth to the bottom.
+
+The part of the tile that is empty or water will always be 0. The number greater than 0 corresponds to the painted part of the tile, e.g. 1000 means shore at the top and water everywhere else, 0220 means dirt at the right and left parts of the tile and nothing everywhere else, 0033 means snow at the left and bottom parts of the tile.

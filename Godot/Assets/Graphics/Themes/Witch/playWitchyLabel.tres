@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bok3h2cnuw41n"]
+
+[ext_resource type="FontFile" uid="uid://cofx1cs3c3u03" path="res://Assets/Interface/Fonts/Yusei_Magic/YuseiMagic-Regular.ttf" id="1_ig2ah"]
+
+[resource]
+font = ExtResource("1_ig2ah")
+font_size = 130

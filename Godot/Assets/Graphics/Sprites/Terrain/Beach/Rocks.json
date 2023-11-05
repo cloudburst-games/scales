@@ -1,0 +1,135 @@
+{
+	"frames": {
+		"Rock1.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 154,
+				"h": 145
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 154,
+				"h": 145
+			},
+			"sourceSize": {
+				"w": 154,
+				"h": 145
+			}
+		},
+		"Rock2.png": {
+			"frame": {
+				"x": 1,
+				"y": 148,
+				"w": 239,
+				"h": 201
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 239,
+				"h": 201
+			},
+			"sourceSize": {
+				"w": 239,
+				"h": 201
+			}
+		},
+		"Rock3.png": {
+			"frame": {
+				"x": 1,
+				"y": 351,
+				"w": 135,
+				"h": 105
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 135,
+				"h": 105
+			},
+			"sourceSize": {
+				"w": 135,
+				"h": 105
+			}
+		},
+		"Rock4.png": {
+			"frame": {
+				"x": 1,
+				"y": 458,
+				"w": 155,
+				"h": 103
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 155,
+				"h": 103
+			},
+			"sourceSize": {
+				"w": 155,
+				"h": 103
+			}
+		},
+		"Rock5.png": {
+			"frame": {
+				"x": 1,
+				"y": 563,
+				"w": 102,
+				"h": 87
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 102,
+				"h": 87
+			},
+			"sourceSize": {
+				"w": 102,
+				"h": 87
+			}
+		},
+		"Rock6.png": {
+			"frame": {
+				"x": 1,
+				"y": 652,
+				"w": 160,
+				"h": 136
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 160,
+				"h": 136
+			},
+			"sourceSize": {
+				"w": 160,
+				"h": 136
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 241,
+			"h": 789
+		},
+		"scale": "1"
+	}
+}

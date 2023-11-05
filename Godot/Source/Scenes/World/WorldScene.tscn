@@ -1,0 +1,219 @@
+[gd_scene load_steps=25 format=3 uid="uid://bb7784g1iyh6h"]
+
+[ext_resource type="Script" path="res://Source/Scenes/World/WorldScene.cs" id="1_pym4l"]
+[ext_resource type="AudioStream" uid="uid://bdorx8jxhcvl8" path="res://Assets/Audio/Music/World/Native DreamOgg.ogg" id="3_1xlcl"]
+[ext_resource type="Script" path="res://addons/SceneTransitionPlugin/SceneTransition.cs" id="3_2tjvv"]
+[ext_resource type="Script" path="res://Source/Scenes/World/HUD.cs" id="3_botg1"]
+[ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="3_vuk0j"]
+[ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="4_72wlk"]
+[ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="4_uqhn7"]
+[ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="5_rlmf6"]
+[ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="6_vrh84"]
+[ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_ubouw"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="8_5wenj"]
+[ext_resource type="AudioStream" uid="uid://u8vvnphooeai" path="res://addons/BaseTextureButtonPlugin/hover.wav" id="8_acp5y"]
+[ext_resource type="PackedScene" uid="uid://dm31ruvvjwfml" path="res://Source/Interface/Buttons/BtnClosePlaceholder.tscn" id="9_78nox"]
+[ext_resource type="AudioStream" uid="uid://in1epaq47smy" path="res://addons/BaseTextureButtonPlugin/click.wav" id="9_kmdl6"]
+[ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="11_pvq4t"]
+[ext_resource type="Texture2D" uid="uid://62mh2025x0g" path="res://Assets/Graphics/Interface/Buttons/Music/musicOn.png" id="20_32v7e"]
+[ext_resource type="Texture2D" uid="uid://njvd4rqb6fgd" path="res://Assets/Graphics/Interface/Buttons/Music/musicOff.png" id="21_m5p4a"]
+[ext_resource type="Texture2D" uid="uid://ccy283pjlitq0" path="res://Assets/Graphics/Interface/Buttons/Music/musicOnHover.png" id="22_h5hnn"]
+[ext_resource type="Texture2D" uid="uid://bed0k4b8ieqvd" path="res://Assets/Graphics/Interface/Buttons/Audio/audioOn.png" id="23_6o3m6"]
+[ext_resource type="PackedScene" uid="uid://byf6q1q1xsmeu" path="res://Source/Systems/LevelSystem/LevelTemplate.tscn" id="23_cxlbo"]
+[ext_resource type="PackedScene" uid="uid://dycfwnor58bnr" path="res://Source/Systems/Battle/Battler.tscn" id="24_dkubk"]
+[ext_resource type="Texture2D" uid="uid://ckmpuwhgfk8lj" path="res://Assets/Graphics/Interface/Buttons/Audio/audioOff.png" id="24_e7ybn"]
+[ext_resource type="Texture2D" uid="uid://cb6htj6b5b7xs" path="res://Assets/Graphics/Interface/Buttons/Audio/audioOnHover.png" id="25_lr3ip"]
+[ext_resource type="PackedScene" uid="uid://bes3oet5iq1e1" path="res://Source/Systems/SettingsManager/SettingsManager.tscn" id="26_2pdne"]
+
+[node name="WorldScene" type="Node"]
+script = ExtResource("1_pym4l")
+
+[node name="MusicContainer" type="Node" parent="."]
+process_mode = 3
+script = ExtResource("8_5wenj")
+Start = true
+_playOrder = 0
+_loop = 2
+_globalAudio = true
+GlobalName = "World"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MusicContainer"]
+stream = ExtResource("3_1xlcl")
+bus = &"Music"
+
+[node name="MainMenuSceneTransition" type="Node" parent="."]
+script = ExtResource("3_2tjvv")
+DestinationPath = "res://Source/Scenes/MainMenu/MainMenuScene.tscn"
+
+[node name="WorldSceneTransition" type="Node" parent="."]
+script = ExtResource("3_2tjvv")
+DestinationPath = "res://Source/Scenes/World/WorldScene.tscn"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("3_botg1")
+
+[node name="Control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("4_uqhn7")
+
+[node name="PnlMenu" type="Panel" parent="HUD/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -351.0
+offset_top = -334.0
+offset_right = 351.0
+offset_bottom = 334.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_pvq4t")
+_snapToEdges = false
+_draggable = false
+_closeBtnScn = ExtResource("9_78nox")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Control/PnlMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -258.0
+offset_top = -306.0
+offset_right = 258.0
+offset_bottom = 306.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BtnRestart" type="TextureButton" parent="HUD/Control/PnlMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("3_vuk0j")
+texture_pressed = ExtResource("4_72wlk")
+texture_hover = ExtResource("5_rlmf6")
+texture_disabled = ExtResource("6_vrh84")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_ubouw")
+
+[node name="Label2" type="Label" parent="HUD/Control/PnlMenu/VBoxContainer/BtnRestart"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_uqhn7")
+theme_override_font_sizes/font_size = 75
+text = "Restart"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnMainMenu" type="TextureButton" parent="HUD/Control/PnlMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("3_vuk0j")
+texture_pressed = ExtResource("4_72wlk")
+texture_hover = ExtResource("5_rlmf6")
+texture_disabled = ExtResource("6_vrh84")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_ubouw")
+
+[node name="Label3" type="Label" parent="HUD/Control/PnlMenu/VBoxContainer/BtnMainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_uqhn7")
+theme_override_font_sizes/font_size = 75
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control/PnlMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BtnMusic" type="TextureButton" parent="HUD/Control/PnlMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+texture_normal = ExtResource("20_32v7e")
+texture_pressed = ExtResource("21_m5p4a")
+texture_hover = ExtResource("22_h5hnn")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_ubouw")
+_hoverSample = ExtResource("8_acp5y")
+_clickedSample = ExtResource("9_kmdl6")
+
+[node name="BtnSound" type="TextureButton" parent="HUD/Control/PnlMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+texture_normal = ExtResource("23_6o3m6")
+texture_pressed = ExtResource("24_e7ybn")
+texture_hover = ExtResource("25_lr3ip")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_ubouw")
+_hoverSample = ExtResource("8_acp5y")
+_clickedSample = ExtResource("9_kmdl6")
+
+[node name="BtnMenu" type="TextureButton" parent="HUD/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -312.0
+offset_top = -2.0
+offset_bottom = 145.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_vuk0j")
+texture_pressed = ExtResource("4_72wlk")
+texture_hover = ExtResource("5_rlmf6")
+texture_disabled = ExtResource("6_vrh84")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_ubouw")
+_hoverSample = ExtResource("8_acp5y")
+_clickedSample = ExtResource("9_kmdl6")
+
+[node name="Label" type="Label" parent="HUD/Control/BtnMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_uqhn7")
+theme_override_font_sizes/font_size = 75
+text = "Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsManager" parent="HUD" instance=ExtResource("26_2pdne")]
+
+[node name="Level" parent="." instance=ExtResource("23_cxlbo")]
+
+[node name="Battler" parent="." instance=ExtResource("24_dkubk")]
+
+[connection signal="pressed" from="HUD/Control/PnlMenu/VBoxContainer/BtnRestart" to="." method="Restart"]
+[connection signal="pressed" from="HUD/Control/PnlMenu/VBoxContainer/BtnMainMenu" to="." method="MainMenu"]
+[connection signal="pressed" from="HUD/Control/PnlMenu/VBoxContainer/HBoxContainer/BtnMusic" to="HUD" method="OnBtnMusicPressed"]
+[connection signal="pressed" from="HUD/Control/PnlMenu/VBoxContainer/HBoxContainer/BtnSound" to="HUD" method="OnBtnSoundPressed"]
+[connection signal="pressed" from="HUD/Control/BtnMenu" to="HUD" method="OnBtnMenuPressed"]

@@ -1,0 +1,423 @@
+[gd_scene load_steps=35 format=3 uid="uid://b3251ibnpr484"]
+
+[ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
+[ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
+[ext_resource type="Texture2D" uid="uid://b8lrqyev7uyvy" path="res://addons/SceneTransitionPlugin/ContinueDisabled.png" id="2_mer2l"]
+[ext_resource type="Texture2D" uid="uid://dw55h30ros4ye" path="res://addons/SceneTransitionPlugin/ContinueNormal.png" id="3_4utpa"]
+[ext_resource type="Texture2D" uid="uid://rbn5wog65ufi" path="res://addons/SceneTransitionPlugin/ContinuePressed.png" id="4_froe4"]
+[ext_resource type="Texture2D" uid="uid://dfljrleew8t8j" path="res://addons/SceneTransitionPlugin/ContinueHover.png" id="5_foh57"]
+[ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_8jqkl"]
+[ext_resource type="Texture2D" uid="uid://dvdq17vjtmmo4" path="res://Assets/Graphics/Interface/Cursors/Art/MeleeDisabled.PNG" id="7_teh6g"]
+[ext_resource type="Script" path="res://Source/Scenes/Battle/BattleHUD.cs" id="8_p64pw"]
+[ext_resource type="PackedScene" uid="uid://bw5lq1gqo82tm" path="res://Data/Levels/Battle/BattleLevelTemplate.tscn" id="9_4plr1"]
+[ext_resource type="Texture2D" uid="uid://c1pa5j80nnhnt" path="res://Assets/Graphics/Interface/Cursors/Art/ShootDisabled.png" id="10_1eqcp"]
+[ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="10_a18qy"]
+[ext_resource type="PackedScene" uid="uid://dycfwnor58bnr" path="res://Source/Systems/Battle/Battler.tscn" id="10_hfvdy"]
+[ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="11_b5csu"]
+[ext_resource type="ButtonGroup" uid="uid://caqh8cgoep2s1" path="res://Source/Scenes/Battle/BattleActionButtonGroup.tres" id="11_te2ac"]
+[ext_resource type="Texture2D" uid="uid://ct08p3dskocfa" path="res://Assets/Graphics/Interface/Cursors/Art/Melee.PNG" id="12_uqan6"]
+[ext_resource type="Texture2D" uid="uid://2k7lwa6e3juu" path="res://Assets/Graphics/Interface/Cursors/Art/MoveDisabled.png" id="13_g0jy5"]
+[ext_resource type="Texture2D" uid="uid://d3d88x466vhfv" path="res://Assets/Graphics/Interface/Cursors/Art/Shoot.PNG" id="13_ld442"]
+[ext_resource type="Texture2D" uid="uid://jmpy6jo7v3f8" path="res://Assets/Graphics/Interface/Cursors/Art/Spell.PNG" id="14_wll8d"]
+[ext_resource type="Texture2D" uid="uid://ccj7burt8mlap" path="res://addons/AudioContainerPlugin/AudioContainerIcon.png" id="14_ycjn2"]
+[ext_resource type="Texture2D" uid="uid://beaxfdy07nokw" path="res://Assets/Graphics/Interface/Cursors/Art/Move.PNG" id="15_byf45"]
+[ext_resource type="Texture2D" uid="uid://iouuy02jxnkp" path="res://Assets/Graphics/Interface/Cursors/Art/Wait.PNG" id="16_07o0k"]
+[ext_resource type="Texture2D" uid="uid://da1npq2e4e7l2" path="res://Source/Systems/HexGrid/example/pointy_hex.png" id="17_0c8f4"]
+[ext_resource type="Texture2D" uid="uid://birpy4r4g8whd" path="res://Assets/Graphics/Interface/Buttons/Settings/barsHorizontal.png" id="19_hl42s"]
+[ext_resource type="PackedScene" uid="uid://dm31ruvvjwfml" path="res://Source/Interface/Buttons/BtnClosePlaceholder.tscn" id="23_0fs1l"]
+[ext_resource type="LabelSettings" uid="uid://cnydnjeqvs3kr" path="res://Source/Interface/Label/test_label_settings.tres" id="24_m03nf"]
+[ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellEffectManager.cs" id="27_pn21p"]
+[ext_resource type="PackedScene" uid="uid://cmsrvkqdk8j1b" path="res://Source/Systems/SpellEffect/Projectiles/ArrowEffect.tscn" id="28_pp5dy"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_gqkdd"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_21ipa"]
+font_size = 64
+
+[sub_resource type="Animation" id="Animation_w5wdv"]
+resource_name = "Loading"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CntBattleLevel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BattleHUD/CntHUD:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ebxp4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CntBattleLevel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BattleHUD/CntHUD:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gafb4"]
+resource_name = "Unloading"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CntBattleLevel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BattleHUD/CntHUD:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4nsih"]
+_data = {
+"Loading": SubResource("Animation_w5wdv"),
+"RESET": SubResource("Animation_ebxp4"),
+"Unloading": SubResource("Animation_gafb4")
+}
+
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_actionBtns", "_cursorControl", "_spellEffectManager")]
+script = ExtResource("1_2w8r3")
+_anim = NodePath("Anim")
+_cntBattleLevel = NodePath("CntBattleLevel")
+_HUD = NodePath("BattleHUD")
+_battler = NodePath("Battler")
+_pnlAction = NodePath("BattleHUD/CntHUD/PnlAction")
+_btnIntro = NodePath("BattleHUD/CntHUD/PnlBattleIntro/BtnIntro")
+_actionBtns = [NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnAttack"), NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnShoot"), NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnCastSpell"), NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnMove")]
+_levelScenePaths = [ExtResource("9_4plr1")]
+_cursorControl = NodePath("Battler/CursorControl")
+_spellEffectManager = NodePath("SpellEffectManager")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 3840.0
+offset_bottom = 2160.0
+color = Color(0.568627, 0.862745, 1, 1)
+
+[node name="BattleHUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("_pnlBattleIntro", "_btnBattleIntroContinue", "_lblIntro", "_lblShortLog", "_btnLog", "_pnlFullLog", "_RLblFullLog")]
+script = ExtResource("8_p64pw")
+_pnlBattleIntro = NodePath("CntHUD/PnlBattleIntro")
+_btnBattleIntroContinue = NodePath("CntHUD/PnlBattleIntro/BtnIntro")
+_lblIntro = NodePath("CntHUD/PnlBattleIntro/Label")
+_lblShortLog = NodePath("CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/HBoxContainer/LblShortLog")
+_btnLog = NodePath("CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/HBoxContainer/BtnLog")
+_pnlFullLog = NodePath("CntHUD/PnlFullLog")
+_RLblFullLog = NodePath("CntHUD/PnlFullLog/RLblFullLog")
+
+[node name="CntHUD" type="Control" parent="BattleHUD"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PnlAction" type="Panel" parent="BattleHUD/CntHUD"]
+process_mode = 4
+layout_mode = 0
+offset_left = 72.0
+offset_top = 1704.0
+offset_right = 3692.0
+offset_bottom = 2128.0
+theme = ExtResource("10_a18qy")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction"]
+layout_mode = 0
+offset_right = 3612.0
+offset_bottom = 420.0
+
+[node name="PnlActiveCharacter" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 7.0
+
+[node name="HBoxBtnsLog" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BtnAttack" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Melee"
+toggle_mode = true
+button_group = ExtResource("11_te2ac")
+texture_normal = ExtResource("7_teh6g")
+texture_pressed = ExtResource("12_uqan6")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_8jqkl")
+
+[node name="BtnShoot" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Shoot"
+toggle_mode = true
+button_group = ExtResource("11_te2ac")
+texture_normal = ExtResource("10_1eqcp")
+texture_pressed = ExtResource("13_ld442")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_8jqkl")
+
+[node name="BtnCastSpell" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Cast"
+toggle_mode = true
+button_group = ExtResource("11_te2ac")
+texture_normal = ExtResource("14_wll8d")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_8jqkl")
+
+[node name="BtnMove" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Move"
+toggle_mode = true
+button_group = ExtResource("11_te2ac")
+texture_normal = ExtResource("13_g0jy5")
+texture_pressed = ExtResource("15_byf45")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_8jqkl")
+
+[node name="PnlShortLog" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 10.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LblShortLog" type="Label" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 20.0
+text = "Commencing battle..."
+label_settings = SubResource("LabelSettings_gqkdd")
+horizontal_alignment = 1
+
+[node name="BtnLog" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("14_ycjn2")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_8jqkl")
+
+[node name="BtnChooseSpell" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("14_wll8d")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_8jqkl")
+
+[node name="BtnEndTurn" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("16_07o0k")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_8jqkl")
+
+[node name="BtnGrid" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("17_0c8f4")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_8jqkl")
+
+[node name="BtnMenu" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("19_hl42s")
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_8jqkl")
+
+[node name="HBoxTurnOrder" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PnlBattleIntro" type="Panel" parent="BattleHUD/CntHUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1426.5
+offset_top = -700.5
+offset_right = 1426.5
+offset_bottom = 700.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5xh84")
+_snapToEdges = false
+_draggable = false
+
+[node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlBattleIntro"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1010.5
+offset_top = -522.5
+offset_right = 1010.5
+offset_bottom = 301.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "As you traverse the ancient city of Uruk, you unexpectedly cross paths with a trio of formidable adversaries. They emerge from the shadows, clad in weathered leather armor adorned with the emblem of the 'Sons of the Sand,' a ruthless warrior brotherhood native to these lands. Their leader, a battle-hardened veteran, steps forward and warns, 'You've ventured into the heart of our territory, stranger. The 'Sons of the Sand' are bound by duty to protect these ancient lands, and you shall answer for your intrusion.'"
+label_settings = SubResource("LabelSettings_21ipa")
+autowrap_mode = 2
+
+[node name="BtnIntro" type="TextureButton" parent="BattleHUD/CntHUD/PnlBattleIntro"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -445.0
+offset_top = -276.0
+offset_right = 445.0
+offset_bottom = -71.0
+grow_horizontal = 2
+grow_vertical = 0
+disabled = true
+texture_normal = ExtResource("3_4utpa")
+texture_pressed = ExtResource("4_froe4")
+texture_hover = ExtResource("5_foh57")
+texture_disabled = ExtResource("2_mer2l")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_8jqkl")
+
+[node name="PnlFullLog" type="Panel" parent="BattleHUD/CntHUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -888.5
+offset_top = -567.5
+offset_right = 888.5
+offset_bottom = 567.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5xh84")
+_snapToEdges = false
+_draggable = false
+_closeBtnScn = ExtResource("23_0fs1l")
+_startClosed = true
+
+[node name="RLblFullLog" type="RichTextLabel" parent="BattleHUD/CntHUD/PnlFullLog"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -818.5
+offset_top = -414.5
+offset_right = 819.5
+offset_bottom = 540.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlFullLog"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -203.5
+offset_right = 203.5
+offset_bottom = 118.0
+grow_horizontal = 2
+text = "Battle Log"
+label_settings = ExtResource("24_m03nf")
+
+[node name="CntBattleLevel" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Battler" parent="." node_paths=PackedStringArray("CursorControl") instance=ExtResource("10_hfvdy")]
+process_mode = 4
+CursorControl = NodePath("CursorControl")
+
+[node name="CursorControl" parent="Battler" instance=ExtResource("11_b5csu")]
+process_mode = 3
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4nsih")
+}
+
+[node name="SpellEffectManager" type="Node" parent="."]
+script = ExtResource("27_pn21p")
+_spellEffectScns = [ExtResource("28_pp5dy")]

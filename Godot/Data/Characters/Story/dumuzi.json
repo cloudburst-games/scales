@@ -1,0 +1,14 @@
+{
+    "Name": "Dumuzi",
+    "Description": "Dumuzi, the shepherd god, is a symbol of the changing seasons, fertility, and renewal.",
+    "PatronGod": "Enki",
+    "Might": 14,
+    "PhysicalDamage": 6,
+    "Perks": [
+        0,
+        1,
+        2,
+        4
+    ],
+    "Level": 1
+}

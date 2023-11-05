@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsog18jlyosel"]
+
+[ext_resource type="Texture2D" uid="uid://c1kuwxb4e7kda" path="res://icon.png" id="1"]
+[ext_resource type="PackedScene" uid="uid://byrap2l8cfdxd" path="res://Source/Systems/HexGrid/HexGrid.tscn" id="2"]
+[ext_resource type="Script" path="res://Source/Systems/HexGrid/example/ExampleHexTilemapUsage.cs" id="3"]
+[ext_resource type="PackedScene" uid="uid://bls522y5shfrf" path="res://Source/Systems/HexGrid/example/TestHexTerrain.tscn" id="3_sn0ho"]
+
+[node name="ExampleHexTilemapUsage" type="Node"]
+script = ExtResource("3")
+
+[node name="TerrainBuilder" parent="." instance=ExtResource("3_sn0ho")]
+
+[node name="HexGrid" parent="." instance=ExtResource("2")]
+_gridSize = Vector2(38, 40)
+_makeGridFromInspector = false
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-365, 1554)
+
+[node name="Sprite" type="Sprite2D" parent="StaticBody2D2"]
+self_modulate = Color(0.788235, 0, 0, 1)
+position = Vector2(38, 39.5)
+scale = Vector2(2.1875, 2.23438)
+texture = ExtResource("1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(104, 33, 104, 99, 93, 106, -20, 106, -27, 98, -25, 17, 101, 16)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(216, 1281)
+
+[node name="Sprite" type="Sprite2D" parent="StaticBody2D3"]
+self_modulate = Color(0.788235, 0, 0, 1)
+position = Vector2(38, 39.5)
+scale = Vector2(2.1875, 2.23438)
+texture = ExtResource("1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D3"]
+polygon = PackedVector2Array(104, 33, 104, 99, 93, 106, -20, 106, -27, 98, -25, 17, 101, 16)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(258, 1571)
+
+[node name="Sprite" type="Sprite2D" parent="StaticBody2D4"]
+self_modulate = Color(0.788235, 0, 0, 1)
+position = Vector2(38, 39.5)
+scale = Vector2(2.1875, 2.23438)
+texture = ExtResource("1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D4"]
+polygon = PackedVector2Array(104, 33, 104, 99, 93, 106, -20, 106, -27, 98, -25, 17, 101, 16)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(-192, 1271)
+
+[node name="Sprite" type="Sprite2D" parent="StaticBody2D5"]
+self_modulate = Color(0.788235, 0, 0, 1)
+position = Vector2(38, 39.5)
+scale = Vector2(2.1875, 2.23438)
+texture = ExtResource("1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D5"]
+polygon = PackedVector2Array(104, 33, 104, 99, 93, 106, -20, 106, -27, 98, -25, 17, 101, 16)
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="."]
+position = Vector2(-2, 1695)
+
+[node name="Sprite" type="Sprite2D" parent="StaticBody2D6"]
+self_modulate = Color(0.788235, 0, 0, 1)
+position = Vector2(38, 39.5)
+scale = Vector2(2.1875, 2.23438)
+texture = ExtResource("1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D6"]
+polygon = PackedVector2Array(104, 33, 104, 99, 93, 106, -20, 106, -27, 98, -25, 17, 101, 16)
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="."]
+position = Vector2(-1, 1441)
+
+[node name="Sprite" type="Sprite2D" parent="StaticBody2D7"]
+self_modulate = Color(0.788235, 0, 0, 1)
+position = Vector2(38, 39.5)
+scale = Vector2(2.1875, 2.23438)
+texture = ExtResource("1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D7"]
+polygon = PackedVector2Array(104, 33, 104, 99, 93, 106, -20, 106, -27, 98, -25, 17, 101, 16)
+
+[editable path="TerrainBuilder"]

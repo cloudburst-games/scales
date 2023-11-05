@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cabcxww6shsjy"]
+
+[ext_resource type="Script" path="res://Source/Systems/HexGrid/HexGridVisualiser.cs" id="1"]
+
+[node name="HexGridVisualiser" type="Node2D"]
+script = ExtResource("1")

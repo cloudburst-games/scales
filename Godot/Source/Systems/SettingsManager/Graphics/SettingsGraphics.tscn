@@ -1,0 +1,298 @@
+[gd_scene load_steps=8 format=3 uid="uid://8i0p12smcyf"]
+
+[ext_resource type="Script" path="res://Source/Systems/SettingsManager/Graphics/SettingsGraphics.cs" id="1_q6g2w"]
+[ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="3_ouknf"]
+[ext_resource type="Script" path="res://Source/Systems/SettingsManager/SettingsLabelHint.cs" id="3_sonvt"]
+[ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="4_d74he"]
+
+[sub_resource type="Theme" id="Theme_dyjtb"]
+default_font_size = 56
+
+[sub_resource type="Theme" id="Theme_5jwy7"]
+default_font_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_6sym4"]
+font_size = 56
+
+[node name="SettingsGraphics" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_q6g2w")
+
+[node name="Panel" type="Panel" parent="."]
+texture_filter = 4
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1451.0
+offset_top = -792.0
+offset_right = 1451.0
+offset_bottom = 792.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1390.5
+offset_top = -678.5
+offset_right = 1390.5
+offset_bottom = 678.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HDisplayMode" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HDisplayMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 56
+text = "Window Mode"
+
+[node name="OptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer/HDisplayMode"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_dyjtb")
+item_count = 4
+selected = 0
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Maximised"
+popup/item_1/id = 1
+popup/item_2/text = "Fullscreen"
+popup/item_2/id = 2
+popup/item_3/text = "Exclusive Fullscreen"
+popup/item_3/id = 3
+
+[node name="HWindowSize" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HWindowSize"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 56
+text = "Window Size"
+
+[node name="OptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer/HWindowSize"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_dyjtb")
+selected = 0
+
+[node name="HScreen" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 56
+text = "Screen"
+
+[node name="OptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer/HScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_5jwy7")
+item_count = 2
+selected = 0
+popup/item_0/text = "0"
+popup/item_0/id = 0
+popup/item_1/text = "1"
+popup/item_1/id = 1
+
+[node name="HLockMouse" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HLockMouse"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 56
+text = "Confine Mouse To Game Window"
+
+[node name="Panel" type="Panel" parent="Panel/ScrollContainer/VBoxContainer/HLockMouse"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CheckButton" type="CheckButton" parent="Panel/ScrollContainer/VBoxContainer/HLockMouse/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.0
+offset_top = -53.0
+offset_right = -45.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+size_flags_horizontal = 3
+button_pressed = true
+
+[node name="HScreenShake" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HScreenShake"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 56
+text = "Screen Shake Magnitude"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer/VBoxContainer/HScreenShake"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HSlider" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/HScreenShake/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 200.0
+value = 100.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer/HScreenShake/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HScreenShake/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "0%"
+
+[node name="Label2" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HScreenShake/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "100%"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HScreenShake/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "200%"
+horizontal_alignment = 2
+
+[node name="HVSync" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HVSync"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 56
+text = "V-Sync"
+
+[node name="OptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer/HVSync"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_5jwy7")
+item_count = 3
+selected = 1
+popup/item_0/text = "Disabled"
+popup/item_0/id = 0
+popup/item_1/text = "Enabled"
+popup/item_1/id = 1
+popup/item_2/text = "Adaptive"
+popup/item_2/id = 2
+
+[node name="LabelTitle" type="Label" parent="Panel"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = 8.0
+offset_right = 33.0
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Graphics"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelHint" type="Label" parent="Panel"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -277.0
+offset_top = -33.0
+offset_right = 277.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("3_sonvt")
+
+[node name="PnlWindowSizeConfirm" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -385.5
+offset_top = -300.5
+offset_right = 385.5
+offset_bottom = 300.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_ouknf")
+_startClosed = true
+
+[node name="Label" type="Label" parent="PnlWindowSizeConfirm"]
+layout_mode = 0
+offset_left = 69.5
+offset_top = 32.5
+offset_right = 724.5
+offset_bottom = 322.5
+text = "Window Size has been changed. Confirm? Reverting in 10 seconds."
+label_settings = SubResource("LabelSettings_6sym4")
+autowrap_mode = 2
+
+[node name="BtnConfirm" type="TextureButton" parent="PnlWindowSizeConfirm"]
+layout_mode = 0
+offset_left = 464.5
+offset_top = 443.5
+offset_right = 707.5
+offset_bottom = 569.5
+script = ExtResource("4_d74he")
+_text = "Confirm"
+
+[node name="BtnCancel" type="TextureButton" parent="PnlWindowSizeConfirm"]
+layout_mode = 0
+offset_left = 53.5
+offset_top = 443.5
+offset_right = 296.5
+offset_bottom = 569.5
+script = ExtResource("4_d74he")
+_text = "Cancel"
+
+[node name="Timer" type="Timer" parent="PnlWindowSizeConfirm"]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="pressed" from="PnlWindowSizeConfirm/BtnConfirm" to="." method="OnWSizeBtnConfirmPressed"]
+[connection signal="pressed" from="PnlWindowSizeConfirm/BtnCancel" to="." method="OnWSizeBtnCancelPressed"]
+[connection signal="timeout" from="PnlWindowSizeConfirm/Timer" to="." method="OnWSizeBtnCancelPressed"]

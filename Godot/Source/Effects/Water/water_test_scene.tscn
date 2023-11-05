@@ -1,0 +1,472 @@
+[gd_scene load_steps=45 format=3 uid="uid://do6g7s8q4hovt"]
+
+[ext_resource type="Texture2D" uid="uid://dbxa1dmcqrr01" path="res://Source/Effects/Water/image.png" id="1_neoq0"]
+[ext_resource type="Texture2D" uid="uid://cmf620ysfjuwf" path="res://Source/Effects/Water/Oasis.png" id="1_qw2ny"]
+[ext_resource type="Shader" path="res://Source/Effects/Water/water_shader_test_3.gdshader" id="2_img68"]
+[ext_resource type="Texture2D" uid="uid://dsft1hk3rpwgn" path="res://Source/Effects/Water/OasisWater.png" id="3_m1gc8"]
+[ext_resource type="Texture2D" uid="uid://c4qfoveb6q0yo" path="res://Assets/Graphics/Sprites/Actors/Player/villager.png" id="4_ot1b2"]
+[ext_resource type="Script" path="res://Source/Effects/Water/TestPlayer.cs" id="5_2sr38"]
+[ext_resource type="Texture2D" uid="uid://daxgpyrdyuu2b" path="res://Assets/Graphics/Effects/rain_drop.png" id="6_6dets"]
+[ext_resource type="Shader" path="res://Source/Effects/Water/blah.gdshader" id="7_eopvt"]
+[ext_resource type="LabelSettings" uid="uid://cnydnjeqvs3kr" path="res://Source/Interface/Label/test_label_settings.tres" id="8_24tt6"]
+[ext_resource type="Texture2D" uid="uid://dauki7ipx140" path="res://addons/BaseTextureButtonPlugin/BaseTextureButtonIcon.png" id="8_s3yia"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="8_vrj5j"]
+[ext_resource type="AudioStream" uid="uid://c4jjjckqob0td" path="res://Source/Effects/Water/light-rain-109591.mp3" id="9_0vpak"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3brp2"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tmyfg"]
+seamless = true
+noise = SubResource("FastNoiseLite_3brp2")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fcbau"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6co0k"]
+seamless = true
+noise = SubResource("FastNoiseLite_fcbau")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6iwuk"]
+shader = ExtResource("2_img68")
+shader_parameter/speed = 0.048
+shader_parameter/magnitude1 = 0.025
+shader_parameter/magnitude2 = 0.025
+shader_parameter/tint_color = Color(0.235294, 1, 0.968627, 1)
+shader_parameter/tint_strength = 0.01
+shader_parameter/transparency = 0.7
+shader_parameter/noise1 = SubResource("NoiseTexture2D_tmyfg")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_6co0k")
+shader_parameter/mask = ExtResource("3_m1gc8")
+
+[sub_resource type="Shader" id="Shader_0pxv0"]
+code = "shader_type canvas_item;
+
+// ENABLE when using on light masks e.g. for wavy water reflection
+render_mode blend_mix,light_only;
+uniform sampler2D noise:repeat_enable;
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform float speed: hint_range(0.01, 0.25) = 0.025;
+uniform float magnitude: hint_range(0.01, 0.25) = 0.025;
+uniform sampler2D mask;
+uniform vec4 tint_color : source_color;
+uniform float tint_strength: hint_range(0.01, 1.0) = 0.025;
+uniform float transparency: hint_range(0.01, 1.0) = 1.0;
+
+void fragment() {
+	
+	// Get the noise value by sampling the noise texture at specified UV coordinate and adjusting
+	// for TIME to make it wavy. Multiply by magnitude to adjust the waviness
+	float noise_val = texture(noise, UV + TIME * speed).r * magnitude;
+	
+	// Get the mask value so we can mask the shader only to apply to specified (water) parts
+	float mask_val = texture(mask, UV).a;
+	
+	// Start setting up our output. Subtract the noise value from each UV colour value
+	// E.g. at (0.5, 0.5) the colour might be (0.5, 0.9, 0.2) and we subtract e.g. 0.1
+	// It displaces the image by the magnitude so we need to offset it by adding the magnitude
+	// (not sure why)
+	vec4 col = texture(TEXTURE, UV - noise_val + magnitude/2.0);
+	// Adjust the colour by a specified tint
+	col += tint_color * tint_strength;
+	// Apply the mask. Where the mask alpha is 0, the output will be empty.
+	col *= mask_val;
+	// Make it transparent to a degree
+	col.a *= transparency;
+	COLOR = col;
+}
+"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8367n"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cqoqp"]
+seamless = true
+noise = SubResource("FastNoiseLite_8367n")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cqo2b"]
+shader = SubResource("Shader_0pxv0")
+shader_parameter/speed = 0.01
+shader_parameter/magnitude = 0.025
+shader_parameter/tint_color = Color(0.054902, 1, 1, 1)
+shader_parameter/tint_strength = 0.025
+shader_parameter/transparency = 0.191
+shader_parameter/noise = SubResource("NoiseTexture2D_cqoqp")
+
+[sub_resource type="Animation" id="Animation_o3cuc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(575.521, 212.083, 75.694, 162.662)]
+}
+
+[sub_resource type="Animation" id="Animation_k24kr"]
+resource_name = "down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(210.25, 732.166, 51.5363, 165.883)]
+}
+
+[sub_resource type="Animation" id="Animation_chymc"]
+resource_name = "downleft"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(1326.33, 1067.16, 91.7992, 162.662)]
+}
+
+[sub_resource type="Animation" id="Animation_5ku6w"]
+resource_name = "downright"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(934.981, 962.48, 95.0201, 164.272)]
+}
+
+[sub_resource type="Animation" id="Animation_coj7h"]
+resource_name = "left"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(1440.68, 749.893, 64.4204, 159.44)]
+}
+
+[sub_resource type="Animation" id="Animation_hfnk1"]
+resource_name = "right"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(1527.65, 1115.48, 83.7465, 159.441)]
+}
+
+[sub_resource type="Animation" id="Animation_vkbev"]
+resource_name = "up"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(1039.66, 764.387, 77.3044, 169.104)]
+}
+
+[sub_resource type="Animation" id="Animation_6c4ji"]
+resource_name = "upleft"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(839.961, 967.312, 83.7466, 156.22)]
+}
+
+[sub_resource type="Animation" id="Animation_bc4rg"]
+resource_name = "upright"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(775.54, 1336.12, 69.252, 172.325)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7se2y"]
+_data = {
+"RESET": SubResource("Animation_o3cuc"),
+"down": SubResource("Animation_k24kr"),
+"downleft": SubResource("Animation_chymc"),
+"downright": SubResource("Animation_5ku6w"),
+"left": SubResource("Animation_coj7h"),
+"right": SubResource("Animation_hfnk1"),
+"up": SubResource("Animation_vkbev"),
+"upleft": SubResource("Animation_6c4ji"),
+"upright": SubResource("Animation_bc4rg")
+}
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4p66d"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jtv6e"]
+seamless = true
+noise = SubResource("FastNoiseLite_4p66d")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xkmva"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_o5exa"]
+seamless = true
+noise = SubResource("FastNoiseLite_xkmva")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_22rr3"]
+shader = ExtResource("7_eopvt")
+shader_parameter/speed = 0.25
+shader_parameter/magnitude1 = 0.25
+shader_parameter/magnitude2 = 0.173
+shader_parameter/tint_color = Color(0.0196078, 0.0980392, 0.282353, 0.368627)
+shader_parameter/tint_strength = 1.0
+shader_parameter/transparency = 0.259
+shader_parameter/noise1 = SubResource("NoiseTexture2D_jtv6e")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_o5exa")
+
+[sub_resource type="GDScript" id="GDScript_eqcxe"]
+resource_name = "show_fps"
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	$CanvasLayer/Label.text = str(Engine.get_frames_per_second());
+"
+
+[sub_resource type="Shader" id="Shader_nqln2"]
+code = "// simple rain/snow shader
+// useful learning resources:
+// https://www.ronja-tutorials.com/post/034-2d-sdf-basics/#circle
+// https://iquilezles.org/articles/distfunctions2d/
+
+shader_type canvas_item;
+
+// can make snow by adjusting values
+uniform int count: hint_range(0, 2000) = 150;
+uniform float slant: hint_range(-0.1, 0.1) = -0.01;
+uniform float speed: hint_range(25.0, 100.0) = 50.0;
+uniform float blur: hint_range(0.0005, 0.1) = 0.002;
+uniform vec4 colour: source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec2 size = vec2(0.005, 0.2);
+
+float line_sdf(vec2 p, vec2 s) {
+    vec2 d = abs(p) - s;
+    return min(max(d.x, d.y), 0.0) + length(max(d, 0.0));
+}
+
+float Hash(float x) {
+    return fract(sin(x * 18.34) * 51.78);
+}
+
+float Hash2(float x) {
+    return fract(sin(x * 25.42) * 21.24);
+}
+
+void fragment() {
+	// inspector issue with tiny vec 2
+    vec2 s = size * 0.1;
+	// to work at the start
+    float time = TIME + 1000.0;
+    vec2 uv = UV;
+	// slant each line left or right
+    uv.x += uv.y * slant;
+    float output = 0.0;
+    
+    for (int i = 1; i <= count; i++) {
+        float h1 = Hash(float(i));
+        float h2 = Hash2(float(i));
+		// make it so the lines move in the direction of the slant as well
+		// otherwise they would go directly down no matter what slant is
+        float sl = h1 * uv.y * -slant;
+		// compute random x position of line, multiply by 1.2 to cover the far edges more predictably
+        float pos_mod_x = h1 * 1.2;
+		// there is probably better way to do this, to prevent line from moving too slow compared to other lines
+        float pos_mod_y = max(h2 * speed, pos_mod_x * speed);
+		// wrap y values around to loop the anim
+        vec2 position = vec2(pos_mod_x + sl, -mod(-pos_mod_y * time * 0.1, -1.));
+        float sdf = line_sdf(uv - position, s);
+        output += clamp(- sdf / blur, 0.0, 1.0);
+    }
+
+    COLOR = vec4(colour.rgb, output);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iopi8"]
+shader = SubResource("Shader_nqln2")
+shader_parameter/count = 100
+shader_parameter/slant = 0.1
+shader_parameter/speed = 50.0
+shader_parameter/blur = 0.0015
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/size = Vector2(0.005, 0.2)
+
+[sub_resource type="Gradient" id="Gradient_84pjv"]
+offsets = PackedFloat32Array(0, 0.208494)
+colors = PackedColorArray(1, 1, 1, 0.294118, 1, 1, 1, 0.2)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ipey"]
+gradient = SubResource("Gradient_84pjv")
+
+[sub_resource type="Curve" id="Curve_xc00d"]
+max_value = 4.0
+_data = [Vector2(0.0103448, 1.93684), 0.0, 0.0, 0, 0, Vector2(0.993103, 3.03158), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xaya6"]
+curve = SubResource("Curve_xc00d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_517cl"]
+emission_shape = 3
+emission_box_extents = Vector3(2332.8, 1080, 1)
+particle_flag_disable_z = true
+direction = Vector3(0.25, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 4000.0
+initial_velocity_max = 4000.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 1500.0
+linear_accel_max = 1500.0
+angle_min = 5.0
+angle_max = 5.0
+scale_curve = SubResource("CurveTexture_xaya6")
+color_ramp = SubResource("GradientTexture1D_4ipey")
+
+[node name="WaterTest" type="Node2D"]
+position = Vector2(-3736, -395)
+
+[node name="Image" type="Sprite2D" parent="."]
+position = Vector2(5687, 1694)
+scale = Vector2(5, 5)
+texture = ExtResource("1_neoq0")
+
+[node name="Terrain" type="Sprite2D" parent="."]
+position = Vector2(5661.25, 1505.38)
+scale = Vector2(3, 3)
+texture = ExtResource("1_qw2ny")
+region_rect = Rect2(416, 263, 177, 85)
+
+[node name="Water" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_6iwuk")
+position = Vector2(5661.25, 1505.38)
+scale = Vector2(3, 3)
+texture = ExtResource("1_qw2ny")
+region_rect = Rect2(416, 263, 177, 85)
+
+[node name="ReflectionMask" type="PointLight2D" parent="Water"]
+range_item_cull_mask = 16
+texture = ExtResource("3_m1gc8")
+
+[node name="TestPlayer" type="Sprite2D" parent="." node_paths=PackedStringArray("_anim", "_reflection")]
+position = Vector2(4901, 1279)
+scale = Vector2(2, 2)
+texture = ExtResource("4_ot1b2")
+region_enabled = true
+region_rect = Rect2(575.521, 212.083, 75.694, 162.662)
+script = ExtResource("5_2sr38")
+_anim = NodePath("AnimationPlayer")
+_reflection = NodePath("Reflection")
+
+[node name="Reflection" type="Sprite2D" parent="TestPlayer"]
+light_mask = 16
+material = SubResource("ShaderMaterial_cqo2b")
+position = Vector2(-2, 132.5)
+rotation = -3.14159
+texture = ExtResource("4_ot1b2")
+region_enabled = true
+region_rect = Rect2(575.521, 212.083, 75.694, 162.662)
+
+[node name="Camera2D" type="Camera2D" parent="TestPlayer"]
+zoom = Vector2(0.5, 0.5)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TestPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_7se2y")
+}
+
+[node name="ColorRect" type="Sprite2D" parent="TestPlayer"]
+material = SubResource("ShaderMaterial_22rr3")
+position = Vector2(466, 134)
+scale = Vector2(500, 281.544)
+texture = ExtResource("8_s3yia")
+
+[node name="rain_test_scene" type="Node2D" parent="TestPlayer"]
+position = Vector2(-1920, -1080)
+script = SubResource("GDScript_eqcxe")
+
+[node name="ColorRect" type="ColorRect" parent="TestPlayer/rain_test_scene"]
+material = SubResource("ShaderMaterial_iopi8")
+offset_right = 3851.0
+offset_bottom = 2166.0
+color = Color(1, 1, 1, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="TestPlayer/rain_test_scene"]
+visible = false
+position = Vector2(1861, 51)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_517cl")
+texture = ExtResource("6_6dets")
+lifetime = 0.4
+preprocess = 5.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="TestPlayer/rain_test_scene"]
+
+[node name="Label" type="Label" parent="TestPlayer/rain_test_scene/CanvasLayer"]
+offset_left = 120.0
+offset_top = 136.0
+offset_right = 576.0
+offset_bottom = 351.0
+label_settings = ExtResource("8_24tt6")
+
+[node name="AudioContainer" type="Node" parent="."]
+script = ExtResource("8_vrj5j")
+Start = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioContainer"]
+stream = ExtResource("9_0vpak")
+bus = &"Effects"

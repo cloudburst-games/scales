@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bb71nh8f38a0g"]
+
+[ext_resource type="Script" path="res://addons/SceneTransitionPlugin/SceneTransition.cs" id="1_0kwc4"]
+
+[node name="SceneTransition" type="Node"]
+script = ExtResource("1_0kwc4")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=10 format=3 uid="uid://dxi8h2jwwdt11"]
+
+[ext_resource type="Script" path="res://Source/Interface/Cursors/CursorControl.cs" id="1_os3eu"]
+[ext_resource type="Texture2D" uid="uid://bf21gwsx2i5s0" path="res://Assets/Graphics/Interface/Cursors/Art/Select.PNG" id="2_st1qh"]
+[ext_resource type="Texture2D" uid="uid://ct08p3dskocfa" path="res://Assets/Graphics/Interface/Cursors/Art/Melee.PNG" id="3_rayr5"]
+[ext_resource type="Texture2D" uid="uid://d3d88x466vhfv" path="res://Assets/Graphics/Interface/Cursors/Art/Shoot.PNG" id="4_uedjh"]
+[ext_resource type="Texture2D" uid="uid://jmpy6jo7v3f8" path="res://Assets/Graphics/Interface/Cursors/Art/Spell.PNG" id="5_58166"]
+[ext_resource type="Texture2D" uid="uid://beaxfdy07nokw" path="res://Assets/Graphics/Interface/Cursors/Art/Move.PNG" id="6_1xeum"]
+[ext_resource type="Texture2D" uid="uid://ctpd2a8t8sk67" path="res://Assets/Graphics/Interface/Cursors/Art/Invalid.PNG" id="7_omnbp"]
+[ext_resource type="Texture2D" uid="uid://iouuy02jxnkp" path="res://Assets/Graphics/Interface/Cursors/Art/Wait.PNG" id="8_pgtph"]
+[ext_resource type="Texture2D" uid="uid://0ycu1ka5drml" path="res://Assets/Graphics/Interface/Cursors/Art/Hint.PNG" id="9_nequx"]
+
+[node name="CursorControl" type="Node"]
+script = ExtResource("1_os3eu")
+_select = ExtResource("2_st1qh")
+_melee = ExtResource("3_rayr5")
+_ranged = ExtResource("4_uedjh")
+_spell = ExtResource("5_58166")
+_move = ExtResource("6_1xeum")
+_invalid = ExtResource("7_omnbp")
+_wait = ExtResource("8_pgtph")
+_hint = ExtResource("9_nequx")

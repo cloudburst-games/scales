@@ -1,0 +1,14 @@
+{
+    "Name": "Gesht",
+    "Description": "Geshtinanna, a goddess associated with wine and the grape harvest, represents the pleasures and indulgences of life.",
+    "PatronGod": "Enlil",
+    "Might": 10,
+    "PhysicalDamage": 3,
+    "Perks": [
+        0,
+        3,
+        4,
+        7
+    ],
+    "Level": 1
+}

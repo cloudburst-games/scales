@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://dm31ruvvjwfml"]
+
+[ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="1_3c0js"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_elnen"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xn0nw"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dgn5h"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kywyw"]
+
+[node name="BtnClosePlaceholder" type="TextureButton"]
+offset_right = 135.0
+offset_bottom = 143.0
+texture_normal = SubResource("PlaceholderTexture2D_elnen")
+texture_pressed = SubResource("PlaceholderTexture2D_xn0nw")
+texture_hover = SubResource("PlaceholderTexture2D_dgn5h")
+texture_disabled = SubResource("PlaceholderTexture2D_kywyw")
+stretch_mode = 0
+script = ExtResource("1_3c0js")
+_text = "X"

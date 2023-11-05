@@ -1,0 +1,14 @@
+{
+    "Name": "Enkidu",
+    "Description": "Enkidu, a primal and untamed being, transformed by friendship and connection from a wild creature to a loyal companion in the epic of Gilgamesh.",
+    "PatronGod": "Innana",
+    "Might": 10,
+    "PhysicalDamage": 3,
+    "Perks": [
+        0,
+        3,
+        4,
+        7
+    ],
+    "Level": 1
+}

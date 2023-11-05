@@ -1,0 +1,1 @@
+Props are entities which are acted on by actors, e.g. a powerup is a prop.

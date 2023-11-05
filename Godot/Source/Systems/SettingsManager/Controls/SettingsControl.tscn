@@ -1,0 +1,335 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc1i562j47oui"]
+
+[ext_resource type="PackedScene" uid="uid://buab28dnaghc" path="res://Source/Systems/SettingsManager/Controls/ActionRemapButton.tscn" id="1_611mg"]
+[ext_resource type="Script" path="res://Source/Systems/SettingsManager/Controls/SettingsControl.cs" id="1_h3kmh"]
+[ext_resource type="Script" path="res://Source/Systems/SettingsManager/SettingsLabelHint.cs" id="3_t1kpq"]
+
+[sub_resource type="Theme" id="Theme_4504f"]
+default_font_size = 56
+
+[node name="SettingsControl" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = SubResource("Theme_4504f")
+script = ExtResource("1_h3kmh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1451.0
+offset_top = -792.0
+offset_right = 1451.0
+offset_bottom = 792.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1350.0
+offset_top = -650.0
+offset_right = 1350.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Up"
+horizontal_alignment = 1
+
+[node name="ActionRemapButton" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionRemapButton2" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+_actionOrder = 1
+
+[node name="SpaceControl" type="Control" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Down"
+horizontal_alignment = 1
+
+[node name="ActionRemapButton" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionRemapButton2" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+_actionOrder = 1
+
+[node name="SpaceControl" type="Control" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Left"
+horizontal_alignment = 1
+
+[node name="ActionRemapButton" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionRemapButton2" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+_actionOrder = 1
+
+[node name="SpaceControl" type="Control" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Right"
+horizontal_alignment = 1
+
+[node name="ActionRemapButton" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionRemapButton2" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+_actionOrder = 1
+
+[node name="SpaceControl" type="Control" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Jump"
+horizontal_alignment = 1
+
+[node name="ActionRemapButton" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionRemapButton2" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+_actionOrder = 1
+
+[node name="SpaceControl" type="Control" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="ActionRemapButton" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionRemapButton2" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+_actionOrder = 1
+
+[node name="SpaceControl" type="Control" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Journal"
+horizontal_alignment = 1
+
+[node name="ActionRemapButton" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionRemapButton2" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+_actionOrder = 1
+
+[node name="SpaceControl" type="Control" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Shoot"
+horizontal_alignment = 1
+
+[node name="ActionRemapButton" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionRemapButton2" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+_actionOrder = 1
+
+[node name="SpaceControl" type="Control" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Map"
+horizontal_alignment = 1
+
+[node name="ActionRemapButton" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionRemapButton2" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+_actionOrder = 1
+
+[node name="SpaceControl" type="Control" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer9"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Melee"
+horizontal_alignment = 1
+
+[node name="ActionRemapButton" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionRemapButton2" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+_actionOrder = 1
+
+[node name="SpaceControl" type="Control" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer11"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Switch Weapon"
+horizontal_alignment = 1
+
+[node name="ActionRemapButton" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer11" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ActionRemapButton2" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer11" instance=ExtResource("1_611mg")]
+layout_mode = 2
+size_flags_horizontal = 3
+_actionOrder = 1
+
+[node name="SpaceControl" type="Control" parent="Panel/ScrollContainer/VBoxContainer/HBoxContainer11"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="LabelTitle" type="Label" parent="Panel"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -33.0
+offset_top = 8.0
+offset_right = 33.0
+offset_bottom = 34.0
+grow_horizontal = 2
+text = "Controls"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelHint" type="Label" parent="Panel"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -277.0
+offset_top = -33.0
+offset_right = 277.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+script = ExtResource("3_t1kpq")

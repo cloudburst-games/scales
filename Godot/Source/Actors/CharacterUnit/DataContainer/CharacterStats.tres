@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ot7oxqbgabxa"]
+
+[ext_resource type="Script" path="res://Source/Actors/CharacterUnit/DataContainer/CharacterStats.cs" id="1_1nlii"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_1nlii")
+CurrentHealth = 10
+MaxHealth = 10
+Initiative = 10
+MaxActionPoints = 5

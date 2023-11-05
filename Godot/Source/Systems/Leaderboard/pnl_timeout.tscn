@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bletl0rommq4k"]
+
+[ext_resource type="Script" path="res://Source/Systems/Leaderboard/pnl_timeout.gd" id="1_6hshc"]
+[ext_resource type="Texture2D" uid="uid://y60lspk4s5rc" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSNORMAL.png" id="2_phli4"]
+[ext_resource type="Texture2D" uid="uid://c8q2bdypfy7w7" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSPRESSED.png" id="3_cxdw6"]
+[ext_resource type="Texture2D" uid="uid://cwpt2tnkrjdhs" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSHOVER.png" id="4_bo4xc"]
+[ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="5_iggaf"]
+
+[node name="pnl_timeout" type="Panel"]
+offset_right = 1712.0
+offset_bottom = 1000.0
+script = ExtResource("1_6hshc")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = -927.0
+offset_top = -214.0
+offset_right = -887.0
+offset_bottom = -191.0
+
+[node name="BtnClose" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -149.0
+offset_bottom = 150.0
+grow_horizontal = 0
+texture_normal = ExtResource("2_phli4")
+texture_pressed = ExtResource("3_cxdw6")
+texture_hover = ExtResource("4_bo4xc")
+script = ExtResource("5_iggaf")
+
+[node name="_Label_45314" type="Label" parent="BtnClose"]
+layout_mode = 1
+offset_right = 149.0
+offset_bottom = 150.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TimerConnect" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="pressed" from="BtnClose" to="." method="_on_BtnClose_pressed"]
+[connection signal="timeout" from="TimerConnect" to="." method="_on_TimerConnect_timeout"]

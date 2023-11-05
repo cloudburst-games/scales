@@ -1,0 +1,1 @@
+Interface elements are reusable scenes that are part of the user interface, e.g. Windows, Buttons

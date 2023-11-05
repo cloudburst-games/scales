@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsuh3j8ljsqnb"]
+
+[ext_resource type="Script" path="res://addons/PictureStoryPlugin/PictureStorySlide/PictureStorySlide.cs" id="1_y10fm"]
+
+[node name="PictureStorySlide" type="AnimationPlayer"]
+script = ExtResource("1_y10fm")
+AutoTransitionTime = 8.0

@@ -1,0 +1,14 @@
+{
+    "Name": "Gilgam",
+    "Description": "Gilgamesh, the legendary king of Uruk, embarks on epic adventures in his quest for wisdom and immortality.",
+    "PatronGod": "Enlil",
+    "Might": 10,
+    "PhysicalDamage": 7,
+    "Perks": [
+        0,
+        3,
+        4,
+        7
+    ],
+    "Level": 1
+}

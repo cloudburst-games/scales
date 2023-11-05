@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dr8wvrfj61ke1"
+path="res://.godot/imported/Comic Game Loop - Mischief_Menu.ogg-6fd817d48387955c4e3eff6537d4a760.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/Menu/Comic Game Loop - Mischief_Menu.ogg"
+dest_files=["res://.godot/imported/Comic Game Loop - Mischief_Menu.ogg-6fd817d48387955c4e3eff6537d4a760.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

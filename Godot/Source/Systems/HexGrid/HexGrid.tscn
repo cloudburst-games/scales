@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://byrap2l8cfdxd"]
+
+[ext_resource type="Script" path="res://Source/Systems/HexGrid/HexGrid.cs" id="1"]
+[ext_resource type="PackedScene" uid="uid://cabcxww6shsjy" path="res://Source/Systems/HexGrid/HexGridVisualiser.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://da1npq2e4e7l2" path="res://Source/Systems/HexGrid/example/pointy_hex.png" id="3"]
+[ext_resource type="Script" path="res://Source/Systems/HexGrid/example/TestCam.cs" id="5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_aq5fr"]
+font_size = 88
+
+[node name="HexGrid" type="Node"]
+script = ExtResource("1")
+_construction = 0
+_gridSize = Vector2(14, 14)
+_startPosition = Vector2(300, 300)
+_endPosition = Vector2(3540, 1860)
+_sideLength = 120.0
+_isometric = true
+_makeGridFromInspector = true
+
+[node name="HexDisplay" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0.301961)
+z_index = 1
+
+[node name="HexGridVisualiser" parent="HexDisplay" instance=ExtResource("2")]
+_hexTexture = ExtResource("3")
+
+[node name="Debug" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="GridPos" type="Label" parent="Debug"]
+text = "Grid position"
+label_settings = SubResource("LabelSettings_aq5fr")
+
+[node name="WorldPos" type="Label" parent="Debug"]
+offset_top = 123.0
+offset_right = 447.0
+offset_bottom = 247.0
+text = "asdasdasd"
+label_settings = SubResource("LabelSettings_aq5fr")
+
+[node name="MousePos" type="Label" parent="Debug"]
+offset_top = 267.0
+offset_right = 392.0
+offset_bottom = 391.0
+text = "asdasdas"
+label_settings = SubResource("LabelSettings_aq5fr")
+
+[node name="DebugInfo1" type="Label" parent="Debug"]
+offset_top = 470.0
+offset_right = 1.0
+offset_bottom = 493.0
+label_settings = SubResource("LabelSettings_aq5fr")
+
+[node name="DebugInfo2" type="Label" parent="Debug"]
+offset_top = 661.0
+offset_right = 1.0
+offset_bottom = 684.0
+label_settings = SubResource("LabelSettings_aq5fr")
+
+[node name="PointyHex" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3")
+
+[node name="TestCam" type="Camera2D" parent="."]
+position = Vector2(1920, 1080)
+offset = Vector2(0, -960)
+enabled = false
+script = ExtResource("5")

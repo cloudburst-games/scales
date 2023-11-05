@@ -1,0 +1,1 @@
+Doodads are entities that have no active effect on the game world (do not "act" on other objects, and are not "acted on" by other objects (as props are)), e.g. a rock, or other inanimate object.

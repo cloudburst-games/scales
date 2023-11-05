@@ -1,0 +1,1 @@
+Game scenes (that can be switched / loaded by the scene manager) in here

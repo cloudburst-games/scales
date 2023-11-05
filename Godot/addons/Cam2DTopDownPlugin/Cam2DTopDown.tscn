@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn3a2ro264dem"]
+
+[ext_resource type="Script" path="res://addons/Cam2DTopDownPlugin/Cam2DTopDown.cs" id="1_5v3jr"]
+
+[node name="Cam2DTopDown" type="Camera2D"]
+position = Vector2(120, 1651)
+script = ExtResource("1_5v3jr")
+EdgeCoords = PackedVector2Array(72, -6, 3278, 1619, 71, 3207, -3136, 1588)
