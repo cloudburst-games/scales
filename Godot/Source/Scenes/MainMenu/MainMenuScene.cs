@@ -34,6 +34,7 @@ public partial class MainMenuScene : Node, ISceneTransitionable
         ConnectDifficultyBtns();
 
         _pnlCharacters.CharacterClicked += (int num) => _pnlCharacterDetails.OnCharacterSelected((StoryCharacter.StoryCharacterMode)num);
+
     }
 
     private void ConnectDifficultyBtns()
@@ -92,7 +93,9 @@ public partial class MainMenuScene : Node, ISceneTransitionable
 
     private void OnBtnLeaderboardPressed()
     {
-        // todo
+        BattleRoller.Tests();
+        // BattleRoller.RollerOutcomeInformation test = BattleRoller.CalculateAttack(new Random(), new BattleRoller.RollerInput());
+        // todo 
     }
 
 

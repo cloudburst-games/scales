@@ -2,13 +2,18 @@
     "Name": "Ningal",
     "Description": "Ningal, the goddess of reeds and vegetation, is associated with fertility and the nurturing aspects of nature.",
     "PatronGod": "Innana",
-    "Might": 6,
-    "PhysicalDamage": 1,
     "Perks": [
         1,
         2,
         3,
         4
     ],
-    "Level": 1
+    "Level": 1,
+    "Might": 12,
+    "Resilience": 6,
+    "Precision": 8,
+    "Speed": 5,
+    "Intellect": 13,
+    "Charisma": 11,
+    "Luck": 6
 }

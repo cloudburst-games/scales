@@ -49,10 +49,10 @@ public class IdleBattleState : BattleState
 
     private bool IsValidGridMove(Vector2 startGridPos, Vector2 endGridPos)
     {
-        // GD.Print(GridMoveCost(startGridPos, endGridPos) == 0 ? "cant move to same square" : Battler.CharactersAwaitingTurn[0].CharacterStats.ActionPoints + " available; cost is " + GridMoveCost(startGridPos, endGridPos));
+        // GD.Print(GridMoveCost(startGridPos, endGridPos) == 0 ? "cant move to same square" : Battler.CharactersAwaitingTurn[0].CharacterData.ActionPoints + " available; cost is " + GridMoveCost(startGridPos, endGridPos));
         return GridMoveCost(startGridPos, endGridPos) > 0 &&
             GridMoveCost(startGridPos, endGridPos) <=
-            Battler.CharactersAwaitingTurn[0].CharacterStats.ActionPoints;
+            Battler.CharactersAwaitingTurn[0].CharacterData.ActionPoints;
     }
 
     private int WorldMoveCost(Vector2 startWorldPos, Vector2 endWorldPos)
@@ -69,12 +69,12 @@ public class IdleBattleState : BattleState
 
     private int MeleeRangedCastCost()
     {
-        return Battler.CharactersAwaitingTurn[0].CharacterStats.MaxActionPoints / 2; //return (int)Math.Floor(((float)Battler.CharactersAwaitingTurn[0].CharacterStats.MaxActionPoints) * 0.5f);
+        return Battler.CharactersAwaitingTurn[0].CharacterData.MaxActionPoints / 2; //return (int)Math.Floor(((float)Battler.CharactersAwaitingTurn[0].CharacterData.MaxActionPoints) * 0.5f);
     }
 
     private bool CanAfford(int cost)
     {
-        return Battler.CharactersAwaitingTurn[0].CharacterStats.ActionPoints >= cost;
+        return Battler.CharactersAwaitingTurn[0].CharacterData.ActionPoints >= cost;
     }
 
     private bool IsNeighbour(Vector2 originPos, Vector2 targetPos)
@@ -191,7 +191,7 @@ public class IdleBattleState : BattleState
             Battler.CharactersAwaitingTurn[0].BattleMoveOrder(moveCost, worldPath);
 
             Battler.EmitSignal(Battler.SignalName.LogBattleText, string.Format("{0} moved by {1} hexes. {2} action points remain.", controlledCharacter.CharacterData.Name,
-                moveCost, controlledCharacter.CharacterStats.ActionPoints), true);
+                moveCost, controlledCharacter.CharacterData.ActionPoints), true);
         }
         else if (_currentAction == Battler.ActionMode.Melee)
         {
@@ -217,7 +217,7 @@ public class IdleBattleState : BattleState
                 );
                 controlledCharacter.BattleMoveOrder(moveCost, worldPath, targetCharacter);
                 Battler.EmitSignal(Battler.SignalName.LogBattleText, string.Format("{0} moved by {1} hexes. {2} action points remain.", controlledCharacter.CharacterData.Name,
-                    moveCost, controlledCharacter.CharacterStats.ActionPoints), true);
+                    moveCost, controlledCharacter.CharacterData.ActionPoints), true);
             }
             Battler.EmitSignal(Battler.SignalName.LogBattleText, string.Format("{0} strikes {1} in melee combat.", controlledCharacter.CharacterData.Name,
                 targetCharacter.CharacterData.Name), true);

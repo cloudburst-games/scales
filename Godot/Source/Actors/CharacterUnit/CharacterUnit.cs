@@ -27,8 +27,8 @@ public partial class CharacterUnit : CharacterBody2D
     public SpellEffectData SelectedSpell { get; set; } = new SpellEffectData { Name = "Test Spell", Target = SpellEffectData.TargetMode.Enemy };
 
     // This should be deprecated by CharacterData
-    [Export]
-    public CharacterStats CharacterStats { get; set; }
+    // [Export]
+    // public CharacterStats CharacterStats { get; set; }
 
     // To determine target position when right clicking in adventure map mode
     [Export]
@@ -185,7 +185,7 @@ public partial class CharacterUnit : CharacterBody2D
 
     private void InitCharacterStats()
     {
-        CharacterStats.ResourceLocalToScene = true;
+        // CharacterStats.ResourceLocalToScene = true;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -248,7 +248,7 @@ public partial class CharacterUnit : CharacterBody2D
     public void BattleMoveOrder(int moveCost, List<Vector2> worldPath, CharacterUnit targetCharacter = null)
     {
         worldPath.RemoveAt(0);
-        CharacterStats.ActionPoints -= moveCost;
+        CharacterData.ActionPoints -= moveCost;
         BattlePath = worldPath;
         MeleeTarget = targetCharacter;
     }
@@ -288,7 +288,7 @@ public partial class CharacterUnit : CharacterBody2D
         // if resuming turn (i.e. NOT ended), then don't reset points etc
         if (!TurnPending)
         {
-            CharacterStats.ActionPoints = CharacterStats.MaxActionPoints;
+            CharacterData.ActionPoints = CharacterData.MaxActionPoints;
             TurnPending = true;
         }
         _actionState.BattleIdleOrder();

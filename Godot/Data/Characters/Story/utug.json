@@ -2,13 +2,18 @@
     "Name": "Utug",
     "Description": "Utug, typically referring to demons or supernatural beings, embodies otherworldly and mysterious qualities.",
     "PatronGod": "Ereshkigal",
-    "Might": 12,
-    "PhysicalDamage": 3,
     "Perks": [
         0,
         3,
         4,
         7
     ],
-    "Level": 1
+    "Level": 1,
+    "Might": 12,
+    "Resilience": 6,
+    "Precision": 8,
+    "Speed": 5,
+    "Intellect": 13,
+    "Charisma": 11,
+    "Luck": 6
 }

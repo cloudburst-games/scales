@@ -10,19 +10,19 @@ public partial class MovingCharacterUnitActionState : CharacterUnitActionState
     public MovingCharacterUnitActionState(CharacterUnit characterUnit)
     {
         this.CharacterUnit = characterUnit;
-        this.CharacterUnit.AnimationTree.Set("parameters/conditions/idle", false); 
+        this.CharacterUnit.AnimationTree.Set("parameters/conditions/idle", false);
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/moving", true);
     }
 
     public override void Update(double delta)
     {
         base.Update(delta);
-        
+
         // Get the Vector towards the next nav point, and move via the NavAgent.
         Vector2 direction = CharacterUnit.NavAgent.GetNextPathPosition() - CharacterUnit.GlobalPosition;
         direction = direction.Normalized();
-        CharacterUnit.NavAgent.Velocity = direction * CharacterUnit.CharacterStats.MoveSpeed * (float) delta;
-        
+        CharacterUnit.NavAgent.Velocity = direction * CharacterUnit.CharacterData.MoveSpeed * (float)delta;
+
         // If we are very close to the target (end) position, go back to Idle
         if (CharacterUnit.NavAgent.TargetPosition.DistanceTo(CharacterUnit.GlobalPosition) < 20)
         {

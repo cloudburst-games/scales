@@ -123,7 +123,7 @@ public partial class Battler : Node2D
         {
             if (cUnit.StatusToPlayer == statusToPlayer)
             {
-                if (cUnit.CharacterStats.Alive)
+                if (cUnit.CharacterData.Alive)
                 {
                     return true;
                 }

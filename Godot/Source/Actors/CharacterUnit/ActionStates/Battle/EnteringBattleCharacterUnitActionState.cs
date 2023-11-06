@@ -41,7 +41,7 @@ public partial class EnteringBattleCharacterUnitActionState : CharacterUnitActio
 
         // Move to the target position - centre of the hex usually, or a nearby hex if overlapping with another character.
         Vector2 direction = (CharacterUnit.BattleTargetPosition - CharacterUnit.GlobalPosition).Normalized();
-        CharacterUnit.GlobalPosition += direction * CharacterUnit.CharacterStats.MoveSpeed * (float)delta;
+        CharacterUnit.GlobalPosition += direction * CharacterUnit.CharacterData.MoveSpeed * (float)delta;
 
         this.CharacterUnit.AnimationTree.Set("parameters/Moving/blend_position", direction);
         if (CharacterUnit.GlobalPosition.DistanceTo(CharacterUnit.BattleTargetPosition) < 5)

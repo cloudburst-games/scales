@@ -8,7 +8,7 @@ public class BattleState
 
     public virtual void ComputeTurnOrder()
     {
-        Battler.CharactersAwaitingTurn = GetAliveUnits().OrderByDescending(x => x.CharacterStats.Initiative).ToList();
+        Battler.CharactersAwaitingTurn = GetAliveUnits().OrderByDescending(x => x.CharacterData.Initiative).ToList();
 
         // make a list of all characters by turn order that will be accessible in other states (so in Battler)
     }
@@ -19,7 +19,7 @@ public class BattleState
         foreach (CharacterUnit cUnit in Battler.AllCharacters)
         {
             // skip the ones that die (remember we free all battleunits at conclusion anyway)
-            if (cUnit.CharacterStats.Alive)
+            if (cUnit.CharacterData.Alive)
             {
                 result.Add(cUnit);
                 continue;

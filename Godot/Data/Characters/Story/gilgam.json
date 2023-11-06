@@ -2,13 +2,18 @@
     "Name": "Gilgam",
     "Description": "Gilgamesh, the legendary king of Uruk, embarks on epic adventures in his quest for wisdom and immortality.",
     "PatronGod": "Enlil",
-    "Might": 10,
-    "PhysicalDamage": 7,
     "Perks": [
         0,
         3,
         4,
         7
     ],
-    "Level": 1
+    "Level": 1,
+    "Might": 12,
+    "Resilience": 6,
+    "Precision": 8,
+    "Speed": 5,
+    "Intellect": 13,
+    "Charisma": 11,
+    "Luck": 6
 }
