@@ -105,9 +105,9 @@ _data = {
 script = ExtResource("1_nsprq")
 
 [node name="BattleHUD" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="DebugLabel" type="Label" parent="BattleHUD"]
+visible = false
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -134,9 +134,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 210.0
+offset_left = -1710.0
 offset_top = 2184.0
-offset_right = 3630.0
+offset_right = 1710.0
 offset_bottom = 2624.0
 grow_horizontal = 2
 text = "LET BATTLE BE JOINED"

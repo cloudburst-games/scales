@@ -8,10 +8,12 @@ public partial class IdleBattleCharacterUnitActionState : CharacterUnitActionSta
     {
         this.CharacterUnit = characterUnit;
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/idle", true);
-        this.CharacterUnit.AnimationTree.Set("parameters/conditions/melee", false);
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/moving", false);
+        this.CharacterUnit.AnimationTree.Set("parameters/conditions/melee", false);
+        this.CharacterUnit.AnimationTree.Set("parameters/conditions/takingdamage", false);
+        this.CharacterUnit.AnimationTree.Set("parameters/conditions/dying", false);
         // We want to remove the obstacle as we are about to move
-        CharacterUnit.EmitSignal(CharacterUnit.SignalName.MovingInBattle, CharacterUnit, true);
+        CharacterUnit.EmitSignal(CharacterUnit.SignalName.RemoveObstacle, CharacterUnit, true);
         CharacterUnit.Modulate = new Color(1, 0, 0);
     }
 
@@ -36,6 +38,7 @@ public partial class IdleBattleCharacterUnitActionState : CharacterUnitActionSta
     {
         base.BattleSkipOrder();
         EndBattleTurn();
+        GD.Print("going to end turn from idle ", CharacterUnit.CharacterData.Name);
     }
     public override void BattleMeleeOrder()
     {

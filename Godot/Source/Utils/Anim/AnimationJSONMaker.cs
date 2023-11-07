@@ -19,6 +19,13 @@ public partial class AnimationJSONMaker : Node
 
     [Export]
     private float _lengthLimit = -0.1f;
+    [Export]
+    private Texture _texture = null;
+    [Export]
+    private int _relativeSpeed = 1;
+
+    [Export]
+    private Animation.LoopModeEnum _loop = Animation.LoopModeEnum.Linear;
     public class Frame
     {
         public int x { get; set; }
@@ -53,12 +60,20 @@ public partial class AnimationJSONMaker : Node
         string rawData = System.IO.File.ReadAllText(path);
 
         RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(rawData);
-        GD.Print(rootObject.frames["walkne_0001.png"].frame.x);
 
         Animation anim = new();
         float animLength = 0;
         anim.AddTrack(Animation.TrackType.Value);
         anim.TrackSetPath(0, "Sprite:region_rect");
+
+        if (_texture != null)
+        {
+            anim.AddTrack(Animation.TrackType.Value);
+            anim.TrackSetPath(1, "Sprite:texture");
+            anim.TrackInsertKey(1, 0, _texture);
+            anim.ValueTrackSetUpdateMode(1, Animation.UpdateMode.Discrete);
+        }
+        anim.LoopMode = _loop;
 
         // Loop through each frame (tile data container) in the JSON data
         foreach (KeyValuePair<string, SpriteInfo> frameInfo in rootObject.frames)
@@ -76,7 +91,7 @@ public partial class AnimationJSONMaker : Node
 
             anim.TrackInsertKey(0, animLength, new Rect2(pos, size));
 
-            animLength += 0.1f;
+            animLength += 0.1f * 1 / _relativeSpeed;
             if (_lengthLimit > 0)
             {
                 if (animLength >= _lengthLimit)
@@ -91,7 +106,7 @@ public partial class AnimationJSONMaker : Node
 
         anim.Length = animLength;
 
-        ResourceSaver.Save(anim, _destinationFolder + "/" + _prefix + _animName + ".tres");
+        GD.Print(ResourceSaver.Save(anim, _destinationFolder + "/" + _prefix + _animName + ".tres"));
 
 
         Finish();

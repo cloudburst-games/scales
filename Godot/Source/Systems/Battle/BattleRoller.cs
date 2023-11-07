@@ -188,6 +188,19 @@ public class BattleRoller
         public bool IsHit { get; set; }
         public List<int> AttackerDamageRolls = new();
         public int FinalDamage { get; set; }
+        public static void DebugPrint(RollerOutcomeInformation outcome)
+        {
+            RollerInput.DebugPrint(outcome.RollerInput);
+            GD.Print("Roll result: ", outcome.RollResult);
+            GD.Print("AttackerD20Roll: ", outcome.AttackerD20Roll);
+            GD.Print("DefenderD20Roll: ", outcome.DefenderD20Roll);
+            GD.Print("IsHit: ", outcome.IsHit);
+            foreach (int damageRoll in outcome.AttackerDamageRolls)
+            {
+                GD.Print("Attacker damage roll: ", damageRoll);
+            }
+            GD.Print("FinalDamage: ", outcome.FinalDamage);
+        }
     }
     public class RollerInput
     {
@@ -197,7 +210,7 @@ public class BattleRoller
         public int DefenderDamageResist { get; set; }
         public int HexDistance { get; set; }
         // The area is the count of the surroudning grid points, allowing this to be recalculated if needed
-        public List<Vector2> SurroundingGridPoints { get; set; }
+        public List<Vector2> SurroundingGridPoints { get; set; } = new();
         public Vector2 TargetGridPoint { get; set; }
         public List<Tuple<int, int>> DamageDice { get; set; } = new();
         public BattleRoller.AttackType AttackType { get; set; }
@@ -246,6 +259,31 @@ public class BattleRoller
             TargetGridPoint = targetGridPoint;
             SurroundingGridPoints = surroundingGridPoints;
             CriticalThreshold = criticalThreshold;
+        }
+
+        public static void DebugPrint(RollerInput rollerInput)
+        {
+
+            GD.Print("AttackerHitModifier: ", rollerInput.AttackerHitModifier);
+            GD.Print("DefenderDodgeModifier: ", rollerInput.DefenderDodgeModifier);
+            GD.Print("AttackerDamageModifier: ", rollerInput.AttackerDamageModifier);
+            GD.Print("DefenderDamageResist: ", rollerInput.DefenderDamageResist);
+            GD.Print("HexDistance: ", rollerInput.HexDistance);
+            GD.Print("Surrounding grid points: ");
+            foreach (Vector2 vec in rollerInput.SurroundingGridPoints)
+            {
+                GD.Print(vec);
+            }
+
+            GD.Print("Target grid point: ", rollerInput.TargetGridPoint);
+            GD.Print("Damage dice: ");
+            foreach (Tuple<int, int> die in rollerInput.DamageDice)
+            {
+                GD.Print(die.Item1 + "d" + die.Item2);
+            }
+
+            GD.Print("Attack type: ", rollerInput.AttackType);
+            GD.Print("CriticalThreshold: ", rollerInput.CriticalThreshold);
         }
     }
 

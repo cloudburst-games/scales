@@ -23,12 +23,24 @@ public partial class MeleeBattleCharacterUnitActionState : CharacterUnitActionSt
     }
 
     private async void MeleeAttackTarget()
-    {
+    { // hit bonus, 
+        StoryCharacterData attackerData = CharacterUnit.CharacterData;
+        StoryCharacterData defenderData = CharacterUnit.MeleeTarget.CharacterData;
+        // RollerOutcomeInformation res1 = CalculateAttack(rand, targetedPhysical);
+        BattleRoller.RollerInput meleeAttack = new(
+            attackerHitModifier: attackerData.GetCorrectHitBonus(),
+            defenderDodgeModifier: defenderData.Dodge,
+            attackerDamageModifier: attackerData.GetCorrectWeaponDamageBonus(),
+            defenderDamageResist: defenderData.PhysicalResist,
+            damageDice: attackerData.WeaponDice,
+            criticalThreshold: attackerData.CriticalThreshold
+        );
 
-        // GD.Print(String.Format("This {0} attacks enemy {1}", CharacterUnit.CharacterData.Name, CharacterUnit.MeleeTarget.CharacterData.Name));
-        // await ToSignal  - melee animation
-        // await ToSignal(CharacterUnit.GetTree().CreateTimer(1.5), SceneTreeTimer.SignalName.Timeout);
+        BattleRoller.RollerOutcomeInformation res = BattleRoller.CalculateAttack(CharacterUnit.Rand, meleeAttack); // can potentially return this to improve the battle log!
+
         await ToSignal(CharacterUnit.AnimationTree, AnimationTree.SignalName.AnimationFinished);
+        CharacterUnit.MeleeTarget.TakeDamageOrder(res); // this should force them into TakeDamage state and they take the damage
+
         EndBattleTurn();
     }
 

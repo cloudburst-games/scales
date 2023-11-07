@@ -45,13 +45,18 @@ public partial class CharacterUnit : CharacterBody2D
     // Used by Battle map mode. To determine whether to set an obstacle on the hex or not. Can feasibly send
     // the global position rather than the whole characterunit!
     [Signal]
-    public delegate void MovingInBattleEventHandler(CharacterUnit characterUnit, bool isMoving);
+    public delegate void RemoveObstacleEventHandler(CharacterUnit characterUnit, bool isMoving);
     // Used by the Battler to determine what to do next, e.g. new round, next character turn, end the battle
     [Signal]
     public delegate void BattleTurnEndedEventHandler(CharacterUnit characterUnit);
 
     [Signal]
     public delegate void CastingEffectEventHandler(BattleSpellData spellData);// Vector2 origin, Vector2 destination, CharacterUnit targetCharacter, SpellEffectManager.BattleSpellMode spellEffect);
+
+    [Signal]
+    public delegate void DiedEventHandler(CharacterUnit characterUnit);
+
+    public Random Rand { get; set; }
 
     public enum StatusToPlayerMode { Player, Allied, Neutral, Hostile }
 
@@ -72,6 +77,7 @@ public partial class CharacterUnit : CharacterBody2D
     public List<Vector2> BattlePath { get; set; } = new();
     public Vector2 BattleTargetPosition;
     public AnimationTree AnimationTree { get; set; }
+    public AnimationPlayer Anim { get; set; }
     public NavigationAgent2D NavAgent { get; set; }
 
     // Not yet used, but can be useful for activating nearby items, dialogue, etc.
@@ -79,7 +85,12 @@ public partial class CharacterUnit : CharacterBody2D
 
     public enum ControlMode { Player, AI }
     private CharacterUnitControlState _controlState;
-    public enum ActionMode { Idle, Moving, Dying, EnteringBattle, ExitingBattle, IdleBattle, MovingBattle, WaitingBattle, MeleeBattle, RangedBattle, CastingBattle }
+    public enum ActionMode
+    {
+        Idle, Moving, Dying, EnteringBattle, ExitingBattle, IdleBattle, MovingBattle, WaitingBattle, MeleeBattle, RangedBattle, CastingBattle,
+        TakingDamageBattle,
+        DyingBattle
+    }
     private CharacterUnitActionState _actionState;
     // This is used for error correction - when a character is stuck in movement state.
     public Vector2 PreviousVelocity = new Vector2();
@@ -139,7 +150,17 @@ public partial class CharacterUnit : CharacterBody2D
             case ActionMode.RangedBattle:
                 _actionState = new RangedBattleCharacterUnitActionState(this);
                 break;
+            case ActionMode.TakingDamageBattle:
+                _actionState = new TakingDamageBattleCharacterUnitActionState(this);
+                break;
+            case ActionMode.DyingBattle:
+                _actionState = new DyingBattleCharacterUnitActionState(this);
+                break;
+            case ActionMode.CastingBattle:
+                _actionState = new CastingBattleCharacterUnitActionState(this);
+                break;
         }
+        GD.Print(CharacterData.Name + " CHANGED STATE TO " + actionMode);
     }
 
     // Can make this more readable, e.g. with a switch...
@@ -151,7 +172,12 @@ public partial class CharacterUnit : CharacterBody2D
             _actionState is EnteringBattleCharacterUnitActionState ? ActionMode.EnteringBattle :
             _actionState is ExitingBattleCharacterUnitActionState ? ActionMode.ExitingBattle :
             _actionState is IdleBattleCharacterUnitActionState ? ActionMode.IdleBattle :
-            _actionState is WaitingBattleCharacterUnitActionState ? ActionMode.WaitingBattle : ActionMode.MovingBattle;
+            _actionState is WaitingBattleCharacterUnitActionState ? ActionMode.WaitingBattle :
+            _actionState is RangedBattleCharacterUnitActionState ? ActionMode.RangedBattle :
+            _actionState is TakingDamageBattleCharacterUnitActionState ? ActionMode.TakingDamageBattle :
+            _actionState is DyingBattleCharacterUnitActionState ? ActionMode.DyingBattle :
+            _actionState is MeleeBattleCharacterUnitActionState ? ActionMode.MeleeBattle :
+            _actionState is CastingBattleCharacterUnitActionState ? ActionMode.CastingBattle : ActionMode.MovingBattle;
     }
 
     public override void _Ready()
@@ -167,6 +193,7 @@ public partial class CharacterUnit : CharacterBody2D
         _body.Instantiate<CharacterBody>().SetBody(this);
         NavAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
         AnimationTree = GetNode<AnimationTree>("AnimTree");
+        Anim = GetNode<AnimationPlayer>("Anim");
         _proximityArea = GetNode<Area2D>("ProximityArea");
     }
 
@@ -176,12 +203,19 @@ public partial class CharacterUnit : CharacterBody2D
         {
             case StatusToPlayerMode.Player:
                 SetControlState(ControlMode.Player);
+                ValidEnemyTargets = new() { StatusToPlayerMode.Hostile, StatusToPlayerMode.Neutral };
+                ValidAllyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Neutral, StatusToPlayerMode.Allied };
                 break;
             default:
                 SetControlState(ControlMode.AI);
+                ValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied };
+                ValidAllyTargets = new() { StatusToPlayerMode.Hostile };
                 break;
         }
     }
+
+    public List<StatusToPlayerMode> ValidEnemyTargets = new();
+    public List<StatusToPlayerMode> ValidAllyTargets = new();
 
     private void InitCharacterStats()
     {
@@ -285,6 +319,17 @@ public partial class CharacterUnit : CharacterBody2D
 
     public void CharacterStartBattleTurn()
     {
+        // wait for any outstanding HIT animations
+        // todo - a proper fix for this
+        // GD.Print(CharacterData.Name + " startbattleturn method " +
+        // AnimationTree.Get("parameters/conditions/takingdamage"));
+        // GD.Print(Anim.CurrentAnimation);
+        // if (Anim.IsPlaying() && (bool)AnimationTree.Get("parameters/conditions/takingdamage") == true)
+        // {
+
+        //     await ToSignal(AnimationTree, AnimationTree.SignalName.AnimationFinished);
+        //     //     await ToSignal(Anim, AnimationPlayer.SignalName.AnimationFinished);
+        // }
         // if resuming turn (i.e. NOT ended), then don't reset points etc
         if (!TurnPending)
         {
@@ -293,6 +338,8 @@ public partial class CharacterUnit : CharacterBody2D
         }
         _actionState.BattleIdleOrder();
     }
+
+    // public bool 
 
     // When the battle ends, the units (in waiting state) will be directed to transition to ExitingBattle (= > Idle)
     public void OnBattleEnd()
@@ -308,6 +355,15 @@ public partial class CharacterUnit : CharacterBody2D
     public void SetFromJSON(StoryCharacter.StoryCharacterMode selectedChar)
     {
         CharacterData = StoryCharacterJSONInterface.GetStoryCharacterJSONData(selectedChar);
+        CharacterData.Initialise();
+    }
+
+    public BattleRoller.RollerOutcomeInformation TakingDamageResult { get; set; }
+
+    public void TakeDamageOrder(BattleRoller.RollerOutcomeInformation res)
+    {
+        TakingDamageResult = res;
+        _actionState.TakeDamageOrder();
     }
 
 }

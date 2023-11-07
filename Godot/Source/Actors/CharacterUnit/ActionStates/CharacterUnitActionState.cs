@@ -29,10 +29,10 @@ public partial class CharacterUnitActionState : RefCounted
     public void EndBattleTurn()
     {
         CharacterUnit.TurnPending = false;
+        GD.Print("ending turn of ", CharacterUnit.CharacterData.Name);
         CharacterUnit.SetActionState(CharacterUnit.ActionMode.WaitingBattle);
         CharacterUnit.EmitSignal(CharacterUnit.SignalName.BattleTurnEnded, CharacterUnit);
     }
-
     public virtual void BattleShootOrder(CharacterUnit targetCharacter)
     {
     }
@@ -41,6 +41,10 @@ public partial class CharacterUnitActionState : RefCounted
     {
     }
     public virtual void OnSpellEffectFinished()
+    {
+    }
+
+    public virtual void TakeDamageOrder()
     {
     }
 }

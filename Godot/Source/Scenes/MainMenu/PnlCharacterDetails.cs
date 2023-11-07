@@ -39,7 +39,7 @@ public partial class PnlCharacterDetails : Panel
         _characterName.Text = characterData.Name;
         _description.Text = characterData.Description;
         _patron.Text = characterData.PatronGod;
-        _physicalDamage.Text = characterData.PhysicalDamage.ToString();
+        _physicalDamage.Text = characterData.PhysicalDamageStrength.ToString();
 
         // _perksGrid.ShowPerks(characterData.Perks); // TODO
     }

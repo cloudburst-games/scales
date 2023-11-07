@@ -101,13 +101,16 @@ public partial class Battler : Node2D
 
     public void BattleTurnEnded(CharacterUnit cUnit)
     {
+
         // Is there a winner?
         if (!AreAnyAlive(CharacterUnit.StatusToPlayerMode.Hostile) || !AreAnyAlive(CharacterUnit.StatusToPlayerMode.Player))
         {
+            GD.Print("end the battle!");
             SetState(BattleMode.Ending);
         }
         else
         {
+            // GD.Print("next turn");
             CharactersAwaitingTurn.Remove(cUnit);
             if (CharactersAwaitingTurn.Count == 0)
             {
@@ -171,9 +174,34 @@ public partial class Battler : Node2D
         _battleState.OnActionBtnPressed(btn);
     }
 
+    public void OnBtnEndTurnPressed()
+    {
+        _battleState.OnBtnEndTurnPressed();
+    }
+
+    public void OnBtnChooseSpellPressed()
+    {
+        _battleState.OnBtnChooseSpellPressed();
+    }
+
+    public void OnBtnToggleGridPressed()
+    {
+        _battleState.OnBtnToggleGridPressed();
+    }
+
+    public void OnBtnMenuPressed()
+    {
+        _battleState.OnBtnMenuPressed();
+    }
+
     public void SetDebugText(string text)
     {
         GetNode<Label>("BattleHUD/DebugLabel").Text = text;
     }
 
+    public void OnCharacterDied(CharacterUnit characterUnit)
+    {
+        // GD.Print(characterUnit.CharacterData.Name + " died, so removing from the turn queue");
+        CharactersAwaitingTurn.Remove(characterUnit);
+    }
 }

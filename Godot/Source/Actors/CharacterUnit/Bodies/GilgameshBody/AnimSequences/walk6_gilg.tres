@@ -1,0 +1,31 @@
+[gd_resource type="Animation" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/Graphics/Sprites/Actors/Gilga/GilgaWalk.png" id="1_81apx"]
+
+[resource]
+length = 0.775
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5, 0.525, 0.55, 0.575, 0.6, 0.625, 0.65, 0.675, 0.7, 0.725, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(4811, 8131, 960, 540), Rect2(5773, 8131, 960, 540), Rect2(6735, 8131, 960, 540), Rect2(7697, 8131, 960, 540), Rect2(8659, 8131, 960, 540), Rect2(1, 8673, 960, 540), Rect2(963, 8673, 960, 540), Rect2(1925, 8673, 960, 540), Rect2(2887, 8673, 960, 540), Rect2(3849, 8673, 960, 540), Rect2(4811, 8673, 960, 540), Rect2(5773, 8673, 960, 540), Rect2(6735, 8673, 960, 540), Rect2(7697, 8673, 960, 540), Rect2(8659, 8673, 960, 540), Rect2(1, 9215, 960, 540), Rect2(963, 9215, 960, 540), Rect2(1925, 9215, 960, 540), Rect2(2887, 9215, 960, 540), Rect2(3849, 9215, 960, 540), Rect2(4811, 9215, 960, 540), Rect2(5773, 9215, 960, 540), Rect2(6735, 9215, 960, 540), Rect2(7697, 9215, 960, 540), Rect2(8659, 9215, 960, 540), Rect2(9621, 1, 960, 540), Rect2(9621, 543, 960, 540), Rect2(9621, 1085, 960, 540), Rect2(9621, 1627, 960, 540), Rect2(9621, 2169, 960, 540), Rect2(9621, 2711, 960, 540)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_81apx")]
+}

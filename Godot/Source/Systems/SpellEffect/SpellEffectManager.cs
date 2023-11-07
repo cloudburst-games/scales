@@ -30,8 +30,8 @@ public partial class SpellEffectManager : Node
             {
                 Target = SpellEffectData.TargetMode.Enemy,
                 Name = "Arrow",
-                BattleEffect = SpellEffectData.BattleEffectMode.Damage,
-                Magnitude = 2,
+                BattleEffect = SpellEffectData.BattleEffectMode.Shoot
+                // MagnitudeBonus = 0, // all the damage is from the CharacterData (equipped weapon)
             }
         };
     }
@@ -62,6 +62,7 @@ public partial class SpellEffectManager : Node
 
     public void OnSpellFinished(BattleSpellData battleSpellData)
     {
+        // GD.Print(2, battleSpellData.TargetCharacter.CharacterData.Name);
         List<SpellEffectData> spells = AllSpells[(SpellEffectManager.BattleSpellMode)battleSpellData.AssociatedSpellEffect];
         foreach (SpellEffectData spell in spells)
         {
@@ -75,21 +76,33 @@ public partial class SpellEffectManager : Node
     {
         switch (spell.BattleEffect)
         {
-            case SpellEffectData.BattleEffectMode.Damage:
-                DoHarmEffect(battleSpellData, spell);
+            case SpellEffectData.BattleEffectMode.Shoot:
+                DoShootEffect(battleSpellData);
                 break;
         }
     }
 
-    private void DoHarmEffect(BattleSpellData battleSpellData, SpellEffectData spell)
+    private void DoShootEffect(BattleSpellData battleSpellData)
     {
         // do into roll system
         CharacterUnit originCharacter = battleSpellData.OriginCharacter;
         CharacterUnit targetCharacter = battleSpellData.TargetCharacter;
-        int magnitude = spell.Magnitude;
+        // GD.Print(1, targetCharacter.CharacterData.Name);
 
-        // roll it!
-        GD.Print("damage dealt");
+        StoryCharacterData attackerData = originCharacter.CharacterData;
+        StoryCharacterData defenderData = targetCharacter.CharacterData;
+
+        BattleRoller.RollerInput shootAttack = new(
+            attackerHitModifier: attackerData.GetCorrectHitBonus(),
+            defenderDodgeModifier: defenderData.Dodge,
+            attackerDamageModifier: attackerData.GetCorrectWeaponDamageBonus(),
+            defenderDamageResist: defenderData.PhysicalResist,
+            damageDice: attackerData.WeaponDice,
+            criticalThreshold: attackerData.CriticalThreshold
+        );
+
+        BattleRoller.RollerOutcomeInformation res = BattleRoller.CalculateAttack(originCharacter.Rand, shootAttack); // can potentially return this to improve the battle log!
+        targetCharacter.TakeDamageOrder(res);
     }
 }
 

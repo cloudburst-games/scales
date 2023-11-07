@@ -12,9 +12,19 @@ public partial class WaitingBattleCharacterUnitActionState : CharacterUnitAction
         this.CharacterUnit = characterUnit;
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/idle", true);
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/moving", false);
+        this.CharacterUnit.AnimationTree.Set("parameters/conditions/melee", false);
+        this.CharacterUnit.AnimationTree.Set("parameters/conditions/takingdamage", false);
+        this.CharacterUnit.AnimationTree.Set("parameters/conditions/dying", false);
         // We want to remove the obstacle as we are about to move
-        CharacterUnit.EmitSignal(CharacterUnit.SignalName.MovingInBattle, CharacterUnit, false);
+        CharacterUnit.EmitSignal(CharacterUnit.SignalName.RemoveObstacle, CharacterUnit, false);
 
+        // GD.Print("entering wait ", CharacterUnit.CharacterData.Name);
+        // // this is a hack
+        // if (CharacterUnit.TurnPending)
+        // {
+        //     GD.Print("going to battle idle order from wait", CharacterUnit.CharacterData.Name);
+        //     BattleIdleOrder();
+        // }
     }
 
     public override void Update(double delta)
@@ -32,5 +42,11 @@ public partial class WaitingBattleCharacterUnitActionState : CharacterUnitAction
     {
         base.BattleEndOrder();
         CharacterUnit.SetActionState(CharacterUnit.ActionMode.ExitingBattle);
+    }
+
+    public override void TakeDamageOrder()
+    {
+        base.TakeDamageOrder();
+        CharacterUnit.SetActionState(CharacterUnit.ActionMode.TakingDamageBattle);
     }
 }

@@ -6,12 +6,12 @@ public partial class RangedBattleCharacterUnitActionState : CharacterUnitActionS
     public RangedBattleCharacterUnitActionState(CharacterUnit characterUnit)
     {
         this.CharacterUnit = characterUnit;
-        // Vector2 direction = (CharacterUnit.MeleeTarget.GlobalPosition - CharacterUnit.GlobalPosition).Normalized();
-        // this.CharacterUnit.AnimationTree.Set("parameters/Ranged/blend_position", direction); // TODO- add ranged anims
-        // this.CharacterUnit.AnimationTree.Set("parameters/Idle/blend_position", direction);
-        // this.CharacterUnit.AnimationTree.Set("parameters/conditions/idle", false);
-        // this.CharacterUnit.AnimationTree.Set("parameters/conditions/moving", false);
-        // this.CharacterUnit.AnimationTree.Set("parameters/conditions/ranged", true);
+        Vector2 direction = (CharacterUnit.RangedTarget.GlobalPosition - CharacterUnit.GlobalPosition).Normalized();
+        this.CharacterUnit.AnimationTree.Set("parameters/Melee/blend_position", direction);
+        this.CharacterUnit.AnimationTree.Set("parameters/Idle/blend_position", direction);
+        this.CharacterUnit.AnimationTree.Set("parameters/conditions/idle", false); // todo RANGED if we ever get ranged anims
+        this.CharacterUnit.AnimationTree.Set("parameters/conditions/moving", false);
+        this.CharacterUnit.AnimationTree.Set("parameters/conditions/melee", true);
 
         RangedAttackTarget();
     }
@@ -42,6 +42,6 @@ public partial class RangedBattleCharacterUnitActionState : CharacterUnitActionS
     public override void Exit()
     {
         base.Exit();
-        this.CharacterUnit.MeleeTarget = null;
+        this.CharacterUnit.RangedTarget = null;
     }
 }

@@ -1,0 +1,31 @@
+[gd_resource type="Animation" load_steps=2 format=3 uid="uid://yrtitigdpicp"]
+
+[ext_resource type="Texture2D" uid="uid://7odii45w3yxl" path="res://Assets/Graphics/Sprites/Actors/Gilga/IdleGilga.png" id="1_76ykv"]
+
+[resource]
+length = 3.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(1, 3253, 960, 540), Rect2(963, 3253, 960, 540), Rect2(1925, 3253, 960, 540), Rect2(2887, 3253, 960, 540), Rect2(3849, 3253, 960, 540), Rect2(4811, 3253, 960, 540), Rect2(5773, 3253, 960, 540), Rect2(6735, 3253, 960, 540), Rect2(7697, 3253, 960, 540), Rect2(8659, 3253, 960, 540), Rect2(1, 3795, 960, 540), Rect2(963, 3795, 960, 540), Rect2(1925, 3795, 960, 540), Rect2(2887, 3795, 960, 540), Rect2(3849, 3795, 960, 540), Rect2(4811, 3795, 960, 540), Rect2(5773, 3795, 960, 540), Rect2(6735, 3795, 960, 540), Rect2(7697, 3795, 960, 540), Rect2(8659, 3795, 960, 540), Rect2(1, 4337, 960, 540), Rect2(963, 4337, 960, 540), Rect2(1925, 4337, 960, 540), Rect2(2887, 4337, 960, 540), Rect2(3849, 4337, 960, 540), Rect2(4811, 4337, 960, 540), Rect2(5773, 4337, 960, 540), Rect2(6735, 4337, 960, 540), Rect2(7697, 4337, 960, 540), Rect2(8659, 4337, 960, 540)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_76ykv")]
+}

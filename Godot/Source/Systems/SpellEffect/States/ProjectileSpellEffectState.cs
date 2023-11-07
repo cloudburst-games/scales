@@ -10,6 +10,7 @@ public partial class ProjectileSpellEffectState : SpellEffectState
     }
 
     private bool _finishing = false;
+    private Vector2 _direction;
     public override void Start(BattleSpellData spellEffectData)
     {
 
@@ -21,25 +22,33 @@ public partial class ProjectileSpellEffectState : SpellEffectState
             SpellEffect.Anim.Play("Start");
         }
         SpellEffect.LookAt(_spellEffectData.Destination);
+        _direction = (_spellEffectData.Destination - SpellEffect.GlobalPosition).Normalized();
         SpellEffect.SetPhysicsProcess(true);
+
+        SpellEffect.Speed = 150;
     }
 
     public override void Update(double delta)
 
     {
-        Vector2 direction = (_spellEffectData.Destination - SpellEffect.GlobalPosition).Normalized();
-        SpellEffect.GlobalPosition += direction * SpellEffect.Speed * (float)delta;
-        if (SpellEffect.GlobalPosition.DistanceTo(_spellEffectData.Destination) < 10 && !_finishing)
+        // GD.Print(5, SpellEffect.GlobalPosition);
+        // GD.Print(SpellEffect.GlobalPosition.DistanceTo(_spellEffectData.Destination));
+        // GD.Print(_spellEffectData.Destination);
+        SpellEffect.GlobalPosition += _direction * SpellEffect.Speed * (float)delta;
+        if (SpellEffect.GlobalPosition.DistanceTo(_spellEffectData.Destination) < SpellEffect.Speed / 50 && !_finishing)
         {
+            SpellEffect.Speed = 0;
             Finish();
         }
     }
 
     public async void Finish()
     {
+        // GD.Print(3, _spellEffectData.TargetCharacter.CharacterData.Name);
         _finishing = true;
         SpellEffect.Anim.Play("Finish");
         await ToSignal(SpellEffect.Anim, AnimationPlayer.SignalName.AnimationFinished);
+        // GD.Print(4, _spellEffectData.TargetCharacter.CharacterData.Name);
         SpellEffect.EmitSignal(SpellEffect.SignalName.Finished, _spellEffectData);
         SpellEffect.QueueFree();
     }

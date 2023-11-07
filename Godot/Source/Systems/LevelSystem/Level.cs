@@ -49,8 +49,8 @@ public partial class Level : Node2D
         {
             cUnit.CharacterClicked += (playerCharacter, shift) => _selection.OnPlayerCharacterClicked(playerCharacter, shift);
             // cUnit.EndTargetChanged += playerCharacter => this.OnPlayerEndTargetChanged(playerCharacter);
-            cUnit.MovingInBattle += (playerCharacter, moving) =>
-                _hexModifier.OnCharacterMovingInBattle(playerCharacter.GlobalPosition, moving);
+            cUnit.RemoveObstacle += (playerCharacter, moving) =>
+                _hexModifier.OnCharacterRemoveObstacle(playerCharacter.GlobalPosition, moving);
             cUnit.SetActionState(CharacterUnit.ActionMode.Idle);
             // _hexModifier.OnCharacterActionStateChanged(cUnit.GlobalPosition, (int) CharacterUnit.ActionMode.Idle, true);
         }

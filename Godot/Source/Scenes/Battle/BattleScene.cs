@@ -6,6 +6,8 @@ using System.Linq;
 public partial class BattleScene : Node, ISceneTransitionable
 {
 
+    private Random _rand = new();
+
     [Export]
     private AnimationPlayer _anim;
     [Export]
@@ -18,6 +20,14 @@ public partial class BattleScene : Node, ISceneTransitionable
     private Panel _pnlAction;
     [Export]
     private BaseButton _btnIntro;
+    [Export]
+    private BaseButton _btnChooseSpell;
+    [Export]
+    private BaseButton _btnEndTurn;
+    [Export]
+    private BaseButton _btnToggleGrid;
+    [Export]
+    private BaseButton _btnMenu;
 
     [Export]
     private Godot.Collections.Array<BaseTextureButton> _actionBtns = new();
@@ -73,6 +83,14 @@ public partial class BattleScene : Node, ISceneTransitionable
             _actionBtns[i].Pressed += () => _battler.OnActionBtnPressed((Battler.ActionMode)btnIndex);
         }
 
+        _btnChooseSpell.Pressed += _battler.OnBtnChooseSpellPressed;
+        _btnEndTurn.Pressed += _battler.OnBtnEndTurnPressed;
+        _btnToggleGrid.Pressed += _battler.OnBtnToggleGridPressed;
+        _btnMenu.Pressed += _battler.OnBtnMenuPressed;
+
+
+
+
         LoadLevel();
     }
 
@@ -96,8 +114,10 @@ public partial class BattleScene : Node, ISceneTransitionable
     {
         CharacterUnit newChar = _characterScene.Instantiate<CharacterUnit>();
         newChar.SetFromJSON(selectedChar);
+        newChar.Rand = _rand;
         _currentCharacters.Add(newChar);
         newChar.CastingEffect += _spellEffectManager.OnCastingSpell;
+        newChar.Died += _battler.OnCharacterDied;
         return newChar;
     }
 
@@ -125,8 +145,8 @@ public partial class BattleScene : Node, ISceneTransitionable
         {
             _lvlToLoad.PlaceCharacterUnit(characterUnit);
             _lvlToLoad.CharacterUnitsContainer.AddChild(characterUnit);
-            characterUnit.MovingInBattle += (playerCharacter, moving) =>
-                _lvlToLoad.HexModifier.OnCharacterMovingInBattle(playerCharacter.GlobalPosition, moving);
+            characterUnit.RemoveObstacle += (playerCharacter, moving) =>
+                _lvlToLoad.HexModifier.OnCharacterRemoveObstacle(playerCharacter.GlobalPosition, moving);
         }
 
         await ToSignal(_anim, AnimationPlayer.SignalName.AnimationFinished);
@@ -140,6 +160,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         _pnlAction.ProcessMode = ProcessModeEnum.Inherit;
         _actionBtns[0]._Pressed();
         _battler.PlayerSelectedAction = Battler.ActionMode.Melee;
+        _cursorControl.SetCursor(CursorControl.CursorMode.Wait);
     }
 
     private async void UnloadLevel()

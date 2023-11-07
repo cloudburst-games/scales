@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -41,5 +42,21 @@ public class BattleState
     public virtual void OnActionBtnPressed(Battler.ActionMode btn)
     {
 
+    }
+
+    public virtual void OnBtnEndTurnPressed()
+    {
+    }
+
+    public virtual void OnBtnChooseSpellPressed()
+    {
+    }
+
+    public virtual void OnBtnToggleGridPressed()
+    {
+    }
+
+    public virtual void OnBtnMenuPressed()
+    {
     }
 }

@@ -30,7 +30,7 @@ public partial class EnteringBattleCharacterUnitActionState : CharacterUnitActio
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/melee", false);
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/moving", true);
         // When about to move to the starting position, announce that we are moving, so that the obstacle is unset
-        CharacterUnit.EmitSignal(CharacterUnit.SignalName.MovingInBattle, CharacterUnit, true);
+        CharacterUnit.EmitSignal(CharacterUnit.SignalName.RemoveObstacle, CharacterUnit, true);
         // when entering battle, disable avoidance (we will navigate manually hex by hex)
         CharacterUnit.GetNode<NavigationAgent2D>("NavigationAgent2D").AvoidanceEnabled = false;
     }

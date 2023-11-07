@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://lsptinciutgh"]
+[gd_scene load_steps=3 format=3 uid="uid://lsptinciutgh"]
 
 [ext_resource type="Script" path="res://Source/Utils/Anim/AnimationJSONMaker.cs" id="1_djuqn"]
+[ext_resource type="Texture2D" uid="uid://b3wgc3jatm8te" path="res://Assets/Graphics/Sprites/Actors/Gilga/GilgaWalk.png" id="2_m0us6"]
 
 [node name="AnimationJSONMaker" type="Node"]
 script = ExtResource("1_djuqn")
-_jsonpath = "res://Assets/Graphics/Sprites/Actors/Player/WalkAll.json"
-_prefix = "walknw_"
-_animName = "idle_gilg"
-_destinationFolder = "res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/"
-_lengthLimit = 0.1
+_jsonpath = "res://Assets/Graphics/Sprites/Actors/Gilga/GilgaWalk.json"
+_prefix = "walk6_"
+_animName = "gilg"
+_destinationFolder = "res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/"
+_texture = ExtResource("2_m0us6")
+_relativeSpeed = 4

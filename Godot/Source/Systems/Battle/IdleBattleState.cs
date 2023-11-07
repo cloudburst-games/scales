@@ -5,10 +5,7 @@ using System.Linq;
 
 public class IdleBattleState : BattleState
 {
-    // private CharacterUnit _currentUnit;
-
-
-    // the action that is deduced from information available
+    // action deduced from 
     private Battler.ActionMode _currentAction = Battler.ActionMode.Move;
 
     public IdleBattleState(Battler battler)
@@ -19,22 +16,12 @@ public class IdleBattleState : BattleState
         Vector2 mousePos = Battler.GetGlobalMousePosition();
         SetContextualAction(mousePos);
 
-        // Battler.SetDebugText("entering idle state");
-        // _currentUnit = Battler.CharactersAwaitingTurn[0];
-
-        //await input from player (or action decision from enemy)
-        // if player - make it obvious whose turn it is and awaiting input. dynamically update UI elements such as pathing
-
-        // if enemy, show ENEMY TURN or similar, show some enemy thinking animation, and make it obvious which enemy unit turn it is
-
-        // once input (from either enemy or player) -> transition to processing state
     }
 
     private void InitCurrentTurn()
     {
         Battler.CharactersAwaitingTurn[0].CharacterStartBattleTurn();
-        // Battler.CharactersAwaitingTurn[0].SetActionState(CharacterUnit.Battler.ActionMode.IdleBattle);
-        // Battler.CharactersAwaitingTurn[0].Modulate = new Color(0,1,0);
+        GD.Print(Battler.CharactersAwaitingTurn[0].CharacterData.Name);
     }
 
     private bool HumanTurn()
@@ -93,7 +80,7 @@ public class IdleBattleState : BattleState
     {
         foreach (CharacterUnit characterUnit in Battler.AllCharacters)
         {
-            if (Battler.BattleGrid.WorldToGrid(characterUnit.GlobalPosition) == gridPos)
+            if (Battler.BattleGrid.WorldToGrid(characterUnit.GlobalPosition) == gridPos && characterUnit.CharacterData.Alive)
             {
                 return characterUnit;
             }
@@ -105,12 +92,12 @@ public class IdleBattleState : BattleState
     {
         base.ProcessUpdate(delta);
         // do something else when human turn
-        if (!HumanTurn())
-        {
-            Battler.CharactersAwaitingTurn[0].BattleSkipOrder(); // todo!
-            Battler.SetState(Battler.BattleMode.Processing); // todo! AI TURN
-            return;
-        }
+        // if (!HumanTurn())
+        // {
+        //     Battler.CharactersAwaitingTurn[0].BattleSkipOrder(); // todo!
+        //     Battler.SetState(Battler.BattleMode.Processing); // todo! AI TURN
+        //     return;
+        // }
 
         // should only happen when grid changes
         // Battler.BattleGrid.UpdateNavigationAndDisplay();
@@ -120,6 +107,14 @@ public class IdleBattleState : BattleState
     public override void InputUpdate(InputEvent ev)
     {
         base.InputUpdate(ev);
+        // if (ev is InputEventMouseButton btnr)
+        // {
+        //     if (btnr.Pressed && btnr.ButtonIndex == MouseButton.Right)
+        //     {
+        //         Battler.CharactersAwaitingTurn[0].BattleSkipOrder(); // todo!
+        //         // contextual right click either done here, or more likely at the UI element level
+        //     }
+        // }
         ////
         // DEBUGGING //
         string text = "Round " + Battler.Round;
@@ -268,7 +263,7 @@ public class IdleBattleState : BattleState
         CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
         if (Battler.PlayerSelectedAction == Battler.ActionMode.Melee || Battler.PlayerSelectedAction == Battler.ActionMode.Move)
         {
-            bool validTarget = targetCharacter.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Neutral || targetCharacter.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Hostile;
+            bool validTarget = controlledCharacter.ValidEnemyTargets.Contains(targetCharacter.StatusToPlayer);
             if (!IsNeighbour(characterGridPos, mouseGridPos))
             {
 
@@ -292,11 +287,12 @@ public class IdleBattleState : BattleState
     private bool IsValidRanged(Vector2 mouseGridPos)
     {
         CharacterUnit targetCharacter = CharacterAtGridPos(mouseGridPos);
+        CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
         if (targetCharacter == null)
         {
             return false;
         }
-        if (targetCharacter.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Neutral || targetCharacter.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Hostile)
+        if (controlledCharacter.ValidEnemyTargets.Contains(targetCharacter.StatusToPlayer))
         {
             if (CanAfford(MeleeRangedCastCost()))
             {
@@ -315,9 +311,9 @@ public class IdleBattleState : BattleState
         if (targetCharacter != null)
         {
             validEnemySpellTarget = controlledCharacter.SelectedSpell.Target == SpellEffectData.TargetMode.Enemy &&
-                (targetCharacter.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Hostile || targetCharacter.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Neutral);
-            validAllySpellTarget = controlledCharacter.SelectedSpell.Target == SpellEffectData.TargetMode.Ally && (targetCharacter.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Allied ||
-                targetCharacter.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Neutral || targetCharacter.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player);
+                controlledCharacter.ValidEnemyTargets.Contains(targetCharacter.StatusToPlayer);
+            validAllySpellTarget = controlledCharacter.SelectedSpell.Target == SpellEffectData.TargetMode.Ally &&
+            controlledCharacter.ValidAllyTargets.Contains(targetCharacter.StatusToPlayer);
         }
         bool validGroundSpellTarget = controlledCharacter.SelectedSpell.Target == SpellEffectData.TargetMode.Ground &&
             IsMouseOverCharacterOrEmpty(mouseGridPos);
@@ -339,6 +335,7 @@ public class IdleBattleState : BattleState
         return false;
     }
 
+    // Player only
     private bool IsMouseOverAlly(Vector2 mouseGridPos)
     {
         CharacterUnit targetCharacter = CharacterAtGridPos(mouseGridPos);
@@ -418,5 +415,19 @@ public class IdleBattleState : BattleState
     public override void OnActionBtnPressed(Battler.ActionMode action)
     {
         Battler.PlayerSelectedAction = action;
+    }
+
+    public override void OnBtnEndTurnPressed()
+    {
+        if (HumanTurn())
+        {
+            Battler.CharactersAwaitingTurn[0].BattleSkipOrder();
+        }
+        // TEMPORARY UNTIL AI SORTED:
+        else
+        {
+
+            Battler.CharactersAwaitingTurn[0].BattleSkipOrder();
+        }
     }
 }

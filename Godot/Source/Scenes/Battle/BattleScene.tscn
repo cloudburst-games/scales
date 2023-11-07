@@ -125,7 +125,7 @@ _data = {
 "Unloading": SubResource("Animation_gafb4")
 }
 
-[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_actionBtns", "_cursorControl", "_spellEffectManager")]
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnToggleGrid", "_btnMenu", "_actionBtns", "_cursorControl", "_spellEffectManager")]
 script = ExtResource("1_2w8r3")
 _anim = NodePath("Anim")
 _cntBattleLevel = NodePath("CntBattleLevel")
@@ -133,6 +133,10 @@ _HUD = NodePath("BattleHUD")
 _battler = NodePath("Battler")
 _pnlAction = NodePath("BattleHUD/CntHUD/PnlAction")
 _btnIntro = NodePath("BattleHUD/CntHUD/PnlBattleIntro/BtnIntro")
+_btnChooseSpell = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnChooseSpell")
+_btnEndTurn = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnEndTurn")
+_btnToggleGrid = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnGrid")
+_btnMenu = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnMenu")
 _actionBtns = [NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnAttack"), NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnShoot"), NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnCastSpell"), NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnMove")]
 _levelScenePaths = [ExtResource("9_4plr1")]
 _cursorControl = NodePath("Battler/CursorControl")

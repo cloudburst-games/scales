@@ -9,6 +9,7 @@ public partial class MovingBattleCharacterUnitActionState : CharacterUnitActionS
     {
         this.CharacterUnit = characterUnit;
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/idle", false);
+        this.CharacterUnit.AnimationTree.Set("parameters/conditions/melee", false);
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/moving", true);
 
     }
@@ -16,7 +17,6 @@ public partial class MovingBattleCharacterUnitActionState : CharacterUnitActionS
     public override void Update(double delta)
     {
         base.Update(delta);
-
         // Here we don't use physics/navigation to move the character, but simply move the 2D position.
         // We get the A* path calculated and set via IdleBattleState, via the BattleMoveOrder method in CharacterUnit.cs
         // In this method we handle any necessary movement tasks such as setting the current path, subtracting action points
@@ -49,8 +49,9 @@ public partial class MovingBattleCharacterUnitActionState : CharacterUnitActionS
 
         // Do the usual movement calculations and set the appropriate animation vector
         Vector2 direction = (CharacterUnit.BattleTargetPosition - CharacterUnit.GlobalPosition).Normalized();
+        // GD.Print(direction);
         CharacterUnit.GlobalPosition += direction * CharacterUnit.CharacterData.MoveSpeed * (float)delta;
-        this.CharacterUnit.AnimationTree.Set("parameters/Moving/blend_position", direction);
+        this.CharacterUnit.AnimationTree.Set("parameters/Moving/blend_position", new Vector2((float)Math.Round(direction.X, 2), (float)Math.Round(direction.Y, 2)));// direction);
         if (CharacterUnit.GlobalPosition.DistanceTo(CharacterUnit.BattleTargetPosition) < 5)
         {
             CharacterUnit.GlobalPosition = CharacterUnit.BattleTargetPosition;
