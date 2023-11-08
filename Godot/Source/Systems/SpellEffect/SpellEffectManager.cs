@@ -4,113 +4,165 @@ using System.Collections.Generic;
 
 public partial class SpellEffectManager : Node
 {
-    public enum BattleSpellMode { Arrow }
+    public partial class Spell : RefCounted
+    {
+        public Vector2 Origin;
+        public Vector2 Destination;
+        public SpellVisualController SpellEffectVisual;
+        public List<SpellEffect> AssociatedEffects = new();
+        public CharacterUnit TargetCharacter;
+        public CharacterUnit OriginCharacter;
+        public string Name { get; set; }
+        public enum TargetMode { Ally, Enemy, Ground }
+        public TargetMode Target { get; set; }
+    }
+
+    public partial class SpellEffect : RefCounted
+    {
+        public List<Tuple<int, int>> DamageDice { get; set; }
+        public BattleRoller.AttackType AttackType { get; set; } = BattleRoller.AttackType.Normal;
+        public bool Mystical { get; set; }
+        public SpellEffectDelegate EffectMethod { get; set; }
+    }
+
+    public partial class SpellVisualController : RefCounted
+    {
+        public PackedScene SpellEffectScn { get; set; }
+        public SpellEffectManager.SpellEffectVisualMode VisualMode = SpellEffectManager.SpellEffectVisualMode.Projectile;
+    }
+
+    // public enum BattleSpellMode
+    // {
+    //     Arrow,
+    //     SolarFlare
+    // }
     public BattleLevel CurrentLevel { get; set; }
 
-    public Dictionary<BattleSpellMode, List<SpellEffectData>> AllSpells = new();
+    // public Dictionary<BattleSpellMode, List<SpellEffectData>> AllSpellsOld = new();
+
+    // [Export]
+    // private Godot.Collections.Array<PackedScene> _spellEffectScns = new();
+
+    // [Signal]
+    // public delegate void SpellEffectFinishedEventHandler(BattleSpellData battleSpellData);
 
     [Export]
-    private Godot.Collections.Array<PackedScene> _spellEffectScns = new();
+    private Godot.Collections.Dictionary<SpellMode, PackedScene> _spellVisualScns = new();
+    public enum SpellEffectMode { Fire, Physical }
+    public enum SpellMode { Arrow, SolarFlare }
+    public enum SpellEffectVisualMode { Projectile, Self, FromSky }
+    public enum SpellEffectTargetMode { Self, Target }
+    private Dictionary<SpellEffectMode, SpellEffect> _allSpellEffects = new();
+    private Dictionary<SpellMode, SpellVisualController> _allSpellVisuals = new();
+    public Dictionary<SpellMode, Spell> AllSpells { get; private set; } = new();
 
-    [Signal]
-    public delegate void SpellEffectFinishedEventHandler(BattleSpellData battleSpellData);
-
-
+    public delegate void SpellEffectDelegate(SpellEffect effect, Spell spell);
 
     public override void _Ready()
     {
+
+        // These two MUST run before GenerateSpells()
+        GenerateSpellEffects(); // 1.
+        GenerateVisualEffects(); // 2.
         GenerateSpells();
+    }
+
+    // todo - construct via json data
+    private void GenerateSpellEffects()
+    {
+        _allSpellEffects[SpellEffectMode.Fire] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 6) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoTargetedAttackEffect,
+        };
+        _allSpellEffects[SpellEffectMode.Physical] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 6) }, // should be replaced by the character's physical damage
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = false,
+            EffectMethod = DoTargetedAttackEffect,
+        };
+    }
+
+    // todo - construct via json data
+    private void GenerateVisualEffects()
+    {
+        _allSpellVisuals[SpellMode.Arrow] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.Arrow],
+            VisualMode = SpellEffectVisualMode.Projectile,
+        };
+        _allSpellVisuals[SpellMode.SolarFlare] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.SolarFlare],
+            VisualMode = SpellEffectVisualMode.Projectile
+        };
+
     }
 
     // todo - construct via json data
     private void GenerateSpells()
     {
-        AllSpells[BattleSpellMode.Arrow] = new List<SpellEffectData>() {
-            new()
-            {
-                Target = SpellEffectData.TargetMode.Enemy,
-                Name = "Arrow",
-                BattleEffect = SpellEffectData.BattleEffectMode.Shoot
-                // MagnitudeBonus = 0, // all the damage is from the CharacterData (equipped weapon)
-            }
+        AllSpells[SpellMode.Arrow] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.Arrow],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.Physical] },
+            Name = "Arrow"
+        };
+        AllSpells[SpellMode.SolarFlare] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.SolarFlare],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.Fire] },
+            Name = "Solar Flare"
         };
     }
 
-    public void GenerateEffect(BattleSpellData battleSpellData)
+    // signal callback after casting action completed
+    public void OnCastingSpell(Spell spell)
     {
-        BattleSpellMode effect = (BattleSpellMode)battleSpellData.AssociatedSpellEffect;
-        switch (effect)
+        SpellVisualController visualController = spell.SpellEffectVisual;
+        SpellVisual spellVisual = visualController.SpellEffectScn.Instantiate<SpellVisual>();
+        spellVisual.GlobalPosition = spell.Origin;
+        CurrentLevel.AddChild(spellVisual); // consdier adding under an entity group // 2 days later- what does this comment mean?
+        spellVisual.Finished += this.OnSpellFinished;
+        spellVisual.SetSpellEffectState(spell.SpellEffectVisual.VisualMode);
+        spellVisual.Start(spell);
+    }
+
+
+    public void OnSpellFinished(Spell spell)
+    {
+        foreach (SpellEffect spellEffect in spell.AssociatedEffects)
         {
-            case BattleSpellMode.Arrow:
-                SpellEffect newEffect = _spellEffectScns[(int)effect].Instantiate<SpellEffect>();
-
-                CurrentLevel.AddChild(newEffect); // consdier adding under an entity group
-                newEffect.GlobalPosition = battleSpellData.Origin;
-                newEffect.SetSpellEffectState(SpellEffect.SpellEffectMode.Projectile);
-                newEffect.Finished += this.OnSpellFinished;
-                newEffect.Start(battleSpellData);
-                break;
+            spellEffect.EffectMethod(spellEffect, spell);
         }
+        spell.OriginCharacter.OnSpellEffectFinished();
     }
 
-    public void OnCastingSpell(BattleSpellData battleSpellData)
+    private void DoTargetedAttackEffect(SpellEffect spellEffect, Spell spell)//Spell spell, SpellEffect spellEffect)
     {
-        GenerateEffect(battleSpellData);
-        // SpellEffectMode spellEffect = (SpellEffectMode)spellEffectNum;
-
-    }
-
-    public void OnSpellFinished(BattleSpellData battleSpellData)
-    {
-        // GD.Print(2, battleSpellData.TargetCharacter.CharacterData.Name);
-        List<SpellEffectData> spells = AllSpells[(SpellEffectManager.BattleSpellMode)battleSpellData.AssociatedSpellEffect];
-        foreach (SpellEffectData spell in spells)
-        {
-            DoBattleEffect(battleSpellData, spell);
-        }
-        battleSpellData.OriginCharacter.OnSpellEffectFinished();
-        // EmitSignal(SignalName.SpellEffectFinished, battleSpellData);
-    }
-
-    private void DoBattleEffect(BattleSpellData battleSpellData, SpellEffectData spell)
-    {
-        switch (spell.BattleEffect)
-        {
-            case SpellEffectData.BattleEffectMode.Shoot:
-                DoShootEffect(battleSpellData);
-                break;
-        }
-    }
-
-    private void DoShootEffect(BattleSpellData battleSpellData)
-    {
-        // do into roll system
-        CharacterUnit originCharacter = battleSpellData.OriginCharacter;
-        CharacterUnit targetCharacter = battleSpellData.TargetCharacter;
-        // GD.Print(1, targetCharacter.CharacterData.Name);
+        CharacterUnit originCharacter = spell.OriginCharacter;
+        CharacterUnit targetCharacter = spell.TargetCharacter;
 
         StoryCharacterData attackerData = originCharacter.CharacterData;
         StoryCharacterData defenderData = targetCharacter.CharacterData;
 
-        BattleRoller.RollerInput shootAttack = new(
-            attackerHitModifier: attackerData.GetCorrectHitBonus(),
+        BattleRoller.RollerInput magicAttack = new(
+            attackerHitModifier: attackerData.GetCorrectHitBonus(spellEffect.Mystical),
             defenderDodgeModifier: defenderData.Dodge,
-            attackerDamageModifier: attackerData.GetCorrectWeaponDamageBonus(),
-            defenderDamageResist: defenderData.PhysicalResist,
-            damageDice: attackerData.WeaponDice,
-            criticalThreshold: attackerData.CriticalThreshold
+            attackerDamageModifier: spellEffect.Mystical ? attackerData.Mysticism : attackerData.GetCorrectWeaponDamageBonus(),
+            defenderDamageResist: spellEffect.Mystical ? defenderData.MysticResist : defenderData.PhysicalResist,
+            damageDice: spellEffect.DamageDice,
+            criticalThreshold: attackerData.CriticalThreshold,
+            attackType: spellEffect.AttackType
         );
 
-        BattleRoller.RollerOutcomeInformation res = BattleRoller.CalculateAttack(originCharacter.Rand, shootAttack); // can potentially return this to improve the battle log!
+        BattleRoller.RollerOutcomeInformation res = BattleRoller.CalculateAttack(originCharacter.Rand, magicAttack); // can potentially return this to improve the battle log!
         targetCharacter.TakeDamageOrder(res);
     }
-}
 
-public partial class BattleSpellData : RefCounted
-{
-    public Vector2 Origin;
-    public Vector2 Destination;
-    public CharacterUnit TargetCharacter;
-    public CharacterUnit OriginCharacter;
-    public int AssociatedSpellEffect;
+
+
 }

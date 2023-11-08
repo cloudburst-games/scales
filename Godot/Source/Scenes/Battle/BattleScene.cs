@@ -151,7 +151,7 @@ public partial class BattleScene : Node, ISceneTransitionable
 
         await ToSignal(_anim, AnimationPlayer.SignalName.AnimationFinished);
         _btnIntro.Disabled = false;
-        _battler.Init(_currentCharacters, _lvlToLoad.HexGrid);
+        _battler.Init(_currentCharacters, _lvlToLoad.HexGrid, _spellEffectManager.AllSpells);
     }
 
     private void OnBtnIntroPressed()

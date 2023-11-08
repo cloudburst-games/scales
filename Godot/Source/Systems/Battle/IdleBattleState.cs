@@ -1,3 +1,5 @@
+// For AI, need a separate AIIdleBattleState, and consider also funnelling player INPUT logic into PlayerIdleBattleState (put these into control)
+
 using Godot;
 using System;
 using System.Collections.Generic;
@@ -21,7 +23,7 @@ public class IdleBattleState : BattleState
     private void InitCurrentTurn()
     {
         Battler.CharactersAwaitingTurn[0].CharacterStartBattleTurn();
-        GD.Print(Battler.CharactersAwaitingTurn[0].CharacterData.Name);
+        // GD.Print(Battler.CharactersAwaitingTurn[0].CharacterData.Name);
     }
 
     private bool HumanTurn()
@@ -219,15 +221,26 @@ public class IdleBattleState : BattleState
         }
         else if (_currentAction == Battler.ActionMode.Shoot)
         {
-            controlledCharacter.BattleShootOrder(targetCharacter);
+            SpellEffectManager.Spell spell = Battler.AllSpells[SpellEffectManager.SpellMode.Arrow];
+            spell.Origin = controlledCharacter.GlobalPosition;
+            spell.Destination = targetCharacter.GlobalPosition;
+            spell.OriginCharacter = controlledCharacter;
+            spell.TargetCharacter = targetCharacter;
+            spell.AssociatedEffects[0].DamageDice = controlledCharacter.CharacterData.WeaponDice;
+            controlledCharacter.BattleShootOrder(spell);
             Battler.EmitSignal(Battler.SignalName.LogBattleText, string.Format("{0} shoots {1}.", controlledCharacter.CharacterData.Name,
                 targetCharacter.CharacterData.Name), true);
         }
         else if (_currentAction == Battler.ActionMode.Cast)
         {
-            controlledCharacter.BattleCastOrder(mouseGridPos, targetCharacter);
+            SpellEffectManager.Spell spell = Battler.AllSpells[SpellEffectManager.SpellMode.SolarFlare];
+            spell.Origin = controlledCharacter.GlobalPosition;
+            spell.Destination = targetCharacter.GlobalPosition;
+            spell.OriginCharacter = controlledCharacter;
+            spell.TargetCharacter = targetCharacter;
+            controlledCharacter.BattleCastOrder(spell);
             Battler.EmitSignal(Battler.SignalName.LogBattleText, string.Format("{0} casts {1}.", controlledCharacter.CharacterData.Name,
-                controlledCharacter.SelectedSpell.Name), true);
+                spell.Name), true);
         }
         else if (_currentAction == Battler.ActionMode.Hint)
         {
@@ -302,6 +315,12 @@ public class IdleBattleState : BattleState
         return false;
     }
 
+    private SpellEffectManager.Spell _currentSelectedSpell = new() // set this to whatever is being selected in spellbook (starts off as null and goes to spellbook to pick if clicked)
+    {
+        Target = SpellEffectManager.Spell.TargetMode.Enemy,
+        Name = "Solar Flare",
+    };
+
     private bool IsValidSpell(Vector2 mouseGridPos)
     {
         CharacterUnit targetCharacter = CharacterAtGridPos(mouseGridPos);
@@ -310,12 +329,12 @@ public class IdleBattleState : BattleState
         bool validAllySpellTarget = false;
         if (targetCharacter != null)
         {
-            validEnemySpellTarget = controlledCharacter.SelectedSpell.Target == SpellEffectData.TargetMode.Enemy &&
+            validEnemySpellTarget = _currentSelectedSpell.Target == SpellEffectManager.Spell.TargetMode.Enemy &&
                 controlledCharacter.ValidEnemyTargets.Contains(targetCharacter.StatusToPlayer);
-            validAllySpellTarget = controlledCharacter.SelectedSpell.Target == SpellEffectData.TargetMode.Ally &&
+            validAllySpellTarget = _currentSelectedSpell.Target == SpellEffectManager.Spell.TargetMode.Ally &&
             controlledCharacter.ValidAllyTargets.Contains(targetCharacter.StatusToPlayer);
         }
-        bool validGroundSpellTarget = controlledCharacter.SelectedSpell.Target == SpellEffectData.TargetMode.Ground &&
+        bool validGroundSpellTarget = _currentSelectedSpell.Target == SpellEffectManager.Spell.TargetMode.Ground &&
             IsMouseOverCharacterOrEmpty(mouseGridPos);
 
         if (validEnemySpellTarget || validAllySpellTarget || validGroundSpellTarget)
@@ -367,7 +386,7 @@ public class IdleBattleState : BattleState
         {
             Battler.CursorControl.SetCursor(CursorControl.CursorMode.Spell);
             _currentAction = Battler.ActionMode.Cast;
-            Battler.EmitSignal(Battler.SignalName.LogBattleText, String.Format("Cast {0}", Battler.CharactersAwaitingTurn[0].SelectedSpell.Name), false);
+            Battler.EmitSignal(Battler.SignalName.LogBattleText, String.Format("Cast {0}", _currentSelectedSpell.Name), false);
         }
         // RANGED
         else if (IsValidRanged(mouseGridPos) && Battler.PlayerSelectedAction == Battler.ActionMode.Shoot)

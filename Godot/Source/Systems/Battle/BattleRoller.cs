@@ -216,7 +216,7 @@ public class BattleRoller
         public BattleRoller.AttackType AttackType { get; set; }
         public int CriticalThreshold { get; set; }
 
-        public RollerInput(int attackerHitModifier, int defenderDodgeModifier, int attackerDamageModifier, int defenderDamageResist, List<Tuple<int, int>> damageDice, int criticalThreshold)
+        public RollerInput(int attackerHitModifier, int defenderDodgeModifier, int attackerDamageModifier, int defenderDamageResist, List<Tuple<int, int>> damageDice, int criticalThreshold, AttackType attackType = AttackType.Normal)
         {
             SetTargeted(attackerHitModifier, defenderDodgeModifier, attackerDamageModifier, defenderDamageResist, damageDice, criticalThreshold);
         }
@@ -231,24 +231,24 @@ public class BattleRoller
             SetArea(attackerHitModifier, attackerDamageModifier, defenderDamageResist, damageDice, hexDistance, targetGridPoint, surroundingGridPoints, criticalThreshold);
         }
 
-        public void SetTargeted(int attackerHitModifier, int defenderDodgeModifier, int attackerDamageModifier, int defenderDamageResist, List<Tuple<int, int>> damageDice, int criticalThreshold)
+        private void SetTargeted(int attackerHitModifier, int defenderDodgeModifier, int attackerDamageModifier, int defenderDamageResist, List<Tuple<int, int>> damageDice, int criticalThreshold, AttackType attackType = AttackType.Normal)
         {
             AttackerHitModifier = attackerHitModifier;
             DefenderDodgeModifier = defenderDodgeModifier;
             AttackerDamageModifier = attackerDamageModifier;
             DefenderDamageResist = defenderDamageResist;
             DamageDice = damageDice;
-            AttackType = AttackType.Normal;
+            AttackType = attackType;
             CriticalThreshold = criticalThreshold;
         }
-        public void SetUndodgable(int attackerDamageModifier, List<Tuple<int, int>> damageDice, int defenderDamageResist)
+        private void SetUndodgable(int attackerDamageModifier, List<Tuple<int, int>> damageDice, int defenderDamageResist)
         {
             AttackerDamageModifier = attackerDamageModifier;
             DamageDice = damageDice;
             DefenderDamageResist = defenderDamageResist;
             AttackType = AttackType.Undodgeable;
         }
-        public void SetArea(int attackerHitModifier, int attackerDamageModifier, int defenderDamageResist, List<Tuple<int, int>> damageDice, int hexDistance, Vector2 targetGridPoint, List<Vector2> surroundingGridPoints, int criticalThreshold)
+        private void SetArea(int attackerHitModifier, int attackerDamageModifier, int defenderDamageResist, List<Tuple<int, int>> damageDice, int hexDistance, Vector2 targetGridPoint, List<Vector2> surroundingGridPoints, int criticalThreshold)
         {
             AttackerHitModifier = attackerHitModifier;
             AttackerDamageModifier = attackerDamageModifier;

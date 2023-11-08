@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=34 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
@@ -26,8 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://birpy4r4g8whd" path="res://Assets/Graphics/Interface/Buttons/Settings/barsHorizontal.png" id="19_hl42s"]
 [ext_resource type="PackedScene" uid="uid://dm31ruvvjwfml" path="res://Source/Interface/Buttons/BtnClosePlaceholder.tscn" id="23_0fs1l"]
 [ext_resource type="LabelSettings" uid="uid://cnydnjeqvs3kr" path="res://Source/Interface/Label/test_label_settings.tres" id="24_m03nf"]
-[ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellEffectManager.cs" id="27_pn21p"]
-[ext_resource type="PackedScene" uid="uid://cmsrvkqdk8j1b" path="res://Source/Systems/SpellEffect/Projectiles/ArrowEffect.tscn" id="28_pp5dy"]
+[ext_resource type="PackedScene" uid="uid://dx62avxvwtb0l" path="res://Source/Systems/SpellEffect/SpellEffectManager.tscn" id="27_gplcg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gqkdd"]
 font_size = 64
@@ -422,6 +421,4 @@ libraries = {
 "": SubResource("AnimationLibrary_4nsih")
 }
 
-[node name="SpellEffectManager" type="Node" parent="."]
-script = ExtResource("27_pn21p")
-_spellEffectScns = [ExtResource("28_pp5dy")]
+[node name="SpellEffectManager" parent="." instance=ExtResource("27_gplcg")]

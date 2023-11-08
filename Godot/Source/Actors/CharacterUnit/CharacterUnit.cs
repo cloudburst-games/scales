@@ -24,7 +24,7 @@ public partial class CharacterUnit : CharacterBody2D
     public Vector2 StartingBattleAnimDirection { get; set; } = new();
 
     // WIP
-    public SpellEffectData SelectedSpell { get; set; } = new SpellEffectData { Name = "Test Spell", Target = SpellEffectData.TargetMode.Enemy };
+    // public SpellEffectData SelectedSpell { get; set; } = new SpellEffectData { Name = "Test Spell", Target = SpellEffectData.TargetMode.Enemy };
 
     // This should be deprecated by CharacterData
     // [Export]
@@ -51,7 +51,7 @@ public partial class CharacterUnit : CharacterBody2D
     public delegate void BattleTurnEndedEventHandler(CharacterUnit characterUnit);
 
     [Signal]
-    public delegate void CastingEffectEventHandler(BattleSpellData spellData);// Vector2 origin, Vector2 destination, CharacterUnit targetCharacter, SpellEffectManager.BattleSpellMode spellEffect);
+    public delegate void CastingEffectEventHandler(SpellEffectManager.Spell spell);// Vector2 origin, Vector2 destination, CharacterUnit targetCharacter, SpellEffectManager.BattleSpellMode spellEffect);
 
     [Signal]
     public delegate void DiedEventHandler(CharacterUnit characterUnit);
@@ -160,7 +160,7 @@ public partial class CharacterUnit : CharacterBody2D
                 _actionState = new CastingBattleCharacterUnitActionState(this);
                 break;
         }
-        GD.Print(CharacterData.Name + " CHANGED STATE TO " + actionMode);
+        // GD.Print(CharacterData.Name + " CHANGED STATE TO " + actionMode);
     }
 
     // Can make this more readable, e.g. with a switch...
@@ -275,9 +275,11 @@ public partial class CharacterUnit : CharacterBody2D
     }
 
     public CharacterUnit MeleeTarget { get; set; } = null;
-    public CharacterUnit RangedTarget { get; set; } = null;
-    public Vector2 SpellDestination { get; set; }
-    public SpellEffectManager.BattleSpellMode SpellEffect { get; set; }
+    // public CharacterUnit RangedTarget { get; set; } = null;
+
+    // public Vector2 SpellDestination { get; set; }
+    // public SpellEffectManager.BattleSpellMode SpellEffect { get; set; }
+    // public BattleSpellData SpellBeingCastOld { get; set; }
 
     public void BattleMoveOrder(int moveCost, List<Vector2> worldPath, CharacterUnit targetCharacter = null)
     {
@@ -293,19 +295,28 @@ public partial class CharacterUnit : CharacterBody2D
         _actionState.BattleMeleeOrder();
     }
 
-    internal void BattleShootOrder(CharacterUnit targetCharacter)
+    public SpellEffectManager.Spell SpellBeingCast { get; private set; }
+    // internal void BattleShootOrder(CharacterUnit targetCharacter) // DEPRECATED
+    // {
+    //     RangedTarget = targetCharacter;
+    //     SpellDestination = targetCharacter.GlobalPosition;
+    //     SpellEffect = SpellEffectManager.BattleSpellMode.Arrow;
+    //     _actionState.BattleShootOrderOld(targetCharacter);
+    // }
+
+    // consider unifying the shoot and cast methods as they utilise same underpinnings
+    internal void BattleShootOrder(SpellEffectManager.Spell spell)
     {
-        RangedTarget = targetCharacter;
-        SpellDestination = targetCharacter.GlobalPosition;
-        SpellEffect = SpellEffectManager.BattleSpellMode.Arrow;
-        _actionState.BattleShootOrder(targetCharacter);
+        SpellBeingCast = spell;
+        _actionState.BattleShootOrder();
     }
 
-    internal void BattleCastOrder(Vector2 mouseGridPos, CharacterUnit targetCharacter)
+    internal void BattleCastOrder(SpellEffectManager.Spell spell)
     {
-        // TODO!
-        _actionState.BattleCastOrder(mouseGridPos, targetCharacter);
+        SpellBeingCast = spell;
+        _actionState.BattleCastOrder();
     }
+
     public void OnSpellEffectFinished()
     {
         _actionState.OnSpellEffectFinished();

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class SpellEffect : Node2D
+public partial class SpellVisual : Node2D
 {
     // the godot way of signals doesnt seem to play well with c# interfaces
     // public event EffectFinished EffectFinishedEvent;
@@ -13,17 +13,18 @@ public partial class SpellEffect : Node2D
     public float Speed = 200f;
 
     [Signal]
-    public delegate void FinishedEventHandler(BattleSpellData spellEffectData);
+    public delegate void FinishedEventHandler(SpellEffectManager.Spell spell);
 
     private SpellEffectState _spellEffectState;
 
     public enum SpellEffectMode { Projectile }
 
-    public void SetSpellEffectState(SpellEffectMode mode) // state magic
+    // public enum SpellEffectVisualMode { Projectile, Self, FromSky }
+    public void SetSpellEffectState(SpellEffectManager.SpellEffectVisualMode mode)
     {
         switch (mode)
         {
-            case SpellEffectMode.Projectile:
+            case SpellEffectManager.SpellEffectVisualMode.Projectile:
                 _spellEffectState = new ProjectileSpellEffectState(this);
                 break;
         }
@@ -47,8 +48,8 @@ public partial class SpellEffect : Node2D
         _spellEffectState.Update(delta);
     }
 
-    public void Start(BattleSpellData spellEffectData)
+    public void Start(SpellEffectManager.Spell spell)
     {
-        _spellEffectState.Start(spellEffectData);
+        _spellEffectState.Start(spell);
     }
 }

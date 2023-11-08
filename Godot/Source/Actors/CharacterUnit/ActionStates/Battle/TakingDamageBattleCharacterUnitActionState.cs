@@ -13,7 +13,7 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
         // this.CharacterUnit.AnimationTree.Set("parameters/conditions/idle", false);
         // this.CharacterUnit.AnimationTree.Set("parameters/conditions/moving", false);
         // this.CharacterUnit.AnimationTree.Set("parameters/conditions/ranged", true);
-        GD.Print("Entering taking damage state ", CharacterUnit.CharacterData.Name);
+        // GD.Print("Entering taking damage state ", CharacterUnit.CharacterData.Name);
         TakeDamage();
     }
 
@@ -34,7 +34,7 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
         await ToSignal(CharacterUnit.AnimationTree, AnimationTree.SignalName.AnimationFinished);
         if (CharacterUnit.TurnPending)
         {
-            CharacterUnit.SetActionState(CharacterUnit.ActionMode.IdleBattle);
+            CharacterUnit.SetActionState(CharacterUnit.ActionMode.IdleBattle); // because BattleIdleOrder doesn't work while we are still in this state
         }
         else
         {

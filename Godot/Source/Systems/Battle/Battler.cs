@@ -25,6 +25,8 @@ public partial class Battler : Node2D
     // the action that the player selects via the UI
     public ActionMode PlayerSelectedAction { get; set; } = ActionMode.Move;
 
+    public Dictionary<SpellEffectManager.SpellMode, SpellEffectManager.Spell> AllSpells { get; set; }
+
     [Signal]
     public delegate void AnimationFinishedEventHandler(string animName);
     [Signal]
@@ -46,9 +48,10 @@ public partial class Battler : Node2D
         EmitSignal(SignalName.AnimationFinished, animName);
     }
 
-    public void Init(Godot.Collections.Array<CharacterUnit> involvedCharacters, HexGrid battleGrid)
+    public void Init(Godot.Collections.Array<CharacterUnit> involvedCharacters, HexGrid battleGrid, Dictionary<SpellEffectManager.SpellMode, SpellEffectManager.Spell> allSpells)
     {
         BattleGrid = battleGrid;
+        AllSpells = allSpells;
 
         foreach (CharacterUnit cUnit in involvedCharacters)
         {

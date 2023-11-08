@@ -2,8 +2,8 @@ using Godot;
 
 public partial class SpellEffectState : RefCounted
 {
-    public SpellEffect SpellEffect;
-    public virtual void Start(BattleSpellData spellEffectData)
+    public SpellVisual SpellEffect;
+    public virtual void Start(SpellEffectManager.Spell spell)
     {
 
     }

@@ -46,13 +46,20 @@ public partial class IdleBattleCharacterUnitActionState : CharacterUnitActionSta
         CharacterUnit.SetActionState(CharacterUnit.ActionMode.MeleeBattle);
     }
 
-    public override void BattleShootOrder(CharacterUnit targetCharacter)
+    public override void BattleShootOrderOld(CharacterUnit targetCharacter)
     {
-        base.BattleShootOrder(targetCharacter);
+        base.BattleShootOrderOld(targetCharacter);
         CharacterUnit.SetActionState(CharacterUnit.ActionMode.RangedBattle);
     }
-    public override void BattleCastOrder(Vector2 mouseGridPos, CharacterUnit targetCharacter)
+
+    public override void BattleShootOrder()
     {
-        base.BattleCastOrder(mouseGridPos, targetCharacter);
+        base.BattleShootOrder();
+        CharacterUnit.SetActionState(CharacterUnit.ActionMode.RangedBattle);
+    }
+    public override void BattleCastOrder()
+    {
+        base.BattleCastOrder();
+        CharacterUnit.SetActionState(CharacterUnit.ActionMode.CastingBattle);
     }
 }

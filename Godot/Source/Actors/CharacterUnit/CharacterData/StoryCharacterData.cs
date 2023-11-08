@@ -133,10 +133,35 @@ public class StoryCharacterData : IJSONSaveable
         return UpdateStat(Precision, 1f, 0.02f);
     }
 
-    public int GetCorrectHitBonus()
+    // public int GetCorrectHitBonus(bool mystical = false)
+    // {
+    //     return mystical ? HitBonusPrecision + (WeaponTypeEquipped == WeaponTypeEquippedMode.Magical ? HitBonusWeapon : 0)
+    //         : WeaponTypeEquipped == WeaponTypeEquippedMode.Strength ? HitBonusWeapon + HitBonusStrength
+    //         : HitBonusWeapon + HitBonusPrecision;
+    // }
+    public int GetCorrectHitBonus(bool mystical = false)
     {
-        return WeaponTypeEquipped == WeaponTypeEquippedMode.Strength ? HitBonusWeapon + HitBonusStrength : HitBonusWeapon + HitBonusPrecision;
+        if (mystical)
+        {
+            if (WeaponTypeEquipped == WeaponTypeEquippedMode.Magical)
+            {
+                return HitBonusPrecision + HitBonusWeapon;
+            }
+            else
+            {
+                return HitBonusPrecision;
+            }
+        }
+        else if (WeaponTypeEquipped == WeaponTypeEquippedMode.Strength)
+        {
+            return HitBonusWeapon + HitBonusStrength;
+        }
+        else
+        {
+            return HitBonusWeapon + HitBonusPrecision;
+        }
     }
+
     public int GetCorrectWeaponDamageBonus()
     {
         return WeaponTypeEquipped == WeaponTypeEquippedMode.Strength ? PhysicalDamageStrength + WeaponDamageBonus : PhysicalDamagePrecision + WeaponDamageBonus;
@@ -213,7 +238,7 @@ public class StoryCharacterData : IJSONSaveable
     // the below are intended to be modified by equipped weapons
     public int HitBonusWeapon { get; set; } = 0;
 
-    public enum WeaponTypeEquippedMode { Strength, Precision }
+    public enum WeaponTypeEquippedMode { Strength, Precision, Magical }
     // This should be modified by the weapon equipped, e.g. strength or precision (for most precision weapons or magical weapons)
     public WeaponTypeEquippedMode WeaponTypeEquipped = WeaponTypeEquippedMode.Strength;
 

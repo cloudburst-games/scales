@@ -1,3 +1,7 @@
+// UI idea: for actions, click button to pop out the actions (to the right, over the combat log) -> select which action is preferred -> Melee/Ranged/Spells/Move
+// Need a separate button still to select a spell - this opens the spellbook, and when a spell is selected, the action preferred is set to Spells also (if cancelled nothing happens)
+// Aim to have buttons equal - consider moving ToggleGrid in or out of Menu (which would also have resume/settings/anim speed/Main Menu)
+
 using Godot;
 using System;
 using System.Collections.Generic;

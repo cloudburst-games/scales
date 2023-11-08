@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx62avxvwtb0l"]
+
+[ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellEffectManager.cs" id="1_qcwm7"]
+[ext_resource type="PackedScene" uid="uid://cmsrvkqdk8j1b" path="res://Source/Systems/SpellEffect/Projectiles/ArrowEffect.tscn" id="2_acflc"]
+[ext_resource type="PackedScene" uid="uid://bxmak83na1okj" path="res://Source/Systems/SpellEffect/Projectiles/SolarFlareEffect.tscn" id="3_yhqvb"]
+
+[node name="SpellEffectManager" type="Node"]
+script = ExtResource("1_qcwm7")
+_spellVisualScns = {
+0: ExtResource("2_acflc"),
+1: ExtResource("3_yhqvb")
+}

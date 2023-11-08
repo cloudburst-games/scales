@@ -51,7 +51,7 @@ public partial class WorldScene : Node, ISceneTransitionable
 
     private void ConnectLevelSignals()
     {
-        _currentLevel.BattleCommenced += (characterUnits, hexGrid) => _battler.Init(characterUnits, hexGrid);
+        _currentLevel.BattleCommenced += (characterUnits, hexGrid) => _battler.Init(characterUnits, hexGrid, new()); // todo - add allspells here
     }
 
     private void OnBattleEnded(bool playerWon) // remove bool if not needed

@@ -2,30 +2,30 @@ using Godot;
 public partial class ProjectileSpellEffectState : SpellEffectState
 {
 
-    private BattleSpellData _spellEffectData;
+    private SpellEffectManager.Spell _spell;
 
-    public ProjectileSpellEffectState(SpellEffect spellEffect)
+    public ProjectileSpellEffectState(SpellVisual spellEffect)
     {
         this.SpellEffect = spellEffect;
     }
 
     private bool _finishing = false;
     private Vector2 _direction;
-    public override void Start(BattleSpellData spellEffectData)
+    public override void Start(SpellEffectManager.Spell spell)
     {
 
         // if projectile, then go from origin to destination then stop at destination (anim would loop)
         // otherwise originate at destination and play through the animation (anim does not loop)
-        _spellEffectData = spellEffectData;
+        _spell = spell;
         if (SpellEffect.Anim != null)
         {
             SpellEffect.Anim.Play("Start");
         }
-        SpellEffect.LookAt(_spellEffectData.Destination);
-        _direction = (_spellEffectData.Destination - SpellEffect.GlobalPosition).Normalized();
+        SpellEffect.LookAt(_spell.Destination);
+        _direction = (_spell.Destination - SpellEffect.GlobalPosition).Normalized();
         SpellEffect.SetPhysicsProcess(true);
 
-        SpellEffect.Speed = 150;
+        // SpellEffect.Speed = 150; // this is for testing
     }
 
     public override void Update(double delta)
@@ -35,7 +35,7 @@ public partial class ProjectileSpellEffectState : SpellEffectState
         // GD.Print(SpellEffect.GlobalPosition.DistanceTo(_spellEffectData.Destination));
         // GD.Print(_spellEffectData.Destination);
         SpellEffect.GlobalPosition += _direction * SpellEffect.Speed * (float)delta;
-        if (SpellEffect.GlobalPosition.DistanceTo(_spellEffectData.Destination) < SpellEffect.Speed / 50 && !_finishing)
+        if (SpellEffect.GlobalPosition.DistanceTo(_spell.Destination) < SpellEffect.Speed / 50 && !_finishing)
         {
             SpellEffect.Speed = 0;
             Finish();
@@ -49,7 +49,7 @@ public partial class ProjectileSpellEffectState : SpellEffectState
         SpellEffect.Anim.Play("Finish");
         await ToSignal(SpellEffect.Anim, AnimationPlayer.SignalName.AnimationFinished);
         // GD.Print(4, _spellEffectData.TargetCharacter.CharacterData.Name);
-        SpellEffect.EmitSignal(SpellEffect.SignalName.Finished, _spellEffectData);
+        SpellEffect.EmitSignal(SpellVisual.SignalName.Finished, _spell);
         SpellEffect.QueueFree();
     }
 }
