@@ -1,9 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqjaiy3w7l06y"]
+[gd_scene load_steps=4 format=3 uid="uid://dqjaiy3w7l06y"]
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/CharacterUnit.cs" id="1_yf2yq"]
-[ext_resource type="Resource" uid="uid://ot7oxqbgabxa" path="res://Source/Actors/CharacterUnit/DataContainer/CharacterStats.tres" id="2_ddnqj"]
 [ext_resource type="Texture2D" uid="uid://c4qfoveb6q0yo" path="res://Assets/Graphics/Sprites/Actors/Player/villager.png" id="2_mpi4t"]
-[ext_resource type="PackedScene" uid="uid://c1ujk6eg2xhpo" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/GilgameshBody.tscn" id="3_7vj0y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tyb1j"]
 radius = 62.2013
@@ -11,8 +9,6 @@ radius = 62.2013
 [node name="CharacterUnit" type="CharacterBody2D"]
 position = Vector2(1746, 1016)
 script = ExtResource("1_yf2yq")
-CharacterStats = ExtResource("2_ddnqj")
-_body = ExtResource("3_7vj0y")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.403922, 0.305882, 1)

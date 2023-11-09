@@ -221,4 +221,69 @@ public partial class Battler : Node2D
     {
         CharactersAwaitingTurn[0].UISelectedSpell = spellSelected;
     }
+
+    public CharacterUnit CharacterAtGridPos(Vector2 gridPos)
+    {
+        foreach (CharacterUnit characterUnit in AllCharacters)
+        {
+            if (BattleGrid.WorldToGrid(characterUnit.GlobalPosition) == gridPos && characterUnit.CharacterData.Alive)
+            {
+                return characterUnit;
+            }
+        }
+        return null;
+    }
+
+    [Signal]
+    public delegate void AreaAttackParsedEventHandler(SpellEffectManager.Spell spell);
+
+    internal void ParseAreaAttack(SpellEffectManager.Spell spell)
+    {
+        Random rand = spell.OriginCharacter.Rand;
+        Vector2 centreGridPoint;
+        if (spell.Outcome.RollResult == BattleRoller.RollResult.CriticalMiss)
+        {
+            spell.AreaAffectedCharacters.Clear();
+            spell.Destination = new Vector2((float)rand.Next(-500, 4400), -600);
+            spell.TargetCharacter = null;
+            EmitSignal(SignalName.AreaAttackParsed, spell);
+            return;
+            // set destination to random area outside of the attack area
+        }
+        else if (spell.Outcome.RollResult == BattleRoller.RollResult.Miss)
+        {
+            centreGridPoint = BattleGrid.GetRandomNeighbouringHex(spell.Destination);
+            spell.Destination = BattleGrid.GridToWorld(centreGridPoint);
+            // GD.Print("spell dest: ", spell.Destination);
+        }
+        else
+        {
+            // spell destination remains the same
+            centreGridPoint = BattleGrid.WorldToGrid(spell.Destination);
+        }
+        spell.TargetCharacter = CharacterAtGridPos(centreGridPoint);
+        List<Vector2> neighbouringHexGridPositions = BattleGrid.HexNavigation.GetNeighbouringGridPositions(centreGridPoint);
+        foreach (Vector2 vec in neighbouringHexGridPositions)
+        {
+            CharacterUnit affectedCharacter = CharacterAtGridPos(vec);
+            if (affectedCharacter != null)
+            {
+                spell.AreaAffectedCharacters.Add(affectedCharacter);
+            }
+        }
+        if (spell.TargetCharacter != null)
+        {
+            spell.AreaAffectedCharacters.Add(spell.TargetCharacter);
+        }
+
+        // GD.Print("spell centre is here: ", centreGridPoint);
+        // GD.Print("clicked on here: ", BattleGrid.WorldToGrid(GetGlobalMousePosition()));
+        // foreach (CharacterUnit characterUnit in spell.AreaAffectedCharacters)
+        // {
+        //     GD.Print("affected character is here: ", BattleGrid.WorldToGrid(characterUnit.GlobalPosition) + " and named : " + characterUnit.CharacterData.Name + " and controlled by: " + characterUnit.StatusToPlayer + " and has health of: " + characterUnit.CharacterData.Health);
+        // }
+
+
+        EmitSignal(SignalName.AreaAttackParsed, spell);
+    }
 }

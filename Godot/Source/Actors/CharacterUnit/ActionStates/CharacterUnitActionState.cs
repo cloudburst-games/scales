@@ -26,11 +26,14 @@ public partial class CharacterUnitActionState : RefCounted
 
     // Shared method - as turn can be ended from the moving state, manually by the player in idle state,
     // after attacking or casting, etc.
-    public void EndBattleTurn()
+    public void EndBattleTurn(bool whileCasting = false)
     {
         CharacterUnit.TurnPending = false;
         // GD.Print("ending turn of ", CharacterUnit.CharacterData.Name);
-        CharacterUnit.SetActionState(CharacterUnit.ActionMode.WaitingBattle);
+        if (!whileCasting)
+        {
+            CharacterUnit.SetActionState(CharacterUnit.ActionMode.WaitingBattle);
+        }
         CharacterUnit.EmitSignal(CharacterUnit.SignalName.BattleTurnEnded, CharacterUnit);
     }
     public virtual void BattleShootOrderOld(CharacterUnit targetCharacter)

@@ -1,0 +1,31 @@
+[gd_resource type="Animation" load_steps=2 format=3 uid="uid://bau86mgx1irgb"]
+
+[ext_resource type="Texture2D" uid="uid://cmf5fyadvx2ne" path="res://Assets/Graphics/Sprites/Actors/Gilga/GilgaIdleV2Stylised.png" id="1_50out"]
+
+[resource]
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(1, 4337, 960, 540), Rect2(963, 4337, 960, 540), Rect2(1925, 4337, 960, 540), Rect2(2887, 4337, 960, 540), Rect2(3849, 4337, 960, 540), Rect2(4811, 4337, 960, 540), Rect2(1, 4879, 960, 540), Rect2(963, 4879, 960, 540), Rect2(1925, 4879, 960, 540), Rect2(2887, 4879, 960, 540), Rect2(3849, 4879, 960, 540), Rect2(4811, 4879, 960, 540)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_50out")]
+}

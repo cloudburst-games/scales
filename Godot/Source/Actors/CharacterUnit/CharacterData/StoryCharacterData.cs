@@ -107,7 +107,7 @@ public class StoryCharacterData : IJSONSaveable
 
     private int GetUpdatedMysticism()
     {
-        return UpdateStat(Intellect, 2f, 0.025f);
+        return UpdateStat(Intellect, 0.6f, 0.035f);
     }
 
     private int GetUpdatedInitiative()
@@ -216,6 +216,7 @@ public class StoryCharacterData : IJSONSaveable
     public string Name { get; set; }
     public string Description { get; set; }
     public string PatronGod { get; set; }
+    public string BodyPath { get; set; }
     private List<int> _perks = new();
     public List<int> Perks
     {

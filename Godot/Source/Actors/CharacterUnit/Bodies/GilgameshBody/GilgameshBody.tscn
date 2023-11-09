@@ -1,28 +1,29 @@
-[gd_scene load_steps=64 format=3 uid="uid://c1ujk6eg2xhpo"]
+[gd_scene load_steps=67 format=3 uid="uid://c1ujk6eg2xhpo"]
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_plx1y"]
 [ext_resource type="Texture2D" uid="uid://7odii45w3yxl" path="res://Assets/Graphics/Sprites/Actors/Gilga/IdleGilga.png" id="2_eadvr"]
-[ext_resource type="Animation" uid="uid://d32du8cg543sj" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idlee_idle_gilg.tres" id="3_lvlg3"]
-[ext_resource type="Animation" uid="uid://biws4ydicnrom" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idlen_idle_gilg.tres" id="4_ihric"]
-[ext_resource type="Animation" uid="uid://bfdgr5btbqgbb" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idlesw_idle_gilg.tres" id="5_gmmda"]
-[ext_resource type="Animation" uid="uid://yrtitigdpicp" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idles_idle_gilg.tres" id="6_wkdel"]
-[ext_resource type="Animation" uid="uid://cy1bc1cnchje" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idlew_idle_gilg.tres" id="7_cxitr"]
-[ext_resource type="Animation" uid="uid://cw2mtvm1klgve" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idlne_idle_gilg.tres" id="8_sfuyc"]
+[ext_resource type="Texture2D" uid="uid://cmf5fyadvx2ne" path="res://Assets/Graphics/Sprites/Actors/Gilga/GilgaIdleV2Stylised.png" id="5_co43q"]
 [ext_resource type="Texture2D" uid="uid://dj6lx830v40e3" path="res://DELETEMEimage.png" id="9_te1kc"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit1_gilg.tres" id="12_1i1kh"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit2_gilg.tres" id="13_yw76s"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit3_gilg.tres" id="14_m2hss"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit4_gilg.tres" id="15_31400"]
 [ext_resource type="Texture2D" uid="uid://d4gesnextgity" path="res://DirectionTest.png" id="16_lp6vs"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit5_gilg.tres" id="16_thrmg"]
 [ext_resource type="Texture2D" uid="uid://brxylpaqjkqy" path="res://Assets/Graphics/Effects/Arrow/arrow.png" id="17_ferel"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk1_gilg.tres" id="18_8836v"]
-[ext_resource type="Animation" uid="uid://dy1gwkph6e3eg" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hite_hit_gilg.tres" id="18_jwaoi"]
-[ext_resource type="Animation" uid="uid://byo3n8cfh0miu" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hitne_hit_gilg.tres" id="19_1h5pj"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk2_gilg.tres" id="19_vwsop"]
-[ext_resource type="Animation" uid="uid://dhkcrrwjnf425" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hitn_hit_gilg.tres" id="20_ij02s"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk3_gilg.tres" id="20_w0c1w"]
-[ext_resource type="Animation" uid="uid://b8f75g13vkwpk" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hitsw_hit_gilg.tres" id="21_2d1wg"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk4_gilg.tres" id="21_3w1c7"]
-[ext_resource type="Animation" uid="uid://cy6j0onrrlduh" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hits_hit_gilg.tres" id="22_3rxgb"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk5_gilg.tres" id="22_hoq4g"]
-[ext_resource type="Animation" uid="uid://dwgq5bws0b3x" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hitw_hit_gilg.tres" id="23_1flq8"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk6_gilg.tres" id="23_khnu5"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit6_gilg.tres" id="17_r30xq"]
+[ext_resource type="Animation" uid="uid://lo0w8muv6m81" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk1_gilg.tres" id="18_8836v"]
+[ext_resource type="Animation" uid="uid://t1e7xhps57bf" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle1_gilg.tres" id="18_ft0ew"]
+[ext_resource type="Animation" uid="uid://cc7ooypef80pn" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle2_gilg.tres" id="19_6gqfu"]
+[ext_resource type="Animation" uid="uid://ccwx67sbv5gf" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk2_gilg.tres" id="19_vwsop"]
+[ext_resource type="Animation" uid="uid://3ectshgx3gcn" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk3_gilg.tres" id="20_w0c1w"]
+[ext_resource type="Animation" uid="uid://crs21r0dc4qfe" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle3_gilg.tres" id="20_ypwcq"]
+[ext_resource type="Animation" uid="uid://bb0cyxefr3jpl" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk4_gilg.tres" id="21_3w1c7"]
+[ext_resource type="Animation" uid="uid://e5xx3w83mm5y" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle4_gilg.tres" id="21_dbe2t"]
+[ext_resource type="Animation" uid="uid://bau86mgx1irgb" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle5_gilg.tres" id="22_fpdyo"]
+[ext_resource type="Animation" uid="uid://dcqdsfa5busfq" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk5_gilg.tres" id="22_hoq4g"]
+[ext_resource type="Animation" uid="uid://dinyq4eaxxtvv" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle6_gilg.tres" id="23_57cvu"]
+[ext_resource type="Animation" uid="uid://bk6iyw1kwb7vs" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk6_gilg.tres" id="23_khnu5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xdano"]
 radius = 20.2237
@@ -90,23 +91,6 @@ tracks/4/keys = {
 "values": [Vector2(0, -52.5)]
 }
 
-[sub_resource type="Animation" id="Animation_eg64h"]
-resource_name = "take_damage"
-length = 0.04
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0001, 0.02, 0.04),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(5, 5, 5, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_vwmtw"]
 resource_name = "dying"
 tracks/0/type = "value"
@@ -134,22 +118,39 @@ tracks/1/keys = {
 "values": [Vector2(0, -52.5), Vector2(0, -250)]
 }
 
+[sub_resource type="Animation" id="Animation_eg64h"]
+resource_name = "take_damage"
+length = 0.04
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.02, 0.04),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(5, 5, 5, 1), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y21hr"]
 _data = {
 "RESET": SubResource("Animation_wswdv"),
 "dying": SubResource("Animation_vwmtw"),
-"hite_hit_gilg": ExtResource("18_jwaoi"),
-"hitn_hit_gilg": ExtResource("20_ij02s"),
-"hitne_hit_gilg": ExtResource("19_1h5pj"),
-"hits_hit_gilg": ExtResource("22_3rxgb"),
-"hitsw_hit_gilg": ExtResource("21_2d1wg"),
-"hitw_hit_gilg": ExtResource("23_1flq8"),
-"idlee_idle_gilg": ExtResource("3_lvlg3"),
-"idlen_idle_gilg": ExtResource("4_ihric"),
-"idles_idle_gilg": ExtResource("6_wkdel"),
-"idlesw_idle_gilg": ExtResource("5_gmmda"),
-"idlew_idle_gilg": ExtResource("7_cxitr"),
-"idlne_idle_gilg": ExtResource("8_sfuyc"),
+"hit1_gilg": ExtResource("12_1i1kh"),
+"hit2_gilg": ExtResource("13_yw76s"),
+"hit3_gilg": ExtResource("14_m2hss"),
+"hit4_gilg": ExtResource("15_31400"),
+"hit5_gilg": ExtResource("16_thrmg"),
+"hit6_gilg": ExtResource("17_r30xq"),
+"idle1_gilg": ExtResource("18_ft0ew"),
+"idle2_gilg": ExtResource("19_6gqfu"),
+"idle3_gilg": ExtResource("20_ypwcq"),
+"idle4_gilg": ExtResource("21_dbe2t"),
+"idle5_gilg": ExtResource("22_fpdyo"),
+"idle6_gilg": ExtResource("23_57cvu"),
 "take_damage": SubResource("Animation_eg64h"),
 "walk1_gilg": ExtResource("18_8836v"),
 "walk2_gilg": ExtResource("19_vwsop"),
@@ -159,118 +160,118 @@ _data = {
 "walk6_gilg": ExtResource("23_khnu5")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3byqe"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_objd6"]
 animation = &"dying"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_bhumd"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_3byqe")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2xnyj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_objd6")
 blend_point_0/pos = Vector2(0, 0)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pojjx"]
-animation = &"idles_idle_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cpppf"]
+animation = &"idle4_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6mcko"]
-animation = &"idlee_idle_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vkjr7"]
+animation = &"idle3_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lwjut"]
-animation = &"idlne_idle_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rh5al"]
+animation = &"idle2_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lxcb0"]
-animation = &"idlen_idle_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dn54n"]
+animation = &"idle1_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ymuru"]
-animation = &"idlew_idle_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6ptnq"]
+animation = &"idle6_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bs5i5"]
-animation = &"idlesw_idle_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bi2ue"]
+animation = &"idle5_gilg"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_y2vdn"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_pojjx")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_q3ie2"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_cpppf")
 blend_point_0/pos = Vector2(-0.47, 0.88)
-blend_point_1/node = SubResource("AnimationNodeAnimation_6mcko")
+blend_point_1/node = SubResource("AnimationNodeAnimation_vkjr7")
 blend_point_1/pos = Vector2(0.89, 0.45)
-blend_point_2/node = SubResource("AnimationNodeAnimation_lwjut")
+blend_point_2/node = SubResource("AnimationNodeAnimation_rh5al")
 blend_point_2/pos = Vector2(0.99, -0.13)
-blend_point_3/node = SubResource("AnimationNodeAnimation_lxcb0")
+blend_point_3/node = SubResource("AnimationNodeAnimation_dn54n")
 blend_point_3/pos = Vector2(0.47, -0.88)
-blend_point_4/node = SubResource("AnimationNodeAnimation_ymuru")
+blend_point_4/node = SubResource("AnimationNodeAnimation_6ptnq")
 blend_point_4/pos = Vector2(-0.89, -0.45)
-blend_point_5/node = SubResource("AnimationNodeAnimation_bs5i5")
+blend_point_5/node = SubResource("AnimationNodeAnimation_bi2ue")
 blend_point_5/pos = Vector2(-0.99, 0.13)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mst1i"]
-animation = &"hitne_hit_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_22hxe"]
+animation = &"hit1_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wvy6w"]
-animation = &"hite_hit_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_454ce"]
+animation = &"hit2_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vcr4l"]
-animation = &"hits_hit_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sv4gt"]
+animation = &"hit3_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i8kia"]
-animation = &"hitsw_hit_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3vwt5"]
+animation = &"hit4_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2wtj4"]
-animation = &"hitw_hit_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iifnb"]
+animation = &"hit5_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_82ak4"]
-animation = &"hitn_hit_gilg"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iag8c"]
+animation = &"hit6_gilg"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_c62m4"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_mst1i")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_npqxi"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_22hxe")
 blend_point_0/pos = Vector2(0.47, -0.88)
-blend_point_1/node = SubResource("AnimationNodeAnimation_wvy6w")
+blend_point_1/node = SubResource("AnimationNodeAnimation_454ce")
 blend_point_1/pos = Vector2(0.99, -0.13)
-blend_point_2/node = SubResource("AnimationNodeAnimation_vcr4l")
+blend_point_2/node = SubResource("AnimationNodeAnimation_sv4gt")
 blend_point_2/pos = Vector2(0.89, 0.45)
-blend_point_3/node = SubResource("AnimationNodeAnimation_i8kia")
+blend_point_3/node = SubResource("AnimationNodeAnimation_3vwt5")
 blend_point_3/pos = Vector2(-0.47, 0.88)
-blend_point_4/node = SubResource("AnimationNodeAnimation_2wtj4")
+blend_point_4/node = SubResource("AnimationNodeAnimation_iifnb")
 blend_point_4/pos = Vector2(-0.99, 0.13)
-blend_point_5/node = SubResource("AnimationNodeAnimation_82ak4")
+blend_point_5/node = SubResource("AnimationNodeAnimation_iag8c")
 blend_point_5/pos = Vector2(-0.89, -0.45)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hv836"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ng6i7"]
 animation = &"walk1_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a3nun"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t75ta"]
 animation = &"walk2_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pajjw"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0swaq"]
 animation = &"walk3_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_if4ps"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_moxws"]
 animation = &"walk4_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bil4f"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q3sm0"]
 animation = &"walk5_gilg"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pife3"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lpvu3"]
 animation = &"walk6_gilg"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_uywk5"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_hv836")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_5axvy"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ng6i7")
 blend_point_0/pos = Vector2(0.47, -0.88)
-blend_point_1/node = SubResource("AnimationNodeAnimation_a3nun")
+blend_point_1/node = SubResource("AnimationNodeAnimation_t75ta")
 blend_point_1/pos = Vector2(0.99, -0.13)
-blend_point_2/node = SubResource("AnimationNodeAnimation_pajjw")
+blend_point_2/node = SubResource("AnimationNodeAnimation_0swaq")
 blend_point_2/pos = Vector2(0.89, 0.45)
-blend_point_3/node = SubResource("AnimationNodeAnimation_if4ps")
+blend_point_3/node = SubResource("AnimationNodeAnimation_moxws")
 blend_point_3/pos = Vector2(-0.47, 0.99)
-blend_point_4/node = SubResource("AnimationNodeAnimation_bil4f")
+blend_point_4/node = SubResource("AnimationNodeAnimation_q3sm0")
 blend_point_4/pos = Vector2(-0.99, 0.13)
-blend_point_5/node = SubResource("AnimationNodeAnimation_pife3")
+blend_point_5/node = SubResource("AnimationNodeAnimation_lpvu3")
 blend_point_5/pos = Vector2(-0.89, -0.45)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mqrse"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cmv2k"]
 animation = &"take_damage"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_0aj54"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_mqrse")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_vcfoy"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_cmv2k")
 blend_point_0/pos = Vector2(0, 0)
 blend_mode = 1
 
@@ -309,20 +310,28 @@ advance_condition = &"idle"
 advance_mode = 2
 advance_condition = &"dying"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_u4rnh"]
-states/Dying/node = SubResource("AnimationNodeBlendSpace2D_bhumd")
-states/Dying/position = Vector2(521, 158.09)
-states/Idle/node = SubResource("AnimationNodeBlendSpace2D_y2vdn")
-states/Idle/position = Vector2(362, 78.0901)
-states/Melee/node = SubResource("AnimationNodeBlendSpace2D_c62m4")
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hxxih"]
+advance_mode = 2
+advance_condition = &"takingdamage"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0uqkw"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_kmdex"]
+states/Dying/node = SubResource("AnimationNodeBlendSpace2D_2xnyj")
+states/Dying/position = Vector2(735, 145.09)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_q3ie2")
+states/Idle/position = Vector2(343, 158.09)
+states/Melee/node = SubResource("AnimationNodeBlendSpace2D_npqxi")
 states/Melee/position = Vector2(367, -23.9099)
-states/Moving/node = SubResource("AnimationNodeBlendSpace2D_uywk5")
-states/Moving/position = Vector2(521, 61)
+states/Moving/node = SubResource("AnimationNodeBlendSpace2D_5axvy")
+states/Moving/position = Vector2(475, 77)
 states/Start/position = Vector2(205, 94)
-states/TakingDamage/node = SubResource("AnimationNodeBlendSpace2D_0aj54")
+states/TakingDamage/node = SubResource("AnimationNodeBlendSpace2D_vcfoy")
 states/TakingDamage/position = Vector2(163, 188.09)
-transitions = ["Moving", "Melee", SubResource("AnimationNodeStateMachineTransition_it31r"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ylv1o"), "Idle", "Moving", SubResource("AnimationNodeStateMachineTransition_onssd"), "Moving", "Idle", SubResource("AnimationNodeStateMachineTransition_3f5ve"), "Idle", "Melee", SubResource("AnimationNodeStateMachineTransition_c5oq7"), "Melee", "Idle", SubResource("AnimationNodeStateMachineTransition_nsp67"), "Idle", "TakingDamage", SubResource("AnimationNodeStateMachineTransition_6duo2"), "TakingDamage", "Idle", SubResource("AnimationNodeStateMachineTransition_bnrfh"), "Idle", "Dying", SubResource("AnimationNodeStateMachineTransition_1ts4f")]
-graph_offset = Vector2(-9, 21.0901)
+transitions = ["Moving", "Melee", SubResource("AnimationNodeStateMachineTransition_it31r"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ylv1o"), "Idle", "Moving", SubResource("AnimationNodeStateMachineTransition_onssd"), "Moving", "Idle", SubResource("AnimationNodeStateMachineTransition_3f5ve"), "Idle", "Melee", SubResource("AnimationNodeStateMachineTransition_c5oq7"), "Melee", "Idle", SubResource("AnimationNodeStateMachineTransition_nsp67"), "Idle", "TakingDamage", SubResource("AnimationNodeStateMachineTransition_6duo2"), "TakingDamage", "Idle", SubResource("AnimationNodeStateMachineTransition_bnrfh"), "Idle", "Dying", SubResource("AnimationNodeStateMachineTransition_1ts4f"), "Melee", "TakingDamage", SubResource("AnimationNodeStateMachineTransition_hxxih"), "Melee", "Dying", SubResource("AnimationNodeStateMachineTransition_0uqkw")]
+graph_offset = Vector2(-14, -89.9099)
 
 [node name="GilgameshBody" type="Node"]
 script = ExtResource("1_plx1y")
@@ -388,9 +397,9 @@ texture = ExtResource("17_ferel")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(0, -52.5)
-texture = ExtResource("2_eadvr")
+texture = ExtResource("5_co43q")
 region_enabled = true
-region_rect = Rect2(1, 1, 480, 270)
+region_rect = Rect2(2887, 2711, 960, 540)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1.5)
@@ -403,7 +412,7 @@ libraries = {
 }
 
 [node name="AnimTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_u4rnh")
+tree_root = SubResource("AnimationNodeStateMachine_kmdex")
 anim_player = NodePath("../Anim")
 active = true
 parameters/conditions/dying = false

@@ -2,6 +2,7 @@
     "Name": "Ereshkigal",
     "Description": "Ereshkigal, the goddess of the underworld, holds dominion over the realm of the dead and represents the cycle of life and death.",
     "PatronGod": "Ereshkigal",
+    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/EnkiduBody.tscn",
     "Perks": [
         1,
         5,

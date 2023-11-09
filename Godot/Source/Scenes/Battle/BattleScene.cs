@@ -48,6 +48,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         {
             _difficulty = battleData.Difficulty;
             NewCharacter((StoryCharacter.StoryCharacterMode)battleData.CharacterSelected).StatusToPlayer = CharacterUnit.StatusToPlayerMode.Player;
+            NewCharacter((StoryCharacter.StoryCharacterMode)3).StatusToPlayer = CharacterUnit.StatusToPlayerMode.Player;
         }
     }
 
@@ -78,10 +79,12 @@ public partial class BattleScene : Node, ISceneTransitionable
         _btnIntro.Pressed += this.OnBtnIntroPressed;
         _HUD.UIPause += (bool paused) => this.OnUIPause(paused);
         // _spellEffectManager.SpellEffectFinished += this.OnSpellEffectFinished;
+        _spellEffectManager.AreaHitCalculated += _battler.ParseAreaAttack;
         _battler.UIBounds = _pnlAction.GetRect();
         _battler.LogBattleText += (string text, bool persist) => _HUD.OnBattleLogEntry(text, persist);
         _battler.HUDActionRequested += _HUD.SetState;
         _battler.TurnStarted += this.OnCharacterTurnStarted;//_HUD.OnTurnStarted;
+        _battler.AreaAttackParsed += _spellEffectManager.OnCastingSpell;
         _btnActions.ActionBtnPressed += _battler.OnActionBtnPressed; // 1. Melee 2. Shoot 3. Cast spell 4. Move
 
         _btnChooseSpell.Pressed += _battler.OnBtnChooseSpellPressed;
@@ -146,7 +149,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         newChar.SetFromJSON(selectedChar);
         newChar.Rand = _rand;
         _currentCharacters.Add(newChar);
-        newChar.CastingEffect += _spellEffectManager.OnCastingSpell;
+        newChar.CastingEffect += _spellEffectManager.OnCastingSpellStart;
         newChar.Died += _battler.OnCharacterDied;
         return newChar;
     }

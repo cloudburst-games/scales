@@ -2,6 +2,7 @@
     "Name": "Gilgam",
     "Description": "Gilgamesh, the legendary king of Uruk, embarks on epic adventures in his quest for wisdom and immortality.",
     "PatronGod": "Enlil",
+    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/GilgameshBody.tscn",
     "Perks": [
         0,
         3,

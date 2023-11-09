@@ -48,6 +48,8 @@ public partial class HexGrid : Node
     [Export]
     private bool _makeGridFromInspector = false;
 
+    private Random _rand = new();
+
     public override void _Ready()
     {
         _hexGridVisualiser = GetNode<HexGridVisualiser>("HexDisplay/HexGridVisualiser");
@@ -366,6 +368,14 @@ public partial class HexGrid : Node
         // = no valid hexes in line - try area algorithm
         // return GetFreeNeighbouringHexByArea(GetHexAtWorldPosition(endWorldPos), ignoredHexes, new List<Hexagon>());
 
+    }
+
+
+    internal Vector2 GetRandomNeighbouringHex(Vector2 worldPos)
+    {
+        Hexagon hex = GetHexAtWorldPosition(worldPos);
+        List<Vector2> neighbourHexes = HexNavigation.GetNeighbouringGridPositions(hex);
+        return neighbourHexes[_rand.Next(0, neighbourHexes.Count)];
     }
 
     // VERY SLOW

@@ -26,6 +26,15 @@ public partial class CastingBattleCharacterUnitActionState : CharacterUnitAction
         CharacterUnit.EmitSignal(CharacterUnit.SignalName.CastingEffect, CharacterUnit.SpellBeingCast);
     }
 
+    public override void TakeDamageOrder()
+    {
+        base.TakeDamageOrder();
+        EndBattleTurn(whileCasting: true);
+        CharacterUnit.SetActionState(CharacterUnit.ActionMode.TakingDamageBattle);
+
+        // CharacterUnit.TakeDamageQueued = true;
+    }
+
     public override void OnSpellEffectFinished()
     {
         EndBattleTurn();

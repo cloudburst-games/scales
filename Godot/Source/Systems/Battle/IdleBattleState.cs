@@ -78,17 +78,6 @@ public class IdleBattleState : BattleState
         return false;
     }
 
-    private CharacterUnit CharacterAtGridPos(Vector2 gridPos)
-    {
-        foreach (CharacterUnit characterUnit in Battler.AllCharacters)
-        {
-            if (Battler.BattleGrid.WorldToGrid(characterUnit.GlobalPosition) == gridPos && characterUnit.CharacterData.Alive)
-            {
-                return characterUnit;
-            }
-        }
-        return null;
-    }
 
     public override void ProcessUpdate(double delta)
     {
@@ -174,9 +163,10 @@ public class IdleBattleState : BattleState
     {
         Vector2 mousePos = Battler.GetGlobalMousePosition();
         Vector2 mouseGridPos = Battler.BattleGrid.WorldToGrid(mousePos);
+        Vector2 centredWorldPos = Battler.BattleGrid.GridToWorld(mouseGridPos);
         Vector2 characterGridPos = Battler.BattleGrid.WorldToGrid(Battler.CharactersAwaitingTurn[0].GlobalPosition);
         Vector2 closestPos = new();// surroundingGridPositions.OrderBy(x => GridMoveCost(characterGridPos, x)).ToList()[0];
-        CharacterUnit targetCharacter = CharacterAtGridPos(mouseGridPos);
+        CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
         CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
 
         if (Battler.CurrentAction == Battler.ActionMode.Move)
@@ -233,11 +223,15 @@ public class IdleBattleState : BattleState
         }
         else if (Battler.CurrentAction == Battler.ActionMode.Cast)
         {
+            // NEEd to reset everything or it bugs out in future castings. next time use 
             SpellEffectManager.Spell spell = Battler.AllSpells[Battler.CharactersAwaitingTurn[0].UISelectedSpell];
             spell.Origin = controlledCharacter.GlobalPosition;
-            spell.Destination = targetCharacter.GlobalPosition;
+            spell.Destination = centredWorldPos;
             spell.OriginCharacter = controlledCharacter;
             spell.TargetCharacter = targetCharacter;
+            spell.HexDistance = Battler.BattleGrid.GetHexDistanceByWorld(controlledCharacter.GlobalPosition, centredWorldPos);
+            spell.Outcome = null;
+            spell.AreaAffectedCharacters = new();
             controlledCharacter.BattleCastOrder(spell);
             Battler.EmitSignal(Battler.SignalName.LogBattleText, string.Format("{0} casts {1}.", controlledCharacter.CharacterData.Name,
                 spell.Name), true);
@@ -268,7 +262,7 @@ public class IdleBattleState : BattleState
     private bool IsValidMelee(Vector2 mouseGridPos, Vector2 characterGridPos)
     {
         Vector2 closestPos = new();// surroundingGridPositions.OrderBy(x => GridMoveCost(characterGridPos, x)).ToList()[0];
-        CharacterUnit targetCharacter = CharacterAtGridPos(mouseGridPos);
+        CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
         if (targetCharacter == null)
         {
             return false;
@@ -299,7 +293,7 @@ public class IdleBattleState : BattleState
 
     private bool IsValidRanged(Vector2 mouseGridPos, int range)
     {
-        CharacterUnit targetCharacter = CharacterAtGridPos(mouseGridPos);
+        CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
         CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
         if (targetCharacter == null)
         {
@@ -328,7 +322,7 @@ public class IdleBattleState : BattleState
         {
             return false;
         }
-        CharacterUnit targetCharacter = CharacterAtGridPos(mouseGridPos);
+        CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
         CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
         SpellEffectManager.Spell currentSelectedSpell = Battler.AllSpells[spell];
         bool validEnemySpellTarget = false;
@@ -356,7 +350,7 @@ public class IdleBattleState : BattleState
 
     private bool IsMouseOverCharacterOrEmpty(Vector2 mouseGridPos)
     {
-        CharacterUnit targetCharacter = CharacterAtGridPos(mouseGridPos);
+        CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
         if (targetCharacter != null || !Battler.BattleGrid.GetHexAtGridPosition(mouseGridPos).Obstacle)
         {
             return true;
@@ -367,7 +361,7 @@ public class IdleBattleState : BattleState
     // Player only
     private bool IsMouseOverAlly(Vector2 mouseGridPos)
     {
-        CharacterUnit targetCharacter = CharacterAtGridPos(mouseGridPos);
+        CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
         if (targetCharacter == null)
         {
             return false;
@@ -388,7 +382,7 @@ public class IdleBattleState : BattleState
     {
         Vector2 mouseGridPos = Battler.BattleGrid.WorldToGrid(mousePos);
         Vector2 characterGridPos = Battler.BattleGrid.WorldToGrid(Battler.CharactersAwaitingTurn[0].GlobalPosition);
-        CharacterUnit targetCharacter = CharacterAtGridPos(mouseGridPos);
+        CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
 
         Battler.CurrentAction = Battler.ActionMode.Invalid;
         // CAST

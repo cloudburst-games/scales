@@ -18,6 +18,11 @@ public partial class WaitingBattleCharacterUnitActionState : CharacterUnitAction
         // We want to remove the obstacle as we are about to move
         CharacterUnit.EmitSignal(CharacterUnit.SignalName.RemoveObstacle, CharacterUnit, false);
 
+        // if (CharacterUnit.TakeDamageQueued)
+        // {
+        //     CharacterUnit.SetActionState(CharacterUnit.ActionMode.TakingDamageBattle);
+        // }
+
         // GD.Print("entering wait ", CharacterUnit.CharacterData.Name);
         // // this is a hack
         // if (CharacterUnit.TurnPending)

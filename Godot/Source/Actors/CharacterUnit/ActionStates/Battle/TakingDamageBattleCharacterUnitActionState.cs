@@ -45,7 +45,6 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
     public void TakeDamage()
     {
         // BattleRoller.RollerOutcomeInformation.DebugPrint(res);
-        GD.Print(string.Format("{0} takes {1} damage and has {2} health remaining.", CharacterUnit.CharacterData.Name, CharacterUnit.TakingDamageResult.FinalDamage, CharacterUnit.CharacterData.Health));
         CharacterUnit.CharacterData.Health -= CharacterUnit.TakingDamageResult.FinalDamage;
         if (CharacterUnit.CharacterData.Health <= 0)
         {
@@ -55,11 +54,14 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
         {
             TakingDamageAnim();
         }
+        GD.Print(string.Format("{0} takes {1} damage and has {2} health remaining.", CharacterUnit.CharacterData.Name, CharacterUnit.TakingDamageResult.FinalDamage, CharacterUnit.CharacterData.Health));
+
     }
 
     public override void Exit()
     {
         base.Exit();
+        // CharacterUnit.TakeDamageQueued = false;
         this.CharacterUnit.MeleeTarget = null;
     }
 }

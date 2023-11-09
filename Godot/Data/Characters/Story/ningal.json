@@ -2,6 +2,7 @@
     "Name": "Ningal",
     "Description": "Ningal, the goddess of reeds and vegetation, is associated with fertility and the nurturing aspects of nature.",
     "PatronGod": "Innana",
+    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/GilgameshBody.tscn",
     "Perks": [
         1,
         2,

@@ -1,6 +1,6 @@
-[gd_resource type="Animation" load_steps=2 format=3]
+[gd_resource type="Animation" load_steps=2 format=3 uid="uid://dcqdsfa5busfq"]
 
-[ext_resource type="Texture2D" path="res://Assets/Graphics/Sprites/Actors/Gilga/GilgaWalk.png" id="1_unaj4"]
+[ext_resource type="Texture2D" uid="uid://c1uim6muown2j" path="res://Assets/Graphics/Sprites/Actors/Gilga/GilgaV2_walkStylised.png" id="1_1k3ke"]
 
 [resource]
 length = 0.775
@@ -27,5 +27,5 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_unaj4")]
+"values": [ExtResource("1_1k3ke")]
 }

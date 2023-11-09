@@ -2,6 +2,7 @@
     "Name": "Utug",
     "Description": "Utug, typically referring to demons or supernatural beings, embodies otherworldly and mysterious qualities.",
     "PatronGod": "Ereshkigal",
+    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/GilgameshBody.tscn",
     "Perks": [
         0,
         3,

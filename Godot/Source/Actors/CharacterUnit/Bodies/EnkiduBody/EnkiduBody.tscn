@@ -1,0 +1,304 @@
+[gd_scene load_steps=50 format=3 uid="uid://otvy1fepssy0"]
+
+[ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_eyqsa"]
+[ext_resource type="Texture2D" uid="uid://dj6lx830v40e3" path="res://DELETEMEimage.png" id="2_ugqld"]
+[ext_resource type="Texture2D" uid="uid://d4gesnextgity" path="res://DirectionTest.png" id="3_0xmwc"]
+[ext_resource type="Texture2D" uid="uid://brxylpaqjkqy" path="res://Assets/Graphics/Effects/Arrow/arrow.png" id="4_o6uwt"]
+[ext_resource type="Texture2D" uid="uid://mg506pp88o7b" path="res://Assets/Graphics/Sprites/Actors/Enkidu/Enki_IdleV2Stylised.png" id="5_l1eji"]
+[ext_resource type="Texture2D" uid="uid://7odii45w3yxl" path="res://Assets/Graphics/Sprites/Actors/Gilga/IdleGilga.png" id="5_x18ss"]
+[ext_resource type="Animation" uid="uid://lo0w8muv6m81" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk1_gilg.tres" id="6_xnyvr"]
+[ext_resource type="Animation" uid="uid://ccwx67sbv5gf" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk2_gilg.tres" id="7_g7cu7"]
+[ext_resource type="Animation" uid="uid://3ectshgx3gcn" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk3_gilg.tres" id="8_1n0jo"]
+[ext_resource type="Animation" uid="uid://bb0cyxefr3jpl" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk4_gilg.tres" id="9_umjem"]
+[ext_resource type="Animation" uid="uid://dcqdsfa5busfq" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk5_gilg.tres" id="10_lgjwo"]
+[ext_resource type="Animation" uid="uid://bk6iyw1kwb7vs" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk6_gilg.tres" id="11_emr81"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit1_gilg.tres" id="12_y328t"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit2_gilg.tres" id="13_ndj8y"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit3_gilg.tres" id="14_3dx0n"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit4_gilg.tres" id="15_h43wv"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit5_gilg.tres" id="16_qdpoe"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit6_gilg.tres" id="17_c210e"]
+[ext_resource type="Animation" uid="uid://t1e7xhps57bf" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle1_gilg.tres" id="18_wixde"]
+[ext_resource type="Animation" uid="uid://cc7ooypef80pn" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle2_gilg.tres" id="19_6fpg7"]
+[ext_resource type="Animation" uid="uid://crs21r0dc4qfe" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle3_gilg.tres" id="20_bew71"]
+[ext_resource type="Animation" uid="uid://e5xx3w83mm5y" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle4_gilg.tres" id="21_pbjpo"]
+[ext_resource type="Animation" uid="uid://bau86mgx1irgb" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle5_gilg.tres" id="22_0owos"]
+[ext_resource type="Animation" uid="uid://dinyq4eaxxtvv" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle6_gilg.tres" id="23_re76p"]
+[ext_resource type="Animation" uid="uid://cr7rtjs7ecln8" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit1_enkidu.tres" id="25_68nay"]
+[ext_resource type="Animation" uid="uid://bky6hpj768cms" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit2_enkidu.tres" id="26_wu8aa"]
+[ext_resource type="Animation" uid="uid://dtqr3wk8bpe2h" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit3_enkidu.tres" id="27_ib5yx"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit4_enkidu.tres" id="28_s23hq"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit5_enkidu.tres" id="29_f81yx"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit6_enkidu.tres" id="30_hnuny"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle1_enkidu.tres" id="31_e0g5m"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle2_enkidu.tres" id="32_8line"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle3_enkidu.tres" id="33_rjrv5"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle4_enkidu.tres" id="34_mnlem"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle5_enkidu.tres" id="35_xmhct"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle6_enkidu.tres" id="36_7k5i6"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk1_enkidu.tres" id="37_j40l7"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk2_enkidu.tres" id="38_7sljh"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk3_enkidu.tres" id="39_2ayxh"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk4_enkidu.tres" id="40_nvosj"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk5_enkidu.tres" id="41_72bov"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk6_enkidu.tres" id="42_1yfi5"]
+[ext_resource type="AnimationNodeStateMachine" uid="uid://dbtjdrtt8r0gq" path="res://Source/Actors/CharacterUnit/Bodies/AnimTreeRoot.tres" id="43_mjmav"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdano"]
+radius = 20.2237
+
+[sub_resource type="Animation" id="Animation_wswdv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(1, 1, 480, 270)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_x18ss")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -52.5)]
+}
+
+[sub_resource type="Animation" id="Animation_vwmtw"]
+resource_name = "dying"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 1),
+"transitions": PackedFloat32Array(1, 4, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.9, 1),
+"update": 0,
+"values": [Vector2(0, -52.5), Vector2(0, -250)]
+}
+
+[sub_resource type="Animation" id="Animation_eg64h"]
+resource_name = "take_damage"
+length = 0.04
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.02, 0.04),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(5, 5, 5, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y21hr"]
+_data = {
+"RESET": SubResource("Animation_wswdv"),
+"dying": SubResource("Animation_vwmtw"),
+"hit1_gilg": ExtResource("12_y328t"),
+"hit2_gilg": ExtResource("13_ndj8y"),
+"hit3_gilg": ExtResource("14_3dx0n"),
+"hit4_gilg": ExtResource("15_h43wv"),
+"hit5_gilg": ExtResource("16_qdpoe"),
+"hit6_gilg": ExtResource("17_c210e"),
+"idle1_gilg": ExtResource("18_wixde"),
+"idle2_gilg": ExtResource("19_6fpg7"),
+"idle3_gilg": ExtResource("20_bew71"),
+"idle4_gilg": ExtResource("21_pbjpo"),
+"idle5_gilg": ExtResource("22_0owos"),
+"idle6_gilg": ExtResource("23_re76p"),
+"take_damage": SubResource("Animation_eg64h"),
+"walk1_gilg": ExtResource("6_xnyvr"),
+"walk2_gilg": ExtResource("7_g7cu7"),
+"walk3_gilg": ExtResource("8_1n0jo"),
+"walk4_gilg": ExtResource("9_umjem"),
+"walk5_gilg": ExtResource("10_lgjwo"),
+"walk6_gilg": ExtResource("11_emr81")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_espwi"]
+_data = {
+"hit1_enkidu": ExtResource("25_68nay"),
+"hit2_enkidu": ExtResource("26_wu8aa"),
+"hit3_enkidu": ExtResource("27_ib5yx"),
+"hit4_enkidu": ExtResource("28_s23hq"),
+"hit5_enkidu": ExtResource("29_f81yx"),
+"hit6_enkidu": ExtResource("30_hnuny"),
+"idle1_enkidu": ExtResource("31_e0g5m"),
+"idle2_enkidu": ExtResource("32_8line"),
+"idle3_enkidu": ExtResource("33_rjrv5"),
+"idle4_enkidu": ExtResource("34_mnlem"),
+"idle5_enkidu": ExtResource("35_xmhct"),
+"idle6_enkidu": ExtResource("36_7k5i6"),
+"walk1_enkidu": ExtResource("37_j40l7"),
+"walk2_enkidu": ExtResource("38_7sljh"),
+"walk3_enkidu": ExtResource("39_2ayxh"),
+"walk4_enkidu": ExtResource("40_nvosj"),
+"walk5_enkidu": ExtResource("41_72bov"),
+"walk6_enkidu": ExtResource("42_1yfi5")
+}
+
+[node name="EnkiduBody" type="Node"]
+script = ExtResource("1_eyqsa")
+
+[node name="DeletemEimage" type="Sprite2D" parent="."]
+position = Vector2(8, -209)
+scale = Vector2(3, 3)
+texture = ExtResource("2_ugqld")
+
+[node name="Marker2D2" type="Marker2D" parent="DeletemEimage"]
+position = Vector2(183.5, 89.5)
+
+[node name="Marker2D3" type="Marker2D" parent="DeletemEimage"]
+position = Vector2(-67.5, 121.5)
+
+[node name="Marker2D4" type="Marker2D" parent="DeletemEimage"]
+position = Vector2(-252.5, 35)
+
+[node name="Marker2D5" type="Marker2D" parent="DeletemEimage"]
+position = Vector2(-187.5, -92)
+
+[node name="Marker2D7" type="Marker2D" parent="DeletemEimage"]
+position = Vector2(69, -127.5)
+
+[node name="Marker2D8" type="Marker2D" parent="DeletemEimage"]
+position = Vector2(257, -34)
+
+[node name="DirectionTest" type="Sprite2D" parent="DeletemEimage"]
+visible = false
+modulate = Color(1, 1, 1, 0.662745)
+position = Vector2(-30, -150)
+texture = ExtResource("3_0xmwc")
+
+[node name="Arrow" type="Sprite2D" parent="DeletemEimage"]
+position = Vector2(-300, -228)
+rotation = 0.89194
+texture = ExtResource("4_o6uwt")
+
+[node name="Arrow2" type="Sprite2D" parent="DeletemEimage"]
+position = Vector2(176, -253)
+rotation = 2.27166
+texture = ExtResource("4_o6uwt")
+
+[node name="Arrow3" type="Sprite2D" parent="DeletemEimage"]
+position = Vector2(406, -117)
+rotation = 2.63628
+texture = ExtResource("4_o6uwt")
+
+[node name="Arrow4" type="Sprite2D" parent="DeletemEimage"]
+position = Vector2(298, 221)
+rotation = -2.28429
+texture = ExtResource("4_o6uwt")
+
+[node name="Arrow5" type="Sprite2D" parent="DeletemEimage"]
+position = Vector2(-130, 283)
+rotation = -1.16205
+texture = ExtResource("4_o6uwt")
+
+[node name="Arrow6" type="Sprite2D" parent="DeletemEimage"]
+position = Vector2(-379, 150)
+rotation = -0.742255
+texture = ExtResource("4_o6uwt")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -52.5)
+texture = ExtResource("5_l1eji")
+region_enabled = true
+region_rect = Rect2(963, 2711, 960, 540)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1.5)
+shape = SubResource("CircleShape2D_xdano")
+disabled = true
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_y21hr"),
+"enkidu": SubResource("AnimationLibrary_espwi")
+}
+
+[node name="AnimTree" type="AnimationTree" parent="."]
+tree_root = ExtResource("43_mjmav")
+anim_player = NodePath("../Anim")
+active = true
+parameters/conditions/dying = false
+parameters/conditions/idle = true
+parameters/conditions/melee = false
+parameters/conditions/moving = false
+parameters/conditions/takingdamage = false
+parameters/Dying/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Melee/blend_position = Vector2(0, 0)
+parameters/Moving/blend_position = Vector2(0, 0)
+parameters/TakingDamage/blend_position = Vector2(0, 0)
+
+[node name="ClickArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -37.0
+offset_top = -133.0
+offset_right = 40.0
+offset_bottom = 40.0

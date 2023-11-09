@@ -38,8 +38,7 @@ public partial class CharacterUnit : CharacterBody2D
     [Export]
     public StatusToPlayerMode StatusToPlayer { get; set; } = StatusToPlayerMode.Neutral;
 
-    [Export]
-    private PackedScene _body = GD.Load<PackedScene>("res://Source/Actors/CharacterUnit/Bodies/PlayerBody.tscn");
+    private PackedScene _body;// = GD.Load<PackedScene>("res://Source/Actors/CharacterUnit/Bodies/PlayerBody.tscn");
 
     // For adventure map selection
     [Signal]
@@ -64,6 +63,8 @@ public partial class CharacterUnit : CharacterBody2D
 
     // Adventure map selection
     public bool Selected { get; set; } = false;
+
+    // public bool TakeDamageQueued { get; set; } = false;
     // I dont think this is used - delete if no errors.
     // private List<Vector2> _currentGridPath = new();
     // public List<Vector2> CurrentPath {
@@ -369,6 +370,7 @@ public partial class CharacterUnit : CharacterBody2D
     {
         CharacterData = StoryCharacterJSONInterface.GetStoryCharacterJSONData(selectedChar);
         CharacterData.Initialise();
+        _body = GD.Load<PackedScene>(CharacterData.BodyPath);
     }
 
     public BattleRoller.RollerOutcomeInformation TakingDamageResult { get; set; }

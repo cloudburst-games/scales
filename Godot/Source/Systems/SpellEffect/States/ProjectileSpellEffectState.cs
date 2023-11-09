@@ -13,7 +13,6 @@ public partial class ProjectileSpellEffectState : SpellEffectState
     private Vector2 _direction;
     public override void Start(SpellEffectManager.Spell spell)
     {
-
         // if projectile, then go from origin to destination then stop at destination (anim would loop)
         // otherwise originate at destination and play through the animation (anim does not loop)
         _spell = spell;
@@ -31,6 +30,8 @@ public partial class ProjectileSpellEffectState : SpellEffectState
     public override void Update(double delta)
 
     {
+        if (_spell == null)
+            return;
         // GD.Print(5, SpellEffect.GlobalPosition);
         // GD.Print(SpellEffect.GlobalPosition.DistanceTo(_spellEffectData.Destination));
         // GD.Print(_spellEffectData.Destination);
@@ -44,11 +45,9 @@ public partial class ProjectileSpellEffectState : SpellEffectState
 
     public async void Finish()
     {
-        // GD.Print(3, _spellEffectData.TargetCharacter.CharacterData.Name);
         _finishing = true;
         SpellEffect.Anim.Play("Finish");
         await ToSignal(SpellEffect.Anim, AnimationPlayer.SignalName.AnimationFinished);
-        // GD.Print(4, _spellEffectData.TargetCharacter.CharacterData.Name);
         SpellEffect.EmitSignal(SpellVisual.SignalName.Finished, _spell);
         SpellEffect.QueueFree();
     }

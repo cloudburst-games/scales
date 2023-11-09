@@ -1,0 +1,160 @@
+[gd_scene load_steps=15 format=3 uid="uid://b1eto8aeeitsp"]
+
+[ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellVisual.cs" id="1_v021o"]
+[ext_resource type="Texture2D" uid="uid://dkblllpdthfm4" path="res://Assets/Graphics/Interface/Buttons/Spells/SolarBlast.png" id="2_eau64"]
+[ext_resource type="Texture2D" uid="uid://b5wlh72sdvlly" path="res://Assets/Graphics/Effects/Generic/WhiteWoodFibreParticle.png" id="3_4mt5e"]
+
+[sub_resource type="Animation" id="Animation_uwuyd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SolarParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nmup1"]
+resource_name = "Start"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SolarParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 0.309804, 0.596078), Color(1, 1, 1, 1), Color(0.792157, 0.709804, 0.47451, 0.741176)]
+}
+
+[sub_resource type="Animation" id="Animation_erjcf"]
+resource_local_to_scene = true
+resource_name = "Finish"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SolarParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rdrcq"]
+_data = {
+"Finish": SubResource("Animation_erjcf"),
+"RESET": SubResource("Animation_uwuyd"),
+"Start": SubResource("Animation_nmup1")
+}
+
+[sub_resource type="Gradient" id="Gradient_oarj3"]
+colors = PackedColorArray(1, 0.572549, 0.321569, 0.0392157, 1, 1, 0, 0.0117647)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yphc1"]
+gradient = SubResource("Gradient_oarj3")
+
+[sub_resource type="Curve" id="Curve_00xbc"]
+max_value = 200.0
+_data = [Vector2(0, 0), 0.0, 503.799, 0, 0, Vector2(0.906977, 92.6316), -96.5613, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dqmht"]
+curve = SubResource("Curve_00xbc")
+
+[sub_resource type="Curve" id="Curve_oow1s"]
+max_value = 2.0
+_data = [Vector2(0, 0.589474), 0.0, 0.0, 0, 0, Vector2(1, 2), -0.48641, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vwfvf"]
+curve = SubResource("Curve_oow1s")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x8s1m"]
+emission_shape = 1
+emission_sphere_radius = 0.8
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 133.43
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 150.0
+initial_velocity_max = 300.0
+orbit_velocity_min = -0.25
+orbit_velocity_max = 0.25
+linear_accel_curve = SubResource("CurveTexture_dqmht")
+radial_accel_min = -25.0
+radial_accel_max = 25.0
+angle_min = 90.0
+angle_max = 90.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_vwfvf")
+color_ramp = SubResource("GradientTexture1D_yphc1")
+
+[node name="SolarBlastEffect" type="Node2D" node_paths=PackedStringArray("Anim")]
+position = Vector2(1285, 905)
+script = ExtResource("1_v021o")
+Anim = NodePath("Anim")
+Speed = 800.0
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rdrcq")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("2_eau64")
+
+[node name="SolarParticles" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+rotation = 1.5708
+emitting = false
+amount = 256
+process_material = SubResource("ParticleProcessMaterial_x8s1m")
+texture = ExtResource("3_4mt5e")
