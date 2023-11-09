@@ -214,7 +214,7 @@ public partial class Level : Node2D
             {
                 foreach (CharacterUnit playerCharacter in playerCharacters)
                 {
-                    if (_hexGrid.GetHexDistance(playerCharacter.GlobalPosition, characterUnit.GlobalPosition) <= 10) // ?involved if within 10 hexes of a player
+                    if (_hexGrid.GetHexDistanceByWorld(playerCharacter.GlobalPosition, characterUnit.GlobalPosition) <= 10) // ?involved if within 10 hexes of a player
                     {
                         involvedCharacters.Add(characterUnit);
                         break;

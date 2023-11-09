@@ -15,6 +15,7 @@ public partial class SpellEffectManager : Node
         public string Name { get; set; }
         public enum TargetMode { Ally, Enemy, Ground }
         public TargetMode Target { get; set; }
+        public int Range { get; set; }
     }
 
     public partial class SpellEffect : RefCounted
@@ -49,7 +50,7 @@ public partial class SpellEffectManager : Node
     [Export]
     private Godot.Collections.Dictionary<SpellMode, PackedScene> _spellVisualScns = new();
     public enum SpellEffectMode { Fire, Physical }
-    public enum SpellMode { Arrow, SolarFlare }
+    public enum SpellMode { SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment, Arrow, None }
     public enum SpellEffectVisualMode { Projectile, Self, FromSky }
     public enum SpellEffectTargetMode { Self, Target }
     private Dictionary<SpellEffectMode, SpellEffect> _allSpellEffects = new();
@@ -109,13 +110,17 @@ public partial class SpellEffectManager : Node
         {
             SpellEffectVisual = _allSpellVisuals[SpellMode.Arrow],
             AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.Physical] },
-            Name = "Arrow"
+            Name = "Arrow",
+            Range = 10,
+            Target = Spell.TargetMode.Enemy
         };
         AllSpells[SpellMode.SolarFlare] = new()
         {
             SpellEffectVisual = _allSpellVisuals[SpellMode.SolarFlare],
             AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.Fire] },
-            Name = "Solar Flare"
+            Name = "Solar Flare",
+            Range = 12,
+            Target = Spell.TargetMode.Enemy
         };
     }
 

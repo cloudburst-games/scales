@@ -6,6 +6,10 @@ using System.Linq;
 
 public partial class Battler : Node2D
 {
+
+    public Battler.ActionMode CurrentAction { get; set; } = Battler.ActionMode.Move;
+    public SpellEffectManager.SpellMode PlayerSelectedSpell { get; set; }
+
     public enum ActionMode { Melee, Shoot, Cast, Move, Hint, Invalid, None }
     [Export]
     public CursorControl CursorControl { get; set; }
@@ -33,6 +37,11 @@ public partial class Battler : Node2D
     public delegate void BattleEndedEventHandler(bool playerWon);
     [Signal]
     public delegate void LogBattleTextEventHandler(string text, bool persist);
+    [Signal]
+    public delegate void HUDActionRequestedEventHandler(BattleHUD.StateMode hudState);
+
+    [Signal]
+    public delegate void TurnStartedEventHandler(Godot.Collections.Array<SpellEffectManager.SpellMode> spells);
 
     public override void _Ready()
     {
@@ -206,5 +215,10 @@ public partial class Battler : Node2D
     {
         // GD.Print(characterUnit.CharacterData.Name + " died, so removing from the turn queue");
         CharactersAwaitingTurn.Remove(characterUnit);
+    }
+
+    internal void SetCharacterLastSelectedSpell(SpellEffectManager.SpellMode spellSelected)
+    {
+        CharactersAwaitingTurn[0].UISelectedSpell = spellSelected;
     }
 }

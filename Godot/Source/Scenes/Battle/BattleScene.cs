@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +29,11 @@ public partial class BattleScene : Node, ISceneTransitionable
     private BaseButton _btnToggleGrid;
     [Export]
     private BaseButton _btnMenu;
-
     [Export]
-    private Godot.Collections.Array<BaseTextureButton> _actionBtns = new();
+    private BtnActions _btnActions;
+
+    // [Export]
+    // private Godot.Collections.Array<BaseTextureButton> _actionBtns = new();
     // exporting here doesn#t work so we are unfortunately using magic string
     private PackedScene _characterScene = GD.Load<PackedScene>("res://Source/Actors/CharacterUnit/CharacterUnit.tscn");
 
@@ -53,7 +56,8 @@ public partial class BattleScene : Node, ISceneTransitionable
 
     [Export]
     private int _nextLevel = 0;
-
+    [Export]
+    private CntSpellBook _cntSpellBook;
 
     [Export]
     private CursorControl _cursorControl;
@@ -76,23 +80,49 @@ public partial class BattleScene : Node, ISceneTransitionable
         // _spellEffectManager.SpellEffectFinished += this.OnSpellEffectFinished;
         _battler.UIBounds = _pnlAction.GetRect();
         _battler.LogBattleText += (string text, bool persist) => _HUD.OnBattleLogEntry(text, persist);
-
-        for (int i = 0; i < _actionBtns.Count; i++)
-        {
-            int btnIndex = i;
-            _actionBtns[i].Pressed += () => _battler.OnActionBtnPressed((Battler.ActionMode)btnIndex);
-        }
+        _battler.HUDActionRequested += _HUD.SetState;
+        _battler.TurnStarted += this.OnCharacterTurnStarted;//_HUD.OnTurnStarted;
+        _btnActions.ActionBtnPressed += _battler.OnActionBtnPressed; // 1. Melee 2. Shoot 3. Cast spell 4. Move
 
         _btnChooseSpell.Pressed += _battler.OnBtnChooseSpellPressed;
         _btnEndTurn.Pressed += _battler.OnBtnEndTurnPressed;
         _btnToggleGrid.Pressed += _battler.OnBtnToggleGridPressed;
         _btnMenu.Pressed += _battler.OnBtnMenuPressed;
 
-
-
+        _cntSpellBook.SpellBtnPressed += this.OnSpellSelected;
 
         LoadLevel();
     }
+
+    private void OnCharacterTurnStarted(Array<SpellEffectManager.SpellMode> spells)
+    {
+        _HUD.SetSpellBookDisplayedSpells(spells);
+        // if (_battler.CharactersAwaitingTurn[0].UISelectedSpell != SpellEffectManager.SpellMode.None)
+        // {
+        SetSpell(_battler.CharactersAwaitingTurn[0].UISelectedSpell);
+
+        _btnActions.OnActionBtnPressed(_battler.CharactersAwaitingTurn[0].UISelectedAction);
+        // }
+
+    }
+
+
+    private void OnSpellSelected(SpellEffectManager.SpellMode spellSelected)
+    {
+        _battler.CurrentAction = Battler.ActionMode.Cast;
+        SetSpell(spellSelected);
+        _btnActions.OnActionBtnPressed(Battler.ActionMode.Cast);
+        _HUD.SetState(BattleHUD.StateMode.SpellBookClosed);
+    }
+
+    private void SetSpell(SpellEffectManager.SpellMode spellSelected)
+    {
+        // _btnActions.SetActionBtnToSpellTexture(spellSelected);
+        _battler.SetCharacterLastSelectedSpell(spellSelected);
+        _btnActions.SetCastBtnTexture(spellSelected);
+    }
+
+
 
     // private void OnSpellEffectFinished(SpellEffectData spellEffectData)
     // {
@@ -158,7 +188,7 @@ public partial class BattleScene : Node, ISceneTransitionable
     {
         _battler.ProcessMode = ProcessModeEnum.Inherit;
         _pnlAction.ProcessMode = ProcessModeEnum.Inherit;
-        _actionBtns[0]._Pressed();
+        _btnActions.OnActionBtnPressed(Battler.ActionMode.Melee);
         _battler.PlayerSelectedAction = Battler.ActionMode.Melee;
         _cursorControl.SetCursor(CursorControl.CursorMode.Wait);
     }

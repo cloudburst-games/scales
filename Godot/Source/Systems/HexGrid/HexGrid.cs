@@ -435,9 +435,13 @@ public partial class HexGrid : Node
         return result;
     }
 
-    public int GetHexDistance(Vector2 startWorldPos, Vector2 endWorldPos)
+    public int GetHexDistanceByWorld(Vector2 startWorldPos, Vector2 endWorldPos)
     {
-        return GetHexesInWorldLine(startWorldPos, endWorldPos).Count;
+        return GetHexesInWorldLine(startWorldPos, endWorldPos).Count - 1;
+    }
+    public int GetHexDistanceByGrid(Vector2 startGridPos, Vector2 endGridPos)
+    {
+        return GetHexesInWorldLine(GridToWorld(startGridPos), GridToWorld(endGridPos)).Count - 1;
     }
 
     private bool IsLOSBlocked(Vector2 startWorldPos, Vector2 endWorldPos)

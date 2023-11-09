@@ -20,6 +20,8 @@ public partial class CharacterUnit : CharacterBody2D
 {
 
     public StoryCharacterData CharacterData { get; set; }
+    public SpellEffectManager.SpellMode UISelectedSpell = SpellEffectManager.SpellMode.None;
+    public Battler.ActionMode UISelectedAction = Battler.ActionMode.Melee;
 
     public Vector2 StartingBattleAnimDirection { get; set; } = new();
 

@@ -1,22 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://dm31ruvvjwfml"]
+[gd_scene load_steps=5 format=3 uid="uid://dm31ruvvjwfml"]
 
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="1_3c0js"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_elnen"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_xn0nw"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_dgn5h"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_kywyw"]
+[ext_resource type="Texture2D" uid="uid://y60lspk4s5rc" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSNORMAL.png" id="1_hbwog"]
+[ext_resource type="Texture2D" uid="uid://c8q2bdypfy7w7" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSPRESSED.png" id="2_gd0vt"]
+[ext_resource type="Texture2D" uid="uid://cwpt2tnkrjdhs" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSHOVER.png" id="3_wid1w"]
 
 [node name="BtnClosePlaceholder" type="TextureButton"]
 offset_right = 135.0
 offset_bottom = 143.0
-texture_normal = SubResource("PlaceholderTexture2D_elnen")
-texture_pressed = SubResource("PlaceholderTexture2D_xn0nw")
-texture_hover = SubResource("PlaceholderTexture2D_dgn5h")
-texture_disabled = SubResource("PlaceholderTexture2D_kywyw")
+texture_normal = ExtResource("1_hbwog")
+texture_pressed = ExtResource("2_gd0vt")
+texture_hover = ExtResource("3_wid1w")
+texture_disabled = ExtResource("3_wid1w")
 stretch_mode = 0
 script = ExtResource("1_3c0js")
-_text = "X"

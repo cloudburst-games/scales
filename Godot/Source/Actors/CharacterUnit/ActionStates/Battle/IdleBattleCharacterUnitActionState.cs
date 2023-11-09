@@ -38,7 +38,7 @@ public partial class IdleBattleCharacterUnitActionState : CharacterUnitActionSta
     {
         base.BattleSkipOrder();
         EndBattleTurn();
-        GD.Print("going to end turn from idle ", CharacterUnit.CharacterData.Name);
+        // GD.Print("going to end turn from idle ", CharacterUnit.CharacterData.Name);
     }
     public override void BattleMeleeOrder()
     {

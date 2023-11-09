@@ -159,32 +159,32 @@ public partial class HexTilemapIsometricInterface : Node2D
     }
 
 
-    public async override void _Input(InputEvent ev)
-    {
-        if (ev is InputEventMouseButton btn)
-        {
-            if (btn.ButtonIndex == MouseButton.Left)
-            {
-                Vector2 worldPos = GetGlobalMousePosition();
-                Hexagon hex = _hexGrid.GetHexAtWorldPosition(worldPos);
-                Area2D dummyArea = MakeDummyArea(hex, worldPos);
+    // public async override void _Input(InputEvent ev)
+    // {
+    //     if (ev is InputEventMouseButton btn)
+    //     {
+    //         if (btn.ButtonIndex == MouseButton.Left)
+    //         {
+    //             Vector2 worldPos = GetGlobalMousePosition();
+    //             Hexagon hex = _hexGrid.GetHexAtWorldPosition(worldPos);
+    //             Area2D dummyArea = MakeDummyArea(hex, worldPos);
 
-                await ToSignal(_hexGrid.GetTree(), "process_frame");
-                await ToSignal(_hexGrid.GetTree(), "process_frame");
+    //             await ToSignal(_hexGrid.GetTree(), "process_frame");
+    //             await ToSignal(_hexGrid.GetTree(), "process_frame");
 
-                if (dummyArea.GetOverlappingBodies().Count > 0)
-                {
-                    hex.Obstacle = true;
-                    GD.Print("OBSTACLE DETECTED AT " + worldPos);
-                }
-                EmitSignal(SignalName.FinishedMarkingObstacles);
-                // var spaceState = GetWorld2D().DirectSpaceState;
-                // var query = PhysicsRayQueryParameters2D.Create(GetGlobalMousePosition() - new Vector2(25,25), GetGlobalMousePosition() + new Vector2(25,25));
-                // var result = spaceState.IntersectRay(query);
-                // GD.Print(result.Count);
-            }
-        }
-    }
+    //             if (dummyArea.GetOverlappingBodies().Count > 0)
+    //             {
+    //                 hex.Obstacle = true;
+    //                 // GD.Print("OBSTACLE DETECTED AT " + worldPos);
+    //             }
+    //             EmitSignal(SignalName.FinishedMarkingObstacles);
+    //             // var spaceState = GetWorld2D().DirectSpaceState;
+    //             // var query = PhysicsRayQueryParameters2D.Create(GetGlobalMousePosition() - new Vector2(25,25), GetGlobalMousePosition() + new Vector2(25,25));
+    //             // var result = spaceState.IntersectRay(query);
+    //             // GD.Print(result.Count);
+    //         }
+    //     }
+    // }
 
     private Area2D MakeDummyArea(Hexagon hex, Vector2 pos)
     {

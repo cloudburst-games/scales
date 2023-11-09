@@ -7,6 +7,7 @@
 [node name="SpellEffectManager" type="Node"]
 script = ExtResource("1_qcwm7")
 _spellVisualScns = {
-0: ExtResource("2_acflc"),
-1: ExtResource("3_yhqvb")
+0: ExtResource("3_yhqvb"),
+1: null,
+8: ExtResource("2_acflc")
 }

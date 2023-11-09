@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Godot.Collections;
 
 public class StoryCharacterData : IJSONSaveable
 {
@@ -23,6 +24,7 @@ public class StoryCharacterData : IJSONSaveable
         //         { AttributeMode.Intellect, Intellect },
         //         { AttributeMode.Charisma, Charisma },
         //         { AttributeMode.Luck, Luck }, };
+        UpdateKnownSpells();
         UpdateAllStats();
     }
 
@@ -190,7 +192,21 @@ public class StoryCharacterData : IJSONSaveable
     {
         return UpdateStat(Speed, 1f, 0.03f) * 100;
     }
-
+    private void UpdateKnownSpells()
+    {
+        // this should be called whenever perks are updated
+        KnownSpells.Clear();
+        foreach (int i in _perks)
+        {
+            if (i >= 0 && i < 8)
+            {
+                if (!KnownSpells.Contains((SpellEffectManager.SpellMode)i))
+                {
+                    KnownSpells.Add((SpellEffectManager.SpellMode)i);
+                }
+            }
+        }
+    }
     // Higher 'multiplier' results in a higher output value.
     // Higher 'constant' increases the effect of diminishing returns (i.e. smaller result)
     private int UpdateStat(int att, float multiplier, float constant)
@@ -200,7 +216,20 @@ public class StoryCharacterData : IJSONSaveable
     public string Name { get; set; }
     public string Description { get; set; }
     public string PatronGod { get; set; }
-    public List<int> Perks { get; set; }
+    private List<int> _perks = new();
+    public List<int> Perks
+    {
+        get
+        {
+            return _perks;
+        }
+        set
+        {
+            _perks = value;
+            UpdateKnownSpells();
+        }
+    } // { get; set; } // 0/1/2/3/4/5/6/7 can be known spells ?
+    public Array<SpellEffectManager.SpellMode> KnownSpells { get; set; } = new();
     public int Level { get; set; }
 
     // Attributes

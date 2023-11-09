@@ -3,6 +3,7 @@
 // Aim to have buttons equal - consider moving ToggleGrid in or out of Menu (which would also have resume/settings/anim speed/Main Menu)
 
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 
@@ -23,11 +24,16 @@ public partial class BattleHUD : CanvasLayer
     private BasePanel _pnlFullLog;
     [Export]
     private RichTextLabel _RLblFullLog;
-
+    [Export]
+    private BasePanel _pnlSpellBook;
+    [Export]
+    private BaseButton _btnCloseSpellBook;
+    [Export]
+    private CntSpellBook _cntSpellBook;
     [Signal]
     public delegate void UIPauseEventHandler(bool pause);
 
-    public enum StateMode { BattleIntro, BattleStarted, LogOpened, LogClosed }
+    public enum StateMode { BattleIntro, BattleStarted, LogOpened, LogClosed, SpellBookOpened, SpellBookClosed }
 
     // private StateMode _state = StateMode.BattleIntro;
 
@@ -37,8 +43,14 @@ public partial class BattleHUD : CanvasLayer
         _btnBattleIntroContinue.Pressed += this.OnBtnBattleIntroPressed;
         _btnLog.Pressed += this.OnBtnLogPressed;
         _pnlFullLog.CloseBtn.Pressed += this.OnCloseLogPressed;
+        _btnCloseSpellBook.Pressed += this.OnCloseSpellBookPressed;
 
         // SetState(StateMode.BattleIntro);
+    }
+
+    private void OnCloseSpellBookPressed()
+    {
+        SetState(StateMode.SpellBookClosed);
     }
 
     private void OnBtnLogPressed()
@@ -71,10 +83,20 @@ public partial class BattleHUD : CanvasLayer
                 break;
             case StateMode.LogOpened:
                 _pnlFullLog.Open();
+                _pnlSpellBook.Close();
                 EmitSignal(BattleHUD.SignalName.UIPause, true);
                 break;
             case StateMode.LogClosed:
                 EmitSignal(BattleHUD.SignalName.UIPause, false);
+                break;
+            case StateMode.SpellBookClosed:
+                EmitSignal(BattleHUD.SignalName.UIPause, false);
+                _pnlSpellBook.Close();
+                break;
+            case StateMode.SpellBookOpened:
+                _pnlSpellBook.Open();
+                _pnlFullLog.Close();
+                EmitSignal(BattleHUD.SignalName.UIPause, true);
                 break;
         }
     }
@@ -102,4 +124,10 @@ public partial class BattleHUD : CanvasLayer
             _lblShortLog.Text = text;
         }
     }
+
+    internal void SetSpellBookDisplayedSpells(Array<SpellEffectManager.SpellMode> spells)
+    {
+        _cntSpellBook.ShowSpells(spells);
+    }
+
 }
