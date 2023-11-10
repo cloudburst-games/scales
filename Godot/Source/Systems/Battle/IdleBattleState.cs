@@ -180,6 +180,7 @@ public class IdleBattleState : BattleState
         }
         else
         {
+            Battler.CharactersAwaitingTurn[0].BattleSkipOrder();
             text += "\nAI";
             // show AI thinking animation
         }
@@ -537,7 +538,6 @@ public class IdleBattleState : BattleState
         else
         {
 
-            Battler.CharactersAwaitingTurn[0].BattleSkipOrder();
         }
     }
 }

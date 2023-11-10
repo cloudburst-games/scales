@@ -7,7 +7,7 @@ using System.Linq;
 public partial class Battler : Node2D
 {
 
-    public HexGridUserDisplay.DisplayMode CurrentDisplayMode = HexGridUserDisplay.DisplayMode.ShowContextualHexes;
+    public HexGridUserDisplay.DisplayMode CurrentDisplayMode = HexGridUserDisplay.DisplayMode.ShowAllHexes;
     public Battler.ActionMode CurrentAction { get; set; } = Battler.ActionMode.Move;
     public SpellEffectManager.SpellMode PlayerSelectedSpell { get; set; }
 

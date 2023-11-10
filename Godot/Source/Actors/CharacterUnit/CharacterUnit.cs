@@ -397,6 +397,17 @@ public partial class CharacterUnit : CharacterBody2D
         _actionState.TakeDamageOrder();
     }
 
+    private Tuple<Color, bool> _lastOutline;
+
+    public void RestoreLastOutline()
+    {
+        if (_lastOutline == null)
+        {
+            return;
+        }
+        SetSpriteOutlineColour(_lastOutline.Item1, _lastOutline.Item2);
+    }
+
     public void SetSpriteOutlineColour(Color color, bool enabled = true)
     {
         if (GetNode<Sprite2D>("Sprite").Material is ShaderMaterial shaderMaterial)
@@ -406,6 +417,7 @@ public partial class CharacterUnit : CharacterBody2D
             // GD.Print(color.R + ", " + color.G + ", " + color.B);
             shaderMaterial.SetShaderParameter("width", enabled ? 3f : 0f);
             shaderMaterial.SetShaderParameter("outline_color_origin", color);
+            _lastOutline = new Tuple<Color, bool>(color, enabled);
         }
     }
 

@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://lsptinciutgh"]
 
 [ext_resource type="Script" path="res://Source/Utils/Anim/AnimationJSONMaker.cs" id="1_djuqn"]
-[ext_resource type="Texture2D" uid="uid://d230lah64ldwx" path="res://Assets/Graphics/Sprites/Actors/Enkidu/EnkiV2_walkStylised.png" id="2_alvx1"]
+[ext_resource type="Texture2D" uid="uid://mg506pp88o7b" path="res://Assets/Graphics/Sprites/Actors/Enkidu/Enki_IdleV2Stylised.png" id="2_oqxt3"]
 
 [node name="AnimationJSONMaker" type="Node"]
 script = ExtResource("1_djuqn")
-_jsonpath = "res://Assets/Graphics/Sprites/Actors/Gilga/GilgaV2_walk.json"
-_prefix = "walk6_"
+_jsonpath = "res://Assets/Graphics/Sprites/Actors/Gilga/GilgaIdleV2.json"
+_prefixes = ["idle1_", "idle2_", "idle3_", "idle4_", "idle5_", "idle6_"]
 _animName = "enkidu"
 _destinationFolder = "res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/"
-_texture = ExtResource("2_alvx1")
-_relativeSpeed = 4
+_texture = ExtResource("2_oqxt3")
+_relativeSpeed = 0.3

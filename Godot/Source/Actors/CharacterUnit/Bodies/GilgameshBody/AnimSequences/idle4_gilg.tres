@@ -1,9 +1,9 @@
 [gd_resource type="Animation" load_steps=2 format=3 uid="uid://e5xx3w83mm5y"]
 
-[ext_resource type="Texture2D" uid="uid://cmf5fyadvx2ne" path="res://Assets/Graphics/Sprites/Actors/Gilga/GilgaIdleV2Stylised.png" id="1_qc6gf"]
+[ext_resource type="Texture2D" uid="uid://cmf5fyadvx2ne" path="res://Assets/Graphics/Sprites/Actors/Gilga/GilgaIdleV2Stylised.png" id="1_3qmli"]
 
 [resource]
-length = 1.2
+length = 4.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -12,7 +12,7 @@ tracks/0/path = NodePath("Sprite:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2, 2.33333, 2.66667, 3, 3.33333, 3.66667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Rect2(1, 3253, 960, 540), Rect2(963, 3253, 960, 540), Rect2(1925, 3253, 960, 540), Rect2(2887, 3253, 960, 540), Rect2(3849, 3253, 960, 540), Rect2(4811, 3253, 960, 540), Rect2(1, 3795, 960, 540), Rect2(963, 3795, 960, 540), Rect2(1925, 3795, 960, 540), Rect2(2887, 3795, 960, 540), Rect2(3849, 3795, 960, 540), Rect2(4811, 3795, 960, 540)]
@@ -27,5 +27,5 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_qc6gf")]
+"values": [ExtResource("1_3qmli")]
 }

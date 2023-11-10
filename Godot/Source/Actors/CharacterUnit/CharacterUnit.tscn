@@ -1,12 +1,49 @@
-[gd_scene load_steps=32 format=3 uid="uid://dqjaiy3w7l06y"]
+[gd_scene load_steps=37 format=3 uid="uid://dqjaiy3w7l06y"]
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/CharacterUnit.cs" id="1_yf2yq"]
-[ext_resource type="Texture2D" uid="uid://c4qfoveb6q0yo" path="res://Assets/Graphics/Sprites/Actors/Player/villager.png" id="2_mpi4t"]
+[ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="2_r588w"]
 [ext_resource type="Texture2D" uid="uid://be6aghcesf6v3" path="res://Assets/Graphics/Effects/Generic/WhiteFuzzyParticle.png" id="3_tsm1p"]
 [ext_resource type="Texture2D" uid="uid://b5wlh72sdvlly" path="res://Assets/Graphics/Effects/Generic/WhiteWoodFibreParticle.png" id="4_1mnxw"]
+[ext_resource type="Texture2D" uid="uid://cmf5fyadvx2ne" path="res://Assets/Graphics/Sprites/Actors/Gilga/GilgaIdleV2Stylised.png" id="4_ld332"]
+
+[sub_resource type="Animation" id="Animation_yqugo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hwv8y"]
+_data = {
+"RESET": SubResource("Animation_yqugo"),
+"take_damage": ExtResource("2_r588w")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tyb1j"]
 radius = 62.2013
+
+[sub_resource type="Animation" id="Animation_kuk8k"]
+resource_name = "Berserk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RoundEffectBerserk:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_u1odt"]
 resource_name = "Damage"
@@ -29,6 +66,21 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("RoundEffectAttDamage:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_urhmx"]
+resource_name = "FortifyAttribute"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RoundEffectAttFortify:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -87,36 +139,6 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_kuk8k"]
-resource_name = "Berserk"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RoundEffectBerserk:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_urhmx"]
-resource_name = "FortifyAttribute"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("RoundEffectAttFortify:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_se8aj"]
@@ -232,23 +254,51 @@ scale_curve = SubResource("CurveTexture_w8nkp")
 color = Color(0.333333, 1, 1, 0.231373)
 color_ramp = SubResource("GradientTexture1D_d8tya")
 
+[sub_resource type="Shader" id="Shader_47m4j"]
+code = "shader_type canvas_item;
+
+uniform float width : hint_range(0.0, 30.0);
+uniform float speed : hint_range(0.0, 20.0);
+uniform vec4 outline_color_origin : source_color;
+
+void fragment()
+{
+	vec4 outline_color = outline_color_origin / 1.0 - 0.15*sin(TIME*speed);
+	float size = width * 1.0 / float(textureSize(TEXTURE, 0).x);
+	vec4 sprite_color = texture(TEXTURE, UV);
+	float alpha = -8.0 * sprite_color.a;
+	alpha += texture(TEXTURE, UV + vec2(size, -size)).a;
+	alpha += texture(TEXTURE, UV + vec2(size, 0.0)).a;
+	alpha += texture(TEXTURE, UV + vec2(size, size)).a;
+	alpha += texture(TEXTURE, UV + vec2(-size, -size)).a;
+	alpha += texture(TEXTURE, UV + vec2(-size, 0.0)).a;
+	alpha += texture(TEXTURE, UV + vec2(-size, size)).a;
+	alpha += texture(TEXTURE, UV + vec2(0.0, size)).a;
+	alpha += texture(TEXTURE, UV + vec2(0.0, -size)).a;
+	
+	vec4 final_color = mix(sprite_color, outline_color, clamp(alpha, 0, 1));
+	COLOR = vec4(final_color.rgb, clamp(abs(alpha) + sprite_color.a, 0.0, 1.0));
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1vlie"]
+shader = SubResource("Shader_47m4j")
+shader_parameter/width = 0.0
+shader_parameter/speed = 10.0
+shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
+
 [node name="CharacterUnit" type="CharacterBody2D" node_paths=PackedStringArray("RoundEffectAnim")]
 position = Vector2(1746, 1016)
 script = ExtResource("1_yf2yq")
 RoundEffectAnim = NodePath("RoundEffectAnim")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-modulate = Color(1, 0.403922, 0.305882, 1)
-position = Vector2(0, -52.5)
-texture = ExtResource("2_mpi4t")
-region_enabled = true
-region_rect = Rect2(1062, 209, 48, 147)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1.5)
 disabled = true
 
 [node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hwv8y")
+}
 
 [node name="AnimTree" type="AnimationTree" parent="."]
 
@@ -312,6 +362,13 @@ emitting = false
 amount = 64
 process_material = SubResource("ParticleProcessMaterial_fbrl4")
 texture = ExtResource("3_tsm1p")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_1vlie")
+position = Vector2(0, -52.5)
+texture = ExtResource("4_ld332")
+region_enabled = true
+region_rect = Rect2(1, 2169, 960, 540)
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnNavAgentVelocityComputed"]
 [connection signal="gui_input" from="ClickArea" to="." method="OnClickAreaGUIInput"]

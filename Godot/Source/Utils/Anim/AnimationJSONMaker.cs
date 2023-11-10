@@ -8,8 +8,11 @@ public partial class AnimationJSONMaker : Node
     [Export]
     private string _jsonpath;
 
+    // [Export]
+    // private string _prefix;
+
     [Export]
-    private string _prefix;
+    private Godot.Collections.Array<string> _prefixes = new();
 
     [Export]
     private string _animName;
@@ -22,7 +25,7 @@ public partial class AnimationJSONMaker : Node
     [Export]
     private Texture _texture = null;
     [Export]
-    private int _relativeSpeed = 1;
+    private float _relativeSpeed = 1;
 
     [Export]
     private Animation.LoopModeEnum _loop = Animation.LoopModeEnum.Linear;
@@ -49,67 +52,64 @@ public partial class AnimationJSONMaker : Node
     }
     public override void _Ready()
     {
-        // string JSONpath = ProjectSettings.GlobalizePath(_tileAtlas.ResourcePath);
-        // JSONpath = JSONpath.Substring(0,JSONpath.Length-3);
-        // JSONpath += "json";
-        // // // Read and convert the JSON file holding terrain atlas data
-        // string tileData = System.IO.File.ReadAllText (JSONpath);
-        // JsonConvert.PopulateObject(tileData,_tileAtlasData);
-        JSONDataHandler dataHandler = new();
-        string path = ProjectSettings.GlobalizePath(_jsonpath);
-        string rawData = System.IO.File.ReadAllText(path);
-
-        RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(rawData);
-
-        Animation anim = new();
-        float animLength = 0;
-        anim.AddTrack(Animation.TrackType.Value);
-        anim.TrackSetPath(0, "Sprite:region_rect");
-
-        if (_texture != null)
+        foreach (string prefix in _prefixes)
         {
+            JSONDataHandler dataHandler = new();
+            string path = ProjectSettings.GlobalizePath(_jsonpath);
+            string rawData = System.IO.File.ReadAllText(path);
+
+            RootObject rootObject = JsonConvert.DeserializeObject<RootObject>(rawData);
+
+            Animation anim = new();
+            float animLength = 0;
             anim.AddTrack(Animation.TrackType.Value);
-            anim.TrackSetPath(1, "Sprite:texture");
-            anim.TrackInsertKey(1, 0, _texture);
-            anim.ValueTrackSetUpdateMode(1, Animation.UpdateMode.Discrete);
-        }
-        anim.LoopMode = _loop;
+            anim.TrackSetPath(0, "Sprite:region_rect");
 
-        // Loop through each frame (tile data container) in the JSON data
-        foreach (KeyValuePair<string, SpriteInfo> frameInfo in rootObject.frames)
-        {
-            string name = frameInfo.Key.Split('.')[0];
-
-            int prefixLength = _prefix.Length;
-            if (name.Substring(0, prefixLength) != _prefix)
+            if (_texture != null)
             {
-                continue;
+                anim.AddTrack(Animation.TrackType.Value);
+                anim.TrackSetPath(1, "Sprite:texture");
+                anim.TrackInsertKey(1, 0, _texture);
+                anim.ValueTrackSetUpdateMode(1, Animation.UpdateMode.Discrete);
             }
+            anim.LoopMode = _loop;
 
-            Vector2 pos = new Vector2(frameInfo.Value.frame.x, frameInfo.Value.frame.y);
-            Vector2 size = new Vector2(frameInfo.Value.frame.w, frameInfo.Value.frame.h);
-
-            anim.TrackInsertKey(0, animLength, new Rect2(pos, size));
-
-            animLength += 0.1f * 1 / _relativeSpeed;
-            if (_lengthLimit > 0)
+            // Loop through each frame (tile data container) in the JSON data
+            foreach (KeyValuePair<string, SpriteInfo> frameInfo in rootObject.frames)
             {
-                if (animLength >= _lengthLimit)
+                string name = frameInfo.Key.Split('.')[0];
+
+                int prefixLength = prefix.Length;
+                if (name.Substring(0, prefixLength) != prefix)
                 {
-                    break;
+                    continue;
                 }
+
+                Vector2 pos = new Vector2(frameInfo.Value.frame.x, frameInfo.Value.frame.y);
+                Vector2 size = new Vector2(frameInfo.Value.frame.w, frameInfo.Value.frame.h);
+
+                anim.TrackInsertKey(0, animLength, new Rect2(pos, size));
+
+                animLength += 0.1f * 1 / _relativeSpeed;
+                if (_lengthLimit > 0)
+                {
+                    if (animLength >= _lengthLimit)
+                    {
+                        break;
+                    }
+                }
+
             }
 
+            anim.ValueTrackSetUpdateMode(0, Animation.UpdateMode.Discrete);
+
+            anim.Length = animLength;
+
+            GD.Print(ResourceSaver.Save(anim, _destinationFolder + "/" + prefix + _animName + ".tres"));
+
+
+            Finish();
         }
-
-        anim.ValueTrackSetUpdateMode(0, Animation.UpdateMode.Discrete);
-
-        anim.Length = animLength;
-
-        GD.Print(ResourceSaver.Save(anim, _destinationFolder + "/" + _prefix + _animName + ".tres"));
-
-
-        Finish();
     }
 
     private async void Finish()

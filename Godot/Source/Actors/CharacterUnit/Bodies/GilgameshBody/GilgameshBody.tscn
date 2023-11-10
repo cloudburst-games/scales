@@ -24,6 +24,7 @@
 [ext_resource type="Animation" uid="uid://dcqdsfa5busfq" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk5_gilg.tres" id="22_hoq4g"]
 [ext_resource type="Animation" uid="uid://dinyq4eaxxtvv" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle6_gilg.tres" id="23_57cvu"]
 [ext_resource type="Animation" uid="uid://bk6iyw1kwb7vs" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk6_gilg.tres" id="23_khnu5"]
+[ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="25_d5xwe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_btc0f"]
 shader = ExtResource("5_n47vm")
@@ -96,6 +97,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, -52.5)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite:material")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_btc0f")]
+}
 
 [sub_resource type="Animation" id="Animation_vwmtw"]
 resource_name = "dying"
@@ -124,23 +137,6 @@ tracks/1/keys = {
 "values": [Vector2(0, -52.5), Vector2(0, -250)]
 }
 
-[sub_resource type="Animation" id="Animation_eg64h"]
-resource_name = "take_damage"
-length = 0.04
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0001, 0.02, 0.04),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(5, 5, 5, 1), Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y21hr"]
 _data = {
 "RESET": SubResource("Animation_wswdv"),
@@ -157,7 +153,7 @@ _data = {
 "idle4_gilg": ExtResource("21_dbe2t"),
 "idle5_gilg": ExtResource("22_fpdyo"),
 "idle6_gilg": ExtResource("23_57cvu"),
-"take_damage": SubResource("Animation_eg64h"),
+"take_damage": ExtResource("25_d5xwe"),
 "walk1_gilg": ExtResource("18_8836v"),
 "walk2_gilg": ExtResource("19_vwsop"),
 "walk3_gilg": ExtResource("20_w0c1w"),
@@ -423,7 +419,7 @@ tree_root = SubResource("AnimationNodeStateMachine_kmdex")
 anim_player = NodePath("../Anim")
 active = true
 parameters/conditions/dying = false
-parameters/conditions/idle = false
+parameters/conditions/idle = true
 parameters/conditions/melee = false
 parameters/conditions/moving = false
 parameters/conditions/takingdamage = false
