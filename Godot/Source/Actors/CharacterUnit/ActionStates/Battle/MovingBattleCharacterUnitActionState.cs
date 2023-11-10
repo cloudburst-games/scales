@@ -36,9 +36,10 @@ public partial class MovingBattleCharacterUnitActionState : CharacterUnitActionS
             }
             else
             {
-                if (CharacterUnit.CharacterData.ActionPoints > 0)
+                if (CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints] > 0)
                 {
                     CharacterUnit.SetActionState(CharacterUnit.ActionMode.IdleBattle);
+                    CharacterUnit.EmitSignal(CharacterUnit.SignalName.MovedButStillHaveAP);
                 }
                 else
                 {
@@ -50,7 +51,7 @@ public partial class MovingBattleCharacterUnitActionState : CharacterUnitActionS
         // Do the usual movement calculations and set the appropriate animation vector
         Vector2 direction = (CharacterUnit.BattleTargetPosition - CharacterUnit.GlobalPosition).Normalized();
         // GD.Print(direction);
-        CharacterUnit.GlobalPosition += direction * CharacterUnit.CharacterData.MoveSpeed * (float)delta;
+        CharacterUnit.GlobalPosition += direction * CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MoveSpeed] * (float)delta;
         this.CharacterUnit.AnimationTree.Set("parameters/Moving/blend_position", new Vector2((float)Math.Round(direction.X, 2), (float)Math.Round(direction.Y, 2)));// direction);
         if (CharacterUnit.GlobalPosition.DistanceTo(CharacterUnit.BattleTargetPosition) < 5)
         {

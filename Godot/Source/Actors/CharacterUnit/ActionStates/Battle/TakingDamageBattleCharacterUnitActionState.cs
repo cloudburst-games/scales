@@ -45,8 +45,8 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
     public void TakeDamage()
     {
         // BattleRoller.RollerOutcomeInformation.DebugPrint(res);
-        CharacterUnit.CharacterData.Health -= CharacterUnit.TakingDamageResult.FinalDamage;
-        if (CharacterUnit.CharacterData.Health <= 0)
+        CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] -= CharacterUnit.TakingDamageResult.FinalDamage;
+        if (CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] <= 0)
         {
             CharacterUnit.SetActionState(CharacterUnit.ActionMode.DyingBattle);
         }
@@ -54,7 +54,7 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
         {
             TakingDamageAnim();
         }
-        GD.Print(string.Format("{0} takes {1} damage and has {2} health remaining.", CharacterUnit.CharacterData.Name, CharacterUnit.TakingDamageResult.FinalDamage, CharacterUnit.CharacterData.Health));
+        GD.Print(string.Format("{0} takes {1} damage and has {2} health remaining.", CharacterUnit.CharacterData.Name, CharacterUnit.TakingDamageResult.FinalDamage, CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health]));
 
     }
 

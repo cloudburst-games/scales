@@ -512,109 +512,109 @@ public partial class HexGrid : Node
 
 
     // // TESTING
-    public override void _Input(InputEvent ev)
-    {
-        base._Input(ev);
+    // public override void _Input(InputEvent ev)
+    // {
+    //     base._Input(ev);
 
-        if (ev.IsActionPressed("ui_focus_next") && !ev.IsEcho())
-        {
-            _hexGridVisualiser.ToggleGrid();
-        }
+    //     if (ev.IsActionPressed("ui_focus_next") && !ev.IsEcho())
+    //     {
+    //         _hexGridVisualiser.ToggleGrid();
+    //     }
 
-        if (ev.IsActionPressed("ui_select") && !ev.IsEcho())
-        {
+    //     if (ev.IsActionPressed("ui_select") && !ev.IsEcho())
+    //     {
 
-            Vector2 mousePos = _hexDisplay.GetGlobalMousePosition();
-            Hexagon hex = GetHexAtWorldPosition(mousePos);
-            GetNode<Label>("Debug/DebugInfo1").Text = "Selected hex at grid position: " + GetHexGridPosition(hex);
+    //         Vector2 mousePos = _hexDisplay.GetGlobalMousePosition();
+    //         Hexagon hex = GetHexAtWorldPosition(mousePos);
+    //         GetNode<Label>("Debug/DebugInfo1").Text = "Selected hex at grid position: " + GetHexGridPosition(hex);
 
-            // string neighbouringHexesStr = "Neighbouring hexes' grid positions:";
-            // foreach (Hexagon neighbouringHex in GetNeighbouringHexes(hex))
-            // {
-            //     neighbouringHexesStr += ", " + GetHexGridPosition(neighbouringHex);
-            // }
+    //         // string neighbouringHexesStr = "Neighbouring hexes' grid positions:";
+    //         // foreach (Hexagon neighbouringHex in GetNeighbouringHexes(hex))
+    //         // {
+    //         //     neighbouringHexesStr += ", " + GetHexGridPosition(neighbouringHex);
+    //         // }
 
-        }
+    //     }
 
-        // TESTING AREA CODE
-        // if (ev is InputEventMouseButton btn)
-        // {
-        //     if (btn.Pressed)
-        //     {
-        //         Vector2 mousePos = _hexDisplay.GetGlobalMousePosition();
-        //         Hexagon hex = GetHexAtWorldPosition(mousePos);
-        //         string areaHexesStr = "Hexes' in area of 2 grid positions:";
-        //         List<Hexagon> hexesInArea = GetHexesInArea(new List<Hexagon>() {hex}, 2);
-        //         foreach (Hexagon areaHex in hexesInArea)
-        //         {
-        //             areaHexesStr += ", " + GetHexGridPosition(areaHex);
-        //         }
-        //         _hexGridVisualiser.ResetDrawing();
-        //         _hexGridVisualiser.HighlightHexes(hexesInArea, new Color(0,1,0));
-        //         GetNode<Label>("Debug/DebugInfo2").Text = areaHexesStr;
-        //     }
-        // }
+    //     // TESTING AREA CODE
+    //     // if (ev is InputEventMouseButton btn)
+    //     // {
+    //     //     if (btn.Pressed)
+    //     //     {
+    //     //         Vector2 mousePos = _hexDisplay.GetGlobalMousePosition();
+    //     //         Hexagon hex = GetHexAtWorldPosition(mousePos);
+    //     //         string areaHexesStr = "Hexes' in area of 2 grid positions:";
+    //     //         List<Hexagon> hexesInArea = GetHexesInArea(new List<Hexagon>() {hex}, 2);
+    //     //         foreach (Hexagon areaHex in hexesInArea)
+    //     //         {
+    //     //             areaHexesStr += ", " + GetHexGridPosition(areaHex);
+    //     //         }
+    //     //         _hexGridVisualiser.ResetDrawing();
+    //     //         _hexGridVisualiser.HighlightHexes(hexesInArea, new Color(0,1,0));
+    //     //         GetNode<Label>("Debug/DebugInfo2").Text = areaHexesStr;
+    //     //     }
+    //     // }
 
-        // TESTING LOS CODE
-        // if (ev is InputEventMouseButton btn)
-        // {
-        //     if (btn.Pressed)
-        //     {
-        //         _hexGridVisualiser.ResetDrawing();
-        //         UpdateDisplay();
-        //         Vector2 mousePos = _hexDisplay.GetGlobalMousePosition();
-        //         if (btn.ButtonIndex == MouseButton.Left)
-        //         {
-        //             _selectedPos1 = mousePos;
-        //         }
-        //         else if (btn.ButtonIndex == MouseButton.Right)
-        //         {
-        //             _selectedPos2 = mousePos;
-        //         }
-        //         // else if (btn.ButtonIndex == MouseButton.Middle)
-        //         // {
-        //         //     Hexagon blockThisHex = GetHexAtWorldPosition(mousePos);
-        //         //     blockThisHex.Obstacle = !blockThisHex.Obstacle;
-        //         //     // _hexGridVisualiser.HighlightHexes(new List<Hexagon>() {blockThisHex}, new Color(0,1,1));
-        //         // }
-        //         _hexGridVisualiser.HighlightHexes(GetHexesInWorldLine(_selectedPos1, _selectedPos2), new Color(1,0,0));
-        //         GetNode<Label>("Debug/DebugInfo1").Text = "Is line of sight blocked? " + IsLOSBlocked(_selectedPos1, _selectedPos2).ToString();
-        //     }
-        // }
+    //     // TESTING LOS CODE
+    //     // if (ev is InputEventMouseButton btn)
+    //     // {
+    //     //     if (btn.Pressed)
+    //     //     {
+    //     //         _hexGridVisualiser.ResetDrawing();
+    //     //         UpdateDisplay();
+    //     //         Vector2 mousePos = _hexDisplay.GetGlobalMousePosition();
+    //     //         if (btn.ButtonIndex == MouseButton.Left)
+    //     //         {
+    //     //             _selectedPos1 = mousePos;
+    //     //         }
+    //     //         else if (btn.ButtonIndex == MouseButton.Right)
+    //     //         {
+    //     //             _selectedPos2 = mousePos;
+    //     //         }
+    //     //         // else if (btn.ButtonIndex == MouseButton.Middle)
+    //     //         // {
+    //     //         //     Hexagon blockThisHex = GetHexAtWorldPosition(mousePos);
+    //     //         //     blockThisHex.Obstacle = !blockThisHex.Obstacle;
+    //     //         //     // _hexGridVisualiser.HighlightHexes(new List<Hexagon>() {blockThisHex}, new Color(0,1,1));
+    //     //         // }
+    //     //         _hexGridVisualiser.HighlightHexes(GetHexesInWorldLine(_selectedPos1, _selectedPos2), new Color(1,0,0));
+    //     //         GetNode<Label>("Debug/DebugInfo1").Text = "Is line of sight blocked? " + IsLOSBlocked(_selectedPos1, _selectedPos2).ToString();
+    //     //     }
+    //     // }
 
-        // TESTING NAVIGATION CODE
-        if (ev is InputEventMouseButton btn)
-        {
-            if (btn.Pressed)
-            {
-                // _hexGridVisualiser.ResetDrawing();
-                UpdateDisplay();
-                Vector2 mousePos = _hexDisplay.GetGlobalMousePosition();
-                if (btn.ButtonIndex == MouseButton.Left)
-                {
-                    _selectedPos1 = WorldToGrid(mousePos);
-                }
-                else if (btn.ButtonIndex == MouseButton.Right)
-                {
-                    _selectedPos2 = WorldToGrid(mousePos);
-                }
-                // else if (btn.ButtonIndex == (int) ButtonList.Middle)
-                // {
-                //     Hexagon blockThisHex = GetHexAtWorldPosition(mousePos);
-                //     blockThisHex.Obstacle = !blockThisHex.Obstacle;
-                //     // _hexGridVisualiser.HighlightObstacle(blockThisHex);
-                //     _hexNavigation.RecalculateAStarMap();
-                // }
+    //     // TESTING NAVIGATION CODE
+    //     if (ev is InputEventMouseButton btn)
+    //     {
+    //         if (btn.Pressed)
+    //         {
+    //             // _hexGridVisualiser.ResetDrawing();
+    //             UpdateDisplay();
+    //             Vector2 mousePos = _hexDisplay.GetGlobalMousePosition();
+    //             if (btn.ButtonIndex == MouseButton.Left)
+    //             {
+    //                 _selectedPos1 = WorldToGrid(mousePos);
+    //             }
+    //             else if (btn.ButtonIndex == MouseButton.Right)
+    //             {
+    //                 _selectedPos2 = WorldToGrid(mousePos);
+    //             }
+    //             // else if (btn.ButtonIndex == (int) ButtonList.Middle)
+    //             // {
+    //             //     Hexagon blockThisHex = GetHexAtWorldPosition(mousePos);
+    //             //     blockThisHex.Obstacle = !blockThisHex.Obstacle;
+    //             //     // _hexGridVisualiser.HighlightObstacle(blockThisHex);
+    //             //     _hexNavigation.RecalculateAStarMap();
+    //             // }
 
-                _hexGridVisualiser.HighlightHexes(HexNavigation.CalculateHexPath(_selectedPos1, _selectedPos2), new Color(1, 0, 0));
-                // GetNode<Label>("Debug/DebugInfo1").Text = "Is line of sight blocked? " + IsLOSBlocked(_selectedPos1, _selectedPos2).ToString();
-            }
-        }
-        if (ev.IsActionPressed("ui_home"))
-        {
-            HexNavigation.ToggleTemporaryObstacle(WorldToGrid(_hexDisplay.GetGlobalMousePosition()), true);
-        }
-    }
+    //             _hexGridVisualiser.HighlightHexes(HexNavigation.CalculateHexPath(_selectedPos1, _selectedPos2), new Color(1, 0, 0));
+    //             // GetNode<Label>("Debug/DebugInfo1").Text = "Is line of sight blocked? " + IsLOSBlocked(_selectedPos1, _selectedPos2).ToString();
+    //         }
+    //     }
+    //     if (ev.IsActionPressed("ui_home"))
+    //     {
+    //         HexNavigation.ToggleTemporaryObstacle(WorldToGrid(_hexDisplay.GetGlobalMousePosition()), true);
+    //     }
+    // }
 
     private Vector2 _selectedPos1 = new Vector2();
     private Vector2 _selectedPos2 = new Vector2();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=59 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
@@ -50,6 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://b5y2sla7shloo" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/OintmentHover.png" id="44_s1m13"]
 [ext_resource type="Texture2D" uid="uid://dsknwp4qky61j" path="res://Assets/Graphics/Interface/Buttons/Spells/VialFury.png" id="45_dlkfi"]
 [ext_resource type="Texture2D" uid="uid://8i2158h3ph0k" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/VialFuryHover.png" id="46_7l2d4"]
+[ext_resource type="PackedScene" uid="uid://dab158j4ohebo" path="res://Source/Systems/HexGrid/HexGridUserDisplay.tscn" id="50_rack7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gqkdd"]
 font_size = 64
@@ -333,7 +334,6 @@ grow_vertical = 2
 [node name="BtnAttack" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/PnlActions/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Melee"
 texture_normal = ExtResource("5_728wm")
 texture_hover = ExtResource("6_7olrp")
 ignore_texture_size = true
@@ -343,7 +343,6 @@ script = ExtResource("7_8jqkl")
 [node name="BtnShoot" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/PnlActions/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Shoot"
 texture_normal = ExtResource("16_e3j1o")
 texture_hover = ExtResource("17_enl43")
 ignore_texture_size = true
@@ -353,7 +352,6 @@ script = ExtResource("7_8jqkl")
 [node name="BtnCastSpell" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/PnlActions/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Cast"
 texture_normal = ExtResource("8_o6igi")
 texture_hover = ExtResource("9_rwm3w")
 ignore_texture_size = true
@@ -363,7 +361,6 @@ script = ExtResource("7_8jqkl")
 [node name="BtnMove" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/PnlActions/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Move"
 texture_normal = ExtResource("18_7qj1f")
 texture_hover = ExtResource("19_hrgya")
 ignore_texture_size = true
@@ -496,6 +493,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 299.0
+offset_right = -430.0
+offset_bottom = -470.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_uucgk")
@@ -531,10 +531,10 @@ offset_bottom = 1774.0
 
 [node name="BtnSolarFlare" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
-offset_left = 152.0
-offset_top = 123.0
-offset_right = 751.0
-offset_bottom = 698.0
+offset_left = 40.0
+offset_top = 27.0
+offset_right = 440.0
+offset_bottom = 427.0
 texture_normal = ExtResource("31_fgym1")
 texture_hover = ExtResource("32_cedin")
 ignore_texture_size = true
@@ -543,10 +543,10 @@ script = ExtResource("7_8jqkl")
 
 [node name="BtnJudgementFlame" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
-offset_left = 97.0
-offset_top = 792.0
-offset_right = 696.0
-offset_bottom = 1367.0
+offset_left = -23.0
+offset_top = 652.0
+offset_right = 377.0
+offset_bottom = 1052.0
 texture_normal = ExtResource("33_fjsma")
 texture_hover = ExtResource("34_u602w")
 ignore_texture_size = true
@@ -555,10 +555,10 @@ script = ExtResource("7_8jqkl")
 
 [node name="BtnBlindingLight" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
-offset_left = 610.0
-offset_top = 660.0
-offset_right = 1116.0
-offset_bottom = 1184.0
+offset_left = 378.0
+offset_top = 504.0
+offset_right = 778.0
+offset_bottom = 904.0
 texture_normal = ExtResource("35_m5lff")
 texture_hover = ExtResource("36_jqi6p")
 ignore_texture_size = true
@@ -567,10 +567,10 @@ script = ExtResource("7_8jqkl")
 
 [node name="BtnSolarBlast" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
-offset_left = 698.0
-offset_top = 85.0
-offset_right = 1170.0
-offset_bottom = 546.0
+offset_left = 450.0
+offset_top = -35.0
+offset_right = 850.0
+offset_bottom = 365.0
 texture_normal = ExtResource("37_v4o4t")
 texture_hover = ExtResource("38_b65e7")
 ignore_texture_size = true
@@ -586,10 +586,10 @@ offset_bottom = 1774.0
 
 [node name="BtnElixirVigor" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
-offset_left = 63.0
-offset_top = -34.0
-offset_right = 662.0
-offset_bottom = 541.0
+offset_left = -329.0
+offset_top = -14.0
+offset_right = 71.0
+offset_bottom = 386.0
 texture_normal = ExtResource("39_c1hge")
 texture_hover = ExtResource("40_d0yd3")
 ignore_texture_size = true
@@ -598,10 +598,10 @@ script = ExtResource("7_8jqkl")
 
 [node name="BtnElixirSwiftness" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
-offset_left = 580.0
-offset_top = 71.0
-offset_right = 1179.0
-offset_bottom = 646.0
+offset_left = 188.0
+offset_top = 91.0
+offset_right = 588.0
+offset_bottom = 491.0
 texture_normal = ExtResource("41_0647k")
 texture_hover = ExtResource("42_s4io6")
 ignore_texture_size = true
@@ -610,10 +610,10 @@ script = ExtResource("7_8jqkl")
 
 [node name="BtnRegenOintment" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
-offset_left = 127.0
-offset_top = 723.0
-offset_right = 633.0
-offset_bottom = 1247.0
+offset_left = -273.0
+offset_top = 579.0
+offset_right = 127.0
+offset_bottom = 979.0
 texture_normal = ExtResource("43_8r5rj")
 texture_hover = ExtResource("44_s1m13")
 ignore_texture_size = true
@@ -622,10 +622,10 @@ script = ExtResource("7_8jqkl")
 
 [node name="BtnVialFury" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
-offset_left = 668.0
-offset_top = 818.0
-offset_right = 1140.0
-offset_bottom = 1279.0
+offset_left = 232.0
+offset_top = 646.0
+offset_right = 632.0
+offset_bottom = 1046.0
 texture_normal = ExtResource("45_dlkfi")
 texture_hover = ExtResource("46_7l2d4")
 ignore_texture_size = true
@@ -635,12 +635,16 @@ script = ExtResource("7_8jqkl")
 [node name="CntBattleLevel" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 
-[node name="Battler" parent="." node_paths=PackedStringArray("CursorControl") instance=ExtResource("10_hfvdy")]
+[node name="Battler" parent="." node_paths=PackedStringArray("CursorControl", "_hexGridUserDisplay") instance=ExtResource("10_hfvdy")]
 process_mode = 4
 CursorControl = NodePath("CursorControl")
+_hexGridUserDisplay = NodePath("HexGridUserDisplay")
+FriendliesOutline = Color(0, 1, 1, 1)
 
 [node name="CursorControl" parent="Battler" instance=ExtResource("11_b5csu")]
 process_mode = 3
+
+[node name="HexGridUserDisplay" parent="Battler" instance=ExtResource("50_rack7")]
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {

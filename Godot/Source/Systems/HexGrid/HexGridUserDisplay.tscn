@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dab158j4ohebo"]
+
+[ext_resource type="Script" path="res://Source/Systems/HexGrid/HexGridUserDisplay.cs" id="1_aqc3u"]
+[ext_resource type="PackedScene" uid="uid://b68rei2swhrkb" path="res://Source/Systems/HexGrid/BaseHex.tscn" id="2_x001o"]
+
+[node name="HexGridUserDisplay" type="Node2D"]
+script = ExtResource("1_aqc3u")
+_baseHexSprite = ExtResource("2_x001o")

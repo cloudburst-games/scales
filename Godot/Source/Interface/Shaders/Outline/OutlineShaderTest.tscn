@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfy4awknfw2rp"]
+
+[ext_resource type="Material" uid="uid://bm5jqj0dwl67b" path="res://Source/Interface/Shaders/Outline/OutlineShader.tres" id="1_nm0oi"]
+[ext_resource type="Texture2D" uid="uid://mg506pp88o7b" path="res://Assets/Graphics/Sprites/Actors/Enkidu/Enki_IdleV2Stylised.png" id="2_woxrt"]
+
+[node name="OutlineShaderTest" type="Node2D"]
+
+[node name="EnkiIdleV2Stylised" type="Sprite2D" parent="."]
+material = ExtResource("1_nm0oi")
+position = Vector2(285, 189)
+texture = ExtResource("2_woxrt")
+region_enabled = true
+region_rect = Rect2(3286, 2811.5, 169, 292)

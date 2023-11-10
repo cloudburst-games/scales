@@ -130,4 +130,8 @@ public partial class BattleHUD : CanvasLayer
         _cntSpellBook.ShowSpells(spells);
     }
 
+    internal void OnCharacterRoundEffectApplied(CharacterRoundEffect roundEffect)
+    {
+        GD.Print("todo: announce on log ", roundEffect.Name);
+    }
 }

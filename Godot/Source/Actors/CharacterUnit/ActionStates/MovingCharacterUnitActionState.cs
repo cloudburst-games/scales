@@ -21,7 +21,7 @@ public partial class MovingCharacterUnitActionState : CharacterUnitActionState
         // Get the Vector towards the next nav point, and move via the NavAgent.
         Vector2 direction = CharacterUnit.NavAgent.GetNextPathPosition() - CharacterUnit.GlobalPosition;
         direction = direction.Normalized();
-        CharacterUnit.NavAgent.Velocity = direction * CharacterUnit.CharacterData.MoveSpeed * (float)delta;
+        CharacterUnit.NavAgent.Velocity = direction * CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MoveSpeed] * (float)delta;
 
         // If we are very close to the target (end) position, go back to Idle
         if (CharacterUnit.NavAgent.TargetPosition.DistanceTo(CharacterUnit.GlobalPosition) < 20)

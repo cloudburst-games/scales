@@ -30,11 +30,11 @@ public partial class MeleeBattleCharacterUnitActionState : CharacterUnitActionSt
         BattleRoller.RollerInput meleeAttack = new()
         {
             AttackerHitModifier = attackerData.GetCorrectHitBonus(),
-            DefenderDodgeModifier = defenderData.Dodge,
+            DefenderDodgeModifier = defenderData.Stats[StoryCharacterData.StatMode.Dodge],
             AttackerDamageModifier = attackerData.GetCorrectWeaponDamageBonus(),
-            DefenderDamageResist = defenderData.PhysicalResist,
+            DefenderDamageResist = defenderData.Stats[StoryCharacterData.StatMode.PhysicalResist],
             DamageDice = attackerData.WeaponDice,
-            CriticalThreshold = attackerData.CriticalThreshold
+            CriticalThreshold = attackerData.Stats[StoryCharacterData.StatMode.CriticalThreshold]
         };
 
         BattleRoller.RollerOutcomeInformation res = BattleRoller.CalculateAttack(CharacterUnit.Rand, meleeAttack); // can potentially return this to improve the battle log!

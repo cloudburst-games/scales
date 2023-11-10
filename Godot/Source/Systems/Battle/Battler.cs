@@ -7,12 +7,28 @@ using System.Linq;
 public partial class Battler : Node2D
 {
 
+    public HexGridUserDisplay.DisplayMode CurrentDisplayMode = HexGridUserDisplay.DisplayMode.ShowContextualHexes;
     public Battler.ActionMode CurrentAction { get; set; } = Battler.ActionMode.Move;
     public SpellEffectManager.SpellMode PlayerSelectedSpell { get; set; }
 
     public enum ActionMode { Melee, Shoot, Cast, Move, Hint, Invalid, None }
     [Export]
     public CursorControl CursorControl { get; set; }
+    [Export]
+    private HexGridUserDisplay _hexGridUserDisplay;
+
+    [Export]
+    public Color ActiveCharacterOutline { get; set; } = new Color(1, 1, 0);
+
+    [Export]
+    public Color EnemiesOutline { get; set; } = new Color(1, 0, 0);
+
+    [Export]
+    public Color FriendliesOutline { get; set; } = new Color(0, 1, 1);
+
+    [Export]
+    public Color NeutralsOutline { get; set; } = new Color(0, 0, 1);
+
 
     public Rect2 UIBounds { get; set; } = new(new Vector2(0, 0), new Vector2(0, 0));
     public List<CharacterUnit> AllCharacters { get; set; } = new();
@@ -62,6 +78,8 @@ public partial class Battler : Node2D
         BattleGrid = battleGrid;
         AllSpells = allSpells;
 
+        _hexGridUserDisplay.Init(BattleGrid);
+
         foreach (CharacterUnit cUnit in involvedCharacters)
         {
             cUnit.BattleTargetPosition = battleGrid.GetCorrectedWorldPosition(cUnit.GlobalPosition);
@@ -73,12 +91,62 @@ public partial class Battler : Node2D
 
         AllCharacters = involvedCharacters.ToList();
 
-        SetState(BattleMode.Starting);
-        // AllCharacters[0].CharacterStats.CurrentHealth -= 1;
-        // foreach (CharacterUnit c in AllCharacters)
-        // {
-        //     GD.Print(c.CharacterStats.CurrentHealth);
-        // }
+        SetState(BattleMode.Starting); // this is when character obstacles are made
+    }
+
+    internal void SetGridUserHexes(List<Vector2> validMoveHexes, List<Vector2> validHalfMoveHexes, HexGridUserDisplay.DisplayMode displayMode)
+    {
+        List<Vector2> allGridPositions = new();
+
+        foreach (KeyValuePair<Vector2, Hexagon> kv in BattleGrid.Cells)
+        {
+            if (!kv.Value.Obstacle)
+            {
+                allGridPositions.Add(kv.Key);
+            }
+        }
+
+        _hexGridUserDisplay.SetSprites(validMoveHexes, validHalfMoveHexes, allGridPositions);
+
+        switch (displayMode)
+        {
+            case HexGridUserDisplay.DisplayMode.HideAllHexes:
+                _hexGridUserDisplay.HideAllHexes();
+                break;
+            case HexGridUserDisplay.DisplayMode.ShowAllHexes:
+                _hexGridUserDisplay.ShowAllHexes(allGridPositions);
+                break;
+            case HexGridUserDisplay.DisplayMode.ShowContextualHexes:
+                _hexGridUserDisplay.ShowContextualHexes(validMoveHexes, validHalfMoveHexes);
+                break;
+
+        }
+    }
+
+    internal void SetOutlineColours()
+    {
+        foreach (CharacterUnit cUnit in _battleState.GetAliveUnits())
+        {
+            if (cUnit == CharactersAwaitingTurn[0])
+            {
+                // GD.Print(cUnit.CharacterData.Name);
+                cUnit.SetSpriteOutlineColour(ActiveCharacterOutline);
+            }
+            else if (cUnit.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player || cUnit.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Allied)
+            {
+                cUnit.SetSpriteOutlineColour(FriendliesOutline);
+            }
+            else if (cUnit.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Hostile)
+            {
+                cUnit.SetSpriteOutlineColour(EnemiesOutline);
+            }
+            else
+            {
+                cUnit.SetSpriteOutlineColour(NeutralsOutline);
+            }
+
+
+        }
     }
 
     public void AddCharacter(CharacterUnit character)
@@ -150,7 +218,32 @@ public partial class Battler : Node2D
     private void NewRound()
     {
         Round += 1;
+        foreach (CharacterUnit cUnit in AllCharacters)
+        {
+            if (cUnit.CharacterData.Alive)
+            {
+                ApplyRegen(cUnit);
+                cUnit.CharacterData.OnNewRound(); // e.g. applying round effects
+            }
+        }
         _battleState.ComputeTurnOrder();
+    }
+
+    private void ApplyRegen(CharacterUnit characterUnit)
+    {
+        if (characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] < characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth])
+        {
+            GD.Print("todo log: " + characterUnit.CharacterData.Name + " restores health by " + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.HealthRegen]);
+        }
+        characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] = Math.Min(characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth],
+            characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.HealthRegen]);
+
+        if (characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Endurance] < characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxEndurance])
+        {
+            GD.Print("todo log: " + characterUnit.CharacterData.Name + " restores endurance by " + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.EnduranceRegen]);
+        }
+        characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Endurance] = Math.Min(characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxEndurance],
+            characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Endurance] + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.EnduranceRegen]);
     }
 
     public void PlayAnim(string anim)
@@ -285,5 +378,18 @@ public partial class Battler : Node2D
 
 
         EmitSignal(SignalName.AreaAttackParsed, spell);
+    }
+
+    internal void OnCharacterRoundEffectApplied(CharacterUnit newChar, CharacterRoundEffect effect)
+    {
+        if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Stat && effect.StatAffected == StoryCharacterData.StatMode.Health && effect.Magnitude < 0)
+        {
+            newChar.TakeDamageOrder(new BattleRoller.RollerOutcomeInformation() { FinalDamage = 0 });
+        }
+    }
+
+    internal void OnMovedButStillHaveAP()
+    {
+        _battleState.OnMovedButStillHaveAP();
     }
 }

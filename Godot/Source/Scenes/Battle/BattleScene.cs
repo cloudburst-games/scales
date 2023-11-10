@@ -86,6 +86,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         _battler.TurnStarted += this.OnCharacterTurnStarted;//_HUD.OnTurnStarted;
         _battler.AreaAttackParsed += _spellEffectManager.OnCastingSpell;
         _btnActions.ActionBtnPressed += _battler.OnActionBtnPressed; // 1. Melee 2. Shoot 3. Cast spell 4. Move
+        _btnActions.CastSpellActionBtnPressedButNoSpellActive += () => _HUD.SetState(BattleHUD.StateMode.SpellBookOpened);
 
         _btnChooseSpell.Pressed += _battler.OnBtnChooseSpellPressed;
         _btnEndTurn.Pressed += _battler.OnBtnEndTurnPressed;
@@ -151,6 +152,9 @@ public partial class BattleScene : Node, ISceneTransitionable
         _currentCharacters.Add(newChar);
         newChar.CastingEffect += _spellEffectManager.OnCastingSpellStart;
         newChar.Died += _battler.OnCharacterDied;
+        newChar.MovedButStillHaveAP += _battler.OnMovedButStillHaveAP;
+        newChar.CharacterDataTreeLink.RoundEffectApplied += _HUD.OnCharacterRoundEffectApplied;
+        newChar.CharacterDataTreeLink.RoundEffectApplied += (CharacterRoundEffect roundEffect) => _battler.OnCharacterRoundEffectApplied(newChar, roundEffect);
         return newChar;
     }
 

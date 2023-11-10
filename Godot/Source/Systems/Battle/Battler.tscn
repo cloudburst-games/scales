@@ -103,6 +103,10 @@ _data = {
 
 [node name="Battler" type="Node2D"]
 script = ExtResource("1_nsprq")
+ActiveCharacterOutline = Color(1, 1, 0, 1)
+EnemiesOutline = Color(1, 0, 0, 1)
+FriendliesOutline = Color(0, 0, 1, 1)
+NeutralsOutline = Color(0, 1, 0, 1)
 
 [node name="BattleHUD" type="CanvasLayer" parent="."]
 
@@ -134,9 +138,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -1710.0
+offset_left = 210.0
 offset_top = 2184.0
-offset_right = 1710.0
+offset_right = 3630.0
 offset_bottom = 2624.0
 grow_horizontal = 2
 text = "LET BATTLE BE JOINED"

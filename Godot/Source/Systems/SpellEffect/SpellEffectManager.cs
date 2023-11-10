@@ -25,10 +25,15 @@ public partial class SpellEffectManager : Node
 
     public partial class SpellEffect : RefCounted
     {
+        public string Name { get; set; }
         public List<Tuple<int, int>> DamageDice { get; set; }
         public BattleRoller.AttackType AttackType { get; set; } = BattleRoller.AttackType.Normal;
         public bool Mystical { get; set; }
         public SpellEffectDelegate EffectMethod { get; set; }
+        public int NumRounds { get; set; }
+        public StoryCharacterData.AttributeMode AttributeAffected { get; set; }
+        public StoryCharacterData.StatMode StatAffected { get; set; }
+        public CharacterRoundEffect.EffectTypeMode EffectType { get; set; }
     }
 
     public partial class SpellVisualController : RefCounted
@@ -53,7 +58,21 @@ public partial class SpellEffectManager : Node
 
     [Export]
     private Godot.Collections.Dictionary<SpellMode, PackedScene> _spellVisualScns = new();
-    public enum SpellEffectMode { Fire, Physical, Fireball }
+    public enum SpellEffectMode
+    {
+        Fire, Physical, Fireball,
+        DamageOverTime,
+        DamageAttributeMight,
+        DamageAttributePrecision,
+        DamageStatHitPrecision,
+        DamageStatHitStrength,
+        Berserk,
+        FortifyAttributeMight,
+        FortifyAttributeResilience,
+        FortifyAttributePrecision,
+        FortifyAttributeSpeed,
+        FortifyStatHealthRegen
+    }
     public enum SpellMode { SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment, Arrow, None }
     public enum SpellEffectVisualMode { Projectile, Self, FromSky }
     public enum SpellEffectTargetMode { Self, Target }
@@ -81,6 +100,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = true,
             EffectMethod = DoTargetedAttackEffect,
+            Name = "Fire Damage",
         };
         _allSpellEffects[SpellEffectMode.Physical] = new()
         {
@@ -88,6 +108,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = false,
             EffectMethod = DoTargetedAttackEffect,
+            Name = "Physical Damage"
         };
         _allSpellEffects[SpellEffectMode.Fireball] = new()
         {
@@ -95,9 +116,126 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Area,
             Mystical = true,
             EffectMethod = DoAreaAttackEffect,
+            Name = "Fire Area Damage"
+        };
+        _allSpellEffects[SpellEffectMode.DamageOverTime] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 3) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoDamageOverTimeEffect,
+            NumRounds = 3,
+            EffectType = CharacterRoundEffect.EffectTypeMode.Stat,
+            StatAffected = StoryCharacterData.StatMode.Health,
+            Name = "Damage Over Time"
+
+        };
+        _allSpellEffects[SpellEffectMode.DamageAttributeMight] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 3) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoAttributeStatDamage,
+            NumRounds = 3,
+            EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
+            AttributeAffected = StoryCharacterData.AttributeMode.Might,
+            Name = "Might Damage"
+        };
+        _allSpellEffects[SpellEffectMode.DamageAttributePrecision] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 3) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoAttributeStatDamage,
+            NumRounds = 3,
+            EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
+            AttributeAffected = StoryCharacterData.AttributeMode.Precision,
+            Name = "Precision Damage"
+        };
+        _allSpellEffects[SpellEffectMode.DamageStatHitStrength] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 3) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoAttributeStatDamage,
+            NumRounds = 3,
+            EffectType = CharacterRoundEffect.EffectTypeMode.Stat,
+            StatAffected = StoryCharacterData.StatMode.HitBonusStrength,
+            Name = "Hit Reduced (strength)"
+        };
+        _allSpellEffects[SpellEffectMode.DamageStatHitPrecision] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 3) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoAttributeStatDamage,
+            NumRounds = 3,
+            EffectType = CharacterRoundEffect.EffectTypeMode.Stat,
+            StatAffected = StoryCharacterData.StatMode.HitBonusPrecision,
+            Name = "Hit Reduced (precision)"
+        };
+        _allSpellEffects[SpellEffectMode.Berserk] = new()
+        {
+            EffectMethod = DoBerserk,
+            NumRounds = 3,
+            EffectType = CharacterRoundEffect.EffectTypeMode.Berserk,
+        };
+        _allSpellEffects[SpellEffectMode.FortifyAttributeMight] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 3) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoAttributeStatFortify,
+            NumRounds = 3,
+            EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
+            AttributeAffected = StoryCharacterData.AttributeMode.Might,
+            Name = "Fortify Might"
+        };
+        _allSpellEffects[SpellEffectMode.FortifyAttributeResilience] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 3) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoAttributeStatFortify,
+            NumRounds = 3,
+            EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
+            AttributeAffected = StoryCharacterData.AttributeMode.Resilience,
+            Name = "Fortify Resilience"
+        };
+        _allSpellEffects[SpellEffectMode.FortifyAttributePrecision] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 3) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoAttributeStatFortify,
+            NumRounds = 3,
+            EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
+            AttributeAffected = StoryCharacterData.AttributeMode.Precision,
+            Name = "Fortify Precision"
+        };
+        _allSpellEffects[SpellEffectMode.FortifyAttributeSpeed] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 3) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoAttributeStatFortify,
+            NumRounds = 3,
+            EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
+            AttributeAffected = StoryCharacterData.AttributeMode.Speed,
+            Name = "Fortify Speed"
+        };
+        _allSpellEffects[SpellEffectMode.FortifyStatHealthRegen] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(1, 3) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoAttributeStatFortify,
+            NumRounds = 3,
+            EffectType = CharacterRoundEffect.EffectTypeMode.Stat,
+            StatAffected = StoryCharacterData.StatMode.HealthRegen,
+            Name = "Fortify Health Regeneration"
         };
     }
-
 
     // todo - construct via json data
     private void GenerateVisualEffects()
@@ -117,7 +255,36 @@ public partial class SpellEffectManager : Node
             SpellEffectScn = _spellVisualScns[SpellMode.SolarBlast],
             VisualMode = SpellEffectVisualMode.Projectile
         };
-
+        _allSpellVisuals[SpellMode.JudgementOfFlame] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.JudgementOfFlame],
+            VisualMode = SpellEffectVisualMode.Projectile
+        };
+        _allSpellVisuals[SpellMode.BlindingLight] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.BlindingLight],
+            VisualMode = SpellEffectVisualMode.Projectile
+        };
+        _allSpellVisuals[SpellMode.VialOfFury] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.VialOfFury],
+            VisualMode = SpellEffectVisualMode.Projectile
+        };
+        _allSpellVisuals[SpellMode.ElixirOfVigour] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.ElixirOfVigour],
+            VisualMode = SpellEffectVisualMode.Projectile
+        };
+        _allSpellVisuals[SpellMode.ElixirOfSwiftness] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.ElixirOfSwiftness],
+            VisualMode = SpellEffectVisualMode.Projectile
+        };
+        _allSpellVisuals[SpellMode.RegenerativeOintment] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.RegenerativeOintment],
+            VisualMode = SpellEffectVisualMode.Projectile
+        };
     }
 
     // todo - construct via json data
@@ -148,7 +315,56 @@ public partial class SpellEffectManager : Node
             Target = Spell.TargetMode.Ground,
             Area = 1,
         };
+        AllSpells[SpellMode.JudgementOfFlame] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.JudgementOfFlame],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.DamageOverTime], _allSpellEffects[SpellEffectMode.DamageAttributeMight], _allSpellEffects[SpellEffectMode.DamageAttributePrecision] },
+            Name = "Judgement of Flame",
+            Range = 8,
+            Target = Spell.TargetMode.Enemy,
+        };
+        AllSpells[SpellMode.BlindingLight] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.JudgementOfFlame],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.DamageStatHitPrecision], _allSpellEffects[SpellEffectMode.DamageStatHitStrength] },
+            Name = "Blinding Light",
+            Range = 8,
+            Target = Spell.TargetMode.Enemy,
+        };
+        AllSpells[SpellMode.VialOfFury] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.VialOfFury],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.Berserk] },
+            Name = "Vial of Fury",
+            Range = 8,
+            Target = Spell.TargetMode.Enemy,
+        };
+        AllSpells[SpellMode.ElixirOfVigour] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.ElixirOfVigour],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.FortifyAttributeMight], _allSpellEffects[SpellEffectMode.FortifyAttributeResilience] },
+            Name = "Elixir of Vigour",
+            Range = 8,
+            Target = Spell.TargetMode.Ally,
+        };
+        AllSpells[SpellMode.ElixirOfSwiftness] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.ElixirOfSwiftness],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.FortifyAttributePrecision], _allSpellEffects[SpellEffectMode.FortifyAttributeSpeed] },
+            Name = "Elixir of Swiftness",
+            Range = 8,
+            Target = Spell.TargetMode.Ally,
+        };
+        AllSpells[SpellMode.RegenerativeOintment] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.RegenerativeOintment],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.FortifyStatHealthRegen] },
+            Name = "Regenerative Ointment",
+            Range = 8,
+            Target = Spell.TargetMode.Ally,
+        };
     }
+
 
     // signal callback after casting action completed
     public void OnCastingSpellStart(Spell spell)
@@ -185,7 +401,7 @@ public partial class SpellEffectManager : Node
     {
 
         BattleRoller.RollerInput areaAttack = new();
-        areaAttack.CriticalThreshold = spell.OriginCharacter.CharacterData.CriticalThreshold;
+        areaAttack.CriticalThreshold = spell.OriginCharacter.CharacterData.Stats[StoryCharacterData.StatMode.CriticalThreshold];
         areaAttack.AttackerHitModifier = spell.OriginCharacter.CharacterData.GetCorrectHitBonus(spell.AssociatedEffects[0].Mystical);
         areaAttack.AttackType = BattleRoller.AttackType.Area;
         areaAttack.HexDistance = spell.HexDistance;
@@ -216,11 +432,11 @@ public partial class SpellEffectManager : Node
         BattleRoller.RollerInput magicAttack = new()
         {
             AttackerHitModifier = attackerData.GetCorrectHitBonus(spellEffect.Mystical),
-            DefenderDodgeModifier = defenderData.Dodge,
-            AttackerDamageModifier = spellEffect.Mystical ? attackerData.Mysticism : attackerData.GetCorrectWeaponDamageBonus(),
-            DefenderDamageResist = spellEffect.Mystical ? defenderData.MysticResist : defenderData.PhysicalResist,
+            DefenderDodgeModifier = defenderData.Stats[StoryCharacterData.StatMode.Dodge],
+            AttackerDamageModifier = spellEffect.Mystical ? attackerData.Stats[StoryCharacterData.StatMode.Mysticism] : attackerData.GetCorrectWeaponDamageBonus(),
+            DefenderDamageResist = spellEffect.Mystical ? defenderData.Stats[StoryCharacterData.StatMode.MysticResist] : defenderData.Stats[StoryCharacterData.StatMode.PhysicalResist],
             DamageDice = spellEffect.DamageDice,
-            CriticalThreshold = attackerData.CriticalThreshold,
+            CriticalThreshold = attackerData.Stats[StoryCharacterData.StatMode.CriticalThreshold],
             AttackType = spellEffect.AttackType
         };
 
@@ -240,8 +456,6 @@ public partial class SpellEffectManager : Node
         StoryCharacterData attackerData = originCharacter.CharacterData;
         CharacterUnit targetCharacter = spell.TargetCharacter; // at centre of the effect- takes full damage
 
-
-
         foreach (CharacterUnit affectedCharacter in spell.AreaAffectedCharacters)
         {
             BattleRoller.AttackType attackType = BattleRoller.AttackType.AreaConfirmed;
@@ -254,11 +468,11 @@ public partial class SpellEffectManager : Node
             BattleRoller.RollerInput magicAttack = new()
             {
                 AttackerHitModifier = attackerData.GetCorrectHitBonus(spellEffect.Mystical),
-                DefenderDodgeModifier = defenderData.Dodge,
-                AttackerDamageModifier = spellEffect.Mystical ? attackerData.Mysticism : attackerData.GetCorrectWeaponDamageBonus(),
-                DefenderDamageResist = spellEffect.Mystical ? defenderData.MysticResist : defenderData.PhysicalResist,
+                DefenderDodgeModifier = defenderData.Stats[StoryCharacterData.StatMode.Dodge],
+                AttackerDamageModifier = spellEffect.Mystical ? attackerData.Stats[StoryCharacterData.StatMode.Mysticism] : attackerData.GetCorrectWeaponDamageBonus(),
+                DefenderDamageResist = spellEffect.Mystical ? defenderData.Stats[StoryCharacterData.StatMode.MysticResist] : defenderData.Stats[StoryCharacterData.StatMode.PhysicalResist],
                 DamageDice = spellEffect.DamageDice,
-                CriticalThreshold = attackerData.CriticalThreshold,
+                CriticalThreshold = attackerData.Stats[StoryCharacterData.StatMode.CriticalThreshold],
                 AttackType = attackType
             };
             spell.Outcome.RollerInput.AttackType = attackType; // WHY IS ATTACK TYPE NORMAL 
@@ -273,6 +487,125 @@ public partial class SpellEffectManager : Node
         }
     }
 
+
+
+    private void DoAttributeStatDamage(SpellEffect spellEffect, Spell spell)
+    {
+        CharacterUnit originCharacter = spell.OriginCharacter;
+        StoryCharacterData attackerData = originCharacter.CharacterData;
+        CharacterUnit targetCharacter = spell.TargetCharacter;
+        BattleRoller.RollerInput unmissable = new()
+        {
+            AttackerDamageModifier = attackerData.Stats[StoryCharacterData.StatMode.Mysticism] / 2, // or do only dice roll damage?
+            DamageDice = spellEffect.DamageDice,
+            DefenderDamageResist = 0, // do not reduce attribute damage
+            AttackType = BattleRoller.AttackType.Undodgeable,
+        };
+        BattleRoller.RollerOutcomeInformation res = BattleRoller.CalculateAttack(originCharacter.Rand, unmissable);
+
+        string effectNamePrefix = spellEffect.EffectType == CharacterRoundEffect.EffectTypeMode.Attribute ?
+            spellEffect.AttributeAffected.ToString() :
+            spellEffect.StatAffected.ToString();
+
+        CharacterRoundEffect roundEffect = new(
+
+            name: spell.Name + ": " + spellEffect.Name,
+            attributeAffected: spellEffect.AttributeAffected,
+            statAffected: spellEffect.StatAffected,
+            effectType: spellEffect.EffectType,
+            permanent: false,
+            cumulative: false,
+            magnitude: -res.FinalDamage,
+            animName: "DamageAttribute",
+            rounds: spellEffect.NumRounds
+        );
+
+        targetCharacter.CharacterData.DoEffectInitial(roundEffect);
+    }
+
+    private void DoAttributeStatFortify(SpellEffect spellEffect, Spell spell)
+    {
+        CharacterUnit originCharacter = spell.OriginCharacter;
+        StoryCharacterData attackerData = originCharacter.CharacterData;
+        CharacterUnit targetCharacter = spell.TargetCharacter;
+        BattleRoller.RollerInput unmissable = new()
+        {
+            AttackerDamageModifier = attackerData.Stats[StoryCharacterData.StatMode.Mysticism] / 2, // or do only dice roll damage?
+            DamageDice = spellEffect.DamageDice,
+            DefenderDamageResist = 0, // do not reduce attribute damage
+            AttackType = BattleRoller.AttackType.Undodgeable,
+        };
+        BattleRoller.RollerOutcomeInformation res = BattleRoller.CalculateAttack(originCharacter.Rand, unmissable);
+
+        CharacterRoundEffect roundEffect = new(
+
+            name: spell.Name + ": " + spellEffect.Name,
+            attributeAffected: spellEffect.AttributeAffected,
+            statAffected: spellEffect.StatAffected,
+            effectType: spellEffect.EffectType,
+            permanent: false,
+            cumulative: false,
+            magnitude: res.FinalDamage,
+            animName: "FortifyAttribute",
+            rounds: spellEffect.NumRounds
+        );
+
+        targetCharacter.CharacterData.DoEffectInitial(roundEffect);
+    }
+
+    private void DoBerserk(SpellEffect spellEffect, Spell spell)
+    {
+        CharacterUnit targetCharacter = spell.TargetCharacter;
+        CharacterRoundEffect roundEffect = new(
+
+            name: spell.Name + ": " + spellEffect.Name,
+            attributeAffected: spellEffect.AttributeAffected,
+            statAffected: spellEffect.StatAffected,
+            effectType: spellEffect.EffectType,
+            permanent: false,
+            cumulative: false,
+            magnitude: 0,
+            animName: "Berserk",
+            rounds: spellEffect.NumRounds
+        );
+        targetCharacter.CharacterData.DoEffectInitial(roundEffect);
+    }
+
+    private void DoDamageOverTimeEffect(SpellEffect spellEffect, Spell spell)
+    {
+        CharacterUnit originCharacter = spell.OriginCharacter;
+        StoryCharacterData attackerData = originCharacter.CharacterData;
+        CharacterUnit targetCharacter = spell.TargetCharacter;
+        StoryCharacterData defenderData = targetCharacter.CharacterData;
+        BattleRoller.RollerInput unmissable = new()
+        {
+            AttackerDamageModifier = attackerData.Stats[StoryCharacterData.StatMode.Mysticism] / 2, // or do only dice roll damage?
+            DamageDice = spellEffect.DamageDice,
+            DefenderDamageResist = defenderData.Stats[StoryCharacterData.StatMode.MysticResist],
+            AttackType = BattleRoller.AttackType.Undodgeable,
+        };
+
+        BattleRoller.RollerOutcomeInformation res = BattleRoller.CalculateAttack(originCharacter.Rand, unmissable);
+
+        string effectNamePrefix = spellEffect.EffectType == CharacterRoundEffect.EffectTypeMode.Attribute ?
+            spellEffect.AttributeAffected.ToString() :
+            spellEffect.StatAffected.ToString();
+
+        CharacterRoundEffect roundEffect = new(
+
+            name: spell.Name + ": " + spellEffect.Name,
+            attributeAffected: spellEffect.AttributeAffected,
+            statAffected: spellEffect.StatAffected,
+            effectType: spellEffect.EffectType,
+            permanent: true,
+            cumulative: true,
+            magnitude: -res.FinalDamage,
+            animName: "Damage",
+            rounds: spellEffect.NumRounds
+        );
+
+        targetCharacter.CharacterData.DoEffectInitial(roundEffect);
+    }
     // private void DoAreaAttackEffect(SpellEffect spellEffect, Spell spell)
     // {
     //     CharacterUnit originCharacter = spell.OriginCharacter;

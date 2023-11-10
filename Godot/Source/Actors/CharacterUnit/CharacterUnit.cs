@@ -55,6 +55,8 @@ public partial class CharacterUnit : CharacterBody2D
     public delegate void CastingEffectEventHandler(SpellEffectManager.Spell spell);// Vector2 origin, Vector2 destination, CharacterUnit targetCharacter, SpellEffectManager.BattleSpellMode spellEffect);
 
     [Signal]
+    public delegate void MovedButStillHaveAPEventHandler();
+    [Signal]
     public delegate void DiedEventHandler(CharacterUnit characterUnit);
 
     public Random Rand { get; set; }
@@ -97,6 +99,15 @@ public partial class CharacterUnit : CharacterBody2D
     private CharacterUnitActionState _actionState;
     // This is used for error correction - when a character is stuck in movement state.
     public Vector2 PreviousVelocity = new Vector2();
+
+    public TreeLink CharacterDataTreeLink = new();
+
+
+    public partial class TreeLink : Node
+    {
+        [Signal]
+        public delegate void RoundEffectAppliedEventHandler(CharacterRoundEffect roundEffect);
+    }
 
     public void SetControlState(ControlMode controlMode)
     {
@@ -193,11 +204,13 @@ public partial class CharacterUnit : CharacterBody2D
 
     private void Init()
     {
+        AddChild(CharacterDataTreeLink);
         _body.Instantiate<CharacterBody>().SetBody(this);
         NavAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
         AnimationTree = GetNode<AnimationTree>("AnimTree");
         Anim = GetNode<AnimationPlayer>("Anim");
         _proximityArea = GetNode<Area2D>("ProximityArea");
+        GetNode<Sprite2D>("Sprite").Material = (Godot.Material)GetNode<Sprite2D>("Sprite").Material.Duplicate(true);
     }
 
     private void InitStatusToPlayer()
@@ -287,7 +300,7 @@ public partial class CharacterUnit : CharacterBody2D
     public void BattleMoveOrder(int moveCost, List<Vector2> worldPath, CharacterUnit targetCharacter = null)
     {
         worldPath.RemoveAt(0);
-        CharacterData.ActionPoints -= moveCost;
+        CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints] -= moveCost;
         BattlePath = worldPath;
         MeleeTarget = targetCharacter;
     }
@@ -347,7 +360,7 @@ public partial class CharacterUnit : CharacterBody2D
         // if resuming turn (i.e. NOT ended), then don't reset points etc
         if (!TurnPending)
         {
-            CharacterData.ActionPoints = CharacterData.MaxActionPoints;
+            CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints] = CharacterData.Stats[StoryCharacterData.StatMode.MaxActionPoints];
             TurnPending = true;
         }
         _actionState.BattleIdleOrder();
@@ -366,12 +379,15 @@ public partial class CharacterUnit : CharacterBody2D
         GetNode<Label>("LblDebug").Text = text;
     }
 
-    public void SetFromJSON(StoryCharacter.StoryCharacterMode selectedChar)
+    public void SetFromJSON(StoryCharacter.StoryCharacterMode selectedChar) // before added to tree
     {
         CharacterData = StoryCharacterJSONInterface.GetStoryCharacterJSONData(selectedChar);
-        CharacterData.Initialise();
+        CharacterData.Initialise(RoundEffectAnim, CharacterDataTreeLink);
         _body = GD.Load<PackedScene>(CharacterData.BodyPath);
     }
+
+    [Export]
+    public AnimationPlayer RoundEffectAnim { get; set; }
 
     public BattleRoller.RollerOutcomeInformation TakingDamageResult { get; set; }
 
@@ -381,4 +397,23 @@ public partial class CharacterUnit : CharacterBody2D
         _actionState.TakeDamageOrder();
     }
 
+    public void SetSpriteOutlineColour(Color color, bool enabled = true)
+    {
+        if (GetNode<Sprite2D>("Sprite").Material is ShaderMaterial shaderMaterial)
+        {
+            // GD.Print(CharacterData.Name);
+            // GD.Print(StatusToPlayer);
+            // GD.Print(color.R + ", " + color.G + ", " + color.B);
+            shaderMaterial.SetShaderParameter("width", enabled ? 3f : 0f);
+            shaderMaterial.SetShaderParameter("outline_color_origin", color);
+        }
+    }
+
+    public void ShowSpriteOutline(bool enabled = true)
+    {
+        if (GetNode<Sprite2D>("Sprite").Material is ShaderMaterial shaderMaterial)
+        {
+            shaderMaterial.SetShaderParameter("width", enabled ? 3f : 0f);
+        }
+    }
 }

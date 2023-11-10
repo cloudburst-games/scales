@@ -14,6 +14,10 @@ public partial class BtnActions : TextureButton
     private Godot.Collections.Dictionary<Battler.ActionMode, NodePath> _actionBtns = new();
     private Battler.ActionMode _currentAction;
     private Dictionary<SpellEffectManager.SpellMode, Texture2D[]> _spellTextures = new();
+
+    [Signal]
+    public delegate void CastSpellActionBtnPressedButNoSpellActiveEventHandler();
+
     public override void _Ready()
     {
         // Texture2D testTexture2D = GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/SolarFlare.png");
@@ -60,12 +64,39 @@ public partial class BtnActions : TextureButton
 
     public void OnActionBtnPressed(Battler.ActionMode actionMode)
     {
-        _currentAction = actionMode;
         _actionPnl.Visible = false;
-        TextureButton btn = GetNode<TextureButton>(_actionBtns[actionMode]);
-        TextureNormal = btn.TextureNormal;
-        TextureHover = btn.TextureHover;
-        EmitSignal(BtnActions.SignalName.ActionBtnPressed, (int)actionMode);
+        if (actionMode == Battler.ActionMode.Cast && !ActiveSpellButton())
+        {
+            EmitSignal(SignalName.CastSpellActionBtnPressedButNoSpellActive);
+        }
+        else
+        {
+            _currentAction = actionMode;
+
+            TextureButton btn = GetNode<TextureButton>(_actionBtns[actionMode]);
+            TextureNormal = btn.TextureNormal;
+            TextureHover = btn.TextureHover;
+            EmitSignal(BtnActions.SignalName.ActionBtnPressed, (int)actionMode);
+        }
+    }
+
+    private bool ActiveSpellButton()
+    {
+        TextureButton btn = GetNode<TextureButton>(_actionBtns[Battler.ActionMode.Cast]);
+        Texture2D castTexture = btn.TextureNormal;
+
+        foreach (KeyValuePair<SpellEffectManager.SpellMode, Texture2D[]> kv in _spellTextures)
+        {
+            if (kv.Key == SpellEffectManager.SpellMode.None)
+            {
+                continue;
+            }
+            if (castTexture == kv.Value[0])
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void SetActionBtnToSpellTexture(SpellEffectManager.SpellMode spellSelected)

@@ -14,7 +14,7 @@ public partial class IdleBattleCharacterUnitActionState : CharacterUnitActionSta
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/dying", false);
         // We want to remove the obstacle as we are about to move
         CharacterUnit.EmitSignal(CharacterUnit.SignalName.RemoveObstacle, CharacterUnit, true);
-        CharacterUnit.Modulate = new Color(1, 0, 0);
+        // CharacterUnit.Modulate = new Color(1, 0, 0);
     }
 
     public override void Update(double delta)
@@ -31,7 +31,7 @@ public partial class IdleBattleCharacterUnitActionState : CharacterUnitActionSta
     public override void Exit()
     {
         base.Exit();
-        CharacterUnit.Modulate = new Color(1, 1, 1);
+        // CharacterUnit.Modulate = new Color(1, 1, 1);
     }
 
     public override void BattleSkipOrder()
@@ -61,5 +61,12 @@ public partial class IdleBattleCharacterUnitActionState : CharacterUnitActionSta
     {
         base.BattleCastOrder();
         CharacterUnit.SetActionState(CharacterUnit.ActionMode.CastingBattle);
+    }
+
+    // TESTING:
+    public override void TakeDamageOrder()
+    {
+        base.TakeDamageOrder();
+        CharacterUnit.SetActionState(CharacterUnit.ActionMode.TakingDamageBattle);
     }
 }

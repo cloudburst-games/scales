@@ -1,10 +1,9 @@
-[gd_scene load_steps=50 format=3 uid="uid://otvy1fepssy0"]
+[gd_scene load_steps=51 format=3 uid="uid://otvy1fepssy0"]
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_eyqsa"]
 [ext_resource type="Texture2D" uid="uid://dj6lx830v40e3" path="res://DELETEMEimage.png" id="2_ugqld"]
 [ext_resource type="Texture2D" uid="uid://d4gesnextgity" path="res://DirectionTest.png" id="3_0xmwc"]
 [ext_resource type="Texture2D" uid="uid://brxylpaqjkqy" path="res://Assets/Graphics/Effects/Arrow/arrow.png" id="4_o6uwt"]
-[ext_resource type="Texture2D" uid="uid://mg506pp88o7b" path="res://Assets/Graphics/Sprites/Actors/Enkidu/Enki_IdleV2Stylised.png" id="5_l1eji"]
 [ext_resource type="Texture2D" uid="uid://7odii45w3yxl" path="res://Assets/Graphics/Sprites/Actors/Gilga/IdleGilga.png" id="5_x18ss"]
 [ext_resource type="Animation" uid="uid://lo0w8muv6m81" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk1_gilg.tres" id="6_xnyvr"]
 [ext_resource type="Animation" uid="uid://ccwx67sbv5gf" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk2_gilg.tres" id="7_g7cu7"]
@@ -43,6 +42,38 @@
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk5_enkidu.tres" id="41_72bov"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk6_enkidu.tres" id="42_1yfi5"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dbtjdrtt8r0gq" path="res://Source/Actors/CharacterUnit/Bodies/AnimTreeRoot.tres" id="43_mjmav"]
+
+[sub_resource type="Shader" id="Shader_yuf6t"]
+code = "shader_type canvas_item;
+
+uniform float width : hint_range(0.0, 30.0);
+uniform float speed : hint_range(0.0, 20.0);
+uniform vec4 outline_color_origin : source_color;
+
+void fragment()
+{
+	vec4 outline_color = outline_color_origin / 1.0 - 0.15*sin(TIME*speed);
+	float size = width * 1.0 / float(textureSize(TEXTURE, 0).x);
+	vec4 sprite_color = texture(TEXTURE, UV);
+	float alpha = -8.0 * sprite_color.a;
+	alpha += texture(TEXTURE, UV + vec2(size, -size)).a;
+	alpha += texture(TEXTURE, UV + vec2(size, 0.0)).a;
+	alpha += texture(TEXTURE, UV + vec2(size, size)).a;
+	alpha += texture(TEXTURE, UV + vec2(-size, -size)).a;
+	alpha += texture(TEXTURE, UV + vec2(-size, 0.0)).a;
+	alpha += texture(TEXTURE, UV + vec2(-size, size)).a;
+	alpha += texture(TEXTURE, UV + vec2(0.0, size)).a;
+	alpha += texture(TEXTURE, UV + vec2(0.0, -size)).a;
+	
+	vec4 final_color = mix(sprite_color, outline_color, clamp(alpha, 0, 1));
+	COLOR = vec4(final_color.rgb, clamp(abs(alpha) + sprite_color.a, 0.0, 1.0));
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iyob8"]
+shader = SubResource("Shader_yuf6t")
+shader_parameter/width = 0.0
+shader_parameter/speed = 10.0
+shader_parameter/outline_color_origin = Color(0, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xdano"]
 radius = 20.2237
@@ -264,10 +295,11 @@ rotation = -0.742255
 texture = ExtResource("4_o6uwt")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_iyob8")
 position = Vector2(0, -52.5)
-texture = ExtResource("5_l1eji")
+texture = ExtResource("5_x18ss")
 region_enabled = true
-region_rect = Rect2(963, 2711, 960, 540)
+region_rect = Rect2(1, 1, 480, 270)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1.5)

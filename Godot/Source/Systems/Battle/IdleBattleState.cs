@@ -7,6 +7,7 @@ using System.Linq;
 
 public class IdleBattleState : BattleState
 {
+
     // action deduced from 
 
     public IdleBattleState(Battler battler)
@@ -22,8 +23,27 @@ public class IdleBattleState : BattleState
     private void InitCurrentTurn()
     {
         Battler.CharactersAwaitingTurn[0].CharacterStartBattleTurn();
+
+        Battler.SetGridUserHexes(GetValidMoveHexes(), GetValidHalfMoveHexes(), Battler.CurrentDisplayMode);
+        if (HumanTurn())
+        {
+            Battler.SetOutlineColours();
+        }
+        SetSpriteOutlines(Battler.GetGlobalMousePosition());
+
         Battler.EmitSignal(Battler.SignalName.TurnStarted, Battler.CharactersAwaitingTurn[0].CharacterData.KnownSpells);
-        // GD.Print(Battler.CharactersAwaitingTurn[0].CharacterData.Name);
+
+        if (Battler.CharactersAwaitingTurn[0].CharacterData.Berserk)
+        {
+            GD.Print("TODO - berserk effect");
+            //
+            // do berserk AI effect here -> 1. get the nearest target. 2. if the target is within melee range, attack. 3. otherwise, shoot if possible. 4. otherwise, move towards it.
+        }
+    }
+
+    public override void OnMovedButStillHaveAP()
+    {
+        Battler.SetGridUserHexes(GetValidMoveHexes(), GetValidHalfMoveHexes(), Battler.CurrentDisplayMode);
     }
 
     private bool HumanTurn()
@@ -36,12 +56,49 @@ public class IdleBattleState : BattleState
         return IsValidGridMove(Battler.BattleGrid.WorldToGrid(startWorldPos), Battler.BattleGrid.WorldToGrid(endWorldPos));
     }
 
+    private List<Vector2> GetValidMoveHexes()
+    {
+        Vector2 characterGridPos = Battler.BattleGrid.WorldToGrid(Battler.CharactersAwaitingTurn[0].GlobalPosition);
+
+        List<Vector2> result = new();
+        foreach (KeyValuePair<Vector2, Hexagon> kv in Battler.BattleGrid.Cells)
+        {
+            if (kv.Value.Obstacle)
+            {
+                continue;
+            }
+            if (IsValidGridMove(characterGridPos, kv.Key))
+            {
+                result.Add(kv.Key);
+            }
+        }
+        return result;
+    }
+    private List<Vector2> GetValidHalfMoveHexes()
+    {
+        Vector2 characterGridPos = Battler.BattleGrid.WorldToGrid(Battler.CharactersAwaitingTurn[0].GlobalPosition);
+
+        List<Vector2> result = new();
+        foreach (KeyValuePair<Vector2, Hexagon> kv in Battler.BattleGrid.Cells)
+        {
+            if (kv.Value.Obstacle)
+            {
+                continue;
+            }
+            if (GridMoveCost(characterGridPos, kv.Key) > 0 && GridMoveCost(characterGridPos, kv.Key) <=
+                Battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints] - MeleeRangedCastCost())
+            {
+                result.Add(kv.Key);
+            }
+        }
+        return result;
+    }
     private bool IsValidGridMove(Vector2 startGridPos, Vector2 endGridPos)
     {
         // GD.Print(GridMoveCost(startGridPos, endGridPos) == 0 ? "cant move to same square" : Battler.CharactersAwaitingTurn[0].CharacterData.ActionPoints + " available; cost is " + GridMoveCost(startGridPos, endGridPos));
         return GridMoveCost(startGridPos, endGridPos) > 0 &&
             GridMoveCost(startGridPos, endGridPos) <=
-            Battler.CharactersAwaitingTurn[0].CharacterData.ActionPoints;
+            Battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints];
     }
 
     private int WorldMoveCost(Vector2 startWorldPos, Vector2 endWorldPos)
@@ -58,12 +115,12 @@ public class IdleBattleState : BattleState
 
     private int MeleeRangedCastCost()
     {
-        return Battler.CharactersAwaitingTurn[0].CharacterData.MaxActionPoints / 2; //return (int)Math.Floor(((float)Battler.CharactersAwaitingTurn[0].CharacterData.MaxActionPoints) * 0.5f);
+        return Battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.MaxActionPoints] / 2; //return (int)Math.Floor(((float)Battler.CharactersAwaitingTurn[0].CharacterData.MaxActionPoints) * 0.5f);
     }
 
     private bool CanAfford(int cost)
     {
-        return Battler.CharactersAwaitingTurn[0].CharacterData.ActionPoints >= cost;
+        return Battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints] >= cost;
     }
 
     private bool IsNeighbour(Vector2 originPos, Vector2 targetPos)
@@ -178,7 +235,7 @@ public class IdleBattleState : BattleState
             Battler.CharactersAwaitingTurn[0].BattleMoveOrder(moveCost, worldPath);
 
             Battler.EmitSignal(Battler.SignalName.LogBattleText, string.Format("{0} moved by {1} hexes. {2} action points remain.", controlledCharacter.CharacterData.Name,
-                moveCost, controlledCharacter.CharacterData.ActionPoints), true);
+                moveCost, controlledCharacter.CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints]), true);
         }
         else if (Battler.CurrentAction == Battler.ActionMode.Melee)
         {
@@ -204,7 +261,7 @@ public class IdleBattleState : BattleState
                 );
                 controlledCharacter.BattleMoveOrder(moveCost, worldPath, targetCharacter);
                 Battler.EmitSignal(Battler.SignalName.LogBattleText, string.Format("{0} moved by {1} hexes. {2} action points remain.", controlledCharacter.CharacterData.Name,
-                    moveCost, controlledCharacter.CharacterData.ActionPoints), true);
+                    moveCost, controlledCharacter.CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints]), true);
             }
             Battler.EmitSignal(Battler.SignalName.LogBattleText, string.Format("{0} strikes {1} in melee combat.", controlledCharacter.CharacterData.Name,
                 targetCharacter.CharacterData.Name), true);
@@ -378,11 +435,33 @@ public class IdleBattleState : BattleState
         return Battler.UIBounds.HasPoint(mousePos);
     }
 
+    private void SetSpriteOutlines(Vector2 mousePos)
+    {
+        Vector2 mouseGridPos = Battler.BattleGrid.WorldToGrid(mousePos);
+        CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
+        foreach (CharacterUnit characterUnit in GetAliveUnits())
+        {
+            if (characterUnit != Battler.CharactersAwaitingTurn[0] && characterUnit != targetCharacter)
+            {
+                characterUnit.ShowSpriteOutline(false);
+            }
+        }
+        if (targetCharacter != null)
+        {
+            if (targetCharacter != Battler.CharactersAwaitingTurn[0])
+            {
+                targetCharacter.ShowSpriteOutline(true);
+            }
+        }
+    }
+
     private void SetContextualAction(Vector2 mousePos)
     {
         Vector2 mouseGridPos = Battler.BattleGrid.WorldToGrid(mousePos);
-        Vector2 characterGridPos = Battler.BattleGrid.WorldToGrid(Battler.CharactersAwaitingTurn[0].GlobalPosition);
         CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
+        Vector2 characterGridPos = Battler.BattleGrid.WorldToGrid(Battler.CharactersAwaitingTurn[0].GlobalPosition);
+        SetSpriteOutlines(Battler.GetGlobalMousePosition());
+
 
         Battler.CurrentAction = Battler.ActionMode.Invalid;
         // CAST
