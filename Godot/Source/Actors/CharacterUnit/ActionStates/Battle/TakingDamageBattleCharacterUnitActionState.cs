@@ -59,7 +59,9 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
         {
             TakingDamageAnim();
         }
-        GD.Print(string.Format("{0} takes {1} damage and has {2} health remaining.", CharacterUnit.CharacterData.Name, CharacterUnit.TakingDamageResult.FinalDamage, CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health]));
+
+        CharacterUnit.EmitSignal(CharacterUnit.SignalName.TakingDamage, CharacterUnit.TakingDamageResult, CharacterUnit.CharacterData.Name, CharacterUnit.GlobalPosition);
+        // GD.Print(string.Format("{0} takes {1} damage and has {2} health remaining.", CharacterUnit.CharacterData.Name, CharacterUnit.TakingDamageResult.FinalDamage, CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health]));
 
     }
 

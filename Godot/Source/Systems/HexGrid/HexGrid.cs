@@ -262,8 +262,7 @@ public partial class HexGrid : Node
     }
 
     // there is probably a better way to do this
-    // here we simply correct for display changes e.g. isometric, then uncentre the world position,
-    // then we loop through every hex in the grid and calculate which is closest to the world position and return that
+    // SLOW!
     public Vector2 WorldToGrid(Vector2 worldPos)
     {
         // correct for grid position, scale, and rotation
@@ -276,15 +275,58 @@ public partial class HexGrid : Node
         float currentMinDistanceSquared = Cells[new Vector2(0, 0)].GetPointPositions()[0].DistanceSquaredTo(worldPos);
         foreach (KeyValuePair<Vector2, Hexagon> kv in Cells)
         {
-            if (kv.Value.GetPointPositions()[0].DistanceSquaredTo(worldPos) < currentMinDistanceSquared)
+            float distanceSquared = kv.Value.GetPointPositions()[0].DistanceSquaredTo(worldPos);
+            if (distanceSquared < currentMinDistanceSquared)
             {
-                currentMinDistanceSquared = kv.Value.GetPointPositions()[0].DistanceSquaredTo(worldPos);
+                currentMinDistanceSquared = distanceSquared;
                 gridPos = kv.Key;
             }
         }
 
         return gridPos;
     }
+
+    // Doesn't work...
+    // public Vector2 WorldToGrid(Vector2 worldPos)
+    // {
+    //     // correct for grid position, scale, and rotation
+    //     worldPos = ((worldPos - _hexDisplay.Position) * new Vector2(_hexDisplay.Scale.X, 1 / _hexDisplay.Scale.Y))
+    //         .Rotated(-_hexGridVisualiser.Rotation);
+    //     worldPos = GetUncentredHexWorldPosition(worldPos);
+
+    //     // convert world position to grid coordinates based on hexagonal grid layout
+    //     float s = Cells.ElementAt(0).Value.S;
+    //     float q = (worldPos.X * (2.0f / 3.0f)) / s;
+    //     float r = ((-worldPos.X / 3.0f) + (Mathf.Sqrt(3.0f) / 3.0f * worldPos.Y)) / s;
+
+    //     // round to the nearest hexagon
+    //     float x = q;
+    //     float y = -q - r;
+    //     float z = r;
+    //     float rx = Mathf.Round(x);
+    //     float ry = Mathf.Round(y);
+    //     float rz = Mathf.Round(z);
+
+    //     // adjust coordinates to make sure they sum to 0 (since hexagons are arranged in a grid)
+    //     float xDiff = Mathf.Abs(rx - x);
+    //     float yDiff = Mathf.Abs(ry - y);
+    //     float zDiff = Mathf.Abs(rz - z);
+
+    //     if (xDiff > yDiff && xDiff > zDiff)
+    //     {
+    //         rx = -ry - rz;
+    //     }
+    //     else if (yDiff > zDiff)
+    //     {
+    //         ry = -rx - rz;
+    //     }
+    //     else
+    //     {
+    //         rz = -rx - ry;
+    //     }
+
+    //     return new Vector2(rx, rz);
+    // }
 
     public Hexagon GetHexAtGridPosition(Vector2 gridPos)
     {

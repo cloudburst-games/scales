@@ -3,6 +3,7 @@
     "Description": "Lugal, often a title for kingship in Sumerian culture, symbolizes authority and rulership.",
     "PatronGod": "Innana",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/GilgameshBody.tscn",
+    "PortraitPath": "res://addons/AutoScrollLabelPlugin/AutoScrollLabelIcon.png",
     "Perks": [
         0,
         3,

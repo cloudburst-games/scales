@@ -7,7 +7,7 @@ using Godot;
 
 public partial class CharacterRoundEffect : RefCounted
 {
-    public enum EffectTypeMode { Attribute, Stat, Berserk }
+    public enum EffectTypeMode { Attribute, Stat, Berserk, None }
     public string Name { get; private set; }
     public int RoundsRemaining { get; set; }
     public int CumulativeMagnitude { get; set; }
@@ -43,7 +43,7 @@ public partial class CharacterRoundEffect : RefCounted
     }
 }
 
-public class StoryCharacterData : IJSONSaveable
+public partial class StoryCharacterData : RefCounted, IJSONSaveable
 {
 
 
@@ -54,14 +54,8 @@ public class StoryCharacterData : IJSONSaveable
         Health, Endurance, HealthRegen, EnduranceRegen, MysticResist, PhysicalResist, Dodge,
         PhysicalDamageStrength, PhysicalDamagePrecision, Mysticism, Initiative, Leadership, CriticalThreshold,
         HitBonusStrength, HitBonusPrecision, Reagents, FocusCharge, Persuasion, PersuasionResist, ActionPoints,
-        MoveSpeed,
-
-        HitBonusWeapon,
-        MaxEndurance,
-        MaxHealth,
-        MaxActionPoints,
-        MaxReagents,
-        MaxFocusCharge
+        MoveSpeed, HitBonusWeapon, MaxEndurance, MaxHealth, MaxActionPoints,
+        MaxReagents, MaxFocusCharge
     }
 
     public AnimationPlayer RoundEffectAnim { get; private set; }
@@ -119,12 +113,12 @@ public class StoryCharacterData : IJSONSaveable
         if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Attribute)
         {
             Attributes[effect.AttributeAffected] += effect.Magnitude; // can be negative!
-            GD.Print("att now: ", Attributes[effect.AttributeAffected]);
+            // GD.Print("att now: ", Attributes[effect.AttributeAffected]);
         }
         else if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Stat)
         {
             Stats[effect.StatAffected] += effect.Magnitude;
-            GD.Print("stat now: ", Stats[effect.StatAffected]);
+            // GD.Print("stat now: ", Stats[effect.StatAffected]);
         }
         else if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Berserk)
         {
@@ -155,9 +149,10 @@ public class StoryCharacterData : IJSONSaveable
             {
                 Berserk = false;
             }
+            TreeLink.EmitSignal(CharacterUnit.TreeLink.SignalName.RoundEffectEnded, effect);
         }
-        GD.Print("rev att now: ", Attributes[effect.AttributeAffected]);
-        GD.Print("rev stat now: ", Stats[effect.StatAffected]);
+        // GD.Print("rev att now: ", Attributes[effect.AttributeAffected]);
+        // GD.Print("rev stat now: ", Stats[effect.StatAffected]);
         CurrentEffects.Remove(effect);
     }
 
@@ -249,7 +244,7 @@ public class StoryCharacterData : IJSONSaveable
 
     private int GetUpdatedHealth()
     {
-        return UpdateStat(Might, 3, 0.025f);
+        return UpdateStat(Might, 3, 0.025f) + UpdateStat(Resilience, 1f, 0.025f);
     }
 
     private int GetUpdatedEndurance()
@@ -277,7 +272,7 @@ public class StoryCharacterData : IJSONSaveable
 
     private int GetUpdatedPhysicalResist()
     {
-        return UpdateStat(ArmourClass, 1f, 0.025f);
+        return UpdateStat(ArmourClass, 1f, 0.025f) + UpdateStat(Resilience, 0.2f, 0.025f);
     }
 
     private int GetUpdatedDodge()
@@ -419,7 +414,15 @@ public class StoryCharacterData : IJSONSaveable
             _perks = value;
             UpdateKnownSpells();
         }
-    } // { get; set; } // 0/1/2/3/4/5/6/7 can be known spells ?
+    } // { get; set; } // 0/1/2/3/4/5/6/7 can be known spells ? .. in future separate perks from spells! (post-jam)
+
+    public enum PerkMode
+    {
+        SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment,
+        WoodenKnuckles, BrassKnuckles, AgileKnife, JewelledDagger, LesserArmor, GreaterArmor
+    }
+
+
     public Godot.Collections.Array<SpellEffectManager.SpellMode> KnownSpells { get; set; } = new();
     public int Level { get; set; }
 

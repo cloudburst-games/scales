@@ -1,0 +1,244 @@
+[gd_scene load_steps=13 format=3 uid="uid://d3fkaury6ig66"]
+
+[ext_resource type="Theme" uid="uid://d2eakbmaefnt6" path="res://addons/silent_wolf/assets/themes/sw_theme.tres" id="1_g6s5i"]
+[ext_resource type="Script" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfo.cs" id="2_66dwa"]
+[ext_resource type="Texture2D" uid="uid://4osa8ri0ekrt" path="res://Assets/Graphics/Interface/Images/9patchEgyptianSymbols.png" id="3_w6dgf"]
+[ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="4_1i2fg"]
+[ext_resource type="Texture2D" uid="uid://bpniavkv1psk3" path="res://addons/AutoScrollLabelPlugin/AutoScrollLabelIcon.png" id="4_r4fpf"]
+[ext_resource type="PackedScene" uid="uid://bl1edev0p0c1d" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfoElement.tscn" id="5_db1ly"]
+[ext_resource type="Texture2D" uid="uid://y60lspk4s5rc" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSNORMAL.png" id="6_3efnn"]
+[ext_resource type="Texture2D" uid="uid://c8q2bdypfy7w7" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSPRESSED.png" id="7_c25ac"]
+[ext_resource type="Texture2D" uid="uid://cwpt2tnkrjdhs" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSHOVER.png" id="8_3isf5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0so4a"]
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_bbake"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_3e83s"]
+font_size = 32
+
+[node name="CharacterInfoPanel" type="Control" node_paths=PackedStringArray("_lblCharacterName", "_lblAttributesStats", "_vBoxStatsDisplay", "_lblPerks", "_lblStatuses", "_btnClose", "_btnAttributesStats")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1192.0
+offset_bottom = 1152.0
+theme = ExtResource("1_g6s5i")
+script = ExtResource("2_66dwa")
+_lblCharacterName = NodePath("MainPanel/VBoxContainer/PnlName/LblCharacterName")
+_lblAttributesStats = NodePath("MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer/BtnToggleAttributesStats/LblAttributesStats")
+_pnlCharacterInfoElementScene = ExtResource("5_db1ly")
+_vBoxStatsDisplay = NodePath("MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer/PnlStatsDisplay/VBoxStatsDisplay")
+_lblPerks = NodePath("MainPanel/VBoxContainer/HBoxContainer/VBoxContainer/PnlPerks/VBoxContainer/PnlPerks/LblPerks")
+_lblStatuses = NodePath("MainPanel/VBoxContainer/HBoxContainer2/PnlStatus/LblStatuses")
+_btnClose = NodePath("MainPanel/VBoxContainer/HBoxContainer2/PnlClose/BtnClose")
+_btnAttributesStats = NodePath("MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer/BtnToggleAttributesStats")
+
+[node name="MainPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PnlName" type="Panel" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="LblCharacterName" type="Label" parent="MainPanel/VBoxContainer/PnlName"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Character Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PnlPortrait" type="Panel" parent="MainPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainPanel/VBoxContainer/HBoxContainer/VBoxContainer/PnlPortrait"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_r4fpf")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="PnlPerks" type="Panel" parent="MainPanel/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/VBoxContainer/HBoxContainer/VBoxContainer/PnlPerks"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PnlPerksTitle" type="Panel" parent="MainPanel/VBoxContainer/HBoxContainer/VBoxContainer/PnlPerks/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MainPanel/VBoxContainer/HBoxContainer/VBoxContainer/PnlPerks/VBoxContainer/PnlPerksTitle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Perks"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PnlPerks" type="Panel" parent="MainPanel/VBoxContainer/HBoxContainer/VBoxContainer/PnlPerks/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="LblPerks" type="Label" parent="MainPanel/VBoxContainer/HBoxContainer/VBoxContainer/PnlPerks/VBoxContainer/PnlPerks"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Example perk 1, example perk 2, example perk 3, example perk 4, example perk 5, example perk 6, example perk 7"
+label_settings = SubResource("LabelSettings_0so4a")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PnlStats" type="Panel" parent="MainPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainPanel/VBoxContainer/HBoxContainer/PnlStats"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BtnToggleAttributesStats" type="TextureButton" parent="MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("3_w6dgf")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("4_1i2fg")
+
+[node name="LblAttributesStats" type="Label" parent="MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer/BtnToggleAttributesStats"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -20.5
+offset_right = 85.0
+offset_bottom = 20.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Attributes"
+label_settings = SubResource("LabelSettings_bbake")
+
+[node name="PnlStatsDisplay" type="Panel" parent="MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.0
+
+[node name="VBoxStatsDisplay" type="VBoxContainer" parent="MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer/PnlStatsDisplay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PnlStatus" type="Panel" parent="MainPanel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="LblStatuses" type="Label" parent="MainPanel/VBoxContainer/HBoxContainer2/PnlStatus"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Status effect 1, status effect 2, status effect 3, status effect 4Status effect 1, status effect 2, status effect 3, status effect 4Status effect 1, status effect 2, status effect 3, status effect 4"
+label_settings = SubResource("LabelSettings_3e83s")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PnlClose" type="Panel" parent="MainPanel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnClose" type="TextureButton" parent="MainPanel/VBoxContainer/HBoxContainer2/PnlClose"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("6_3efnn")
+texture_pressed = ExtResource("7_c25ac")
+texture_hover = ExtResource("8_3isf5")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("4_1i2fg")

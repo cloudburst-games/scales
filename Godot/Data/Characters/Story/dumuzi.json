@@ -3,6 +3,7 @@
     "Description": "Dumuzi, the shepherd god, is a symbol of the changing seasons, fertility, and renewal.",
     "PatronGod": "Enki",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/EnkiduBody.tscn",
+    "PortraitPath": "res://addons/AutoScrollLabelPlugin/AutoScrollLabelIcon.png",
     "Perks": [
         0,
         1,

@@ -19,6 +19,22 @@ public partial class HexGridUserDisplay : Node2D
     private Dictionary<Vector2, Hexagon> _validCells = new();
     private List<Sprite2D> _allSprites = new();
 
+    [Export]
+    private Color _allColor = new(1, 1, 1);
+    [Export]
+    private Color _allColorOscillate = new(1, 1, 1);
+    [Export]
+    private Color _actionColor = new(0, 1, 1);
+    [Export]
+    private Color _actionColorOscillate = new(0, .5f, .5f);
+    [Export]
+    private Color _moveColor = new(0, 0, 1);
+    [Export]
+    private Color _moveColorOscillate = new(0, 0, 0.5f);
+    [Export]
+    private float _opacity = 0.3f;
+
+
     public void Init(HexGrid hexGrid)
     {
         _grid = hexGrid;
@@ -47,35 +63,37 @@ public partial class HexGridUserDisplay : Node2D
         Vector2 worldPosition = _grid.GridToWorld(gridPosition);
         Sprite2D hexSprite = _baseHexSprite.Instantiate<Sprite2D>();
         hexSprite.GlobalPosition = worldPosition;
-        hexSprite.Visible = false;
+        hexSprite.Material = (Material)hexSprite.Material.Duplicate(true);
         AddChild(hexSprite);
         _allSprites.Add(hexSprite);
     }
 
     public void SetSprites(List<Vector2> moveHexes, List<Vector2> halfMoveHexes, List<Vector2> allHexes)
     {
-        SetSpriteAnims(allHexes, "Unavailable");
-        SetSpriteAnims(moveHexes, "Action");
-        SetSpriteAnims(halfMoveHexes, "Move");
+        // System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
+        HideAllHexes();
+        SetSpriteColors(allHexes, _allColor, _allColorOscillate);
+        SetSpriteColors(moveHexes, _actionColor, _actionColorOscillate);
+        SetSpriteColors(halfMoveHexes, _moveColor, _moveColorOscillate);
+        // Stop the stopwatch
+        // stopwatch.Stop();
+
+        // Print the elapsed time
+        // GD.Print($"Elapsed Time: {stopwatch.ElapsedMilliseconds} ms");
     }
 
-    private void SetSpriteAnims(List<Vector2> gridPositions, string anim)
+    private void SetSpriteColors(List<Vector2> gridPositions, Color color1, Color color2)
     {
-        GetHexesAtGridPositions(gridPositions).ForEach(x => x.GetNode<AnimationPlayer>("Anim").Play(anim));
-        // foreach (Vector2 gridPosition in gridPositions)
-        // {
-        //     Vector2 worldPosition = _grid.GridToWorld(gridPosition);
-        //     foreach (Sprite2D sprite in _allSprites)
-        //     {
-        //         if (sprite.GlobalPosition == worldPosition)
-        //         {
-        //             sprite.GetNode<AnimationPlayer>("Anim").Play(anim);
-        //         }
-        //     }
-        // }
+        foreach (Sprite2D sprite in GetSpritesAtGridPositions(gridPositions))
+        {
+            ShaderMaterial mat = (ShaderMaterial)sprite.Material;
+            mat.SetShaderParameter("color_start", color1);
+            mat.SetShaderParameter("color_end", color2);
+            mat.SetShaderParameter("alpha", _opacity);
+        }
     }
 
-    private List<Sprite2D> GetHexesAtGridPositions(List<Vector2> gridPositions)
+    private List<Sprite2D> GetSpritesAtGridPositions(List<Vector2> gridPositions)
     {
         List<Sprite2D> result = new();
         foreach (Vector2 gridPosition in gridPositions)
@@ -92,24 +110,28 @@ public partial class HexGridUserDisplay : Node2D
         return result;
     }
 
-    public void ShowAllHexes(List<Vector2> allHexes)
+    public void ShowHexes(List<Vector2> hexes)
     {
-        GetHexesAtGridPositions(allHexes).ForEach(x => x.Visible = true);
+        foreach (Sprite2D sprite in GetSpritesAtGridPositions(hexes))
+        {
+            ShaderMaterial mat = (ShaderMaterial)sprite.Material;
+            mat.SetShaderParameter("alpha", _opacity);
+        }
     }
 
     public void ShowContextualHexes(List<Vector2> moveHexes, List<Vector2> actionHexes)
     {
         HideAllHexes();
-        GetHexesAtGridPositions(moveHexes).ForEach(x => x.Visible = true);
-        GetHexesAtGridPositions(actionHexes).ForEach(x => x.Visible = true);
+        ShowHexes(moveHexes);
+        ShowHexes(actionHexes);
     }
 
     public void HideAllHexes()
     {
         foreach (Sprite2D sprite in _allSprites)
         {
-            sprite.GetNode<AnimationPlayer>("Anim").Stop();
-            sprite.Visible = false;
+            ShaderMaterial mat = (ShaderMaterial)sprite.Material;
+            mat.SetShaderParameter("alpha", 0f);
         }
     }
 

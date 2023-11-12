@@ -15,8 +15,29 @@ public partial class CntSpellBook : Control
     {
         foreach (KeyValuePair<SpellEffectManager.SpellMode, NodePath> kv in _allSpellBtns)
         {
-            GetNode<BaseTextureButton>(kv.Value).Pressed += () => OnSpellBtnPressed(kv.Key);
+            var btn = GetNode<BaseTextureButton>(kv.Value);
+            btn.Pressed += () => OnSpellBtnPressed(kv.Key);
+            btn.MouseEntered += () => OnMouseEntered(kv.Key);
+            btn.MouseExited += () => OnMouseExited();
         }
+    }
+
+    [Signal]
+    public delegate void SpellUIHintEventHandler(int spell);
+
+    private void OnMouseEntered(SpellEffectManager.SpellMode spell)
+    {
+        EmitSignal(SignalName.SpellUIHint, (int)spell);
+    }
+
+    private void OnMouseExited()
+    {
+        EmitSignal(SignalName.SpellUIHint, (int)SpellEffectManager.SpellMode.None);
+    }
+
+    private BaseTextureButton GetSpellButton(SpellEffectManager.SpellMode spell)
+    {
+        return GetNode<BaseTextureButton>(_allSpellBtns[spell]);
     }
 
     private void OnSpellBtnPressed(SpellEffectManager.SpellMode spellSelected)

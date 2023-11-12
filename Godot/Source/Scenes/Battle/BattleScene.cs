@@ -18,7 +18,7 @@ public partial class BattleScene : Node, ISceneTransitionable
     [Export]
     private Battler _battler;
     [Export]
-    private Panel _pnlAction;
+    private PnlAction _pnlAction;
     [Export]
     private BaseButton _btnIntro;
     [Export]
@@ -26,12 +26,9 @@ public partial class BattleScene : Node, ISceneTransitionable
     [Export]
     private BaseButton _btnEndTurn;
     [Export]
-    private BaseButton _btnToggleGrid;
-    [Export]
     private BaseButton _btnMenu;
     [Export]
     private BtnActions _btnActions;
-
     // [Export]
     // private Godot.Collections.Array<BaseTextureButton> _actionBtns = new();
     // exporting here doesn#t work so we are unfortunately using magic string
@@ -76,8 +73,10 @@ public partial class BattleScene : Node, ISceneTransitionable
             });
         }
         //
+
         _btnIntro.Pressed += this.OnBtnIntroPressed;
         _HUD.UIPause += (bool paused) => this.OnUIPause(paused);
+        _pnlAction.ActionUIHint += (int hint) => _HUD.OnPnlActionUIHint((PnlAction.UIHint)hint);
         // _spellEffectManager.SpellEffectFinished += this.OnSpellEffectFinished;
         _spellEffectManager.AreaHitCalculated += _battler.ParseAreaAttack;
         _battler.UIBounds = _pnlAction.GetRect();
@@ -85,16 +84,16 @@ public partial class BattleScene : Node, ISceneTransitionable
         _battler.HUDActionRequested += _HUD.SetState;
         _battler.TurnStarted += this.OnCharacterTurnStarted;//_HUD.OnTurnStarted;
         _battler.AreaAttackParsed += _spellEffectManager.OnCastingSpell;
+        _battler.HintClickedCharacter += _HUD.OnHintClickCharacter;
         _btnActions.ActionBtnPressed += _battler.OnActionBtnPressed; // 1. Melee 2. Shoot 3. Cast spell 4. Move
         _btnActions.CastSpellActionBtnPressedButNoSpellActive += () => _HUD.SetState(BattleHUD.StateMode.SpellBookOpened);
 
         _btnChooseSpell.Pressed += _battler.OnBtnChooseSpellPressed;
         _btnEndTurn.Pressed += _battler.OnBtnEndTurnPressed;
-        _btnToggleGrid.Pressed += _battler.OnBtnToggleGridPressed;
         _btnMenu.Pressed += _battler.OnBtnMenuPressed;
 
         _cntSpellBook.SpellBtnPressed += this.OnSpellSelected;
-
+        _cntSpellBook.SpellUIHint += (int spell) => _HUD.OnSpellBookUIHint(_spellEffectManager.AllSpells[(SpellEffectManager.SpellMode)spell]);
         LoadLevel();
     }
 
@@ -153,8 +152,10 @@ public partial class BattleScene : Node, ISceneTransitionable
         newChar.CastingEffect += _spellEffectManager.OnCastingSpellStart;
         newChar.Died += _battler.OnCharacterDied;
         newChar.MovedButStillHaveAP += _battler.OnMovedButStillHaveAP;
-        newChar.CharacterDataTreeLink.RoundEffectApplied += _HUD.OnCharacterRoundEffectApplied;
+        newChar.CharacterDataTreeLink.RoundEffectApplied += (CharacterRoundEffect roundEffect) => _HUD.OnCharacterRoundEffectApplied(newChar, roundEffect);
         newChar.CharacterDataTreeLink.RoundEffectApplied += (CharacterRoundEffect roundEffect) => _battler.OnCharacterRoundEffectApplied(newChar, roundEffect);
+        newChar.CharacterDataTreeLink.RoundEffectEnded += (CharacterRoundEffect roundEffect) => _HUD.OnCharacterRoundEffectFaded(newChar, roundEffect);
+        newChar.TakingDamage += _HUD.OnCharacterTakingDamage;
         return newChar;
     }
 
@@ -185,6 +186,7 @@ public partial class BattleScene : Node, ISceneTransitionable
             characterUnit.RemoveObstacle += (playerCharacter, moving) =>
                 _lvlToLoad.HexModifier.OnCharacterRemoveObstacle(playerCharacter.GlobalPosition, moving);
         }
+        // _lvlToLoad.HexModifier.HexObstacleChanged += _battler.RecalculateUserHexes;
 
         await ToSignal(_anim, AnimationPlayer.SignalName.AnimationFinished);
         _btnIntro.Disabled = false;

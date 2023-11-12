@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://bw5lq1gqo82tm"]
 
 [ext_resource type="Script" path="res://Source/Systems/Battle/Level/BattleLevel.cs" id="1_a3xpe"]
-[ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="2_axm4r"]
+[ext_resource type="Texture2D" uid="uid://svqt0hhvt5pj" path="res://Assets/Graphics/Interface/Images/9patchSimpleBrownFat.png" id="2_6bp81"]
 [ext_resource type="PackedScene" uid="uid://byrap2l8cfdxd" path="res://Source/Systems/HexGrid/HexGrid.tscn" id="2_gfsi0"]
 [ext_resource type="Script" path="res://Source/Systems/LevelSystem/HexModifier.cs" id="3_3x0xc"]
 [ext_resource type="TileSet" uid="uid://bc4qi0pryan6r" path="res://Source/Utils/Terrain/Examples/ExampleTilesheet/TIlesheet.tres" id="3_kr0kh"]
@@ -121,91 +121,17 @@ offset_right = -3292.0
 offset_bottom = -1362.0
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="Borders"]
-visible = false
+[node name="NinePatchRect" type="NinePatchRect" parent="Borders"]
 layout_mode = 0
-offset_left = 3242.0
-offset_top = 2330.0
-offset_right = 5404.0
-offset_bottom = 2527.0
-rotation = -0.470176
-texture = ExtResource("2_axm4r")
-expand_mode = 1
-
-[node name="TextureRect2" type="TextureRect" parent="Borders"]
-visible = false
-layout_mode = 0
-offset_left = 5255.0
-offset_top = 3484.0
-offset_right = 7442.0
-offset_bottom = 3681.0
-rotation = -0.470176
-texture = ExtResource("2_axm4r")
-expand_mode = 1
-
-[node name="TextureRect3" type="TextureRect" parent="Borders"]
-visible = false
-layout_mode = 0
-offset_left = 3346.0
-offset_top = 2501.0
-offset_right = 5498.0
-offset_bottom = 2698.0
-rotation = 0.471239
-texture = ExtResource("2_axm4r")
-expand_mode = 1
-
-[node name="TextureRect4" type="TextureRect" parent="Borders"]
-visible = false
-layout_mode = 0
-offset_left = 5340.0
-offset_top = 1349.0
-offset_right = 7529.0
-offset_bottom = 1546.0
-rotation = 0.471239
-texture = ExtResource("2_axm4r")
-expand_mode = 1
-
-[node name="TextureRect5" type="TextureRect" parent="Borders"]
-layout_mode = 0
-offset_left = 3510.0
-offset_top = 1424.0
-offset_right = 6957.0
-offset_bottom = 1621.0
-scale = Vector2(1, 0.5)
-texture = ExtResource("2_axm4r")
-expand_mode = 1
-
-[node name="TextureRect6" type="TextureRect" parent="Borders"]
-layout_mode = 0
-offset_left = 3479.0
-offset_top = 2984.0
-offset_right = 6957.0
-offset_bottom = 3181.0
-scale = Vector2(1, 0.5)
-texture = ExtResource("2_axm4r")
-expand_mode = 1
-
-[node name="TextureRect7" type="TextureRect" parent="Borders"]
-layout_mode = 0
-offset_left = 3541.0
-offset_top = 1486.0
-offset_right = 5112.0
-offset_bottom = 1683.0
-rotation = 1.5708
-scale = Vector2(1, 0.5)
-texture = ExtResource("2_axm4r")
-expand_mode = 1
-
-[node name="TextureRect8" type="TextureRect" parent="Borders"]
-layout_mode = 0
-offset_left = 7002.0
-offset_top = 1486.0
-offset_right = 8550.0
-offset_bottom = 1683.0
-rotation = 1.5708
-scale = Vector2(1, 0.5)
-texture = ExtResource("2_axm4r")
-expand_mode = 1
+offset_left = 3403.0
+offset_top = 1390.0
+offset_right = 7051.0
+offset_bottom = 3124.0
+texture = ExtResource("2_6bp81")
+patch_margin_left = 127
+patch_margin_top = 159
+patch_margin_right = 126
+patch_margin_bottom = 159
 
 [node name="Battlefield" type="Node2D" parent="."]
 

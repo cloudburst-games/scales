@@ -14,6 +14,9 @@ public partial class SpellEffectManager : Node
         public CharacterUnit OriginCharacter;
         public int HexDistance { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
+        public int ReagentCost { get; set; }
+        public int ChargeCost { get; set; }
         public enum TargetMode { Ally, Enemy, Ground }
         public TargetMode Target { get; set; }
         public int Range { get; set; }
@@ -21,6 +24,7 @@ public partial class SpellEffectManager : Node
         public BattleRoller.RollerOutcomeInformation Outcome { get; set; }
 
         public Godot.Collections.Array<CharacterUnit> AreaAffectedCharacters = new();
+        public SpellMode SpellMode { get; set; }
     }
 
     public partial class SpellEffect : RefCounted
@@ -288,6 +292,7 @@ public partial class SpellEffectManager : Node
     }
 
     // todo - construct via json data
+    // Description - max characters  = 60
     private void GenerateSpells()
     {
         AllSpells[SpellMode.Arrow] = new()
@@ -296,7 +301,11 @@ public partial class SpellEffectManager : Node
             AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.Physical] },
             Name = "Arrow",
             Range = 8,
-            Target = Spell.TargetMode.Enemy
+            Target = Spell.TargetMode.Enemy,
+            SpellMode = SpellMode.Arrow,
+            Description = "Fire an arrow at your opponent.",
+            ReagentCost = 0,
+            ChargeCost = 0,
         };
         AllSpells[SpellMode.SolarFlare] = new()
         {
@@ -304,7 +313,11 @@ public partial class SpellEffectManager : Node
             AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.Fire] },
             Name = "Solar Flare",
             Range = 8,
-            Target = Spell.TargetMode.Enemy
+            Target = Spell.TargetMode.Enemy,
+            SpellMode = SpellMode.SolarFlare,
+            Description = "Launch a jolt of solar energy at an enemy.",
+            ReagentCost = 0,
+            ChargeCost = 2,
         };
         AllSpells[SpellMode.SolarBlast] = new()
         {
@@ -314,6 +327,10 @@ public partial class SpellEffectManager : Node
             Range = 10,
             Target = Spell.TargetMode.Ground,
             Area = 1,
+            SpellMode = SpellMode.SolarBlast,
+            Description = "Blast your enemies with the power of the sun.",
+            ReagentCost = 0,
+            ChargeCost = 4,
         };
         AllSpells[SpellMode.JudgementOfFlame] = new()
         {
@@ -322,6 +339,10 @@ public partial class SpellEffectManager : Node
             Name = "Judgement of Flame",
             Range = 8,
             Target = Spell.TargetMode.Enemy,
+            SpellMode = SpellMode.JudgementOfFlame,
+            Description = "Burn an enemy over time and reduce their might and precision.",
+            ReagentCost = 0,
+            ChargeCost = 5,
         };
         AllSpells[SpellMode.BlindingLight] = new()
         {
@@ -330,6 +351,10 @@ public partial class SpellEffectManager : Node
             Name = "Blinding Light",
             Range = 8,
             Target = Spell.TargetMode.Enemy,
+            SpellMode = SpellMode.BlindingLight,
+            Description = "Reduces an opponent's hit chance.",
+            ReagentCost = 0,
+            ChargeCost = 3,
         };
         AllSpells[SpellMode.VialOfFury] = new()
         {
@@ -338,6 +363,10 @@ public partial class SpellEffectManager : Node
             Name = "Vial of Fury",
             Range = 8,
             Target = Spell.TargetMode.Enemy,
+            SpellMode = SpellMode.VialOfFury,
+            Description = "Cause an enemy to go berserk, attacking the nearest creature.",
+            ReagentCost = 4,
+            ChargeCost = 0,
         };
         AllSpells[SpellMode.ElixirOfVigour] = new()
         {
@@ -346,6 +375,10 @@ public partial class SpellEffectManager : Node
             Name = "Elixir of Vigour",
             Range = 8,
             Target = Spell.TargetMode.Ally,
+            SpellMode = SpellMode.ElixirOfVigour,
+            Description = "Enhances an ally's strength and resilience.",
+            ReagentCost = 2,
+            ChargeCost = 0,
         };
         AllSpells[SpellMode.ElixirOfSwiftness] = new()
         {
@@ -354,6 +387,10 @@ public partial class SpellEffectManager : Node
             Name = "Elixir of Swiftness",
             Range = 8,
             Target = Spell.TargetMode.Ally,
+            SpellMode = SpellMode.ElixirOfSwiftness,
+            Description = "Grants an ally improved precision and speed.",
+            ReagentCost = 2,
+            ChargeCost = 0,
         };
         AllSpells[SpellMode.RegenerativeOintment] = new()
         {
@@ -362,6 +399,22 @@ public partial class SpellEffectManager : Node
             Name = "Regenerative Ointment",
             Range = 8,
             Target = Spell.TargetMode.Ally,
+            SpellMode = SpellMode.RegenerativeOintment,
+            Description = "Improves an ally's health regeneration.",
+            ReagentCost = 3,
+            ChargeCost = 0,
+        };
+        AllSpells[SpellMode.None] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.RegenerativeOintment],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.FortifyStatHealthRegen] },
+            Name = "NO SPELL",
+            Range = 8,
+            Target = Spell.TargetMode.Ally,
+            SpellMode = SpellMode.Arrow,
+            Description = "",
+            ReagentCost = 0,
+            ChargeCost = 0,
         };
     }
 

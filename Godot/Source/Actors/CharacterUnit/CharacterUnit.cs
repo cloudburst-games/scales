@@ -59,6 +59,9 @@ public partial class CharacterUnit : CharacterBody2D
     [Signal]
     public delegate void DiedEventHandler(CharacterUnit characterUnit);
 
+    [Signal]
+    public delegate void TakingDamageEventHandler(BattleRoller.RollerOutcomeInformation result, string defender, Vector2 globalPosition);
+
     public Random Rand { get; set; }
 
     public enum StatusToPlayerMode { Player, Allied, Neutral, Hostile }
@@ -107,6 +110,8 @@ public partial class CharacterUnit : CharacterBody2D
     {
         [Signal]
         public delegate void RoundEffectAppliedEventHandler(CharacterRoundEffect roundEffect);
+        [Signal]
+        public delegate void RoundEffectEndedEventHandler(CharacterRoundEffect roundEffect);
     }
 
     public void SetControlState(ControlMode controlMode)

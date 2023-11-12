@@ -3,6 +3,7 @@
     "Description": "Geshtinanna, a goddess associated with wine and the grape harvest, represents the pleasures and indulgences of life.",
     "PatronGod": "Enlil",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/EnkiduBody.tscn",
+    "PortraitPath": "res://addons/AutoScrollLabelPlugin/AutoScrollLabelIcon.png",
     "Perks": [
         0,
         3,

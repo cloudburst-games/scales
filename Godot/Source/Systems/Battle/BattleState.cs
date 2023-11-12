@@ -64,4 +64,9 @@ public class BattleState
     {
 
     }
+
+    public virtual void RecalculateUserHexes()
+    {
+
+    }
 }

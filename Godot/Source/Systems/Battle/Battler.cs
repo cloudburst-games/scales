@@ -30,6 +30,7 @@ public partial class Battler : Node2D
     public Color NeutralsOutline { get; set; } = new Color(0, 0, 1);
 
 
+
     public Rect2 UIBounds { get; set; } = new(new Vector2(0, 0), new Vector2(0, 0));
     public List<CharacterUnit> AllCharacters { get; set; } = new();
     public List<CharacterUnit> CharactersAwaitingTurn { get; set; }
@@ -94,16 +95,27 @@ public partial class Battler : Node2D
         SetState(BattleMode.Starting); // this is when character obstacles are made
     }
 
+    public void RecalculateUserHexes()
+    {
+        if (_battleState != null)
+        {
+            _battleState.RecalculateUserHexes();
+        }
+
+    }
+
     internal void SetGridUserHexes(List<Vector2> validMoveHexes, List<Vector2> validHalfMoveHexes, HexGridUserDisplay.DisplayMode displayMode)
     {
-        List<Vector2> allGridPositions = new();
+        List<Vector2> allGridPositions = new List<Vector2>();
 
         foreach (KeyValuePair<Vector2, Hexagon> kv in BattleGrid.Cells)
         {
-            if (!kv.Value.Obstacle)
+            if (kv.Value.Obstacle)
             {
-                allGridPositions.Add(kv.Key);
+                continue;
             }
+
+            allGridPositions.Add(kv.Key);
         }
 
         _hexGridUserDisplay.SetSprites(validMoveHexes, validHalfMoveHexes, allGridPositions);
@@ -114,7 +126,7 @@ public partial class Battler : Node2D
                 _hexGridUserDisplay.HideAllHexes();
                 break;
             case HexGridUserDisplay.DisplayMode.ShowAllHexes:
-                _hexGridUserDisplay.ShowAllHexes(allGridPositions);
+                _hexGridUserDisplay.ShowHexes(allGridPositions);
                 break;
             case HexGridUserDisplay.DisplayMode.ShowContextualHexes:
                 _hexGridUserDisplay.ShowContextualHexes(validMoveHexes, validHalfMoveHexes);
@@ -289,10 +301,10 @@ public partial class Battler : Node2D
         _battleState.OnBtnChooseSpellPressed();
     }
 
-    public void OnBtnToggleGridPressed()
-    {
-        _battleState.OnBtnToggleGridPressed();
-    }
+    // public void OnBtnToggleGridPressed()
+    // {
+    //     _battleState.OnBtnToggleGridPressed();
+    // }
 
     public void OnBtnMenuPressed()
     {
@@ -329,6 +341,8 @@ public partial class Battler : Node2D
 
     [Signal]
     public delegate void AreaAttackParsedEventHandler(SpellEffectManager.Spell spell);
+    [Signal]
+    public delegate void HintClickedCharacterEventHandler(bool rightclick, StoryCharacterData data);
 
     internal void ParseAreaAttack(SpellEffectManager.Spell spell)
     {
@@ -355,19 +369,23 @@ public partial class Battler : Node2D
             centreGridPoint = BattleGrid.WorldToGrid(spell.Destination);
         }
         spell.TargetCharacter = CharacterAtGridPos(centreGridPoint);
-        List<Vector2> neighbouringHexGridPositions = BattleGrid.HexNavigation.GetNeighbouringGridPositions(centreGridPoint);
-        foreach (Vector2 vec in neighbouringHexGridPositions)
-        {
-            CharacterUnit affectedCharacter = CharacterAtGridPos(vec);
-            if (affectedCharacter != null)
-            {
-                spell.AreaAffectedCharacters.Add(affectedCharacter);
-            }
-        }
-        if (spell.TargetCharacter != null)
-        {
-            spell.AreaAffectedCharacters.Add(spell.TargetCharacter);
-        }
+
+
+        // List<Vector2> neighbouringHexGridPositions = BattleGrid.HexNavigation.GetNeighbouringGridPositions(centreGridPoint);
+        // foreach (Vector2 vec in neighbouringHexGridPositions)
+        // {
+        //     CharacterUnit affectedCharacter = CharacterAtGridPos(vec);
+        //     if (affectedCharacter != null)
+        //     {
+        //         spell.AreaAffectedCharacters.Add(affectedCharacter);
+        //     }
+        // }
+        // if (spell.TargetCharacter != null)
+        // {
+        //     spell.AreaAffectedCharacters.Add(spell.TargetCharacter);
+        // }
+
+        spell.AreaAffectedCharacters = GetAffectedAreaSpellCharacters(spell, centreGridPoint);
 
         // GD.Print("spell centre is here: ", centreGridPoint);
         // GD.Print("clicked on here: ", BattleGrid.WorldToGrid(GetGlobalMousePosition()));
@@ -378,6 +396,26 @@ public partial class Battler : Node2D
 
 
         EmitSignal(SignalName.AreaAttackParsed, spell);
+    }
+
+    // in future need to modify by the area size (1 = centre + 6 surrounding hexes, 2 = centre + 6 surrounding hexes + each of those hexes 6 more etc.. sounds like a recursive method needed)
+    public Godot.Collections.Array<CharacterUnit> GetAffectedAreaSpellCharacters(SpellEffectManager.Spell spell, Vector2 centreGridPoint)
+    {
+        Godot.Collections.Array<CharacterUnit> result = new();
+        List<Vector2> neighbouringHexes = BattleGrid.HexNavigation.GetNeighbouringGridPositions(centreGridPoint);
+        foreach (Vector2 vec in neighbouringHexes)
+        {
+            CharacterUnit affectedCharacter = CharacterAtGridPos(vec);
+            if (affectedCharacter != null)
+            {
+                result.Add(affectedCharacter);
+            }
+        }
+        if (spell.TargetCharacter != null)
+        {
+            result.Add(spell.TargetCharacter);
+        }
+        return result;
     }
 
     internal void OnCharacterRoundEffectApplied(CharacterUnit newChar, CharacterRoundEffect effect)
@@ -392,4 +430,5 @@ public partial class Battler : Node2D
     {
         _battleState.OnMovedButStillHaveAP();
     }
+
 }

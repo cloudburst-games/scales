@@ -3,6 +3,7 @@
     "Description": "Enkidu, a primal and untamed being, transformed by friendship and connection from a wild creature to a loyal companion in the epic of Gilgamesh.",
     "PatronGod": "Innana",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/EnkiduBody.tscn",
+    "PortraitPath": "res://addons/AutoScrollLabelPlugin/AutoScrollLabelIcon.png",
     "Perks": [
         0,
         1,

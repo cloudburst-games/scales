@@ -15,7 +15,7 @@ public partial class WaitingBattleCharacterUnitActionState : CharacterUnitAction
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/melee", false);
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/takingdamage", false);
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/dying", false);
-        // We want to remove the obstacle as we are about to move
+        // We want to restore the obstacle as we have finished moving
         CharacterUnit.EmitSignal(CharacterUnit.SignalName.RemoveObstacle, CharacterUnit, false);
 
         // if (CharacterUnit.TakeDamageQueued)

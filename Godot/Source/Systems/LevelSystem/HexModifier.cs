@@ -9,6 +9,9 @@ public partial class HexModifier : Node
     {
     }
 
+    [Signal]
+    public delegate void HexObstacleChangedEventHandler();
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
@@ -34,6 +37,7 @@ public partial class HexModifier : Node
         // );
         _hexGrid.UpdateNavigationAndDisplay();
         // _hexGrid.UpdateDisplay();
+        // EmitSignal(SignalName.HexObstacleChanged);
     }
 
     public void OnCharacterRemoveObstacle(Vector2 worldPosOfCharacter, bool moving)

@@ -41,6 +41,11 @@ public class IdleBattleState : BattleState
         }
     }
 
+    public override void RecalculateUserHexes()
+    {
+        Battler.SetGridUserHexes(GetValidMoveHexes(), GetValidHalfMoveHexes(), Battler.CurrentDisplayMode);
+    }
+
     public override void OnMovedButStillHaveAP()
     {
         Battler.SetGridUserHexes(GetValidMoveHexes(), GetValidHalfMoveHexes(), Battler.CurrentDisplayMode);
@@ -58,6 +63,7 @@ public class IdleBattleState : BattleState
 
     private List<Vector2> GetValidMoveHexes()
     {
+        // System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
         Vector2 characterGridPos = Battler.BattleGrid.WorldToGrid(Battler.CharactersAwaitingTurn[0].GlobalPosition);
 
         List<Vector2> result = new();
@@ -72,10 +78,13 @@ public class IdleBattleState : BattleState
                 result.Add(kv.Key);
             }
         }
+        // stopwatch.Stop();
+        // GD.Print($"Elapsed Time: {stopwatch.ElapsedMilliseconds} ms");
         return result;
     }
     private List<Vector2> GetValidHalfMoveHexes()
     {
+
         Vector2 characterGridPos = Battler.BattleGrid.WorldToGrid(Battler.CharactersAwaitingTurn[0].GlobalPosition);
 
         List<Vector2> result = new();
@@ -85,8 +94,10 @@ public class IdleBattleState : BattleState
             {
                 continue;
             }
-            if (GridMoveCost(characterGridPos, kv.Key) > 0 && GridMoveCost(characterGridPos, kv.Key) <=
-                Battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints] - MeleeRangedCastCost())
+            int moveCost = GridMoveCost(characterGridPos, kv.Key);
+            // moveCost = (moveCost == -1) ? 0 : moveCost;
+            if (moveCost > 0 && moveCost <=
+                Battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints] - MeleeRangedCastAPCost())
             {
                 result.Add(kv.Key);
             }
@@ -113,7 +124,7 @@ public class IdleBattleState : BattleState
         // Battler.CharactersAwaitingTurn.Remove(Battler.CharactersAwaitingTurn.ToList()[0]);
     }
 
-    private int MeleeRangedCastCost()
+    private int MeleeRangedCastAPCost()
     {
         return Battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.MaxActionPoints] / 2; //return (int)Math.Floor(((float)Battler.CharactersAwaitingTurn[0].CharacterData.MaxActionPoints) * 0.5f);
     }
@@ -212,7 +223,12 @@ public class IdleBattleState : BattleState
             }
             else if (btn.Pressed && btn.ButtonIndex == MouseButton.Right)
             {
-                // contextual right click either done here, or more likely at the UI element level
+                Vector2 mouseGridPos = Battler.BattleGrid.WorldToGrid(mousePos);
+                CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
+                if (targetCharacter != null)
+                {
+                    Battler.EmitSignal(Battler.SignalName.HintClickedCharacter, true, targetCharacter.CharacterData);
+                }
             }
         }
     }
@@ -296,7 +312,10 @@ public class IdleBattleState : BattleState
         }
         else if (Battler.CurrentAction == Battler.ActionMode.Hint)
         {
-            // do hint
+            if (targetCharacter != null)
+            {
+                Battler.EmitSignal(Battler.SignalName.HintClickedCharacter, false, targetCharacter.CharacterData);
+            }
             return;
         }
         else if (Battler.CurrentAction == Battler.ActionMode.Invalid)
@@ -341,7 +360,9 @@ public class IdleBattleState : BattleState
                 }
                 closestPos = surroundingGridPositions.OrderBy(x => GridMoveCost(characterGridPos, x)).ToList()[0];
             }
-            if (validTarget && CanAfford(GridMoveCost(characterGridPos, closestPos) + MeleeRangedCastCost()))
+            int moveCost = GridMoveCost(characterGridPos, closestPos);
+            moveCost = (moveCost == -1) ? 0 : moveCost;
+            if (validTarget && CanAfford(moveCost + MeleeRangedCastAPCost()))
             {
                 return true;
             }
@@ -349,7 +370,25 @@ public class IdleBattleState : BattleState
         return false;
     }
 
+    // if (GridMoveCost(characterGridPos, kv.Key) > 0 && GridMoveCost(characterGridPos, kv.Key) <=
+    //     Battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints] - MeleeRangedCastCost())
     private bool IsValidRanged(Vector2 mouseGridPos, int range)
+    {
+        CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
+        if (IsValidRangedTarget(mouseGridPos))
+        {
+            if (CanAfford(MeleeRangedCastAPCost()))
+            {
+                if (WithinShootingRange(targetCharacter, range))
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private bool IsValidRangedTarget(Vector2 mouseGridPos)
     {
         CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
         CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
@@ -359,20 +398,22 @@ public class IdleBattleState : BattleState
         }
         if (controlledCharacter.ValidEnemyTargets.Contains(targetCharacter.StatusToPlayer))
         {
-            if (CanAfford(MeleeRangedCastCost()) && Battler.BattleGrid.GetHexDistanceByWorld(controlledCharacter.GlobalPosition, targetCharacter.GlobalPosition) <= range)
-            {
-
-                return true;
-            }
+            return true;
         }
+
         return false;
     }
 
-    // private SpellEffectManager.Spell _currentSelectedSpell = new() // set this to whatever is being selected in spellbook (starts off as null and goes to spellbook to pick if clicked)
-    // {
-    //     Target = SpellEffectManager.Spell.TargetMode.Enemy,
-    //     Name = "Solar Flare",
-    // };
+    private bool WithinShootingRange(CharacterUnit targetCharacter, int range)
+    {
+        CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
+        if (targetCharacter == null)
+        {
+            return false;
+        }
+        return Battler.BattleGrid.GetHexDistanceByWorld(controlledCharacter.GlobalPosition, targetCharacter.GlobalPosition) <= range;
+
+    }
 
     private bool IsValidSpell(Vector2 mouseGridPos, SpellEffectManager.SpellMode spell)
     {
@@ -380,6 +421,20 @@ public class IdleBattleState : BattleState
         {
             return false;
         }
+        CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
+        if (IsValidSpellTarget(mouseGridPos, spell))
+        {
+            if (TargetWithinRange(Battler.BattleGrid.GetHexDistanceByWorld(controlledCharacter.GlobalPosition, Battler.GetGlobalMousePosition()), Battler.AllSpells[spell].Range))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool IsValidSpellTarget(Vector2 mouseGridPos, SpellEffectManager.SpellMode spell)
+    {
         CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
         CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
         SpellEffectManager.Spell currentSelectedSpell = Battler.AllSpells[spell];
@@ -394,16 +449,13 @@ public class IdleBattleState : BattleState
         }
         bool validGroundSpellTarget = currentSelectedSpell.Target == SpellEffectManager.Spell.TargetMode.Ground &&
             IsMouseOverCharacterOrEmpty(mouseGridPos);
-        Vector2 destination = Battler.GetGlobalMousePosition();
         // GD.Print(currentSelectedSpell.Target);
-        if (validEnemySpellTarget || validAllySpellTarget || validGroundSpellTarget)
-        {
-            if (Battler.BattleGrid.GetHexDistanceByWorld(controlledCharacter.GlobalPosition, destination) <= Battler.AllSpells[spell].Range)
-            {
-                return true;
-            }
-        }
-        return false;
+        return validEnemySpellTarget || validAllySpellTarget || validGroundSpellTarget;
+    }
+
+    private bool TargetWithinRange(int gridDistance, int range)
+    {
+        return gridDistance <= range;
     }
 
     private bool IsMouseOverCharacterOrEmpty(Vector2 mouseGridPos)
@@ -456,13 +508,100 @@ public class IdleBattleState : BattleState
         }
     }
 
+    private int GetSpellNumberAffected(SpellEffectManager.Spell spell, Vector2 gridPos)
+    {
+        if (spell.Target == SpellEffectManager.Spell.TargetMode.Ground)
+        {
+            return Battler.GetAffectedAreaSpellCharacters(spell, gridPos).Count;
+        }
+        return 0;
+    }
+
+    private BattleLogParser.InvalidReasonMode GetInvalidReasonMode(Vector2 characterGridPos, Vector2 mouseGridPos)
+    {
+        // if (action == Battler.ActionMode.Move)
+        // {
+        if (Battler.PlayerSelectedAction == Battler.ActionMode.Move || Battler.PlayerSelectedAction == Battler.ActionMode.Melee)
+        {
+            int moveCost = GridMoveCost(characterGridPos, mouseGridPos);
+            if (Battler.PlayerSelectedAction == Battler.ActionMode.Melee)
+            {
+                if (!CanAfford(MeleeRangedCastAPCost()))
+                {
+                    return BattleLogParser.InvalidReasonMode.NotEnoughAP;
+                }
+            }
+            if (moveCost == -1)
+            {
+                return BattleLogParser.InvalidReasonMode.NotEnoughAP;
+            }
+            else if (!CanAfford(moveCost))
+            {
+                return BattleLogParser.InvalidReasonMode.NotEnoughAP;
+            }
+        }
+        else if (Battler.PlayerSelectedAction == Battler.ActionMode.Cast)
+        {
+            SpellEffectManager.SpellMode spell = Battler.CharactersAwaitingTurn[0].UISelectedSpell;
+            if (!IsValidSpellTarget(mouseGridPos, spell))
+            {
+                return BattleLogParser.InvalidReasonMode.InvalidTarget;
+            }
+            else if (!TargetWithinRange(DistanceFromCurrentCharToMouseWorld(), Battler.AllSpells[spell].Range))
+            {
+                return BattleLogParser.InvalidReasonMode.OutOfRange;
+            }
+            else if (!CanAfford(MeleeRangedCastAPCost()))
+            {
+                return BattleLogParser.InvalidReasonMode.NotEnoughAP;
+            }
+        }
+        else if (Battler.PlayerSelectedAction == Battler.ActionMode.Shoot)
+        {
+            if (!IsValidRangedTarget(mouseGridPos))
+            {
+                return BattleLogParser.InvalidReasonMode.InvalidTarget;
+            }
+            else if (!CanAfford(MeleeRangedCastAPCost()))
+            {
+                return BattleLogParser.InvalidReasonMode.NotEnoughAP;
+            }
+            else if (!WithinShootingRange(Battler.CharacterAtGridPos(mouseGridPos), Battler.AllSpells[SpellEffectManager.SpellMode.Arrow].Range))
+            {
+                return BattleLogParser.InvalidReasonMode.OutOfRange;
+            }
+        }
+        return BattleLogParser.InvalidReasonMode.InvalidTarget;
+        // }
+    }
+
+    // private bool IsValidRanged(Vector2 mouseGridPos, int range)
+    // {
+    //     CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
+    //     if (IsValidRangedTarget(mouseGridPos, range))
+    //     {
+    //         if (CanAfford(MeleeRangedCastCost()))
+    //         {
+    //             if (WithinShootingRange(targetCharacter, range))
+    //             {
+    //                 return true;
+    //             }
+    //         }
+    //     }
+    //     return false;
+    // }
+    private int DistanceFromCurrentCharToMouseWorld()
+    {
+        return Battler.BattleGrid.GetHexDistanceByWorld(Battler.CharactersAwaitingTurn[0].GlobalPosition, Battler.GetGlobalMousePosition());
+    }
+
     private void SetContextualAction(Vector2 mousePos)
     {
         Vector2 mouseGridPos = Battler.BattleGrid.WorldToGrid(mousePos);
         CharacterUnit targetCharacter = Battler.CharacterAtGridPos(mouseGridPos);
         Vector2 characterGridPos = Battler.BattleGrid.WorldToGrid(Battler.CharactersAwaitingTurn[0].GlobalPosition);
+        Battler.AllSpells[Battler.CharactersAwaitingTurn[0].UISelectedSpell].TargetCharacter = targetCharacter;
         SetSpriteOutlines(Battler.GetGlobalMousePosition());
-
 
         Battler.CurrentAction = Battler.ActionMode.Invalid;
         // CAST
@@ -470,48 +609,58 @@ public class IdleBattleState : BattleState
         {
             Battler.CursorControl.SetCursor(CursorControl.CursorMode.Spell);
             Battler.CurrentAction = Battler.ActionMode.Cast;
-            Battler.EmitSignal(Battler.SignalName.LogBattleText, String.Format("Cast {0}", Battler.AllSpells[Battler.CharactersAwaitingTurn[0].UISelectedSpell].Name), false);
+            // Battler.EmitSignal(Battler.SignalName.LogBattleText, String.Format("Cast {0}", Battler.AllSpells[Battler.CharactersAwaitingTurn[0].UISelectedSpell].Name), false);
         }
         // RANGED
         else if (IsValidRanged(mouseGridPos, Battler.AllSpells[SpellEffectManager.SpellMode.Arrow].Range) && Battler.PlayerSelectedAction == Battler.ActionMode.Shoot)
         {
             Battler.CursorControl.SetCursor(CursorControl.CursorMode.Ranged);
             Battler.CurrentAction = Battler.ActionMode.Shoot;
-            Battler.EmitSignal(Battler.SignalName.LogBattleText, String.Format("Shoot {0}", targetCharacter.CharacterData.Name), false);
+            // Battler.EmitSignal(Battler.SignalName.LogBattleText, String.Format("Shoot {0}", targetCharacter.CharacterData.Name), false);
         }
         // MELEE
         else if (IsValidMelee(mouseGridPos, characterGridPos))
         {
             Battler.CursorControl.SetCursor(CursorControl.CursorMode.Melee);
             Battler.CurrentAction = Battler.ActionMode.Melee;
-            Battler.EmitSignal(Battler.SignalName.LogBattleText, String.Format("Strike {0}", targetCharacter.CharacterData.Name), false);
+            // Battler.EmitSignal(Battler.SignalName.LogBattleText, String.Format("Strike {0}", targetCharacter.CharacterData.Name), false);
         }
         // MOVE
         else if (IsValidGridMove(characterGridPos, mouseGridPos))
         {
             Battler.CursorControl.SetCursor(CursorControl.CursorMode.Move);
             Battler.CurrentAction = Battler.ActionMode.Move;
-            Battler.EmitSignal(Battler.SignalName.LogBattleText, "Move to location", false);
+            // Battler.EmitSignal(Battler.SignalName.LogBattleText, "Move to location", false);
         }
         // HINT
-        else if (IsMouseOverAlly(mouseGridPos))
+        else if (IsMouseOverAlly(mouseGridPos) &&
+            !(Battler.PlayerSelectedAction == Battler.ActionMode.Cast &&
+            Battler.AllSpells[Battler.CharactersAwaitingTurn[0].UISelectedSpell].Target == SpellEffectManager.Spell.TargetMode.Ally))
         {
             Battler.CursorControl.SetCursor(CursorControl.CursorMode.Hint);
             Battler.CurrentAction = Battler.ActionMode.Hint;
-            Battler.EmitSignal(Battler.SignalName.LogBattleText, "Click for more information", false);
+            // Battler.EmitSignal(Battler.SignalName.LogBattleText, "Click for more information", false);
         }
         else if (IsOverUI(mousePos))
         {
             Battler.CursorControl.SetCursor(CursorControl.CursorMode.Select);
             Battler.CurrentAction = Battler.ActionMode.None;
-            Battler.EmitSignal(Battler.SignalName.LogBattleText, "", false);
+            return; // should get UIHINT in the log instead
+            // Battler.EmitSignal(Battler.SignalName.LogBattleText, "", false);
         }
         else // outside the grid bounds
         {
             // Set valid error message to log TODODODO!!!!
+            Battler.CurrentAction = Battler.ActionMode.Invalid;
             Battler.CursorControl.SetCursor(CursorControl.CursorMode.Invalid);
-            Battler.EmitSignal(Battler.SignalName.LogBattleText, "", false);
+            // Battler.EmitSignal(Battler.SignalName.LogBattleText, "", false);
         }
+        Battler.EmitSignal(Battler.SignalName.LogBattleText,
+            BattleLogParser.ParseAction(Battler.CurrentAction, Battler.AllSpells[Battler.CharactersAwaitingTurn[0].UISelectedSpell],
+                GetSpellNumberAffected(Battler.AllSpells[Battler.CharactersAwaitingTurn[0].UISelectedSpell], mouseGridPos),
+                Battler.CharactersAwaitingTurn[0].CharacterData.Name, targetCharacter == null ? "" : targetCharacter.CharacterData.Name,
+                GetInvalidReasonMode(characterGridPos, mouseGridPos)),
+                false);
 
 
     }

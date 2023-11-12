@@ -1,15 +1,18 @@
-[gd_scene load_steps=59 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=64 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
 [ext_resource type="Texture2D" uid="uid://b8lrqyev7uyvy" path="res://addons/SceneTransitionPlugin/ContinueDisabled.png" id="2_mer2l"]
 [ext_resource type="Texture2D" uid="uid://dw55h30ros4ye" path="res://addons/SceneTransitionPlugin/ContinueNormal.png" id="3_4utpa"]
 [ext_resource type="Texture2D" uid="uid://rbn5wog65ufi" path="res://addons/SceneTransitionPlugin/ContinuePressed.png" id="4_froe4"]
+[ext_resource type="PackedScene" uid="uid://f880l6fqx7bi" path="res://Source/Interface/Label/LblFloatingText.tscn" id="4_x84xo"]
+[ext_resource type="Script" path="res://Source/Scenes/Battle/PnlAction.cs" id="5_5obug"]
 [ext_resource type="Texture2D" uid="uid://bu2d7p1pnn5i7" path="res://Assets/Graphics/Interface/Buttons/Actions/Melee.png" id="5_728wm"]
 [ext_resource type="Texture2D" uid="uid://dfljrleew8t8j" path="res://addons/SceneTransitionPlugin/ContinueHover.png" id="5_foh57"]
 [ext_resource type="Texture2D" uid="uid://5ua02qta6fs2" path="res://Assets/Graphics/Interface/Buttons/Actions/MeleeHover.png" id="6_7olrp"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BtnActions.cs" id="6_8u3hr"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_8jqkl"]
+[ext_resource type="Texture2D" uid="uid://dr5tr4s7ie3cw" path="res://Assets/Graphics/Interface/Buttons/About/questionhover.png" id="7_018is"]
 [ext_resource type="Texture2D" uid="uid://fcvswpr4arvt" path="res://Assets/Graphics/Interface/Buttons/Actions/Spell.png" id="8_o6igi"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleHUD.cs" id="8_p64pw"]
 [ext_resource type="PackedScene" uid="uid://bw5lq1gqo82tm" path="res://Data/Levels/Battle/BattleLevelTemplate.tscn" id="9_4plr1"]
@@ -21,7 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://dxwbq4clp1pyr" path="res://Assets/Graphics/Interface/Buttons/Actions/WaitHover.png" id="13_nvwr6"]
 [ext_resource type="Texture2D" uid="uid://ccj7burt8mlap" path="res://addons/AudioContainerPlugin/AudioContainerIcon.png" id="14_ycjn2"]
 [ext_resource type="Texture2D" uid="uid://dxhgtad82y7mx" path="res://Assets/Graphics/Interface/Buttons/Actions/Bow.png" id="16_e3j1o"]
-[ext_resource type="Texture2D" uid="uid://da1npq2e4e7l2" path="res://Source/Systems/HexGrid/example/pointy_hex.png" id="17_0c8f4"]
 [ext_resource type="Texture2D" uid="uid://v6ejl6f1cf4" path="res://Assets/Graphics/Interface/Buttons/Actions/BowHover.png" id="17_enl43"]
 [ext_resource type="Texture2D" uid="uid://debj5xxrq0rro" path="res://Assets/Graphics/Interface/Buttons/Actions/Move.png" id="18_7qj1f"]
 [ext_resource type="Texture2D" uid="uid://birpy4r4g8whd" path="res://Assets/Graphics/Interface/Buttons/Settings/barsHorizontal.png" id="19_hl42s"]
@@ -50,10 +52,16 @@
 [ext_resource type="Texture2D" uid="uid://b5y2sla7shloo" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/OintmentHover.png" id="44_s1m13"]
 [ext_resource type="Texture2D" uid="uid://dsknwp4qky61j" path="res://Assets/Graphics/Interface/Buttons/Spells/VialFury.png" id="45_dlkfi"]
 [ext_resource type="Texture2D" uid="uid://8i2158h3ph0k" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/VialFuryHover.png" id="46_7l2d4"]
+[ext_resource type="PackedScene" uid="uid://d3fkaury6ig66" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfo.tscn" id="49_8ah3x"]
 [ext_resource type="PackedScene" uid="uid://dab158j4ohebo" path="res://Source/Systems/HexGrid/HexGridUserDisplay.tscn" id="50_rack7"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_gqkdd"]
-font_size = 64
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_1b6cn"]
+font_size = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_518rn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_21ipa"]
 font_size = 64
@@ -151,7 +159,7 @@ _data = {
 "Unloading": SubResource("Animation_gafb4")
 }
 
-[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnToggleGrid", "_btnMenu", "_btnActions", "_cntSpellBook", "_cursorControl", "_spellEffectManager")]
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnActions", "_cntSpellBook", "_cursorControl", "_spellEffectManager")]
 script = ExtResource("1_2w8r3")
 _anim = NodePath("Anim")
 _cntBattleLevel = NodePath("CntBattleLevel")
@@ -161,7 +169,6 @@ _pnlAction = NodePath("BattleHUD/CntHUD/PnlAction")
 _btnIntro = NodePath("BattleHUD/CntHUD/PnlBattleIntro/BtnIntro")
 _btnChooseSpell = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnChooseSpell")
 _btnEndTurn = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnEndTurn")
-_btnToggleGrid = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnGrid")
 _btnMenu = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnMenu")
 _btnActions = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnActions")
 _levelScenePaths = [ExtResource("9_4plr1")]
@@ -174,18 +181,23 @@ offset_right = 3840.0
 offset_bottom = 2160.0
 color = Color(0.568627, 0.862745, 1, 1)
 
-[node name="BattleHUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("_pnlBattleIntro", "_btnBattleIntroContinue", "_lblIntro", "_lblShortLog", "_btnLog", "_pnlFullLog", "_RLblFullLog", "_pnlSpellBook", "_btnCloseSpellBook", "_cntSpellBook")]
+[node name="BattleHUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("_characterInfoPanel", "_pnlBattleIntro", "_btnBattleIntroContinue", "_lblIntro", "_lblShortLog", "_btnLog", "_pnlFullLog", "_RLblFullLog", "_pnlSpellBook", "_btnCloseSpellBook", "_cntSpellBook", "_lblHint", "_pnlShortLog", "_pnlAction")]
 script = ExtResource("8_p64pw")
+_characterInfoPanel = NodePath("CntHUD/CharacterInfoPanel")
 _pnlBattleIntro = NodePath("CntHUD/PnlBattleIntro")
 _btnBattleIntroContinue = NodePath("CntHUD/PnlBattleIntro/BtnIntro")
 _lblIntro = NodePath("CntHUD/PnlBattleIntro/Label")
-_lblShortLog = NodePath("CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/HBoxContainer/LblShortLog")
-_btnLog = NodePath("CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/HBoxContainer/BtnLog")
+_lblShortLog = NodePath("CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/VBoxContainer/PnlShortLog/HBoxContainer/LblShortLog")
+_btnLog = NodePath("CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/VBoxContainer/PnlShortLog/HBoxContainer/BtnLog")
 _pnlFullLog = NodePath("CntHUD/PnlFullLog")
 _RLblFullLog = NodePath("CntHUD/PnlFullLog/RLblFullLog")
 _pnlSpellBook = NodePath("CntHUD/CntSpellBook/PnlSpellBook")
 _btnCloseSpellBook = NodePath("CntHUD/CntSpellBook/PnlSpellBook/BtnClose")
 _cntSpellBook = NodePath("CntHUD/CntSpellBook")
+_lblFloatText = ExtResource("4_x84xo")
+_lblHint = NodePath("CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/VBoxContainer/PnlHint/LblHint")
+_pnlShortLog = NodePath("CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/VBoxContainer/PnlShortLog")
+_pnlAction = NodePath("CntHUD/PnlAction")
 
 [node name="CntHUD" type="Control" parent="BattleHUD"]
 modulate = Color(1, 1, 1, 0)
@@ -197,23 +209,49 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PnlAction" type="Panel" parent="BattleHUD/CntHUD"]
+[node name="PnlAction" type="Panel" parent="BattleHUD/CntHUD" node_paths=PackedStringArray("_btnChooseAction", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnMelee", "_btnShoot", "_btnMove", "_btnCast", "_btnLog", "_btnOptions")]
 process_mode = 4
 layout_mode = 0
 offset_left = 72.0
 offset_top = 1704.0
 offset_right = 3692.0
-offset_bottom = 2128.0
+offset_bottom = 2157.0
 theme = ExtResource("10_a18qy")
+script = ExtResource("5_5obug")
+_btnChooseAction = NodePath("HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnActions")
+_btnChooseSpell = NodePath("HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnChooseSpell")
+_btnEndTurn = NodePath("HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnEndTurn")
+_btnMenu = NodePath("HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnMenu")
+_btnMelee = NodePath("PnlActions/HBoxContainer/BtnAttack")
+_btnShoot = NodePath("PnlActions/HBoxContainer/BtnShoot")
+_btnMove = NodePath("PnlActions/HBoxContainer/BtnMove")
+_btnCast = NodePath("PnlActions/HBoxContainer/BtnCastSpell")
+_btnLog = NodePath("HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/VBoxContainer/PnlShortLog/HBoxContainer/BtnLog")
+_btnOptions = NodePath("HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnMenu")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction"]
 layout_mode = 0
 offset_right = 3612.0
-offset_bottom = 420.0
+offset_bottom = 449.0
 
 [node name="PnlActiveCharacter" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/PnlActiveCharacter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_018is")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer"]
 layout_mode = 2
@@ -223,6 +261,7 @@ size_flags_stretch_ratio = 7.0
 [node name="HBoxBtnsLog" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 1.5
 
 [node name="BtnActions" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog" node_paths=PackedStringArray("_actionPnl")]
 layout_mode = 2
@@ -254,7 +293,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 10.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -262,15 +301,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LblShortLog" type="Label" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/HBoxContainer"]
+[node name="PnlShortLog" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/VBoxContainer/PnlShortLog"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 2244.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 7
+
+[node name="LblShortLog" type="Label" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/VBoxContainer/PnlShortLog/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 20.0
-text = "Commencing battle..."
 label_settings = SubResource("LabelSettings_gqkdd")
 horizontal_alignment = 1
 
-[node name="BtnLog" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/HBoxContainer"]
+[node name="BtnLog" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/VBoxContainer/PnlShortLog/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("14_ycjn2")
@@ -278,20 +329,27 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
 
+[node name="PnlHint" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LblHint" type="Label" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/VBoxContainer/PnlHint"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 7
+label_settings = SubResource("LabelSettings_1b6cn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="BtnEndTurn" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture_normal = ExtResource("12_n0ccq")
 texture_hover = ExtResource("13_nvwr6")
-ignore_texture_size = true
-stretch_mode = 4
-script = ExtResource("7_8jqkl")
-
-[node name="BtnGrid" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-texture_normal = ExtResource("17_0c8f4")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("7_8jqkl")
@@ -307,6 +365,252 @@ script = ExtResource("7_8jqkl")
 [node name="HBoxTurnOrder" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Panel4" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel5" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel6" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel7" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_518rn")
+
+[node name="Panel8" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel9" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel9"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel10" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel10"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel11" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel11"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel2" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_518rn")
+
+[node name="Panel12" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel12"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel13" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel13"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel14" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel14"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel15" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect13" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder/Panel15"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 20.0
+offset_right = -5.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+texture = ExtResource("14_ycjn2")
+stretch_mode = 5
+
+[node name="Panel3" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_styles/panel = SubResource("StyleBoxFlat_518rn")
 
 [node name="PnlActions" type="Panel" parent="BattleHUD/CntHUD/PnlAction"]
 visible = false
@@ -455,6 +759,7 @@ offset_right = 819.5
 offset_bottom = 540.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlFullLog"]
 layout_mode = 1
@@ -631,6 +936,8 @@ texture_hover = ExtResource("46_7l2d4")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
+
+[node name="CharacterInfoPanel" parent="BattleHUD/CntHUD" instance=ExtResource("49_8ah3x")]
 
 [node name="CntBattleLevel" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0)
