@@ -1,0 +1,300 @@
+[gd_scene load_steps=64 format=3 uid="uid://3joi5bnvgin0"]
+
+[ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_swga2"]
+[ext_resource type="Texture2D" uid="uid://df8lqcv8yrru6" path="res://Assets/Graphics/Sprites/Actors/Townsfolk_AMAB/AMABIdleStyle1.png" id="5_wbhb7"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/hit1_amab1.tres" id="6_0myml"]
+[ext_resource type="Animation" uid="uid://dl4sxqjw453g6" path="res://Source/Actors/CharacterUnit/Bodies/dying.res" id="7_2nqjt"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/hit2_amab1.tres" id="9_b63bx"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/hit3_amab1.tres" id="10_6jjda"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/hit4_amab1.tres" id="11_sij4s"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/hit5_amab1.tres" id="12_jby8q"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/hit6_amab1.tres" id="13_c431n"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/idle1_amab1.tres" id="14_m6cud"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/idle2_amab1.tres" id="15_6jau3"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/idle3_amab1.tres" id="16_4oyie"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/idle4_amab1.tres" id="17_fjl1l"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/idle5_amab1.tres" id="18_umqjy"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/idle6_amab1.tres" id="19_6hryb"]
+[ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="19_mxaev"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/walk1_amab1.tres" id="20_bbjhr"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/walk2_amab1.tres" id="21_88bsm"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/walk3_amab1.tres" id="22_aghgw"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/walk4_amab1.tres" id="23_suiak"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/walk5_amab1.tres" id="24_twaco"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AnimSequences/walk6_amab1.tres" id="25_pfaab"]
+
+[sub_resource type="Shader" id="Shader_wjqm4"]
+code = "shader_type canvas_item;
+
+uniform float width : hint_range(0.0, 30.0);
+uniform float speed : hint_range(0.0, 20.0);
+uniform vec4 outline_color_origin : source_color;
+
+void fragment()
+{
+	vec4 outline_color = outline_color_origin / 1.0 - 0.15*sin(TIME*speed);
+	float size = width * 1.0 / float(textureSize(TEXTURE, 0).x);
+	vec4 sprite_color = texture(TEXTURE, UV);
+	float alpha = -8.0 * sprite_color.a;
+	alpha += texture(TEXTURE, UV + vec2(size, -size)).a;
+	alpha += texture(TEXTURE, UV + vec2(size, 0.0)).a;
+	alpha += texture(TEXTURE, UV + vec2(size, size)).a;
+	alpha += texture(TEXTURE, UV + vec2(-size, -size)).a;
+	alpha += texture(TEXTURE, UV + vec2(-size, 0.0)).a;
+	alpha += texture(TEXTURE, UV + vec2(-size, size)).a;
+	alpha += texture(TEXTURE, UV + vec2(0.0, size)).a;
+	alpha += texture(TEXTURE, UV + vec2(0.0, -size)).a;
+	
+	vec4 final_color = mix(sprite_color, outline_color, clamp(alpha, 0, 1));
+	COLOR = vec4(final_color.rgb, clamp(abs(alpha) + sprite_color.a, 0.0, 1.0));
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpw0e"]
+shader = SubResource("Shader_wjqm4")
+shader_parameter/width = 0.0
+shader_parameter/speed = 10.0
+shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdano"]
+radius = 20.2237
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ld1br"]
+_data = {
+"dying": ExtResource("7_2nqjt"),
+"hit1_amab1": ExtResource("6_0myml"),
+"hit2_amab1": ExtResource("9_b63bx"),
+"hit3_amab1": ExtResource("10_6jjda"),
+"hit4_amab1": ExtResource("11_sij4s"),
+"hit5_amab1": ExtResource("12_jby8q"),
+"hit6_amab1": ExtResource("13_c431n"),
+"idle1_amab1": ExtResource("14_m6cud"),
+"idle2_amab1": ExtResource("15_6jau3"),
+"idle3_amab1": ExtResource("16_4oyie"),
+"idle4_amab1": ExtResource("17_fjl1l"),
+"idle5_amab1": ExtResource("18_umqjy"),
+"idle6_amab1": ExtResource("19_6hryb"),
+"take_damage_anim": ExtResource("19_mxaev"),
+"walk1_amab1": ExtResource("20_bbjhr"),
+"walk2_amab1": ExtResource("21_88bsm"),
+"walk3_amab1": ExtResource("22_aghgw"),
+"walk4_amab1": ExtResource("23_suiak"),
+"walk5_amab1": ExtResource("24_twaco"),
+"walk6_amab1": ExtResource("25_pfaab")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q3d5x"]
+animation = &"amab1/dying"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_478w2"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_q3d5x")
+blend_point_0/pos = Vector2(0, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ifiy"]
+animation = &"amab1/idle4_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3fgbt"]
+animation = &"amab1/idle3_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_66hfi"]
+animation = &"amab1/idle2_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xvc7g"]
+animation = &"amab1/idle1_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3ba4u"]
+animation = &"amab1/idle6_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_abb2y"]
+animation = &"amab1/idle5_amab1"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qd713"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_2ifiy")
+blend_point_0/pos = Vector2(-0.47, 0.88)
+blend_point_1/node = SubResource("AnimationNodeAnimation_3fgbt")
+blend_point_1/pos = Vector2(0.89, 0.45)
+blend_point_2/node = SubResource("AnimationNodeAnimation_66hfi")
+blend_point_2/pos = Vector2(0.99, -0.13)
+blend_point_3/node = SubResource("AnimationNodeAnimation_xvc7g")
+blend_point_3/pos = Vector2(0.47, -0.88)
+blend_point_4/node = SubResource("AnimationNodeAnimation_3ba4u")
+blend_point_4/pos = Vector2(-0.89, -0.45)
+blend_point_5/node = SubResource("AnimationNodeAnimation_abb2y")
+blend_point_5/pos = Vector2(-0.99, 0.13)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5peyo"]
+animation = &"amab1/hit1_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m7myy"]
+animation = &"amab1/hit2_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w4vid"]
+animation = &"amab1/hit3_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1eym3"]
+animation = &"amab1/hit4_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tgti8"]
+animation = &"amab1/hit5_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8clmd"]
+animation = &"amab1/hit6_amab1"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_jmqf5"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_5peyo")
+blend_point_0/pos = Vector2(0.47, -0.88)
+blend_point_1/node = SubResource("AnimationNodeAnimation_m7myy")
+blend_point_1/pos = Vector2(0.99, -0.13)
+blend_point_2/node = SubResource("AnimationNodeAnimation_w4vid")
+blend_point_2/pos = Vector2(0.89, 0.45)
+blend_point_3/node = SubResource("AnimationNodeAnimation_1eym3")
+blend_point_3/pos = Vector2(-0.47, 0.88)
+blend_point_4/node = SubResource("AnimationNodeAnimation_tgti8")
+blend_point_4/pos = Vector2(-0.99, 0.13)
+blend_point_5/node = SubResource("AnimationNodeAnimation_8clmd")
+blend_point_5/pos = Vector2(-0.89, -0.45)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l0y4y"]
+animation = &"amab1/walk1_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aifkw"]
+animation = &"amab1/walk2_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kinab"]
+animation = &"amab1/walk3_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_otqvm"]
+animation = &"amab1/walk4_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pob38"]
+animation = &"amab1/walk5_amab1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qtxng"]
+animation = &"amab1/walk6_amab1"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_sxmsd"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_l0y4y")
+blend_point_0/pos = Vector2(0.47, -0.88)
+blend_point_1/node = SubResource("AnimationNodeAnimation_aifkw")
+blend_point_1/pos = Vector2(0.99, -0.13)
+blend_point_2/node = SubResource("AnimationNodeAnimation_kinab")
+blend_point_2/pos = Vector2(0.89, 0.45)
+blend_point_3/node = SubResource("AnimationNodeAnimation_otqvm")
+blend_point_3/pos = Vector2(-0.47, 0.99)
+blend_point_4/node = SubResource("AnimationNodeAnimation_pob38")
+blend_point_4/pos = Vector2(-0.99, 0.13)
+blend_point_5/node = SubResource("AnimationNodeAnimation_qtxng")
+blend_point_5/pos = Vector2(-0.89, -0.45)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uvksw"]
+animation = &"amab1/take_damage_anim"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_e6t2h"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_uvksw")
+blend_point_0/pos = Vector2(0, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_it31r"]
+advance_mode = 2
+advance_condition = &"melee"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ylv1o"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_onssd"]
+advance_mode = 2
+advance_condition = &"moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3f5ve"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c5oq7"]
+advance_mode = 2
+advance_condition = &"melee"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nsp67"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6duo2"]
+advance_mode = 2
+advance_condition = &"takingdamage"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bnrfh"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ts4f"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hxxih"]
+advance_mode = 2
+advance_condition = &"takingdamage"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0uqkw"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_m4vda"]
+states/Dying/node = SubResource("AnimationNodeBlendSpace2D_478w2")
+states/Dying/position = Vector2(735, 145.09)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_qd713")
+states/Idle/position = Vector2(343, 158.09)
+states/Melee/node = SubResource("AnimationNodeBlendSpace2D_jmqf5")
+states/Melee/position = Vector2(367, -23.9099)
+states/Moving/node = SubResource("AnimationNodeBlendSpace2D_sxmsd")
+states/Moving/position = Vector2(475, 77)
+states/Start/position = Vector2(205, 94)
+states/TakingDamage/node = SubResource("AnimationNodeBlendSpace2D_e6t2h")
+states/TakingDamage/position = Vector2(163, 188.09)
+transitions = ["Moving", "Melee", SubResource("AnimationNodeStateMachineTransition_it31r"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ylv1o"), "Idle", "Moving", SubResource("AnimationNodeStateMachineTransition_onssd"), "Moving", "Idle", SubResource("AnimationNodeStateMachineTransition_3f5ve"), "Idle", "Melee", SubResource("AnimationNodeStateMachineTransition_c5oq7"), "Melee", "Idle", SubResource("AnimationNodeStateMachineTransition_nsp67"), "Idle", "TakingDamage", SubResource("AnimationNodeStateMachineTransition_6duo2"), "TakingDamage", "Idle", SubResource("AnimationNodeStateMachineTransition_bnrfh"), "Idle", "Dying", SubResource("AnimationNodeStateMachineTransition_1ts4f"), "Melee", "TakingDamage", SubResource("AnimationNodeStateMachineTransition_hxxih"), "Melee", "Dying", SubResource("AnimationNodeStateMachineTransition_0uqkw")]
+graph_offset = Vector2(-14, -89.9099)
+
+[node name="AmabBody" type="Node"]
+script = ExtResource("1_swga2")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = SubResource("ShaderMaterial_gpw0e")
+texture = ExtResource("5_wbhb7")
+offset = Vector2(0, -52.5)
+region_enabled = true
+region_rect = Rect2(4811, 3795, 960, 540)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1.5)
+shape = SubResource("CircleShape2D_xdano")
+disabled = true
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"amab1": SubResource("AnimationLibrary_ld1br")
+}
+
+[node name="AnimTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_m4vda")
+anim_player = NodePath("../Anim")
+active = true
+parameters/conditions/dying = false
+parameters/conditions/idle = false
+parameters/conditions/melee = false
+parameters/conditions/moving = false
+parameters/conditions/takingdamage = false
+parameters/Dying/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Melee/blend_position = Vector2(0, 0)
+parameters/Moving/blend_position = Vector2(0, 0)
+parameters/TakingDamage/blend_position = Vector2(0, 0)
+
+[node name="ClickArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -37.0
+offset_top = -133.0
+offset_right = 40.0
+offset_bottom = 40.0

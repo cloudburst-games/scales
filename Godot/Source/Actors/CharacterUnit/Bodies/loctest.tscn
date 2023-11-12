@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://ckroiumcrceah"]
+
+[ext_resource type="Texture2D" uid="uid://dj6lx830v40e3" path="res://DELETEMEimage.png" id="1_dro6o"]
+[ext_resource type="Texture2D" uid="uid://d4gesnextgity" path="res://DirectionTest.png" id="2_x6vhx"]
+[ext_resource type="Texture2D" uid="uid://brxylpaqjkqy" path="res://Assets/Graphics/Effects/Arrow/arrow.png" id="3_31k5x"]
+
+[node name="DeletemEimage" type="Sprite2D"]
+position = Vector2(8, -209)
+scale = Vector2(3, 3)
+texture = ExtResource("1_dro6o")
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(183.5, 89.5)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(-67.5, 121.5)
+
+[node name="Marker2D4" type="Marker2D" parent="."]
+position = Vector2(-252.5, 35)
+
+[node name="Marker2D5" type="Marker2D" parent="."]
+position = Vector2(-187.5, -92)
+
+[node name="Marker2D7" type="Marker2D" parent="."]
+position = Vector2(69, -127.5)
+
+[node name="Marker2D8" type="Marker2D" parent="."]
+position = Vector2(257, -34)
+
+[node name="DirectionTest" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.662745)
+position = Vector2(-30, -150)
+texture = ExtResource("2_x6vhx")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+position = Vector2(-300, -228)
+rotation = 0.89194
+texture = ExtResource("3_31k5x")
+
+[node name="Arrow2" type="Sprite2D" parent="."]
+position = Vector2(176, -253)
+rotation = 2.27166
+texture = ExtResource("3_31k5x")
+
+[node name="Arrow3" type="Sprite2D" parent="."]
+position = Vector2(406, -117)
+rotation = 2.63628
+texture = ExtResource("3_31k5x")
+
+[node name="Arrow4" type="Sprite2D" parent="."]
+position = Vector2(298, 221)
+rotation = -2.28429
+texture = ExtResource("3_31k5x")
+
+[node name="Arrow5" type="Sprite2D" parent="."]
+position = Vector2(-130, 283)
+rotation = -1.16205
+texture = ExtResource("3_31k5x")
+
+[node name="Arrow6" type="Sprite2D" parent="."]
+position = Vector2(-379, 150)
+rotation = -0.742255
+texture = ExtResource("3_31k5x")

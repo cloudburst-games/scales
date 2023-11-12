@@ -402,6 +402,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     public string Description { get; set; }
     public string PatronGod { get; set; }
     public string BodyPath { get; set; }
+    public string PortraitPath { get; set; }
     private List<int> _perks = new();
     public List<int> Perks
     {

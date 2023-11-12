@@ -105,8 +105,8 @@ _dummyTilemap = NodePath("Battlefield/TileMap")
 HexModifier = NodePath("HexGrid/HexModifier")
 _background = NodePath("Battlefield/Background/Terrain")
 CharacterUnitsContainer = NodePath("Entities/CharacterUnits")
-StartingEnemies = [5, 6]
-StartingAllies = [4]
+StartingEnemies = [5, 6, 4, 3]
+StartingAllies = [2, 7]
 _playerPositionCnt = NodePath("Positions/Players")
 _enemyPositionCnt = NodePath("Positions/Enemies")
 _allyPositionCnt = NodePath("Positions/Allies")
@@ -208,27 +208,6 @@ position = Vector2(372, 868)
 
 [node name="Enemies" type="Node2D" parent="Positions"]
 
-[node name="Marker2D7" type="Marker2D" parent="Positions/Enemies"]
-position = Vector2(634, 593)
-
-[node name="Marker2D8" type="Marker2D" parent="Positions/Enemies"]
-position = Vector2(848, 707)
-
-[node name="Marker2D9" type="Marker2D" parent="Positions/Enemies"]
-position = Vector2(1058, 878)
-
-[node name="Marker2D10" type="Marker2D" parent="Positions/Enemies"]
-position = Vector2(1324, 975)
-
-[node name="Marker2D11" type="Marker2D" parent="Positions/Enemies"]
-position = Vector2(1525, 373)
-
-[node name="Marker2D12" type="Marker2D" parent="Positions/Enemies"]
-position = Vector2(1883, 419)
-
-[node name="Marker2D13" type="Marker2D" parent="Positions/Enemies"]
-position = Vector2(1107, 491)
-
 [node name="Marker2D14" type="Marker2D" parent="Positions/Enemies"]
 position = Vector2(2645, 549)
 
@@ -240,6 +219,27 @@ position = Vector2(3393, 596)
 
 [node name="Marker2D17" type="Marker2D" parent="Positions/Enemies"]
 position = Vector2(3144, 424)
+
+[node name="Marker2D7" type="Marker2D" parent="Positions/Enemies"]
+position = Vector2(634, 593)
+
+[node name="Marker2D8" type="Marker2D" parent="Positions/Enemies"]
+position = Vector2(848, 707)
+
+[node name="Marker2D9" type="Marker2D" parent="Positions/Enemies"]
+position = Vector2(1058, 878)
+
+[node name="Marker2D10" type="Marker2D" parent="Positions/Enemies"]
+position = Vector2(846, 477)
+
+[node name="Marker2D11" type="Marker2D" parent="Positions/Enemies"]
+position = Vector2(1525, 373)
+
+[node name="Marker2D12" type="Marker2D" parent="Positions/Enemies"]
+position = Vector2(1883, 419)
+
+[node name="Marker2D13" type="Marker2D" parent="Positions/Enemies"]
+position = Vector2(1107, 491)
 
 [node name="Allies" type="Node2D" parent="Positions"]
 

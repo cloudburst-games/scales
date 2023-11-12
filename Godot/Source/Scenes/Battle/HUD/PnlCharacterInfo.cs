@@ -39,6 +39,12 @@ public partial class PnlCharacterInfo : Control
     public delegate void MouseOverAttributeEnteredEventHandler(string description);
     [Signal]
     public delegate void MouseOverAttributeExitedEventHandler();
+    [Export]
+    private Panel _pnlClose;
+    [Export]
+    private TextureRect _portraitRect;
+
+    private Dictionary<string, Texture2D> _portraits = new(); // in future, replace string key with integer IDs (would need to implement in all jsons)
 
     public Vector2 PlaceableArea { get; set; } = new();
 
@@ -116,13 +122,13 @@ public partial class PnlCharacterInfo : Control
 
     public void OnRightClick(StoryCharacterData data)
     {
-        _btnClose.Visible = false;
+        _pnlClose.Visible = false;
         OnCommonClick(data);
     }
 
     public void OnLeftClick(StoryCharacterData data)
     {
-        _btnClose.Visible = true;
+        _pnlClose.Visible = true;
         OnCommonClick(data);
     }
 
@@ -132,7 +138,7 @@ public partial class PnlCharacterInfo : Control
         {
             if (btn.ButtonIndex == MouseButton.Right)
             {
-                if (!btn.Pressed && !_btnClose.Visible)
+                if (!btn.Pressed && !_pnlClose.Visible)
                 {
                     CommonHide();
                 }
@@ -147,8 +153,24 @@ public partial class PnlCharacterInfo : Control
         _lblCharacterName.Text = data.Name;
         PopulatePerksDisplay(data);
         PopulateStatusDisplay(data);
+        SetPortrait(data);
         SetLocation();
         Visible = true;
+    }
+
+    private void SetPortrait(StoryCharacterData data)
+    {
+        Texture2D tex;
+        if (!_portraits.ContainsKey(data.Name))
+        {
+            tex = GD.Load<Texture2D>(data.PortraitPath);
+            _portraits[data.Name] = tex;
+        }
+        else
+        {
+            tex = _portraits[data.Name];
+        }
+        _portraitRect.Texture = tex;
     }
 
     private void SetLocation()

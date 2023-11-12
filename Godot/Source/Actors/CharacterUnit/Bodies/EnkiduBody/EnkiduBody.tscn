@@ -1,11 +1,9 @@
-[gd_scene load_steps=51 format=3 uid="uid://otvy1fepssy0"]
+[gd_scene load_steps=49 format=3 uid="uid://otvy1fepssy0"]
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_eyqsa"]
-[ext_resource type="Texture2D" uid="uid://dj6lx830v40e3" path="res://DELETEMEimage.png" id="2_ugqld"]
-[ext_resource type="Texture2D" uid="uid://d4gesnextgity" path="res://DirectionTest.png" id="3_0xmwc"]
-[ext_resource type="Texture2D" uid="uid://brxylpaqjkqy" path="res://Assets/Graphics/Effects/Arrow/arrow.png" id="4_o6uwt"]
 [ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="5_2ndhc"]
 [ext_resource type="Texture2D" uid="uid://7odii45w3yxl" path="res://Assets/Graphics/Sprites/Actors/Gilga/IdleGilga.png" id="5_x18ss"]
+[ext_resource type="Texture2D" uid="uid://mg506pp88o7b" path="res://Assets/Graphics/Sprites/Actors/Enkidu/Enki_IdleV2Stylised.png" id="6_rile5"]
 [ext_resource type="Animation" uid="uid://lo0w8muv6m81" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk1_gilg.tres" id="6_xnyvr"]
 [ext_resource type="Animation" uid="uid://ccwx67sbv5gf" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk2_gilg.tres" id="7_g7cu7"]
 [ext_resource type="Animation" uid="uid://3ectshgx3gcn" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk3_gilg.tres" id="8_1n0jo"]
@@ -114,7 +112,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -52.5)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_vwmtw"]
@@ -194,71 +192,12 @@ _data = {
 [node name="EnkiduBody" type="Node"]
 script = ExtResource("1_eyqsa")
 
-[node name="DeletemEimage" type="Sprite2D" parent="."]
-position = Vector2(8, -209)
-scale = Vector2(3, 3)
-texture = ExtResource("2_ugqld")
-
-[node name="Marker2D2" type="Marker2D" parent="DeletemEimage"]
-position = Vector2(183.5, 89.5)
-
-[node name="Marker2D3" type="Marker2D" parent="DeletemEimage"]
-position = Vector2(-67.5, 121.5)
-
-[node name="Marker2D4" type="Marker2D" parent="DeletemEimage"]
-position = Vector2(-252.5, 35)
-
-[node name="Marker2D5" type="Marker2D" parent="DeletemEimage"]
-position = Vector2(-187.5, -92)
-
-[node name="Marker2D7" type="Marker2D" parent="DeletemEimage"]
-position = Vector2(69, -127.5)
-
-[node name="Marker2D8" type="Marker2D" parent="DeletemEimage"]
-position = Vector2(257, -34)
-
-[node name="DirectionTest" type="Sprite2D" parent="DeletemEimage"]
-visible = false
-modulate = Color(1, 1, 1, 0.662745)
-position = Vector2(-30, -150)
-texture = ExtResource("3_0xmwc")
-
-[node name="Arrow" type="Sprite2D" parent="DeletemEimage"]
-position = Vector2(-300, -228)
-rotation = 0.89194
-texture = ExtResource("4_o6uwt")
-
-[node name="Arrow2" type="Sprite2D" parent="DeletemEimage"]
-position = Vector2(176, -253)
-rotation = 2.27166
-texture = ExtResource("4_o6uwt")
-
-[node name="Arrow3" type="Sprite2D" parent="DeletemEimage"]
-position = Vector2(406, -117)
-rotation = 2.63628
-texture = ExtResource("4_o6uwt")
-
-[node name="Arrow4" type="Sprite2D" parent="DeletemEimage"]
-position = Vector2(298, 221)
-rotation = -2.28429
-texture = ExtResource("4_o6uwt")
-
-[node name="Arrow5" type="Sprite2D" parent="DeletemEimage"]
-position = Vector2(-130, 283)
-rotation = -1.16205
-texture = ExtResource("4_o6uwt")
-
-[node name="Arrow6" type="Sprite2D" parent="DeletemEimage"]
-position = Vector2(-379, 150)
-rotation = -0.742255
-texture = ExtResource("4_o6uwt")
-
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_btc0f")
-position = Vector2(0, -52.5)
-texture = ExtResource("5_x18ss")
+texture = ExtResource("6_rile5")
+offset = Vector2(0, -52.5)
 region_enabled = true
-region_rect = Rect2(1, 1, 480, 270)
+region_rect = Rect2(4811, 2169, 960, 540)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1.5)

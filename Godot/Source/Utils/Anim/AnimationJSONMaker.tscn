@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://lsptinciutgh"]
 
 [ext_resource type="Script" path="res://Source/Utils/Anim/AnimationJSONMaker.cs" id="1_djuqn"]
-[ext_resource type="Texture2D" uid="uid://mg506pp88o7b" path="res://Assets/Graphics/Sprites/Actors/Enkidu/Enki_IdleV2Stylised.png" id="2_oqxt3"]
+[ext_resource type="Texture2D" uid="uid://cxwwof8vwlooe" path="res://Assets/Graphics/Sprites/Actors/Townsfolk_AFAB/AFAB_IdleStyleColour2.png" id="2_eloxq"]
 
 [node name="AnimationJSONMaker" type="Node"]
 script = ExtResource("1_djuqn")
-_jsonpath = "res://Assets/Graphics/Sprites/Actors/Gilga/GilgaIdleV2.json"
+_jsonpath = "res://Assets/Graphics/Sprites/Actors/Townsfolk_AFAB/AFAB_Idle.json"
 _prefixes = ["idle1_", "idle2_", "idle3_", "idle4_", "idle5_", "idle6_"]
-_animName = "enkidu"
-_destinationFolder = "res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/"
-_texture = ExtResource("2_oqxt3")
-_relativeSpeed = 0.3
+_animName = "afab2"
+_destinationFolder = "res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/"
+_texture = ExtResource("2_eloxq")
+_relativeSpeed = 2.0

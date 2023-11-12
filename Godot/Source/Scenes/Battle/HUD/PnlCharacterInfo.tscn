@@ -19,7 +19,7 @@ font_size = 32
 [sub_resource type="LabelSettings" id="LabelSettings_3e83s"]
 font_size = 32
 
-[node name="CharacterInfoPanel" type="Control" node_paths=PackedStringArray("_lblCharacterName", "_lblAttributesStats", "_vBoxStatsDisplay", "_lblPerks", "_lblStatuses", "_btnClose", "_btnAttributesStats")]
+[node name="CharacterInfoPanel" type="Control" node_paths=PackedStringArray("_lblCharacterName", "_lblAttributesStats", "_vBoxStatsDisplay", "_lblPerks", "_lblStatuses", "_btnClose", "_btnAttributesStats", "_pnlClose", "_portraitRect")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1192.0
@@ -34,6 +34,8 @@ _lblPerks = NodePath("MainPanel/VBoxContainer/HBoxContainer/VBoxContainer/PnlPer
 _lblStatuses = NodePath("MainPanel/VBoxContainer/HBoxContainer2/PnlStatus/LblStatuses")
 _btnClose = NodePath("MainPanel/VBoxContainer/HBoxContainer2/PnlClose/BtnClose")
 _btnAttributesStats = NodePath("MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer/BtnToggleAttributesStats")
+_pnlClose = NodePath("MainPanel/VBoxContainer/HBoxContainer2/PnlClose")
+_portraitRect = NodePath("MainPanel/VBoxContainer/HBoxContainer/VBoxContainer/PnlPortrait/TextureRect")
 
 [node name="MainPanel" type="Panel" parent="."]
 layout_mode = 1
