@@ -1,0 +1,175 @@
+{
+	"frames": {
+		"FallingLeaf.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 171,
+				"h": 183
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 171,
+				"h": 183
+			},
+			"sourceSize": {
+				"w": 171,
+				"h": 183
+			}
+		},
+		"FallingLeaf2.png": {
+			"frame": {
+				"x": 174,
+				"y": 1,
+				"w": 171,
+				"h": 183
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 171,
+				"h": 183
+			},
+			"sourceSize": {
+				"w": 171,
+				"h": 183
+			}
+		},
+		"FallingLeaf3.png": {
+			"frame": {
+				"x": 347,
+				"y": 1,
+				"w": 171,
+				"h": 183
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 171,
+				"h": 183
+			},
+			"sourceSize": {
+				"w": 171,
+				"h": 183
+			}
+		},
+		"Tamarisk1.png": {
+			"frame": {
+				"x": 520,
+				"y": 1,
+				"w": 658,
+				"h": 616
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 658,
+				"h": 616
+			},
+			"sourceSize": {
+				"w": 658,
+				"h": 616
+			}
+		},
+		"Tamarisk2.png": {
+			"frame": {
+				"x": 1180,
+				"y": 1,
+				"w": 827,
+				"h": 553
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 827,
+				"h": 553
+			},
+			"sourceSize": {
+				"w": 827,
+				"h": 553
+			}
+		},
+		"TreeCluster.png": {
+			"frame": {
+				"x": 2009,
+				"y": 1,
+				"w": 942,
+				"h": 636
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 942,
+				"h": 636
+			},
+			"sourceSize": {
+				"w": 942,
+				"h": 636
+			}
+		},
+		"TreeIndividual1.png": {
+			"frame": {
+				"x": 2953,
+				"y": 1,
+				"w": 475,
+				"h": 382
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 475,
+				"h": 382
+			},
+			"sourceSize": {
+				"w": 475,
+				"h": 382
+			}
+		},
+		"TreeIndividual2.png": {
+			"frame": {
+				"x": 3430,
+				"y": 1,
+				"w": 698,
+				"h": 601
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 698,
+				"h": 601
+			},
+			"sourceSize": {
+				"w": 698,
+				"h": 601
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 4129,
+			"h": 638
+		},
+		"scale": "1"
+	}
+}
