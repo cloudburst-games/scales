@@ -426,6 +426,10 @@ public partial class Battler : Node2D
 
     internal void OnCharacterRoundEffectApplied(CharacterUnit newChar, CharacterRoundEffect effect)
     {
+        if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Berserk)
+        {
+            newChar.DoBerserkStatusToPlayer();
+        }
         if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Stat && effect.StatAffected == StoryCharacterData.StatMode.Health && effect.Magnitude < 0)
         {
             newChar.TakeDamageOrder(new BattleRoller.RollerOutcomeInformation() { FinalDamage = 0 });
@@ -441,4 +445,11 @@ public partial class Battler : Node2D
         _battleState.SetPlayerAction(action);
     }
 
+    internal void OnCharacterRoundEffectFaded(CharacterUnit newChar, CharacterRoundEffect roundEffect)
+    {
+        if (roundEffect.EffectType == CharacterRoundEffect.EffectTypeMode.Berserk)
+        {
+            newChar.RestoreStatusToPlayer();
+        }
+    }
 }

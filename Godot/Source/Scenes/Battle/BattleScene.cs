@@ -177,6 +177,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         newChar.CharacterDataTreeLink.RoundEffectApplied += (CharacterRoundEffect roundEffect) => _HUD.OnCharacterRoundEffectApplied(newChar, roundEffect);
         newChar.CharacterDataTreeLink.RoundEffectApplied += (CharacterRoundEffect roundEffect) => _battler.OnCharacterRoundEffectApplied(newChar, roundEffect);
         newChar.CharacterDataTreeLink.RoundEffectEnded += (CharacterRoundEffect roundEffect) => _HUD.OnCharacterRoundEffectFaded(newChar, roundEffect);
+        newChar.CharacterDataTreeLink.RoundEffectEnded += (CharacterRoundEffect roundEffect) => _battler.OnCharacterRoundEffectFaded(newChar, roundEffect);
         newChar.TakingDamage += _HUD.OnCharacterTakingDamage;
         return newChar;
     }

@@ -27,6 +27,13 @@ public partial class AIIdleBattleState : ControlIdleBattleState
             TargetGridPos = targetGridPos;
             Spell = spell;
         }
+
+        public void DebugPrint()
+        {
+            GD.Print("Action: ", Action.ToString());
+            GD.Print("Target grid position: ", TargetGridPos);
+            GD.Print("Spell: ", Spell.ToString());
+        }
     }
 
     // private Random _rand = new();
@@ -37,81 +44,171 @@ public partial class AIIdleBattleState : ControlIdleBattleState
 
     public override void ProcessUpdate(double delta)
     {
-        IdleBattleState.EndTurnEarly(); // until happy with player
-
-
-        // AIAction nextAction = ChooseAction();
-        // this.IdleBattleState.DoAction(nextAction.Action, nextAction.TargetGridPos, nextAction.Spell);
+        base.ProcessUpdate(delta);
+        Battler battler = IdleBattleState.Battler;
+        Vector2 characterWorldPos = battler.CharactersAwaitingTurn[0].GlobalPosition;
+        Vector2 characterGridPos = battler.BattleGrid.WorldToGrid(characterWorldPos);
+        CharacterUnit activeCharacter = battler.CharactersAwaitingTurn[0];
+        StoryCharacterData activeData = GetActiveCharacterData();
+        if (battler.BattleGrid.GetHexAtGridPosition(characterGridPos).Obstacle)
+        {
+            return;
+        }
+        // if (activeData.Berserk)
+        // {
+        //     IdleBattleState.BerserkEffect();
+        //     return;
+        // }
+        // GD.Print(GetActiveCharacterData().Name);
+        AIAction nextAction = ChooseAction();
+        // IdleBattleState.EndTurnEarly();
+        // nextAction.DebugPrint();
+        this.IdleBattleState.DoAction(nextAction.Action, nextAction.TargetGridPos, nextAction.Spell);
     }
 
     private AIAction ChooseAction()
     {
-        // var result = new Tuple<Battler.ActionMode, Vector2>(Battler.ActionMode.None, Vector2.Zero);
         Battler battler = IdleBattleState.Battler;
         Vector2 characterWorldPos = battler.CharactersAwaitingTurn[0].GlobalPosition;
         Random rand = battler.CharactersAwaitingTurn[0].Rand;
         Vector2 characterGridPos = battler.BattleGrid.WorldToGrid(characterWorldPos);
-        Vector2 mouseGridPos = battler.BattleGrid.WorldToGrid(battler.GetGlobalMousePosition());
+        CharacterUnit activeCharacter = battler.CharactersAwaitingTurn[0];
         StoryCharacterData activeData = GetActiveCharacterData();
+
         List<SpellEffectManager.Spell> knownSpells = activeData.KnownSpells
             .Select(spellMode => battler.AllSpells.ContainsKey(spellMode) ? battler.AllSpells[spellMode] : null)
             .Where(spell => spell != null)
             .OrderBy(_ => rand.Next())
             .ToList();
-        foreach (Vector2 gridPos in GetAllGridPositions())
-        {
-            // 1. AOE SPELLS
-            SpellEffectManager.SpellMode spellSelected = IsGoodAOESpellTarget(knownSpells, gridPos);
-            if (spellSelected == SpellEffectManager.SpellMode.None)
-            {
-                // 2. HOSTILE SPELLS
-                spellSelected = IsGoodSpellTarget(knownSpells, gridPos, SpellEffectManager.Spell.TargetMode.Enemy);
-            }
-            if (spellSelected == SpellEffectManager.SpellMode.None)
-            {
-                // 3. ALLIED SPELLS
-                spellSelected = IsGoodSpellTarget(knownSpells, gridPos, SpellEffectManager.Spell.TargetMode.Ally);
-            }
-            if (spellSelected != SpellEffectManager.SpellMode.None)
-            {
-                return new(Battler.ActionMode.Cast, gridPos, spellSelected);
-            }
 
-            // 4. Adjacent to an enemy || Stronger melee than ranged
-            if (IsAdjacentMelee(gridPos, characterGridPos) || IsStrongMelee(gridPos, activeData, characterGridPos))
+        List<Vector2> enemyPositions = battler.AllCharacters
+            .Where(x => activeData.Berserk ? activeCharacter.BerserkValidEnemyTargets.Contains(x.StatusToPlayer) : activeCharacter.ValidEnemyTargets.Contains(x.StatusToPlayer))
+            .Where(x => x != activeCharacter)
+            .Where(x => x.CharacterData.Alive)
+            .Select(x => battler.BattleGrid.WorldToGrid(x.GlobalPosition))
+            .ToList();
+        List<Vector2> alliedPositions = battler.AllCharacters
+            .Where(x => activeData.Berserk ? activeCharacter.BerserkValidAllyTargets.Contains(x.StatusToPlayer) : activeCharacter.ValidAllyTargets.Contains(x.StatusToPlayer))
+            .Where(x => x.CharacterData.Alive)
+            .Select(x => battler.BattleGrid.WorldToGrid(x.GlobalPosition))
+            .ToList();
+
+
+        List<Vector2> allGridPositions = GetAllGridPositions();
+        // get all the character grid positions
+        // if berserk, dont use magic
+        if (!activeData.Berserk)
+        {
+            foreach (Vector2 gridPos in enemyPositions)
+            {
+                // MAGIC
+                // 1. If there is a good spell target for our AOE SPELL, do it
+                SpellEffectManager.SpellMode spellSelected = IsGoodAOESpellTarget(knownSpells, gridPos);
+                if (spellSelected != SpellEffectManager.SpellMode.None)
+                {
+                    return new(Battler.ActionMode.Cast, gridPos, spellSelected);
+                }
+                // 2. If there is a good spell target for our hostile spell, do it
+                spellSelected = IsGoodSpellTarget(knownSpells, gridPos, SpellEffectManager.Spell.TargetMode.Enemy);
+                if (spellSelected != SpellEffectManager.SpellMode.None)
+                {
+                    return new(Battler.ActionMode.Cast, gridPos, spellSelected);
+                }
+            }
+            foreach (Vector2 gridPos in alliedPositions)
+            {
+                // 3. If there is a good spell target for our friendly spell, do it
+                SpellEffectManager.SpellMode spellSelected = IsGoodSpellTarget(knownSpells, gridPos, SpellEffectManager.Spell.TargetMode.Ally);
+                if (spellSelected != SpellEffectManager.SpellMode.None)
+                {
+                    return new(Battler.ActionMode.Cast, gridPos, spellSelected);
+                }
+            }
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        // TODO SORTING OUT BERSERK TARGETS
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        foreach (Vector2 gridPos in enemyPositions)
+        {
+            // If we are next to the enemy, strike in melee, as ranged has a penalty to hit chance (4) and cant move back due to reduced AP
+            if (IsAdjacentMelee(gridPos, characterGridPos))
             {
                 return new(Battler.ActionMode.Melee, gridPos, SpellEffectManager.SpellMode.None);
             }
-
-            if (IsValidRanged(gridPos))
+            // if we are not adjacent to melee, but our melee is stronger than our ranged, move in to attack
+            else if (IsMeleeStrongerThanRanged(gridPos, activeData, characterGridPos))
+            {
+                return new(Battler.ActionMode.Melee, gridPos, SpellEffectManager.SpellMode.None);
+            }
+            // otherwise ranged attack if possible
+            else if (IsValidRanged(gridPos))
             {
                 return new(Battler.ActionMode.Shoot, gridPos, SpellEffectManager.SpellMode.None);
             }
+            // if not possible, try for a melee attack
+            else if (IdleBattleState.IsValidMelee(gridPos, characterGridPos))
+            {
+                return new(Battler.ActionMode.Melee, gridPos, SpellEffectManager.SpellMode.None);
+            }
         }
-        Vector2 bestHalfMovePos = IsValidMove(characterGridPos, GetAllGridPositions(),
+        Vector2 bestHalfMovePos = IsValidMove(characterGridPos, allGridPositions,
             GetActiveCharacterData().Stats[StoryCharacterData.StatMode.ActionPoints] - IdleBattleState.MeleeRangedCastAPCost() < 0 ? 0 :
-             GetActiveCharacterData().Stats[StoryCharacterData.StatMode.ActionPoints] - IdleBattleState.MeleeRangedCastAPCost());
+             GetActiveCharacterData().Stats[StoryCharacterData.StatMode.ActionPoints] - IdleBattleState.MeleeRangedCastAPCost(), enemyPositions);
 
         if (bestHalfMovePos != new Vector2(-9999, -9999))
         {
+            // GD.Print("best half move pos is ok");
             return new(Battler.ActionMode.Move, bestHalfMovePos, SpellEffectManager.SpellMode.None);
         }
 
-        Vector2 bestRemainingMovePos = IsValidMove(characterGridPos, GetAllGridPositions(),
-            GetActiveCharacterData().Stats[StoryCharacterData.StatMode.ActionPoints]);
+        Vector2 bestRemainingMovePos = IsValidMove(characterGridPos, allGridPositions,
+            GetActiveCharacterData().Stats[StoryCharacterData.StatMode.ActionPoints], enemyPositions);
 
+        // if (bestRemainingMovePos != new Vector2(-9999, -9999))
+        //     GD.Print("best remaining move pos is ok");
 
         return new(bestRemainingMovePos != new Vector2(-9999, -9999) ? Battler.ActionMode.Move : Battler.ActionMode.None, bestRemainingMovePos, SpellEffectManager.SpellMode.None);
 
     }
 
-    private bool IsStrongMelee(Vector2 gridPos, StoryCharacterData data, Vector2 characterGridPos)
+    public Vector2 IsValidMove(Vector2 originGridPos, List<Vector2> allGridPos, int ap, List<Vector2> enemyPositions)
     {
-        return (data.GetAverageWeaponDiceDamage(data.WeaponDiceMelee[0]) > data.GetAverageWeaponDiceDamage(data.WeaponDiceRanged[0])) &&
-            IdleBattleState.IsValidMelee(gridPos, characterGridPos);
+        Vector2 result = new(-9999, -9999);
+        if (ap == 0)
+        {
+            // GD.Print("returning invalid move due to zero AP");
+            return result;
+        }
+        List<Vector2> validGridMoves = new();
+        // GD.Print("originGridPos: ", originGridPos);
+        // allGridPos.ForEach(x => GD.Print("grid Pos: ", x));
+        // GD.Print("ap: ", ap);
+        foreach (Vector2 vec in allGridPos)
+        {
+            // GD.Print(vec);
+            if (IdleBattleState.IsValidGridMoveSpecificAP(originGridPos, vec, ap))
+            {
+                // GD.Print(vec);
+                validGridMoves.Add(vec);
+            }
+        }
+        if (validGridMoves.Count > 0)
+        {
+            return ClosestToEnemy(validGridMoves, enemyPositions);
+        }
+
+        // GD.Print("returning invalid move as no valid grid moves for current AP");
+        // GD.Print("AP: ", ap);
+        // GD.Print("origin grid Pos: ", originGridPos);
+        // GD.Print("gridposition count: ", allGridPos.Count);
+        // GD.Print("valid grid move count: ", validGridMoves.Count);
+
+        return result;
     }
 
-    private bool IsAdjacentMelee(Vector2 gridPos, Vector2 characterGridPos)
+    public bool IsAdjacentMelee(Vector2 gridPos, Vector2 characterGridPos)
     {
         if (IdleBattleState.IsNeighbour(characterGridPos, gridPos) && IdleBattleState.IsValidMelee(gridPos, characterGridPos))
         {
@@ -121,60 +218,51 @@ public partial class AIIdleBattleState : ControlIdleBattleState
         return false;
     }
 
+    private Vector2 ClosestToEnemy(List<Vector2> validMoves, List<Vector2> enemyPositions)
+    {
+        Battler battler = IdleBattleState.Battler;
+        CharacterUnit activeCharacter = battler.CharactersAwaitingTurn[0];
+        Vector2 activeCharacterGridPosition = battler.BattleGrid.WorldToGrid(activeCharacter.GlobalPosition);
+
+        // 1. Get all empty valid move hexes: validMoves
+        if (validMoves.Count == 0)
+        {
+            // GD.Print("error here no valid moves");
+
+            // No valid moves to consider
+            return new Vector2(-9999, -9999);
+        }
+
+        // 2. Get the enemy positions
+
+        // 3. Get which enemy hex is closest to the activeCharacterGridPosition
+        Vector2 closestEnemyPosition = enemyPositions.OrderBy(x => x.DistanceSquaredTo(activeCharacterGridPosition)).FirstOrDefault();
+
+        // GD.Print("closest enemy: ", closestEnemyPosition);
+
+        // 4. Get which of the valid move hexes are closest to this enemy hex
+        Vector2 closestValidMovePosition = validMoves.OrderBy(x => x.DistanceSquaredTo(closestEnemyPosition)).FirstOrDefault();
+
+
+        // if (closestValidMovePosition == null)
+        // {
+        //     GD.Print("error here closest move is null");
+        // }
+
+        // 5. Return it, or return new Vector2(-9999,-9999) if the list of valid moves or the list of enemy positions is empty
+        return closestValidMovePosition != null ? closestValidMovePosition : new Vector2(-9999, -9999);
+    }
+    private bool IsMeleeStrongerThanRanged(Vector2 gridPos, StoryCharacterData data, Vector2 characterGridPos)
+    {
+        return (data.GetAverageWeaponDiceDamage(data.WeaponDiceMelee[0]) > data.GetAverageWeaponDiceDamage(data.WeaponDiceRanged[0])) &&
+            IdleBattleState.IsValidMelee(gridPos, characterGridPos);
+    }
+
+
     private bool IsValidRanged(Vector2 gridPos)
     {
         Battler battler = IdleBattleState.Battler;
         return IdleBattleState.IsValidRanged(gridPos, battler.AllSpells[SpellEffectManager.SpellMode.Arrow].Range);
-    }
-
-    private Vector2 IsValidMove(Vector2 originGridPos, List<Vector2> allGridPos, int ap)
-    {
-        Vector2 result = new(-9999, -9999);
-        if (ap == 0)
-        {
-            return result;
-        }
-        List<Vector2> validGridMoves = new();
-        foreach (Vector2 vec in allGridPos)
-        {
-            if (IdleBattleState.IsValidGridMoveSpecificAP(originGridPos, vec, ap))
-            {
-                validGridMoves.Add(vec);
-            }
-        }
-        if (validGridMoves.Count > 0)
-        {
-            return ClosestToEnemy(validGridMoves);
-        }
-
-        return result;
-    }
-
-    private Vector2 ClosestToEnemy(List<Vector2> validMoves)
-    {
-        Battler battler = IdleBattleState.Battler;
-        Vector2 closestEnemyPosition = new Vector2(-9999, -9999);
-
-        foreach (Vector2 pos in validMoves)
-        {
-            List<Vector2> enemyPositions = battler.AllCharacters
-                .Where(x => x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player || x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Allied)
-                .Select(x => battler.BattleGrid.WorldToGrid(x.GlobalPosition))
-                .OrderBy(x => x.DistanceSquaredTo(pos))
-                .ToList();
-
-            if (enemyPositions.Count > 0)
-            {
-                Vector2 closestEnemy = enemyPositions[0];
-
-                if (closestEnemyPosition == new Vector2(-9999, -9999) || closestEnemy.DistanceSquaredTo(pos) < closestEnemyPosition.DistanceSquaredTo(pos))
-                {
-                    closestEnemyPosition = closestEnemy;
-                }
-            }
-        }
-
-        return closestEnemyPosition;
     }
 
 
@@ -202,13 +290,16 @@ public partial class AIIdleBattleState : ControlIdleBattleState
 
     private SpellEffectManager.SpellMode IsGoodAOESpellTarget(List<SpellEffectManager.Spell> knownSpells, Vector2 gridPos)
     {
+        CharacterUnit activeCharacter = IdleBattleState.Battler.CharactersAwaitingTurn[0];
         foreach (SpellEffectManager.Spell spell in knownSpells.Where(x => x.Target == SpellEffectManager.Spell.TargetMode.Ground))
         {
+            spell.TargetCharacter = IdleBattleState.Battler.CharacterAtGridPos(gridPos);
             if (CanAOESpellAffectMoreThanOneTarget(spell, gridPos))
             {
+                // GD.Print("it affect more than one target");
                 if (IdleBattleState.IsValidSpell(gridPos, spell.SpellMode))
                 {
-                    if (IdleBattleState.Battler.GetAffectedAreaSpellCharacters(spell, gridPos).All(x => x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player || x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Allied))
+                    if (IdleBattleState.Battler.GetAffectedAreaSpellCharacters(spell, gridPos).All(x => activeCharacter.ValidEnemyTargets.Contains(x.StatusToPlayer)))
                     {
                         return spell.SpellMode;
                     }
@@ -221,6 +312,7 @@ public partial class AIIdleBattleState : ControlIdleBattleState
 
     private bool CanAOESpellAffectMoreThanOneTarget(SpellEffectManager.Spell spell, Vector2 gridPos)
     {
+        // GD.Print(" more than one target?? ", IdleBattleState.Battler.GetAffectedAreaSpellCharacters(spell, gridPos).Count);
         return IdleBattleState.Battler.GetAffectedAreaSpellCharacters(spell, gridPos).Count > 1;
     }
 

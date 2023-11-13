@@ -40,6 +40,7 @@ public partial class SpellEffectManager : Node
         public StoryCharacterData.AttributeMode AttributeAffected { get; set; }
         public StoryCharacterData.StatMode StatAffected { get; set; }
         public CharacterRoundEffect.EffectTypeMode EffectType { get; set; }
+        public bool HitPenalty { get; set; } = false;
     }
 
     public partial class SpellVisualController : RefCounted
@@ -130,7 +131,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = true,
             EffectMethod = DoDamageOverTimeEffect,
-            NumRounds = 3,
+            NumRounds = 5,
             EffectType = CharacterRoundEffect.EffectTypeMode.Stat,
             StatAffected = StoryCharacterData.StatMode.Health,
             Name = "Damage Over Time"
@@ -142,7 +143,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = true,
             EffectMethod = DoAttributeStatDamage,
-            NumRounds = 3,
+            NumRounds = 5,
             EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
             AttributeAffected = StoryCharacterData.AttributeMode.Might,
             Name = "Might Damage"
@@ -153,7 +154,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = true,
             EffectMethod = DoAttributeStatDamage,
-            NumRounds = 3,
+            NumRounds = 5,
             EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
             AttributeAffected = StoryCharacterData.AttributeMode.Precision,
             Name = "Precision Damage"
@@ -164,7 +165,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = true,
             EffectMethod = DoAttributeStatDamage,
-            NumRounds = 3,
+            NumRounds = 5,
             EffectType = CharacterRoundEffect.EffectTypeMode.Stat,
             StatAffected = StoryCharacterData.StatMode.HitBonusStrength,
             Name = "Hit Reduced (strength)"
@@ -175,7 +176,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = true,
             EffectMethod = DoAttributeStatDamage,
-            NumRounds = 3,
+            NumRounds = 5,
             EffectType = CharacterRoundEffect.EffectTypeMode.Stat,
             StatAffected = StoryCharacterData.StatMode.HitBonusPrecision,
             Name = "Hit Reduced (precision)"
@@ -183,7 +184,7 @@ public partial class SpellEffectManager : Node
         _allSpellEffects[SpellEffectMode.Berserk] = new()
         {
             EffectMethod = DoBerserk,
-            NumRounds = 3,
+            NumRounds = 5,
             EffectType = CharacterRoundEffect.EffectTypeMode.Berserk,
         };
         _allSpellEffects[SpellEffectMode.FortifyAttributeMight] = new()
@@ -192,7 +193,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = true,
             EffectMethod = DoAttributeStatFortify,
-            NumRounds = 3,
+            NumRounds = 5,
             EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
             AttributeAffected = StoryCharacterData.AttributeMode.Might,
             Name = "Fortify Might"
@@ -203,7 +204,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = true,
             EffectMethod = DoAttributeStatFortify,
-            NumRounds = 3,
+            NumRounds = 5,
             EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
             AttributeAffected = StoryCharacterData.AttributeMode.Resilience,
             Name = "Fortify Resilience"
@@ -214,7 +215,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = true,
             EffectMethod = DoAttributeStatFortify,
-            NumRounds = 3,
+            NumRounds = 5,
             EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
             AttributeAffected = StoryCharacterData.AttributeMode.Precision,
             Name = "Fortify Precision"
@@ -225,7 +226,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = true,
             EffectMethod = DoAttributeStatFortify,
-            NumRounds = 3,
+            NumRounds = 5,
             EffectType = CharacterRoundEffect.EffectTypeMode.Attribute,
             AttributeAffected = StoryCharacterData.AttributeMode.Speed,
             Name = "Fortify Speed"
@@ -236,7 +237,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Normal,
             Mystical = true,
             EffectMethod = DoAttributeStatFortify,
-            NumRounds = 3,
+            NumRounds = 5,
             EffectType = CharacterRoundEffect.EffectTypeMode.Stat,
             StatAffected = StoryCharacterData.StatMode.HealthRegen,
             Name = "Fortify Health Regeneration"
@@ -372,7 +373,7 @@ public partial class SpellEffectManager : Node
             Target = Spell.TargetMode.Enemy,
             SpellMode = SpellMode.VialOfFury,
             Description = "Cause an enemy to go berserk, attacking the nearest creature.",
-            ReagentCost = 4,
+            ReagentCost = 5,
             ChargeCost = 0,
             Patron = Spell.PatronMode.Ishtar,
         };
@@ -495,7 +496,7 @@ public partial class SpellEffectManager : Node
 
         BattleRoller.RollerInput magicAttack = new()
         {
-            AttackerHitModifier = attackerData.GetCorrectHitBonus(spellEffect.Mystical),
+            AttackerHitModifier = attackerData.GetCorrectHitBonus(spellEffect.Mystical) - (spellEffect.HitPenalty ? 4 : 0),
             DefenderDodgeModifier = defenderData.Stats[StoryCharacterData.StatMode.Dodge],
             AttackerDamageModifier = spellEffect.Mystical ? attackerData.Stats[StoryCharacterData.StatMode.Mysticism] : attackerData.GetCorrectRangedWeaponDamageBonus(),
             DefenderDamageResist = spellEffect.Mystical ? defenderData.Stats[StoryCharacterData.StatMode.MysticResist] : defenderData.Stats[StoryCharacterData.StatMode.PhysicalResist],

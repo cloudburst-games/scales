@@ -66,6 +66,17 @@ public partial class HexGridUserDisplay : Node2D
         hexSprite.Material = (Material)hexSprite.Material.Duplicate(true);
         AddChild(hexSprite);
         _allSprites.Add(hexSprite);
+
+        //debugging:
+        // Label lbl = new()
+        // {
+        //     Text = gridPosition.ToString(),
+        //     Scale = new Vector2(2, 2),
+        //     GlobalPosition = worldPosition,
+        //     ZIndex = 10,
+        //     ZAsRelative = false
+        // };
+        // AddChild(lbl);
     }
 
     public void SetSprites(List<Vector2> moveHexes, List<Vector2> halfMoveHexes, List<Vector2> allHexes)

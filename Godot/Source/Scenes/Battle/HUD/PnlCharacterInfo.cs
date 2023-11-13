@@ -63,7 +63,7 @@ public partial class PnlCharacterInfo : Control
         // {StoryCharacterData.StatMode.Endurance, "Endurance"},
         {StoryCharacterData.StatMode.HealthRegen, "Health Regen"},
         {StoryCharacterData.StatMode.PhysicalDamageStrength, "PhysicalDamageStrength"},
-        {StoryCharacterData.StatMode.PhysicalDamageRanged, "PhysicalDamagePrecision"},
+        {StoryCharacterData.StatMode.PhysicalDamageRanged, "PhysicalDamageRanged"},
         {StoryCharacterData.StatMode.HitBonusStrength, "HitBonusStrength"},
         // {StoryCharacterData.StatMode.HitBonusPrecision, "HitBonusPrecision"},
         {StoryCharacterData.StatMode.CriticalThreshold, "Critical Threshold"},
@@ -274,7 +274,7 @@ public partial class PnlCharacterInfo : Control
                     keyLabel = "Melee Dmg Bonus";
                     keyValue = data.GetCorrectMeleeWeaponDamageBonus().ToString();
                 }
-                else if (kv.Key == StoryCharacterData.StatMode.PhysicalDamageStrength)
+                else if (kv.Key == StoryCharacterData.StatMode.PhysicalDamageRanged)
                 {
                     keyLabel = "Ranged Dmg Bonus";
                     keyValue = data.GetCorrectRangedWeaponDamageBonus().ToString();

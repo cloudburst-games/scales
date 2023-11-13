@@ -220,12 +220,23 @@ public partial class CharacterUnit : CharacterBody2D
 
     private void InitStatusToPlayer()
     {
+        // OriginalStatusToPlayer = StatusToPlayer;
         switch (StatusToPlayer)
         {
             case StatusToPlayerMode.Player:
                 SetControlState(ControlMode.Player);
                 ValidEnemyTargets = new() { StatusToPlayerMode.Hostile, StatusToPlayerMode.Neutral };
                 ValidAllyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Neutral, StatusToPlayerMode.Allied };
+                break;
+            case StatusToPlayerMode.Allied:
+                SetControlState(ControlMode.AI);
+                ValidEnemyTargets = new() { StatusToPlayerMode.Hostile };
+                ValidAllyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Neutral, StatusToPlayerMode.Allied };
+                break;
+            case StatusToPlayerMode.Neutral:
+                SetControlState(ControlMode.AI);
+                ValidEnemyTargets = new() { };
+                ValidAllyTargets = new() { };
                 break;
             default:
                 SetControlState(ControlMode.AI);
@@ -235,8 +246,47 @@ public partial class CharacterUnit : CharacterBody2D
         }
     }
 
+    // public StatusToPlayerMode OriginalStatusToPlayer { get; private set; }
+    public StatusToPlayerMode BerserkStatusToPlayer { get; private set; }
+
+    public void DoBerserkStatusToPlayer()
+    {
+        SetControlState(ControlMode.AI);
+        BerserkValidAllyTargets = new() { };
+        switch (StatusToPlayer)
+        {
+            case StatusToPlayerMode.Player:
+                BerserkStatusToPlayer = StatusToPlayerMode.Hostile;
+                BerserkValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied };
+                // ValidAllyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Neutral, StatusToPlayerMode.Allied };
+                break;
+            case StatusToPlayerMode.Allied:
+                BerserkStatusToPlayer = StatusToPlayerMode.Hostile;
+                BerserkValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied };
+                // ValidAllyTargets = new() { };
+                break;
+            case StatusToPlayerMode.Neutral:
+                BerserkStatusToPlayer = StatusToPlayerMode.Hostile;
+                BerserkValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied };
+                // ValidAllyTargets = new() { };
+                break;
+            case StatusToPlayerMode.Hostile:
+                BerserkStatusToPlayer = StatusToPlayerMode.Allied;
+                BerserkValidEnemyTargets = new() { StatusToPlayerMode.Hostile };
+                // ValidAllyTargets = new() { StatusToPlayerMode.Hostile };
+                break;
+        }
+    }
+
+    public void RestoreStatusToPlayer()
+    {
+        InitStatusToPlayer();
+    }
+
     public List<StatusToPlayerMode> ValidEnemyTargets = new();
     public List<StatusToPlayerMode> ValidAllyTargets = new();
+    public List<StatusToPlayerMode> BerserkValidEnemyTargets = new();
+    public List<StatusToPlayerMode> BerserkValidAllyTargets = new();
 
     private void InitCharacterStats()
     {
@@ -363,11 +413,7 @@ public partial class CharacterUnit : CharacterBody2D
         //     //     await ToSignal(Anim, AnimationPlayer.SignalName.AnimationFinished);
         // }
         // if resuming turn (i.e. NOT ended), then don't reset points etc
-        if (!TurnPending)
-        {
-            CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints] = CharacterData.Stats[StoryCharacterData.StatMode.MaxActionPoints];
-            TurnPending = true;
-        }
+
         _actionState.BattleIdleOrder();
     }
 

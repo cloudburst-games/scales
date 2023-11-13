@@ -15,9 +15,23 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
         base.OnInitCurrentTurn();
 
         IdleBattleState.Battler.SetOutlineColours();
-        SetContextualAction(IdleBattleState.Battler.GetGlobalMousePosition());
+        SetContextualAction(IdleBattleState.Battler.BattleGrid.WorldToGrid(IdleBattleState.Battler.GetGlobalMousePosition()));
 
     }
+
+    // public override void ProcessUpdate(double delta)
+    // {
+    //     base.ProcessUpdate(delta);
+    //     Battler battler = IdleBattleState.Battler;
+    //     CharacterUnit activeCharacter = battler.CharactersAwaitingTurn[0];
+    //     StoryCharacterData activeData = activeCharacter.CharacterData;
+
+    //     // if (activeData.Berserk)
+    //     // {
+    //     //     IdleBattleState.BerserkEffect();
+    //     //     return;
+    //     // }
+    // }
 
     public override void InputUpdate(InputEvent ev)
     {
@@ -25,6 +39,15 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
 
         Vector2 mousePos = battler.GetGlobalMousePosition();
         Vector2 mouseGridPos = battler.BattleGrid.WorldToGrid(mousePos);
+
+        Vector2 characterWorldPos = battler.CharactersAwaitingTurn[0].GlobalPosition;
+        Vector2 characterGridPos = battler.BattleGrid.WorldToGrid(characterWorldPos);
+        if (battler.BattleGrid.GetHexAtGridPosition(characterGridPos).Obstacle)
+        {
+            return;
+        }
+
+
         SetContextualAction(mouseGridPos);
 
         if (ev is InputEventMouseButton btn)

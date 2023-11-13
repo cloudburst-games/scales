@@ -116,8 +116,16 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     {
         if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Attribute)
         {
+            // GD.Print("att b4: ", Attributes[effect.AttributeAffected]);
+            // GD.Print("health b4 should be: ", GetUpdatedHealth());
+            // GD.Print(Stats[StatMode.MaxHealth]);
+            // GD.Print(GetCorrectHitBonus());
             Attributes[effect.AttributeAffected] += effect.Magnitude; // can be negative!
+            UpdateAllStats(maxOnly: true);
+            // GD.Print(Stats[StatMode.MaxHealth]);
+            // GD.Print(GetCorrectHitBonus());
             // GD.Print("att now: ", Attributes[effect.AttributeAffected]);
+            // GD.Print("health nao: ", GetUpdatedHealth());
         }
         else if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Stat)
         {
@@ -144,6 +152,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
             if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Attribute)
             {
                 Attributes[effect.AttributeAffected] -= effect.CumulativeMagnitude;
+                UpdateAllStats(maxOnly: true);
             }
             else if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Stat)
             {
@@ -218,10 +227,10 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     }
 
 
-    public void UpdateAllStats()
+    public void UpdateAllStats(bool maxOnly = false)
     {
-        Stats[StatMode.Health] = Stats[StatMode.MaxHealth] = GetUpdatedHealth();
-        Stats[StatMode.Endurance] = Stats[StatMode.MaxEndurance] = GetUpdatedEndurance();
+        Stats[StatMode.MaxHealth] = GetUpdatedHealth();
+        Stats[StatMode.MaxEndurance] = GetUpdatedEndurance();
         Stats[StatMode.HealthRegen] = GetUpdatedHealthRegen();
         Stats[StatMode.EnduranceRegen] = GetUpdatedEnduranceRegen();
         Stats[StatMode.MysticResist] = GetUpdatedMysticResist();
@@ -235,13 +244,22 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
         Stats[StatMode.CriticalThreshold] = GetUpdatedCriticalThreshold();
         Stats[StatMode.HitBonusStrength] = GetUpdatedHitBonusStrength();
         Stats[StatMode.HitBonusPrecision] = GetUpdatedHitBonusPrecision();
-        Stats[StatMode.Reagents] = Stats[StatMode.MaxReagents] = GetUpdatedReagents();
-        Stats[StatMode.FocusCharge] = Stats[StatMode.MaxFocusCharge] = GetUpdatedFocusCharge();
+        Stats[StatMode.MaxReagents] = GetUpdatedReagents();
+        Stats[StatMode.MaxFocusCharge] = GetUpdatedFocusCharge();
         Stats[StatMode.Persuasion] = GetUpdatedPersuasion();
         Stats[StatMode.PersuasionResist] = GetUpdatedPersuasionResist();
-        Stats[StatMode.ActionPoints] = Stats[StatMode.MaxActionPoints] = GetUpdatedActionPoints();
+        Stats[StatMode.MaxActionPoints] = GetUpdatedActionPoints();
         Stats[StatMode.MoveSpeed] = GetUpdatedMoveSpeed();
         Stats[StatMode.PhysicalDamageRanged] = GetUpdatedPhysicalDamageRanged();
+
+        if (!maxOnly)
+        {
+            Stats[StatMode.Health] = GetUpdatedHealth();
+            Stats[StatMode.Endurance] = GetUpdatedEndurance();
+            Stats[StatMode.Reagents] = GetUpdatedReagents();
+            Stats[StatMode.FocusCharge] = GetUpdatedFocusCharge();
+            Stats[StatMode.ActionPoints] = GetUpdatedActionPoints();
+        }
     }
 
 
@@ -251,85 +269,85 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
 
     private int GetUpdatedHealth()
     {
-        return UpdateStat(Might, 3, 0.025f) + UpdateStat(Resilience, 1f, 0.025f);
+        return UpdateStat(Attributes[AttributeMode.Might], 3, 0.025f) + UpdateStat(Attributes[AttributeMode.Resilience], 1f, 0.025f);
     }
 
     private int GetUpdatedEndurance()
     {
-        return UpdateStat(Might, 1, 0.025f) +
-            UpdateStat(Resilience, 2, 0.025f);
+        return UpdateStat(Attributes[AttributeMode.Might], 1, 0.025f) +
+            UpdateStat(Attributes[AttributeMode.Resilience], 2, 0.025f);
     }
 
     private int GetUpdatedHealthRegen()
     {
-        return UpdateStat(Resilience, 0.2f, 0.025f);
+        return UpdateStat(Attributes[AttributeMode.Resilience], 0.2f, 0.025f);
     }
 
     private int GetUpdatedEnduranceRegen()
     {
-        return UpdateStat(Resilience, 0.4f, 0.025f);
+        return UpdateStat(Attributes[AttributeMode.Resilience], 0.4f, 0.025f);
     }
 
     private int GetUpdatedMysticResist()
     {
-        return UpdateStat(Resilience, 0.2f, 0.025f) +
-            UpdateStat(Intellect, 0.1f, 0.05f) +
-            UpdateStat(Luck, 0.1f, 0.05f);
+        return UpdateStat(Attributes[AttributeMode.Resilience], 0.2f, 0.025f) +
+            UpdateStat(Attributes[AttributeMode.Intellect], 0.1f, 0.05f) +
+            UpdateStat(Attributes[AttributeMode.Luck], 0.1f, 0.05f);
     }
 
     private int GetUpdatedPhysicalResist()
     {
-        return UpdateStat(ArmourClass, 1f, 0.025f) + UpdateStat(Resilience, 0.2f, 0.025f);
+        return UpdateStat(ArmourClass, 1f, 0.025f) + UpdateStat(Attributes[AttributeMode.Resilience], 0.2f, 0.025f);
     }
 
     private int GetUpdatedDodge()
     {
-        return UpdateStat(Speed, 0.2f, 0.025f) + UpdateStat(Luck, 0.1f, 0.05f);
+        return UpdateStat(Attributes[AttributeMode.Speed], 0.2f, 0.025f) + UpdateStat(Attributes[AttributeMode.Luck], 0.1f, 0.05f);
     }
 
     private int GetUpdatedPhysicalDamageStrength()
     {
-        return UpdateStat(Might, 0.25f, 0.05f);
+        return UpdateStat(Attributes[AttributeMode.Might], 0.25f, 0.05f);
     }
 
     private int GetUpdatedPhysicalDamagePrecision()
     {
-        return UpdateStat(Precision, 0.5f, 0.05f);
+        return UpdateStat(Attributes[AttributeMode.Precision], 0.5f, 0.05f);
     }
 
     private int GetUpdatedPhysicalDamageRanged()
     {
-        return UpdateStat(Precision, 0.2f, 0.05f);
+        return UpdateStat(Attributes[AttributeMode.Precision], 0.2f, 0.05f);
     }
 
     private int GetUpdatedMysticism()
     {
-        return UpdateStat(Intellect, 0.6f, 0.035f);
+        return UpdateStat(Attributes[AttributeMode.Intellect], 0.6f, 0.035f);
     }
 
     private int GetUpdatedInitiative()
     {
-        return UpdateStat(Speed, 1.5f, 0.02f);
+        return UpdateStat(Attributes[AttributeMode.Speed], 1.5f, 0.02f);
     }
 
     private int GetUpdatedLeadership()
     {
-        return UpdateStat(Charisma, 1f, 0.025f);
+        return UpdateStat(Attributes[AttributeMode.Charisma], 1f, 0.025f);
     }
 
     private int GetUpdatedCriticalThreshold()
     {
         return Math.Max(11,
-            20 - UpdateStat(Precision, 0.1f, 0.025f) - UpdateStat(Luck, 0.2f, 0.02f));
+            20 - UpdateStat(Attributes[AttributeMode.Precision], 0.1f, 0.025f) - UpdateStat(Attributes[AttributeMode.Luck], 0.2f, 0.02f));
     }
 
     private int GetUpdatedHitBonusStrength()
     {
-        return UpdateStat(Might, 0.5f, 0.02f) + UpdateStat(Precision, 0.25f, 0.02f);
+        return UpdateStat(Attributes[AttributeMode.Might], 0.5f, 0.02f) + UpdateStat(Attributes[AttributeMode.Precision], 0.25f, 0.02f);
     }
     private int GetUpdatedHitBonusPrecision()
     {
-        return UpdateStat(Precision, 1f, 0.02f);
+        return UpdateStat(Attributes[AttributeMode.Precision], 1f, 0.02f);
     }
 
     // public int GetCorrectHitBonus(bool mystical = false)
@@ -371,27 +389,27 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     }
     private int GetUpdatedReagents()
     {
-        return UpdateStat(Intellect, 1f, 0.02f);
+        return UpdateStat(Attributes[AttributeMode.Intellect], 1f, 0.02f);
     }
     private int GetUpdatedFocusCharge()
     {
-        return UpdateStat(Intellect, 2f, 0.015f);
+        return UpdateStat(Attributes[AttributeMode.Intellect], 2f, 0.015f);
     }
     private int GetUpdatedPersuasion()
     {
-        return UpdateStat(Intellect, 1f, 0.05f) + UpdateStat(Charisma, 2f, 0.01f);
+        return UpdateStat(Attributes[AttributeMode.Intellect], 1f, 0.05f) + UpdateStat(Attributes[AttributeMode.Charisma], 2f, 0.01f);
     }
     private int GetUpdatedPersuasionResist()
     {
-        return UpdateStat(Intellect, 2f, 0.025f);
+        return UpdateStat(Attributes[AttributeMode.Intellect], 2f, 0.025f);
     }
     private int GetUpdatedActionPoints()
     {
-        return UpdateStat(Speed, 1f, 0.03f);
+        return UpdateStat(Attributes[AttributeMode.Speed], 1f, 0.03f);
     }
     private int GetUpdatedMoveSpeed()
     {
-        return UpdateStat(Speed, 1f, 0.03f) * 100;
+        return UpdateStat(Attributes[AttributeMode.Speed], 1f, 0.03f) * 100;
     }
     private void UpdateKnownSpells()
     {
@@ -477,8 +495,8 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
         new Tuple<int,int>(1,6)}; // e.g. 2d4 + 1d6 -> post-jam will need to change be explicit about damage types, and maybe introduce damage type resistances
 
 
-    public List<Tuple<int, int>> WeaponDiceRanged { get; set; } = new() {new Tuple<int,int>(1,8), // should be updated when changing weapon
-        new Tuple<int,int>(1,6)}; // e.g. 2d4 + 1d6 -> post-jam will need to change be explicit about damage types, and maybe introduce damage type resistances
+    public List<Tuple<int, int>> WeaponDiceRanged { get; set; } = new() {new Tuple<int,int>(1,4), // should be updated when changing weapon
+        new Tuple<int,int>(1,4)}; // e.g. 2d4 + 1d6 -> post-jam will need to change be explicit about damage types, and maybe introduce damage type resistances
 
     // // the below are intended to be modified by attributes and perks
     // public int HitBonusStrength { get; set; } = 0;
