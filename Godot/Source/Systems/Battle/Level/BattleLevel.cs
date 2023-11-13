@@ -89,62 +89,52 @@ public partial class BattleLevel : Node2D
         // _hexGrid.UpdateNavigationAndDisplay(); // shouldnt need to do it twice???
         HexModifier.Init(HexGrid);
     }
-
-    private void SetCharacterPosition(CharacterUnit characterUnit, List<Vector2> positionPool)
+    private void SetCharacterPositionAndDirection(CharacterUnit characterUnit, List<Vector2> positionPool)
     {
         characterUnit.Position = positionPool[0];
         positionPool.RemoveAt(0);
-        Vector2 size = _background.GlobalPosition + (_background.Texture.GetSize() * _background.Scale);
-        // Note: character global position is 0,0 as not yet added to scene tree. conveniently, position is same as global position though, as BattleLevel is at 0,0
-        // It may get messed up if this changes though
 
-        // GD.Print("size: ", size);
-        // GD.Print("pos: ", characterUnit.Position);
-        // Set the orientation
-        if (characterUnit.Position.X < size.X * 0.5f)// _background.Texture.GetSize().X * _background.Scale.X / 2f)
+        Vector2 mapCenter = _background.GlobalPosition;// + _background.Texture.GetSize() * _background.Scale * 0.5f;
+
+        Vector2 directionToCenter = (mapCenter - characterUnit.Position).Normalized();
+
+        List<Vector2> inwardFacingDirections = new()
         {
-            if (characterUnit.Position.Y < size.Y * 0.33f)//  _background.Texture.GetSize().Y * _background.Scale.Y * 0.33f)
+            new(0.47f, -0.88f),
+            new(0.99f, -0.13f),
+            new (0.89f, 0.45f),
+            new (-0.47f, 0.88f),
+            new (-0.99f, 0.13f),
+            new (-0.89f, -0.45f)
+        };
+
+        Vector2 closestInwardFacingDirection = FindClosestVector(directionToCenter, inwardFacingDirections);
+
+        characterUnit.StartingBattleAnimDirection = closestInwardFacingDirection;
+    }
+
+    private Vector2 FindClosestVector(Vector2 target, List<Vector2> vectors)
+    {
+        float closestDistance = float.MaxValue;
+        Vector2 closestVector = Vector2.Zero;
+
+        foreach (Vector2 vector in vectors)
+        {
+            float distance = target.DistanceSquaredTo(vector);
+
+            if (distance < closestDistance)
             {
-                //se
-                characterUnit.StartingBattleAnimDirection = new Vector2(1, 1);
-            }
-            else if (characterUnit.Position.Y < size.Y * 0.66f)//  _background.Texture.GetSize().Y * _background.Scale.Y * 0.66f)
-            {
-                // e
-                characterUnit.StartingBattleAnimDirection = new Vector2(1, 0);
-            }
-            else
-            {
-                characterUnit.StartingBattleAnimDirection = new Vector2(1, -1);
+                closestDistance = distance;
+                closestVector = vector;
             }
         }
-        else
-        {
-            if (characterUnit.Position.Y < size.Y * 0.33f)//_background.Texture.GetSize().Y * _background.Scale.Y * 0.33f)
-            {
-                //sw
-                characterUnit.StartingBattleAnimDirection = new Vector2(-1, 1);
-            }
-            else if (characterUnit.Position.Y < size.Y * 0.66f)//_background.Texture.GetSize().Y * _background.Scale.Y * 0.66f)
-            {
-                // w
-                characterUnit.StartingBattleAnimDirection = new Vector2(-1, 0);
-            }
-            else
-            {
-                characterUnit.StartingBattleAnimDirection = new Vector2(-1, -1);
-                // nw
-            }
-        }
-        // GD.Print(characterUnit.StartingBattleAnimDirection);
+
+        return closestVector;
     }
 
     public void PlaceCharacterUnit(CharacterUnit characterUnit)
     {
-        SetCharacterPosition(characterUnit, _playerStatusPositions[characterUnit.StatusToPlayer]);// characterUnit.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player ? _availablePlayerStartingPositions : characterUnit.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Allied ? _available
+        SetCharacterPositionAndDirection(characterUnit, _playerStatusPositions[characterUnit.StatusToPlayer]);// characterUnit.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player ? _availablePlayerStartingPositions : characterUnit.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Allied ? _available
     }
 }
 
-// TODO - make a separate grid visualiser with multiple modes:
-// show whole grid + obstacles
-// show only pathing

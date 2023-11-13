@@ -61,6 +61,10 @@ public partial class BattleScene : Node, ISceneTransitionable
     private CursorControl _cursorControl;
     [Export]
     private SpellEffectManager _spellEffectManager;
+    [Export]
+    private HBoxTurnOrder _hBoxTurnOrder;
+    [Export]
+    private PnlCharacterInfo _pnlCharacterInfo;
     public override void _Ready()
     {
         // TESTING
@@ -97,9 +101,26 @@ public partial class BattleScene : Node, ISceneTransitionable
         LoadLevel();
     }
 
+    private void StoreCurrentCharacterPortraits()
+    {
+        System.Collections.Generic.Dictionary<string, Texture2D> charPortDict = new();
+        // IEnumerable<StoryCharacterData> characterDataList = allCharacters.Select(x => x.CharacterData);
+        foreach (StoryCharacterData data in _currentCharacters.Select(x => x.CharacterData))
+        {
+            Texture2D tex = GD.Load<Texture2D>(data.PortraitPath);
+            charPortDict[data.Name] = tex;
+        }
+        // _hBoxTurnOrder.Initialise()
+        _pnlCharacterInfo.StoreAllPortraits(charPortDict);
+        _hBoxTurnOrder.StoreAllPortraits(charPortDict);
+    }
+
+
     private void OnCharacterTurnStarted(Array<SpellEffectManager.SpellMode> spells)
     {
         _HUD.SetSpellBookDisplayedSpells(spells);
+        _HUD.OnCharacterStartTurn(_battler.CharactersAwaitingTurn[0].CharacterData);
+        _hBoxTurnOrder.OnCharacterTurnStart(_battler.CharactersAwaitingTurn.Skip(1).Select(x => x.CharacterData).ToList(), _battler.AllCharacters.Select(x => x.CharacterData).ToList());
         // if (_battler.CharactersAwaitingTurn[0].UISelectedSpell != SpellEffectManager.SpellMode.None)
         // {
         SetSpell(_battler.CharactersAwaitingTurn[0].UISelectedSpell);
@@ -112,7 +133,7 @@ public partial class BattleScene : Node, ISceneTransitionable
 
     private void OnSpellSelected(SpellEffectManager.SpellMode spellSelected)
     {
-        _battler.CurrentAction = Battler.ActionMode.Cast;
+        _battler.SetPlayerAction(Battler.ActionMode.Cast);
         SetSpell(spellSelected);
         _btnActions.OnActionBtnPressed(Battler.ActionMode.Cast);
         _HUD.SetState(BattleHUD.StateMode.SpellBookClosed);
@@ -150,6 +171,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         newChar.Rand = _rand;
         _currentCharacters.Add(newChar);
         newChar.CastingEffect += _spellEffectManager.OnCastingSpellStart;
+        newChar.CastingEffect += (SpellEffectManager.Spell spell) => _HUD.UpdateBars(newChar.CharacterData);
         newChar.Died += _battler.OnCharacterDied;
         newChar.MovedButStillHaveAP += _battler.OnMovedButStillHaveAP;
         newChar.CharacterDataTreeLink.RoundEffectApplied += (CharacterRoundEffect roundEffect) => _HUD.OnCharacterRoundEffectApplied(newChar, roundEffect);
@@ -187,6 +209,7 @@ public partial class BattleScene : Node, ISceneTransitionable
                 _lvlToLoad.HexModifier.OnCharacterRemoveObstacle(playerCharacter.GlobalPosition, moving);
         }
         // _lvlToLoad.HexModifier.HexObstacleChanged += _battler.RecalculateUserHexes;
+        StoreCurrentCharacterPortraits();
 
         await ToSignal(_anim, AnimationPlayer.SignalName.AnimationFinished);
         _btnIntro.Disabled = false;

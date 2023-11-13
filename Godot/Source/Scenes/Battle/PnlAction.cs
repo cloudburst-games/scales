@@ -8,29 +8,35 @@ public partial class PnlAction : Panel
     public delegate void ActionUIHintEventHandler(int actionUIHint);
 
     [Export]
-    private TextureButton _btnChooseAction;
+    private Control _btnChooseAction;
     [Export]
-    private TextureButton _btnChooseSpell;
+    private Control _btnChooseSpell;
     [Export]
-    private TextureButton _btnEndTurn;
+    private Control _btnEndTurn;
     [Export]
-    private TextureButton _btnMenu;
+    private Control _btnMenu;
     [Export]
-    private TextureButton _btnMelee;
+    private Control _btnMelee;
     [Export]
-    private TextureButton _btnShoot;
+    private Control _btnShoot;
     [Export]
-    private TextureButton _btnMove;
+    private Control _btnMove;
     [Export]
-    private TextureButton _btnCast;
+    private Control _btnCast;
     [Export]
-    private TextureButton _btnLog;
+    private Control _btnLog;
     [Export]
-    private TextureButton _btnOptions;
+    private Control _btnOptions;
+    [Export]
+    private Control _barHealth;
+    [Export]
+    private Control _barCharge;
+    [Export]
+    private Control _barHerbs;
 
-    public enum UIHint { ChooseAction, Melee, Shoot, Cast, Move, None, EndTurn, Options, ChooseSpell, ExpandLog, Menu }
+    public enum UIHint { ChooseAction, Melee, Shoot, Cast, Move, None, EndTurn, Options, ChooseSpell, ExpandLog, Menu, CurrentHealth, CurrentCharge, CurrentHerbs }
 
-    private Dictionary<TextureButton, UIHint> _buttonToHint = new();
+    private Dictionary<Control, UIHint> _controlToHint = new();
 
     public override void _Ready()
     {
@@ -40,24 +46,27 @@ public partial class PnlAction : Panel
 
     private void InitializeButtonMappings()
     {
-        _buttonToHint[_btnChooseAction] = UIHint.ChooseAction;
-        _buttonToHint[_btnChooseSpell] = UIHint.ChooseSpell;
-        _buttonToHint[_btnEndTurn] = UIHint.EndTurn;
-        _buttonToHint[_btnMenu] = UIHint.Menu;
-        _buttonToHint[_btnMelee] = UIHint.Melee;
-        _buttonToHint[_btnShoot] = UIHint.Shoot;
-        _buttonToHint[_btnMove] = UIHint.Move;
-        _buttonToHint[_btnCast] = UIHint.Cast;
-        _buttonToHint[_btnLog] = UIHint.ExpandLog;
-        _buttonToHint[_btnOptions] = UIHint.Options;
+        _controlToHint[_btnChooseAction] = UIHint.ChooseAction;
+        _controlToHint[_btnChooseSpell] = UIHint.ChooseSpell;
+        _controlToHint[_btnEndTurn] = UIHint.EndTurn;
+        _controlToHint[_btnMenu] = UIHint.Menu;
+        _controlToHint[_btnMelee] = UIHint.Melee;
+        _controlToHint[_btnShoot] = UIHint.Shoot;
+        _controlToHint[_btnMove] = UIHint.Move;
+        _controlToHint[_btnCast] = UIHint.Cast;
+        _controlToHint[_btnLog] = UIHint.ExpandLog;
+        _controlToHint[_btnOptions] = UIHint.Options;
+        _controlToHint[_barHealth] = UIHint.CurrentHealth;
+        _controlToHint[_barCharge] = UIHint.CurrentCharge;
+        _controlToHint[_barHerbs] = UIHint.CurrentHerbs;
     }
 
     private void ConnectMouseEvents()
     {
-        foreach (var button in _buttonToHint.Keys)
+        foreach (var ctrl in _controlToHint.Keys)
         {
-            button.MouseEntered += () => OnBtnMouseEntered(button);
-            button.MouseExited += () => OnBtnMouseExited();
+            ctrl.MouseEntered += () => OnBtnMouseEntered(ctrl);
+            ctrl.MouseExited += () => OnBtnMouseExited();
         }
     }
 
@@ -66,9 +75,9 @@ public partial class PnlAction : Panel
         EmitSignal(SignalName.ActionUIHint, (int)UIHint.None);
     }
 
-    private void OnBtnMouseEntered(TextureButton btn)
+    private void OnBtnMouseEntered(Control ctrl)
     {
-        EmitSignal(SignalName.ActionUIHint, (int)_buttonToHint[btn]);
+        EmitSignal(SignalName.ActionUIHint, (int)_controlToHint[ctrl]);
     }
 
 

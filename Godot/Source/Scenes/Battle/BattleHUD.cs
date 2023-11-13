@@ -42,6 +42,15 @@ public partial class BattleHUD : CanvasLayer
     private Panel _pnlShortLog;
     [Export]
     private Panel _pnlAction;
+    [Export]
+    private TextureRect _texActiveCharacter;
+    [Export]
+    private ProgressBar _barHealth;
+    [Export]
+    private ProgressBar _barHerbs;
+    [Export]
+    private ProgressBar _barCharge;
+
     public enum StateMode
     {
         BattleIntro, BattleStarted, LogOpened, LogClosed, SpellBookOpened, SpellBookClosed,
@@ -128,6 +137,22 @@ public partial class BattleHUD : CanvasLayer
                 break;
 
         }
+    }
+
+    public void OnCharacterStartTurn(StoryCharacterData characterData)
+    {
+        _characterInfoPanel.SetPortrait(_texActiveCharacter, characterData);
+        UpdateBars(characterData);
+    }
+
+    public void UpdateBars(StoryCharacterData characterData)
+    {
+        _barHealth.Value =
+            (float)characterData.Stats[StoryCharacterData.StatMode.Health] / (float)characterData.Stats[StoryCharacterData.StatMode.MaxHealth] * 100f;
+        _barCharge.Value =
+            (float)characterData.Stats[StoryCharacterData.StatMode.FocusCharge] / (float)characterData.Stats[StoryCharacterData.StatMode.MaxFocusCharge] * 100f;
+        _barHerbs.Value =
+            (float)characterData.Stats[StoryCharacterData.StatMode.Reagents] / (float)characterData.Stats[StoryCharacterData.StatMode.MaxReagents] * 100f;
     }
 
     private void HintClickCharacterStateCommon()

@@ -25,6 +25,8 @@ public partial class SpellEffectManager : Node
 
         public Godot.Collections.Array<CharacterUnit> AreaAffectedCharacters = new();
         public SpellMode SpellMode { get; set; }
+        public enum PatronMode { Shamash, Ishtar }
+        public PatronMode Patron;
     }
 
     public partial class SpellEffect : RefCounted
@@ -306,6 +308,7 @@ public partial class SpellEffectManager : Node
             Description = "Fire an arrow at your opponent.",
             ReagentCost = 0,
             ChargeCost = 0,
+            Patron = Spell.PatronMode.Shamash,
         };
         AllSpells[SpellMode.SolarFlare] = new()
         {
@@ -318,6 +321,7 @@ public partial class SpellEffectManager : Node
             Description = "Launch a jolt of solar energy at an enemy.",
             ReagentCost = 0,
             ChargeCost = 2,
+            Patron = Spell.PatronMode.Shamash,
         };
         AllSpells[SpellMode.SolarBlast] = new()
         {
@@ -331,6 +335,7 @@ public partial class SpellEffectManager : Node
             Description = "Blast your enemies with the power of the sun.",
             ReagentCost = 0,
             ChargeCost = 4,
+            Patron = Spell.PatronMode.Shamash,
         };
         AllSpells[SpellMode.JudgementOfFlame] = new()
         {
@@ -343,6 +348,7 @@ public partial class SpellEffectManager : Node
             Description = "Burn an enemy over time and reduce their might and precision.",
             ReagentCost = 0,
             ChargeCost = 5,
+            Patron = Spell.PatronMode.Shamash,
         };
         AllSpells[SpellMode.BlindingLight] = new()
         {
@@ -355,6 +361,7 @@ public partial class SpellEffectManager : Node
             Description = "Reduces an opponent's hit chance.",
             ReagentCost = 0,
             ChargeCost = 3,
+            Patron = Spell.PatronMode.Shamash,
         };
         AllSpells[SpellMode.VialOfFury] = new()
         {
@@ -367,6 +374,7 @@ public partial class SpellEffectManager : Node
             Description = "Cause an enemy to go berserk, attacking the nearest creature.",
             ReagentCost = 4,
             ChargeCost = 0,
+            Patron = Spell.PatronMode.Ishtar,
         };
         AllSpells[SpellMode.ElixirOfVigour] = new()
         {
@@ -379,6 +387,7 @@ public partial class SpellEffectManager : Node
             Description = "Enhances an ally's strength and resilience.",
             ReagentCost = 2,
             ChargeCost = 0,
+            Patron = Spell.PatronMode.Ishtar,
         };
         AllSpells[SpellMode.ElixirOfSwiftness] = new()
         {
@@ -391,6 +400,7 @@ public partial class SpellEffectManager : Node
             Description = "Grants an ally improved precision and speed.",
             ReagentCost = 2,
             ChargeCost = 0,
+            Patron = Spell.PatronMode.Ishtar,
         };
         AllSpells[SpellMode.RegenerativeOintment] = new()
         {
@@ -403,6 +413,7 @@ public partial class SpellEffectManager : Node
             Description = "Improves an ally's health regeneration.",
             ReagentCost = 3,
             ChargeCost = 0,
+            Patron = Spell.PatronMode.Ishtar,
         };
         AllSpells[SpellMode.None] = new()
         {
@@ -439,7 +450,7 @@ public partial class SpellEffectManager : Node
         SpellVisual spellVisual = visualController.SpellEffectScn.Instantiate<SpellVisual>();
         spellVisual.GlobalPosition = spell.Origin;
 
-        CurrentLevel.AddChild(spellVisual); // consdier adding under an entity group // 2 days later- what does this comment mean?
+        CurrentLevel.GetNode("Entities/Effects").AddChild(spellVisual); // consdier adding under an entity group // 2 days later- what does this comment mean? // 7 days later ohh i got it
 
         spellVisual.Finished += this.OnSpellFinished;
         spellVisual.SetSpellEffectState(spell.SpellEffectVisual.VisualMode);
@@ -486,7 +497,7 @@ public partial class SpellEffectManager : Node
         {
             AttackerHitModifier = attackerData.GetCorrectHitBonus(spellEffect.Mystical),
             DefenderDodgeModifier = defenderData.Stats[StoryCharacterData.StatMode.Dodge],
-            AttackerDamageModifier = spellEffect.Mystical ? attackerData.Stats[StoryCharacterData.StatMode.Mysticism] : attackerData.GetCorrectWeaponDamageBonus(),
+            AttackerDamageModifier = spellEffect.Mystical ? attackerData.Stats[StoryCharacterData.StatMode.Mysticism] : attackerData.GetCorrectRangedWeaponDamageBonus(),
             DefenderDamageResist = spellEffect.Mystical ? defenderData.Stats[StoryCharacterData.StatMode.MysticResist] : defenderData.Stats[StoryCharacterData.StatMode.PhysicalResist],
             DamageDice = spellEffect.DamageDice,
             CriticalThreshold = attackerData.Stats[StoryCharacterData.StatMode.CriticalThreshold],
@@ -522,7 +533,7 @@ public partial class SpellEffectManager : Node
             {
                 AttackerHitModifier = attackerData.GetCorrectHitBonus(spellEffect.Mystical),
                 DefenderDodgeModifier = defenderData.Stats[StoryCharacterData.StatMode.Dodge],
-                AttackerDamageModifier = spellEffect.Mystical ? attackerData.Stats[StoryCharacterData.StatMode.Mysticism] : attackerData.GetCorrectWeaponDamageBonus(),
+                AttackerDamageModifier = spellEffect.Mystical ? attackerData.Stats[StoryCharacterData.StatMode.Mysticism] : attackerData.GetCorrectRangedWeaponDamageBonus(),
                 DefenderDamageResist = spellEffect.Mystical ? defenderData.Stats[StoryCharacterData.StatMode.MysticResist] : defenderData.Stats[StoryCharacterData.StatMode.PhysicalResist],
                 DamageDice = spellEffect.DamageDice,
                 CriticalThreshold = attackerData.Stats[StoryCharacterData.StatMode.CriticalThreshold],
@@ -570,7 +581,8 @@ public partial class SpellEffectManager : Node
             cumulative: false,
             magnitude: -res.FinalDamage,
             animName: "DamageAttribute",
-            rounds: spellEffect.NumRounds
+            rounds: spellEffect.NumRounds,
+            fromSpell: spell.SpellMode
         );
 
         targetCharacter.CharacterData.DoEffectInitial(roundEffect);
@@ -600,7 +612,8 @@ public partial class SpellEffectManager : Node
             cumulative: false,
             magnitude: res.FinalDamage,
             animName: "FortifyAttribute",
-            rounds: spellEffect.NumRounds
+            rounds: spellEffect.NumRounds,
+            fromSpell: spell.SpellMode
         );
 
         targetCharacter.CharacterData.DoEffectInitial(roundEffect);
@@ -619,7 +632,8 @@ public partial class SpellEffectManager : Node
             cumulative: false,
             magnitude: 0,
             animName: "Berserk",
-            rounds: spellEffect.NumRounds
+            rounds: spellEffect.NumRounds,
+            fromSpell: spell.SpellMode
         );
         targetCharacter.CharacterData.DoEffectInitial(roundEffect);
     }
@@ -654,7 +668,8 @@ public partial class SpellEffectManager : Node
             cumulative: true,
             magnitude: -res.FinalDamage,
             animName: "Damage",
-            rounds: spellEffect.NumRounds
+            rounds: spellEffect.NumRounds,
+            fromSpell: spell.SpellMode
         );
 
         targetCharacter.CharacterData.DoEffectInitial(roundEffect);

@@ -197,22 +197,22 @@ blend_point_0/pos = Vector2(0, 0)
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qe0c4"]
-animation = &"afab2/idle4_afab2"
+animation = &"afab2/idle5_afab2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_eiken"]
-animation = &"afab2/idle3_afab2"
+animation = &"afab2/idle4_afab2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gvhe3"]
-animation = &"afab2/idle2_afab2"
+animation = &"afab2/idle3_afab2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c144r"]
-animation = &"afab2/idle1_afab2"
+animation = &"afab2/idle2_afab2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vaclr"]
-animation = &"afab2/idle6_afab2"
+animation = &"afab2/idle1_afab2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8ipoh"]
-animation = &"afab2/idle5_afab2"
+animation = &"afab2/idle6_afab2"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_utqnb"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_qe0c4")
@@ -369,7 +369,7 @@ material = SubResource("ShaderMaterial_btc0f")
 texture = ExtResource("6_u6xh6")
 offset = Vector2(0, -52.5)
 region_enabled = true
-region_rect = Rect2(6735, 4337, 960, 540)
+region_rect = Rect2(6735, 2711, 960, 540)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1.5)
@@ -392,7 +392,7 @@ parameters/conditions/melee = false
 parameters/conditions/moving = false
 parameters/conditions/takingdamage = false
 parameters/Dying/blend_position = Vector2(0, 0)
-parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(0.182915, -0.481481)
 parameters/Melee/blend_position = Vector2(0, 0)
 parameters/Moving/blend_position = Vector2(0, 0)
 parameters/TakingDamage/blend_position = Vector2(0, 0)

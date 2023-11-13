@@ -20,6 +20,8 @@ public partial class CharacterRoundEffect : RefCounted
     public bool Started { get; set; } = false;
     public string AnimName { get; private set; }
 
+    public SpellEffectManager.SpellMode FromSpell { get; private set; }
+
     public CharacterRoundEffect(
         string name,
         StoryCharacterData.AttributeMode attributeAffected,
@@ -29,7 +31,8 @@ public partial class CharacterRoundEffect : RefCounted
         bool permanent,
         bool cumulative,
         int magnitude,
-        string animName)
+        string animName,
+        SpellEffectManager.SpellMode fromSpell)
     {
         Name = name;
         AttributeAffected = attributeAffected;
@@ -40,6 +43,7 @@ public partial class CharacterRoundEffect : RefCounted
         Cumulative = cumulative;
         Magnitude = magnitude;
         AnimName = animName;
+        FromSpell = fromSpell;
     }
 }
 
@@ -55,7 +59,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
         PhysicalDamageStrength, PhysicalDamagePrecision, Mysticism, Initiative, Leadership, CriticalThreshold,
         HitBonusStrength, HitBonusPrecision, Reagents, FocusCharge, Persuasion, PersuasionResist, ActionPoints,
         MoveSpeed, HitBonusWeapon, MaxEndurance, MaxHealth, MaxActionPoints,
-        MaxReagents, MaxFocusCharge
+        MaxReagents, MaxFocusCharge, PhysicalDamageRanged
     }
 
     public AnimationPlayer RoundEffectAnim { get; private set; }
@@ -207,10 +211,12 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
             { StatMode.MaxReagents, GetUpdatedReagents() },
             { StatMode.FocusCharge, GetUpdatedFocusCharge() },
             { StatMode.MaxFocusCharge, GetUpdatedFocusCharge() },
+            { StatMode.PhysicalDamageRanged, GetUpdatedPhysicalDamageRanged() }
         };
         UpdateKnownSpells();
         UpdateAllStats();
     }
+
 
     public void UpdateAllStats()
     {
@@ -235,6 +241,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
         Stats[StatMode.PersuasionResist] = GetUpdatedPersuasionResist();
         Stats[StatMode.ActionPoints] = Stats[StatMode.MaxActionPoints] = GetUpdatedActionPoints();
         Stats[StatMode.MoveSpeed] = GetUpdatedMoveSpeed();
+        Stats[StatMode.PhysicalDamageRanged] = GetUpdatedPhysicalDamageRanged();
     }
 
 
@@ -288,6 +295,11 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     private int GetUpdatedPhysicalDamagePrecision()
     {
         return UpdateStat(Precision, 0.5f, 0.05f);
+    }
+
+    private int GetUpdatedPhysicalDamageRanged()
+    {
+        return UpdateStat(Precision, 0.2f, 0.05f);
     }
 
     private int GetUpdatedMysticism()
@@ -349,9 +361,13 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
         }
     }
 
-    public int GetCorrectWeaponDamageBonus()
+    public int GetCorrectMeleeWeaponDamageBonus()
     {
         return WeaponTypeEquipped == WeaponTypeEquippedMode.Strength ? Stats[StatMode.PhysicalDamageStrength] + WeaponDamageBonus : Stats[StatMode.PhysicalDamagePrecision] + WeaponDamageBonus;
+    }
+    public int GetCorrectRangedWeaponDamageBonus()
+    {
+        return Stats[StatMode.PhysicalDamageRanged] + WeaponDamageBonus;
     }
     private int GetUpdatedReagents()
     {
@@ -392,6 +408,11 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
             }
         }
     }
+    public double GetAverageWeaponDiceDamage(Tuple<int, int> dice)
+    {
+        return (dice.Item2 + 1.0) / 2.0 * dice.Item1;
+    }
+
     // Higher 'multiplier' results in a higher output value.
     // Higher 'constant' increases the effect of diminishing returns (i.e. smaller result)
     private int UpdateStat(int att, float multiplier, float constant)
@@ -452,7 +473,11 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     // public int CriticalThreshold { get; set; } = 20; // This can reduce depending your luck to 19, 18, etc. to a minimum of x (11?)
     public int ArmourClass { get; set; } = 0; // Should be updated when changing armour
     public int WeaponDamageBonus { get; set; } = 2; // Should be updated when changing weapon
-    public List<Tuple<int, int>> WeaponDice { get; set; } = new() {new Tuple<int,int>(1,8), // should be updated when changing weapon
+    public List<Tuple<int, int>> WeaponDiceMelee { get; set; } = new() {new Tuple<int,int>(1,8), // should be updated when changing weapon
+        new Tuple<int,int>(1,6)}; // e.g. 2d4 + 1d6 -> post-jam will need to change be explicit about damage types, and maybe introduce damage type resistances
+
+
+    public List<Tuple<int, int>> WeaponDiceRanged { get; set; } = new() {new Tuple<int,int>(1,8), // should be updated when changing weapon
         new Tuple<int,int>(1,6)}; // e.g. 2d4 + 1d6 -> post-jam will need to change be explicit about damage types, and maybe introduce damage type resistances
 
     // // the below are intended to be modified by attributes and perks

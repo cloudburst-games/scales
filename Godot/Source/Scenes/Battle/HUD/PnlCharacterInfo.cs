@@ -63,7 +63,7 @@ public partial class PnlCharacterInfo : Control
         // {StoryCharacterData.StatMode.Endurance, "Endurance"},
         {StoryCharacterData.StatMode.HealthRegen, "Health Regen"},
         {StoryCharacterData.StatMode.PhysicalDamageStrength, "PhysicalDamageStrength"},
-        // {StoryCharacterData.StatMode.PhysicalDamagePrecision, "PhysicalDamagePrecision"},
+        {StoryCharacterData.StatMode.PhysicalDamageRanged, "PhysicalDamagePrecision"},
         {StoryCharacterData.StatMode.HitBonusStrength, "HitBonusStrength"},
         // {StoryCharacterData.StatMode.HitBonusPrecision, "HitBonusPrecision"},
         {StoryCharacterData.StatMode.CriticalThreshold, "Critical Threshold"},
@@ -149,16 +149,24 @@ public partial class PnlCharacterInfo : Control
     private void OnCommonClick(StoryCharacterData data)
     {
         _currentData = data;
-        PopulateStatsAttDisplay(DisplayMode.Attributes, data);
+        PopulateStatsAttDisplay(DisplayMode.Stats, data);
         _lblCharacterName.Text = data.Name;
         PopulatePerksDisplay(data);
         PopulateStatusDisplay(data);
-        SetPortrait(data);
+        SetPortrait(_portraitRect, data);
         SetLocation();
         Visible = true;
     }
 
-    private void SetPortrait(StoryCharacterData data)
+    public void StoreAllPortraits(Dictionary<string, Texture2D> allPortraits)
+    {
+        _portraits.Clear();
+        _portraits = allPortraits;
+    }
+
+    // WHEN REFACTORING, consider putting this in a separate node, as it is useful outside of the character info panel
+    // Then spawn it in the deepest child of the current scene tree so it is accessible multiple times
+    public void SetPortrait(TextureRect portraitContainer, StoryCharacterData data)
     {
         Texture2D tex;
         if (!_portraits.ContainsKey(data.Name))
@@ -170,7 +178,7 @@ public partial class PnlCharacterInfo : Control
         {
             tex = _portraits[data.Name];
         }
-        _portraitRect.Texture = tex;
+        portraitContainer.Texture = tex;
     }
 
     private void SetLocation()
@@ -263,8 +271,13 @@ public partial class PnlCharacterInfo : Control
                 }
                 else if (kv.Key == StoryCharacterData.StatMode.PhysicalDamageStrength)
                 {
-                    keyLabel = "Physical Dmg Bonus";
-                    keyValue = data.GetCorrectWeaponDamageBonus().ToString();
+                    keyLabel = "Melee Dmg Bonus";
+                    keyValue = data.GetCorrectMeleeWeaponDamageBonus().ToString();
+                }
+                else if (kv.Key == StoryCharacterData.StatMode.PhysicalDamageStrength)
+                {
+                    keyLabel = "Ranged Dmg Bonus";
+                    keyValue = data.GetCorrectRangedWeaponDamageBonus().ToString();
                 }
                 else if (kv.Key == StoryCharacterData.StatMode.HitBonusStrength)
                 {
@@ -294,12 +307,17 @@ public partial class PnlCharacterInfo : Control
                 pnlCharacterInfoElement.Set(keyLabel, keyValue);
                 _vBoxStatsDisplay.AddChild(pnlCharacterInfoElement);
             }
-            PnlCharacterInfoElement weaponDiceElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
-            string weaponDiceKey = "Weapon Dice";
-            string weaponDiceVal = string.Format("{0}d{1}", data.WeaponDice[0].Item1, data.WeaponDice[0].Item2);
-            weaponDiceElement.Set(weaponDiceKey, weaponDiceVal);
-            _vBoxStatsDisplay.AddChild(weaponDiceElement);
+            PnlCharacterInfoElement meleeDiceElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
+            string weaponDiceKey = "Melee Weapon Dice";
+            string weaponDiceVal = string.Format("{0}d{1}", data.WeaponDiceMelee[0].Item1, data.WeaponDiceMelee[0].Item2);
+            meleeDiceElement.Set(weaponDiceKey, weaponDiceVal);
+            _vBoxStatsDisplay.AddChild(meleeDiceElement);
 
+            PnlCharacterInfoElement rangedDiceElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
+            string rangedDiceKey = "Ranged Weapon Dice";
+            string rangedDiceVal = string.Format("{0}d{1}", data.WeaponDiceRanged[0].Item1, data.WeaponDiceRanged[0].Item2);
+            rangedDiceElement.Set(rangedDiceKey, rangedDiceVal);
+            _vBoxStatsDisplay.AddChild(rangedDiceElement);
         }
 
     }

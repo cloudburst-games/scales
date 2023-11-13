@@ -11,11 +11,13 @@
         7
     ],
     "Level": 1,
-    "Might": 12,
-    "Resilience": 6,
-    "Precision": 8,
-    "Speed": 5,
-    "Intellect": 13,
-    "Charisma": 11,
-    "Luck": 6
+    "Might": 10,
+    "Resilience": 10,
+    "Precision": 10,
+    "Speed": 10,
+    "Intellect": 10,
+    "Charisma": 10,
+    "Luck": 10,
+    "_attributes_per_level_rule": "for enemies. 70 points between the attributes, with a max of 16 and min of 4 (jam only), then +5 per lvl (or perk)",
+    "_perks_per_level_rule": "1 perk per level, or 2 for powerful enemies. bonus perks if failing to convince someone to join"
 }

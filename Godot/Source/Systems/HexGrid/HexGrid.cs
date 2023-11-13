@@ -496,9 +496,13 @@ public partial class HexGrid : Node
         return GetHexesInWorldLine(GridToWorld(startGridPos), GridToWorld(endGridPos)).Count - 1;
     }
 
-    private bool IsLOSBlocked(Vector2 startWorldPos, Vector2 endWorldPos)
+    public bool IsLOSBlocked(Vector2 startWorldPos, Vector2 endWorldPos)
     {
         List<Hexagon> hexesInLOS = GetHexesInWorldLine(startWorldPos, endWorldPos);
+        if (hexesInLOS.Count > 0)
+        {
+            hexesInLOS.RemoveAt(hexesInLOS.Count - 1);
+        }
         foreach (Hexagon hex in hexesInLOS)
         {
             if (hex.Obstacle)

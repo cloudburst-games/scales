@@ -31,9 +31,9 @@ public partial class MeleeBattleCharacterUnitActionState : CharacterUnitActionSt
         {
             AttackerHitModifier = attackerData.GetCorrectHitBonus(),
             DefenderDodgeModifier = defenderData.Stats[StoryCharacterData.StatMode.Dodge],
-            AttackerDamageModifier = attackerData.GetCorrectWeaponDamageBonus(),
+            AttackerDamageModifier = attackerData.GetCorrectMeleeWeaponDamageBonus(),
             DefenderDamageResist = defenderData.Stats[StoryCharacterData.StatMode.PhysicalResist],
-            DamageDice = attackerData.WeaponDice,
+            DamageDice = attackerData.WeaponDiceMelee,
             CriticalThreshold = attackerData.Stats[StoryCharacterData.StatMode.CriticalThreshold]
         };
 

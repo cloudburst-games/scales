@@ -24,6 +24,16 @@ public partial class CastingBattleCharacterUnitActionState : CharacterUnitAction
     private void CastAttackTarget()
     {
         CharacterUnit.EmitSignal(CharacterUnit.SignalName.CastingEffect, CharacterUnit.SpellBeingCast);
+        if (CharacterUnit.SpellBeingCast.Patron == SpellEffectManager.Spell.PatronMode.Ishtar)
+        {
+            CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Reagents] = Math.Max(0,
+                CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Reagents] - CharacterUnit.SpellBeingCast.ReagentCost);
+        }
+        else
+        {
+            CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.FocusCharge] = Math.Max(0,
+                CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.FocusCharge] - CharacterUnit.SpellBeingCast.ChargeCost);
+        }
     }
 
     public override void TakeDamageOrder()

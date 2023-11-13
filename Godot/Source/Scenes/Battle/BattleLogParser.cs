@@ -10,7 +10,8 @@ public class BattleLogParser
         OutOfRange,
         NotEnoughCharge,
         NotEnoughReagents,
-        NotEnoughEndurance
+        NotEnoughEndurance,
+        LOSBlocked
     }
 
     public static string ParseUIHint(PnlAction.UIHint hint)
@@ -48,6 +49,15 @@ public class BattleLogParser
                 break;
             case PnlAction.UIHint.None:
                 output = "";
+                break;
+            case PnlAction.UIHint.CurrentHealth:
+                output = "Health.";
+                break;
+            case PnlAction.UIHint.CurrentHerbs:
+                output = "Reagents remaining. Used for Ishtari rites.";
+                break;
+            case PnlAction.UIHint.CurrentCharge:
+                output = "Charge remaining. Used for Shamashian invocations.";
                 break;
         }
         return output;
@@ -89,6 +99,9 @@ public class BattleLogParser
                         break;
                     case InvalidReasonMode.NotEnoughCharge:
                         output = "Insufficient charge.";
+                        break;
+                    case InvalidReasonMode.LOSBlocked:
+                        output = "Line of sight blocked.";
                         break;
                 }
                 break;

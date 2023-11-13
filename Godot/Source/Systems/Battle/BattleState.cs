@@ -69,4 +69,9 @@ public class BattleState
     {
 
     }
+
+
+    public virtual void SetPlayerAction(Battler.ActionMode action)
+    {
+    }
 }

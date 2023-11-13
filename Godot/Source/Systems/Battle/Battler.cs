@@ -7,8 +7,7 @@ using System.Linq;
 public partial class Battler : Node2D
 {
 
-    public HexGridUserDisplay.DisplayMode CurrentDisplayMode = HexGridUserDisplay.DisplayMode.ShowAllHexes;
-    public Battler.ActionMode CurrentAction { get; set; } = Battler.ActionMode.Move;
+    public HexGridUserDisplay.DisplayMode CurrentDisplayMode = HexGridUserDisplay.DisplayMode.ShowContextualHexes;
     public SpellEffectManager.SpellMode PlayerSelectedSpell { get; set; }
 
     public enum ActionMode { Melee, Shoot, Cast, Move, Hint, Invalid, None }
@@ -104,7 +103,7 @@ public partial class Battler : Node2D
 
     }
 
-    internal void SetGridUserHexes(List<Vector2> validMoveHexes, List<Vector2> validHalfMoveHexes, HexGridUserDisplay.DisplayMode displayMode)
+    public List<Vector2> GetAllNonObstacleGridPositions()
     {
         List<Vector2> allGridPositions = new List<Vector2>();
 
@@ -117,6 +116,13 @@ public partial class Battler : Node2D
 
             allGridPositions.Add(kv.Key);
         }
+
+        return allGridPositions;
+    }
+
+    internal void SetGridUserHexes(List<Vector2> validMoveHexes, List<Vector2> validHalfMoveHexes, HexGridUserDisplay.DisplayMode displayMode)
+    {
+        List<Vector2> allGridPositions = GetAllNonObstacleGridPositions();
 
         _hexGridUserDisplay.SetSprites(validMoveHexes, validHalfMoveHexes, allGridPositions);
 
@@ -243,19 +249,19 @@ public partial class Battler : Node2D
 
     private void ApplyRegen(CharacterUnit characterUnit)
     {
-        if (characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] < characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth])
-        {
-            GD.Print("todo log: " + characterUnit.CharacterData.Name + " restores health by " + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.HealthRegen]);
-        }
+        // if (characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] < characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth])
+        // {
+        //     GD.Print("todo log: " + characterUnit.CharacterData.Name + " restores health by " + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.HealthRegen]);
+        // }
         characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] = Math.Min(characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth],
             characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.HealthRegen]);
 
-        if (characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Endurance] < characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxEndurance])
-        {
-            GD.Print("todo log: " + characterUnit.CharacterData.Name + " restores endurance by " + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.EnduranceRegen]);
-        }
-        characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Endurance] = Math.Min(characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxEndurance],
-            characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Endurance] + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.EnduranceRegen]);
+        // if (characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Endurance] < characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxEndurance])
+        // {
+        //     GD.Print("todo log: " + characterUnit.CharacterData.Name + " restores endurance by " + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.EnduranceRegen]);
+        // }
+        // characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Endurance] = Math.Min(characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxEndurance],
+        //     characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Endurance] + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.EnduranceRegen]);
     }
 
     public void PlayAnim(string anim)
@@ -429,6 +435,10 @@ public partial class Battler : Node2D
     internal void OnMovedButStillHaveAP()
     {
         _battleState.OnMovedButStillHaveAP();
+    }
+    public void SetPlayerAction(Battler.ActionMode action)
+    {
+        _battleState.SetPlayerAction(action);
     }
 
 }
