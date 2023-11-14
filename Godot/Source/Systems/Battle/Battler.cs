@@ -120,7 +120,7 @@ public partial class Battler : Node2D
         return allGridPositions;
     }
 
-    internal void SetGridUserHexes(List<Vector2> validMoveHexes, List<Vector2> validHalfMoveHexes, HexGridUserDisplay.DisplayMode displayMode)
+    public void SetGridUserHexes(List<Vector2> validMoveHexes, List<Vector2> validHalfMoveHexes, HexGridUserDisplay.DisplayMode displayMode)
     {
         List<Vector2> allGridPositions = GetAllNonObstacleGridPositions();
 
@@ -140,6 +140,11 @@ public partial class Battler : Node2D
 
         }
     }
+
+    // public bool AreHexesHidden(HexGridUserDisplay.DisplayMode displayMode, List<Vector2> moveHexes, List<Vector2> allHexes)
+    // {
+    //     return _hexGridUserDisplay.AreHexesHidden(displayMode, moveHexes, allHexes);
+    // }
 
     internal void SetOutlineColours()
     {
@@ -201,7 +206,7 @@ public partial class Battler : Node2D
     {
 
         // Is there a winner?
-        if (!AreAnyAlive(CharacterUnit.StatusToPlayerMode.Hostile) || !AreAnyAlive(CharacterUnit.StatusToPlayerMode.Player))
+        if (!AreAnyAlive(CharacterUnit.StatusToPlayerMode.Hostile) || (!AreAnyAlive(CharacterUnit.StatusToPlayerMode.Player) && !AreAnyAlive(CharacterUnit.StatusToPlayerMode.Allied)))
         {
             GD.Print("end the battle!");
             SetState(BattleMode.Ending);

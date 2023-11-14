@@ -36,6 +36,13 @@ public partial class AIIdleBattleState : ControlIdleBattleState
         }
     }
 
+    public override void OnInitCurrentTurn()
+    {
+        base.OnInitCurrentTurn();
+        IdleBattleState.Battler.SetGridUserHexes(IdleBattleState.GetValidMoveHexes(), IdleBattleState.GetValidHalfMoveHexes(), HexGridUserDisplay.DisplayMode.HideAllHexes);
+
+    }
+
     // private Random _rand = new();
     public AIIdleBattleState(IdleBattleState idleBattleState)
     {
@@ -48,8 +55,8 @@ public partial class AIIdleBattleState : ControlIdleBattleState
         Battler battler = IdleBattleState.Battler;
         Vector2 characterWorldPos = battler.CharactersAwaitingTurn[0].GlobalPosition;
         Vector2 characterGridPos = battler.BattleGrid.WorldToGrid(characterWorldPos);
-        CharacterUnit activeCharacter = battler.CharactersAwaitingTurn[0];
-        StoryCharacterData activeData = GetActiveCharacterData();
+        // CharacterUnit activeCharacter = battler.CharactersAwaitingTurn[0];
+        // StoryCharacterData activeData = GetActiveCharacterData();
         if (battler.BattleGrid.GetHexAtGridPosition(characterGridPos).Obstacle)
         {
             return;
@@ -61,7 +68,10 @@ public partial class AIIdleBattleState : ControlIdleBattleState
         // }
         // GD.Print(GetActiveCharacterData().Name);
         AIAction nextAction = ChooseAction();
-        // IdleBattleState.EndTurnEarly();
+        if (nextAction.Action == Battler.ActionMode.None)
+        {
+            IdleBattleState.EndTurnEarly();
+        }
         // nextAction.DebugPrint();
         this.IdleBattleState.DoAction(nextAction.Action, nextAction.TargetGridPos, nextAction.Spell);
     }
@@ -82,7 +92,10 @@ public partial class AIIdleBattleState : ControlIdleBattleState
             .ToList();
 
         List<Vector2> enemyPositions = battler.AllCharacters
-            .Where(x => activeData.Berserk ? activeCharacter.BerserkValidEnemyTargets.Contains(x.StatusToPlayer) : activeCharacter.ValidEnemyTargets.Contains(x.StatusToPlayer))
+        // the below line would only attack those on opposite team
+        //            .Where(x => activeData.Berserk ? activeCharacter.BerserkValidEnemyTargets.Contains(x.StatusToPlayer) : activeCharacter.ValidEnemyTargets.Contains(x.StatusToPlayer))
+
+            .Where(x => activeData.Berserk ? battler.AllCharacters.Contains(x) : activeCharacter.ValidEnemyTargets.Contains(x.StatusToPlayer))
             .Where(x => x != activeCharacter)
             .Where(x => x.CharacterData.Alive)
             .Select(x => battler.BattleGrid.WorldToGrid(x.GlobalPosition))
@@ -95,6 +108,16 @@ public partial class AIIdleBattleState : ControlIdleBattleState
 
 
         List<Vector2> allGridPositions = GetAllGridPositions();
+
+        // if berserk and nobody left to fight, just end turn
+        if (activeData.Berserk)
+        {
+            if (enemyPositions.Count == 0)
+            {
+                return new(Battler.ActionMode.None, new Vector2(), SpellEffectManager.SpellMode.None);
+            }
+        }
+
         // get all the character grid positions
         // if berserk, dont use magic
         if (!activeData.Berserk)

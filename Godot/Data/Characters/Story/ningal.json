@@ -3,13 +3,8 @@
     "Description": "Ningal, the goddess of reeds and vegetation, is associated with fertility and the nurturing aspects of nature.",
     "PatronGod": "Innana",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AmabBody1.tscn",
-    "PortraitPath": "res://addons/AutoScrollLabelPlugin/AutoScrollLabelIcon.png",
-    "Perks": [
-        1,
-        2,
-        3,
-        4
-    ],
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Townsfolk_AMAB/portrait_placeholder1.png",
+    "Perks": [],
     "Level": 1,
     "Might": 12,
     "Resilience": 6,

@@ -20,8 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://dycfwnor58bnr" path="res://Source/Systems/Battle/Battler.tscn" id="10_hfvdy"]
 [ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="11_b5csu"]
 [ext_resource type="Texture2D" uid="uid://t18ucy7fdeli" path="res://Assets/Graphics/Interface/Buttons/Actions/Wait.png" id="12_n0ccq"]
+[ext_resource type="Texture2D" uid="uid://4osa8ri0ekrt" path="res://Assets/Graphics/Interface/Images/9patchEgyptianSymbols.png" id="13_alkka"]
 [ext_resource type="Texture2D" uid="uid://dxwbq4clp1pyr" path="res://Assets/Graphics/Interface/Buttons/Actions/WaitHover.png" id="13_nvwr6"]
-[ext_resource type="Texture2D" uid="uid://ccj7burt8mlap" path="res://addons/AudioContainerPlugin/AudioContainerIcon.png" id="14_ycjn2"]
 [ext_resource type="Texture2D" uid="uid://dxhgtad82y7mx" path="res://Assets/Graphics/Interface/Buttons/Actions/Bow.png" id="16_e3j1o"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/HUD/HBoxTurnOrder.cs" id="17_7pg5c"]
 [ext_resource type="Texture2D" uid="uid://v6ejl6f1cf4" path="res://Assets/Graphics/Interface/Buttons/Actions/BowHover.png" id="17_enl43"]
@@ -433,7 +433,7 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("14_ycjn2")
+texture_normal = ExtResource("13_alkka")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")

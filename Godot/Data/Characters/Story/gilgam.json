@@ -3,7 +3,7 @@
     "Description": "Gilgamesh, the legendary king of Uruk, embarks on epic adventures in his quest for wisdom and immortality.",
     "PatronGod": "Enlil",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/GilgameshBody.tscn",
-    "PortraitPath": "res://addons/AutoScrollLabelPlugin/AutoScrollLabelIcon.png",
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Gilga/portrait_placeholder.png",
     "Perks": [
         0,
         3,

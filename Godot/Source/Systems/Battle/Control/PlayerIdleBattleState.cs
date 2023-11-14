@@ -10,14 +10,38 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
     }
 
     public Battler.ActionMode CurrentAction { get; set; } = Battler.ActionMode.Move;
+
+    private List<Vector2> _moveHexes;
+    // private List<Vector2> _allHexes;
+    private List<Vector2> _halfMoveHexes;
     public override void OnInitCurrentTurn()
     {
         base.OnInitCurrentTurn();
 
         IdleBattleState.Battler.SetOutlineColours();
         SetContextualAction(IdleBattleState.Battler.BattleGrid.WorldToGrid(IdleBattleState.Battler.GetGlobalMousePosition()));
+        _moveHexes = IdleBattleState.GetValidMoveHexes();
+        // _allHexes = IdleBattleState.Battler.GetAllNonObstacleGridPositions();
+        _halfMoveHexes = IdleBattleState.GetValidHalfMoveHexes();
+        IdleBattleState.Battler.SetGridUserHexes(_moveHexes, _halfMoveHexes, IdleBattleState.Battler.CurrentDisplayMode);
 
     }
+
+    // private void EnsureHexDisplay()
+    // {
+    //     if (_moveHexes == null || _allHexes == null)
+    //     {
+    //         return;
+    //     }
+    //     if (_allHexes.Count == 0)
+    //     {
+    //         return;
+    //     }
+    //     if (IdleBattleState.Battler.AreHexesHidden(IdleBattleState.Battler.CurrentDisplayMode, _moveHexes, _allHexes))
+    //     {
+    //         IdleBattleState.Battler.SetGridUserHexes(_moveHexes, _halfMoveHexes, IdleBattleState.Battler.CurrentDisplayMode);
+    //     }
+    // }
 
     // public override void ProcessUpdate(double delta)
     // {
@@ -47,6 +71,8 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
             return;
         }
 
+        // The below line is a hack because when someone is berserk before player turn for some reason it turns off the hexes. doesnt seem t imapct performance...
+        IdleBattleState.Battler.SetGridUserHexes(_moveHexes, _halfMoveHexes, IdleBattleState.Battler.CurrentDisplayMode);
 
         SetContextualAction(mouseGridPos);
 

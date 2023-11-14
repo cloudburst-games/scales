@@ -94,7 +94,6 @@ public class IdleBattleState : BattleState
         Battler.CharactersAwaitingTurn[0].CharacterStartBattleTurn();
 
 
-        Battler.SetGridUserHexes(GetValidMoveHexes(), GetValidHalfMoveHexes(), Battler.CurrentDisplayMode);
         SetSpriteOutlines(Battler.GetGlobalMousePosition());
 
         Battler.EmitSignal(Battler.SignalName.TurnStarted, Battler.CharactersAwaitingTurn[0].CharacterData.KnownSpells);
@@ -192,7 +191,7 @@ public class IdleBattleState : BattleState
     // }
 
     // Get all of the move hexes valid for the active character
-    private List<Vector2> GetValidMoveHexes()
+    public List<Vector2> GetValidMoveHexes()
     {
         // System.Diagnostics.Stopwatch stopwatch = System.Diagnostics.Stopwatch.StartNew();
         Vector2 characterGridPos = Battler.BattleGrid.WorldToGrid(Battler.CharactersAwaitingTurn[0].GlobalPosition);
@@ -213,7 +212,7 @@ public class IdleBattleState : BattleState
         // GD.Print($"Elapsed Time: {stopwatch.ElapsedMilliseconds} ms");
         return result;
     }
-    private List<Vector2> GetValidHalfMoveHexes()
+    public List<Vector2> GetValidHalfMoveHexes()
     {
 
         Vector2 characterGridPos = Battler.BattleGrid.WorldToGrid(Battler.CharactersAwaitingTurn[0].GlobalPosition);

@@ -3,7 +3,7 @@
     "Description": "Geshtinanna, a goddess associated with wine and the grape harvest, represents the pleasures and indulgences of life.",
     "PatronGod": "Enlil",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AmabBody2.tscn",
-    "PortraitPath": "res://addons/AutoScrollLabelPlugin/AutoScrollLabelIcon.png",
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Townsfolk_AMAB/portrait_placeholder1.png",
     "Perks": [
         0,
         3,

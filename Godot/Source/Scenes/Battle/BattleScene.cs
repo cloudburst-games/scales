@@ -45,7 +45,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         {
             _difficulty = battleData.Difficulty;
             NewCharacter((StoryCharacter.StoryCharacterMode)battleData.CharacterSelected).StatusToPlayer = CharacterUnit.StatusToPlayerMode.Player;
-            NewCharacter((StoryCharacter.StoryCharacterMode)3).StatusToPlayer = CharacterUnit.StatusToPlayerMode.Player;
+            NewCharacter((StoryCharacter.StoryCharacterMode)3).StatusToPlayer = CharacterUnit.StatusToPlayerMode.Allied;
         }
     }
 

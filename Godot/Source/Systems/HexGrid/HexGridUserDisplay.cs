@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class HexGridUserDisplay : Node2D
 {
@@ -93,6 +94,22 @@ public partial class HexGridUserDisplay : Node2D
         // GD.Print($"Elapsed Time: {stopwatch.ElapsedMilliseconds} ms");
     }
 
+    // public bool AreHexesHidden(DisplayMode displayMode, List<Vector2> moveHexes, List<Vector2> allHexes)
+    // {
+    //     if (moveHexes.Count == 0)
+    //     {
+    //         return true;
+    //     }
+
+    //     return displayMode switch
+    //     {
+    //         DisplayMode.HideAllHexes => ((float)((ShaderMaterial)GetSpriteAtFirstGridPosition(allHexes[0]).Material).GetShaderParameter("alpha")) == 0f,
+    //         DisplayMode.ShowAllHexes => ((float)((ShaderMaterial)GetSpriteAtFirstGridPosition(allHexes.Except(moveHexes).ToList()[0]).Material).GetShaderParameter("alpha")) == 0f,
+    //         DisplayMode.ShowContextualHexes => ((float)((ShaderMaterial)GetSpriteAtFirstGridPosition(moveHexes[0]).Material).GetShaderParameter("alpha")) == 0f,
+    //         _ => ((float)((ShaderMaterial)GetSpritesAtGridPositions(moveHexes)[0].Material).GetShaderParameter("alpha")) == 0f,
+    //     };
+    // }
+
     private void SetSpriteColors(List<Vector2> gridPositions, Color color1, Color color2)
     {
         foreach (Sprite2D sprite in GetSpritesAtGridPositions(gridPositions))
@@ -102,6 +119,11 @@ public partial class HexGridUserDisplay : Node2D
             mat.SetShaderParameter("color_end", color2);
             mat.SetShaderParameter("alpha", _opacity);
         }
+    }
+    private Sprite2D GetSpriteAtFirstGridPosition(Vector2 gridPosition)
+    {
+        Vector2 worldPosition = _grid.GridToWorld(gridPosition);
+        return _allSprites.FirstOrDefault(sprite => sprite.GlobalPosition == worldPosition);
     }
 
     private List<Sprite2D> GetSpritesAtGridPositions(List<Vector2> gridPositions)

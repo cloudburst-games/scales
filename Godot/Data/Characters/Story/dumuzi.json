@@ -3,7 +3,7 @@
     "Description": "Dumuzi, the shepherd god, is a symbol of the changing seasons, fertility, and renewal.",
     "PatronGod": "Enki",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AfabBody2.tscn",
-    "PortraitPath": "res://addons/AutoScrollLabelPlugin/AutoScrollLabelIcon.png",
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Townsfolk_AFAB/portrait_placeholder1.png",
     "Perks": [
         0,
         1,
