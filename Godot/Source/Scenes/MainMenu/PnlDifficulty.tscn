@@ -1,0 +1,197 @@
+[gd_scene load_steps=10 format=3 uid="uid://csnthxvtmtyu7"]
+
+[ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="1_2vudy"]
+[ext_resource type="PackedScene" uid="uid://dm31ruvvjwfml" path="res://Source/Interface/Buttons/BtnClosePlaceholder.tscn" id="2_0jxlt"]
+[ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="3_7332w"]
+[ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="4_nkeam"]
+[ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="5_1pqpp"]
+[ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="6_f3png"]
+[ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_ta7wa"]
+[ext_resource type="FontFile" uid="uid://cofx1cs3c3u03" path="res://Assets/Graphics/Fonts/Yusei_Magic/YuseiMagic-Regular.ttf" id="8_2lulp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l61fk"]
+font = ExtResource("8_2lulp")
+font_size = 50
+
+[node name="PnlDifficulty" type="Panel"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -736.0
+offset_top = -491.5
+offset_right = 736.0
+offset_bottom = 491.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2vudy")
+_snapToEdges = false
+_draggable = false
+_closeBtnScn = ExtResource("2_0jxlt")
+
+[node name="BtnCancel" type="TextureButton" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -171.0
+offset_right = 200.0
+offset_bottom = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+texture_normal = ExtResource("3_7332w")
+texture_pressed = ExtResource("4_nkeam")
+texture_hover = ExtResource("5_1pqpp")
+texture_disabled = ExtResource("6_f3png")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_ta7wa")
+
+[node name="Label3" type="Label" parent="BtnCancel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cancel"
+label_settings = SubResource("LabelSettings_l61fk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_Label_18918" type="Label" parent="BtnCancel"]
+layout_mode = 1
+offset_right = 400.0
+offset_bottom = 110.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -345.0
+offset_top = -348.0
+offset_right = 345.0
+offset_bottom = 348.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BtnEasy" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("3_7332w")
+texture_pressed = ExtResource("4_nkeam")
+texture_hover = ExtResource("5_1pqpp")
+texture_disabled = ExtResource("6_f3png")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_ta7wa")
+
+[node name="Label2" type="Label" parent="VBoxContainer/BtnEasy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Easy"
+label_settings = SubResource("LabelSettings_l61fk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_Label_18919" type="Label" parent="VBoxContainer/BtnEasy"]
+layout_mode = 1
+offset_right = 1.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BtnMedium" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("3_7332w")
+texture_pressed = ExtResource("4_nkeam")
+texture_hover = ExtResource("5_1pqpp")
+texture_disabled = ExtResource("6_f3png")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_ta7wa")
+
+[node name="Label3" type="Label" parent="VBoxContainer/BtnMedium"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Medium"
+label_settings = SubResource("LabelSettings_l61fk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_Label_18920" type="Label" parent="VBoxContainer/BtnMedium"]
+layout_mode = 1
+offset_right = 1.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BtnHard" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("3_7332w")
+texture_pressed = ExtResource("4_nkeam")
+texture_hover = ExtResource("5_1pqpp")
+texture_disabled = ExtResource("6_f3png")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_ta7wa")
+
+[node name="Label4" type="Label" parent="VBoxContainer/BtnHard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hard"
+label_settings = SubResource("LabelSettings_l61fk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="_Label_18921" type="Label" parent="VBoxContainer/BtnHard"]
+layout_mode = 1
+offset_right = 1.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BtnClosePlaceholder" parent="." instance=ExtResource("2_0jxlt")]
+layout_mode = 0
+offset_left = 1337.0
+offset_right = 1472.0
+
+[node name="_Label_18991" type="Label" parent="BtnClosePlaceholder"]
+layout_mode = 1
+offset_right = 149.0
+offset_bottom = 150.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

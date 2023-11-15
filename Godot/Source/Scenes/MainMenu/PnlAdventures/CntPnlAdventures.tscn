@@ -1,0 +1,317 @@
+[gd_scene load_steps=19 format=3 uid="uid://ce0b88lumohl8"]
+
+[ext_resource type="Script" path="res://Source/Scenes/MainMenu/PnlAdventures/CntPnlAdventures.cs" id="1_56uah"]
+[ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="1_tow4p"]
+[ext_resource type="Texture2D" uid="uid://y60lspk4s5rc" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSNORMAL.png" id="3_1c1hm"]
+[ext_resource type="ButtonGroup" uid="uid://2p2q5sndksxv" path="res://Source/Scenes/MainMenu/PnlAdventures/BtnGroupAdventures.tres" id="3_5i4tn"]
+[ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="3_gtib0"]
+[ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="4_01gsx"]
+[ext_resource type="Texture2D" uid="uid://c8q2bdypfy7w7" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSPRESSED.png" id="4_poyb0"]
+[ext_resource type="Texture2D" uid="uid://cwpt2tnkrjdhs" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSHOVER.png" id="5_pq74w"]
+[ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="5_xhugv"]
+[ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="6_bmndb"]
+[ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_2peo6"]
+[ext_resource type="Texture2D" uid="uid://ceqamemn0nf6r" path="res://Assets/Graphics/Effects/Rock/Rock.png" id="8_nqfgg"]
+[ext_resource type="ButtonGroup" uid="uid://cu7266orn7505" path="res://Source/Scenes/MainMenu/PnlAdventures/BtnGroupDifficulty.tres" id="9_k5wjp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6y1lg"]
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_80fgo"]
+font_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_wlli7"]
+font_size = 84
+
+[sub_resource type="LabelSettings" id="LabelSettings_0yb4y"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_t624p"]
+font_size = 64
+
+[node name="CntPnlAdventures" type="Control" node_paths=PackedStringArray("_btnEasy", "_btnMedium", "_btnHard", "_btnContinue", "_btnNew", "_btnClose")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_56uah")
+_btnEasy = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty/BtnEasy")
+_btnMedium = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty/BtnMedium")
+_btnHard = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty/BtnHard")
+_btnContinue = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay/BtnContinue")
+_btnNew = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay/BtnNew")
+_btnClose = NodePath("BasePanel/BtnClose")
+
+[node name="BasePanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1093.0
+offset_top = -762.0
+offset_right = 1093.0
+offset_bottom = 762.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tow4p")
+
+[node name="BtnClose" type="TextureButton" parent="BasePanel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_1c1hm")
+texture_pressed = ExtResource("4_poyb0")
+texture_hover = ExtResource("5_pq74w")
+script = ExtResource("7_2peo6")
+
+[node name="PnlTitle" type="Panel" parent="BasePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.1
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="BasePanel/PnlTitle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Choose an Adventure"
+label_settings = SubResource("LabelSettings_6y1lg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BasePanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.11
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="BasePanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BasePanel/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="BtnAdvGilga" type="TextureButton" parent="BasePanel/HBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("3_5i4tn")
+texture_normal = ExtResource("6_bmndb")
+texture_pressed = ExtResource("3_gtib0")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_2peo6")
+
+[node name="Label" type="Label" parent="BasePanel/HBoxContainer/ScrollContainer/VBoxContainer/BtnAdvGilga"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Gilgamesh scale face blah blah blah"
+label_settings = SubResource("LabelSettings_80fgo")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Control" type="Control" parent="BasePanel/HBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+
+[node name="Label" type="Label" parent="BasePanel/HBoxContainer/ScrollContainer/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Want to see more?
+Let us know what you think!"
+label_settings = SubResource("LabelSettings_wlli7")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PnlAdventureDescription" type="Panel" parent="BasePanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.01
+anchor_top = 0.01
+anchor_right = 0.99
+anchor_bottom = 0.99
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TexAdventure" type="TextureRect" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+texture = ExtResource("8_nqfgg")
+expand_mode = 2
+
+[node name="LblDescription" type="Label" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "In a cosmic game between Shamash and Ishtar, Gilgamesh grapples with justice. His journey tests gods' concepts, shaping the fate of mortals."
+label_settings = SubResource("LabelSettings_0yb4y")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxDifficulty" type="HBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="BtnEasy" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("9_k5wjp")
+texture_normal = ExtResource("6_bmndb")
+texture_pressed = ExtResource("4_01gsx")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_2peo6")
+
+[node name="Label" type="Label" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty/BtnEasy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Easy"
+label_settings = SubResource("LabelSettings_t624p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnMedium" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("9_k5wjp")
+texture_normal = ExtResource("6_bmndb")
+texture_pressed = ExtResource("4_01gsx")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_2peo6")
+
+[node name="Label2" type="Label" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty/BtnMedium"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Medium
+"
+label_settings = SubResource("LabelSettings_t624p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnHard" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("9_k5wjp")
+texture_normal = ExtResource("6_bmndb")
+texture_pressed = ExtResource("4_01gsx")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_2peo6")
+
+[node name="Label3" type="Label" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty/BtnHard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hard"
+label_settings = SubResource("LabelSettings_t624p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxPlay" type="HBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="BtnContinue" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_gtib0")
+texture_pressed = ExtResource("4_01gsx")
+texture_hover = ExtResource("5_xhugv")
+texture_disabled = ExtResource("6_bmndb")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_2peo6")
+
+[node name="Label" type="Label" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay/BtnContinue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+label_settings = SubResource("LabelSettings_t624p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnNew" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_gtib0")
+texture_pressed = ExtResource("4_01gsx")
+texture_hover = ExtResource("5_xhugv")
+texture_disabled = ExtResource("6_bmndb")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_2peo6")
+
+[node name="Label" type="Label" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay/BtnNew"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "New"
+label_settings = SubResource("LabelSettings_t624p")
+horizontal_alignment = 1
+vertical_alignment = 1

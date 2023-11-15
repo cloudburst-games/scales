@@ -133,6 +133,7 @@ public partial class PictureStoryContainer : Control
                     }
                 }
             }
+            // GD.Print(_slides.Count);
         }
     }
 
@@ -181,7 +182,7 @@ public partial class PictureStoryContainer : Control
     // Basic state pattern implementation to coordinate each state
     private void NextStoryState()
     {
-        GD.Print("transition from: " + _storyState.ToString());
+        // GD.Print("transition from: " + _storyState.ToString());
         switch (_storyState)
         {
             case StoryStateMode.InitialTransition:
@@ -209,7 +210,7 @@ public partial class PictureStoryContainer : Control
                 EmitSignal(SignalName.Finished);
                 break;
         }
-        GD.Print("transition to: " + _storyState.ToString());
+        // GD.Print("transition to: " + _storyState.ToString());
 
         Play(_current);
 
@@ -222,16 +223,18 @@ public partial class PictureStoryContainer : Control
         {
             return;
         }
-        _start = false;
-
-        Visible = true;
-        SetProcessInput(true);
-        _slides[from].Visible = true;
-
         if (!IsInsideTree())
         {
             await ToSignal(this, "ready");
         }
+        _start = false;
+
+        Visible = true;
+        SetProcessInput(true);
+        // GD.Print("no" + " " + _slides.Count);
+        _slides[from].Visible = true;
+
+
 
         switch (_storyState)
         {
@@ -251,6 +254,10 @@ public partial class PictureStoryContainer : Control
                     StartBlendingToNextSlide(_blendFadeTime);
                 }
                 _slides[from].AnimationFinished += anim_name => OnCurrentSlideAnimationFinished(anim_name);
+                if (_slides[from].GetAnimationList().Length == 0)
+                {
+                    GD.Print(string.Format("Warning! No animation in PictureStorySlide {0} of {1}!", _slides[from].Name, Name));
+                }
                 _slides[from].Play(_slides[from].GetAnimationList()[0]);
                 break;
             case StoryStateMode.Waiting:

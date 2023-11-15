@@ -40,14 +40,26 @@ public partial class BattleScene : Node, ISceneTransitionable
 
     private BattleLevel _lvlToLoad;
 
-    private int _difficulty = 1;
+    private CntPnlAdventures.DifficultyMode _difficulty = CntPnlAdventures.DifficultyMode.Medium;
     public void OnReceivedSharedData(ISceneTransitionShareableData sharedData)
     {
         if (sharedData is BattleDataContainer battleData)
         {
-            _difficulty = battleData.Difficulty;
-            NewCharacter((StoryCharacter.StoryCharacterMode)battleData.CharacterSelected, CharacterUnit.StatusToPlayerMode.Player);
-            NewCharacter((StoryCharacter.StoryCharacterMode)3, CharacterUnit.StatusToPlayerMode.Player);
+            _difficulty = (CntPnlAdventures.DifficultyMode)battleData.Difficulty;
+            if (battleData.CheckpointData != null)
+            {
+                GD.Print("loading checkpoint data");
+                // do load stuff here
+            }
+            else
+            {
+                GD.Print("loading new level");
+                // do new stuff here
+                NewCharacter(StoryCharacter.StoryCharacterMode.Gilgam, CharacterUnit.StatusToPlayerMode.Player);
+            }
+            GD.Print("difficulty is: ", _difficulty);
+
+            // NewCharacter((StoryCharacter.StoryCharacterMode)3, CharacterUnit.StatusToPlayerMode.Player);
         }
     }
 
@@ -73,6 +85,12 @@ public partial class BattleScene : Node, ISceneTransitionable
     private TextureRect _textureScales;
     [Export]
     private AnimationPlayer _animScalesStart;
+    [Export]
+    private AdventureStoriesHandler _adventureStoriesHandler; // in future with multiple adventures this will need to be set dynamically
+    [Export]
+    private BattleVictory _battleVictory;
+    [Export]
+    private SceneTransition _mainMenuSceneTransition;
 
     public override void _Ready()
     {
@@ -82,7 +100,7 @@ public partial class BattleScene : Node, ISceneTransitionable
             OnReceivedSharedData(new BattleDataContainer()
             {
                 Difficulty = 1,
-                CharacterSelected = 0,
+                // CharacterSelected = 0,
             });
         }
         //
@@ -99,6 +117,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         _battler.RoundStarted += this.OnRoundStarted;
         _battler.AreaAttackParsed += _spellEffectManager.OnCastingSpell;
         _battler.HintClickedCharacter += _HUD.OnHintClickCharacter;
+        _battler.BattleEnded += this.OnBattleEnded;
         _btnActions.ActionBtnPressed += _battler.OnActionBtnPressed; // 1. Melee 2. Shoot 3. Cast spell 4. Move
         _btnActions.CastSpellActionBtnPressedButNoSpellActive += () => _HUD.SetState(BattleHUD.StateMode.SpellBookOpened);
 
@@ -109,7 +128,31 @@ public partial class BattleScene : Node, ISceneTransitionable
         _cntSpellBook.SpellBtnPressed += this.OnSpellSelected;
         _cntSpellBook.SpellUIHint += (int spell) => _HUD.OnSpellBookUIHint(_spellEffectManager.AllSpells[(SpellEffectManager.SpellMode)spell]);
         _battleScalesAnim.CurrentAnimation = "Start";
+
+        _adventureStoriesHandler.DefeatStoryFinished += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
+        // _adventureStoriesHandler.VictoryPictureStoryFinished += () 
+        // _adventureStoriesHandler.FinalVictoryStoryFinished += ()
+
         LoadLevel();
+    }
+
+
+    private void OnBattleEnded(bool playerWon)
+    {
+        _battler.ProcessMode = ProcessModeEnum.Disabled;
+        _pnlAction.ProcessMode = ProcessModeEnum.Disabled;
+        _cursorControl.SetCursor(CursorControl.CursorMode.Select);
+        if (playerWon)
+        {
+            _battleVictory.Start(
+                _currentCharacters.Where(x => x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player).ToList(),
+                _currentCharacters.Where(x => x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Hostile).ToList(),
+                _scales.GetScaleAnimationTime());
+        }
+        else
+        {
+            _adventureStoriesHandler.DoDefeatStory();
+        }
     }
 
     private void OnRoundStarted()

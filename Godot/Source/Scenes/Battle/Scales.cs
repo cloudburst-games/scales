@@ -24,6 +24,8 @@ public partial class Scales : RefCounted
 
     private float _overallFavour = 0;
 
+    private float _increment = 0.05f;
+
     public void FavourShamash(int num = 1)
     {
         BestowFavour(false, num);
@@ -33,7 +35,7 @@ public partial class Scales : RefCounted
     {
         for (int i = 0; i < num; i++)
         {
-            _battleFavour += 0.1f * (ishtar ? 1 : -1);
+            _battleFavour += _increment * (ishtar ? 1 : -1);
             _battleFavour = Math.Min(Math.Max(_battleFavour, -0.5f), 0.5f);
         }
     }
@@ -46,6 +48,18 @@ public partial class Scales : RefCounted
     public void FavourIshtar(int num = 1)
     {
         BestowFavour(true, num);
+    }
+
+    public void FavourNeutrality()
+    {
+        if (_battleFavour > 0)
+        {
+            FavourShamash();
+        }
+        else if (_battleFavour < 0)
+        {
+            FavourIshtar();
+        }
     }
 
     public void CollateFavoursEndOfBattle()
