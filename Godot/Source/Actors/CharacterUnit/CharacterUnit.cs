@@ -247,35 +247,53 @@ public partial class CharacterUnit : CharacterBody2D
     }
 
     // public StatusToPlayerMode OriginalStatusToPlayer { get; private set; }
-    public StatusToPlayerMode BerserkStatusToPlayer { get; private set; }
+    // public StatusToPlayerMode BerserkStatusToPlayer { get; private set; }
+
+    public Vector2 GetProjectileAttackOrigin()
+    {
+        // GD.Print("glob pos star", GlobalPosition);
+        Vector2 result = GlobalPosition;
+
+        Vector2 blendPos = (Vector2)AnimationTree.Get("parameters/Idle/blend_position");
+        var sprite = GetNode<Sprite2D>("Sprite");
+        // Vector2 texSize = sprite.RegionRect.Size;
+
+        result += blendPos * 10;
+        result += sprite.Offset;
+        // result += new Vector2(result.X < 0 ? texSize.X * -0.1f : texSize.X * 0.1f, result.Y < 0 ? texSize.Y * -0.1f : texSize.Y * 0.1f);
+
+        return result;
+
+    }
 
     public void DoBerserkStatusToPlayer()
     {
         SetControlState(ControlMode.AI);
         BerserkValidAllyTargets = new() { };
-        switch (StatusToPlayer)
-        {
-            case StatusToPlayerMode.Player:
-                BerserkStatusToPlayer = StatusToPlayerMode.Hostile;
-                BerserkValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied };
-                // ValidAllyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Neutral, StatusToPlayerMode.Allied };
-                break;
-            case StatusToPlayerMode.Allied:
-                BerserkStatusToPlayer = StatusToPlayerMode.Hostile;
-                BerserkValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied };
-                // ValidAllyTargets = new() { };
-                break;
-            case StatusToPlayerMode.Neutral:
-                BerserkStatusToPlayer = StatusToPlayerMode.Hostile;
-                BerserkValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied };
-                // ValidAllyTargets = new() { };
-                break;
-            case StatusToPlayerMode.Hostile:
-                BerserkStatusToPlayer = StatusToPlayerMode.Allied;
-                BerserkValidEnemyTargets = new() { StatusToPlayerMode.Hostile };
-                // ValidAllyTargets = new() { StatusToPlayerMode.Hostile };
-                break;
-        }
+        BerserkValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied, StatusToPlayerMode.Hostile, StatusToPlayerMode.Neutral };
+        // switch (StatusToPlayer)
+        // {
+        //     case StatusToPlayerMode.Player:
+        //         // BerserkStatusToPlayer = StatusToPlayerMode.Hostile;
+        //         BerserkValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied, StatusToPlayerMode.Hostile };
+        //         // ValidAllyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Neutral, StatusToPlayerMode.Allied };
+        //         break;
+        //     case StatusToPlayerMode.Allied:
+        //         // BerserkStatusToPlayer = StatusToPlayerMode.Hostile;
+        //         BerserkValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied, StatusToPlayerMode.Hostile };
+        //         // ValidAllyTargets = new() { };
+        //         break;
+        //     case StatusToPlayerMode.Neutral:
+        //         // BerserkStatusToPlayer = StatusToPlayerMode.Hostile;
+        //         BerserkValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied, StatusToPlayerMode.Hostile, StatusToPlayerMode.Neutral };
+        //         // ValidAllyTargets = new() { };
+        //         break;
+        //     case StatusToPlayerMode.Hostile:
+        //         // BerserkStatusToPlayer = StatusToPlayerMode.Allied;
+        //         BerserkValidEnemyTargets = new() { StatusToPlayerMode.Hostile, StatusToPlayerMode.Player, StatusToPlayerMode.Allied, };
+        //         // ValidAllyTargets = new() { StatusToPlayerMode.Hostile };
+        //         break;
+        // }
     }
 
     public void RestoreStatusToPlayer()
@@ -479,4 +497,58 @@ public partial class CharacterUnit : CharacterBody2D
             shaderMaterial.SetShaderParameter("width", enabled ? 3f : 0f);
         }
     }
+    internal void OnBattleFavour(Scales.FavourMode favour, bool extreme)
+    {
+        int magnitude = 5;
+        if (extreme)
+        {
+            magnitude *= 2;
+        }
+        CharacterRoundEffect scalesEffect;
+        CharacterRoundEffect disharmonyEffect = null;
+
+        switch (favour)
+        {
+            case Scales.FavourMode.Balanced:
+                scalesEffect = CreateScalesEffect("Scales: Balanced", StoryCharacterData.AttributeMode.Charisma, magnitude);
+                break;
+
+            case Scales.FavourMode.Ishtar:
+                scalesEffect = CreateScalesEffect("Scales: Might of Ishtar", StoryCharacterData.AttributeMode.Might, magnitude);
+                disharmonyEffect = CreateScalesEffect("Disharmony: Shamash", StoryCharacterData.AttributeMode.Intellect, -magnitude);
+                break;
+
+            case Scales.FavourMode.Shamash:
+                scalesEffect = CreateScalesEffect("Scales: Wisdom of Shamash", StoryCharacterData.AttributeMode.Intellect, magnitude);
+                disharmonyEffect = CreateScalesEffect("Disharmony: Ishtar", StoryCharacterData.AttributeMode.Might, -magnitude);
+                break;
+
+            default:
+                throw new ArgumentOutOfRangeException(nameof(favour), favour, null);
+        }
+
+        CharacterData.DoEffectInitial(scalesEffect);
+        if (disharmonyEffect != null)
+        {
+            CharacterData.DoEffectInitial(disharmonyEffect);
+        }
+    }
+
+    private CharacterRoundEffect CreateScalesEffect(string name, StoryCharacterData.AttributeMode attribute, int magnitude)
+    {
+        return new CharacterRoundEffect(
+            name: name,
+            attributeAffected: attribute,
+            statAffected: StoryCharacterData.StatMode.Endurance,
+            effectType: CharacterRoundEffect.EffectTypeMode.Attribute,
+            rounds: 3,
+            permanent: false,
+            cumulative: false,
+            magnitude: magnitude,
+            animName: "todo!",
+            fromSpell: SpellEffectManager.SpellMode.None,
+            from: magnitude >= 0 ? "Scales" : "Disharmony"
+        );
+    }
+
 }

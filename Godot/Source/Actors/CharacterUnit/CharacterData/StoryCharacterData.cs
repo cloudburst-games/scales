@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 // using Godot.Collections;
 
+// lesson for next time: allow multiple attributes or stats or lets say subeffects in one round effect
 public partial class CharacterRoundEffect : RefCounted
 {
     public enum EffectTypeMode { Attribute, Stat, Berserk, None }
@@ -19,6 +20,7 @@ public partial class CharacterRoundEffect : RefCounted
     public int Magnitude { get; set; }
     public bool Started { get; set; } = false;
     public string AnimName { get; private set; }
+    public string From { get; set; } // replace this with a character ID
 
     public SpellEffectManager.SpellMode FromSpell { get; private set; }
 
@@ -32,7 +34,8 @@ public partial class CharacterRoundEffect : RefCounted
         bool cumulative,
         int magnitude,
         string animName,
-        SpellEffectManager.SpellMode fromSpell)
+        SpellEffectManager.SpellMode fromSpell,
+        string from)
     {
         Name = name;
         AttributeAffected = attributeAffected;
@@ -44,6 +47,7 @@ public partial class CharacterRoundEffect : RefCounted
         Magnitude = magnitude;
         AnimName = animName;
         FromSpell = fromSpell;
+        From = from;
     }
 }
 
@@ -103,6 +107,10 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     {
         // overwrite prev effect. we dont want to use name ideally in the future when refactoring 
         CharacterRoundEffect existingEffect = CurrentEffects.FirstOrDefault(x => x.Name == effect.Name);
+        if (effect.Name.StartsWith("Leadership") || effect.Name.StartsWith("Scales") || effect.Name.StartsWith("Disharmony"))
+        {
+            existingEffect = CurrentEffects.FirstOrDefault(x => x.From == effect.From);
+        }
         if (existingEffect != null)
         {
             ReverseEffect(existingEffect);
@@ -120,7 +128,12 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
             // GD.Print("health b4 should be: ", GetUpdatedHealth());
             // GD.Print(Stats[StatMode.MaxHealth]);
             // GD.Print(GetCorrectHitBonus());
-            Attributes[effect.AttributeAffected] += effect.Magnitude; // can be negative!
+            if (Attributes[effect.AttributeAffected] + effect.Magnitude < 1)
+            {
+                effect.Magnitude = 1 - Attributes[effect.AttributeAffected];
+            }
+            Attributes[effect.AttributeAffected] += effect.Magnitude;
+
             UpdateAllStats(maxOnly: true);
             // GD.Print(Stats[StatMode.MaxHealth]);
             // GD.Print(GetCorrectHitBonus());
@@ -381,11 +394,11 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
 
     public int GetCorrectMeleeWeaponDamageBonus()
     {
-        return WeaponTypeEquipped == WeaponTypeEquippedMode.Strength ? Stats[StatMode.PhysicalDamageStrength] + WeaponDamageBonus : Stats[StatMode.PhysicalDamagePrecision] + WeaponDamageBonus;
+        return WeaponTypeEquipped == WeaponTypeEquippedMode.Strength ? Stats[StatMode.PhysicalDamageStrength] + MeleeWeaponDamageBonus : Stats[StatMode.PhysicalDamagePrecision] + MeleeWeaponDamageBonus;
     }
     public int GetCorrectRangedWeaponDamageBonus()
     {
-        return Stats[StatMode.PhysicalDamageRanged] + WeaponDamageBonus;
+        return Stats[StatMode.PhysicalDamageRanged] + RangedWeaponDamageBonus;
     }
     private int GetUpdatedReagents()
     {
@@ -426,6 +439,91 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
             }
         }
     }
+
+    public enum MeleeWeaponMode { None, WoodenKnuckles, BrassKnuckles, AgileKnife, JewelledDagger }
+
+    [JsonProperty("_meleeWeaponEquipped")]
+    private int _meleeWeaponEquipped = 0;
+
+    // TODO -set all equipment in json and have it load into this.. or a InventoryCharacterData class. should make equipment classes too and weapon classes that compose etc.
+    public MeleeWeaponMode MeleeWeaponEquipped
+    {
+        set
+        {
+            _meleeWeaponEquipped = (int)value;
+            switch ((MeleeWeaponMode)_meleeWeaponEquipped)
+            {
+                case MeleeWeaponMode.None:
+                    WeaponDiceMelee = new() { new(1, 4) };
+                    MeleeWeaponDamageBonus = 0;
+                    WeaponTypeEquipped = WeaponTypeEquippedMode.Strength;
+                    break;
+                case MeleeWeaponMode.WoodenKnuckles:
+                    WeaponDiceMelee = new() { new(1, 6) };
+                    MeleeWeaponDamageBonus = 1;
+                    WeaponTypeEquipped = WeaponTypeEquippedMode.Strength;
+                    break;
+                case MeleeWeaponMode.BrassKnuckles:
+                    WeaponDiceMelee = new() { new(1, 6) };
+                    MeleeWeaponDamageBonus = 2;
+                    WeaponTypeEquipped = WeaponTypeEquippedMode.Strength;
+                    break;
+                case MeleeWeaponMode.AgileKnife:
+                    WeaponDiceMelee = new() { new(1, 4) };
+                    MeleeWeaponDamageBonus = 2;
+                    WeaponTypeEquipped = WeaponTypeEquippedMode.Precision;
+                    break;
+                case MeleeWeaponMode.JewelledDagger:
+                    WeaponDiceMelee = new() { new(1, 4) };
+                    MeleeWeaponDamageBonus = 3;
+                    WeaponTypeEquipped = WeaponTypeEquippedMode.Precision;
+                    break;
+            }
+        }
+        get
+        {
+            return (MeleeWeaponMode)_meleeWeaponEquipped;
+        }
+    }
+
+    public enum RangedWeaponMode { None, Arrow, Rock, Lightning }
+
+    [JsonProperty("_rangedWeaponEquipped")]
+    private int _rangedWeaponEquipped = 0;
+
+    // TODO -set all equipment in json and have it load into this.. or a InventoryCharacterData class
+    public RangedWeaponMode RangedWeaponEquipped
+    {
+        set
+        {
+            _rangedWeaponEquipped = (int)value;
+            switch ((RangedWeaponMode)_rangedWeaponEquipped)
+            {
+                case RangedWeaponMode.None:
+                    WeaponDiceRanged = new();
+                    RangedWeaponDamageBonus = 0;
+                    break;
+                case RangedWeaponMode.Arrow:
+                    WeaponDiceRanged = new() { new(1, 4) };
+                    RangedWeaponDamageBonus = 1;
+                    break;
+                case RangedWeaponMode.Rock:
+                    WeaponDiceRanged = new() { new(1, 8) };
+                    RangedWeaponDamageBonus = 2;
+                    break;
+                case RangedWeaponMode.Lightning:
+                    WeaponDiceRanged = new() { new(2, 6) };
+                    RangedWeaponDamageBonus = 3;
+                    break;
+            }
+        }
+        get
+        {
+            return (RangedWeaponMode)_rangedWeaponEquipped;
+        }
+    }
+
+
     public double GetAverageWeaponDiceDamage(Tuple<int, int> dice)
     {
         return (dice.Item2 + 1.0) / 2.0 * dice.Item1;
@@ -437,6 +535,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     {
         return (int)(att * multiplier / (1 + (att * constant)));
     }
+
     public string Name { get; set; }
     public string Description { get; set; }
     public string PatronGod { get; set; }
@@ -456,10 +555,12 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
         }
     } // { get; set; } // 0/1/2/3/4/5/6/7 can be known spells ? .. in future separate perks from spells! (post-jam)
 
+
+    // in future make a Perk class
     public enum PerkMode
     {
         SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment,
-        WoodenKnuckles, BrassKnuckles, AgileKnife, JewelledDagger, LesserArmor, GreaterArmor
+        LesserArmor, GreaterArmor, WeaponSpikes, EnchantedWeapon
     }
 
 
@@ -490,7 +591,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     // public int Leadership { get; set; } = 10;
     // public int CriticalThreshold { get; set; } = 20; // This can reduce depending your luck to 19, 18, etc. to a minimum of x (11?)
     public int ArmourClass { get; set; } = 0; // Should be updated when changing armour
-    public int WeaponDamageBonus { get; set; } = 2; // Should be updated when changing weapon
+    public int MeleeWeaponDamageBonus { get; set; } = 2; // Should be updated when changing weapon
     public List<Tuple<int, int>> WeaponDiceMelee { get; set; } = new() {new Tuple<int,int>(1,8), // should be updated when changing weapon
         new Tuple<int,int>(1,6)}; // e.g. 2d4 + 1d6 -> post-jam will need to change be explicit about damage types, and maybe introduce damage type resistances
 
@@ -527,6 +628,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     // public int ActionPoints { get; set; } = 5;
     public bool Alive { get; set; } = true;
     public bool Berserk { get; private set; } = false;
+    public int RangedWeaponDamageBonus { get; private set; }
     // public int Health { get; set; } = 10; // e.g. this will be adjusted by endurance, vigour, etc.
     // public int Endurance { get; set; } = 10;
     // public int Reagents { get; set; } = 5;

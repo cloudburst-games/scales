@@ -1,0 +1,364 @@
+[gd_scene load_steps=68 format=3 uid="uid://xwph8hbvbrt5"]
+
+[ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_g4a4y"]
+[ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="2_hy0l8"]
+[ext_resource type="Texture2D" uid="uid://ohfaxqa6hfar" path="res://Assets/Graphics/Sprites/Actors/Mountain/MountainIdle_2.png" id="3_bqifk"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle1_mountain2.tres" id="4_ta2v4"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle2_mountain2.tres" id="5_65tu4"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle3_mountain2.tres" id="6_gkasq"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle4_mountain2.tres" id="7_vbinw"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle5_mountain2.tres" id="8_7tayr"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle6_mountain2.tres" id="9_t3nim"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw1_mountain2.tres" id="10_dxxox"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw2_mountain2.tres" id="11_7paj3"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw3_mountain2.tres" id="12_ayoyl"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw4_mountain2.tres" id="13_0h8kc"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw5_mountain2.tres" id="14_hbkwl"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw6_mountain2.tres" id="15_vf47d"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk1_mountain2.tres" id="16_gicxc"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk2_mountain2.tres" id="17_j7ksn"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk3_mountain2.tres" id="18_lrcm2"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk4_mountain2.tres" id="19_tgh5j"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk5_mountain2.tres" id="20_5cl1e"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk6_mountain2.tres" id="21_6q1gh"]
+[ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="22_sckoc"]
+[ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="23_gejfc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klsaj"]
+shader = ExtResource("2_hy0l8")
+shader_parameter/width = 0.0
+shader_parameter/speed = 10.0
+shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdano"]
+radius = 20.2237
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_btc0f"]
+shader = ExtResource("2_hy0l8")
+shader_parameter/width = 0.0
+shader_parameter/speed = 10.0
+shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_wjip6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_btc0f")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sbsm8"]
+_data = {
+"RESET": SubResource("Animation_wjip6")
+}
+
+[sub_resource type="Animation" id="Animation_f3cmo"]
+resource_name = "dying"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_gejfc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(1, 1627, 960, 540)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_klsaj"), null, SubResource("ShaderMaterial_klsaj")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_70mxg"]
+_data = {
+"dying": SubResource("Animation_f3cmo"),
+"idle1_mountain2": ExtResource("4_ta2v4"),
+"idle2_mountain2": ExtResource("5_65tu4"),
+"idle3_mountain2": ExtResource("6_gkasq"),
+"idle4_mountain2": ExtResource("7_vbinw"),
+"idle5_mountain2": ExtResource("8_7tayr"),
+"idle6_mountain2": ExtResource("9_t3nim"),
+"take_damage_anim": ExtResource("22_sckoc"),
+"throw1_mountain2": ExtResource("10_dxxox"),
+"throw2_mountain2": ExtResource("11_7paj3"),
+"throw3_mountain2": ExtResource("12_ayoyl"),
+"throw4_mountain2": ExtResource("13_0h8kc"),
+"throw5_mountain2": ExtResource("14_hbkwl"),
+"throw6_mountain2": ExtResource("15_vf47d"),
+"walk1_mountain2": ExtResource("16_gicxc"),
+"walk2_mountain2": ExtResource("17_j7ksn"),
+"walk3_mountain2": ExtResource("18_lrcm2"),
+"walk4_mountain2": ExtResource("19_tgh5j"),
+"walk5_mountain2": ExtResource("20_5cl1e"),
+"walk6_mountain2": ExtResource("21_6q1gh")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ixg3w"]
+animation = &"mountain2/dying"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_fo568"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ixg3w")
+blend_point_0/pos = Vector2(0, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p27d6"]
+animation = &"mountain2/idle4_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y6snc"]
+animation = &"mountain2/idle3_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qkc2a"]
+animation = &"mountain2/idle2_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m31u2"]
+animation = &"mountain2/idle1_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k5y8b"]
+animation = &"mountain2/idle6_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x558n"]
+animation = &"mountain2/idle5_mountain2"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_x8nwv"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_p27d6")
+blend_point_0/pos = Vector2(-0.47, 0.88)
+blend_point_1/node = SubResource("AnimationNodeAnimation_y6snc")
+blend_point_1/pos = Vector2(0.89, 0.45)
+blend_point_2/node = SubResource("AnimationNodeAnimation_qkc2a")
+blend_point_2/pos = Vector2(0.99, -0.13)
+blend_point_3/node = SubResource("AnimationNodeAnimation_m31u2")
+blend_point_3/pos = Vector2(0.47, -0.88)
+blend_point_4/node = SubResource("AnimationNodeAnimation_k5y8b")
+blend_point_4/pos = Vector2(-0.89, -0.45)
+blend_point_5/node = SubResource("AnimationNodeAnimation_x558n")
+blend_point_5/pos = Vector2(-0.99, 0.13)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_510by"]
+animation = &"mountain2/throw1_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3j6ak"]
+animation = &"mountain2/throw2_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cp8f8"]
+animation = &"mountain2/throw3_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qth44"]
+animation = &"mountain2/throw4_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wp1uq"]
+animation = &"mountain2/throw5_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j712b"]
+animation = &"mountain2/throw6_mountain2"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_q4y4l"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_510by")
+blend_point_0/pos = Vector2(0.47, -0.88)
+blend_point_1/node = SubResource("AnimationNodeAnimation_3j6ak")
+blend_point_1/pos = Vector2(0.99, -0.13)
+blend_point_2/node = SubResource("AnimationNodeAnimation_cp8f8")
+blend_point_2/pos = Vector2(0.89, 0.45)
+blend_point_3/node = SubResource("AnimationNodeAnimation_qth44")
+blend_point_3/pos = Vector2(-0.47, 0.88)
+blend_point_4/node = SubResource("AnimationNodeAnimation_wp1uq")
+blend_point_4/pos = Vector2(-0.99, 0.13)
+blend_point_5/node = SubResource("AnimationNodeAnimation_j712b")
+blend_point_5/pos = Vector2(-0.89, -0.45)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m4my7"]
+animation = &"mountain2/walk1_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p1yvx"]
+animation = &"mountain2/walk2_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ju24e"]
+animation = &"mountain2/walk3_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yk7xn"]
+animation = &"mountain2/walk4_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8q35f"]
+animation = &"mountain2/walk5_mountain2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d8f4q"]
+animation = &"mountain2/walk6_mountain2"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_k7qjx"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_m4my7")
+blend_point_0/pos = Vector2(0.47, -0.88)
+blend_point_1/node = SubResource("AnimationNodeAnimation_p1yvx")
+blend_point_1/pos = Vector2(0.99, -0.13)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ju24e")
+blend_point_2/pos = Vector2(0.89, 0.45)
+blend_point_3/node = SubResource("AnimationNodeAnimation_yk7xn")
+blend_point_3/pos = Vector2(-0.47, 0.99)
+blend_point_4/node = SubResource("AnimationNodeAnimation_8q35f")
+blend_point_4/pos = Vector2(-0.99, 0.13)
+blend_point_5/node = SubResource("AnimationNodeAnimation_d8f4q")
+blend_point_5/pos = Vector2(-0.89, -0.45)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n20m6"]
+animation = &"mountain2/take_damage_anim"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_hpbuj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_n20m6")
+blend_point_0/pos = Vector2(0, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_it31r"]
+advance_mode = 2
+advance_condition = &"melee"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ylv1o"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_onssd"]
+advance_mode = 2
+advance_condition = &"moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3f5ve"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c5oq7"]
+advance_mode = 2
+advance_condition = &"melee"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nsp67"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6duo2"]
+advance_mode = 2
+advance_condition = &"takingdamage"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bnrfh"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ts4f"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hxxih"]
+advance_mode = 2
+advance_condition = &"takingdamage"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0uqkw"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_igdju"]
+states/Dying/node = SubResource("AnimationNodeBlendSpace2D_fo568")
+states/Dying/position = Vector2(735, 145.09)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_x8nwv")
+states/Idle/position = Vector2(343, 158.09)
+states/Melee/node = SubResource("AnimationNodeBlendSpace2D_q4y4l")
+states/Melee/position = Vector2(367, -23.9099)
+states/Moving/node = SubResource("AnimationNodeBlendSpace2D_k7qjx")
+states/Moving/position = Vector2(475, 77)
+states/Start/position = Vector2(205, 94)
+states/TakingDamage/node = SubResource("AnimationNodeBlendSpace2D_hpbuj")
+states/TakingDamage/position = Vector2(163, 188.09)
+transitions = ["Moving", "Melee", SubResource("AnimationNodeStateMachineTransition_it31r"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ylv1o"), "Idle", "Moving", SubResource("AnimationNodeStateMachineTransition_onssd"), "Moving", "Idle", SubResource("AnimationNodeStateMachineTransition_3f5ve"), "Idle", "Melee", SubResource("AnimationNodeStateMachineTransition_c5oq7"), "Melee", "Idle", SubResource("AnimationNodeStateMachineTransition_nsp67"), "Idle", "TakingDamage", SubResource("AnimationNodeStateMachineTransition_6duo2"), "TakingDamage", "Idle", SubResource("AnimationNodeStateMachineTransition_bnrfh"), "Idle", "Dying", SubResource("AnimationNodeStateMachineTransition_1ts4f"), "Melee", "TakingDamage", SubResource("AnimationNodeStateMachineTransition_hxxih"), "Melee", "Dying", SubResource("AnimationNodeStateMachineTransition_0uqkw")]
+graph_offset = Vector2(-14, -89.9099)
+
+[node name="MountainBody2" type="Node"]
+script = ExtResource("1_g4a4y")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_klsaj")
+texture = ExtResource("3_bqifk")
+offset = Vector2(0, -52.5)
+region_enabled = true
+region_rect = Rect2(1925, 4337, 960, 540)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1.5)
+shape = SubResource("CircleShape2D_xdano")
+disabled = true
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sbsm8"),
+"mountain2": SubResource("AnimationLibrary_70mxg")
+}
+
+[node name="AnimTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_igdju")
+anim_player = NodePath("../Anim")
+active = true
+parameters/conditions/dying = false
+parameters/conditions/idle = false
+parameters/conditions/melee = false
+parameters/conditions/moving = false
+parameters/conditions/takingdamage = false
+parameters/Dying/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Melee/blend_position = Vector2(0, 0)
+parameters/Moving/blend_position = Vector2(0, 0)
+parameters/TakingDamage/blend_position = Vector2(0, 0)
+
+[node name="ClickArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -37.0
+offset_top = -133.0
+offset_right = 40.0
+offset_bottom = 40.0

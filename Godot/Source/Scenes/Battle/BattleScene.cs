@@ -29,6 +29,8 @@ public partial class BattleScene : Node, ISceneTransitionable
     private BaseButton _btnMenu;
     [Export]
     private BtnActions _btnActions;
+    [Export]
+    private AnimationPlayer _battleScalesAnim;
     // [Export]
     // private Godot.Collections.Array<BaseTextureButton> _actionBtns = new();
     // exporting here doesn#t work so we are unfortunately using magic string
@@ -44,8 +46,8 @@ public partial class BattleScene : Node, ISceneTransitionable
         if (sharedData is BattleDataContainer battleData)
         {
             _difficulty = battleData.Difficulty;
-            NewCharacter((StoryCharacter.StoryCharacterMode)battleData.CharacterSelected).StatusToPlayer = CharacterUnit.StatusToPlayerMode.Player;
-            NewCharacter((StoryCharacter.StoryCharacterMode)3).StatusToPlayer = CharacterUnit.StatusToPlayerMode.Allied;
+            NewCharacter((StoryCharacter.StoryCharacterMode)battleData.CharacterSelected, CharacterUnit.StatusToPlayerMode.Player);
+            NewCharacter((StoryCharacter.StoryCharacterMode)3, CharacterUnit.StatusToPlayerMode.Player);
         }
     }
 
@@ -65,6 +67,13 @@ public partial class BattleScene : Node, ISceneTransitionable
     private HBoxTurnOrder _hBoxTurnOrder;
     [Export]
     private PnlCharacterInfo _pnlCharacterInfo;
+
+    private Scales _scales = new();
+    [Export]
+    private TextureRect _textureScales;
+    [Export]
+    private AnimationPlayer _animScalesStart;
+
     public override void _Ready()
     {
         // TESTING
@@ -87,6 +96,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         _battler.LogBattleText += (string text, bool persist) => _HUD.OnBattleLogEntry(text, persist);
         _battler.HUDActionRequested += _HUD.SetState;
         _battler.TurnStarted += this.OnCharacterTurnStarted;//_HUD.OnTurnStarted;
+        _battler.RoundStarted += this.OnRoundStarted;
         _battler.AreaAttackParsed += _spellEffectManager.OnCastingSpell;
         _battler.HintClickedCharacter += _HUD.OnHintClickCharacter;
         _btnActions.ActionBtnPressed += _battler.OnActionBtnPressed; // 1. Melee 2. Shoot 3. Cast spell 4. Move
@@ -98,7 +108,23 @@ public partial class BattleScene : Node, ISceneTransitionable
 
         _cntSpellBook.SpellBtnPressed += this.OnSpellSelected;
         _cntSpellBook.SpellUIHint += (int spell) => _HUD.OnSpellBookUIHint(_spellEffectManager.AllSpells[(SpellEffectManager.SpellMode)spell]);
+        _battleScalesAnim.CurrentAnimation = "Start";
         LoadLevel();
+    }
+
+    private void OnRoundStarted()
+    {
+        SetFavourForCharacters();
+    }
+
+    private void SetFavourForCharacters()
+    {
+
+        _currentCharacters
+            .Where(x => x.CharacterData.Alive)
+            .Where(x => x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player)
+            .ToList()
+            .ForEach(x => x.OnBattleFavour(_scales.GetCurrentFavour(), _scales.IsExtreme()));
     }
 
     private void StoreCurrentCharacterPortraits()
@@ -120,13 +146,21 @@ public partial class BattleScene : Node, ISceneTransitionable
     {
         _HUD.SetSpellBookDisplayedSpells(spells);
         _HUD.OnCharacterStartTurn(_battler.CharactersAwaitingTurn[0].CharacterData);
-        _hBoxTurnOrder.OnCharacterTurnStart(_battler.CharactersAwaitingTurn.Skip(1).Select(x => x.CharacterData).ToList(), _battler.AllCharacters.Select(x => x.CharacterData).ToList());
+        _hBoxTurnOrder.OnCharacterTurnStart
+            (_battler.CharactersAwaitingTurn.Skip(1)
+                .Where(x => x.CharacterData.Alive)
+                .Select(x => x.CharacterData)
+                .ToList(),
+            _battler.AllCharacters
+                .Where(x => x.CharacterData.Alive)
+                .Select(x => x.CharacterData).ToList());
         // if (_battler.CharactersAwaitingTurn[0].UISelectedSpell != SpellEffectManager.SpellMode.None)
         // {
         SetSpell(_battler.CharactersAwaitingTurn[0].UISelectedSpell);
 
-        _btnActions.OnActionBtnPressed(_battler.CharactersAwaitingTurn[0].UISelectedAction);
-        // }
+        _btnActions.OnCharacterTurnStart(_battler.CharactersAwaitingTurn[0]);
+        SetFavourForCharacters();
+
 
     }
 
@@ -164,13 +198,18 @@ public partial class BattleScene : Node, ISceneTransitionable
         _cursorControl.SetCursor(paused ? CursorControl.CursorMode.Select : _cursorControl.GetCursor());
     }
 
-    private CharacterUnit NewCharacter(StoryCharacter.StoryCharacterMode selectedChar)
+    private void NewCharacter(StoryCharacter.StoryCharacterMode selectedChar, CharacterUnit.StatusToPlayerMode status)
     {
         CharacterUnit newChar = _characterScene.Instantiate<CharacterUnit>();
         newChar.SetFromJSON(selectedChar);
         newChar.Rand = _rand;
+        newChar.StatusToPlayer = status;
         _currentCharacters.Add(newChar);
         newChar.CastingEffect += _spellEffectManager.OnCastingSpellStart;
+        if (status == CharacterUnit.StatusToPlayerMode.Player)
+        {
+            newChar.CastingEffect += this.CastingSpellFavourEffect;
+        }
         newChar.CastingEffect += (SpellEffectManager.Spell spell) => _HUD.UpdateBars(newChar.CharacterData);
         newChar.Died += _battler.OnCharacterDied;
         newChar.MovedButStillHaveAP += _battler.OnMovedButStillHaveAP;
@@ -179,7 +218,22 @@ public partial class BattleScene : Node, ISceneTransitionable
         newChar.CharacterDataTreeLink.RoundEffectEnded += (CharacterRoundEffect roundEffect) => _HUD.OnCharacterRoundEffectFaded(newChar, roundEffect);
         newChar.CharacterDataTreeLink.RoundEffectEnded += (CharacterRoundEffect roundEffect) => _battler.OnCharacterRoundEffectFaded(newChar, roundEffect);
         newChar.TakingDamage += _HUD.OnCharacterTakingDamage;
-        return newChar;
+        // return newChar;
+    }
+
+    private void CastingSpellFavourEffect(SpellEffectManager.Spell spell)
+    {
+
+        if (spell.Patron == SpellEffectManager.Spell.PatronMode.Ishtar)
+        {
+            _scales.FavourIshtar();
+        }
+        else if (spell.Patron == SpellEffectManager.Spell.PatronMode.Shamash)
+        {
+            _scales.FavourShamash();
+        }
+        SetFavourForCharacters();
+        _battleScalesAnim.Seek(_scales.GetScaleAnimationTime(), true);
     }
 
     // Player characters must be initialised before this is called
@@ -195,11 +249,11 @@ public partial class BattleScene : Node, ISceneTransitionable
 
         foreach (StoryCharacter.StoryCharacterMode enemyStoryChar in _lvlToLoad.StartingEnemies)
         {
-            NewCharacter(enemyStoryChar).StatusToPlayer = CharacterUnit.StatusToPlayerMode.Hostile;
+            NewCharacter(enemyStoryChar, CharacterUnit.StatusToPlayerMode.Hostile);
         }
         foreach (StoryCharacter.StoryCharacterMode allyStoryChar in _lvlToLoad.StartingAllies)
         {
-            NewCharacter(allyStoryChar).StatusToPlayer = CharacterUnit.StatusToPlayerMode.Allied;
+            NewCharacter(allyStoryChar, CharacterUnit.StatusToPlayerMode.Allied);
         }
 
         foreach (CharacterUnit characterUnit in _currentCharacters)
@@ -224,6 +278,11 @@ public partial class BattleScene : Node, ISceneTransitionable
         _btnActions.OnActionBtnPressed(Battler.ActionMode.Melee);
         _battler.PlayerSelectedAction = Battler.ActionMode.Melee;
         _cursorControl.SetCursor(CursorControl.CursorMode.Wait);
+        _battleScalesAnim.Seek(_scales.GetScaleAnimationTime(), true);
+        if (!_textureScales.Visible)
+        {
+            _animScalesStart.Play("Start");
+        }
     }
 
     private async void UnloadLevel()

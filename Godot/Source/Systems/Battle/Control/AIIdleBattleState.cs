@@ -39,7 +39,8 @@ public partial class AIIdleBattleState : ControlIdleBattleState
     public override void OnInitCurrentTurn()
     {
         base.OnInitCurrentTurn();
-        IdleBattleState.Battler.SetGridUserHexes(IdleBattleState.GetValidMoveHexes(), IdleBattleState.GetValidHalfMoveHexes(), HexGridUserDisplay.DisplayMode.HideAllHexes);
+        // IdleBattleState.Battler.SetGridUserHexes(IdleBattleState.GetValidMoveHexes(), IdleBattleState.GetValidHalfMoveHexes(), HexGridUserDisplay.DisplayMode.HideAllHexes);
+        IdleBattleState.Battler.ToggleGrid(false);
 
     }
 
@@ -55,12 +56,13 @@ public partial class AIIdleBattleState : ControlIdleBattleState
         Battler battler = IdleBattleState.Battler;
         Vector2 characterWorldPos = battler.CharactersAwaitingTurn[0].GlobalPosition;
         Vector2 characterGridPos = battler.BattleGrid.WorldToGrid(characterWorldPos);
-        // CharacterUnit activeCharacter = battler.CharactersAwaitingTurn[0];
+        CharacterUnit activeCharacter = battler.CharactersAwaitingTurn[0];
         // StoryCharacterData activeData = GetActiveCharacterData();
         if (battler.BattleGrid.GetHexAtGridPosition(characterGridPos).Obstacle)
         {
             return;
         }
+        GD.Print(activeCharacter.GetActionState());
         // if (activeData.Berserk)
         // {
         //     IdleBattleState.BerserkEffect();
@@ -92,10 +94,8 @@ public partial class AIIdleBattleState : ControlIdleBattleState
             .ToList();
 
         List<Vector2> enemyPositions = battler.AllCharacters
-        // the below line would only attack those on opposite team
-        //            .Where(x => activeData.Berserk ? activeCharacter.BerserkValidEnemyTargets.Contains(x.StatusToPlayer) : activeCharacter.ValidEnemyTargets.Contains(x.StatusToPlayer))
-
-            .Where(x => activeData.Berserk ? battler.AllCharacters.Contains(x) : activeCharacter.ValidEnemyTargets.Contains(x.StatusToPlayer))
+            // the berserk list we can change but for now it includes everyone
+            .Where(x => activeData.Berserk ? activeCharacter.BerserkValidEnemyTargets.Contains(x.StatusToPlayer) : activeCharacter.ValidEnemyTargets.Contains(x.StatusToPlayer))
             .Where(x => x != activeCharacter)
             .Where(x => x.CharacterData.Alive)
             .Select(x => battler.BattleGrid.WorldToGrid(x.GlobalPosition))
@@ -166,7 +166,7 @@ public partial class AIIdleBattleState : ControlIdleBattleState
                 return new(Battler.ActionMode.Melee, gridPos, SpellEffectManager.SpellMode.None);
             }
             // otherwise ranged attack if possible
-            else if (IsValidRanged(gridPos))
+            else if (IsValidRanged(gridPos) && (StoryCharacterData.RangedWeaponMode)activeData.RangedWeaponEquipped != StoryCharacterData.RangedWeaponMode.None)
             {
                 return new(Battler.ActionMode.Shoot, gridPos, SpellEffectManager.SpellMode.None);
             }

@@ -159,6 +159,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="Doodads" type="Node2D" parent="Entities"]
+z_index = 1
 y_sort_enabled = true
 
 [node name="Oasis" type="StaticBody2D" parent="Entities/Doodads"]
@@ -182,6 +183,7 @@ position = Vector2(0, -148)
 polygon = PackedVector2Array(128, 539, 131, 279, 3691, 265, 3691, 539, 3538, 486, 3395, 465, 3325, 459, 3057, 418, 2790, 443, 2558, 404, 2387, 436, 2241, 418, 2081, 397, 1910, 436, 1710, 443, 1536, 425, 1389, 472, 1051, 450, 937, 475, 655, 475, 342, 522)
 
 [node name="Effects" type="Node2D" parent="Entities"]
+z_index = 1
 y_sort_enabled = true
 
 [node name="Positions" type="Node2D" parent="."]

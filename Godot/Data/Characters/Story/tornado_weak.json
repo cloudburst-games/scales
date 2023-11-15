@@ -1,0 +1,19 @@
+{
+    "Name": "Tornado",
+    "Description": "Wrathful tornado, dances with furious winds, confronts adventurers with relentless tempest.",
+    "PatronGod": "Ishtar",
+    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/TornadoBody1/TornadoBody1.tscn",
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Tornado/portrait_placeholder.png",
+    "Perks": [
+        8
+    ],
+    "RangedAttack": 3,
+    "Level": 3,
+    "Might": 8,
+    "Resilience": 14,
+    "Precision": 14,
+    "Speed": 14,
+    "Intellect": 25,
+    "Charisma": 6,
+    "Luck": 10
+}

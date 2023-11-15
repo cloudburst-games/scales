@@ -25,7 +25,7 @@ public partial class SpellEffectManager : Node
 
         public Godot.Collections.Array<CharacterUnit> AreaAffectedCharacters = new();
         public SpellMode SpellMode { get; set; }
-        public enum PatronMode { Shamash, Ishtar }
+        public enum PatronMode { Shamash, Ishtar, None }
         public PatronMode Patron;
     }
 
@@ -67,7 +67,7 @@ public partial class SpellEffectManager : Node
     private Godot.Collections.Dictionary<SpellMode, PackedScene> _spellVisualScns = new();
     public enum SpellEffectMode
     {
-        Fire, Physical, Fireball,
+        MagicalAttackSingle, PhysicalAttackSingle, MagicalAttackArea,
         DamageOverTime,
         DamageAttributeMight,
         DamageAttributePrecision,
@@ -78,14 +78,25 @@ public partial class SpellEffectManager : Node
         FortifyAttributeResilience,
         FortifyAttributePrecision,
         FortifyAttributeSpeed,
-        FortifyStatHealthRegen
+        FortifyStatHealthRegen,
+        // Lightning
     }
-    public enum SpellMode { SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment, Arrow, None }
+    public enum SpellMode
+    {
+        SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment, Arrow, None,
+        Rock, Lightning
+    }
     public enum SpellEffectVisualMode { Projectile, Self, FromSky }
     public enum SpellEffectTargetMode { Self, Target }
     private Dictionary<SpellEffectMode, SpellEffect> _allSpellEffects = new();
     private Dictionary<SpellMode, SpellVisualController> _allSpellVisuals = new();
     public Dictionary<SpellMode, Spell> AllSpells { get; private set; } = new();
+
+    public static Dictionary<StoryCharacterData.RangedWeaponMode, SpellMode> RangedWeaponSpells = new() {
+        {StoryCharacterData.RangedWeaponMode.Arrow, SpellMode.Arrow},
+        {StoryCharacterData.RangedWeaponMode.Rock, SpellMode.Rock},
+        {StoryCharacterData.RangedWeaponMode.Lightning, SpellMode.Lightning},
+    };
 
     public delegate void SpellEffectDelegate(SpellEffect effect, Spell spell);
 
@@ -101,7 +112,7 @@ public partial class SpellEffectManager : Node
     // todo - construct via json data
     private void GenerateSpellEffects()
     {
-        _allSpellEffects[SpellEffectMode.Fire] = new()
+        _allSpellEffects[SpellEffectMode.MagicalAttackSingle] = new()
         {
             DamageDice = new() { new Tuple<int, int>(1, 6) },
             AttackType = BattleRoller.AttackType.Normal,
@@ -109,7 +120,7 @@ public partial class SpellEffectManager : Node
             EffectMethod = DoTargetedAttackEffect,
             Name = "Fire Damage",
         };
-        _allSpellEffects[SpellEffectMode.Physical] = new()
+        _allSpellEffects[SpellEffectMode.PhysicalAttackSingle] = new()
         {
             DamageDice = new() { new Tuple<int, int>(1, 6) }, // should be replaced by the character's physical damage
             AttackType = BattleRoller.AttackType.Normal,
@@ -117,13 +128,21 @@ public partial class SpellEffectManager : Node
             EffectMethod = DoTargetedAttackEffect,
             Name = "Physical Damage"
         };
-        _allSpellEffects[SpellEffectMode.Fireball] = new()
+        _allSpellEffects[SpellEffectMode.MagicalAttackArea] = new()
         {
             DamageDice = new() { new Tuple<int, int>(2, 6) },
             AttackType = BattleRoller.AttackType.Area,
             Mystical = true,
             EffectMethod = DoAreaAttackEffect,
             Name = "Fire Area Damage"
+        };
+        _allSpellEffects[SpellEffectMode.MagicalAttackSingle] = new()
+        {
+            DamageDice = new() { new Tuple<int, int>(2, 6) },
+            AttackType = BattleRoller.AttackType.Normal,
+            Mystical = true,
+            EffectMethod = DoTargetedAttackEffect,
+            Name = "Shock Damage",
         };
         _allSpellEffects[SpellEffectMode.DamageOverTime] = new()
         {
@@ -252,6 +271,16 @@ public partial class SpellEffectManager : Node
             SpellEffectScn = _spellVisualScns[SpellMode.Arrow],
             VisualMode = SpellEffectVisualMode.Projectile,
         };
+        _allSpellVisuals[SpellMode.Rock] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.Rock],
+            VisualMode = SpellEffectVisualMode.Projectile,
+        };
+        _allSpellVisuals[SpellMode.Lightning] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.Lightning],
+            VisualMode = SpellEffectVisualMode.Projectile,
+        };
         _allSpellVisuals[SpellMode.SolarFlare] = new()
         {
             SpellEffectScn = _spellVisualScns[SpellMode.SolarFlare],
@@ -292,6 +321,16 @@ public partial class SpellEffectManager : Node
             SpellEffectScn = _spellVisualScns[SpellMode.RegenerativeOintment],
             VisualMode = SpellEffectVisualMode.Projectile
         };
+        _allSpellVisuals[SpellMode.Lightning] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.Lightning],
+            VisualMode = SpellEffectVisualMode.Projectile
+        };
+        _allSpellVisuals[SpellMode.Rock] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.Rock],
+            VisualMode = SpellEffectVisualMode.Projectile
+        };
     }
 
     // todo - construct via json data
@@ -301,7 +340,7 @@ public partial class SpellEffectManager : Node
         AllSpells[SpellMode.Arrow] = new()
         {
             SpellEffectVisual = _allSpellVisuals[SpellMode.Arrow],
-            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.Physical] },
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.PhysicalAttackSingle] },
             Name = "Arrow",
             Range = 8,
             Target = Spell.TargetMode.Enemy,
@@ -309,12 +348,38 @@ public partial class SpellEffectManager : Node
             Description = "Fire an arrow at your opponent.",
             ReagentCost = 0,
             ChargeCost = 0,
-            Patron = Spell.PatronMode.Shamash,
+            Patron = Spell.PatronMode.None,
+        };
+        AllSpells[SpellMode.Rock] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.Rock],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.PhysicalAttackSingle] },
+            Name = "Rock",
+            Range = 10,
+            Target = Spell.TargetMode.Enemy,
+            SpellMode = SpellMode.Rock,
+            Description = "Hurl a rock at your opponent.",
+            ReagentCost = 0,
+            ChargeCost = 0,
+            Patron = Spell.PatronMode.None,
+        };
+        AllSpells[SpellMode.Lightning] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.Lightning],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.MagicalAttackSingle] },
+            Name = "Lightning bolt",
+            Range = 12,
+            Target = Spell.TargetMode.Enemy,
+            SpellMode = SpellMode.Lightning,
+            Description = "Launch a bolt of charged enemy at your target.",
+            ReagentCost = 0,
+            ChargeCost = 0, // THIS IS A SPECIAL ENEMY ATTACK, unavailable to players
+            Patron = Spell.PatronMode.None,
         };
         AllSpells[SpellMode.SolarFlare] = new()
         {
             SpellEffectVisual = _allSpellVisuals[SpellMode.SolarFlare],
-            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.Fire] },
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.MagicalAttackSingle] },
             Name = "Solar Flare",
             Range = 8,
             Target = Spell.TargetMode.Enemy,
@@ -327,7 +392,7 @@ public partial class SpellEffectManager : Node
         AllSpells[SpellMode.SolarBlast] = new()
         {
             SpellEffectVisual = _allSpellVisuals[SpellMode.SolarBlast],
-            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.Fireball] },
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.MagicalAttackArea] },
             Name = "Solar Blast",
             Range = 10,
             Target = Spell.TargetMode.Ground,
@@ -427,6 +492,7 @@ public partial class SpellEffectManager : Node
             Description = "",
             ReagentCost = 0,
             ChargeCost = 0,
+            Patron = Spell.PatronMode.None,
         };
     }
 
@@ -583,7 +649,8 @@ public partial class SpellEffectManager : Node
             magnitude: -res.FinalDamage,
             animName: "DamageAttribute",
             rounds: spellEffect.NumRounds,
-            fromSpell: spell.SpellMode
+            fromSpell: spell.SpellMode,
+            from: attackerData.Name
         );
 
         targetCharacter.CharacterData.DoEffectInitial(roundEffect);
@@ -614,7 +681,8 @@ public partial class SpellEffectManager : Node
             magnitude: res.FinalDamage,
             animName: "FortifyAttribute",
             rounds: spellEffect.NumRounds,
-            fromSpell: spell.SpellMode
+            fromSpell: spell.SpellMode,
+            from: attackerData.Name
         );
 
         targetCharacter.CharacterData.DoEffectInitial(roundEffect);
@@ -622,6 +690,8 @@ public partial class SpellEffectManager : Node
 
     private void DoBerserk(SpellEffect spellEffect, Spell spell)
     {
+        CharacterUnit originCharacter = spell.OriginCharacter;
+        StoryCharacterData attackerData = originCharacter.CharacterData;
         CharacterUnit targetCharacter = spell.TargetCharacter;
         CharacterRoundEffect roundEffect = new(
 
@@ -634,7 +704,8 @@ public partial class SpellEffectManager : Node
             magnitude: 0,
             animName: "Berserk",
             rounds: spellEffect.NumRounds,
-            fromSpell: spell.SpellMode
+            fromSpell: spell.SpellMode,
+            from: attackerData.Name
         );
         targetCharacter.CharacterData.DoEffectInitial(roundEffect);
     }
@@ -670,7 +741,8 @@ public partial class SpellEffectManager : Node
             magnitude: -res.FinalDamage,
             animName: "Damage",
             rounds: spellEffect.NumRounds,
-            fromSpell: spell.SpellMode
+            fromSpell: spell.SpellMode,
+            from: attackerData.Name
         );
 
         targetCharacter.CharacterData.DoEffectInitial(roundEffect);

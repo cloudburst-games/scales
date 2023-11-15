@@ -1,0 +1,31 @@
+[gd_resource type="Animation" load_steps=2 format=3]
+
+[ext_resource type="Texture2D" path="res://Assets/Graphics/Sprites/Actors/Mountain/MountainIdle_2.png" id="1_gnwvy"]
+
+[resource]
+length = 2.45
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.45, 1.5, 1.55, 1.6, 1.65, 1.7, 1.75, 1.8, 1.85, 1.9, 1.95, 2, 2.05, 2.1, 2.15, 2.2, 2.25, 2.3, 2.35, 2.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(4811, 10841, 960, 540), Rect2(5773, 10841, 960, 540), Rect2(6735, 10841, 960, 540), Rect2(7697, 10841, 960, 540), Rect2(8659, 10841, 960, 540), Rect2(9621, 10841, 960, 540), Rect2(10583, 10841, 960, 540), Rect2(1, 11383, 960, 540), Rect2(963, 11383, 960, 540), Rect2(1925, 11383, 960, 540), Rect2(2887, 11383, 960, 540), Rect2(3849, 11383, 960, 540), Rect2(4811, 11383, 960, 540), Rect2(5773, 11383, 960, 540), Rect2(6735, 11383, 960, 540), Rect2(7697, 11383, 960, 540), Rect2(8659, 11383, 960, 540), Rect2(9621, 11383, 960, 540), Rect2(10583, 11383, 960, 540), Rect2(11545, 1, 960, 540), Rect2(11545, 543, 960, 540), Rect2(11545, 1085, 960, 540), Rect2(11545, 1627, 960, 540), Rect2(11545, 2169, 960, 540), Rect2(11545, 2711, 960, 540), Rect2(11545, 3253, 960, 540), Rect2(11545, 3795, 960, 540), Rect2(11545, 4337, 960, 540), Rect2(11545, 4879, 960, 540), Rect2(11545, 5421, 960, 540), Rect2(11545, 5963, 960, 540), Rect2(11545, 6505, 960, 540), Rect2(11545, 7047, 960, 540), Rect2(11545, 7589, 960, 540), Rect2(11545, 8131, 960, 540), Rect2(11545, 8673, 960, 540), Rect2(11545, 9215, 960, 540), Rect2(11545, 9757, 960, 540), Rect2(11545, 10299, 960, 540), Rect2(11545, 10841, 960, 540), Rect2(11545, 11383, 960, 540), Rect2(1, 11925, 960, 540), Rect2(963, 11925, 960, 540), Rect2(1925, 11925, 960, 540), Rect2(2887, 11925, 960, 540), Rect2(3849, 11925, 960, 540), Rect2(4811, 11925, 960, 540), Rect2(5773, 11925, 960, 540), Rect2(6735, 11925, 960, 540)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_gnwvy")]
+}

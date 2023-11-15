@@ -1,0 +1,140 @@
+[gd_scene load_steps=9 format=3 uid="uid://cncl7ki38rp2a"]
+
+[ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellVisual.cs" id="1_skafu"]
+[ext_resource type="Texture2D" uid="uid://ceqamemn0nf6r" path="res://Assets/Graphics/Effects/Rock/Rock.png" id="2_4j0xp"]
+[ext_resource type="Texture2D" uid="uid://c6kpb6fxqpuus" path="res://Assets/Graphics/Effects/Generic/WhiteSphericalParticle.png" id="3_8370f"]
+
+[sub_resource type="Animation" id="Animation_rs8j2"]
+resource_local_to_scene = true
+resource_name = "Finish"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArrowParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fi65d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArrowParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gq4kq"]
+resource_name = "Start"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArrowParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pnoqm"]
+_data = {
+"Finish": SubResource("Animation_rs8j2"),
+"RESET": SubResource("Animation_fi65d"),
+"Start": SubResource("Animation_gq4kq")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f38qs"]
+emission_shape = 1
+emission_sphere_radius = 68.11
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 26.27
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 90.0
+angle_max = 90.0
+scale_min = 2.0
+scale_max = 3.0
+color = Color(1, 1, 1, 0.0392157)
+
+[node name="RockThrowEffect" type="Node2D" node_paths=PackedStringArray("Anim")]
+position = Vector2(1285, 905)
+script = ExtResource("1_skafu")
+Anim = NodePath("Anim")
+Speed = 2000.0
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pnoqm")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_4j0xp")
+region_rect = Rect2(3, 459, 150, 102)
+
+[node name="ArrowParticles" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(-56, 0)
+rotation = 1.5708
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_f38qs")
+texture = ExtResource("3_8370f")

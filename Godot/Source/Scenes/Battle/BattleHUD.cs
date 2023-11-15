@@ -50,6 +50,8 @@ public partial class BattleHUD : CanvasLayer
     private ProgressBar _barHerbs;
     [Export]
     private ProgressBar _barCharge;
+    [Export]
+    private Panel _pnlScales;
 
     public enum StateMode
     {
@@ -70,9 +72,30 @@ public partial class BattleHUD : CanvasLayer
         _characterInfoPanel.HintClickCharacterEnded += () => this.SetState(StateMode.HintClickedCharacterEnded);
         _characterInfoPanel.MouseOverAttributeEntered += (string text) => OnBattleLogEntry(text, false);
         _characterInfoPanel.MouseOverAttributeExited += () => OnBattleLogEntry("", false);
+        _pnlScales.MouseEntered += () => OnBattleLogEntry("Mystical gauges reflecting the cosmic balance between Shamash and Ishtar.", false);
+        _pnlScales.MouseExited += () => OnBattleLogEntry("", false);
         _characterInfoPanel.PlaceableArea = new Vector2(_characterInfoPanel.GetViewportRect().Size.X, _pnlAction.GlobalPosition.Y);
 
         // SetState(StateMode.BattleIntro);
+        InitActionBtns();
+    }
+
+    private void InitActionBtns()
+    {
+
+        // magic strings are annoying BUT EXPORTED VARIABLES KEEP DISAPPEARING!!!
+        BtnActions btnActions = GetNode<BtnActions>("CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnActions");
+        var actionBtnsDict = btnActions.ActionBtns = new() {
+            {Battler.ActionMode.Melee, GetNode<TextureButton>("CntHUD/PnlAction/PnlActions/HBoxContainer/BtnAttack")},
+            {Battler.ActionMode.Shoot, GetNode<TextureButton>("CntHUD/PnlAction/PnlActions/HBoxContainer/BtnShoot")},
+            {Battler.ActionMode.Cast, GetNode<TextureButton>("CntHUD/PnlAction/PnlActions/HBoxContainer/BtnCastSpell")},
+            {Battler.ActionMode.Move, GetNode<TextureButton>("CntHUD/PnlAction/PnlActions/HBoxContainer/BtnMove")},
+        };
+
+        foreach (Battler.ActionMode actionMode in actionBtnsDict.Keys)
+        {
+            actionBtnsDict[actionMode].Pressed += () => btnActions.OnActionBtnPressed(actionMode);
+        }
     }
 
 
@@ -196,15 +219,21 @@ public partial class BattleHUD : CanvasLayer
 
     internal void OnCharacterRoundEffectApplied(CharacterUnit characterUnit, CharacterRoundEffect roundEffect)
     {
-        // LblFloatingText lbl = _lblFloatText.Instantiate<LblFloatingText>();
-        // AddChild(lbl);
-        // lbl.Text = roundEffect.Name;
-        // lbl.Start(characterUnit.GlobalPosition);
+        // to rework when i add explicit effect IDs - after the spell system rework
+        if (roundEffect.Name.StartsWith("Leadership") || roundEffect.Name.StartsWith("Scales") || roundEffect.Name.StartsWith("Disharmony"))
+        {
+            return;
+        }
         OnBattleLogEntry(characterUnit.CharacterData.Name + " affected by: " + roundEffect.Name, true);
     }
 
     internal void OnCharacterRoundEffectFaded(CharacterUnit characterUnit, CharacterRoundEffect roundEffect)
     {
+        // to rework when i add explicit effect IDs - after the spell system rework
+        if (roundEffect.Name.StartsWith("Leadership") || roundEffect.Name.StartsWith("Scales") || roundEffect.Name.StartsWith("Disharmony"))
+        {
+            return;
+        }
         OnBattleLogEntry(characterUnit.CharacterData.Name + " no longer affected by: " + roundEffect.Name, true);
     }
     public void OnPnlActionUIHint(PnlAction.UIHint hint)

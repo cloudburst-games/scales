@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=74 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://mcjj6hspcagt" path="res://Source/Scenes/Battle/HUD/TurnOrderRoundSeparator.tscn" id="18_popda"]
 [ext_resource type="Texture2D" uid="uid://birpy4r4g8whd" path="res://Assets/Graphics/Interface/Buttons/Settings/barsHorizontal.png" id="19_hl42s"]
 [ext_resource type="Texture2D" uid="uid://t3rp5hh5sorb" path="res://Assets/Graphics/Interface/Buttons/Actions/MoveHover.png" id="19_hrgya"]
+[ext_resource type="Texture2D" uid="uid://c5whimigl14hs" path="res://Assets/Graphics/Interface/Images/9patchEgyptianSymbolsEmptyCentre.png" id="19_wppit"]
 [ext_resource type="PackedScene" uid="uid://dm31ruvvjwfml" path="res://Source/Interface/Buttons/BtnClosePlaceholder.tscn" id="23_0fs1l"]
 [ext_resource type="LabelSettings" uid="uid://cnydnjeqvs3kr" path="res://Source/Interface/Label/test_label_settings.tres" id="24_m03nf"]
 [ext_resource type="Texture2D" uid="uid://dcm1rx18j0c5h" path="res://Assets/Graphics/Interface/Images/Spellbook.png" id="27_40yck"]
@@ -87,6 +88,103 @@ font_size = 36
 [sub_resource type="LabelSettings" id="LabelSettings_1b6cn"]
 line_spacing = 1.0
 font_size = 36
+
+[sub_resource type="Animation" id="Animation_r5vvf"]
+resource_name = "Start"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.941176, 1, 1), Color(1, 1, 1, 1), Color(1, 0, 0.301961, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aioxe"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8r2ty"]
+_data = {
+"RESET": SubResource("Animation_aioxe"),
+"Start": SubResource("Animation_r5vvf")
+}
+
+[sub_resource type="Animation" id="Animation_0y60l"]
+resource_name = "Start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_1ghu0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qwowx"]
+_data = {
+"RESET": SubResource("Animation_1ghu0"),
+"Start": SubResource("Animation_0y60l")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_21ipa"]
 font_size = 64
@@ -184,7 +282,7 @@ _data = {
 "Unloading": SubResource("Animation_gafb4")
 }
 
-[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnActions", "_cntSpellBook", "_cursorControl", "_spellEffectManager", "_hBoxTurnOrder", "_pnlCharacterInfo")]
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnActions", "_battleScalesAnim", "_cntSpellBook", "_cursorControl", "_spellEffectManager", "_hBoxTurnOrder", "_pnlCharacterInfo", "_textureScales", "_animScalesStart")]
 script = ExtResource("1_2w8r3")
 _anim = NodePath("Anim")
 _cntBattleLevel = NodePath("CntBattleLevel")
@@ -196,19 +294,22 @@ _btnChooseSpell = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContain
 _btnEndTurn = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnEndTurn")
 _btnMenu = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnMenu")
 _btnActions = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnActions")
+_battleScalesAnim = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/PnlScales/AnimScales")
 _levelScenePaths = [ExtResource("9_4plr1")]
 _cntSpellBook = NodePath("BattleHUD/CntHUD/CntSpellBook")
 _cursorControl = NodePath("Battler/CursorControl")
 _spellEffectManager = NodePath("SpellEffectManager")
 _hBoxTurnOrder = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder")
 _pnlCharacterInfo = NodePath("BattleHUD/CntHUD/CharacterInfoPanel")
+_textureScales = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/PnlScales/TextureRect")
+_animScalesStart = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/PnlScales/AnimScalesStart")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 3840.0
 offset_bottom = 2160.0
 color = Color(0.568627, 0.862745, 1, 1)
 
-[node name="BattleHUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("_characterInfoPanel", "_pnlBattleIntro", "_btnBattleIntroContinue", "_lblIntro", "_lblShortLog", "_btnLog", "_pnlFullLog", "_RLblFullLog", "_pnlSpellBook", "_btnCloseSpellBook", "_cntSpellBook", "_lblHint", "_pnlShortLog", "_pnlAction", "_texActiveCharacter", "_barHealth", "_barHerbs", "_barCharge")]
+[node name="BattleHUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("_characterInfoPanel", "_pnlBattleIntro", "_btnBattleIntroContinue", "_lblIntro", "_lblShortLog", "_btnLog", "_pnlFullLog", "_RLblFullLog", "_pnlSpellBook", "_btnCloseSpellBook", "_cntSpellBook", "_lblHint", "_pnlShortLog", "_pnlAction", "_texActiveCharacter", "_barHealth", "_barHerbs", "_barCharge", "_pnlScales")]
 script = ExtResource("8_p64pw")
 _characterInfoPanel = NodePath("CntHUD/CharacterInfoPanel")
 _pnlBattleIntro = NodePath("CntHUD/PnlBattleIntro")
@@ -229,6 +330,7 @@ _texActiveCharacter = NodePath("CntHUD/PnlAction/HBoxContainer/PnlActiveCharacte
 _barHealth = NodePath("CntHUD/PnlAction/HBoxContainer/PnlActiveCharacter/HBoxContainer2/HBoxContainer/BarHealth")
 _barHerbs = NodePath("CntHUD/PnlAction/HBoxContainer/PnlActiveCharacter/HBoxContainer2/HBoxContainer/BarHerbs")
 _barCharge = NodePath("CntHUD/PnlAction/HBoxContainer/PnlActiveCharacter/HBoxContainer2/HBoxContainer/BarCharge")
+_pnlScales = NodePath("CntHUD/PnlAction/HBoxContainer/PnlScales")
 
 [node name="CntHUD" type="Control" parent="BattleHUD"]
 modulate = Color(1, 1, 1, 0)
@@ -332,7 +434,7 @@ show_percentage = false
 [node name="VBoxContainer" type="VBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_stretch_ratio = 7.0
+size_flags_stretch_ratio = 6.0
 
 [node name="HBoxBtnsLog" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -348,12 +450,6 @@ ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("6_8u3hr")
 _actionPnl = NodePath("../../../../PnlActions")
-_actionBtns = {
-0: NodePath("../../../../PnlActions/HBoxContainer/BtnAttack"),
-1: NodePath("../../../../PnlActions/HBoxContainer/BtnShoot"),
-2: NodePath("../../../../PnlActions/HBoxContainer/BtnCastSpell"),
-3: NodePath("../../../../PnlActions/HBoxContainer/BtnMove")
-}
 
 [node name="BtnChooseSpell" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
 layout_mode = 2
@@ -460,6 +556,37 @@ layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("17_7pg5c")
 _roundSeparatorScn = ExtResource("18_popda")
+
+[node name="PnlScales" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.9
+
+[node name="TextureRect" type="TextureRect" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/PnlScales"]
+process_mode = 3
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_wppit")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="AnimScales" type="AnimationPlayer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/PnlScales"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_8r2ty")
+}
+
+[node name="AnimScalesStart" type="AnimationPlayer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/PnlScales"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_qwowx")
+}
 
 [node name="PnlActions" type="Panel" parent="BattleHUD/CntHUD/PnlAction"]
 visible = false

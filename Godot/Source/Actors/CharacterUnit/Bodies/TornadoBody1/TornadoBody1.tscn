@@ -1,0 +1,348 @@
+[gd_scene load_steps=52 format=3 uid="uid://bwa5pk0kvk4qo"]
+
+[ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_i1i5a"]
+[ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="2_dg43x"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/TornadoBody1/AnimSequences/tornado1.tres" id="6_51y2c"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/TornadoBody1/AnimSequences/tornado1_move.tres" id="7_oq8vf"]
+[ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="22_0f063"]
+[ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="23_hdb7h"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_btc0f"]
+shader = ExtResource("2_dg43x")
+shader_parameter/width = 0.0
+shader_parameter/speed = 10.0
+shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xdano"]
+radius = 20.2237
+
+[sub_resource type="Animation" id="Animation_wjip6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_btc0f")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sbsm8"]
+_data = {
+"RESET": SubResource("Animation_wjip6")
+}
+
+[sub_resource type="Animation" id="Animation_awqql"]
+resource_name = "hit"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(2, 0.75, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klsaj"]
+shader = ExtResource("2_dg43x")
+shader_parameter/width = 0.0
+shader_parameter/speed = 10.0
+shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_t4cjj"]
+resource_name = "dying"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_hdb7h")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(1925, 1, 960, 540)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_klsaj"), null, SubResource("ShaderMaterial_klsaj")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8fktq"]
+_data = {
+"dying": SubResource("Animation_t4cjj"),
+"hit": SubResource("Animation_awqql"),
+"take_damage_anim": ExtResource("22_0f063"),
+"tornado1": ExtResource("6_51y2c"),
+"tornado1_move": ExtResource("7_oq8vf")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ivlnj"]
+animation = &"tornado1/dying"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_yo8w2"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_ivlnj")
+blend_point_0/pos = Vector2(0, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c46sk"]
+animation = &"tornado1/tornado1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_snqqw"]
+animation = &"tornado1/tornado1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u3ggb"]
+animation = &"tornado1/tornado1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h1l2s"]
+animation = &"tornado1/tornado1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8wvs4"]
+animation = &"tornado1/tornado1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_86d0i"]
+animation = &"tornado1/tornado1"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_phk1o"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_c46sk")
+blend_point_0/pos = Vector2(-0.47, 0.88)
+blend_point_1/node = SubResource("AnimationNodeAnimation_snqqw")
+blend_point_1/pos = Vector2(0.89, 0.45)
+blend_point_2/node = SubResource("AnimationNodeAnimation_u3ggb")
+blend_point_2/pos = Vector2(0.99, -0.13)
+blend_point_3/node = SubResource("AnimationNodeAnimation_h1l2s")
+blend_point_3/pos = Vector2(0.47, -0.88)
+blend_point_4/node = SubResource("AnimationNodeAnimation_8wvs4")
+blend_point_4/pos = Vector2(-0.89, -0.45)
+blend_point_5/node = SubResource("AnimationNodeAnimation_86d0i")
+blend_point_5/pos = Vector2(-0.99, 0.13)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qgqsw"]
+animation = &"tornado1/hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xr0bq"]
+animation = &"tornado1/hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cavtc"]
+animation = &"tornado1/hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qbnpc"]
+animation = &"tornado1/hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3dswp"]
+animation = &"tornado1/hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f4em4"]
+animation = &"tornado1/hit"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ql8y4"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_qgqsw")
+blend_point_0/pos = Vector2(0.47, -0.88)
+blend_point_1/node = SubResource("AnimationNodeAnimation_xr0bq")
+blend_point_1/pos = Vector2(0.99, -0.13)
+blend_point_2/node = SubResource("AnimationNodeAnimation_cavtc")
+blend_point_2/pos = Vector2(0.89, 0.45)
+blend_point_3/node = SubResource("AnimationNodeAnimation_qbnpc")
+blend_point_3/pos = Vector2(-0.47, 0.88)
+blend_point_4/node = SubResource("AnimationNodeAnimation_3dswp")
+blend_point_4/pos = Vector2(-0.99, 0.13)
+blend_point_5/node = SubResource("AnimationNodeAnimation_f4em4")
+blend_point_5/pos = Vector2(-0.89, -0.45)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_io5of"]
+animation = &"tornado1/tornado1_move"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7u3ye"]
+animation = &"tornado1/tornado1_move"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_um368"]
+animation = &"tornado1/tornado1_move"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c0jcq"]
+animation = &"tornado1/tornado1_move"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wksob"]
+animation = &"tornado1/tornado1_move"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fleqs"]
+animation = &"tornado1/tornado1_move"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_7fg1x"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_io5of")
+blend_point_0/pos = Vector2(0.47, -0.88)
+blend_point_1/node = SubResource("AnimationNodeAnimation_7u3ye")
+blend_point_1/pos = Vector2(0.99, -0.13)
+blend_point_2/node = SubResource("AnimationNodeAnimation_um368")
+blend_point_2/pos = Vector2(0.89, 0.45)
+blend_point_3/node = SubResource("AnimationNodeAnimation_c0jcq")
+blend_point_3/pos = Vector2(-0.47, 0.99)
+blend_point_4/node = SubResource("AnimationNodeAnimation_wksob")
+blend_point_4/pos = Vector2(-0.99, 0.13)
+blend_point_5/node = SubResource("AnimationNodeAnimation_fleqs")
+blend_point_5/pos = Vector2(-0.89, -0.45)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fcup4"]
+animation = &"tornado1/take_damage_anim"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_qohpu"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_fcup4")
+blend_point_0/pos = Vector2(0, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_it31r"]
+advance_mode = 2
+advance_condition = &"melee"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ylv1o"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_onssd"]
+advance_mode = 2
+advance_condition = &"moving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3f5ve"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c5oq7"]
+advance_mode = 2
+advance_condition = &"melee"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nsp67"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6duo2"]
+advance_mode = 2
+advance_condition = &"takingdamage"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bnrfh"]
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1ts4f"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hxxih"]
+advance_mode = 2
+advance_condition = &"takingdamage"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0uqkw"]
+advance_mode = 2
+advance_condition = &"dying"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_s4yvd"]
+states/Dying/node = SubResource("AnimationNodeBlendSpace2D_yo8w2")
+states/Dying/position = Vector2(735, 145.09)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_phk1o")
+states/Idle/position = Vector2(343, 158.09)
+states/Melee/node = SubResource("AnimationNodeBlendSpace2D_ql8y4")
+states/Melee/position = Vector2(367, -23.9099)
+states/Moving/node = SubResource("AnimationNodeBlendSpace2D_7fg1x")
+states/Moving/position = Vector2(475, 77)
+states/Start/position = Vector2(205, 94)
+states/TakingDamage/node = SubResource("AnimationNodeBlendSpace2D_qohpu")
+states/TakingDamage/position = Vector2(163, 188.09)
+transitions = ["Moving", "Melee", SubResource("AnimationNodeStateMachineTransition_it31r"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_ylv1o"), "Idle", "Moving", SubResource("AnimationNodeStateMachineTransition_onssd"), "Moving", "Idle", SubResource("AnimationNodeStateMachineTransition_3f5ve"), "Idle", "Melee", SubResource("AnimationNodeStateMachineTransition_c5oq7"), "Melee", "Idle", SubResource("AnimationNodeStateMachineTransition_nsp67"), "Idle", "TakingDamage", SubResource("AnimationNodeStateMachineTransition_6duo2"), "TakingDamage", "Idle", SubResource("AnimationNodeStateMachineTransition_bnrfh"), "Idle", "Dying", SubResource("AnimationNodeStateMachineTransition_1ts4f"), "Melee", "TakingDamage", SubResource("AnimationNodeStateMachineTransition_hxxih"), "Melee", "Dying", SubResource("AnimationNodeStateMachineTransition_0uqkw")]
+graph_offset = Vector2(-14, -89.9099)
+
+[node name="TornadoBody1" type="Node"]
+script = ExtResource("1_i1i5a")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_btc0f")
+texture = ExtResource("23_hdb7h")
+offset = Vector2(0, -52.5)
+region_enabled = true
+region_rect = Rect2(1925, 1, 960, 540)
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -1.5)
+shape = SubResource("CircleShape2D_xdano")
+disabled = true
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_sbsm8"),
+"tornado1": SubResource("AnimationLibrary_8fktq")
+}
+
+[node name="AnimTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_s4yvd")
+anim_player = NodePath("../Anim")
+active = true
+parameters/conditions/dying = false
+parameters/conditions/idle = false
+parameters/conditions/melee = false
+parameters/conditions/moving = false
+parameters/conditions/takingdamage = false
+parameters/Dying/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Melee/blend_position = Vector2(0, 0)
+parameters/Moving/blend_position = Vector2(0, 0)
+parameters/TakingDamage/blend_position = Vector2(0, 0)
+
+[node name="ClickArea" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -37.0
+offset_top = -133.0
+offset_right = 40.0
+offset_bottom = 40.0

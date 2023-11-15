@@ -83,6 +83,10 @@ public class IdleBattleState : BattleState
         }
         else
         {
+
+            DoLeadershipBonus();
+
+
             SetControlState(HumanTurn() ? IdleBattleControlMode.Player : IdleBattleControlMode.AI);
         }
 
@@ -99,6 +103,50 @@ public class IdleBattleState : BattleState
         Battler.EmitSignal(Battler.SignalName.TurnStarted, Battler.CharactersAwaitingTurn[0].CharacterData.KnownSpells);
 
         _controlIdleBattleState.OnInitCurrentTurn();
+    }
+
+    private void DoLeadershipBonus()
+    {
+        CharacterUnit currentChar = Battler.CharactersAwaitingTurn[0];
+        StoryCharacterData data = currentChar.CharacterData;
+        int leadership = data.Stats[StoryCharacterData.StatMode.Leadership];
+
+        StoryCharacterData.AttributeMode attributeAffected = (StoryCharacterData.AttributeMode)currentChar.Rand.Next(0, Enum.GetValues(typeof(StoryCharacterData.AttributeMode)).Length);
+        int magnitude = leadership / 5;
+        string name = string.Format("Leadership ({1}): {0}", attributeAffected.ToString(), data.Name);
+
+        // Debug print statements
+        // GD.Print("All characters:");
+        // foreach (var character in Battler.AllCharacters)
+        // {
+        //     GD.Print($"Character: {character.CharacterData.Name}, Alive: {character.CharacterData.Alive}, StatusToPlayer: {character.StatusToPlayer}");
+        // }
+
+        Battler.AllCharacters
+            .Where(x => x.CharacterData.Alive)
+            .Where(x => x != currentChar)
+            .Where(x => currentChar.ValidAllyTargets.Contains(x.StatusToPlayer))
+            .ToList()
+            .ForEach(x =>
+            {
+                CharacterRoundEffect leadershipEffect = new
+                (
+                    name: name,
+                    attributeAffected: attributeAffected,
+                    statAffected: StoryCharacterData.StatMode.Endurance,
+                    effectType: CharacterRoundEffect.EffectTypeMode.Attribute,
+                    rounds: 3,
+                    permanent: false,
+                    cumulative: false,
+                    magnitude: magnitude,
+                    animName: "", // todo INSPIRATION animation
+                    fromSpell: SpellEffectManager.SpellMode.None,
+                    from: data.Name
+                );
+                // Debug print statement for characters that pass the filtering
+                // GD.Print($"Applying effect to: {x.CharacterData.Name}, StatusToPlayer: {x.StatusToPlayer}");
+                x.CharacterData.DoEffectInitial(leadershipEffect);
+            });
     }
 
     // public bool HexDisplaySet { get; set; } = false;
@@ -330,42 +378,150 @@ public class IdleBattleState : BattleState
 
     public bool IsValidMelee(Vector2 targetGridPos, Vector2 characterGridPos)
     {
-        Vector2 closestPos = new();// surroundingGridPositions.OrderBy(x => GridMoveCost(characterGridPos, x)).ToList()[0];
+        CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
+        bool isBerserk = controlledCharacter.CharacterData.Berserk;
+
         CharacterUnit targetCharacter = Battler.CharacterAtGridPos(targetGridPos);
-        // if (!HumanTurn())
-        // {
-        //     GD.Print("characterPos, targetPos, targetCharacter: ", characterGridPos, targetGridPos, targetCharacter);
-        // }
+
         if (targetCharacter == null)
         {
-
             return false;
         }
-        CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
-        // if (Battler.PlayerSelectedAction == Battler.ActionMode.Melee || Battler.PlayerSelectedAction == Battler.ActionMode.Move)
-        // {
-        bool validTarget = controlledCharacter.CharacterData.Berserk ? controlledCharacter.BerserkValidEnemyTargets.Contains(targetCharacter.StatusToPlayer) : controlledCharacter.ValidEnemyTargets.Contains(targetCharacter.StatusToPlayer);
+
+        bool validTarget;
+
+        if (isBerserk)
+        {
+            // Berserk-specific logic
+            validTarget = controlledCharacter.BerserkValidEnemyTargets.Contains(targetCharacter.StatusToPlayer);
+            // GD.Print("Berserk");
+            // GD.Print("valid targets are:");
+            // controlledCharacter.BerserkValidEnemyTargets.ForEach(x => GD.Print(x));
+            // GD.Print("The target character is of target type: ", targetCharacter.StatusToPlayer);
+            // GD.Print("so outcome is: ", validTarget);
+        }
+        else
+        {
+            // Non-Berserk logic
+            validTarget = controlledCharacter.ValidEnemyTargets.Contains(targetCharacter.StatusToPlayer);
+            // GD.Print("NOT berserk");
+            // GD.Print("valid targets are:");
+            // controlledCharacter.ValidEnemyTargets.ForEach(x => GD.Print(x));
+            // GD.Print("The target character is of target type: ", targetCharacter.StatusToPlayer);
+            // GD.Print("so outcome is: ", validTarget);
+        }
         if (!IsNeighbour(characterGridPos, targetGridPos))
         {
-
             Hexagon hex = Battler.BattleGrid.GetHexAtGridPosition(targetGridPos);
             List<Vector2> surroundingGridPositions = Battler.BattleGrid.HexNavigation.GetNeighbouringGridPositions(hex);
+
+            // if (isBerserk)
+            // {
+            //     GD.Print(targetCharacter.CharacterData.Name, "surroundingGridPositions: ", surroundingGridPositions.Count);
+            // }
+
             surroundingGridPositions.RemoveAll(pos => !IsValidGridMove(characterGridPos, pos));
+
             if (surroundingGridPositions.Count == 0 || !validTarget)
             {
+
+                // GD.Print(surroundingGridPositions.Count, " ", validTarget);
                 return false;
             }
-            closestPos = surroundingGridPositions.OrderBy(x => GridMoveCost(characterGridPos, x)).ToList()[0];
+
+            Vector2 closestPos = surroundingGridPositions.OrderBy(x => GridMoveCost(characterGridPos, x)).First();
+
+            int moveCost = Math.Max(0, GridMoveCost(characterGridPos, closestPos));
+            // GD.Print(moveCost, " ", MeleeRangedCastAPCost());
+            int totalCost = moveCost + MeleeRangedCastAPCost();
+
+            if (validTarget && CanAfford(totalCost))
+            {
+                return true;
+            }
+            // GD.Print("moveCost: ", moveCost);
+            // GD.Print("MeleRangeCost: ", MeleeRangedCastAPCost());
+            // GD.Print("totalCost: ", totalCost);
+            // GD.Print("Crrent AP: ", Battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints]);
         }
-        int moveCost = GridMoveCost(characterGridPos, closestPos);
-        moveCost = (moveCost == -1) ? 0 : moveCost;
-        if (validTarget && CanAfford(moveCost + MeleeRangedCastAPCost()))
+        // else is neighbour
+        else
         {
-            return true;
+            if (validTarget && CanAfford(MeleeRangedCastAPCost()))
+            {
+                return true;
+            }
         }
-        // }
+
         return false;
     }
+
+
+    // public bool IsValidMelee(Vector2 targetGridPos, Vector2 characterGridPos)
+    // {
+    //     // string debugOutput = "";
+    //     CharacterUnit controlledCharacter = Battler.CharactersAwaitingTurn[0];
+    //     bool printDebug = controlledCharacter.CharacterData.Berserk;
+
+    //     Vector2 closestPos = new();
+    //     CharacterUnit targetCharacter = Battler.CharacterAtGridPos(targetGridPos);
+
+    //     if (targetCharacter == null)
+    //     {
+    //         // if (printDebug) { PrintDebugTest(debugOutput); }
+    //         return false;
+    //     }
+
+    //     // debugOutput += "targetCharacter : " + targetCharacter.CharacterData.Name.ToString() + ", ";
+
+    //     // debugOutput += "controlledCharacter : " + controlledCharacter.CharacterData.Name.ToString() + ", ";
+    //     // debugOutput += "controlledCharacter.Berserk: " + controlledCharacter.CharacterData.Berserk + ", ";
+    //     // debugOutput += "targetCharacter.StatusToPlayer: " + targetCharacter.StatusToPlayer + ", ";
+
+    //     bool validTarget = controlledCharacter.CharacterData.Berserk ?
+    //                        controlledCharacter.BerserkValidEnemyTargets.Contains(targetCharacter.StatusToPlayer) :
+    //                        controlledCharacter.ValidEnemyTargets.Contains(targetCharacter.StatusToPlayer);
+
+    //     // debugOutput += "validTarget: " + validTarget + ", ";
+
+    //     if (!IsNeighbour(characterGridPos, targetGridPos))
+    //     {
+    //         Hexagon hex = Battler.BattleGrid.GetHexAtGridPosition(targetGridPos);
+    //         List<Vector2> surroundingGridPositions = Battler.BattleGrid.HexNavigation.GetNeighbouringGridPositions(hex);
+    //         surroundingGridPositions.RemoveAll(pos => !IsValidGridMove(characterGridPos, pos));
+
+    //         // debugOutput += "surroundingGridPositions: " + string.Join(", ", surroundingGridPositions) + ", ";
+
+    //         if (surroundingGridPositions.Count == 0 || !validTarget)
+    //         {
+    //             // if (printDebug) { PrintDebugTest(debugOutput); }
+    //             return false;
+    //         }
+
+    //         closestPos = surroundingGridPositions.OrderBy(x => GridMoveCost(characterGridPos, x)).ToList()[0];
+    //         // debugOutput += "closestPos: " + closestPos.ToString() + ", ";
+    //     }
+
+    //     int moveCost = GridMoveCost(characterGridPos, closestPos);
+    //     moveCost = (moveCost == -1) ? 0 : moveCost;
+    //     // debugOutput += "moveCost: " + moveCost + ", ";
+    //     // debugOutput += "MeleeRangedCastAPCost(): " + MeleeRangedCastAPCost() + ", ";
+
+    //     if (validTarget && CanAfford(moveCost + MeleeRangedCastAPCost()))
+    //     {
+    //         // if (printDebug) { PrintDebugTest(debugOutput); }
+    //         return true;
+    //     }
+
+    //     // if (printDebug) { PrintDebugTest(debugOutput); }
+    //     return false;
+    // }
+
+
+    // private void PrintDebugTest(string s)
+    // {
+    //     GD.Print(s);
+    // }
 
     // if (GridMoveCost(characterGridPos, kv.Key) > 0 && GridMoveCost(characterGridPos, kv.Key) <=
     //     Battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.ActionPoints] - MeleeRangedCastCost())
@@ -591,9 +747,17 @@ public class IdleBattleState : BattleState
         }
         else if (action == Battler.ActionMode.Shoot)
         {
-            SpellEffectManager.Spell spell = Battler.AllSpells[SpellEffectManager.SpellMode.Arrow];
+            var rangedWeaponEquipped = (StoryCharacterData.RangedWeaponMode)controlledCharacter.CharacterData.RangedWeaponEquipped;
+            if (rangedWeaponEquipped == StoryCharacterData.RangedWeaponMode.None)
+            {
+                GD.Print("Error - character does not have a ranged weapon (IdleBattleState.cs DoAction)");
+                return;
+            }
+
+            SpellEffectManager.Spell spell = Battler.AllSpells[SpellEffectManager.RangedWeaponSpells[rangedWeaponEquipped]];
             spell.AssociatedEffects[0].HitPenalty = IsAdjacentToEnemy(characterGridPos);
-            spell.Origin = controlledCharacter.GlobalPosition;
+            spell.Origin = controlledCharacter.GetProjectileAttackOrigin();
+            // GD.Print(controlledCharacter.GetProjectileAttackOrigin());
             spell.Destination = targetCharacter.GlobalPosition;
             spell.OriginCharacter = controlledCharacter;
             spell.TargetCharacter = targetCharacter;
@@ -607,7 +771,8 @@ public class IdleBattleState : BattleState
             Vector2 centredWorldPos = Battler.BattleGrid.GridToWorld(targetGridPos);
             // NEEd to reset everything or it bugs out in future castings. next time use 
             SpellEffectManager.Spell spell = Battler.AllSpells[spellMode]; // Battler.CharactersAwaitingTurn[0].UISelectedSpell
-            spell.Origin = controlledCharacter.GlobalPosition;
+            // GD.Print(controlledCharacter.GetProjectileAttackOrigin());
+            spell.Origin = controlledCharacter.GetProjectileAttackOrigin();
             spell.Destination = centredWorldPos;
             spell.OriginCharacter = controlledCharacter;
             spell.TargetCharacter = targetCharacter;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=3 uid="uid://cajtrh324baf2"]
+[gd_scene load_steps=87 format=3 uid="uid://cajtrh324baf2"]
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_3ftxh"]
 [ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="5_wa6p3"]
@@ -19,6 +19,7 @@
 [ext_resource type="Animation" uid="uid://lo0w8muv6m81" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk1_gilg.tres" id="20_4x6be"]
 [ext_resource type="Animation" uid="uid://ccwx67sbv5gf" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk2_gilg.tres" id="21_ajqrq"]
 [ext_resource type="Animation" uid="uid://3ectshgx3gcn" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk3_gilg.tres" id="22_b4u83"]
+[ext_resource type="Animation" uid="uid://0utxbnri2k3v" path="res://Source/Actors/CharacterUnit/Bodies/dying_single_sprite.res" id="23_d4cvy"]
 [ext_resource type="Animation" uid="uid://bb0cyxefr3jpl" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk4_gilg.tres" id="23_ox34q"]
 [ext_resource type="Animation" uid="uid://dcqdsfa5busfq" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk5_gilg.tres" id="24_q73ut"]
 [ext_resource type="Animation" uid="uid://bk6iyw1kwb7vs" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk6_gilg.tres" id="25_y0s6x"]
@@ -38,6 +39,7 @@
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk2_afab2.tres" id="39_bcr78"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk3_afab2.tres" id="40_t255b"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk4_afab2.tres" id="41_jjd3p"]
+[ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="42_4x23a"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk5_afab2.tres" id="42_sdm6p"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk6_afab2.tres" id="43_e4tvv"]
 
@@ -125,49 +127,10 @@ tracks/5/keys = {
 "values": [SubResource("ShaderMaterial_btc0f")]
 }
 
-[sub_resource type="Animation" id="Animation_vwmtw"]
-resource_name = "dying"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0001, 1),
-"transitions": PackedFloat32Array(1, 4, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.9, 1),
-"update": 0,
-"values": [Vector2(0, -52.5), Vector2(0, -250)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:material")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.9, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [SubResource("ShaderMaterial_btc0f"), null, null, SubResource("ShaderMaterial_btc0f")]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y21hr"]
 _data = {
 "RESET": SubResource("Animation_wswdv"),
-"dying": SubResource("Animation_vwmtw"),
+"dying_single_sprite": ExtResource("23_d4cvy"),
 "hit1_gilg": ExtResource("7_27ick"),
 "hit2_gilg": ExtResource("8_nub1t"),
 "hit3_gilg": ExtResource("9_pur81"),
@@ -189,8 +152,66 @@ _data = {
 "walk6_gilg": ExtResource("25_y0s6x")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klsaj"]
+shader = ExtResource("5_wa6p3")
+shader_parameter/width = 0.0
+shader_parameter/speed = 10.0
+shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_shpka"]
+resource_name = "dying"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("42_4x23a")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(963, 1, 960, 540)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_klsaj"), null, SubResource("ShaderMaterial_klsaj")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j4fbm"]
 _data = {
+"dying": SubResource("Animation_shpka"),
 "hit1_afab2": ExtResource("26_20ybr"),
 "hit2_afab2": ExtResource("27_emqwi"),
 "hit3_afab2": ExtResource("28_6h744"),

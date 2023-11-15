@@ -1,9 +1,10 @@
-[gd_scene load_steps=64 format=3 uid="uid://0surj762m3ks"]
+[gd_scene load_steps=65 format=3 uid="uid://0surj762m3ks"]
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_vo5j3"]
+[ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="2_mrgmp"]
 [ext_resource type="Texture2D" uid="uid://ntwqxa3epx7p" path="res://Assets/Graphics/Sprites/Actors/Townsfolk_AFAB/AFAB_IdleStyleColour1.png" id="6_jc26n"]
 [ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="19_njj6w"]
-[ext_resource type="Animation" uid="uid://dl4sxqjw453g6" path="res://Source/Actors/CharacterUnit/Bodies/dying.res" id="26_4we7o"]
+[ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="24_7r1bs"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit1_afab1.tres" id="27_gxlft"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit2_afab1.tres" id="28_j4etp"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit3_afab1.tres" id="29_dcjk5"]
@@ -23,34 +24,8 @@
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk5_afab1.tres" id="43_ucj6u"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk6_afab1.tres" id="44_spn3u"]
 
-[sub_resource type="Shader" id="Shader_wjqm4"]
-code = "shader_type canvas_item;
-
-uniform float width : hint_range(0.0, 30.0);
-uniform float speed : hint_range(0.0, 20.0);
-uniform vec4 outline_color_origin : source_color;
-
-void fragment()
-{
-	vec4 outline_color = outline_color_origin / 1.0 - 0.15*sin(TIME*speed);
-	float size = width * 1.0 / float(textureSize(TEXTURE, 0).x);
-	vec4 sprite_color = texture(TEXTURE, UV);
-	float alpha = -8.0 * sprite_color.a;
-	alpha += texture(TEXTURE, UV + vec2(size, -size)).a;
-	alpha += texture(TEXTURE, UV + vec2(size, 0.0)).a;
-	alpha += texture(TEXTURE, UV + vec2(size, size)).a;
-	alpha += texture(TEXTURE, UV + vec2(-size, -size)).a;
-	alpha += texture(TEXTURE, UV + vec2(-size, 0.0)).a;
-	alpha += texture(TEXTURE, UV + vec2(-size, size)).a;
-	alpha += texture(TEXTURE, UV + vec2(0.0, size)).a;
-	alpha += texture(TEXTURE, UV + vec2(0.0, -size)).a;
-	
-	vec4 final_color = mix(sprite_color, outline_color, clamp(alpha, 0, 1));
-	COLOR = vec4(final_color.rgb, clamp(abs(alpha) + sprite_color.a, 0.0, 1.0));
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpw0e"]
-shader = SubResource("Shader_wjqm4")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klsaj"]
+shader = ExtResource("2_mrgmp")
 shader_parameter/width = 0.0
 shader_parameter/speed = 10.0
 shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
@@ -58,9 +33,60 @@ shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
 [sub_resource type="CircleShape2D" id="CircleShape2D_xdano"]
 radius = 20.2237
 
+[sub_resource type="Animation" id="Animation_n7l2o"]
+resource_name = "dying"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("24_7r1bs")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(1, 1, 960, 540)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_klsaj"), null, SubResource("ShaderMaterial_klsaj")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wh1ac"]
 _data = {
-"dying": ExtResource("26_4we7o"),
+"dying": SubResource("Animation_n7l2o"),
 "hit1_afab1": ExtResource("27_gxlft"),
 "hit2_afab1": ExtResource("28_j4etp"),
 "hit3_afab1": ExtResource("29_dcjk5"),
@@ -260,11 +286,11 @@ script = ExtResource("1_vo5j3")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-material = SubResource("ShaderMaterial_gpw0e")
+material = SubResource("ShaderMaterial_klsaj")
 texture = ExtResource("6_jc26n")
 offset = Vector2(0, -52.5)
 region_enabled = true
-region_rect = Rect2(4811, 5421, 960, 540)
+region_rect = Rect2(963, 5963, 960, 540)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1.5)

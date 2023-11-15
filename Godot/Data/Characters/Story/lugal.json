@@ -3,7 +3,7 @@
     "Description": "Lugal, often a title for kingship in Sumerian culture, symbolizes authority and rulership.",
     "PatronGod": "Innana",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AfabBody1.tscn",
-    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Townsfolk_AFAB/portrait_placeholder1.png",
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png",
     "Perks": [
         0,
         3,

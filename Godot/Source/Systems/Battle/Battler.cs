@@ -59,6 +59,9 @@ public partial class Battler : Node2D
     [Signal]
     public delegate void TurnStartedEventHandler(Godot.Collections.Array<SpellEffectManager.SpellMode> spells);
 
+    [Signal]
+    public delegate void RoundStartedEventHandler();
+
     public override void _Ready()
     {
         _battleTurnEndedCallable = new Callable(this, nameof(Battler.BattleTurnEnded));
@@ -118,6 +121,11 @@ public partial class Battler : Node2D
         }
 
         return allGridPositions;
+    }
+
+    public void ToggleGrid(bool visible)
+    {
+        _hexGridUserDisplay.Visible = visible;
     }
 
     public void SetGridUserHexes(List<Vector2> validMoveHexes, List<Vector2> validHalfMoveHexes, HexGridUserDisplay.DisplayMode displayMode)
@@ -241,6 +249,7 @@ public partial class Battler : Node2D
     private void NewRound()
     {
         Round += 1;
+        EmitSignal(SignalName.RoundStarted);
         foreach (CharacterUnit cUnit in AllCharacters)
         {
             if (cUnit.CharacterData.Alive)
@@ -258,8 +267,11 @@ public partial class Battler : Node2D
         // {
         //     GD.Print("todo log: " + characterUnit.CharacterData.Name + " restores health by " + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.HealthRegen]);
         // }
-        characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] = Math.Min(characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth],
-            characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.HealthRegen]);
+
+        if (characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.HealthRegen] <= characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth])
+        {
+            characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] += characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.HealthRegen];
+        }
 
         // if (characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Endurance] < characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxEndurance])
         // {

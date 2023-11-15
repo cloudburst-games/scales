@@ -1,0 +1,17 @@
+{
+    "Name": "Tornado Lord",
+    "Description": "Elemental tempest lord, wields tornadoes as weapons, commands nature's fury to defy even gods.",
+    "PatronGod": "Ishtar",
+    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/TornadoBody2/TornadoBody2.tscn",
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Tornado/portrait_placeholder.png",
+    "Perks": [],
+    "RangedAttack": 3,
+    "Level": 4,
+    "Might": 8,
+    "Resilience": 18,
+    "Precision": 18,
+    "Speed": 18,
+    "Intellect": 35,
+    "Charisma": 6,
+    "Luck": 10
+}

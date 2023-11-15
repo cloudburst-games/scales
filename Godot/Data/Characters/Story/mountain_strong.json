@@ -1,0 +1,17 @@
+{
+    "Name": "Ascended Mountain",
+    "Description": "Ascended mountain demigod, commands cataclysmic forces, challenges heroes with divine wrath and celestial minions.",
+    "PatronGod": "Ishtar",
+    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/MountainBody2/MountainBody2.tscn",
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Mountain/portrait_placeholder.png",
+    "Perks": [],
+    "RangedAttack": 2,
+    "Level": 3,
+    "Might": 30,
+    "Resilience": 26,
+    "Precision": 22,
+    "Speed": 9,
+    "Intellect": 12,
+    "Charisma": 6,
+    "Luck": 12
+}

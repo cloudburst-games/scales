@@ -24,7 +24,8 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
         // _allHexes = IdleBattleState.Battler.GetAllNonObstacleGridPositions();
         _halfMoveHexes = IdleBattleState.GetValidHalfMoveHexes();
         IdleBattleState.Battler.SetGridUserHexes(_moveHexes, _halfMoveHexes, IdleBattleState.Battler.CurrentDisplayMode);
-
+        // IdleBattleState.Battler. SetGridUserHexes(_moveHexes, _halfMoveHexes, IdleBattleState.Battler.CurrentDisplayMode); // welp it turns out it didnt work. the sprites must be hdden some other way
+        IdleBattleState.Battler.ToggleGrid(true);
     }
 
     // private void EnsureHexDisplay()
@@ -72,7 +73,7 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
         }
 
         // The below line is a hack because when someone is berserk before player turn for some reason it turns off the hexes. doesnt seem t imapct performance...
-        IdleBattleState.Battler.SetGridUserHexes(_moveHexes, _halfMoveHexes, IdleBattleState.Battler.CurrentDisplayMode);
+        // IdleBattleState.Battler.SetGridUserHexes(IdleBattleState.GetValidMoveHexes(), IdleBattleState.GetValidHalfMoveHexes(), IdleBattleState.Battler.CurrentDisplayMode); // welp it turns out it didnt work. the sprites must be hdden some other way
 
         SetContextualAction(mouseGridPos);
 
@@ -219,6 +220,8 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
             {
                 if (!IdleBattleState.CanAfford(IdleBattleState.MeleeRangedCastAPCost()))
                 {
+                    // GD.Print("insufficient AP for melee");
+
                     return BattleLogParser.InvalidReasonMode.NotEnoughAP;
                 }
             }
@@ -321,7 +324,7 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
             // battler.EmitSignal(battler.SignalName.LogBattleText, String.Format("Cast {0}", battler.AllSpells[battler.CharactersAwaitingTurn[0].UISelectedSpell].Name), false);
         }
         // RANGED
-        else if (IdleBattleState.IsValidRanged(mouseGridPos, battler.AllSpells[SpellEffectManager.SpellMode.Arrow].Range) && battler.PlayerSelectedAction == Battler.ActionMode.Shoot)
+        else if ((StoryCharacterData.RangedWeaponMode)battler.CharactersAwaitingTurn[0].CharacterData.RangedWeaponEquipped != StoryCharacterData.RangedWeaponMode.None && IdleBattleState.IsValidRanged(mouseGridPos, battler.AllSpells[SpellEffectManager.SpellMode.Arrow].Range) && battler.PlayerSelectedAction == Battler.ActionMode.Shoot)
         {
             battler.CursorControl.SetCursor(CursorControl.CursorMode.Ranged);
             CurrentAction = Battler.ActionMode.Shoot;

@@ -8,6 +8,7 @@ public partial class DyingBattleCharacterUnitActionState : CharacterUnitActionSt
     public DyingBattleCharacterUnitActionState(CharacterUnit characterUnit)
     {
         this.CharacterUnit = characterUnit;
+        CharacterUnit.ZIndex = 0;
         // Vector2 direction = (CharacterUnit.MeleeTarget.GlobalPosition - CharacterUnit.GlobalPosition).Normalized();
         // this.CharacterUnit.AnimationTree.Set("parameters/Ranged/blend_position", direction); // TODO- add ranged anims
         // this.CharacterUnit.AnimationTree.Set("parameters/Idle/blend_position", direction);
@@ -44,6 +45,7 @@ public partial class DyingBattleCharacterUnitActionState : CharacterUnitActionSt
     public override void Exit()
     {
         base.Exit();
+        CharacterUnit.ZIndex = 1;
     }
 
     // public override void BattleIdleOrder()

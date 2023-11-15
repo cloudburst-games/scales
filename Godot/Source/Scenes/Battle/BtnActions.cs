@@ -10,16 +10,18 @@ public partial class BtnActions : TextureButton
 
     [Export]
     private Panel _actionPnl;
-    [Export]
-    private Godot.Collections.Dictionary<Battler.ActionMode, NodePath> _actionBtns = new();
+    // [Export]
+    // private Godot.Collections.Dictionary<Battler.ActionMode, NodePath> _actionBtnPaths = new();
     private Battler.ActionMode _currentAction;
     private Dictionary<SpellEffectManager.SpellMode, Texture2D[]> _spellTextures = new();
+    public Dictionary<Battler.ActionMode, TextureButton> ActionBtns { get; set; }
 
     [Signal]
     public delegate void CastSpellActionBtnPressedButNoSpellActiveEventHandler();
 
     public override void _Ready()
     {
+
         // Texture2D testTexture2D = GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/SolarFlare.png");
         // magic strings because EXPORTING DICTIONARIES IS SO BUGGED IN GODOT NKASDNJASJDJSDOSNF bevy pls make editor
         _spellTextures = new()  {
@@ -44,18 +46,20 @@ public partial class BtnActions : TextureButton
 
         };
         Pressed += this.OnPressed;
-
-        foreach (Battler.ActionMode actionMode in _actionBtns.Keys)
-        {
-            TextureButton btn = GetNode<TextureButton>(_actionBtns[actionMode]);
-            btn.Pressed += () => OnActionBtnPressed(actionMode);
-        }
     }
 
-    // public void Start(Battler.ActionMode action)
-    // {
-    //     OnActionBtnPressed(Battler.ActionMode.Melee);
-    // }
+    public void OnCharacterTurnStart(CharacterUnit characterUnit)
+    {
+        OnActionBtnPressed(characterUnit.UISelectedAction);
+        ToggleRangedVisibility(characterUnit.CharacterData);
+
+    }
+
+    private void ToggleRangedVisibility(StoryCharacterData data)
+    {
+        ActionBtns[Battler.ActionMode.Shoot].Visible = (StoryCharacterData.RangedWeaponMode)data.RangedWeaponEquipped != StoryCharacterData.RangedWeaponMode.None;
+
+    }
 
     private void OnPressed()
     {
@@ -73,7 +77,7 @@ public partial class BtnActions : TextureButton
         {
             _currentAction = actionMode;
 
-            TextureButton btn = GetNode<TextureButton>(_actionBtns[actionMode]);
+            TextureButton btn = ActionBtns[actionMode];
             TextureNormal = btn.TextureNormal;
             TextureHover = btn.TextureHover;
             EmitSignal(BtnActions.SignalName.ActionBtnPressed, (int)actionMode);
@@ -82,7 +86,7 @@ public partial class BtnActions : TextureButton
 
     private bool ActiveSpellButton()
     {
-        TextureButton btn = GetNode<TextureButton>(_actionBtns[Battler.ActionMode.Cast]);
+        TextureButton btn = ActionBtns[Battler.ActionMode.Cast];
         Texture2D castTexture = btn.TextureNormal;
 
         foreach (KeyValuePair<SpellEffectManager.SpellMode, Texture2D[]> kv in _spellTextures)
@@ -109,7 +113,7 @@ public partial class BtnActions : TextureButton
 
     internal void SetCastBtnTexture(SpellEffectManager.SpellMode spellSelected)
     {
-        TextureButton btn = GetNode<TextureButton>(_actionBtns[Battler.ActionMode.Cast]);
+        TextureButton btn = ActionBtns[Battler.ActionMode.Cast];
         btn.TextureNormal = _spellTextures[spellSelected][0];
         btn.TextureHover = _spellTextures[spellSelected][1];
 

@@ -15,6 +15,10 @@ public class StoryCharacterJSONInterface
             StoryCharacter.StoryCharacterMode.Lugal => "Data/Characters/Story/lugal.json",
             StoryCharacter.StoryCharacterMode.Ningal => "Data/Characters/Story/ningal.json",
             StoryCharacter.StoryCharacterMode.Utug => "Data/Characters/Story/utug.json",
+            StoryCharacter.StoryCharacterMode.Mountain => "Data/Characters/Story/mountain_weak.json",
+            StoryCharacter.StoryCharacterMode.AscendedMountain => "Data/Characters/Story/mountain_strong.json",
+            StoryCharacter.StoryCharacterMode.Tornado => "Data/Characters/Story/tornado_weak.json",
+            StoryCharacter.StoryCharacterMode.TornadoLord => "Data/Characters/Story/tornado_strong.json",
             _ => "Data/Characters/Story/enkidu.json",
         };
         JSONDataHandler dataHandler = new();

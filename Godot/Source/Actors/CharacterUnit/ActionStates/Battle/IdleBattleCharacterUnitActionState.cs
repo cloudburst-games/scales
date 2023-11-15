@@ -46,11 +46,11 @@ public partial class IdleBattleCharacterUnitActionState : CharacterUnitActionSta
         CharacterUnit.SetActionState(CharacterUnit.ActionMode.MeleeBattle);
     }
 
-    public override void BattleShootOrderOld(CharacterUnit targetCharacter)
-    {
-        base.BattleShootOrderOld(targetCharacter);
-        CharacterUnit.SetActionState(CharacterUnit.ActionMode.RangedBattle);
-    }
+    // public override void BattleShootOrderOld(CharacterUnit targetCharacter)
+    // {
+    //     base.BattleShootOrderOld(targetCharacter);
+    //     CharacterUnit.SetActionState(CharacterUnit.ActionMode.RangedBattle);
+    // }
 
     public override void BattleShootOrder()
     {

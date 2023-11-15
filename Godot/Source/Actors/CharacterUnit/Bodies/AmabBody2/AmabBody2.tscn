@@ -1,10 +1,9 @@
-[gd_scene load_steps=66 format=3 uid="uid://16iwdaej41cr"]
+[gd_scene load_steps=68 format=3 uid="uid://16iwdaej41cr"]
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_kn6ml"]
 [ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="5_v1e67"]
 [ext_resource type="Texture2D" uid="uid://4f2um87bjsxc" path="res://Assets/Graphics/Sprites/Actors/Townsfolk_AMAB/AMABIdleStyle2.png" id="6_c7bce"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AnimSequences/hit1_amab2.tres" id="7_3k0cs"]
-[ext_resource type="Animation" uid="uid://dl4sxqjw453g6" path="res://Source/Actors/CharacterUnit/Bodies/dying.res" id="8_56sgo"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AnimSequences/hit2_amab2.tres" id="10_vy3h0"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AnimSequences/hit3_amab2.tres" id="11_gx3wn"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AnimSequences/hit4_amab2.tres" id="12_rag4p"]
@@ -20,6 +19,7 @@
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AnimSequences/walk1_amab2.tres" id="21_5v385"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AnimSequences/walk2_amab2.tres" id="22_xg2f4"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AnimSequences/walk3_amab2.tres" id="23_175rc"]
+[ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="23_ul0n5"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AnimSequences/walk4_amab2.tres" id="24_36bgf"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AnimSequences/walk5_amab2.tres" id="25_s8j31"]
 [ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AnimSequences/walk6_amab2.tres" id="26_ckxtc"]
@@ -53,9 +53,66 @@ _data = {
 "RESET": SubResource("Animation_mdek4")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klsaj"]
+shader = ExtResource("5_v1e67")
+shader_parameter/width = 0.0
+shader_parameter/speed = 10.0
+shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
+
+[sub_resource type="Animation" id="Animation_n7tea"]
+resource_name = "dying"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("23_ul0n5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:region_rect")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Rect2(963, 543, 960, 540)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:material")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [SubResource("ShaderMaterial_klsaj"), null, SubResource("ShaderMaterial_klsaj")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3jnxj"]
 _data = {
-"dying": ExtResource("8_56sgo"),
+"dying": SubResource("Animation_n7tea"),
 "hit1_amab2": ExtResource("7_3k0cs"),
 "hit2_amab2": ExtResource("10_vy3h0"),
 "hit3_amab2": ExtResource("11_gx3wn"),
@@ -259,7 +316,7 @@ material = SubResource("ShaderMaterial_btc0f")
 texture = ExtResource("6_c7bce")
 offset = Vector2(0, -52.5)
 region_enabled = true
-region_rect = Rect2(2887, 5421, 960, 540)
+region_rect = Rect2(3849, 4337, 960, 540)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1.5)

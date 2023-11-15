@@ -3,7 +3,7 @@
     "Description": "Ereshkigal, the goddess of the underworld, holds dominion over the realm of the dead and represents the cycle of life and death.",
     "PatronGod": "Ereshkigal",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AmabBody1.tscn",
-    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Townsfolk_AMAB/portrait_placeholder1.png",
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AMABPortrait.png",
     "Perks": [],
     "Level": 1,
     "Might": 12,

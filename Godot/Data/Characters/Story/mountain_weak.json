@@ -1,0 +1,17 @@
+{
+    "Name": "Mountain",
+    "Description": "Mystical mountain, cloaked in ancient magic, tests courage with treacherous paths and enchanted guardians.",
+    "PatronGod": "Mountain",
+    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/MountainBody1/MountainBody1.tscn",
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Mountain/portrait_placeholder.png",
+    "Perks": [],
+    "RangedAttack": 2,
+    "Level": 2,
+    "Might": 20,
+    "Resilience": 16,
+    "Precision": 12,
+    "Speed": 4,
+    "Intellect": 6,
+    "Charisma": 4,
+    "Luck": 10
+}

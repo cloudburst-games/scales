@@ -98,10 +98,8 @@ public partial class PnlCharacterInfo : Control
         {StoryCharacterData.PerkMode.ElixirOfVigour, "Elixir of Vigour"},
         {StoryCharacterData.PerkMode.ElixirOfSwiftness, "Elixir of Swiftness"},
         {StoryCharacterData.PerkMode.RegenerativeOintment, "Regenerative Ointment"},
-        {StoryCharacterData.PerkMode.WoodenKnuckles, "Wooden Knuckles"},
-        {StoryCharacterData.PerkMode.BrassKnuckles, "Brass Knuckles"},
-        {StoryCharacterData.PerkMode.AgileKnife, "Agile Knife"},
-        {StoryCharacterData.PerkMode.JewelledDagger, "Jewelled Dagger"},
+        {StoryCharacterData.PerkMode.WeaponSpikes, "Weapon Spikes"},
+        {StoryCharacterData.PerkMode.EnchantedWeapon, "Weapon Enchantment"},
         {StoryCharacterData.PerkMode.LesserArmor, "Lesser Armor"},
         {StoryCharacterData.PerkMode.GreaterArmor, "Greater Armor"}
     };
@@ -307,17 +305,22 @@ public partial class PnlCharacterInfo : Control
                 pnlCharacterInfoElement.Set(keyLabel, keyValue);
                 _vBoxStatsDisplay.AddChild(pnlCharacterInfoElement);
             }
+
             PnlCharacterInfoElement meleeDiceElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
             string weaponDiceKey = "Melee Weapon Dice";
             string weaponDiceVal = string.Format("{0}d{1}", data.WeaponDiceMelee[0].Item1, data.WeaponDiceMelee[0].Item2);
             meleeDiceElement.Set(weaponDiceKey, weaponDiceVal);
             _vBoxStatsDisplay.AddChild(meleeDiceElement);
 
-            PnlCharacterInfoElement rangedDiceElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
-            string rangedDiceKey = "Ranged Weapon Dice";
-            string rangedDiceVal = string.Format("{0}d{1}", data.WeaponDiceRanged[0].Item1, data.WeaponDiceRanged[0].Item2);
-            rangedDiceElement.Set(rangedDiceKey, rangedDiceVal);
-            _vBoxStatsDisplay.AddChild(rangedDiceElement);
+            if ((StoryCharacterData.RangedWeaponMode)data.RangedWeaponEquipped != StoryCharacterData.RangedWeaponMode.None)
+            {
+                PnlCharacterInfoElement rangedDiceElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
+                string rangedDiceKey = "Ranged Weapon Dice";
+                string rangedDiceVal = string.Format("{0}d{1}", data.WeaponDiceRanged[0].Item1, data.WeaponDiceRanged[0].Item2);
+                rangedDiceElement.Set(rangedDiceKey, rangedDiceVal);
+                _vBoxStatsDisplay.AddChild(rangedDiceElement);
+            }
+
         }
 
     }
