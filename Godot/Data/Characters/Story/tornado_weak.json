@@ -3,9 +3,9 @@
     "Description": "Wrathful tornado, dances with furious winds, confronts adventurers with relentless tempest.",
     "PatronGod": "Ishtar",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/TornadoBody1/TornadoBody1.tscn",
-    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Tornado/portrait_placeholder.png",
-    "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Tornado/portrait_placeholder.png",
-    "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Tornado/portrait_placeholder.png",
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/Tornado1.png",
+    "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/Tornado1.png",
+    "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/Tornado1.png",
     "Perks": [
         8
     ],

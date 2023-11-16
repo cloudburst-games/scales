@@ -242,6 +242,8 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="PnlScales" parent="PnlFate/VBoxContainer/HBoxContainer2" instance=ExtResource("3_r2gv2")]
+visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.0

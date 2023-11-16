@@ -1,20 +1,44 @@
 [gd_scene load_steps=8 format=3 uid="uid://cgdolyn63ljtp"]
 
-[ext_resource type="Texture2D" uid="uid://c5whimigl14hs" path="res://Assets/Graphics/Interface/Images/9patchEgyptianSymbolsEmptyCentre.png" id="1_8hupe"]
+[ext_resource type="Texture2D" uid="uid://du12fi24yk15b" path="res://Assets/Graphics/Sprites/Actors/ScalesOfPowerOrJustice/Scales.png" id="2_ehqfw"]
 
 [sub_resource type="Animation" id="Animation_aioxe"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("Node2D/Bar:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Left:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-218, -113)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/Right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(218, -113)]
 }
 
 [sub_resource type="Animation" id="Animation_r5vvf"]
@@ -22,14 +46,38 @@ resource_name = "Start"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("Node2D/Bar:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0, 0.941176, 1, 1), Color(1, 1, 1, 1), Color(1, 0, 0.301961, 1)]
+"values": [0.610865, 0.0, -0.610865]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Left:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-196, -240), Vector2(-218, -113), Vector2(-168, 12.9999)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/Right:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(166, 8), Vector2(217, -113), Vector2(189, -240)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8r2ty"]
@@ -43,7 +91,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:self_modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -55,7 +103,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -71,7 +119,7 @@ length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:self_modulate")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +131,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -100,22 +148,17 @@ _data = {
 }
 
 [node name="PnlScales" type="Panel"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+offset_right = -1792.0
+offset_bottom = -784.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.9
-
-[node name="TextureRect" type="TextureRect" parent="."]
-process_mode = 3
-visible = false
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_8hupe")
-expand_mode = 2
-stretch_mode = 5
 
 [node name="AnimScales" type="AnimationPlayer" parent="."]
 process_mode = 3
@@ -128,3 +171,30 @@ process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_qwowx")
 }
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(256, 256)
+scale = Vector2(0.5, 0.5)
+
+[node name="Base" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_ehqfw")
+region_enabled = true
+region_rect = Rect2(237, 471, 571, 801)
+
+[node name="Right" type="Sprite2D" parent="Node2D"]
+position = Vector2(218, -113)
+texture = ExtResource("2_ehqfw")
+region_enabled = true
+region_rect = Rect2(1465, 381, 187, 287)
+
+[node name="Left" type="Sprite2D" parent="Node2D"]
+position = Vector2(-218, -113)
+texture = ExtResource("2_ehqfw")
+region_enabled = true
+region_rect = Rect2(1231, 409, 188, 288)
+
+[node name="Bar" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, -277)
+texture = ExtResource("2_ehqfw")
+region_enabled = true
+region_rect = Rect2(1277, 242, 506, 84)

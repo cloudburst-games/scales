@@ -285,7 +285,7 @@ public partial class AIIdleBattleState : ControlIdleBattleState
     private bool IsValidRanged(Vector2 gridPos)
     {
         Battler battler = IdleBattleState.Battler;
-        return IdleBattleState.IsValidRanged(gridPos, battler.AllSpells[SpellEffectManager.SpellMode.Arrow].Range);
+        return IdleBattleState.IsValidRanged(gridPos, battler.AllSpells[SpellEffectManager.SpellMode.Sling].Range);
     }
 
 

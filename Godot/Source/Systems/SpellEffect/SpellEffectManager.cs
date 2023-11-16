@@ -83,8 +83,8 @@ public partial class SpellEffectManager : Node
     }
     public enum SpellMode
     {
-        SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment, Arrow, None,
-        Rock, Lightning
+        SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment, Sling, None,
+        Rock, Lightning, Javelin
     }
     public enum SpellEffectVisualMode { Projectile, Self, FromSky }
     public enum SpellEffectTargetMode { Self, Target }
@@ -93,9 +93,10 @@ public partial class SpellEffectManager : Node
     public Dictionary<SpellMode, Spell> AllSpells { get; private set; } = new();
 
     public static Dictionary<StoryCharacterData.RangedWeaponMode, SpellMode> RangedWeaponSpells = new() {
-        {StoryCharacterData.RangedWeaponMode.Sling, SpellMode.Arrow},
+        {StoryCharacterData.RangedWeaponMode.Sling, SpellMode.Sling},
         {StoryCharacterData.RangedWeaponMode.Rock, SpellMode.Rock},
         {StoryCharacterData.RangedWeaponMode.Lightning, SpellMode.Lightning},
+        {StoryCharacterData.RangedWeaponMode.Javelin, SpellMode.Javelin}
     };
 
     public delegate void SpellEffectDelegate(SpellEffect effect, Spell spell);
@@ -266,9 +267,9 @@ public partial class SpellEffectManager : Node
     // todo - construct via json data
     private void GenerateVisualEffects()
     {
-        _allSpellVisuals[SpellMode.Arrow] = new()
+        _allSpellVisuals[SpellMode.Sling] = new()
         {
-            SpellEffectScn = _spellVisualScns[SpellMode.Arrow],
+            SpellEffectScn = _spellVisualScns[SpellMode.Sling],
             VisualMode = SpellEffectVisualMode.Projectile,
         };
         _allSpellVisuals[SpellMode.Rock] = new()
@@ -331,21 +332,26 @@ public partial class SpellEffectManager : Node
             SpellEffectScn = _spellVisualScns[SpellMode.Rock],
             VisualMode = SpellEffectVisualMode.Projectile
         };
+        _allSpellVisuals[SpellMode.Javelin] = new()
+        {
+            SpellEffectScn = _spellVisualScns[SpellMode.Javelin],
+            VisualMode = SpellEffectVisualMode.Projectile
+        };
     }
 
     // todo - construct via json data
     // Description - max characters  = 60
     private void GenerateSpells()
     {
-        AllSpells[SpellMode.Arrow] = new()
+        AllSpells[SpellMode.Sling] = new()
         {
-            SpellEffectVisual = _allSpellVisuals[SpellMode.Arrow],
+            SpellEffectVisual = _allSpellVisuals[SpellMode.Sling],
             AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.PhysicalAttackSingle] },
-            Name = "Arrow",
+            Name = "Sling",
             Range = 8,
             Target = Spell.TargetMode.Enemy,
-            SpellMode = SpellMode.Arrow,
-            Description = "Fire an arrow at your opponent.",
+            SpellMode = SpellMode.Sling,
+            Description = "Hit the enemy using your slingshot.",
             ReagentCost = 0,
             ChargeCost = 0,
             Patron = Spell.PatronMode.None,
@@ -359,6 +365,19 @@ public partial class SpellEffectManager : Node
             Target = Spell.TargetMode.Enemy,
             SpellMode = SpellMode.Rock,
             Description = "Hurl a rock at your opponent.",
+            ReagentCost = 0,
+            ChargeCost = 0,
+            Patron = Spell.PatronMode.None,
+        };
+        AllSpells[SpellMode.Javelin] = new()
+        {
+            SpellEffectVisual = _allSpellVisuals[SpellMode.Javelin],
+            AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.PhysicalAttackSingle] },
+            Name = "Javelin",
+            Range = 10,
+            Target = Spell.TargetMode.Enemy,
+            SpellMode = SpellMode.Javelin,
+            Description = "Throw a javelin at your opponent.",
             ReagentCost = 0,
             ChargeCost = 0,
             Patron = Spell.PatronMode.None,
@@ -488,7 +507,7 @@ public partial class SpellEffectManager : Node
             Name = "NO SPELL",
             Range = 8,
             Target = Spell.TargetMode.Ally,
-            SpellMode = SpellMode.Arrow,
+            SpellMode = SpellMode.Sling,
             Description = "",
             ReagentCost = 0,
             ChargeCost = 0,

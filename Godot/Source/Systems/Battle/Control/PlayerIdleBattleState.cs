@@ -277,7 +277,7 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
             {
                 return BattleLogParser.InvalidReasonMode.NotEnoughAP;
             }
-            else if (!IdleBattleState.WithinShootingRange(battler.CharacterAtGridPos(mouseGridPos), battler.AllSpells[SpellEffectManager.SpellMode.Arrow].Range))
+            else if (!IdleBattleState.WithinShootingRange(battler.CharacterAtGridPos(mouseGridPos), battler.AllSpells[SpellEffectManager.SpellMode.Sling].Range))
             {
                 return BattleLogParser.InvalidReasonMode.OutOfRange;
             }
@@ -328,7 +328,7 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
             // battler.EmitSignal(battler.SignalName.LogBattleText, String.Format("Cast {0}", battler.AllSpells[battler.CharactersAwaitingTurn[0].UISelectedSpell].Name), false);
         }
         // RANGED
-        else if ((StoryCharacterData.RangedWeaponMode)battler.CharactersAwaitingTurn[0].CharacterData.RangedWeaponEquipped != StoryCharacterData.RangedWeaponMode.None && IdleBattleState.IsValidRanged(mouseGridPos, battler.AllSpells[SpellEffectManager.SpellMode.Arrow].Range) && battler.PlayerSelectedAction == Battler.ActionMode.Shoot)
+        else if ((StoryCharacterData.RangedWeaponMode)battler.CharactersAwaitingTurn[0].CharacterData.RangedWeaponEquipped != StoryCharacterData.RangedWeaponMode.None && IdleBattleState.IsValidRanged(mouseGridPos, battler.AllSpells[SpellEffectManager.SpellMode.Sling].Range) && battler.PlayerSelectedAction == Battler.ActionMode.Shoot)
         {
             battler.CursorControl.SetCursor(CursorControl.CursorMode.Ranged);
             CurrentAction = Battler.ActionMode.Shoot;

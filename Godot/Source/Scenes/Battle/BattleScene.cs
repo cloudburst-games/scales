@@ -83,7 +83,7 @@ public partial class BattleScene : Node, ISceneTransitionable
 
     private Scales _scales = new();
     [Export]
-    private TextureRect _textureScales;
+    private Panel _pnlScales;
     [Export]
     private AnimationPlayer _animScalesStart;
     [Export]
@@ -435,13 +435,13 @@ public partial class BattleScene : Node, ISceneTransitionable
         _battler.PlayerSelectedAction = Battler.ActionMode.Melee;
         _cursorControl.SetCursor(CursorControl.CursorMode.Wait);
         _battleScalesAnim.Seek(_scales.GetScaleAnimationTime(), true);
-        if (!_textureScales.Visible)
+        if (!_pnlScales.Visible)
         {
             _animScalesStart.Play("Start");
         }
 
         // TESTING
-        OnBattleEnded(true);
+        // OnBattleEnded(true);
         //
     }
 

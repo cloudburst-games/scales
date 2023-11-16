@@ -189,7 +189,7 @@ _data = {
 "Unloading": SubResource("Animation_gafb4")
 }
 
-[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnActions", "_battleScalesAnim", "_cntSpellBook", "_cursorControl", "_spellEffectManager", "_hBoxTurnOrder", "_pnlCharacterInfo", "_textureScales", "_animScalesStart", "_adventureStoriesHandler", "_battleVictory", "_mainMenuSceneTransition", "_cntCharacterUpgrade")]
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnActions", "_battleScalesAnim", "_cntSpellBook", "_cursorControl", "_spellEffectManager", "_hBoxTurnOrder", "_pnlCharacterInfo", "_pnlScales", "_animScalesStart", "_adventureStoriesHandler", "_battleVictory", "_mainMenuSceneTransition", "_cntCharacterUpgrade")]
 script = ExtResource("1_2w8r3")
 _anim = NodePath("Anim")
 _cntBattleLevel = NodePath("CntBattleLevel")
@@ -208,7 +208,7 @@ _cursorControl = NodePath("Battler/CursorControl")
 _spellEffectManager = NodePath("SpellEffectManager")
 _hBoxTurnOrder = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder")
 _pnlCharacterInfo = NodePath("BattleHUD/CntHUD/CharacterInfoPanel")
-_textureScales = NodePath("BattleHUD/CntHUD/PnlScales/TextureRect")
+_pnlScales = NodePath("BattleHUD/CntHUD/PnlScales")
 _animScalesStart = NodePath("BattleHUD/CntHUD/PnlScales/AnimScalesStart")
 _adventureStoriesHandler = NodePath("BattleHUD/GilgamStoryHandler")
 _battleVictory = NodePath("BattleHUD/BattleVictory")
@@ -254,12 +254,14 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="PnlScales" parent="BattleHUD/CntHUD" instance=ExtResource("19_tnek7")]
-modulate = Color(1, 1, 1, 0.498039)
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.868
+anchor_left = 0.875
+anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.235
+anchor_bottom = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
 
 [node name="PnlAction" type="Panel" parent="BattleHUD/CntHUD" node_paths=PackedStringArray("_btnChooseAction", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnMelee", "_btnShoot", "_btnMove", "_btnCast", "_btnLog", "_btnOptions", "_barHealth", "_barCharge", "_barHerbs")]
 process_mode = 4

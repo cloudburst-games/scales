@@ -21,5 +21,6 @@ _spellVisualScns = {
 7: ExtResource("5_et0c1"),
 8: ExtResource("2_acflc"),
 10: ExtResource("6_roi2k"),
-11: ExtResource("7_71emh")
+11: ExtResource("7_71emh"),
+12: ExtResource("6_roi2k")
 }
