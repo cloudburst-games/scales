@@ -4,6 +4,8 @@
     "PatronGod": "Ishtar",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/TornadoBody2/TornadoBody2.tscn",
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Tornado/portrait_placeholder.png",
+    "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Tornado/portrait_placeholder.png",
+    "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Tornado/portrait_placeholder.png",
     "Perks": [],
     "RangedAttack": 3,
     "Level": 4,

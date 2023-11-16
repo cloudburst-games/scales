@@ -53,7 +53,7 @@ public partial class MovingBattleCharacterUnitActionState : CharacterUnitActionS
         // GD.Print(direction);
         CharacterUnit.GlobalPosition += direction * CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MoveSpeed] * (float)delta;
         this.CharacterUnit.AnimationTree.Set("parameters/Moving/blend_position", new Vector2((float)Math.Round(direction.X, 2), (float)Math.Round(direction.Y, 2)));// direction);
-        if (CharacterUnit.GlobalPosition.DistanceTo(CharacterUnit.BattleTargetPosition) < 5)
+        if (CharacterUnit.GlobalPosition.DistanceTo(CharacterUnit.BattleTargetPosition) < CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MoveSpeed] / 20)// 5)
         {
             CharacterUnit.GlobalPosition = CharacterUnit.BattleTargetPosition;
             if (CharacterUnit.BattlePath.Count > 0)

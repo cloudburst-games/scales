@@ -93,7 +93,7 @@ public partial class SpellEffectManager : Node
     public Dictionary<SpellMode, Spell> AllSpells { get; private set; } = new();
 
     public static Dictionary<StoryCharacterData.RangedWeaponMode, SpellMode> RangedWeaponSpells = new() {
-        {StoryCharacterData.RangedWeaponMode.Arrow, SpellMode.Arrow},
+        {StoryCharacterData.RangedWeaponMode.Sling, SpellMode.Arrow},
         {StoryCharacterData.RangedWeaponMode.Rock, SpellMode.Rock},
         {StoryCharacterData.RangedWeaponMode.Lightning, SpellMode.Lightning},
     };

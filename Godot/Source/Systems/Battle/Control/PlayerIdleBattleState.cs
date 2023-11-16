@@ -75,6 +75,10 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
         // The below line is a hack because when someone is berserk before player turn for some reason it turns off the hexes. doesnt seem t imapct performance...
         // IdleBattleState.Battler.SetGridUserHexes(IdleBattleState.GetValidMoveHexes(), IdleBattleState.GetValidHalfMoveHexes(), IdleBattleState.Battler.CurrentDisplayMode); // welp it turns out it didnt work. the sprites must be hdden some other way
 
+        _moveHexes = IdleBattleState.GetValidMoveHexes();
+        _halfMoveHexes = IdleBattleState.GetValidHalfMoveHexes();
+        IdleBattleState.Battler.SetGridUserHexes(_moveHexes, _halfMoveHexes, IdleBattleState.Battler.CurrentDisplayMode);
+
         SetContextualAction(mouseGridPos);
 
         if (ev is InputEventMouseButton btn)

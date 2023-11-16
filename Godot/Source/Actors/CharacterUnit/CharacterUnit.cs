@@ -551,4 +551,28 @@ public partial class CharacterUnit : CharacterBody2D
         );
     }
 
+    internal void ApplyPerk(Perk p)
+    {
+        switch (p.Category)
+        {
+            case Perk.PerkCategory.ArmourBonus:
+                CharacterData.ArmourClass += p.Magnitude;
+                break;
+            case Perk.PerkCategory.AttributeBonus:
+                CharacterData.Attributes[p.AssociatedAttribute] += p.Magnitude;
+                break;
+            case Perk.PerkCategory.MeleeWeapon:
+                CharacterData.MeleeWeaponEquipped = p.AssociatedMeleeWeapon;
+                break;
+            case Perk.PerkCategory.RangedWeapon:
+                CharacterData.RangedWeaponEquipped = p.AssociatedRangedWeapon;
+                break;
+            case Perk.PerkCategory.Spell:
+                if (!CharacterData.KnownSpells.Contains(p.AssociatedSpell))
+                {
+                    CharacterData.KnownSpells.Add(p.AssociatedSpell);
+                }
+                break;
+        }
+    }
 }

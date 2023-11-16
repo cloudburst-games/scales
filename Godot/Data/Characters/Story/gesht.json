@@ -4,6 +4,8 @@
     "PatronGod": "Enlil",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AmabBody2.tscn",
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AMABPortrait.png",
+    "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AMABPortrait.png",
+    "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AMABPortrait.png",
     "Perks": [
         0,
         3,

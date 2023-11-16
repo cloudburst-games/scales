@@ -35,6 +35,7 @@ public partial class BattleScene : Node, ISceneTransitionable
     // private Godot.Collections.Array<BaseTextureButton> _actionBtns = new();
     // exporting here doesn#t work so we are unfortunately using magic string
     private PackedScene _characterScene = GD.Load<PackedScene>("res://Source/Actors/CharacterUnit/CharacterUnit.tscn");
+    private List<Perk.PerkMode> _masterPerkPool = new();
 
     private Godot.Collections.Array<CharacterUnit> _currentCharacters = new();
 
@@ -91,7 +92,11 @@ public partial class BattleScene : Node, ISceneTransitionable
     private BattleVictory _battleVictory;
     [Export]
     private SceneTransition _mainMenuSceneTransition;
+    [Export]
+    private CntCharacterUpgrade _cntCharacterUpgrade;
 
+    [Signal]
+    public delegate void FinishedUnloadingLevelEventHandler();
     public override void _Ready()
     {
         // TESTING
@@ -130,12 +135,99 @@ public partial class BattleScene : Node, ISceneTransitionable
         _battleScalesAnim.CurrentAnimation = "Start";
 
         _adventureStoriesHandler.DefeatStoryFinished += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
+        _battleVictory.FavouredGod += (int which, int scalesImpact, CharacterUnit victim) => OnVictoryFavouredGod((Scales.FavourMode)which, scalesImpact, victim);
+        _cntCharacterUpgrade.UpgradeFinished += OnBattleVictoryUpgradesFinished;
+        _masterPerkPool = Enum.GetValues(typeof(Perk.PerkMode)).Cast<Perk.PerkMode>().ToList();
         // _adventureStoriesHandler.VictoryPictureStoryFinished += () 
         // _adventureStoriesHandler.FinalVictoryStoryFinished += ()
 
         LoadLevel();
     }
 
+    private async void OnBattleVictoryUpgradesFinished(Godot.Collections.Dictionary<CharacterUnit, Array<Perk>> characterPerks)
+    {
+        // give characters their perks in the perkmode list
+        foreach (CharacterUnit cUnit in characterPerks.Keys)
+        {
+            foreach (Perk p in characterPerks[cUnit])
+            {
+                if (p == null)
+                {
+                    continue;
+                }
+                cUnit.CharacterData.Perks.Add(p.CurrentPerk);
+                cUnit.ApplyPerk(p);
+                if (!p.Stackable)
+                {
+                    _masterPerkPool.Remove(p.CurrentPerk);
+                }
+            }
+        }
+
+        // Remove non player characters
+        _currentCharacters.ToList()
+            .Where(x => x.StatusToPlayer != CharacterUnit.StatusToPlayerMode.Player)
+            .ToList()
+            .ForEach(x =>
+            {
+                _currentCharacters.Remove(x);
+                x.QueueFree();
+            });
+        // TODO - increment level unless max level, in which case this shouldn't be reached (final cutscene will have played instead)
+        // TODO - save progress
+        UnloadLevel();
+        await ToSignal(this, SignalName.FinishedUnloadingLevel);
+        LoadLevel();
+
+
+    }
+
+    private void OnVictoryFavouredGod(Scales.FavourMode finalFavour, int scalesImpact, CharacterUnit victim)
+    {
+        switch (finalFavour)
+        {
+            case Scales.FavourMode.Balanced:
+                if (victim != null)
+                {
+                    victim.StatusToPlayer = CharacterUnit.StatusToPlayerMode.Player;
+                }
+                break;
+            case Scales.FavourMode.Shamash:
+                _scales.FavourShamash(scalesImpact);
+                break;
+            case Scales.FavourMode.Ishtar:
+                _scales.FavourIshtar(scalesImpact);
+                break;
+        }
+
+        _battleScalesAnim.Seek(_scales.GetScaleAnimationTime(), true);
+
+
+        // Upgrade player characters, with perks selected that:
+        // - Are not currently in use by a player character unless they are stackable
+        // - Who have the patron of the pleased God (or neither were pleased)
+        // - Which are not powerful unless one of the gods were pleased
+        // - Ordered randomly
+        // - Limited to 3 (or 6 if a God was pleased)
+        _cntCharacterUpgrade.Start(
+            _currentCharacters
+                .Where(x => x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player)
+                .ToList(),
+            _masterPerkPool
+                .Where(x => (!_currentCharacters
+                    .Where(c => c.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player)
+                    .SelectMany(c => c.CharacterData.Perks)
+                    .ToList()
+                    .Contains(x)) || PerkFactory.GeneratePerk(x).Stackable)
+                .Select(x => PerkFactory.GeneratePerk(x))
+                .Where(x => finalFavour == Scales.FavourMode.Balanced || x.Patron == finalFavour)
+                .Where(x => finalFavour != Scales.FavourMode.Balanced || !x.Powerful)
+                .OrderBy(x => _currentCharacters[0].Rand.Next())
+                .Take(finalFavour == Scales.FavourMode.Balanced ? 3 : 6)
+                .ToList(),
+            finalFavour == Scales.FavourMode.Balanced ? 1 : 2 // Allow 2 per character if a God was pleased
+        );
+    }
 
     private void OnBattleEnded(bool playerWon)
     {
@@ -326,6 +418,10 @@ public partial class BattleScene : Node, ISceneTransitionable
         {
             _animScalesStart.Play("Start");
         }
+
+        // TESTING
+        OnBattleEnded(true);
+        //
     }
 
     private async void UnloadLevel()
@@ -349,6 +445,8 @@ public partial class BattleScene : Node, ISceneTransitionable
         {
             n.QueueFree();
         }
+        EmitSignal(SignalName.FinishedUnloadingLevel);
+
     }
 
     // initialise the battle by passing in the involved characters and the battle grid

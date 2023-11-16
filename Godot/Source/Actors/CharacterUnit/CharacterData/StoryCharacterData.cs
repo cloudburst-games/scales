@@ -410,11 +410,11 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     }
     private int GetUpdatedPersuasion()
     {
-        return UpdateStat(Attributes[AttributeMode.Intellect], 1f, 0.05f) + UpdateStat(Attributes[AttributeMode.Charisma], 2f, 0.01f);
+        return UpdateStat(Attributes[AttributeMode.Intellect], 0.1f, 0.05f) + UpdateStat(Attributes[AttributeMode.Charisma], 0.4f, 0.01f);
     }
     private int GetUpdatedPersuasionResist()
     {
-        return UpdateStat(Attributes[AttributeMode.Intellect], 2f, 0.025f);
+        return UpdateStat(Attributes[AttributeMode.Intellect], 0.5f, 0.025f);
     }
     private int GetUpdatedActionPoints()
     {
@@ -428,13 +428,14 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     {
         // this should be called whenever perks are updated
         KnownSpells.Clear();
-        foreach (int i in _perks)
+        foreach (Perk.PerkMode perkMode in _perks)
         {
-            if (i >= 0 && i < 8)
+            Perk p = PerkFactory.GeneratePerk(perkMode);
+            if (p.Category == Perk.PerkCategory.Spell)
             {
-                if (!KnownSpells.Contains((SpellEffectManager.SpellMode)i))
+                if (!KnownSpells.Contains(p.AssociatedSpell))
                 {
-                    KnownSpells.Add((SpellEffectManager.SpellMode)i);
+                    KnownSpells.Add(p.AssociatedSpell);
                 }
             }
         }
@@ -486,7 +487,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
         }
     }
 
-    public enum RangedWeaponMode { None, Arrow, Rock, Lightning }
+    public enum RangedWeaponMode { None, Sling, Rock, Lightning, Javelin }
 
     [JsonProperty("_rangedWeaponEquipped")]
     private int _rangedWeaponEquipped = 0;
@@ -503,7 +504,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
                     WeaponDiceRanged = new();
                     RangedWeaponDamageBonus = 0;
                     break;
-                case RangedWeaponMode.Arrow:
+                case RangedWeaponMode.Sling:
                     WeaponDiceRanged = new() { new(1, 4) };
                     RangedWeaponDamageBonus = 1;
                     break;
@@ -514,6 +515,10 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
                 case RangedWeaponMode.Lightning:
                     WeaponDiceRanged = new() { new(2, 6) };
                     RangedWeaponDamageBonus = 3;
+                    break;
+                case RangedWeaponMode.Javelin:
+                    WeaponDiceRanged = new() { new(1, 4) };
+                    RangedWeaponDamageBonus = 1;
                     break;
             }
         }
@@ -541,8 +546,10 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     public string PatronGod { get; set; }
     public string BodyPath { get; set; }
     public string PortraitPath { get; set; }
-    private List<int> _perks = new();
-    public List<int> Perks
+    public string CharacterBtnNormalPath { get; set; }
+    public string CharacterBtnPressedPath { get; set; }
+    private List<Perk.PerkMode> _perks = new();
+    public List<Perk.PerkMode> Perks
     {
         get
         {
@@ -557,11 +564,11 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
 
 
     // in future make a Perk class
-    public enum PerkMode
-    {
-        SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment,
-        LesserArmor, GreaterArmor, WeaponSpikes, EnchantedWeapon
-    }
+    // public enum PerkMode
+    // {
+    //     SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment,
+    //     LesserArmor, GreaterArmor, WeaponSpikes, EnchantedWeapon
+    // }
 
 
     public Godot.Collections.Array<SpellEffectManager.SpellMode> KnownSpells { get; set; } = new();

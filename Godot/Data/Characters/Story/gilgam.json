@@ -4,6 +4,8 @@
     "PatronGod": "Enlil",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/GilgameshBody.tscn",
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/GigaPortraitv1.png",
+    "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/GigaPortraitv1.png",
+    "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/GigaPortraitv1.png",
     "Perks": [
         0,
         3,

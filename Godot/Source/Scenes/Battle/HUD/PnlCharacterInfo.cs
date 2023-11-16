@@ -88,21 +88,21 @@ public partial class PnlCharacterInfo : Control
         // {StoryCharacterData.StatMode.MaxFocusCharge, "MaxFocusCharge"}
     };
 
-    private Dictionary<StoryCharacterData.PerkMode, string> _perkNames = new Dictionary<StoryCharacterData.PerkMode, string>
-    {
-        {StoryCharacterData.PerkMode.SolarFlare, "Solar Flare"},
-        {StoryCharacterData.PerkMode.SolarBlast, "Solar Blast"},
-        {StoryCharacterData.PerkMode.JudgementOfFlame, "Judgement of Flame"},
-        {StoryCharacterData.PerkMode.BlindingLight, "Blinding Light"},
-        {StoryCharacterData.PerkMode.VialOfFury, "Vial of fury"},
-        {StoryCharacterData.PerkMode.ElixirOfVigour, "Elixir of Vigour"},
-        {StoryCharacterData.PerkMode.ElixirOfSwiftness, "Elixir of Swiftness"},
-        {StoryCharacterData.PerkMode.RegenerativeOintment, "Regenerative Ointment"},
-        {StoryCharacterData.PerkMode.WeaponSpikes, "Weapon Spikes"},
-        {StoryCharacterData.PerkMode.EnchantedWeapon, "Weapon Enchantment"},
-        {StoryCharacterData.PerkMode.LesserArmor, "Lesser Armor"},
-        {StoryCharacterData.PerkMode.GreaterArmor, "Greater Armor"}
-    };
+    // private Dictionary<StoryCharacterData.PerkMode, string> _perkNames = new Dictionary<StoryCharacterData.PerkMode, string>
+    // {
+    //     {StoryCharacterData.PerkMode.SolarFlare, "Solar Flare"},
+    //     {StoryCharacterData.PerkMode.SolarBlast, "Solar Blast"},
+    //     {StoryCharacterData.PerkMode.JudgementOfFlame, "Judgement of Flame"},
+    //     {StoryCharacterData.PerkMode.BlindingLight, "Blinding Light"},
+    //     {StoryCharacterData.PerkMode.VialOfFury, "Vial of fury"},
+    //     {StoryCharacterData.PerkMode.ElixirOfVigour, "Elixir of Vigour"},
+    //     {StoryCharacterData.PerkMode.ElixirOfSwiftness, "Elixir of Swiftness"},
+    //     {StoryCharacterData.PerkMode.RegenerativeOintment, "Regenerative Ointment"},
+    //     {StoryCharacterData.PerkMode.WeaponSpikes, "Weapon Spikes"},
+    //     {StoryCharacterData.PerkMode.EnchantedWeapon, "Weapon Enchantment"},
+    //     {StoryCharacterData.PerkMode.LesserArmor, "Lesser Armor"},
+    //     {StoryCharacterData.PerkMode.GreaterArmor, "Greater Armor"}
+    // };
 
     public void CommonHide()
     {
@@ -210,7 +210,7 @@ public partial class PnlCharacterInfo : Control
 
     private void PopulatePerksDisplay(StoryCharacterData data)
     {
-        _lblPerks.Text = string.Join(", ", data.Perks.Select(i => _perkNames[(StoryCharacterData.PerkMode)i]));
+        _lblPerks.Text = string.Join(", ", data.Perks.Select(i => PerkFactory.GeneratePerk(i).Name));
     }
 
     private void PopulateStatusDisplay(StoryCharacterData data)

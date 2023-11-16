@@ -4,6 +4,8 @@
     "PatronGod": "Enki",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AfabBody2.tscn",
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png",
+    "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png",
+    "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png",
     "Perks": [
         0,
         1,

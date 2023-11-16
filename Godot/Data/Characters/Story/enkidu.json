@@ -4,6 +4,8 @@
     "PatronGod": "Innana",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/EnkiduBody.tscn",
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Enkidu/portrait_placeholder.png",
+    "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Enkidu/portrait_placeholder.png",
+    "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Enkidu/portrait_placeholder.png",
     "Perks": [
         0,
         1,

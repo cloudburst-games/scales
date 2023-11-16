@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://udu41fk3ega5"]
+[gd_scene load_steps=20 format=3 uid="uid://udu41fk3ega5"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleVictory.cs" id="1_xe3mj"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_nyqk7"]
@@ -11,10 +11,98 @@
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_cm0lb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i2ruh"]
-font_size = 64
+font_size = 56
 
 [sub_resource type="LabelSettings" id="LabelSettings_o6e5d"]
 font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_8kv4v"]
+font_size = 84
+
+[sub_resource type="Animation" id="Animation_0qgmm"]
+resource_name = "Start"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BtnFadeDecidedContinue:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LblFateDecided:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_mbd2c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BtnFadeDecidedContinue:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LblFateDecided:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0ve0y"]
+_data = {
+"RESET": SubResource("Animation_mbd2c"),
+"Start": SubResource("Animation_0qgmm")
+}
 
 [sub_resource type="LabelSettings" id="LabelSettings_yeogo"]
 font_size = 48
@@ -80,7 +168,7 @@ _data = {
 "Start": SubResource("Animation_x2yqf")
 }
 
-[node name="BattleVictory" type="Control" node_paths=PackedStringArray("_btnMercy", "_btnDiplomacy", "_btnWrath", "_pnlDiplomacy", "_pnlFate", "_btnDiplomacyContinue", "_animDiplomacy", "_animScalesStart", "_animScales", "_lblDiplomacyOutcome", "_opponentTex", "_lblDecideFate")]
+[node name="BattleVictory" type="Control" node_paths=PackedStringArray("_btnMercy", "_btnDiplomacy", "_btnWrath", "_pnlDiplomacy", "_pnlFate", "_btnDiplomacyContinue", "_animDiplomacy", "_animScalesStart", "_animScales", "_lblDiplomacyOutcome", "_opponentTex", "_lblDecideFate", "_fateDecidedAnim", "_btnFadeDecidedContinue", "_lblFateDecided")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -101,6 +189,9 @@ _animScales = NodePath("PnlFate/VBoxContainer/HBoxContainer2/PnlScales/AnimScale
 _lblDiplomacyOutcome = NodePath("PnlDiplomacy/VBoxContainer/LblDiplomacyOutcome")
 _opponentTex = NodePath("PnlFate/VBoxContainer/HBoxContainer2/OpponentTex")
 _lblDecideFate = NodePath("PnlFate/VBoxContainer/LblDecideFate")
+_fateDecidedAnim = NodePath("PnlFate/PnlOutcome/AnimFateDecided")
+_btnFadeDecidedContinue = NodePath("PnlFate/PnlOutcome/BtnFadeDecidedContinue")
+_lblFateDecided = NodePath("PnlFate/PnlOutcome/LblFateDecided")
 
 [node name="PnlFate" type="Panel" parent="."]
 layout_mode = 1
@@ -130,7 +221,10 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
-text = "Decide the fate of your opponents!"
+text = "VICTORY!
+Decide the fate of your opponents!
+Ishtar would be pleased with a show of retribution.
+Shamash advises a display of mercy."
 label_settings = SubResource("LabelSettings_i2ruh")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -226,12 +320,70 @@ label_settings = SubResource("LabelSettings_o6e5d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PnlOutcome" type="Panel" parent="PnlFate"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LblFateDecided" type="Label" parent="PnlFate/PnlOutcome"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pleased with your devotion, your Patron {GodName} bestows upon you their power. You have more perks, of greater power, to select from."
+label_settings = SubResource("LabelSettings_8kv4v")
+autowrap_mode = 2
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimFateDecided" type="AnimationPlayer" parent="PnlFate/PnlOutcome"]
+libraries = {
+"": SubResource("AnimationLibrary_0ve0y")
+}
+
+[node name="BtnFadeDecidedContinue" type="TextureButton" parent="PnlFate/PnlOutcome"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.8
+anchor_right = 0.7
+anchor_bottom = 0.95
+size_flags_horizontal = 3
+disabled = true
+texture_normal = ExtResource("3_ji255")
+texture_pressed = ExtResource("4_5yl26")
+texture_hover = ExtResource("5_tpefe")
+texture_disabled = ExtResource("6_l1aks")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_cm0lb")
+
+[node name="Label" type="Label" parent="PnlFate/PnlOutcome/BtnFadeDecidedContinue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+label_settings = SubResource("LabelSettings_o6e5d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="PnlDiplomacy" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.2
+anchor_left = 0.3
 anchor_top = 0.2
-anchor_right = 0.8
+anchor_right = 0.7
 anchor_bottom = 0.8
 script = ExtResource("2_nyqk7")
 _snapToEdges = false

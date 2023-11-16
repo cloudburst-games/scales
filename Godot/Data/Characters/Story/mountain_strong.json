@@ -4,6 +4,8 @@
     "PatronGod": "Ishtar",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/MountainBody2/MountainBody2.tscn",
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Mountain/portrait_placeholder.png",
+    "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Mountain/portrait_placeholder.png",
+    "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Mountain/portrait_placeholder.png",
     "Perks": [],
     "RangedAttack": 2,
     "Level": 3,

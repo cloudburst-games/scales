@@ -4,6 +4,8 @@
     "PatronGod": "Innana",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AmabBody1/AmabBody1.tscn",
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AMABPortrait.png",
+    "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AMABPortrait.png",
+    "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AMABPortrait.png",
     "Perks": [],
     "_rangedWeaponEquipped": 2,
     "Level": 1,

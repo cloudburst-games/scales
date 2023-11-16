@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=72 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
@@ -56,6 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://8i2158h3ph0k" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/VialFuryHover.png" id="46_7l2d4"]
 [ext_resource type="PackedScene" uid="uid://d3fkaury6ig66" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfo.tscn" id="49_8ah3x"]
 [ext_resource type="PackedScene" uid="uid://dab158j4ohebo" path="res://Source/Systems/HexGrid/HexGridUserDisplay.tscn" id="50_rack7"]
+[ext_resource type="PackedScene" uid="uid://dhnf1jm0vtok8" path="res://Source/Interface/Panel/CharacterUpgrade/CntCharacterUpgrade.tscn" id="54_82j32"]
 [ext_resource type="PackedScene" uid="uid://bb71nh8f38a0g" path="res://addons/SceneTransitionPlugin/SceneTransition.tscn" id="57_cjqrl"]
 [ext_resource type="PackedScene" uid="uid://4extw10vut0x" path="res://Source/Systems/AdventureStoriesHandler/GilgamStoryHandler.tscn" id="58_27mia"]
 [ext_resource type="PackedScene" uid="uid://udu41fk3ega5" path="res://Source/Scenes/Battle/BattleVictory.tscn" id="59_tgswr"]
@@ -188,7 +189,7 @@ _data = {
 "Unloading": SubResource("Animation_gafb4")
 }
 
-[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnActions", "_battleScalesAnim", "_cntSpellBook", "_cursorControl", "_spellEffectManager", "_hBoxTurnOrder", "_pnlCharacterInfo", "_textureScales", "_animScalesStart", "_adventureStoriesHandler", "_battleVictory", "_mainMenuSceneTransition")]
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnActions", "_battleScalesAnim", "_cntSpellBook", "_cursorControl", "_spellEffectManager", "_hBoxTurnOrder", "_pnlCharacterInfo", "_textureScales", "_animScalesStart", "_adventureStoriesHandler", "_battleVictory", "_mainMenuSceneTransition", "_cntCharacterUpgrade")]
 script = ExtResource("1_2w8r3")
 _anim = NodePath("Anim")
 _cntBattleLevel = NodePath("CntBattleLevel")
@@ -210,8 +211,9 @@ _pnlCharacterInfo = NodePath("BattleHUD/CntHUD/CharacterInfoPanel")
 _textureScales = NodePath("BattleHUD/CntHUD/PnlScales/TextureRect")
 _animScalesStart = NodePath("BattleHUD/CntHUD/PnlScales/AnimScalesStart")
 _adventureStoriesHandler = NodePath("BattleHUD/GilgamStoryHandler")
-_battleVictory = NodePath("BattleVictory")
+_battleVictory = NodePath("BattleHUD/BattleVictory")
 _mainMenuSceneTransition = NodePath("MainMenuSceneTransition")
+_cntCharacterUpgrade = NodePath("BattleHUD/CntCharacterUpgrade")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 3840.0
@@ -801,7 +803,13 @@ script = ExtResource("7_8jqkl")
 
 [node name="CharacterInfoPanel" parent="BattleHUD/CntHUD" instance=ExtResource("49_8ah3x")]
 
+[node name="BattleVictory" parent="BattleHUD" instance=ExtResource("59_tgswr")]
+
+[node name="CntCharacterUpgrade" parent="BattleHUD" instance=ExtResource("54_82j32")]
+
 [node name="GilgamStoryHandler" parent="BattleHUD" instance=ExtResource("58_27mia")]
+offset_left = 101.0
+offset_right = 101.0
 
 [node name="CntBattleLevel" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -826,7 +834,5 @@ libraries = {
 
 [node name="MainMenuSceneTransition" parent="." instance=ExtResource("57_cjqrl")]
 DestinationPath = "res://Source/Scenes/MainMenu/MainMenuScene.tscn"
-
-[node name="BattleVictory" parent="." instance=ExtResource("59_tgswr")]
 
 [editable path="BattleHUD/CntHUD/PnlScales"]
