@@ -135,6 +135,8 @@ public partial class BattleScene : Node, ISceneTransitionable
         _battleScalesAnim.CurrentAnimation = "Start";
 
         _adventureStoriesHandler.DefeatStoryFinished += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
+        _adventureStoriesHandler.FinalVictoryStoryFinished += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
+        _adventureStoriesHandler.VictoryPictureStoryFinished += OnVictoryStoryFinished;
         _battleVictory.FavouredGod += (int which, int scalesImpact, CharacterUnit victim) => OnVictoryFavouredGod((Scales.FavourMode)which, scalesImpact, victim);
         _cntCharacterUpgrade.UpgradeFinished += OnBattleVictoryUpgradesFinished;
         _masterPerkPool = Enum.GetValues(typeof(Perk.PerkMode)).Cast<Perk.PerkMode>().ToList();
@@ -142,6 +144,16 @@ public partial class BattleScene : Node, ISceneTransitionable
         // _adventureStoriesHandler.FinalVictoryStoryFinished += ()
 
         LoadLevel();
+    }
+
+    private void OnVictoryStoryFinished(int level)
+    {
+        // GD.Print("pic story fin");
+
+        // await ToSignal(GetTree().CreateTimer(3), SceneTreeTimer.SignalName.Timeout);
+        _btnIntro.Disabled = false;
+        // _adventureStoriesHandler.QueueFree();
+        // BaseProject.Utils.Node.SetVisibleRecursive(_adventureStoriesHandler, false);
     }
 
     private async void OnBattleVictoryUpgradesFinished(Godot.Collections.Dictionary<CharacterUnit, Array<Perk>> characterPerks)
@@ -173,8 +185,15 @@ public partial class BattleScene : Node, ISceneTransitionable
                 _currentCharacters.Remove(x);
                 x.QueueFree();
             });
+        _adventureStoriesHandler.DoVictoryStory(_nextLevel, _scales.GetCurrentFavour(), _levelScenePaths.Count - 1);
+        _nextLevel += 1;
         // TODO - increment level unless max level, in which case this shouldn't be reached (final cutscene will have played instead)
         // TODO - save progress
+
+        if (_nextLevel == _levelScenePaths.Count) // we reached the last level so dont bother with unloading/loading levels anymore
+        {
+            return;
+        }
         UnloadLevel();
         await ToSignal(this, SignalName.FinishedUnloadingLevel);
         LoadLevel();
@@ -233,6 +252,7 @@ public partial class BattleScene : Node, ISceneTransitionable
     {
         _battler.ProcessMode = ProcessModeEnum.Disabled;
         _pnlAction.ProcessMode = ProcessModeEnum.Disabled;
+        _btnIntro.Disabled = true;
         _cursorControl.SetCursor(CursorControl.CursorMode.Select);
         if (playerWon)
         {
@@ -402,7 +422,8 @@ public partial class BattleScene : Node, ISceneTransitionable
         StoreCurrentCharacterPortraits();
 
         await ToSignal(_anim, AnimationPlayer.SignalName.AnimationFinished);
-        _btnIntro.Disabled = false;
+        if (_nextLevel == 0)
+            _btnIntro.Disabled = false;
         _battler.Init(_currentCharacters, _lvlToLoad.HexGrid, _spellEffectManager.AllSpells);
     }
 

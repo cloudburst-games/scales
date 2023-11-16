@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://4extw10vut0x"]
+[gd_scene load_steps=20 format=3 uid="uid://4extw10vut0x"]
 
 [ext_resource type="Script" path="res://Source/Systems/AdventureStoriesHandler/AdventureStoriesHandler.cs" id="1_6s68q"]
 [ext_resource type="PackedScene" uid="uid://chnigbtasy7v4" path="res://addons/PictureStoryPlugin/PictureStoryContainer/PictureStoryContainer.tscn" id="2_fg2x8"]
@@ -25,7 +25,47 @@ _data = {
 "Default": SubResource("Animation_uwyks")
 }
 
-[node name="GilgamStoryHandler" type="Control" node_paths=PackedStringArray("_defeatPictureStory", "_finalVictoryStory")]
+[sub_resource type="Animation" id="Animation_kwpto"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wswtk"]
+_data = {
+"new_animation": SubResource("Animation_kwpto")
+}
+
+[sub_resource type="Animation" id="Animation_xt3ct"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iw52c"]
+_data = {
+"new_animation": SubResource("Animation_xt3ct")
+}
+
+[sub_resource type="Animation" id="Animation_oesux"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3eycf"]
+_data = {
+"new_animation": SubResource("Animation_oesux")
+}
+
+[sub_resource type="Animation" id="Animation_yvn7k"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5anqj"]
+_data = {
+"new_animation": SubResource("Animation_yvn7k")
+}
+
+[sub_resource type="Animation" id="Animation_wsvtj"]
+resource_name = "new_animation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qba8e"]
+_data = {
+"new_animation": SubResource("Animation_wsvtj")
+}
+
+[node name="GilgamStoryHandler" type="Control" node_paths=PackedStringArray("_defeatPictureStory")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,11 +75,15 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_6s68q")
 _defeatPictureStory = NodePath("DefeatStory")
-_finalVictoryStory = NodePath("FinalVictoryStory")
 _victoryPictureStoriesNodePaths = {
 0: NodePath("AfterLevel0Story"),
 1: NodePath("AfterLevel1Story"),
 2: NodePath("AfterLevel2Story")
+}
+_finalVictoryStoryNodePaths = {
+0: NodePath("FinalVictoryStoryShamash"),
+1: NodePath("FinalVictoryStoryBalanced"),
+2: NodePath("FinalVictoryStoryIshtar")
 }
 
 [node name="DefeatStory" parent="." instance=ExtResource("2_fg2x8")]
@@ -137,6 +181,9 @@ offset_bottom = 0.0
 _transitionTypeEnd = "Blend"
 
 [node name="PictureStorySlide" parent="AfterLevel1Story" instance=ExtResource("3_gl0nt")]
+libraries = {
+"": SubResource("AnimationLibrary_wswtk")
+}
 AutoTransitionEnabled = false
 
 [node name="Background" type="TextureRect" parent="AfterLevel1Story/PictureStorySlide"]
@@ -178,6 +225,9 @@ offset_bottom = 0.0
 _transitionTypeEnd = "Blend"
 
 [node name="PictureStorySlide" parent="AfterLevel2Story" instance=ExtResource("3_gl0nt")]
+libraries = {
+"": SubResource("AnimationLibrary_iw52c")
+}
 AutoTransitionEnabled = false
 
 [node name="Background" type="TextureRect" parent="AfterLevel2Story/PictureStorySlide"]
@@ -213,16 +263,19 @@ label_settings = SubResource("LabelSettings_6fmmq")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FinalVictoryStory" parent="." instance=ExtResource("2_fg2x8")]
+[node name="FinalVictoryStoryShamash" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
-_transitionTypeEnd = "Blend"
+_transitionTypeEnd = "None"
 
-[node name="PictureStorySlide" parent="FinalVictoryStory" instance=ExtResource("3_gl0nt")]
+[node name="PictureStorySlide" parent="FinalVictoryStoryShamash" instance=ExtResource("3_gl0nt")]
+libraries = {
+"": SubResource("AnimationLibrary_3eycf")
+}
 AutoTransitionEnabled = false
 
-[node name="Background" type="TextureRect" parent="FinalVictoryStory/PictureStorySlide"]
+[node name="Background" type="TextureRect" parent="FinalVictoryStoryShamash/PictureStorySlide"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -231,7 +284,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_y3arb")
 
-[node name="PnlTitle" type="Panel" parent="FinalVictoryStory/PictureStorySlide"]
+[node name="PnlTitle" type="Panel" parent="FinalVictoryStoryShamash/PictureStorySlide"]
 visible = false
 anchors_preset = -1
 anchor_left = 0.3
@@ -241,7 +294,95 @@ anchor_bottom = 0.7
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="FinalVictoryStory/PictureStorySlide/PnlTitle"]
+[node name="Label" type="Label" parent="FinalVictoryStoryShamash/PictureStorySlide/PnlTitle"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "OH?!?!? YOU WIN!! for real!"
+label_settings = SubResource("LabelSettings_6fmmq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FinalVictoryStoryBalanced" parent="." instance=ExtResource("2_fg2x8")]
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
+_transitionTypeEnd = "None"
+
+[node name="PictureStorySlide" parent="FinalVictoryStoryBalanced" instance=ExtResource("3_gl0nt")]
+libraries = {
+"": SubResource("AnimationLibrary_5anqj")
+}
+AutoTransitionEnabled = false
+
+[node name="Background" type="TextureRect" parent="FinalVictoryStoryBalanced/PictureStorySlide"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_y3arb")
+
+[node name="PnlTitle" type="Panel" parent="FinalVictoryStoryBalanced/PictureStorySlide"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="FinalVictoryStoryBalanced/PictureStorySlide/PnlTitle"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "OH?!?!? YOU WIN!! for real!"
+label_settings = SubResource("LabelSettings_6fmmq")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FinalVictoryStoryIshtar" parent="." instance=ExtResource("2_fg2x8")]
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
+_transitionTypeEnd = "None"
+
+[node name="PictureStorySlide" parent="FinalVictoryStoryIshtar" instance=ExtResource("3_gl0nt")]
+libraries = {
+"": SubResource("AnimationLibrary_qba8e")
+}
+AutoTransitionEnabled = false
+
+[node name="Background" type="TextureRect" parent="FinalVictoryStoryIshtar/PictureStorySlide"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_y3arb")
+
+[node name="PnlTitle" type="Panel" parent="FinalVictoryStoryIshtar/PictureStorySlide"]
+visible = false
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.7
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="FinalVictoryStoryIshtar/PictureStorySlide/PnlTitle"]
 visible = false
 layout_mode = 1
 anchors_preset = 15

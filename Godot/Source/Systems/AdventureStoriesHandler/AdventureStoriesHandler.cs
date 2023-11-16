@@ -8,15 +8,24 @@ using Godot;
 public partial class AdventureStoriesHandler : Control
 {
 
+    // public enum EndingType { Shamash, Balanced, Ishtar } // need to make this independent of this class oin future
+
     [Export]
     private PictureStoryContainer _defeatPictureStory;
-    [Export]
-    private PictureStoryContainer _finalVictoryStory;
+    // [Export]
+    // private PictureStoryContainer _finalVictoryStory;
 
     [Export]
     private Godot.Collections.Dictionary<int, NodePath> _victoryPictureStoriesNodePaths = new();
 
+    [Export]
+    private Godot.Collections.Dictionary<Scales.FavourMode, NodePath> _finalVictoryStoryNodePaths = new();
+
     private Dictionary<int, PictureStoryContainer> _victoryPictureStoriesByLevel;
+    private Dictionary<Scales.FavourMode, PictureStoryContainer> _finalVictoryPictureStories;
+
+    // [Export]
+    // private int _finalLevel = 3;
 
     [Signal]
     public delegate void DefeatStoryFinishedEventHandler();
@@ -30,7 +39,7 @@ public partial class AdventureStoriesHandler : Control
     public override void _Ready()
     {
         _defeatPictureStory.Finished += () => this.EmitSignal(SignalName.DefeatStoryFinished);
-        _finalVictoryStory.Finished += () => this.EmitSignal(SignalName.FinalVictoryStoryFinished);
+        // _finalVictoryStory.Finished += () => this.EmitSignal(SignalName.FinalVictoryStoryFinished);
 
         _victoryPictureStoriesByLevel = new();
         foreach (KeyValuePair<int, NodePath> kv in _victoryPictureStoriesNodePaths)
@@ -41,7 +50,16 @@ public partial class AdventureStoriesHandler : Control
         {
             kv.Value.Finished += () => this.EmitSignal(SignalName.VictoryPictureStoryFinished, kv.Key);
         }
-
+        _finalVictoryPictureStories = new();
+        foreach (KeyValuePair<Scales.FavourMode, NodePath> kv in _finalVictoryStoryNodePaths)
+        {
+            _finalVictoryPictureStories[kv.Key] = GetNode<PictureStoryContainer>(kv.Value);
+        }
+        foreach (KeyValuePair<Scales.FavourMode, PictureStoryContainer> kv in _finalVictoryPictureStories)
+        {
+            kv.Value.Finished += () => this.EmitSignal(SignalName.FinalVictoryStoryFinished);
+        }
+        BaseProject.Utils.Node.GetNodesRecursive(new List<Control>(), this).ForEach(x => x.MouseFilter = MouseFilterEnum.Ignore);
         // Test();
     }
 
@@ -50,13 +68,23 @@ public partial class AdventureStoriesHandler : Control
     //     DoVictoryStory(0);
     // }
 
-    public void DoVictoryStory(int level)
+    public void DoVictoryStory(int level, Scales.FavourMode favour, int finalLevel)
     {
+        // Visible = true;
+        GD.Print("is it the last level? ", +level + " " + finalLevel);
+        if (level == finalLevel)
+        {
+            _finalVictoryPictureStories[favour].Play();
+            return;
+        }
         _victoryPictureStoriesByLevel[level].Play();
+
+
     }
 
     public void DoDefeatStory()
     {
+        // Visible = true;
         _defeatPictureStory.Play();
     }
 }
