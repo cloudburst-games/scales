@@ -36,13 +36,18 @@ public partial class CharacterBody : Node
         // RemoveChild(newNavObstacle);
 
         characterUnit.AddChild(newSprite);
+        newSprite.Owner = characterUnit;
         characterUnit.AddChild(newShape);
+        newShape.Owner = characterUnit;
         characterUnit.AddChild(newAnim);
+        newAnim.Owner = characterUnit;
         characterUnit.AddChild(newAnimTree);
+        newAnimTree.Owner = characterUnit;
         characterUnit.AddChild(newClickArea);
+        newClickArea.Owner = characterUnit;
         // characterUnit.AddChild(newNavObstacle);
-        
-        newClickArea.GuiInput+=characterUnit.OnClickAreaGUIInput;
+
+        newClickArea.GuiInput += characterUnit.OnClickAreaGUIInput;
 
         oldSprite.QueueFree();
         oldShape.QueueFree();
@@ -51,6 +56,9 @@ public partial class CharacterBody : Node
         oldClickArea.QueueFree();
         // oldNavObstacle.QueueFree();
 
-
+        // GD.Print(Name);
+        // GD.Print(GetParent());
+        // // await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        // Free();
     }
 }

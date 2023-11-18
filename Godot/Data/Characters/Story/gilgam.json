@@ -13,13 +13,24 @@
         7
     ],
     "Level": 1,
-    "Might": 10,
-    "Resilience": 10,
-    "Precision": 10,
-    "Speed": 10,
-    "Intellect": 10,
-    "Charisma": 10,
-    "Luck": 10,
+    "Might": 100,
+    "Resilience": 100,
+    "Precision": 100,
+    "Speed": 100,
+    "Intellect": 100,
+    "Charisma": 100,
+    "Luck": 100,
+    "Barks": {
+        "0": [
+            "hi enki face",
+            "no",
+            "why"
+        ],
+        "1": [
+            "dreadful",
+            "bore"
+        ]
+    },
     "_attributes_per_level_rule": "for enemies. 70 points between the attributes, with a max of 16 and min of 4 (jam only), then +5 per lvl (or perk)",
     "_perks_per_level_rule": "1 perk per level, or 2 for powerful enemies. bonus perks if failing to convince someone to join"
 }

@@ -30,17 +30,17 @@ public partial class CntCharacterUpgrade : Control
     // private List<CharacterUnit> _companions;
     [Export]
     private BaseTextureButton _btnContinue;
-    [Signal]
-    public delegate void UpgradeFinishedEventHandler(Godot.Collections.Dictionary<CharacterUnit, Godot.Collections.Array<Perk>> characterPerks);
+    // [Signal]
+    // public delegate void UpgradeFinishedEventHandler(Godot.Collections.Dictionary<CharacterUnit, Godot.Collections.Array<Perk>> characterPerks);
 
     public override void _Ready()
     {
         _pnlCharacterSelect.CharacterSelected += OnCharacterSelected;
         _btnContinue.Pressed += () => Visible = false;
-        _pnlPerkSelect.UpgradeFinished += (Godot.Collections.Dictionary<CharacterUnit, Godot.Collections.Array<Perk>> result) =>
-        {
-            EmitSignal(SignalName.UpgradeFinished, result);
-        };
+        // _pnlPerkSelect.UpgradeFinished += (Godot.Collections.Dictionary<CharacterUnit, Godot.Collections.Array<Perk>> result) =>
+        // {
+        //     EmitSignal(SignalName.UpgradeFinished, result);
+        // };
 
         Visible = false;
 
@@ -66,23 +66,23 @@ public partial class CntCharacterUpgrade : Control
     }
     private void Test()
     {
-        _pnlPerkSelect.UpgradeFinished += (result) =>
-        {
-            foreach (CharacterUnit key in result.Keys)
-            {
-                GD.Print(key.CharacterData.Name);
-                GD.Print("Perks:");
+        // _pnlPerkSelect.UpgradeFinished += (result) =>
+        // {
+        //     foreach (CharacterUnit key in result.Keys)
+        //     {
+        //         GD.Print(key.CharacterData.Name);
+        //         GD.Print("Perks:");
 
-                foreach (Perk perk in result[key])
-                {
-                    if (perk != null)
-                    {
-                        GD.Print(perk.Name);
-                    }
-                }
-            }
-            // Handle the result dictionary here
-        };
+        //         foreach (Perk perk in result[key])
+        //         {
+        //             if (perk != null)
+        //             {
+        //                 GD.Print(perk.Name);
+        //             }
+        //         }
+        //     }
+        //     // Handle the result dictionary here
+        // };
 
         var availablePerks = new List<Perk>
     {
@@ -224,5 +224,11 @@ public partial class CntCharacterUpgrade : Control
 
     public override void _Process(double delta)
     {
+    }
+
+    internal void Exit()
+    {
+        _pnlCharacterSelect.Exit();
+        // _pnlPerkSelect.Exit();
     }
 }

@@ -18,7 +18,7 @@ public partial class CntPnlAdventures : Control
     [Signal]
     public delegate void NewPressedEventHandler(int adventureSelected, int difficultySelected);
     [Signal]
-    public delegate void ContinuePressedEventHandler(int adventureSelected);
+    public delegate void ContinuePressedEventHandler(int adventureSelected, int difficultySelected);
 
     public enum AdventureSelectedMode { Gilgamesh }
 
@@ -30,7 +30,7 @@ public partial class CntPnlAdventures : Control
     {
         ConnectDifficultySignals();
         _btnContinue.Disabled = !CheckpointDataExists();
-        _btnContinue.Pressed += () => EmitSignal(SignalName.ContinuePressed, (int)AdventureSelectedMode.Gilgamesh);
+        _btnContinue.Pressed += () => EmitSignal(SignalName.ContinuePressed, (int)AdventureSelectedMode.Gilgamesh, (int)_difficultySelected);
         _btnNew.Pressed += () => EmitSignal(SignalName.NewPressed, (int)AdventureSelectedMode.Gilgamesh, (int)_difficultySelected);
         _btnClose.Pressed += () => Visible = false;
     }
@@ -44,8 +44,9 @@ public partial class CntPnlAdventures : Control
 
     private bool CheckpointDataExists()
     {
-        GD.Print("todo -when checkpoints implemented");
-        return false;
+        string savePath = $"/Checkpoint/GilgAdventure"; // for future adventures would need to vary this
+        string absolutePath = OS.GetUserDataDir() + savePath;
+        return System.IO.File.Exists(absolutePath);
     }
 
 }

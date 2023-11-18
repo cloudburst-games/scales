@@ -15,6 +15,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public partial class CharacterUnit : CharacterBody2D
 {
@@ -209,16 +210,22 @@ public partial class CharacterUnit : CharacterBody2D
 
     private void Init()
     {
+        // GD.Print("is this run twice? " + CharacterData.Name);
         AddChild(CharacterDataTreeLink);
-        _body.Instantiate<CharacterBody>().SetBody(this);
+        CharacterBody bod = _body.Instantiate<CharacterBody>();
+        bod.SetBody(this);
+        bod.Owner = null;
+        bod.QueueFree();
         NavAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
         AnimationTree = GetNode<AnimationTree>("AnimTree");
         Anim = GetNode<AnimationPlayer>("Anim");
         _proximityArea = GetNode<Area2D>("ProximityArea");
         GetNode<Sprite2D>("Sprite").Material = (Godot.Material)GetNode<Sprite2D>("Sprite").Material.Duplicate(true);
+
+
     }
 
-    private void InitStatusToPlayer()
+    public void InitStatusToPlayer()
     {
         // OriginalStatusToPlayer = StatusToPlayer;
         switch (StatusToPlayer)
@@ -574,5 +581,32 @@ public partial class CharacterUnit : CharacterBody2D
                 }
                 break;
         }
+    }
+
+    internal void SetFromData(CharacterCheckpointData data)
+    {
+        CharacterData = new()
+        {
+            Name = data.Name,
+            Description = data.Description,
+            PatronGod = data.PatronGod,
+            BodyPath = data.BodyPath,
+            PortraitPath = data.PortraitPath,
+            CharacterBtnNormalPath = data.CharacterBtnNormalPath,
+            CharacterBtnPressedPath = data.CharacterBtnPressedPath,
+            MeleeWeaponEquipped = (StoryCharacterData.MeleeWeaponMode)data._meleeWeaponEquipped,
+            RangedWeaponEquipped = (StoryCharacterData.RangedWeaponMode)data._rangedWeaponEquipped,
+            Perks = data.Perks.Select(x => (Perk.PerkMode)x).ToList(),
+            Level = data.Level,
+            Might = data.Might,
+            Resilience = data.Resilience,
+            Precision = data.Precision,
+            Speed = data.Speed,
+            Intellect = data.Intellect,
+            Charisma = data.Charisma,
+            Luck = data.Luck
+        };
+        CharacterData.Initialise(RoundEffectAnim, CharacterDataTreeLink);
+        _body = GD.Load<PackedScene>(CharacterData.BodyPath);
     }
 }

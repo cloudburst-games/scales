@@ -7,5 +7,5 @@ public class BattleDataContainer : ISceneTransitionShareableData
     public int AdventureSelected { get; set; } = 0;
 
     // TODO
-    public object CheckpointData { get; set; } = null;
+    public CheckpointData CheckpointData { get; set; } = null;
 }

@@ -13,12 +13,12 @@ public partial class HexObstacleMarkerTool : Node2D
     }
     public async void MarkAllHexObstacles(int levelID)
     {
-        string obstacleDataPath = "/RuntimeData/ObstacleData" + levelID.ToString() + ".json";
+        string obstacleDataPath = "RuntimeData/ObstacleData" + levelID.ToString() + ".json";
         // _JSONDataHandler.SaveToDisk(PackAllSettings(), "/Settings.json");
-        if (System.IO.File.Exists(OS.GetUserDataDir() + obstacleDataPath))
+        if (System.IO.File.Exists(obstacleDataPath))
         {
             JSONDataHandler dataHandler = new();
-            HexGridData hexGridData = dataHandler.LoadFromJSON<HexGridData>(obstacleDataPath);
+            HexGridData hexGridData = dataHandler.LoadFromJSON<HexGridData>(obstacleDataPath, false);
             foreach (Vector2 gridPos in hexGridData.ObstacleGridPositions)
             {
                 _hexGrid.Cells[gridPos].Obstacle = true;
@@ -45,7 +45,7 @@ public partial class HexObstacleMarkerTool : Node2D
                 }
             }
             JSONDataHandler dataHandler = new();
-            dataHandler.SaveToDisk(hexGridData, obstacleDataPath);
+            dataHandler.SaveToDisk(hexGridData, obstacleDataPath, false);
         }
     }
 

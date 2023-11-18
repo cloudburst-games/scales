@@ -16,7 +16,7 @@ public partial class BattleLevel : Node2D
     [Export]
     public Node2D CharacterUnitsContainer;
 
-    private HexTilemapIsometricInterface _hexTileInterface; // used only to get the hex grid start pos because i couldnt figure out how else to do it!
+    public HexTilemapIsometricInterface HexTileInterface { get; set; } // used only to get the hex grid start pos because i couldnt figure out how else to do it!
     // private HexObstacleMarkerTool _hexObstacleMarkerTool;
 
     [Export]
@@ -75,17 +75,17 @@ public partial class BattleLevel : Node2D
         // _hexObstacleMarkerTool = new(_hexGrid);
         // _hexGrid.AddChild(_hexObstacleMarkerTool);
         // _hexObstacleMarkerTool.FinishedMarkingObstacles += _hexGrid.UpdateNavigationAndDisplay;
-        _hexTileInterface = new(HexGrid, _dummyTilemap);
-        HexGrid.AddChild(_hexTileInterface);
-        _hexTileInterface.FinishedMarkingObstacles += HexGrid.UpdateNavigationAndDisplay;
+        HexTileInterface = new(HexGrid, _dummyTilemap);
+        HexGrid.AddChild(HexTileInterface);
+        HexTileInterface.FinishedMarkingObstacles += HexGrid.UpdateNavigationAndDisplay;
         // GD.Print(_hexTileInterface.GetHexGridBoundsFromTilemap()[0]);
         // GD.Print(_hexTileInterface.GetHexGridBoundsFromTilemap()[1]);
 
         // _hexGrid.Start(new Vector2(-1436.841f, 1595.2328f), new Vector2(1074.8021f, 4061.621f), HexGrid.ConstructionMode.WorldSize);
-        HexGrid.Start(_hexTileInterface.GetHexGridBoundsFromTilemap()[0], _hexTileInterface.GetHexGridBoundsFromTilemap()[1], HexGrid.ConstructionMode.WorldSize);
+        HexGrid.Start(HexTileInterface.GetHexGridBoundsFromTilemap()[0], HexTileInterface.GetHexGridBoundsFromTilemap()[1], HexGrid.ConstructionMode.WorldSize);
 
         // _hexObstacleMarkerTool.MarkAllHexObstacles(LevelID);
-        _hexTileInterface.MarkAllHexObstacles(LevelID);
+        HexTileInterface.MarkAllHexObstacles(LevelID);
         // _hexGrid.UpdateNavigationAndDisplay(); // shouldnt need to do it twice???
         HexModifier.Init(HexGrid);
     }

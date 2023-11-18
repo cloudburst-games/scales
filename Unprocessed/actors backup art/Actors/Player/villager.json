@@ -1,0 +1,6415 @@
+{
+  "frames": [
+    {
+      "filename": "villager_death_20014.png",
+      "frame": {
+        "x": 20,
+        "y": 20,
+        "w": 170,
+        "h": 55
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 55
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 55
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20015.png",
+      "frame": {
+        "x": 20,
+        "y": 115,
+        "w": 170,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 170,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 170,
+        "h": 56
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60014.png",
+      "frame": {
+        "x": 20,
+        "y": 211,
+        "w": 169,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 169,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 169,
+        "h": 56
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60015.png",
+      "frame": {
+        "x": 229,
+        "y": 211,
+        "w": 169,
+        "h": 56
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 169,
+        "h": 56
+      },
+      "sourceSize": {
+        "w": 169,
+        "h": 56
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60013.png",
+      "frame": {
+        "x": 230,
+        "y": 20,
+        "w": 159,
+        "h": 75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 159,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 159,
+        "h": 75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70015.png",
+      "frame": {
+        "x": 20,
+        "y": 307,
+        "w": 158,
+        "h": 79
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 158,
+        "h": 79
+      },
+      "sourceSize": {
+        "w": 158,
+        "h": 79
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30014.png",
+      "frame": {
+        "x": 218,
+        "y": 307,
+        "w": 157,
+        "h": 78
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 157,
+        "h": 78
+      },
+      "sourceSize": {
+        "w": 157,
+        "h": 78
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30015.png",
+      "frame": {
+        "x": 20,
+        "y": 426,
+        "w": 157,
+        "h": 78
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 157,
+        "h": 78
+      },
+      "sourceSize": {
+        "w": 157,
+        "h": 78
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70014.png",
+      "frame": {
+        "x": 438,
+        "y": 20,
+        "w": 157,
+        "h": 80
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 157,
+        "h": 80
+      },
+      "sourceSize": {
+        "w": 157,
+        "h": 80
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40011.png",
+      "frame": {
+        "x": 415,
+        "y": 307,
+        "w": 48,
+        "h": 156
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 156
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 156
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20013.png",
+      "frame": {
+        "x": 218,
+        "y": 425,
+        "w": 155,
+        "h": 79
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 155,
+        "h": 79
+      },
+      "sourceSize": {
+        "w": 155,
+        "h": 79
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40004.png",
+      "frame": {
+        "x": 503,
+        "y": 140,
+        "w": 46,
+        "h": 155
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 155
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 155
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40010.png",
+      "frame": {
+        "x": 503,
+        "y": 335,
+        "w": 48,
+        "h": 155
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 155
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 155
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00009.png",
+      "frame": {
+        "x": 20,
+        "y": 544,
+        "w": 48,
+        "h": 154
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 154
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00010.png",
+      "frame": {
+        "x": 108,
+        "y": 544,
+        "w": 47,
+        "h": 154
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 47,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 47,
+        "h": 154
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40003.png",
+      "frame": {
+        "x": 195,
+        "y": 544,
+        "w": 46,
+        "h": 154
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 154
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40012.png",
+      "frame": {
+        "x": 281,
+        "y": 544,
+        "w": 48,
+        "h": 154
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 154
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 154
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30010.png",
+      "frame": {
+        "x": 369,
+        "y": 544,
+        "w": 62,
+        "h": 153
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 153
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 153
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30011.png",
+      "frame": {
+        "x": 471,
+        "y": 530,
+        "w": 64,
+        "h": 153
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 153
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 153
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40009.png",
+      "frame": {
+        "x": 635,
+        "y": 20,
+        "w": 48,
+        "h": 153
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 153
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 153
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50004.png",
+      "frame": {
+        "x": 575,
+        "y": 530,
+        "w": 54,
+        "h": 153
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 153
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 153
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00002.png",
+      "frame": {
+        "x": 591,
+        "y": 213,
+        "w": 50,
+        "h": 152
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 152
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 152
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00003.png",
+      "frame": {
+        "x": 723,
+        "y": 20,
+        "w": 49,
+        "h": 152
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 49,
+        "h": 152
+      },
+      "sourceSize": {
+        "w": 49,
+        "h": 152
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30012.png",
+      "frame": {
+        "x": 681,
+        "y": 213,
+        "w": 59,
+        "h": 152
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 59,
+        "h": 152
+      },
+      "sourceSize": {
+        "w": 59,
+        "h": 152
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40002.png",
+      "frame": {
+        "x": 669,
+        "y": 405,
+        "w": 46,
+        "h": 152
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 152
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 152
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50003.png",
+      "frame": {
+        "x": 20,
+        "y": 738,
+        "w": 56,
+        "h": 152
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 152
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 152
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70009.png",
+      "frame": {
+        "x": 116,
+        "y": 738,
+        "w": 59,
+        "h": 152
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 59,
+        "h": 152
+      },
+      "sourceSize": {
+        "w": 59,
+        "h": 152
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00008.png",
+      "frame": {
+        "x": 215,
+        "y": 738,
+        "w": 48,
+        "h": 151
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 151
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10002.png",
+      "frame": {
+        "x": 303,
+        "y": 738,
+        "w": 55,
+        "h": 151
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 55,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 55,
+        "h": 151
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30009.png",
+      "frame": {
+        "x": 398,
+        "y": 737,
+        "w": 60,
+        "h": 151
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 60,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 60,
+        "h": 151
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40005.png",
+      "frame": {
+        "x": 498,
+        "y": 723,
+        "w": 46,
+        "h": 151
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 151
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50005.png",
+      "frame": {
+        "x": 584,
+        "y": 723,
+        "w": 53,
+        "h": 151
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 53,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 53,
+        "h": 151
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70010.png",
+      "frame": {
+        "x": 677,
+        "y": 597,
+        "w": 61,
+        "h": 151
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 61,
+        "h": 151
+      },
+      "sourceSize": {
+        "w": 61,
+        "h": 151
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00011.png",
+      "frame": {
+        "x": 812,
+        "y": 20,
+        "w": 48,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 150
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30008.png",
+      "frame": {
+        "x": 755,
+        "y": 405,
+        "w": 56,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 150
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40001.png",
+      "frame": {
+        "x": 780,
+        "y": 212,
+        "w": 46,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 150
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40008.png",
+      "frame": {
+        "x": 778,
+        "y": 595,
+        "w": 48,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 150
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40013.png",
+      "frame": {
+        "x": 900,
+        "y": 20,
+        "w": 48,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 150
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50001.png",
+      "frame": {
+        "x": 851,
+        "y": 402,
+        "w": 56,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 150
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50002.png",
+      "frame": {
+        "x": 866,
+        "y": 210,
+        "w": 56,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 150
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70008.png",
+      "frame": {
+        "x": 866,
+        "y": 592,
+        "w": 56,
+        "h": 150
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 150
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 150
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10014.png",
+      "frame": {
+        "x": 677,
+        "y": 788,
+        "w": 149,
+        "h": 85
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 149,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 149,
+        "h": 85
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10015.png",
+      "frame": {
+        "x": 20,
+        "y": 930,
+        "w": 149,
+        "h": 84
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 149,
+        "h": 84
+      },
+      "sourceSize": {
+        "w": 149,
+        "h": 84
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50014.png",
+      "frame": {
+        "x": 209,
+        "y": 930,
+        "w": 149,
+        "h": 81
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 149,
+        "h": 81
+      },
+      "sourceSize": {
+        "w": 149,
+        "h": 81
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50015.png",
+      "frame": {
+        "x": 398,
+        "y": 928,
+        "w": 149,
+        "h": 81
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 149,
+        "h": 81
+      },
+      "sourceSize": {
+        "w": 149,
+        "h": 81
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00001.png",
+      "frame": {
+        "x": 866,
+        "y": 782,
+        "w": 50,
+        "h": 149
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 149
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00004.png",
+      "frame": {
+        "x": 988,
+        "y": 20,
+        "w": 49,
+        "h": 149
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 49,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 49,
+        "h": 149
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10001.png",
+      "frame": {
+        "x": 947,
+        "y": 400,
+        "w": 53,
+        "h": 149
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 53,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 53,
+        "h": 149
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10003.png",
+      "frame": {
+        "x": 962,
+        "y": 210,
+        "w": 60,
+        "h": 149
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 60,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 60,
+        "h": 149
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10004.png",
+      "frame": {
+        "x": 962,
+        "y": 589,
+        "w": 59,
+        "h": 149
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 59,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 59,
+        "h": 149
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30013.png",
+      "frame": {
+        "x": 962,
+        "y": 778,
+        "w": 53,
+        "h": 149
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 53,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 53,
+        "h": 149
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70011.png",
+      "frame": {
+        "x": 20,
+        "y": 1054,
+        "w": 59,
+        "h": 149
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 59,
+        "h": 149
+      },
+      "sourceSize": {
+        "w": 59,
+        "h": 149
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00012.png",
+      "frame": {
+        "x": 119,
+        "y": 1054,
+        "w": 48,
+        "h": 148
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 148
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 148
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30007.png",
+      "frame": {
+        "x": 207,
+        "y": 1054,
+        "w": 52,
+        "h": 148
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 52,
+        "h": 148
+      },
+      "sourceSize": {
+        "w": 52,
+        "h": 148
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40000.png",
+      "frame": {
+        "x": 299,
+        "y": 1051,
+        "w": 46,
+        "h": 148
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 148
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 148
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50000.png",
+      "frame": {
+        "x": 385,
+        "y": 1051,
+        "w": 54,
+        "h": 148
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 148
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 148
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50011.png",
+      "frame": {
+        "x": 479,
+        "y": 1049,
+        "w": 73,
+        "h": 148
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 73,
+        "h": 148
+      },
+      "sourceSize": {
+        "w": 73,
+        "h": 148
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10000.png",
+      "frame": {
+        "x": 956,
+        "y": 967,
+        "w": 48,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30000.png",
+      "frame": {
+        "x": 592,
+        "y": 971,
+        "w": 50,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50000.png",
+      "frame": {
+        "x": 682,
+        "y": 971,
+        "w": 48,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60012.png",
+      "frame": {
+        "x": 1077,
+        "y": 20,
+        "w": 147,
+        "h": 85
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 147,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 147,
+        "h": 85
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70000.png",
+      "frame": {
+        "x": 1040,
+        "y": 399,
+        "w": 51,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 51,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_idle_10000.png",
+      "frame": {
+        "x": 1062,
+        "y": 209,
+        "w": 48,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_idle_30000.png",
+      "frame": {
+        "x": 770,
+        "y": 913,
+        "w": 50,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_idle_50000.png",
+      "frame": {
+        "x": 860,
+        "y": 971,
+        "w": 48,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_idle_70000.png",
+      "frame": {
+        "x": 1150,
+        "y": 145,
+        "w": 51,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 51,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10005.png",
+      "frame": {
+        "x": 1150,
+        "y": 332,
+        "w": 50,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10009.png",
+      "frame": {
+        "x": 1131,
+        "y": 519,
+        "w": 67,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 67,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 67,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30004.png",
+      "frame": {
+        "x": 1044,
+        "y": 967,
+        "w": 66,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 66,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 66,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40007.png",
+      "frame": {
+        "x": 1055,
+        "y": 778,
+        "w": 48,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50006.png",
+      "frame": {
+        "x": 1150,
+        "y": 706,
+        "w": 51,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 51,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50010.png",
+      "frame": {
+        "x": 1150,
+        "y": 893,
+        "w": 73,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 73,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 73,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70012.png",
+      "frame": {
+        "x": 20,
+        "y": 1243,
+        "w": 57,
+        "h": 147
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 57,
+        "h": 147
+      },
+      "sourceSize": {
+        "w": 57,
+        "h": 147
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20000.png",
+      "frame": {
+        "x": 117,
+        "y": 1243,
+        "w": 40,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60000.png",
+      "frame": {
+        "x": 197,
+        "y": 1242,
+        "w": 40,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_idle_20000.png",
+      "frame": {
+        "x": 277,
+        "y": 1242,
+        "w": 40,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_idle_60000.png",
+      "frame": {
+        "x": 357,
+        "y": 1239,
+        "w": 40,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00005.png",
+      "frame": {
+        "x": 770,
+        "y": 1100,
+        "w": 49,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 49,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 49,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00013.png",
+      "frame": {
+        "x": 437,
+        "y": 1239,
+        "w": 49,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 49,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 49,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10000.png",
+      "frame": {
+        "x": 526,
+        "y": 1237,
+        "w": 51,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 51,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10010.png",
+      "frame": {
+        "x": 1150,
+        "y": 1080,
+        "w": 73,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 73,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 73,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30014.png",
+      "frame": {
+        "x": 617,
+        "y": 1158,
+        "w": 51,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 51,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40006.png",
+      "frame": {
+        "x": 859,
+        "y": 1158,
+        "w": 47,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 47,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 47,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50012.png",
+      "frame": {
+        "x": 946,
+        "y": 1158,
+        "w": 64,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 64,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 64,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50014.png",
+      "frame": {
+        "x": 1050,
+        "y": 1154,
+        "w": 51,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 51,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70007.png",
+      "frame": {
+        "x": 1264,
+        "y": 20,
+        "w": 55,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 55,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 55,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70013.png",
+      "frame": {
+        "x": 1238,
+        "y": 519,
+        "w": 56,
+        "h": 146
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 146
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 146
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00000.png",
+      "frame": {
+        "x": 1240,
+        "y": 332,
+        "w": 58,
+        "h": 145
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 58,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 58,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_idle_00000.png",
+      "frame": {
+        "x": 1241,
+        "y": 705,
+        "w": 58,
+        "h": 145
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 58,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 58,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10006.png",
+      "frame": {
+        "x": 1263,
+        "y": 890,
+        "w": 47,
+        "h": 145
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 47,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 47,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30003.png",
+      "frame": {
+        "x": 1359,
+        "y": 20,
+        "w": 70,
+        "h": 145
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_40014.png",
+      "frame": {
+        "x": 1334,
+        "y": 517,
+        "w": 49,
+        "h": 145
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 49,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 49,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50008.png",
+      "frame": {
+        "x": 1339,
+        "y": 702,
+        "w": 57,
+        "h": 145
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 57,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 57,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50009.png",
+      "frame": {
+        "x": 1359,
+        "y": 205,
+        "w": 67,
+        "h": 145
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 67,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 67,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70002.png",
+      "frame": {
+        "x": 1350,
+        "y": 887,
+        "w": 66,
+        "h": 145
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 66,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 66,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70014.png",
+      "frame": {
+        "x": 1350,
+        "y": 1072,
+        "w": 54,
+        "h": 145
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 145
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 145
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20009.png",
+      "frame": {
+        "x": 1263,
+        "y": 1257,
+        "w": 144,
+        "h": 81
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 81
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 81
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40000.png",
+      "frame": {
+        "x": 20,
+        "y": 1430,
+        "w": 58,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 58,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 58,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70013.png",
+      "frame": {
+        "x": 1050,
+        "y": 1340,
+        "w": 144,
+        "h": 107
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 144,
+        "h": 107
+      },
+      "sourceSize": {
+        "w": 144,
+        "h": 107
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_idle_40000.png",
+      "frame": {
+        "x": 118,
+        "y": 1429,
+        "w": 58,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 58,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 58,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00000.png",
+      "frame": {
+        "x": 216,
+        "y": 1428,
+        "w": 50,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00006.png",
+      "frame": {
+        "x": 306,
+        "y": 1428,
+        "w": 49,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 49,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 49,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00007.png",
+      "frame": {
+        "x": 395,
+        "y": 1425,
+        "w": 48,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10008.png",
+      "frame": {
+        "x": 483,
+        "y": 1425,
+        "w": 55,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 55,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 55,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10011.png",
+      "frame": {
+        "x": 578,
+        "y": 1423,
+        "w": 71,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 71,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 71,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20000.png",
+      "frame": {
+        "x": 1234,
+        "y": 1378,
+        "w": 50,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20007.png",
+      "frame": {
+        "x": 1324,
+        "y": 1378,
+        "w": 46,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20014.png",
+      "frame": {
+        "x": 708,
+        "y": 1286,
+        "w": 40,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 40,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 40,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30000.png",
+      "frame": {
+        "x": 788,
+        "y": 1344,
+        "w": 50,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30001.png",
+      "frame": {
+        "x": 878,
+        "y": 1344,
+        "w": 53,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 53,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 53,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30002.png",
+      "frame": {
+        "x": 1469,
+        "y": 20,
+        "w": 66,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 66,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 66,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30005.png",
+      "frame": {
+        "x": 1444,
+        "y": 1072,
+        "w": 58,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 58,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 58,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_30006.png",
+      "frame": {
+        "x": 1469,
+        "y": 204,
+        "w": 52,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 52,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 52,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50013.png",
+      "frame": {
+        "x": 1466,
+        "y": 388,
+        "w": 50,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60000.png",
+      "frame": {
+        "x": 1456,
+        "y": 572,
+        "w": 49,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 49,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 49,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60006.png",
+      "frame": {
+        "x": 1456,
+        "y": 756,
+        "w": 43,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 43,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 43,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60007.png",
+      "frame": {
+        "x": 1447,
+        "y": 1256,
+        "w": 46,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60014.png",
+      "frame": {
+        "x": 1575,
+        "y": 20,
+        "w": 43,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 43,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 43,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70003.png",
+      "frame": {
+        "x": 1545,
+        "y": 572,
+        "w": 70,
+        "h": 144
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 144
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 144
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20012.png",
+      "frame": {
+        "x": 971,
+        "y": 1487,
+        "w": 143,
+        "h": 86
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 143,
+        "h": 86
+      },
+      "sourceSize": {
+        "w": 143,
+        "h": 86
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50001.png",
+      "frame": {
+        "x": 1556,
+        "y": 388,
+        "w": 50,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_00014.png",
+      "frame": {
+        "x": 1561,
+        "y": 204,
+        "w": 50,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10007.png",
+      "frame": {
+        "x": 1542,
+        "y": 756,
+        "w": 46,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 46,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 46,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10014.png",
+      "frame": {
+        "x": 1542,
+        "y": 939,
+        "w": 48,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20001.png",
+      "frame": {
+        "x": 1542,
+        "y": 1122,
+        "w": 61,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 61,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 61,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20006.png",
+      "frame": {
+        "x": 1533,
+        "y": 1305,
+        "w": 42,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 42,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 42,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20008.png",
+      "frame": {
+        "x": 20,
+        "y": 1614,
+        "w": 57,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 57,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 57,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_50007.png",
+      "frame": {
+        "x": 117,
+        "y": 1614,
+        "w": 48,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 48,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60001.png",
+      "frame": {
+        "x": 205,
+        "y": 1613,
+        "w": 55,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 55,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 55,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60008.png",
+      "frame": {
+        "x": 300,
+        "y": 1613,
+        "w": 57,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 57,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 57,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60013.png",
+      "frame": {
+        "x": 397,
+        "y": 1613,
+        "w": 49,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 49,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 49,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70000.png",
+      "frame": {
+        "x": 486,
+        "y": 1613,
+        "w": 51,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 51,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70001.png",
+      "frame": {
+        "x": 577,
+        "y": 1613,
+        "w": 55,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 55,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 55,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70004.png",
+      "frame": {
+        "x": 672,
+        "y": 1613,
+        "w": 68,
+        "h": 143
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 68,
+        "h": 143
+      },
+      "sourceSize": {
+        "w": 68,
+        "h": 143
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30001.png",
+      "frame": {
+        "x": 780,
+        "y": 1613,
+        "w": 50,
+        "h": 142
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 142
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 142
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40007.png",
+      "frame": {
+        "x": 870,
+        "y": 1613,
+        "w": 90,
+        "h": 142
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 142
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 142
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60009.png",
+      "frame": {
+        "x": 1000,
+        "y": 1613,
+        "w": 142,
+        "h": 82
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 142,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 142,
+        "h": 82
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10012.png",
+      "frame": {
+        "x": 1410,
+        "y": 1440,
+        "w": 62,
+        "h": 142
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 142
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 142
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20005.png",
+      "frame": {
+        "x": 1512,
+        "y": 1488,
+        "w": 61,
+        "h": 142
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 61,
+        "h": 142
+      },
+      "sourceSize": {
+        "w": 61,
+        "h": 142
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20009.png",
+      "frame": {
+        "x": 1182,
+        "y": 1562,
+        "w": 75,
+        "h": 142
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 75,
+        "h": 142
+      },
+      "sourceSize": {
+        "w": 75,
+        "h": 142
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20013.png",
+      "frame": {
+        "x": 1297,
+        "y": 1562,
+        "w": 55,
+        "h": 142
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 55,
+        "h": 142
+      },
+      "sourceSize": {
+        "w": 55,
+        "h": 142
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60005.png",
+      "frame": {
+        "x": 1658,
+        "y": 20,
+        "w": 55,
+        "h": 142
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 55,
+        "h": 142
+      },
+      "sourceSize": {
+        "w": 55,
+        "h": 142
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60009.png",
+      "frame": {
+        "x": 1628,
+        "y": 756,
+        "w": 74,
+        "h": 142
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 74,
+        "h": 142
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 142
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40001.png",
+      "frame": {
+        "x": 1655,
+        "y": 204,
+        "w": 59,
+        "h": 141
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 59,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 59,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20002.png",
+      "frame": {
+        "x": 1630,
+        "y": 938,
+        "w": 74,
+        "h": 141
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 74,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20004.png",
+      "frame": {
+        "x": 1615,
+        "y": 1305,
+        "w": 77,
+        "h": 141
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 77,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 77,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20010.png",
+      "frame": {
+        "x": 1615,
+        "y": 1486,
+        "w": 83,
+        "h": 141
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 83,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 83,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20012.png",
+      "frame": {
+        "x": 1643,
+        "y": 1119,
+        "w": 70,
+        "h": 141
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60002.png",
+      "frame": {
+        "x": 1754,
+        "y": 20,
+        "w": 74,
+        "h": 141
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 74,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 74,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60004.png",
+      "frame": {
+        "x": 1753,
+        "y": 385,
+        "w": 75,
+        "h": 141
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 75,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 75,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60010.png",
+      "frame": {
+        "x": 1744,
+        "y": 566,
+        "w": 83,
+        "h": 141
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 83,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 83,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60012.png",
+      "frame": {
+        "x": 1754,
+        "y": 201,
+        "w": 69,
+        "h": 141
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 69,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 69,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70005.png",
+      "frame": {
+        "x": 1651,
+        "y": 385,
+        "w": 54,
+        "h": 141
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_70006.png",
+      "frame": {
+        "x": 1732,
+        "y": 1300,
+        "w": 53,
+        "h": 141
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 53,
+        "h": 141
+      },
+      "sourceSize": {
+        "w": 53,
+        "h": 141
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20001.png",
+      "frame": {
+        "x": 1263,
+        "y": 1075,
+        "w": 43,
+        "h": 140
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 43,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 43,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30013.png",
+      "frame": {
+        "x": 1392,
+        "y": 1670,
+        "w": 140,
+        "h": 65
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 65
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 65
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50013.png",
+      "frame": {
+        "x": 1572,
+        "y": 1670,
+        "w": 140,
+        "h": 67
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 140,
+        "h": 67
+      },
+      "sourceSize": {
+        "w": 140,
+        "h": 67
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60001.png",
+      "frame": {
+        "x": 1655,
+        "y": 566,
+        "w": 44,
+        "h": 140
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 44,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 44,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_10013.png",
+      "frame": {
+        "x": 1738,
+        "y": 1481,
+        "w": 52,
+        "h": 140
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 52,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 52,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20003.png",
+      "frame": {
+        "x": 1744,
+        "y": 747,
+        "w": 78,
+        "h": 140
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 78,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 78,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_20011.png",
+      "frame": {
+        "x": 1744,
+        "y": 927,
+        "w": 81,
+        "h": 140
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 81,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 81,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60003.png",
+      "frame": {
+        "x": 20,
+        "y": 1797,
+        "w": 79,
+        "h": 140
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 79,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 79,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_walk_60011.png",
+      "frame": {
+        "x": 139,
+        "y": 1797,
+        "w": 82,
+        "h": 140
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 82,
+        "h": 140
+      },
+      "sourceSize": {
+        "w": 82,
+        "h": 140
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10001.png",
+      "frame": {
+        "x": 261,
+        "y": 1796,
+        "w": 51,
+        "h": 138
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 51,
+        "h": 138
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 138
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00001.png",
+      "frame": {
+        "x": 352,
+        "y": 1796,
+        "w": 59,
+        "h": 137
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 59,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 59,
+        "h": 137
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70001.png",
+      "frame": {
+        "x": 451,
+        "y": 1796,
+        "w": 50,
+        "h": 137
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 50,
+        "h": 137
+      },
+      "sourceSize": {
+        "w": 50,
+        "h": 137
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10013.png",
+      "frame": {
+        "x": 1000,
+        "y": 1735,
+        "w": 136,
+        "h": 110
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 136,
+        "h": 110
+      },
+      "sourceSize": {
+        "w": 136,
+        "h": 110
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20008.png",
+      "frame": {
+        "x": 1176,
+        "y": 1744,
+        "w": 136,
+        "h": 95
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 136,
+        "h": 95
+      },
+      "sourceSize": {
+        "w": 136,
+        "h": 95
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40008.png",
+      "frame": {
+        "x": 541,
+        "y": 1796,
+        "w": 89,
+        "h": 136
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 89,
+        "h": 136
+      },
+      "sourceSize": {
+        "w": 89,
+        "h": 136
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60010.png",
+      "frame": {
+        "x": 780,
+        "y": 1795,
+        "w": 136,
+        "h": 82
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 136,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 136,
+        "h": 82
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00002.png",
+      "frame": {
+        "x": 670,
+        "y": 1796,
+        "w": 63,
+        "h": 135
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 63,
+        "h": 135
+      },
+      "sourceSize": {
+        "w": 63,
+        "h": 135
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20010.png",
+      "frame": {
+        "x": 1352,
+        "y": 1775,
+        "w": 135,
+        "h": 83
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 135,
+        "h": 83
+      },
+      "sourceSize": {
+        "w": 135,
+        "h": 83
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10002.png",
+      "frame": {
+        "x": 1753,
+        "y": 1107,
+        "w": 58,
+        "h": 134
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 58,
+        "h": 134
+      },
+      "sourceSize": {
+        "w": 58,
+        "h": 134
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30002.png",
+      "frame": {
+        "x": 1752,
+        "y": 1661,
+        "w": 53,
+        "h": 134
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 53,
+        "h": 134
+      },
+      "sourceSize": {
+        "w": 53,
+        "h": 134
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40006.png",
+      "frame": {
+        "x": 1527,
+        "y": 1777,
+        "w": 80,
+        "h": 134
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 134
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 134
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50002.png",
+      "frame": {
+        "x": 1647,
+        "y": 1777,
+        "w": 55,
+        "h": 134
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 55,
+        "h": 134
+      },
+      "sourceSize": {
+        "w": 55,
+        "h": 134
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70002.png",
+      "frame": {
+        "x": 1868,
+        "y": 20,
+        "w": 54,
+        "h": 134
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 134
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 134
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70012.png",
+      "frame": {
+        "x": 1962,
+        "y": 20,
+        "w": 134,
+        "h": 113
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 134,
+        "h": 113
+      },
+      "sourceSize": {
+        "w": 134,
+        "h": 113
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40002.png",
+      "frame": {
+        "x": 1862,
+        "y": 747,
+        "w": 63,
+        "h": 133
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 63,
+        "h": 133
+      },
+      "sourceSize": {
+        "w": 63,
+        "h": 133
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60002.png",
+      "frame": {
+        "x": 1867,
+        "y": 566,
+        "w": 51,
+        "h": 133
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 51,
+        "h": 133
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 133
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00003.png",
+      "frame": {
+        "x": 1863,
+        "y": 201,
+        "w": 68,
+        "h": 132
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 68,
+        "h": 132
+      },
+      "sourceSize": {
+        "w": 68,
+        "h": 132
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20002.png",
+      "frame": {
+        "x": 1868,
+        "y": 373,
+        "w": 51,
+        "h": 132
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 51,
+        "h": 132
+      },
+      "sourceSize": {
+        "w": 51,
+        "h": 132
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30007.png",
+      "frame": {
+        "x": 1971,
+        "y": 173,
+        "w": 108,
+        "h": 131
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 108,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 108,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50007.png",
+      "frame": {
+        "x": 1971,
+        "y": 344,
+        "w": 115,
+        "h": 131
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 115,
+        "h": 131
+      },
+      "sourceSize": {
+        "w": 115,
+        "h": 131
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50012.png",
+      "frame": {
+        "x": 1965,
+        "y": 515,
+        "w": 131,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 131,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 131,
+        "h": 60
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60008.png",
+      "frame": {
+        "x": 1965,
+        "y": 615,
+        "w": 131,
+        "h": 98
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 131,
+        "h": 98
+      },
+      "sourceSize": {
+        "w": 131,
+        "h": 98
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10003.png",
+      "frame": {
+        "x": 1825,
+        "y": 1281,
+        "w": 66,
+        "h": 129
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 66,
+        "h": 129
+      },
+      "sourceSize": {
+        "w": 66,
+        "h": 129
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30012.png",
+      "frame": {
+        "x": 1965,
+        "y": 753,
+        "w": 129,
+        "h": 60
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 129,
+        "h": 60
+      },
+      "sourceSize": {
+        "w": 129,
+        "h": 60
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70003.png",
+      "frame": {
+        "x": 1851,
+        "y": 1107,
+        "w": 55,
+        "h": 129
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 55,
+        "h": 129
+      },
+      "sourceSize": {
+        "w": 55,
+        "h": 129
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30006.png",
+      "frame": {
+        "x": 1865,
+        "y": 920,
+        "w": 86,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 86,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 86,
+        "h": 128
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50006.png",
+      "frame": {
+        "x": 1991,
+        "y": 853,
+        "w": 98,
+        "h": 128
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 98,
+        "h": 128
+      },
+      "sourceSize": {
+        "w": 98,
+        "h": 128
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60003.png",
+      "frame": {
+        "x": 1830,
+        "y": 1450,
+        "w": 57,
+        "h": 127
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 57,
+        "h": 127
+      },
+      "sourceSize": {
+        "w": 57,
+        "h": 127
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10012.png",
+      "frame": {
+        "x": 1946,
+        "y": 1088,
+        "w": 126,
+        "h": 116
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 126,
+        "h": 116
+      },
+      "sourceSize": {
+        "w": 126,
+        "h": 116
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30003.png",
+      "frame": {
+        "x": 1946,
+        "y": 1244,
+        "w": 56,
+        "h": 126
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 56,
+        "h": 126
+      },
+      "sourceSize": {
+        "w": 56,
+        "h": 126
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50003.png",
+      "frame": {
+        "x": 1931,
+        "y": 1410,
+        "w": 62,
+        "h": 126
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 62,
+        "h": 126
+      },
+      "sourceSize": {
+        "w": 62,
+        "h": 126
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50009.png",
+      "frame": {
+        "x": 1927,
+        "y": 1576,
+        "w": 126,
+        "h": 105
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 126,
+        "h": 105
+      },
+      "sourceSize": {
+        "w": 126,
+        "h": 105
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40005.png",
+      "frame": {
+        "x": 1845,
+        "y": 1721,
+        "w": 72,
+        "h": 125
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 125
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 125
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00004.png",
+      "frame": {
+        "x": 1957,
+        "y": 1721,
+        "w": 72,
+        "h": 124
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 72,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 72,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10004.png",
+      "frame": {
+        "x": 20,
+        "y": 1977,
+        "w": 75,
+        "h": 124
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 75,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 75,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10008.png",
+      "frame": {
+        "x": 1176,
+        "y": 1879,
+        "w": 124,
+        "h": 82
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 124,
+        "h": 82
+      },
+      "sourceSize": {
+        "w": 124,
+        "h": 82
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10009.png",
+      "frame": {
+        "x": 1957,
+        "y": 1885,
+        "w": 124,
+        "h": 85
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 124,
+        "h": 85
+      },
+      "sourceSize": {
+        "w": 124,
+        "h": 85
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20003.png",
+      "frame": {
+        "x": 2042,
+        "y": 1244,
+        "w": 54,
+        "h": 124
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 54,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 54,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40003.png",
+      "frame": {
+        "x": 135,
+        "y": 1977,
+        "w": 68,
+        "h": 124
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 68,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 68,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70004.png",
+      "frame": {
+        "x": 243,
+        "y": 1977,
+        "w": 57,
+        "h": 124
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 57,
+        "h": 124
+      },
+      "sourceSize": {
+        "w": 57,
+        "h": 124
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30004.png",
+      "frame": {
+        "x": 2033,
+        "y": 1410,
+        "w": 59,
+        "h": 123
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 59,
+        "h": 123
+      },
+      "sourceSize": {
+        "w": 59,
+        "h": 123
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30005.png",
+      "frame": {
+        "x": 340,
+        "y": 1974,
+        "w": 67,
+        "h": 123
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 67,
+        "h": 123
+      },
+      "sourceSize": {
+        "w": 67,
+        "h": 123
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50004.png",
+      "frame": {
+        "x": 447,
+        "y": 1973,
+        "w": 70,
+        "h": 123
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 70,
+        "h": 123
+      },
+      "sourceSize": {
+        "w": 70,
+        "h": 123
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50005.png",
+      "frame": {
+        "x": 557,
+        "y": 1972,
+        "w": 81,
+        "h": 123
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 81,
+        "h": 123
+      },
+      "sourceSize": {
+        "w": 81,
+        "h": 123
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50008.png",
+      "frame": {
+        "x": 678,
+        "y": 1971,
+        "w": 123,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 123,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 123,
+        "h": 122
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30008.png",
+      "frame": {
+        "x": 1340,
+        "y": 1951,
+        "w": 108,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 108,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 108,
+        "h": 122
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40004.png",
+      "frame": {
+        "x": 1488,
+        "y": 1951,
+        "w": 71,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 71,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 71,
+        "h": 122
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60004.png",
+      "frame": {
+        "x": 1742,
+        "y": 1835,
+        "w": 57,
+        "h": 122
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 57,
+        "h": 122
+      },
+      "sourceSize": {
+        "w": 57,
+        "h": 122
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00012.png",
+      "frame": {
+        "x": 841,
+        "y": 1917,
+        "w": 104,
+        "h": 121
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 104,
+        "h": 121
+      },
+      "sourceSize": {
+        "w": 104,
+        "h": 121
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40009.png",
+      "frame": {
+        "x": 1599,
+        "y": 1951,
+        "w": 98,
+        "h": 120
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 98,
+        "h": 120
+      },
+      "sourceSize": {
+        "w": 98,
+        "h": 120
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50010.png",
+      "frame": {
+        "x": 1737,
+        "y": 2010,
+        "w": 120,
+        "h": 76
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 120,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 120,
+        "h": 76
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10007.png",
+      "frame": {
+        "x": 985,
+        "y": 1885,
+        "w": 119,
+        "h": 101
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 119,
+        "h": 101
+      },
+      "sourceSize": {
+        "w": 119,
+        "h": 101
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70005.png",
+      "frame": {
+        "x": 2136,
+        "y": 20,
+        "w": 63,
+        "h": 119
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 63,
+        "h": 119
+      },
+      "sourceSize": {
+        "w": 63,
+        "h": 119
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20007.png",
+      "frame": {
+        "x": 2069,
+        "y": 1721,
+        "w": 118,
+        "h": 109
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 118,
+        "h": 109
+      },
+      "sourceSize": {
+        "w": 118,
+        "h": 109
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60005.png",
+      "frame": {
+        "x": 2132,
+        "y": 1408,
+        "w": 67,
+        "h": 118
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 67,
+        "h": 118
+      },
+      "sourceSize": {
+        "w": 67,
+        "h": 118
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10010.png",
+      "frame": {
+        "x": 20,
+        "y": 2141,
+        "w": 117,
+        "h": 107
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 117,
+        "h": 107
+      },
+      "sourceSize": {
+        "w": 117,
+        "h": 107
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20004.png",
+      "frame": {
+        "x": 2136,
+        "y": 179,
+        "w": 59,
+        "h": 117
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 59,
+        "h": 117
+      },
+      "sourceSize": {
+        "w": 59,
+        "h": 117
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60011.png",
+      "frame": {
+        "x": 177,
+        "y": 2141,
+        "w": 117,
+        "h": 93
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 117,
+        "h": 93
+      },
+      "sourceSize": {
+        "w": 117,
+        "h": 93
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70010.png",
+      "frame": {
+        "x": 340,
+        "y": 2137,
+        "w": 117,
+        "h": 108
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 117,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 117,
+        "h": 108
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00013.png",
+      "frame": {
+        "x": 841,
+        "y": 2126,
+        "w": 104,
+        "h": 116
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 104,
+        "h": 116
+      },
+      "sourceSize": {
+        "w": 104,
+        "h": 116
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10005.png",
+      "frame": {
+        "x": 2112,
+        "y": 1021,
+        "w": 87,
+        "h": 116
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 87,
+        "h": 116
+      },
+      "sourceSize": {
+        "w": 87,
+        "h": 116
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70009.png",
+      "frame": {
+        "x": 678,
+        "y": 2133,
+        "w": 116,
+        "h": 88
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 116,
+        "h": 88
+      },
+      "sourceSize": {
+        "w": 116,
+        "h": 88
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00005.png",
+      "frame": {
+        "x": 2126,
+        "y": 336,
+        "w": 73,
+        "h": 115
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 73,
+        "h": 115
+      },
+      "sourceSize": {
+        "w": 73,
+        "h": 115
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00011.png",
+      "frame": {
+        "x": 985,
+        "y": 2126,
+        "w": 104,
+        "h": 115
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 104,
+        "h": 115
+      },
+      "sourceSize": {
+        "w": 104,
+        "h": 115
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20011.png",
+      "frame": {
+        "x": 497,
+        "y": 2136,
+        "w": 115,
+        "h": 93
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 115,
+        "h": 93
+      },
+      "sourceSize": {
+        "w": 115,
+        "h": 93
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30009.png",
+      "frame": {
+        "x": 1129,
+        "y": 2126,
+        "w": 115,
+        "h": 106
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 115,
+        "h": 106
+      },
+      "sourceSize": {
+        "w": 115,
+        "h": 106
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00010.png",
+      "frame": {
+        "x": 1284,
+        "y": 2126,
+        "w": 106,
+        "h": 114
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 106,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 106,
+        "h": 114
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60006.png",
+      "frame": {
+        "x": 1599,
+        "y": 2111,
+        "w": 90,
+        "h": 114
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 114
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 114
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30010.png",
+      "frame": {
+        "x": 1144,
+        "y": 2001,
+        "w": 113,
+        "h": 76
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 113,
+        "h": 76
+      },
+      "sourceSize": {
+        "w": 113,
+        "h": 76
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70006.png",
+      "frame": {
+        "x": 1729,
+        "y": 2126,
+        "w": 84,
+        "h": 113
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 84,
+        "h": 113
+      },
+      "sourceSize": {
+        "w": 84,
+        "h": 113
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20005.png",
+      "frame": {
+        "x": 2121,
+        "y": 1870,
+        "w": 71,
+        "h": 112
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 71,
+        "h": 112
+      },
+      "sourceSize": {
+        "w": 71,
+        "h": 112
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_20006.png",
+      "frame": {
+        "x": 1853,
+        "y": 2126,
+        "w": 95,
+        "h": 112
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 95,
+        "h": 112
+      },
+      "sourceSize": {
+        "w": 95,
+        "h": 112
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_60007.png",
+      "frame": {
+        "x": 1430,
+        "y": 2113,
+        "w": 112,
+        "h": 108
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 112,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 112,
+        "h": 108
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10011.png",
+      "frame": {
+        "x": 1988,
+        "y": 2022,
+        "w": 104,
+        "h": 111
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 104,
+        "h": 111
+      },
+      "sourceSize": {
+        "w": 104,
+        "h": 111
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70011.png",
+      "frame": {
+        "x": 2239,
+        "y": 20,
+        "w": 107,
+        "h": 110
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 107,
+        "h": 110
+      },
+      "sourceSize": {
+        "w": 107,
+        "h": 110
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_10006.png",
+      "frame": {
+        "x": 2093,
+        "y": 1573,
+        "w": 102,
+        "h": 108
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 102,
+        "h": 108
+      },
+      "sourceSize": {
+        "w": 102,
+        "h": 108
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_50011.png",
+      "frame": {
+        "x": 2239,
+        "y": 170,
+        "w": 106,
+        "h": 71
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 106,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 106,
+        "h": 71
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70007.png",
+      "frame": {
+        "x": 2239,
+        "y": 281,
+        "w": 106,
+        "h": 104
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 106,
+        "h": 104
+      },
+      "sourceSize": {
+        "w": 106,
+        "h": 104
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_70008.png",
+      "frame": {
+        "x": 2239,
+        "y": 425,
+        "w": 106,
+        "h": 89
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 106,
+        "h": 89
+      },
+      "sourceSize": {
+        "w": 106,
+        "h": 89
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40010.png",
+      "frame": {
+        "x": 2239,
+        "y": 554,
+        "w": 105,
+        "h": 90
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 105,
+        "h": 90
+      },
+      "sourceSize": {
+        "w": 105,
+        "h": 90
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00006.png",
+      "frame": {
+        "x": 2227,
+        "y": 1721,
+        "w": 80,
+        "h": 104
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 80,
+        "h": 104
+      },
+      "sourceSize": {
+        "w": 80,
+        "h": 104
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00015.png",
+      "frame": {
+        "x": 2239,
+        "y": 684,
+        "w": 104,
+        "h": 88
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 104,
+        "h": 88
+      },
+      "sourceSize": {
+        "w": 104,
+        "h": 88
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00014.png",
+      "frame": {
+        "x": 2239,
+        "y": 812,
+        "w": 103,
+        "h": 88
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 103,
+        "h": 88
+      },
+      "sourceSize": {
+        "w": 103,
+        "h": 88
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_30011.png",
+      "frame": {
+        "x": 1988,
+        "y": 2173,
+        "w": 103,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 103,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 103,
+        "h": 72
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40011.png",
+      "frame": {
+        "x": 2239,
+        "y": 940,
+        "w": 103,
+        "h": 68
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 103,
+        "h": 68
+      },
+      "sourceSize": {
+        "w": 103,
+        "h": 68
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40012.png",
+      "frame": {
+        "x": 2131,
+        "y": 2173,
+        "w": 103,
+        "h": 72
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 103,
+        "h": 72
+      },
+      "sourceSize": {
+        "w": 103,
+        "h": 72
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40013.png",
+      "frame": {
+        "x": 2239,
+        "y": 1048,
+        "w": 103,
+        "h": 81
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 103,
+        "h": 81
+      },
+      "sourceSize": {
+        "w": 103,
+        "h": 81
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40014.png",
+      "frame": {
+        "x": 2239,
+        "y": 1169,
+        "w": 103,
+        "h": 95
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 103,
+        "h": 95
+      },
+      "sourceSize": {
+        "w": 103,
+        "h": 95
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_40015.png",
+      "frame": {
+        "x": 2239,
+        "y": 1304,
+        "w": 103,
+        "h": 95
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 103,
+        "h": 95
+      },
+      "sourceSize": {
+        "w": 103,
+        "h": 95
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00009.png",
+      "frame": {
+        "x": 2239,
+        "y": 1439,
+        "w": 99,
+        "h": 92
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 99,
+        "h": 92
+      },
+      "sourceSize": {
+        "w": 99,
+        "h": 92
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00007.png",
+      "frame": {
+        "x": 2235,
+        "y": 1571,
+        "w": 90,
+        "h": 92
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 92
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 92
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    {
+      "filename": "villager_death_00008.png",
+      "frame": {
+        "x": 2232,
+        "y": 1865,
+        "w": 90,
+        "h": 75
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 90,
+        "h": 75
+      },
+      "sourceSize": {
+        "w": 90,
+        "h": 75
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "villager.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2366,
+      "h": 2268
+    },
+    "scale": 1
+  }
+}

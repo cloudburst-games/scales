@@ -42,17 +42,26 @@ public partial class MainMenuScene : Node, ISceneTransitionable
         _cntPnlAdventures.Visible = false;
         _cntPnlAdventures.NewPressed += (int adventure, int difficulty) => this.OnNewAdventure((CntPnlAdventures.AdventureSelectedMode)adventure, (CntPnlAdventures.DifficultyMode)difficulty);
         // ConnectDifficultyBtns();
-        _cntPnlAdventures.ContinuePressed += (int adventure) => this.OnContinueAdventure((CntPnlAdventures.AdventureSelectedMode)adventure);
+        _cntPnlAdventures.ContinuePressed += (int adventure, int difficulty) => this.OnContinueAdventure((CntPnlAdventures.AdventureSelectedMode)adventure, (CntPnlAdventures.DifficultyMode)difficulty);
         _btnAdventure.Pressed += () => _cntPnlAdventures.Visible = true;
 
         // _pnlCharacters.CharacterClicked += (int num) => _pnlCharacterDetails.OnCharacterSelected((StoryCharacter.StoryCharacterMode)num);
 
     }
 
-    private void OnContinueAdventure(CntPnlAdventures.AdventureSelectedMode adventure)
+    private void OnContinueAdventure(CntPnlAdventures.AdventureSelectedMode adventure, CntPnlAdventures.DifficultyMode difficulty)
     {
+        string savePath = $"/Checkpoint/GilgAdventure"; // for future adventures would need to vary this
+        JSONDataHandler dataHandler = new();
+        CheckpointData data = dataHandler.LoadFromJSON<CheckpointData>(savePath);
+        _battleData.CheckpointData = data;
+        _battleData.Difficulty = (int)difficulty;
         // TODO when checkpoint stuff implemented
         _battleData.AdventureSelected = (int)adventure;
+        GetNode<SettingsManager>("Control/SettingsManager").Exit();
+        _battleSceneTransition.SharedData = _battleData;
+        _battleSceneTransition.Start(SceneTransition.LoadType.AnimatedAuto);
+
         // _battleData.STOREJSON DATA SOMEHOW FOR TRANSFER!
     }
 

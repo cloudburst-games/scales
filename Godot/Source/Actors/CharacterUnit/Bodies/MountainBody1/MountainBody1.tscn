@@ -3,25 +3,25 @@
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_ymfav"]
 [ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="2_wpeae"]
 [ext_resource type="Texture2D" uid="uid://dwh50nlqdj0ld" path="res://Assets/Graphics/Sprites/Actors/Mountain/MountainIdle_1.png" id="3_rv3tb"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle1_mountain1.tres" id="4_t0foo"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle2_mountain1.tres" id="5_k08fm"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle3_mountain1.tres" id="6_8b34u"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle4_mountain1.tres" id="7_lvewh"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle5_mountain1.tres" id="8_tq4gj"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle6_mountain1.tres" id="9_rupsm"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw1_mountain1.tres" id="10_alb8w"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw2_mountain1.tres" id="11_3i5hj"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw3_mountain1.tres" id="12_4m5ol"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw4_mountain1.tres" id="13_rwifp"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw5_mountain1.tres" id="14_qepai"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw6_mountain1.tres" id="15_4swqq"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk1_mountain1.tres" id="16_6sk6c"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk2_mountain1.tres" id="17_0pv6p"]
+[ext_resource type="Animation" uid="uid://b7l2rteoxoxju" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle1_mountain1.tres" id="4_t0foo"]
+[ext_resource type="Animation" uid="uid://j8lkkuyrgyte" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle2_mountain1.tres" id="5_k08fm"]
+[ext_resource type="Animation" uid="uid://lm3tro8qv3y2" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle3_mountain1.tres" id="6_8b34u"]
+[ext_resource type="Animation" uid="uid://06b4qqp8i4hn" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle4_mountain1.tres" id="7_lvewh"]
+[ext_resource type="Animation" uid="uid://fdxvpol3rab" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle5_mountain1.tres" id="8_tq4gj"]
+[ext_resource type="Animation" uid="uid://dcgbswl7er1f8" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/idle6_mountain1.tres" id="9_rupsm"]
+[ext_resource type="Animation" uid="uid://b6slkpyk66gky" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw1_mountain1.tres" id="10_alb8w"]
+[ext_resource type="Animation" uid="uid://dxqiaufk7c24v" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw2_mountain1.tres" id="11_3i5hj"]
+[ext_resource type="Animation" uid="uid://tkf8xcwl4tfe" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw3_mountain1.tres" id="12_4m5ol"]
+[ext_resource type="Animation" uid="uid://c3o5klj4mc0c6" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw4_mountain1.tres" id="13_rwifp"]
+[ext_resource type="Animation" uid="uid://bmlluj8soffd" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw5_mountain1.tres" id="14_qepai"]
+[ext_resource type="Animation" uid="uid://d3e7kq3e4i4t0" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/throw6_mountain1.tres" id="15_4swqq"]
+[ext_resource type="Animation" uid="uid://cjg0uiynjshl5" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk1_mountain1.tres" id="16_6sk6c"]
+[ext_resource type="Animation" uid="uid://brjtw1rc0yhxt" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk2_mountain1.tres" id="17_0pv6p"]
 [ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="17_lifxt"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk3_mountain1.tres" id="18_yt6rd"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk4_mountain1.tres" id="19_w3lcr"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk5_mountain1.tres" id="20_gdpny"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk6_mountain1.tres" id="21_2rvi6"]
+[ext_resource type="Animation" uid="uid://c3ei4703cuqpb" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk3_mountain1.tres" id="18_yt6rd"]
+[ext_resource type="Animation" uid="uid://c034m7bmnjseh" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk4_mountain1.tres" id="19_w3lcr"]
+[ext_resource type="Animation" uid="uid://db641tlvsex57" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk5_mountain1.tres" id="20_gdpny"]
+[ext_resource type="Animation" uid="uid://b60icpbu6dtw5" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody1/AnimSequences/walk6_mountain1.tres" id="21_2rvi6"]
 [ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="23_v0ctj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_btc0f"]
@@ -47,6 +47,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [SubResource("ShaderMaterial_btc0f")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sbsm8"]
 _data = {
@@ -61,6 +73,7 @@ shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
 
 [sub_resource type="Animation" id="Animation_6mcxk"]
 resource_name = "dying"
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -108,6 +121,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.38, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 2), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c34kw"]
@@ -313,10 +338,11 @@ script = ExtResource("1_ymfav")
 [node name="Sprite" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
 material = SubResource("ShaderMaterial_btc0f")
+scale = Vector2(2, 2)
 texture = ExtResource("3_rv3tb")
-offset = Vector2(0, -52.5)
+offset = Vector2(0, -26.25)
 region_enabled = true
-region_rect = Rect2(1925, 5963, 960, 540)
+region_rect = Rect2(5291.5, 2168.5, 480, 270)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1.5)

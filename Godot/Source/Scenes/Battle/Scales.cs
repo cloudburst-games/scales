@@ -22,9 +22,19 @@ public partial class Scales : RefCounted
 
     private float _battleFavour = 0; // from -0.5 to 0.5 -> shamash to ishtar
 
-    private float _overallFavour = 0;
+    // private float _overallFavour = 0;
 
     private float _increment = 0.05f;
+
+    public void SetFavourOnLoad(float battleFavour)
+    {
+        _battleFavour = battleFavour;
+    }
+
+    public float GetFavourOnSave()
+    {
+        return _battleFavour;
+    }
 
     public void FavourShamash(int num = 1)
     {
@@ -62,11 +72,11 @@ public partial class Scales : RefCounted
         }
     }
 
-    public void CollateFavoursEndOfBattle()
-    {
-        _overallFavour += _battleFavour;
-        _battleFavour = 0;
-    }
+    // public void CollateFavoursEndOfBattle()
+    // {
+    //     _overallFavour += _battleFavour;
+    //     _battleFavour = 0;
+    // }
 
     public FavourMode GetCurrentFavour()
     {
@@ -78,10 +88,10 @@ public partial class Scales : RefCounted
         return whichFavour < -0.1f ? FavourMode.Shamash : whichFavour < 0.2 ? FavourMode.Balanced : FavourMode.Ishtar;
     }
 
-    public FavourMode CheckOverallFavour()
-    {
-        return FavourCheck(_overallFavour);
-    }
+    // public FavourMode CheckOverallFavour()
+    // {
+    //     return FavourCheck(_overallFavour);
+    // }
 
     public float GetScaleAnimationTime()
     {

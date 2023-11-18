@@ -40,6 +40,17 @@ public partial class PnlCharacterSelect : Panel
         _companionButtons.First().Value.ButtonPressed = true;
     }
 
+    public void Exit()
+    {
+        GD.Print(10);
+        // _companionButtons.Values.ToList().ForEach(x => x.QueueFree());
+        GD.Print(20);
+        // _HBoxCharacterSelect.GetChildren().ToList().ForEach(x => x.QueueFree());
+        GD.Print(30);
+        _companionButtons.Clear();
+        GD.Print(40);
+    }
+
     private BaseTextureButton NewCompanionButton(CharacterUnit characterUnit)
     {
         StoryCharacterData data = characterUnit.CharacterData;
@@ -57,6 +68,10 @@ public partial class PnlCharacterSelect : Panel
         _companionButtons[characterUnit] = btn;
         btn.Toggled += (bool toggled) =>
         {
+            // GD.Print("Error begin ////");
+            // GD.Print(characterUnit);
+            // GD.Print(data.Name);
+            // GD.Print("Error end ////");
             EmitSignal(SignalName.CharacterSelected, characterUnit, toggled);
             if (toggled)
             {

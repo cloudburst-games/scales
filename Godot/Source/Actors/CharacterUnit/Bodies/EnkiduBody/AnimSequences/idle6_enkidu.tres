@@ -1,6 +1,6 @@
 [gd_resource type="Animation" load_steps=2 format=3 uid="uid://05bgrkmeld03"]
 
-[ext_resource type="Texture2D" uid="uid://mg506pp88o7b" path="res://Assets/Graphics/Sprites/Actors/Enkidu/Enki_IdleV2Stylised.png" id="1_7kw3s"]
+[ext_resource type="Texture2D" uid="uid://mg506pp88o7b" path="res://Assets/Graphics/Sprites/Actors/Enkidu/Enki_IdleV2Stylised.png" id="1_ljhy0"]
 
 [resource]
 length = 4.0
@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2, 2.33333, 2.66667, 3, 3.33333, 3.66667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Rect2(1, 5421, 960, 540), Rect2(963, 5421, 960, 540), Rect2(1925, 5421, 960, 540), Rect2(2887, 5421, 960, 540), Rect2(3849, 5421, 960, 540), Rect2(4811, 5421, 960, 540), Rect2(5773, 1, 960, 540), Rect2(5773, 543, 960, 540), Rect2(5773, 1085, 960, 540), Rect2(5773, 1627, 960, 540), Rect2(5773, 2169, 960, 540), Rect2(5773, 2711, 960, 540)]
+"values": [Rect2(0.5, 2710.5, 480, 270), Rect2(481.5, 2710.5, 480, 270), Rect2(962.5, 2710.5, 480, 270), Rect2(1443.5, 2710.5, 480, 270), Rect2(1924.5, 2710.5, 480, 270), Rect2(2405.5, 2710.5, 480, 270), Rect2(2886.5, 0.5, 480, 270), Rect2(2886.5, 271.5, 480, 270), Rect2(2886.5, 542.5, 480, 270), Rect2(2886.5, 813.5, 480, 270), Rect2(2886.5, 1084.5, 480, 270), Rect2(2886.5, 1355.5, 480, 270)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -27,5 +27,5 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_7kw3s")]
+"values": [ExtResource("1_ljhy0")]
 }

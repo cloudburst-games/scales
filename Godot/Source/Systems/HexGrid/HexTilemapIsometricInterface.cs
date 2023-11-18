@@ -59,18 +59,22 @@ public partial class HexTilemapIsometricInterface : Node2D
         return new Vector2[2] { startPos, endPos };
     }
 
+    public bool StillMarkingObstacles { get; set; } = true;
+
     public async void MarkAllHexObstacles(int levelID)
     {
-        string obstacleDataPath = "/RuntimeData/ObstacleData" + levelID.ToString() + ".json";
+        string obstacleDataPath = "RuntimeData/ObstacleData" + levelID.ToString() + ".json";
         // _JSONDataHandler.SaveToDisk(PackAllSettings(), "/Settings.json");
-        if (System.IO.File.Exists(OS.GetUserDataDir() + obstacleDataPath))
+        if (System.IO.File.Exists(obstacleDataPath))
         {
             JSONDataHandler dataHandler = new();
-            HexGridData hexGridData = dataHandler.LoadFromJSON<HexGridData>(obstacleDataPath);
+            HexGridData hexGridData = dataHandler.LoadFromJSON<HexGridData>(obstacleDataPath, false);
             foreach (Vector2 gridPos in hexGridData.ObstacleGridPositions)
             {
                 _hexGrid.Cells[gridPos].Obstacle = true;
+                // GD.Print(_hexGrid.Cells[gridPos].Obstacle);
             }
+            StillMarkingObstacles = false;
             EmitSignal(SignalName.FinishedMarkingObstacles);
             return;
         }
@@ -94,7 +98,7 @@ public partial class HexTilemapIsometricInterface : Node2D
                 }
             }
             JSONDataHandler dataHandler = new();
-            dataHandler.SaveToDisk(hexGridData, obstacleDataPath);
+            dataHandler.SaveToDisk(hexGridData, obstacleDataPath, false);
         }
     }
 
@@ -139,6 +143,136 @@ public partial class HexTilemapIsometricInterface : Node2D
 
         await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
         await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+        await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
         // await ToSignal(GetTree().CreateTimer(1), SceneTreeTimer.SignalName.Timeout);
         if (dummyArea.GetOverlappingBodies().Count > 0)
         {
@@ -153,7 +287,96 @@ public partial class HexTilemapIsometricInterface : Node2D
         {
             await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
             await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
+            await _hexGrid.ToSignal(_hexGrid.GetTree(), "process_frame");
             // FinishedMarkingObstacles?.Invoke();
+            StillMarkingObstacles = false;
             EmitSignal(SignalName.FinishedMarkingObstacles);
         }
     }

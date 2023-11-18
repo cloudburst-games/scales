@@ -31,6 +31,7 @@ public partial class Battler : Node2D
 
 
     public Rect2 UIBounds { get; set; } = new(new Vector2(0, 0), new Vector2(0, 0));
+    // public Rect2 ScalesBounds { get; set; } = new();
     public List<CharacterUnit> AllCharacters { get; set; } = new();
     public List<CharacterUnit> CharactersAwaitingTurn { get; set; }
 
@@ -96,6 +97,14 @@ public partial class Battler : Node2D
 
         SetState(BattleMode.Starting); // this is when character obstacles are made
     }
+
+    // public void Exit()
+    // {
+    //     BattleGrid.QueueFree();
+    //     // AllSpells.Values.ToList().ForEach(x => x.Dispose());
+    //     // AllSpells.Clear();
+    //     AllCharacters.ForEach(x => x.QueueFree());
+    // }
 
     public void RecalculateUserHexes()
     {

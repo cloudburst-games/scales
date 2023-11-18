@@ -13,8 +13,8 @@ public partial class PnlPerkSelect : Panel
     [Export]
     private BaseTextureButton _btnContinue;
 
-    [Signal]
-    public delegate void UpgradeFinishedEventHandler(Godot.Collections.Dictionary<CharacterUnit, Godot.Collections.Array<Perk>> characterPerks);
+    // [Signal]
+    // public delegate void UpgradeFinishedEventHandler(Godot.Collections.Dictionary<CharacterUnit, Godot.Collections.Array<Perk>> characterPerks);
     [Export]
     private Label _lblPerkSelect;
     private CharacterUnit _activeCharacter;
@@ -25,29 +25,48 @@ public partial class PnlPerkSelect : Panel
     private int _numberOfPerksPerCharacter = 1;
 
     private List<Perk> _perkPool { get; set; }
+
+    public delegate void FinishedSelectingPerksEventHandler(Dictionary<CharacterUnit, Perk[]> characterPerks);
+    public event FinishedSelectingPerksEventHandler FinishedSelectingPerks;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         _btnContinue.Pressed += () =>
         {
-            EmitSignal(SignalName.UpgradeFinished, GetParsedCharacterPerkDict(_characterPerks));
+            GD.Print(99);
+            FinishedSelectingPerks?.Invoke(_characterPerks);
+            // EmitSignal(SignalName.UpgradeFinished, GetParsedCharacterPerkDict(_characterPerks));
         };
     }
 
-    public Godot.Collections.Dictionary<CharacterUnit, Godot.Collections.Array<Perk>> GetParsedCharacterPerkDict(Dictionary<CharacterUnit, Perk[]> input)
+    public void Exit()
     {
-        var output = new Godot.Collections.Dictionary<CharacterUnit, Godot.Collections.Array<Perk>>();
-        foreach (KeyValuePair<CharacterUnit, Perk[]> kv in input)
-        {
-            var godotList = new Godot.Collections.Array<Perk>();
-            foreach (Perk p in kv.Value)
-            {
-                godotList.Add(p);
-            }
-            output[kv.Key] = godotList;
-        }
-        return output;
+        FinishedSelectingPerks = null;
     }
+
+    // public Godot.Collections.Dictionary<CharacterUnit, Godot.Collections.Array<Perk>> GetParsedCharacterPerkDict(Dictionary<CharacterUnit, Perk[]> input)
+    // {
+    //     GD.Print(100);
+    //     var output = new Godot.Collections.Dictionary<CharacterUnit, Godot.Collections.Array<Perk>>();
+    //     GD.Print(200);
+    //     foreach (KeyValuePair<CharacterUnit, Perk[]> kv in input)
+    //     {
+    //         GD.Print(300);
+    //         var godotList = new Godot.Collections.Array<Perk>();
+    //         GD.Print(400);
+    //         foreach (Perk p in kv.Value)
+    //         {
+    //             GD.Print(500);
+    //             godotList.Add(p);
+    //             GD.Print(600);
+    //         }
+    //         output[kv.Key] = godotList;
+    //         GD.Print(700);
+    //     }
+    //     GD.Print(800);
+    //     return output;
+    // }
 
 
     public void SetActiveCharacter(CharacterUnit activeCharacter)

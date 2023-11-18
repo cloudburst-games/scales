@@ -397,7 +397,7 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
     private bool IsOverUI(Vector2 mousePos)
     {
         Battler battler = IdleBattleState.Battler;
-        return battler.UIBounds.HasPoint(mousePos);
+        return battler.UIBounds.HasPoint(mousePos);// || battler.ScalesBounds.HasPoint(mousePos);
     }
 
 }

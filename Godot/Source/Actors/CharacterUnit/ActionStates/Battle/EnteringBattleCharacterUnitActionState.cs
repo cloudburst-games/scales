@@ -44,7 +44,7 @@ public partial class EnteringBattleCharacterUnitActionState : CharacterUnitActio
         CharacterUnit.GlobalPosition += direction * CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MoveSpeed] * (float)delta;
 
         this.CharacterUnit.AnimationTree.Set("parameters/Moving/blend_position", direction);
-        if (CharacterUnit.GlobalPosition.DistanceTo(CharacterUnit.BattleTargetPosition) < 5)
+        if (CharacterUnit.GlobalPosition.DistanceTo(CharacterUnit.BattleTargetPosition) < CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MoveSpeed] / 20)
         {
             CharacterUnit.GlobalPosition = CharacterUnit.BattleTargetPosition;
             // THIS IS ONLY IF WE DO NOT USE AN ADVENTURE MAP... DEPENDS ON SCOPE!

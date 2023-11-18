@@ -688,7 +688,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Undodgeable,
         };
         BattleRoller.RollerOutcomeInformation res = BattleRoller.CalculateAttack(originCharacter.Rand, unmissable);
-
+        GD.Print("amount: ", res.FinalDamage);
         CharacterRoundEffect roundEffect = new(
 
             name: spell.Name + ": " + spellEffect.Name,

@@ -1,6 +1,6 @@
-[gd_resource type="Animation" load_steps=2 format=3]
+[gd_resource type="Animation" load_steps=2 format=3 uid="uid://c4lvo3gsvdgbs"]
 
-[ext_resource type="Texture2D" path="res://Assets/Graphics/Sprites/Actors/Enkidu/EnkiV2_walkStylised.png" id="1_e6gwx"]
+[ext_resource type="Texture2D" uid="uid://d230lah64ldwx" path="res://Assets/Graphics/Sprites/Actors/Enkidu/EnkiV2_walkStylised.png" id="1_q0nal"]
 
 [resource]
 length = 0.775
@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15, 0.175, 0.2, 0.225, 0.25, 0.275, 0.3, 0.325, 0.35, 0.375, 0.4, 0.425, 0.45, 0.475, 0.5, 0.525, 0.55, 0.575, 0.6, 0.625, 0.65, 0.675, 0.7, 0.725, 0.75),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Rect2(1, 1, 960, 540), Rect2(963, 1, 960, 540), Rect2(1925, 1, 960, 540), Rect2(2887, 1, 960, 540), Rect2(3849, 1, 960, 540), Rect2(4811, 1, 960, 540), Rect2(5773, 1, 960, 540), Rect2(6735, 1, 960, 540), Rect2(7697, 1, 960, 540), Rect2(8659, 1, 960, 540), Rect2(1, 543, 960, 540), Rect2(963, 543, 960, 540), Rect2(1925, 543, 960, 540), Rect2(2887, 543, 960, 540), Rect2(3849, 543, 960, 540), Rect2(4811, 543, 960, 540), Rect2(5773, 543, 960, 540), Rect2(6735, 543, 960, 540), Rect2(7697, 543, 960, 540), Rect2(8659, 543, 960, 540), Rect2(1, 1085, 960, 540), Rect2(963, 1085, 960, 540), Rect2(1925, 1085, 960, 540), Rect2(2887, 1085, 960, 540), Rect2(3849, 1085, 960, 540), Rect2(4811, 1085, 960, 540), Rect2(5773, 1085, 960, 540), Rect2(6735, 1085, 960, 540), Rect2(7697, 1085, 960, 540), Rect2(8659, 1085, 960, 540), Rect2(1, 1627, 960, 540)]
+"values": [Rect2(0.5, 0.5, 480, 270), Rect2(481.5, 0.5, 480, 270), Rect2(962.5, 0.5, 480, 270), Rect2(1443.5, 0.5, 480, 270), Rect2(1924.5, 0.5, 480, 270), Rect2(2405.5, 0.5, 480, 270), Rect2(2886.5, 0.5, 480, 270), Rect2(3367.5, 0.5, 480, 270), Rect2(3848.5, 0.5, 480, 270), Rect2(4329.5, 0.5, 480, 270), Rect2(0.5, 271.5, 480, 270), Rect2(481.5, 271.5, 480, 270), Rect2(962.5, 271.5, 480, 270), Rect2(1443.5, 271.5, 480, 270), Rect2(1924.5, 271.5, 480, 270), Rect2(2405.5, 271.5, 480, 270), Rect2(2886.5, 271.5, 480, 270), Rect2(3367.5, 271.5, 480, 270), Rect2(3848.5, 271.5, 480, 270), Rect2(4329.5, 271.5, 480, 270), Rect2(0.5, 542.5, 480, 270), Rect2(481.5, 542.5, 480, 270), Rect2(962.5, 542.5, 480, 270), Rect2(1443.5, 542.5, 480, 270), Rect2(1924.5, 542.5, 480, 270), Rect2(2405.5, 542.5, 480, 270), Rect2(2886.5, 542.5, 480, 270), Rect2(3367.5, 542.5, 480, 270), Rect2(3848.5, 542.5, 480, 270), Rect2(4329.5, 542.5, 480, 270), Rect2(0.5, 813.5, 480, 270)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -27,5 +27,5 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_e6gwx")]
+"values": [ExtResource("1_q0nal")]
 }

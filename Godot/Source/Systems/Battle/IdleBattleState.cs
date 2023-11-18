@@ -590,7 +590,10 @@ public class IdleBattleState : BattleState
                     SpellEffectManager.Spell.PatronMode patron = Battler.AllSpells[spell].Patron;
                     if ((patron == SpellEffectManager.Spell.PatronMode.Shamash && CanAffordChargeCost(Battler.AllSpells[spell])) || (patron == SpellEffectManager.Spell.PatronMode.Ishtar && CanAffordReagentCost(Battler.AllSpells[spell])))
                     {
-                        return true;
+                        if (CanAfford(MeleeRangedCastAPCost()))
+                        {
+                            return true;
+                        }
                     }
                 }
             }

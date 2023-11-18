@@ -1,6 +1,6 @@
 [gd_resource type="Animation" load_steps=2 format=3 uid="uid://r0sknpug45hc"]
 
-[ext_resource type="Texture2D" uid="uid://4f2um87bjsxc" path="res://Assets/Graphics/Sprites/Actors/Townsfolk_AMAB/AMABIdleStyle2.png" id="1_jbeyw"]
+[ext_resource type="Texture2D" uid="uid://4f2um87bjsxc" path="res://Assets/Graphics/Sprites/Actors/Townsfolk_AMAB/AMABIdleStyle2.png" id="1_kge0g"]
 
 [resource]
 length = 1.25
@@ -15,7 +15,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Rect2(7697, 7047, 960, 540), Rect2(1, 7589, 960, 540), Rect2(963, 7589, 960, 540), Rect2(1925, 7589, 960, 540), Rect2(2887, 7589, 960, 540), Rect2(3849, 7589, 960, 540), Rect2(4811, 7589, 960, 540), Rect2(5773, 7589, 960, 540), Rect2(6735, 7589, 960, 540), Rect2(7697, 7589, 960, 540), Rect2(1, 8131, 960, 540), Rect2(963, 8131, 960, 540), Rect2(1925, 8131, 960, 540), Rect2(2887, 8131, 960, 540), Rect2(3849, 8131, 960, 540), Rect2(4811, 8131, 960, 540), Rect2(5773, 8131, 960, 540), Rect2(6735, 8131, 960, 540), Rect2(7697, 8131, 960, 540), Rect2(8659, 1, 960, 540), Rect2(8659, 543, 960, 540), Rect2(8659, 1085, 960, 540), Rect2(8659, 1627, 960, 540), Rect2(8659, 2169, 960, 540), Rect2(8659, 2711, 960, 540)]
+"values": [Rect2(3848.5, 3523.5, 480, 270), Rect2(0.5, 3794.5, 480, 270), Rect2(481.5, 3794.5, 480, 270), Rect2(962.5, 3794.5, 480, 270), Rect2(1443.5, 3794.5, 480, 270), Rect2(1924.5, 3794.5, 480, 270), Rect2(2405.5, 3794.5, 480, 270), Rect2(2886.5, 3794.5, 480, 270), Rect2(3367.5, 3794.5, 480, 270), Rect2(3848.5, 3794.5, 480, 270), Rect2(0.5, 4065.5, 480, 270), Rect2(481.5, 4065.5, 480, 270), Rect2(962.5, 4065.5, 480, 270), Rect2(1443.5, 4065.5, 480, 270), Rect2(1924.5, 4065.5, 480, 270), Rect2(2405.5, 4065.5, 480, 270), Rect2(2886.5, 4065.5, 480, 270), Rect2(3367.5, 4065.5, 480, 270), Rect2(3848.5, 4065.5, 480, 270), Rect2(4329.5, 0.5, 480, 270), Rect2(4329.5, 271.5, 480, 270), Rect2(4329.5, 542.5, 480, 270), Rect2(4329.5, 813.5, 480, 270), Rect2(4329.5, 1084.5, 480, 270), Rect2(4329.5, 1355.5, 480, 270)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -27,5 +27,5 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1_jbeyw")]
+"values": [ExtResource("1_kge0g")]
 }

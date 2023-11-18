@@ -185,6 +185,7 @@ public partial class BasePanel : Panel
     {
         if (_focusRect != null)
         {
+            _focusRect.Owner = null;
             _focusRect.QueueFree();
             _focusRect = null;
         }
@@ -240,6 +241,7 @@ public partial class BasePanel : Panel
             {
                 if (CloseBtn != null)
                 {
+                    CloseBtn.Owner = null;
                     CloseBtn.QueueFree();
                     CloseBtn = null;
                 }

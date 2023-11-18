@@ -3,28 +3,28 @@
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_g4a4y"]
 [ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="2_hy0l8"]
 [ext_resource type="Texture2D" uid="uid://ohfaxqa6hfar" path="res://Assets/Graphics/Sprites/Actors/Mountain/MountainIdle_2.png" id="3_bqifk"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle1_mountain2.tres" id="4_ta2v4"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle2_mountain2.tres" id="5_65tu4"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle3_mountain2.tres" id="6_gkasq"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle4_mountain2.tres" id="7_vbinw"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle5_mountain2.tres" id="8_7tayr"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle6_mountain2.tres" id="9_t3nim"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw1_mountain2.tres" id="10_dxxox"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw2_mountain2.tres" id="11_7paj3"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw3_mountain2.tres" id="12_ayoyl"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw4_mountain2.tres" id="13_0h8kc"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw5_mountain2.tres" id="14_hbkwl"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw6_mountain2.tres" id="15_vf47d"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk1_mountain2.tres" id="16_gicxc"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk2_mountain2.tres" id="17_j7ksn"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk3_mountain2.tres" id="18_lrcm2"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk4_mountain2.tres" id="19_tgh5j"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk5_mountain2.tres" id="20_5cl1e"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk6_mountain2.tres" id="21_6q1gh"]
+[ext_resource type="Animation" uid="uid://k7xrks3qk7n2" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle1_mountain2.tres" id="4_ta2v4"]
+[ext_resource type="Animation" uid="uid://ccmcbvqqf2pk5" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle2_mountain2.tres" id="5_65tu4"]
+[ext_resource type="Animation" uid="uid://b27j4neynpnur" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle3_mountain2.tres" id="6_gkasq"]
+[ext_resource type="Animation" uid="uid://b7mo1qaf8vmub" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle4_mountain2.tres" id="7_vbinw"]
+[ext_resource type="Animation" uid="uid://dpxbot1hbodci" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle5_mountain2.tres" id="8_7tayr"]
+[ext_resource type="Animation" uid="uid://d2yv6ov8cxj2k" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/idle6_mountain2.tres" id="9_t3nim"]
+[ext_resource type="Animation" uid="uid://bytkl504dfhc6" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw1_mountain2.tres" id="10_dxxox"]
+[ext_resource type="Animation" uid="uid://ducyo5pvdxexr" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw2_mountain2.tres" id="11_7paj3"]
+[ext_resource type="Animation" uid="uid://bafnqh68youit" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw3_mountain2.tres" id="12_ayoyl"]
+[ext_resource type="Animation" uid="uid://b57rilr67bhxm" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw4_mountain2.tres" id="13_0h8kc"]
+[ext_resource type="Animation" uid="uid://dwg0frk10wbdi" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw5_mountain2.tres" id="14_hbkwl"]
+[ext_resource type="Animation" uid="uid://vhodb2xk613q" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/throw6_mountain2.tres" id="15_vf47d"]
+[ext_resource type="Animation" uid="uid://db67jv8qy5fqd" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk1_mountain2.tres" id="16_gicxc"]
+[ext_resource type="Animation" uid="uid://deernixqtcbjn" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk2_mountain2.tres" id="17_j7ksn"]
+[ext_resource type="Animation" uid="uid://cjaqp4657pkjb" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk3_mountain2.tres" id="18_lrcm2"]
+[ext_resource type="Animation" uid="uid://dc5xfm44hwfhb" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk4_mountain2.tres" id="19_tgh5j"]
+[ext_resource type="Animation" uid="uid://kqir01dejmc" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk5_mountain2.tres" id="20_5cl1e"]
+[ext_resource type="Animation" uid="uid://cjcryj6aom12t" path="res://Source/Actors/CharacterUnit/Bodies/MountainBody2/AnimSequences/walk6_mountain2.tres" id="21_6q1gh"]
 [ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="22_sckoc"]
 [ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="23_gejfc"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_klsaj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_btc0f"]
 shader = ExtResource("2_hy0l8")
 shader_parameter/width = 0.0
 shader_parameter/speed = 10.0
@@ -32,12 +32,6 @@ shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xdano"]
 radius = 20.2237
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_btc0f"]
-shader = ExtResource("2_hy0l8")
-shader_parameter/width = 0.0
-shader_parameter/speed = 10.0
-shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
 
 [sub_resource type="Animation" id="Animation_wjip6"]
 length = 0.001
@@ -65,14 +59,33 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sbsm8"]
 _data = {
 "RESET": SubResource("Animation_wjip6")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_klsaj"]
+shader = ExtResource("2_hy0l8")
+shader_parameter/width = 0.0
+shader_parameter/speed = 10.0
+shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
+
 [sub_resource type="Animation" id="Animation_f3cmo"]
 resource_name = "dying"
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -120,6 +133,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.38, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 2), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_70mxg"]
@@ -323,11 +348,12 @@ graph_offset = Vector2(-14, -89.9099)
 script = ExtResource("1_g4a4y")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_klsaj")
+material = SubResource("ShaderMaterial_btc0f")
+scale = Vector2(2, 2)
 texture = ExtResource("3_bqifk")
-offset = Vector2(0, -52.5)
+offset = Vector2(0, -26.25)
 region_enabled = true
-region_rect = Rect2(1925, 4337, 960, 540)
+region_rect = Rect2(4329.5, 2439.5, 480, 270)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1.5)

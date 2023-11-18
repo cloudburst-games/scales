@@ -70,9 +70,34 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     public CharacterUnit.TreeLink TreeLink { get; private set; }
     public Dictionary<AttributeMode, int> Attributes { get; set; }
     public Dictionary<StatMode, int> Stats { get; set; }
-
+    public Dictionary<int, List<string>> Barks { get; set; }
     public List<CharacterRoundEffect> CurrentEffects { get; set; } = new();
 
+
+    public CharacterCheckpointData PackData()
+    {
+        return new CharacterCheckpointData
+        {
+            Name = this.Name,
+            Description = this.Description,
+            PatronGod = this.PatronGod,
+            BodyPath = this.BodyPath,
+            PortraitPath = this.PortraitPath,
+            CharacterBtnNormalPath = this.CharacterBtnNormalPath,
+            CharacterBtnPressedPath = this.CharacterBtnPressedPath,
+            _meleeWeaponEquipped = this._meleeWeaponEquipped,
+            _rangedWeaponEquipped = this._rangedWeaponEquipped,
+            Perks = this.Perks.Select(x => (int)x).ToList(),
+            Level = this.Level,
+            Might = this.Attributes[AttributeMode.Might],
+            Resilience = this.Attributes[AttributeMode.Resilience],
+            Precision = this.Attributes[AttributeMode.Precision],
+            Speed = this.Attributes[AttributeMode.Speed],
+            Intellect = this.Attributes[AttributeMode.Intellect],
+            Charisma = this.Attributes[AttributeMode.Charisma],
+            Luck = this.Attributes[AttributeMode.Luck],
+        };
+    }
     private void DoEffects()
     {
         foreach (CharacterRoundEffect effect in CurrentEffects.ToList()) // because ReverseEffects modifies the collection and occurs at the same time
@@ -120,7 +145,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
         DoEffectSingle(effect);
     }
 
-    private void ApplyEffect(CharacterRoundEffect effect)
+    private void ApplyEffect(CharacterRoundEffect effect, bool maintaining = false)
     {
         if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Attribute)
         {
@@ -142,19 +167,30 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
         }
         else if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Stat)
         {
+            if (effect.StatAffected == StatMode.HealthRegen)
+            {
+                GD.Print("health regen was before: ", Stats[effect.StatAffected]);
+            }
             Stats[effect.StatAffected] += effect.Magnitude;
+            if (effect.StatAffected == StatMode.HealthRegen)
+            {
+                GD.Print("and now: ", Stats[effect.StatAffected]);
+            }
             // GD.Print("stat now: ", Stats[effect.StatAffected]);
         }
         else if (effect.EffectType == CharacterRoundEffect.EffectTypeMode.Berserk)
         {
             Berserk = true;
         }
-        effect.CumulativeMagnitude += effect.Magnitude;
-
-        if (RoundEffectAnim.HasAnimation(effect.AnimName))
+        if (!maintaining)
         {
-            RoundEffectAnim.Play(effect.AnimName);
-            TreeLink.EmitSignal(CharacterUnit.TreeLink.SignalName.RoundEffectApplied, effect);
+            effect.CumulativeMagnitude += effect.Magnitude;
+
+            if (RoundEffectAnim.HasAnimation(effect.AnimName))
+            {
+                RoundEffectAnim.Play(effect.AnimName);
+                TreeLink.EmitSignal(CharacterUnit.TreeLink.SignalName.RoundEffectApplied, effect);
+            }
         }
     }
 
@@ -185,15 +221,17 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     // intended to run after a battle to clear all effects
     public void ReverseAllEffects()
     {
-        foreach (CharacterRoundEffect effect in CurrentEffects)
+        foreach (CharacterRoundEffect effect in CurrentEffects.ToList())
         {
             ReverseEffect(effect);
         }
+        UpdateAllStats();
     }
 
     public void OnNewRound()
     {
         DoEffects();
+        GD.Print("health regen for gilga: ", Name + ", " + Stats[StatMode.HealthRegen]);
     }
     public void Initialise(AnimationPlayer roundEffectAnim, CharacterUnit.TreeLink treeLink)
     {
@@ -273,6 +311,20 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
             Stats[StatMode.FocusCharge] = GetUpdatedFocusCharge();
             Stats[StatMode.ActionPoints] = GetUpdatedActionPoints();
         }
+
+        // we reset stat so reapply effect
+        foreach (CharacterRoundEffect e in CurrentEffects)
+        {
+            if (e.EffectType == CharacterRoundEffect.EffectTypeMode.Stat && !IsNumeratorStat(e.StatAffected))
+            {
+                ApplyEffect(e, maintaining: true);
+            }
+        }
+    }
+
+    private bool IsNumeratorStat(StatMode stat)
+    {
+        return stat == StatMode.Health || stat == StatMode.Endurance || stat == StatMode.Reagents || stat == StatMode.FocusCharge || stat == StatMode.ActionPoints;
     }
 
 
@@ -441,7 +493,11 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
         }
     }
 
-    public enum MeleeWeaponMode { None, WoodenKnuckles, BrassKnuckles, AgileKnife, JewelledDagger }
+    public enum MeleeWeaponMode
+    {
+        None, WoodenKnuckles, BrassKnuckles, AgileKnife, JewelledDagger,
+        Natural
+    }
 
     [JsonProperty("_meleeWeaponEquipped")]
     private int _meleeWeaponEquipped = 0;
@@ -478,6 +534,11 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
                     WeaponDiceMelee = new() { new(1, 4) };
                     MeleeWeaponDamageBonus = 3;
                     WeaponTypeEquipped = WeaponTypeEquippedMode.Precision;
+                    break;
+                case MeleeWeaponMode.Natural:
+                    WeaponDiceMelee = new() { new(2, 4) };
+                    MeleeWeaponDamageBonus = 2;
+                    WeaponTypeEquipped = WeaponTypeEquippedMode.Strength;
                     break;
             }
         }

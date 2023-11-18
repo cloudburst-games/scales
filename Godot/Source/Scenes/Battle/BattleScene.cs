@@ -41,6 +41,8 @@ public partial class BattleScene : Node, ISceneTransitionable
 
     private BattleLevel _lvlToLoad;
 
+    private CheckpointData _loadedCheckpointData = null;
+
     private CntPnlAdventures.DifficultyMode _difficulty = CntPnlAdventures.DifficultyMode.Medium;
     public void OnReceivedSharedData(ISceneTransitionShareableData sharedData)
     {
@@ -50,6 +52,9 @@ public partial class BattleScene : Node, ISceneTransitionable
             if (battleData.CheckpointData != null)
             {
                 GD.Print("loading checkpoint data");
+                _loadedCheckpointData = battleData.CheckpointData;
+                _nextLevel = battleData.CheckpointData.CurrentLevel;
+                _scales.SetFavourOnLoad(battleData.CheckpointData.Favour);
                 // do load stuff here
             }
             else
@@ -100,14 +105,14 @@ public partial class BattleScene : Node, ISceneTransitionable
     public override void _Ready()
     {
         // TESTING
-        if (_currentCharacters.Count == 0)
-        {
-            OnReceivedSharedData(new BattleDataContainer()
-            {
-                Difficulty = 1,
-                // CharacterSelected = 0,
-            });
-        }
+        // if (_currentCharacters.Count == 0)
+        // {
+        //     OnReceivedSharedData(new BattleDataContainer()
+        //     {
+        //         Difficulty = 1,
+        //         // CharacterSelected = 0,
+        //     });
+        // }
         //
 
         _btnIntro.Pressed += this.OnBtnIntroPressed;
@@ -138,13 +143,18 @@ public partial class BattleScene : Node, ISceneTransitionable
         _adventureStoriesHandler.FinalVictoryStoryFinished += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
         _adventureStoriesHandler.VictoryPictureStoryFinished += OnVictoryStoryFinished;
         _battleVictory.FavouredGod += (int which, int scalesImpact, CharacterUnit victim) => OnVictoryFavouredGod((Scales.FavourMode)which, scalesImpact, victim);
-        _cntCharacterUpgrade.UpgradeFinished += OnBattleVictoryUpgradesFinished;
+        // _cntCharacterUpgrade.UpgradeFinished += OnBattleVictoryUpgradesFinished;
+        _pnlPerkSelect.FinishedSelectingPerks += OnBattleVictoryUpgradesFinished;
         _masterPerkPool = Enum.GetValues(typeof(Perk.PerkMode)).Cast<Perk.PerkMode>().ToList();
         // _adventureStoriesHandler.VictoryPictureStoryFinished += () 
         // _adventureStoriesHandler.FinalVictoryStoryFinished += ()
 
-        LoadLevel();
+        LoadLevel(_loadedCheckpointData);
+
     }
+
+    [Export]
+    private PnlPerkSelect _pnlPerkSelect;
 
     private void OnVictoryStoryFinished(int level)
     {
@@ -156,8 +166,12 @@ public partial class BattleScene : Node, ISceneTransitionable
         // BaseProject.Utils.Node.SetVisibleRecursive(_adventureStoriesHandler, false);
     }
 
-    private async void OnBattleVictoryUpgradesFinished(Godot.Collections.Dictionary<CharacterUnit, Array<Perk>> characterPerks)
+    [Export]
+    private AnimationPlayer _loadingAnim;
+
+    private async void OnBattleVictoryUpgradesFinished(System.Collections.Generic.Dictionary<CharacterUnit, Perk[]> characterPerks)
     {
+        _cntCharacterUpgrade.Exit();
         // give characters their perks in the perkmode list
         foreach (CharacterUnit cUnit in characterPerks.Keys)
         {
@@ -176,29 +190,50 @@ public partial class BattleScene : Node, ISceneTransitionable
             }
         }
 
-        // Remove non player characters
+        _nextLevel += 1;
+
+        if (_nextLevel < _levelScenePaths.Count) // if we reached the last level dont bother with unloading/loading levels anymore - we won
+        {
+
+            _loadingLevel = true;
+            // This saves the current characters and wipes the current character list
+            CheckpointData checkpointData = SaveProgress();
+
+            UnloadLevel();
+            await ToSignal(this, SignalName.FinishedUnloadingLevel);
+            LoadLevel(checkpointData);
+        }
+
+        while (_loadingLevel)
+        {
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        }
+
+        _adventureStoriesHandler.DoVictoryStory(_nextLevel - 1, _scales.GetCurrentFavour(), _levelScenePaths.Count - 1);
+    }
+
+    private CheckpointData SaveProgress()
+    {
+        // Save player chacters
+        CheckpointData checkpointData = new();
+        checkpointData.PlayerCharacters = _currentCharacters
+            .Where(x => x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player)
+            .Select(x => x.CharacterData.PackData())
+            .ToList();
+        checkpointData.CurrentLevel = _nextLevel;
+        checkpointData.Difficulty = (int)_difficulty;
+        checkpointData.Favour = _scales.GetFavourOnSave();
+        JSONDataHandler dataHandler = new();
+        string savePath = $"/Checkpoint/GilgAdventure"; // for future adventures would need to vary this
+        dataHandler.SaveToDisk(checkpointData, savePath);
+        // wipe the list
         _currentCharacters.ToList()
-            .Where(x => x.StatusToPlayer != CharacterUnit.StatusToPlayerMode.Player)
-            .ToList()
             .ForEach(x =>
             {
                 _currentCharacters.Remove(x);
                 x.QueueFree();
             });
-        _adventureStoriesHandler.DoVictoryStory(_nextLevel, _scales.GetCurrentFavour(), _levelScenePaths.Count - 1);
-        _nextLevel += 1;
-        // TODO - increment level unless max level, in which case this shouldn't be reached (final cutscene will have played instead)
-        // TODO - save progress
-
-        if (_nextLevel == _levelScenePaths.Count) // we reached the last level so dont bother with unloading/loading levels anymore
-        {
-            return;
-        }
-        UnloadLevel();
-        await ToSignal(this, SignalName.FinishedUnloadingLevel);
-        LoadLevel();
-
-
+        return checkpointData;
     }
 
     private void OnVictoryFavouredGod(Scales.FavourMode finalFavour, int scalesImpact, CharacterUnit victim)
@@ -209,6 +244,7 @@ public partial class BattleScene : Node, ISceneTransitionable
                 if (victim != null)
                 {
                     victim.StatusToPlayer = CharacterUnit.StatusToPlayerMode.Player;
+                    victim.InitStatusToPlayer();
                 }
                 break;
             case Scales.FavourMode.Shamash:
@@ -357,6 +393,12 @@ public partial class BattleScene : Node, ISceneTransitionable
     {
         CharacterUnit newChar = _characterScene.Instantiate<CharacterUnit>();
         newChar.SetFromJSON(selectedChar);
+        NewCharacterCommon(newChar, status);
+        // return newChar;
+    }
+
+    private void NewCharacterCommon(CharacterUnit newChar, CharacterUnit.StatusToPlayerMode status)
+    {
         newChar.Rand = _rand;
         newChar.StatusToPlayer = status;
         _currentCharacters.Add(newChar);
@@ -373,7 +415,17 @@ public partial class BattleScene : Node, ISceneTransitionable
         newChar.CharacterDataTreeLink.RoundEffectEnded += (CharacterRoundEffect roundEffect) => _HUD.OnCharacterRoundEffectFaded(newChar, roundEffect);
         newChar.CharacterDataTreeLink.RoundEffectEnded += (CharacterRoundEffect roundEffect) => _battler.OnCharacterRoundEffectFaded(newChar, roundEffect);
         newChar.TakingDamage += _HUD.OnCharacterTakingDamage;
-        // return newChar;
+    }
+
+    private void NewPlayerCharactersFromSaved(List<CharacterCheckpointData> playerCharacters)
+    {
+        foreach (var data in playerCharacters)
+        {
+            CharacterUnit newChar = _characterScene.Instantiate<CharacterUnit>();
+            newChar.SetFromData(data);
+            NewCharacterCommon(newChar, CharacterUnit.StatusToPlayerMode.Player);
+        }
+
     }
 
     private void CastingSpellFavourEffect(SpellEffectManager.Spell spell)
@@ -392,15 +444,28 @@ public partial class BattleScene : Node, ISceneTransitionable
     }
 
     // Player characters must be initialised before this is called
-    private async void LoadLevel()
+    private async void LoadLevel(CheckpointData checkpointData = null)
     {
-        // if this takes long, consider making a loading animation and then activating animationplayer once complete
+        // Load level and obstacle data
+        if (!_loadingAnim.IsPlaying())
+        {
+            _loadingAnim.Play("Start");
+            await ToSignal(_loadingAnim, AnimationPlayer.SignalName.AnimationFinished);
+            _loadingAnim.Play("Loading");
+        }
         _lvlToLoad = _levelScenePaths[_nextLevel].Instantiate<BattleLevel>();
-        _anim.Play("Loading");
         _cntBattleLevel.AddChild(_lvlToLoad);
         _spellEffectManager.CurrentLevel = _lvlToLoad;
         _HUD.SetIntroText(_lvlToLoad.IntroMessage);
         _HUD.SetState(BattleHUD.StateMode.BattleIntro);
+
+        GD.Print("marking obstacles");
+        if (_lvlToLoad.HexTileInterface.StillMarkingObstacles)
+        {
+            await ToSignal(_lvlToLoad.HexTileInterface, HexTilemapIsometricInterface.SignalName.FinishedMarkingObstacles);
+        }
+        // Then initailise characters
+        GD.Print("initialising characters");
 
         foreach (StoryCharacter.StoryCharacterMode enemyStoryChar in _lvlToLoad.StartingEnemies)
         {
@@ -409,6 +474,38 @@ public partial class BattleScene : Node, ISceneTransitionable
         foreach (StoryCharacter.StoryCharacterMode allyStoryChar in _lvlToLoad.StartingAllies)
         {
             NewCharacter(allyStoryChar, CharacterUnit.StatusToPlayerMode.Allied);
+        }
+
+        if (checkpointData != null)
+        {
+            // _difficulty = (CntPnlAdventures.DifficultyMode)checkpointData.Difficulty;
+            _btnIntro.Disabled = false;
+            NewPlayerCharactersFromSaved(checkpointData.PlayerCharacters);
+        }
+
+        // make a pool of non plot enemy types that can be used for difficulty setting
+        List<StoryCharacter.StoryCharacterMode> nonPlotChars = _lvlToLoad.StartingEnemies
+            .Where(charType => charType != StoryCharacter.StoryCharacterMode.Enkidu && charType != StoryCharacter.StoryCharacterMode.Gilgam)
+            .ToList();
+
+        if (nonPlotChars.Count == 0)
+        {
+            GD.Print("Error, lvl needs at least 1 non-plot character for difficulty settings");
+        }
+        else
+        {
+            // do difficulty settings here // TBD
+            switch (_difficulty)
+            {
+                case CntPnlAdventures.DifficultyMode.Easy:
+                    NewCharacter(nonPlotChars[_rand.Next(0, nonPlotChars.Count)], CharacterUnit.StatusToPlayerMode.Allied);
+                    break;
+                case CntPnlAdventures.DifficultyMode.Medium:
+                    break;
+                case CntPnlAdventures.DifficultyMode.Hard:
+                    NewCharacter(nonPlotChars[_rand.Next(0, nonPlotChars.Count)], CharacterUnit.StatusToPlayerMode.Hostile);
+                    break;
+            }
         }
 
         foreach (CharacterUnit characterUnit in _currentCharacters)
@@ -421,12 +518,38 @@ public partial class BattleScene : Node, ISceneTransitionable
         // _lvlToLoad.HexModifier.HexObstacleChanged += _battler.RecalculateUserHexes;
         StoreCurrentCharacterPortraits();
 
-        await ToSignal(_anim, AnimationPlayer.SignalName.AnimationFinished);
+
+        // while (_cntBattleLevel.GetChildCount() == 0)
+        // {
+        //     await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        // }
+        // if (_anim.IsPlaying())
+        // {
+        //     await ToSignal(_anim, AnimationPlayer.SignalName.AnimationFinished);
+        // }
+
         if (_nextLevel == 0)
+        {
             _btnIntro.Disabled = false;
+        }
         _battler.Init(_currentCharacters, _lvlToLoad.HexGrid, _spellEffectManager.AllSpells);
+        if (_loadingAnim.IsPlaying())
+        {
+            _loadingAnim.Play("Stop");
+            // await ToSignal(_loadingAnim, AnimationPlayer.SignalName.AnimationFinished);
+        }
+        _anim.Play("Loading");
+        _loadingLevel = false;
+
+        PrintOrphanNodes();
+
+        // orphaned nodes
+
+
     }
 
+
+    private bool _loadingLevel = false;
     private void OnBtnIntroPressed()
     {
         _battler.ProcessMode = ProcessModeEnum.Inherit;
@@ -447,24 +570,33 @@ public partial class BattleScene : Node, ISceneTransitionable
 
     private async void UnloadLevel()
     {
-        _anim.Play("Unloading");
-        await ToSignal(_anim, AnimationPlayer.SignalName.AnimationFinished);
+        // _anim.Play("Unloading");
+        // _battler.Exit();
+
+        _loadingAnim.Play("Start");
+        await ToSignal(_loadingAnim, AnimationPlayer.SignalName.AnimationFinished);
+        _loadingAnim.Play("Loading");
+        // await ToSignal(_anim, AnimationPlayer.SignalName.AnimationFinished);
 
         // potentially can add script to CntBattleLevel and set the level if this is buggy
         // also note: will have "orphan nodes" if these characterUnits aren't free'd appropriately when no new level afterwards
-        Node2D characterUnitsContainer = ((BattleLevel)_cntBattleLevel.GetChild(0)).CharacterUnitsContainer;
-        foreach (CharacterUnit characterUnit in ((BattleLevel)_cntBattleLevel.GetChild(0)).CharacterUnitsContainer.GetChildren().Cast<CharacterUnit>())
-        {
-            // if character is player-controlled then preserve for the next level...
-            if (characterUnit.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player)
-            {
-                characterUnitsContainer.RemoveChild(characterUnit);
-            }
-        }
+        // Node2D characterUnitsContainer = ((BattleLevel)_cntBattleLevel.GetChild(0)).CharacterUnitsContainer;
+        // foreach (CharacterUnit characterUnit in ((BattleLevel)_cntBattleLevel.GetChild(0)).CharacterUnitsContainer.GetChildren().Cast<CharacterUnit>())
+        // {
+        //     // if character is player-controlled then preserve for the next level...
+        //     if (characterUnit.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player)
+        //     {
+        //         characterUnitsContainer.RemoveChild(characterUnit);
+        //     }
+        // }
 
         foreach (Node n in _cntBattleLevel.GetChildren())
         {
             n.QueueFree();
+        }
+        while (_cntBattleLevel.GetChildCount() > 0)
+        {
+            await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         }
         EmitSignal(SignalName.FinishedUnloadingLevel);
 
@@ -492,6 +624,17 @@ public partial class BattleScene : Node, ISceneTransitionable
         // {
         //     UnloadLevel();
         // }
+    }
+
+    public override void _Input(InputEvent ev)
+    {
+        if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
+        {
+            if (evk.Keycode == Key.Space)
+            {
+                OnBattleEnded(true);
+            }
+        }
     }
 
 }

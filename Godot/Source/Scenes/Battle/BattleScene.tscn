@@ -1,9 +1,10 @@
-[gd_scene load_steps=72 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=82 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
 [ext_resource type="Texture2D" uid="uid://b8lrqyev7uyvy" path="res://addons/SceneTransitionPlugin/ContinueDisabled.png" id="2_mer2l"]
 [ext_resource type="Texture2D" uid="uid://dw55h30ros4ye" path="res://addons/SceneTransitionPlugin/ContinueNormal.png" id="3_4utpa"]
+[ext_resource type="PackedScene" uid="uid://b0bhqhrvxb7ho" path="res://Data/Levels/Battle/Gilga/Level1.tscn" id="3_nng1n"]
 [ext_resource type="Texture2D" uid="uid://rbn5wog65ufi" path="res://addons/SceneTransitionPlugin/ContinuePressed.png" id="4_froe4"]
 [ext_resource type="PackedScene" uid="uid://f880l6fqx7bi" path="res://Source/Interface/Label/LblFloatingText.tscn" id="4_x84xo"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/PnlAction.cs" id="5_5obug"]
@@ -57,8 +58,10 @@
 [ext_resource type="PackedScene" uid="uid://d3fkaury6ig66" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfo.tscn" id="49_8ah3x"]
 [ext_resource type="PackedScene" uid="uid://dab158j4ohebo" path="res://Source/Systems/HexGrid/HexGridUserDisplay.tscn" id="50_rack7"]
 [ext_resource type="PackedScene" uid="uid://dhnf1jm0vtok8" path="res://Source/Interface/Panel/CharacterUpgrade/CntCharacterUpgrade.tscn" id="54_82j32"]
+[ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="57_5fh2h"]
 [ext_resource type="PackedScene" uid="uid://bb71nh8f38a0g" path="res://addons/SceneTransitionPlugin/SceneTransition.tscn" id="57_cjqrl"]
 [ext_resource type="PackedScene" uid="uid://4extw10vut0x" path="res://Source/Systems/AdventureStoriesHandler/GilgamStoryHandler.tscn" id="58_27mia"]
+[ext_resource type="LabelSettings" uid="uid://bok3h2cnuw41n" path="res://Assets/Graphics/Themes/Witch/playWitchyLabel.tres" id="58_mwwbn"]
 [ext_resource type="PackedScene" uid="uid://udu41fk3ega5" path="res://Source/Scenes/Battle/BattleVictory.tscn" id="59_tgswr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ge4m1"]
@@ -98,6 +101,129 @@ font_size = 64
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uucgk"]
 texture = ExtResource("27_40yck")
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_twrr5"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_jvt5r"]
+
+[sub_resource type="Animation" id="Animation_1wdmi"]
+resource_name = "Loading"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/DeadSpritesAll:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_iiivj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect/DeadSpritesAll:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7yynq"]
+resource_name = "Start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_krdc5"]
+resource_name = "Stop"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p2po7"]
+_data = {
+"Loading": SubResource("Animation_1wdmi"),
+"RESET": SubResource("Animation_iiivj"),
+"Start": SubResource("Animation_7yynq"),
+"Stop": SubResource("Animation_krdc5")
+}
 
 [sub_resource type="Animation" id="Animation_w5wdv"]
 resource_name = "Loading"
@@ -189,7 +315,7 @@ _data = {
 "Unloading": SubResource("Animation_gafb4")
 }
 
-[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnActions", "_battleScalesAnim", "_cntSpellBook", "_cursorControl", "_spellEffectManager", "_hBoxTurnOrder", "_pnlCharacterInfo", "_pnlScales", "_animScalesStart", "_adventureStoriesHandler", "_battleVictory", "_mainMenuSceneTransition", "_cntCharacterUpgrade")]
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnActions", "_battleScalesAnim", "_cntSpellBook", "_cursorControl", "_spellEffectManager", "_hBoxTurnOrder", "_pnlCharacterInfo", "_pnlScales", "_animScalesStart", "_adventureStoriesHandler", "_battleVictory", "_mainMenuSceneTransition", "_cntCharacterUpgrade", "_pnlPerkSelect", "_loadingAnim")]
 script = ExtResource("1_2w8r3")
 _anim = NodePath("Anim")
 _cntBattleLevel = NodePath("CntBattleLevel")
@@ -202,7 +328,7 @@ _btnEndTurn = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/H
 _btnMenu = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnMenu")
 _btnActions = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnActions")
 _battleScalesAnim = NodePath("BattleHUD/CntHUD/PnlScales/AnimScales")
-_levelScenePaths = [ExtResource("9_4plr1"), ExtResource("9_4plr1")]
+_levelScenePaths = [ExtResource("9_4plr1"), ExtResource("3_nng1n")]
 _cntSpellBook = NodePath("BattleHUD/CntHUD/CntSpellBook")
 _cursorControl = NodePath("Battler/CursorControl")
 _spellEffectManager = NodePath("SpellEffectManager")
@@ -214,6 +340,8 @@ _adventureStoriesHandler = NodePath("BattleHUD/GilgamStoryHandler")
 _battleVictory = NodePath("BattleHUD/BattleVictory")
 _mainMenuSceneTransition = NodePath("MainMenuSceneTransition")
 _cntCharacterUpgrade = NodePath("BattleHUD/CntCharacterUpgrade")
+_pnlPerkSelect = NodePath("BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect")
+_loadingAnim = NodePath("BattleHUD/CtrlLoading/LoadingAnim")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 3840.0
@@ -258,7 +386,7 @@ layout_mode = 1
 anchor_left = 0.875
 anchor_top = 0.0
 anchor_right = 1.0
-anchor_bottom = 0.0
+anchor_bottom = 0.25
 offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
@@ -809,9 +937,113 @@ script = ExtResource("7_8jqkl")
 
 [node name="CntCharacterUpgrade" parent="BattleHUD" instance=ExtResource("54_82j32")]
 
+[node name="PnlCharacterSelect" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer" index="0"]
+_characterSelectBtnGroup = SubResource("ButtonGroup_twrr5")
+
+[node name="BaseTextureButton" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="0"]
+button_group = SubResource("ButtonGroup_twrr5")
+
+[node name="BaseTextureButton2" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="1"]
+button_group = SubResource("ButtonGroup_twrr5")
+
+[node name="BaseTextureButton3" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="2"]
+button_group = SubResource("ButtonGroup_twrr5")
+
+[node name="BaseTextureButton4" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="3"]
+button_group = SubResource("ButtonGroup_twrr5")
+
+[node name="BaseTextureButton5" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="4"]
+button_group = SubResource("ButtonGroup_twrr5")
+
+[node name="PnlPerkSelect" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer" index="1"]
+_perkSelectButtonGroup = SubResource("ButtonGroup_jvt5r")
+
+[node name="BaseTextureButton4" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="0"]
+button_group = SubResource("ButtonGroup_jvt5r")
+
 [node name="GilgamStoryHandler" parent="BattleHUD" instance=ExtResource("58_27mia")]
 offset_left = 101.0
 offset_right = 101.0
+
+[node name="CtrlLoading" type="Control" parent="BattleHUD"]
+process_mode = 3
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="BattleHUD/CtrlLoading"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="DeadSpritesAll" type="Sprite2D" parent="BattleHUD/CtrlLoading/ColorRect"]
+position = Vector2(1903, 1181)
+texture = ExtResource("57_5fh2h")
+
+[node name="Panel" type="Panel" parent="BattleHUD/CtrlLoading/ColorRect"]
+layout_mode = 0
+offset_left = 883.0
+offset_top = 423.0
+offset_right = 3203.0
+offset_bottom = 1867.0
+
+[node name="Label" type="Label" parent="BattleHUD/CtrlLoading/ColorRect/Panel"]
+layout_mode = 0
+offset_left = 347.0
+offset_top = -76.0
+offset_right = 1842.0
+offset_bottom = 634.0
+text = "LOADING! PLEASE WAIT!!!!"
+label_settings = ExtResource("58_mwwbn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="BattleHUD/CtrlLoading/ColorRect/Panel"]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 279.0
+offset_right = 1842.0
+offset_bottom = 989.0
+text = "LOADING! PLEASE WAIT!!!!"
+label_settings = ExtResource("58_mwwbn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="BattleHUD/CtrlLoading/ColorRect/Panel"]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 664.0
+offset_right = 1842.0
+offset_bottom = 1374.0
+text = "LOADING! PLEASE WAIT!!!!"
+label_settings = ExtResource("58_mwwbn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="BattleHUD/CtrlLoading/ColorRect/Panel"]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 936.0
+offset_right = 1842.0
+offset_bottom = 1646.0
+text = "LOADING! PLEASE WAIT!!!!"
+label_settings = ExtResource("58_mwwbn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoadingAnim" type="AnimationPlayer" parent="BattleHUD/CtrlLoading"]
+libraries = {
+"": SubResource("AnimationLibrary_p2po7")
+}
 
 [node name="CntBattleLevel" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -838,3 +1070,4 @@ libraries = {
 DestinationPath = "res://Source/Scenes/MainMenu/MainMenuScene.tscn"
 
 [editable path="BattleHUD/CntHUD/PnlScales"]
+[editable path="BattleHUD/CntCharacterUpgrade"]

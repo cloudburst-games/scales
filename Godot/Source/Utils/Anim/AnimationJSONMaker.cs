@@ -26,7 +26,8 @@ public partial class AnimationJSONMaker : Node
     private Texture _texture = null;
     [Export]
     private float _relativeSpeed = 1;
-
+    [Export]
+    private float _scaleFactor = 0.5f;
     [Export]
     private Animation.LoopModeEnum _loop = Animation.LoopModeEnum.Linear;
     public class Frame
@@ -85,8 +86,8 @@ public partial class AnimationJSONMaker : Node
                     continue;
                 }
 
-                Vector2 pos = new Vector2(frameInfo.Value.frame.x, frameInfo.Value.frame.y);
-                Vector2 size = new Vector2(frameInfo.Value.frame.w, frameInfo.Value.frame.h);
+                Vector2 pos = new Vector2(frameInfo.Value.frame.x, frameInfo.Value.frame.y) * _scaleFactor;
+                Vector2 size = new Vector2(frameInfo.Value.frame.w, frameInfo.Value.frame.h) * _scaleFactor;
 
                 anim.TrackInsertKey(0, animLength, new Rect2(pos, size));
 

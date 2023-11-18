@@ -9,12 +9,12 @@
 [ext_resource type="Animation" uid="uid://bb0cyxefr3jpl" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk4_gilg.tres" id="9_umjem"]
 [ext_resource type="Animation" uid="uid://dcqdsfa5busfq" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk5_gilg.tres" id="10_lgjwo"]
 [ext_resource type="Animation" uid="uid://bk6iyw1kwb7vs" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk6_gilg.tres" id="11_emr81"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit1_gilg.tres" id="12_y328t"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit2_gilg.tres" id="13_ndj8y"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit3_gilg.tres" id="14_3dx0n"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit4_gilg.tres" id="15_h43wv"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit5_gilg.tres" id="16_qdpoe"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit6_gilg.tres" id="17_c210e"]
+[ext_resource type="Animation" uid="uid://b558sgwoaj0ia" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit1_gilg.tres" id="12_y328t"]
+[ext_resource type="Animation" uid="uid://cuo3v5tl8yqvg" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit2_gilg.tres" id="13_ndj8y"]
+[ext_resource type="Animation" uid="uid://bhqbf8gnwee7x" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit3_gilg.tres" id="14_3dx0n"]
+[ext_resource type="Animation" uid="uid://b58w7uw8oouac" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit4_gilg.tres" id="15_h43wv"]
+[ext_resource type="Animation" uid="uid://dkk8dw8vsvlec" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit5_gilg.tres" id="16_qdpoe"]
+[ext_resource type="Animation" uid="uid://3f7qka4nq80u" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit6_gilg.tres" id="17_c210e"]
 [ext_resource type="Animation" uid="uid://t1e7xhps57bf" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle1_gilg.tres" id="18_wixde"]
 [ext_resource type="Animation" uid="uid://cc7ooypef80pn" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle2_gilg.tres" id="19_6fpg7"]
 [ext_resource type="Animation" uid="uid://crs21r0dc4qfe" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle3_gilg.tres" id="20_bew71"]
@@ -25,22 +25,22 @@
 [ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="25_fsegd"]
 [ext_resource type="Animation" uid="uid://bky6hpj768cms" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit2_enkidu.tres" id="26_wu8aa"]
 [ext_resource type="Animation" uid="uid://dtqr3wk8bpe2h" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit3_enkidu.tres" id="27_ib5yx"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit4_enkidu.tres" id="28_s23hq"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit5_enkidu.tres" id="29_f81yx"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit6_enkidu.tres" id="30_hnuny"]
+[ext_resource type="Animation" uid="uid://b1whdu2p4kee7" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit4_enkidu.tres" id="28_s23hq"]
+[ext_resource type="Animation" uid="uid://dlggia6p7eyvy" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit5_enkidu.tres" id="29_f81yx"]
+[ext_resource type="Animation" uid="uid://tgpksuj2rb8f" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/hit6_enkidu.tres" id="30_hnuny"]
 [ext_resource type="Animation" uid="uid://dihbmt7tksovx" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle1_enkidu.tres" id="31_e0g5m"]
 [ext_resource type="Animation" uid="uid://dvlir2ilfsott" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle2_enkidu.tres" id="32_8line"]
 [ext_resource type="Animation" uid="uid://cs61cyiop5jgp" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle3_enkidu.tres" id="33_rjrv5"]
 [ext_resource type="Animation" uid="uid://udrxgw83id14" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle4_enkidu.tres" id="34_mnlem"]
 [ext_resource type="Animation" uid="uid://bdluscw4r633d" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle5_enkidu.tres" id="35_xmhct"]
 [ext_resource type="Animation" uid="uid://05bgrkmeld03" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/idle6_enkidu.tres" id="36_7k5i6"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk1_enkidu.tres" id="37_j40l7"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk2_enkidu.tres" id="38_7sljh"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk3_enkidu.tres" id="39_2ayxh"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk4_enkidu.tres" id="40_nvosj"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk5_enkidu.tres" id="41_72bov"]
+[ext_resource type="Animation" uid="uid://c4lvo3gsvdgbs" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk1_enkidu.tres" id="37_j40l7"]
+[ext_resource type="Animation" uid="uid://dn6op3e0txfj3" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk2_enkidu.tres" id="38_7sljh"]
+[ext_resource type="Animation" uid="uid://07eqkgdv16q3" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk3_enkidu.tres" id="39_2ayxh"]
+[ext_resource type="Animation" uid="uid://b76x7nu47tj0y" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk4_enkidu.tres" id="40_nvosj"]
+[ext_resource type="Animation" uid="uid://clf1u08w3fd2o" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk5_enkidu.tres" id="41_72bov"]
 [ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="41_uygba"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk6_enkidu.tres" id="42_1yfi5"]
+[ext_resource type="Animation" uid="uid://y1w5ymupcxhr" path="res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/AnimSequences/walk6_enkidu.tres" id="42_1yfi5"]
 [ext_resource type="AnimationNodeStateMachine" uid="uid://dbtjdrtt8r0gq" path="res://Source/Actors/CharacterUnit/Bodies/AnimTreeRoot.tres" id="43_mjmav"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_btc0f"]
@@ -126,6 +126,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [SubResource("ShaderMaterial_btc0f")]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
 
 [sub_resource type="Animation" id="Animation_vwmtw"]
 resource_name = "dying"
@@ -199,6 +211,7 @@ shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
 
 [sub_resource type="Animation" id="Animation_hup0d"]
 resource_name = "dying"
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -247,6 +260,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.38, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 2), Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_espwi"]
 _data = {
@@ -276,8 +301,9 @@ script = ExtResource("1_eyqsa")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_btc0f")
+scale = Vector2(2, 2)
 texture = ExtResource("5_x18ss")
-offset = Vector2(0, -52.5)
+offset = Vector2(0, -26.25)
 region_enabled = true
 region_rect = Rect2(1, 1, 480, 270)
 

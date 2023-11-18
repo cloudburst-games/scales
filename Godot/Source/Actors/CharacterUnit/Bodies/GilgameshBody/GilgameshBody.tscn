@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_plx1y"]
 [ext_resource type="Texture2D" uid="uid://7odii45w3yxl" path="res://Assets/Graphics/Sprites/Actors/Gilga/IdleGilga.png" id="2_eadvr"]
 [ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="5_n47vm"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit1_gilg.tres" id="12_1i1kh"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit2_gilg.tres" id="13_yw76s"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit3_gilg.tres" id="14_m2hss"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit4_gilg.tres" id="15_31400"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit5_gilg.tres" id="16_thrmg"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit6_gilg.tres" id="17_r30xq"]
+[ext_resource type="Animation" uid="uid://b558sgwoaj0ia" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit1_gilg.tres" id="12_1i1kh"]
+[ext_resource type="Animation" uid="uid://cuo3v5tl8yqvg" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit2_gilg.tres" id="13_yw76s"]
+[ext_resource type="Animation" uid="uid://bhqbf8gnwee7x" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit3_gilg.tres" id="14_m2hss"]
+[ext_resource type="Animation" uid="uid://b58w7uw8oouac" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit4_gilg.tres" id="15_31400"]
+[ext_resource type="Animation" uid="uid://dkk8dw8vsvlec" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit5_gilg.tres" id="16_thrmg"]
+[ext_resource type="Animation" uid="uid://3f7qka4nq80u" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit6_gilg.tres" id="17_r30xq"]
 [ext_resource type="Animation" uid="uid://lo0w8muv6m81" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk1_gilg.tres" id="18_8836v"]
 [ext_resource type="Animation" uid="uid://t1e7xhps57bf" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle1_gilg.tres" id="18_ft0ew"]
 [ext_resource type="Animation" uid="uid://cc7ooypef80pn" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle2_gilg.tres" id="19_6gqfu"]
@@ -107,6 +107,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [SubResource("ShaderMaterial_btc0f")]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_klsaj"]
 shader = ExtResource("5_n47vm")
@@ -116,6 +128,7 @@ shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
 
 [sub_resource type="Animation" id="Animation_b3x2u"]
 resource_name = "dying"
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -163,6 +176,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.38, 0.4, 0.4001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 2), Vector2(1, 1), Vector2(2, 2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y21hr"]
@@ -368,8 +393,9 @@ script = ExtResource("1_plx1y")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_btc0f")
+scale = Vector2(2, 2)
 texture = ExtResource("2_eadvr")
-offset = Vector2(0, -52.5)
+offset = Vector2(0, -26.25)
 region_enabled = true
 region_rect = Rect2(1, 1, 480, 270)
 
@@ -388,7 +414,7 @@ tree_root = SubResource("AnimationNodeStateMachine_kmdex")
 anim_player = NodePath("../Anim")
 active = true
 parameters/conditions/dying = false
-parameters/conditions/idle = true
+parameters/conditions/idle = false
 parameters/conditions/melee = false
 parameters/conditions/moving = false
 parameters/conditions/takingdamage = false

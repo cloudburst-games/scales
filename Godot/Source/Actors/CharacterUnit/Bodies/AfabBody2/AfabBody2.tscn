@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_3ftxh"]
 [ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="5_wa6p3"]
 [ext_resource type="Texture2D" uid="uid://7odii45w3yxl" path="res://Assets/Graphics/Sprites/Actors/Gilga/IdleGilga.png" id="6_ax2fp"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit1_gilg.tres" id="7_27ick"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit2_gilg.tres" id="8_nub1t"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit3_gilg.tres" id="9_pur81"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit4_gilg.tres" id="10_88w5y"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit5_gilg.tres" id="11_daggu"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit6_gilg.tres" id="12_edpiy"]
+[ext_resource type="Animation" uid="uid://b558sgwoaj0ia" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit1_gilg.tres" id="7_27ick"]
+[ext_resource type="Animation" uid="uid://cuo3v5tl8yqvg" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit2_gilg.tres" id="8_nub1t"]
+[ext_resource type="Animation" uid="uid://bhqbf8gnwee7x" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit3_gilg.tres" id="9_pur81"]
+[ext_resource type="Animation" uid="uid://b58w7uw8oouac" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit4_gilg.tres" id="10_88w5y"]
+[ext_resource type="Animation" uid="uid://dkk8dw8vsvlec" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit5_gilg.tres" id="11_daggu"]
+[ext_resource type="Animation" uid="uid://3f7qka4nq80u" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit6_gilg.tres" id="12_edpiy"]
 [ext_resource type="Animation" uid="uid://t1e7xhps57bf" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle1_gilg.tres" id="13_1disj"]
 [ext_resource type="Animation" uid="uid://cc7ooypef80pn" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle2_gilg.tres" id="14_l8d41"]
 [ext_resource type="Animation" uid="uid://crs21r0dc4qfe" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle3_gilg.tres" id="15_wjuvm"]
@@ -23,25 +23,25 @@
 [ext_resource type="Animation" uid="uid://bb0cyxefr3jpl" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk4_gilg.tres" id="23_ox34q"]
 [ext_resource type="Animation" uid="uid://dcqdsfa5busfq" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk5_gilg.tres" id="24_q73ut"]
 [ext_resource type="Animation" uid="uid://bk6iyw1kwb7vs" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/walk6_gilg.tres" id="25_y0s6x"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit1_afab2.tres" id="26_20ybr"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit2_afab2.tres" id="27_emqwi"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit3_afab2.tres" id="28_6h744"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit4_afab2.tres" id="29_ismhw"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit5_afab2.tres" id="30_j83d3"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit6_afab2.tres" id="31_d8jyp"]
+[ext_resource type="Animation" uid="uid://b7bhspg8y3b44" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit1_afab2.tres" id="26_20ybr"]
+[ext_resource type="Animation" uid="uid://b12odtvyb5whs" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit2_afab2.tres" id="27_emqwi"]
+[ext_resource type="Animation" uid="uid://ciaivpqyfwsno" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit3_afab2.tres" id="28_6h744"]
+[ext_resource type="Animation" uid="uid://cx4ycvmgnmlq0" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit4_afab2.tres" id="29_ismhw"]
+[ext_resource type="Animation" uid="uid://bnqp03fem4jq2" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit5_afab2.tres" id="30_j83d3"]
+[ext_resource type="Animation" uid="uid://cmlok427dul6r" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/hit6_afab2.tres" id="31_d8jyp"]
 [ext_resource type="Animation" uid="uid://bn1k6juh5uojr" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/idle1_afab2.tres" id="32_qv5rv"]
 [ext_resource type="Animation" uid="uid://5sk7gw4nimi1" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/idle2_afab2.tres" id="33_48y8b"]
 [ext_resource type="Animation" uid="uid://b0pokn80loe87" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/idle3_afab2.tres" id="34_e0wgp"]
 [ext_resource type="Animation" uid="uid://cjje6j1pdjfst" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/idle4_afab2.tres" id="35_ojqja"]
 [ext_resource type="Animation" uid="uid://c6ullj84hqax6" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/idle5_afab2.tres" id="36_jy8bb"]
 [ext_resource type="Animation" uid="uid://dbt5obl6rixil" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/idle6_afab2.tres" id="37_rq3cf"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk1_afab2.tres" id="38_amaw6"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk2_afab2.tres" id="39_bcr78"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk3_afab2.tres" id="40_t255b"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk4_afab2.tres" id="41_jjd3p"]
+[ext_resource type="Animation" uid="uid://bxlcwg63lp73i" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk1_afab2.tres" id="38_amaw6"]
+[ext_resource type="Animation" uid="uid://bcr1koxpdp2ss" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk2_afab2.tres" id="39_bcr78"]
+[ext_resource type="Animation" uid="uid://dddwaaysp5xnt" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk3_afab2.tres" id="40_t255b"]
+[ext_resource type="Animation" uid="uid://cbpdxx08egek8" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk4_afab2.tres" id="41_jjd3p"]
 [ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="42_4x23a"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk5_afab2.tres" id="42_sdm6p"]
-[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk6_afab2.tres" id="43_e4tvv"]
+[ext_resource type="Animation" uid="uid://cdip1d2atr6v5" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk5_afab2.tres" id="42_sdm6p"]
+[ext_resource type="Animation" uid="uid://boq70rqr5e40d" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AnimSequences/walk6_afab2.tres" id="43_e4tvv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_btc0f"]
 shader = ExtResource("5_wa6p3")
@@ -126,6 +126,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [SubResource("ShaderMaterial_btc0f")]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y21hr"]
 _data = {
@@ -208,6 +220,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2, 2), Vector2(2, 2), Vector2(1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j4fbm"]
 _data = {
@@ -233,7 +257,7 @@ _data = {
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r10ho"]
-animation = &"dying"
+animation = &"afab2/dying"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_tiqr2"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_r10ho")
@@ -410,8 +434,9 @@ script = ExtResource("1_3ftxh")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_btc0f")
+scale = Vector2(2, 2)
 texture = ExtResource("6_ax2fp")
-offset = Vector2(0, -52.5)
+offset = Vector2(0, -26.25)
 region_enabled = true
 region_rect = Rect2(1, 1, 480, 270)
 
