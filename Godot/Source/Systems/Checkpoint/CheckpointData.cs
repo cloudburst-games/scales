@@ -28,4 +28,9 @@ public class CharacterCheckpointData : IJSONSaveable
     public int Intellect { get; set; }
     public int Charisma { get; set; }
     public int Luck { get; set; }
+    public List<string> AudioWalkPath { get; set; }
+    public List<string> AudioHurtPath { get; set; }
+    public List<string> AudioDiePath { get; set; }
+    public List<string> AudioMeleePath { get; set; }
+    public Dictionary<int, List<List<string>>> Barks { get; set; }
 }

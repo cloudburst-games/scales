@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbmi65rsycs2u"]
+[gd_scene load_steps=8 format=3 uid="uid://dbmi65rsycs2u"]
 
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="1_w68gy"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="2_who8l"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="3_227ng"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="4_gxcrb"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="5_ssvsa"]
+[ext_resource type="AudioStream" uid="uid://u8vvnphooeai" path="res://addons/BaseTextureButtonPlugin/hover.wav" id="6_o16v6"]
+[ext_resource type="AudioStream" uid="uid://in1epaq47smy" path="res://addons/BaseTextureButtonPlugin/click.wav" id="7_boy15"]
 
 [node name="BaseTextureButton" type="TextureButton"]
 offset_right = 198.0
@@ -16,3 +18,5 @@ texture_disabled = ExtResource("4_gxcrb")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("5_ssvsa")
+_hoverSample = ExtResource("6_o16v6")
+_clickedSample = ExtResource("7_boy15")

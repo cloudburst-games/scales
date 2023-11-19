@@ -11,6 +11,7 @@ public partial class MovingBattleCharacterUnitActionState : CharacterUnitActionS
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/idle", false);
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/melee", false);
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/moving", true);
+        this.CharacterUnit.GetNode<AudioContainer>("AudioWalk").Play();
 
     }
 
@@ -66,6 +67,7 @@ public partial class MovingBattleCharacterUnitActionState : CharacterUnitActionS
     public override void Exit()
     {
         base.Exit();
+        this.CharacterUnit.GetNode<AudioContainer>("AudioWalk").Stop();
         // We set the idle animation position to the movement anim position, so it faces the same direction when stopping moving.
         this.CharacterUnit.AnimationTree.Set("parameters/Idle/blend_position",
             this.CharacterUnit.AnimationTree.Get("parameters/Moving/blend_position"));

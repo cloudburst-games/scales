@@ -437,7 +437,7 @@ public partial class SpellEffectManager : Node
         };
         AllSpells[SpellMode.BlindingLight] = new()
         {
-            SpellEffectVisual = _allSpellVisuals[SpellMode.JudgementOfFlame],
+            SpellEffectVisual = _allSpellVisuals[SpellMode.BlindingLight],
             AssociatedEffects = new() { _allSpellEffects[SpellEffectMode.DamageStatHitPrecision], _allSpellEffects[SpellEffectMode.DamageStatHitStrength] },
             Name = "Blinding Light",
             Range = 8,
@@ -552,7 +552,7 @@ public partial class SpellEffectManager : Node
 
         BattleRoller.RollerInput areaAttack = new();
         areaAttack.CriticalThreshold = spell.OriginCharacter.CharacterData.Stats[StoryCharacterData.StatMode.CriticalThreshold];
-        areaAttack.AttackerHitModifier = spell.OriginCharacter.CharacterData.GetCorrectHitBonus(spell.AssociatedEffects[0].Mystical);
+        areaAttack.AttackerHitModifier = spell.OriginCharacter.CharacterData.GetCorrectHitBonusMelee(spell.AssociatedEffects[0].Mystical);
         areaAttack.AttackType = BattleRoller.AttackType.Area;
         areaAttack.HexDistance = spell.HexDistance;
 
@@ -581,7 +581,7 @@ public partial class SpellEffectManager : Node
 
         BattleRoller.RollerInput magicAttack = new()
         {
-            AttackerHitModifier = attackerData.GetCorrectHitBonus(spellEffect.Mystical) - (spellEffect.HitPenalty ? 4 : 0),
+            AttackerHitModifier = attackerData.GetCorrectHitBonusRanged(spellEffect.Mystical) - (spellEffect.HitPenalty ? 4 : 0),
             DefenderDodgeModifier = defenderData.Stats[StoryCharacterData.StatMode.Dodge],
             AttackerDamageModifier = spellEffect.Mystical ? attackerData.Stats[StoryCharacterData.StatMode.Mysticism] : attackerData.GetCorrectRangedWeaponDamageBonus(),
             DefenderDamageResist = spellEffect.Mystical ? defenderData.Stats[StoryCharacterData.StatMode.MysticResist] : defenderData.Stats[StoryCharacterData.StatMode.PhysicalResist],
@@ -617,7 +617,7 @@ public partial class SpellEffectManager : Node
             // (int attackerDamageModifier, List<Tuple<int, int>> damageDice, int defenderDamageResist)
             BattleRoller.RollerInput magicAttack = new()
             {
-                AttackerHitModifier = attackerData.GetCorrectHitBonus(spellEffect.Mystical),
+                AttackerHitModifier = attackerData.GetCorrectHitBonusMelee(spellEffect.Mystical),
                 DefenderDodgeModifier = defenderData.Stats[StoryCharacterData.StatMode.Dodge],
                 AttackerDamageModifier = spellEffect.Mystical ? attackerData.Stats[StoryCharacterData.StatMode.Mysticism] : attackerData.GetCorrectRangedWeaponDamageBonus(),
                 DefenderDamageResist = spellEffect.Mystical ? defenderData.Stats[StoryCharacterData.StatMode.MysticResist] : defenderData.Stats[StoryCharacterData.StatMode.PhysicalResist],

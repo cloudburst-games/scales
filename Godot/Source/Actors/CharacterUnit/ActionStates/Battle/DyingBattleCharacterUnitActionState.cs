@@ -23,11 +23,14 @@ public partial class DyingBattleCharacterUnitActionState : CharacterUnitActionSt
 
         CharacterUnit.EmitSignal(CharacterUnit.SignalName.RemoveObstacle, CharacterUnit, true);
 
+        this.CharacterUnit.GetNode<AudioContainer>("AudioDie").Play();
         DieAnim();
     }
 
     private void DieAnim()
     {
+        // await ToSignal(CharacterUnit.GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
+
         // await ToSignal(CharacterUnit.AnimationTree, AnimationTree.SignalName.AnimationFinished);
         // todo - anything needed after the dying animation completes
         CharacterUnit.CharacterData.Alive = false;

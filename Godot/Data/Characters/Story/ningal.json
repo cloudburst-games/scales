@@ -6,6 +6,19 @@
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AMABPortrait.png",
     "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AMABPortrait.png",
     "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AMABPortrait.png",
+    "AudioWalkPath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/HumanWalk.wav"
+    ],
+    "AudioHurtPath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/HumanHurt.wav"
+    ],
+    "AudioDiePath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/HumanDie.wav"
+    ],
+    "AudioMeleePath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch.wav",
+        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
+    ],
     "Perks": [],
     "_rangedWeaponEquipped": 2,
     "Level": 1,

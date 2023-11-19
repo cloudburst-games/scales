@@ -1,12 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://dx62avxvwtb0l"]
+[gd_scene load_steps=14 format=3 uid="uid://dx62avxvwtb0l"]
 
 [ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellEffectManager.cs" id="1_qcwm7"]
-[ext_resource type="PackedScene" uid="uid://cmsrvkqdk8j1b" path="res://Source/Systems/SpellEffect/Projectiles/ArrowEffect.tscn" id="2_acflc"]
 [ext_resource type="PackedScene" uid="uid://bxmak83na1okj" path="res://Source/Systems/SpellEffect/Projectiles/SolarFlareEffect.tscn" id="3_yhqvb"]
 [ext_resource type="PackedScene" uid="uid://b1eto8aeeitsp" path="res://Source/Systems/SpellEffect/Projectiles/SolarBlastEffect.tscn" id="3_yk4uk"]
 [ext_resource type="PackedScene" uid="uid://caoggy7ntl4jy" path="res://Source/Systems/SpellEffect/Projectiles/JudgementOfFlameEffect.tscn" id="5_et0c1"]
+[ext_resource type="PackedScene" uid="uid://bipee0q6yeiic" path="res://Source/Systems/SpellEffect/Projectiles/BlindingLightEffect.tscn" id="5_s2tw2"]
+[ext_resource type="PackedScene" uid="uid://c2ethb5cvn488" path="res://Source/Systems/SpellEffect/Projectiles/VialOfFuryEffect.tscn" id="6_iy0y1"]
 [ext_resource type="PackedScene" uid="uid://cncl7ki38rp2a" path="res://Source/Systems/SpellEffect/Projectiles/RockThrowEffect.tscn" id="6_roi2k"]
+[ext_resource type="PackedScene" uid="uid://b3joihesrdch0" path="res://Source/Systems/SpellEffect/Projectiles/ElixirOfVigourEffect.tscn" id="7_2euu6"]
 [ext_resource type="PackedScene" uid="uid://bq1kll77bhysp" path="res://Source/Systems/SpellEffect/Projectiles/TornadoLightningEffect.tscn" id="7_71emh"]
+[ext_resource type="PackedScene" uid="uid://cmsrvkqdk8j1b" path="res://Source/Systems/SpellEffect/Projectiles/JavelinEffect.tscn" id="7_oe37q"]
+[ext_resource type="PackedScene" uid="uid://dld0xt8rsocl2" path="res://Source/Systems/SpellEffect/Projectiles/ElixirOfSwiftnessEffect.tscn" id="8_5bpnc"]
+[ext_resource type="PackedScene" uid="uid://ihkriu8m4asn" path="res://Source/Systems/SpellEffect/Projectiles/RegenerativeOintmentEffect.tscn" id="9_0gd3d"]
+[ext_resource type="PackedScene" uid="uid://ciouc2ful8qii" path="res://Source/Systems/SpellEffect/Projectiles/SlingEffect.tscn" id="10_fatyt"]
 
 [node name="SpellEffectManager" type="Node"]
 script = ExtResource("1_qcwm7")
@@ -14,13 +20,13 @@ _spellVisualScns = {
 0: ExtResource("3_yhqvb"),
 1: ExtResource("3_yk4uk"),
 2: ExtResource("5_et0c1"),
-3: ExtResource("5_et0c1"),
-4: ExtResource("5_et0c1"),
-5: ExtResource("5_et0c1"),
-6: ExtResource("5_et0c1"),
-7: ExtResource("5_et0c1"),
-8: ExtResource("2_acflc"),
+3: ExtResource("5_s2tw2"),
+4: ExtResource("6_iy0y1"),
+5: ExtResource("7_2euu6"),
+6: ExtResource("8_5bpnc"),
+7: ExtResource("9_0gd3d"),
+8: ExtResource("10_fatyt"),
 10: ExtResource("6_roi2k"),
 11: ExtResource("7_71emh"),
-12: ExtResource("6_roi2k")
+12: ExtResource("7_oe37q")
 }

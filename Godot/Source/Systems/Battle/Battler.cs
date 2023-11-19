@@ -219,9 +219,16 @@ public partial class Battler : Node2D
             BattleMode.Idle : _battleState is ProcessingBattleState ? BattleMode.Processing : BattleMode.Ending;
     }
 
-    public void BattleTurnEnded(CharacterUnit cUnit)
+    public async void BattleTurnEnded(CharacterUnit cUnit)
     {
-
+        foreach (CharacterUnit character in AllCharacters)
+        {
+            if (character.GetActionState() == CharacterUnit.ActionMode.TakingDamageBattle)
+            {
+                GD.Print("waiting a bit, delete this code in 228 Battler.cs if buged");
+                await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
+            }
+        }
         // Is there a winner?
         if (!AreAnyAlive(CharacterUnit.StatusToPlayerMode.Hostile) || (!AreAnyAlive(CharacterUnit.StatusToPlayerMode.Player) && !AreAnyAlive(CharacterUnit.StatusToPlayerMode.Allied)))
         {

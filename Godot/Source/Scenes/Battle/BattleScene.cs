@@ -7,6 +7,16 @@ using System.Linq;
 public partial class BattleScene : Node, ISceneTransitionable
 {
 
+
+    [Export]
+    private AudioContainer _audioBattleDefeat;
+
+    [Export]
+    private float _musicNormalVol = -10f;
+
+    [Export]
+    private float _musicQuietVol = -15f;
+
     private Random _rand = new();
 
     [Export]
@@ -136,7 +146,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         _btnMenu.Pressed += _battler.OnBtnMenuPressed;
 
         _cntSpellBook.SpellBtnPressed += this.OnSpellSelected;
-        _cntSpellBook.SpellUIHint += (int spell) => _HUD.OnSpellBookUIHint(_spellEffectManager.AllSpells[(SpellEffectManager.SpellMode)spell]);
+        _cntSpellBook.SpellUIHint += (int spell, bool canAfford) => _HUD.OnSpellBookUIHint(_spellEffectManager.AllSpells[(SpellEffectManager.SpellMode)spell], canAfford);
         _battleScalesAnim.CurrentAnimation = "Start";
 
         _adventureStoriesHandler.DefeatStoryFinished += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
@@ -148,6 +158,9 @@ public partial class BattleScene : Node, ISceneTransitionable
         _masterPerkPool = Enum.GetValues(typeof(Perk.PerkMode)).Cast<Perk.PerkMode>().ToList();
         // _adventureStoriesHandler.VictoryPictureStoryFinished += () 
         // _adventureStoriesHandler.FinalVictoryStoryFinished += ()
+
+        GetTree().Root.GetNode<GlobalAudio>("GlobalAudio").Pause("Menu");
+        GetTree().Root.GetNode<GlobalAudio>("GlobalAudio").Resume("World");
 
         LoadLevel(_loadedCheckpointData);
 
@@ -183,26 +196,24 @@ public partial class BattleScene : Node, ISceneTransitionable
                 }
                 cUnit.CharacterData.Perks.Add(p.CurrentPerk);
                 cUnit.ApplyPerk(p);
-                if (!p.Stackable)
-                {
-                    _masterPerkPool.Remove(p.CurrentPerk);
-                }
+                // if (!p.Stackable)
+                // {
+                //     _masterPerkPool.Remove(p.CurrentPerk);
+                // }
             }
         }
 
-        _nextLevel += 1;
+        // if (_nextLevel < _levelScenePaths.Count) // if we reached the last level dont bother with unloading/loading levels anymore - we won
+        // {
 
-        if (_nextLevel < _levelScenePaths.Count) // if we reached the last level dont bother with unloading/loading levels anymore - we won
-        {
+        _loadingLevel = true;
+        // This saves the current characters and wipes the current character list
+        CheckpointData checkpointData = SaveProgress();
 
-            _loadingLevel = true;
-            // This saves the current characters and wipes the current character list
-            CheckpointData checkpointData = SaveProgress();
-
-            UnloadLevel();
-            await ToSignal(this, SignalName.FinishedUnloadingLevel);
-            LoadLevel(checkpointData);
-        }
+        UnloadLevel();
+        await ToSignal(this, SignalName.FinishedUnloadingLevel);
+        LoadLevel(checkpointData);
+        // }
 
         while (_loadingLevel)
         {
@@ -286,19 +297,31 @@ public partial class BattleScene : Node, ISceneTransitionable
 
     private void OnBattleEnded(bool playerWon)
     {
+
+        GetTree().Root.GetNode<GlobalAudio>("GlobalAudio").AdjustVolume("World", _musicQuietVol);
         _battler.ProcessMode = ProcessModeEnum.Disabled;
         _pnlAction.ProcessMode = ProcessModeEnum.Disabled;
         _btnIntro.Disabled = true;
         _cursorControl.SetCursor(CursorControl.CursorMode.Select);
         if (playerWon)
         {
-            _battleVictory.Start(
-                _currentCharacters.Where(x => x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player).ToList(),
-                _currentCharacters.Where(x => x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Hostile).ToList(),
-                _scales.GetScaleAnimationTime());
+            _audioBattleVictory.Play();
+            _nextLevel += 1;
+            if (_nextLevel == _levelScenePaths.Count)
+            {
+                _adventureStoriesHandler.DoVictoryStory(_nextLevel - 1, _scales.GetCurrentFavour(), _levelScenePaths.Count - 1);
+            }
+            else
+            {
+                _battleVictory.Start(
+                    _currentCharacters.Where(x => x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player).ToList(),
+                    _currentCharacters.Where(x => x.StatusToPlayer == CharacterUnit.StatusToPlayerMode.Hostile).ToList(),
+                    _scales.GetScaleAnimationTime());
+            }
         }
         else
         {
+            _audioBattleDefeat.Play();
             _adventureStoriesHandler.DoDefeatStory();
         }
     }
@@ -335,7 +358,8 @@ public partial class BattleScene : Node, ISceneTransitionable
 
     private void OnCharacterTurnStarted(Array<SpellEffectManager.SpellMode> spells)
     {
-        _HUD.SetSpellBookDisplayedSpells(spells);
+        _HUD.SetSpellBookDisplayedSpells(spells, _battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.Reagents],
+            _battler.CharactersAwaitingTurn[0].CharacterData.Stats[StoryCharacterData.StatMode.FocusCharge]);
         _HUD.OnCharacterStartTurn(_battler.CharactersAwaitingTurn[0].CharacterData);
         _hBoxTurnOrder.OnCharacterTurnStart
             (_battler.CharactersAwaitingTurn.Skip(1)
@@ -399,7 +423,7 @@ public partial class BattleScene : Node, ISceneTransitionable
 
     private void NewCharacterCommon(CharacterUnit newChar, CharacterUnit.StatusToPlayerMode status)
     {
-        newChar.Rand = _rand;
+        // newChar.Rand = _rand;
         newChar.StatusToPlayer = status;
         _currentCharacters.Add(newChar);
         newChar.CastingEffect += _spellEffectManager.OnCastingSpellStart;
@@ -415,6 +439,16 @@ public partial class BattleScene : Node, ISceneTransitionable
         newChar.CharacterDataTreeLink.RoundEffectEnded += (CharacterRoundEffect roundEffect) => _HUD.OnCharacterRoundEffectFaded(newChar, roundEffect);
         newChar.CharacterDataTreeLink.RoundEffectEnded += (CharacterRoundEffect roundEffect) => _battler.OnCharacterRoundEffectFaded(newChar, roundEffect);
         newChar.TakingDamage += _HUD.OnCharacterTakingDamage;
+        foreach (Perk.PerkMode p in newChar.CharacterData.Perks.ToList())
+        {
+            Perk perk = PerkFactory.GeneratePerk(p);
+            // GD.Print(perk.Name);
+            newChar.ApplyPerk(perk);
+        }
+        newChar.CharacterData.RangedWeaponEquipped = newChar.CharacterData.RangedWeaponEquipped; // uhh trust me this does something
+        newChar.CharacterData.MeleeWeaponEquipped = newChar.CharacterData.MeleeWeaponEquipped; // uhh trust me this does something
+
+
     }
 
     private void NewPlayerCharactersFromSaved(List<CharacterCheckpointData> playerCharacters)
@@ -510,6 +544,7 @@ public partial class BattleScene : Node, ISceneTransitionable
 
         foreach (CharacterUnit characterUnit in _currentCharacters)
         {
+            characterUnit.CurrentLevel = _nextLevel;
             _lvlToLoad.PlaceCharacterUnit(characterUnit);
             _lvlToLoad.CharacterUnitsContainer.AddChild(characterUnit);
             characterUnit.RemoveObstacle += (playerCharacter, moving) =>
@@ -533,6 +568,7 @@ public partial class BattleScene : Node, ISceneTransitionable
             _btnIntro.Disabled = false;
         }
         _battler.Init(_currentCharacters, _lvlToLoad.HexGrid, _spellEffectManager.AllSpells);
+        _cntSpellBook.Init(_spellEffectManager.AllSpells);
         if (_loadingAnim.IsPlaying())
         {
             _loadingAnim.Play("Stop");
@@ -550,6 +586,9 @@ public partial class BattleScene : Node, ISceneTransitionable
 
 
     private bool _loadingLevel = false;
+    [Export]
+    private AudioContainer _audioBattleVictory;
+
     private void OnBtnIntroPressed()
     {
         _battler.ProcessMode = ProcessModeEnum.Inherit;
@@ -562,6 +601,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         {
             _animScalesStart.Play("Start");
         }
+        GetTree().Root.GetNode<GlobalAudio>("GlobalAudio").AdjustVolume("World", _musicNormalVol);
 
         // TESTING
         // OnBattleEnded(true);
@@ -626,15 +666,15 @@ public partial class BattleScene : Node, ISceneTransitionable
         // }
     }
 
-    public override void _Input(InputEvent ev)
-    {
-        if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
-        {
-            if (evk.Keycode == Key.Space)
-            {
-                OnBattleEnded(true);
-            }
-        }
-    }
+    // public override void _Input(InputEvent ev)
+    // {
+    //     if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
+    //     {
+    //         if (evk.Keycode == Key.Space)
+    //         {
+    //             OnBattleEnded(true);
+    //         }
+    //     }
+    // }
 
 }

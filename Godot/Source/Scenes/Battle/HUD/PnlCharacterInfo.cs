@@ -279,8 +279,8 @@ public partial class PnlCharacterInfo : Control
                 }
                 else if (kv.Key == StoryCharacterData.StatMode.HitBonusStrength)
                 {
-                    keyLabel = "Physical Hit Bonus";
-                    keyValue = data.GetCorrectHitBonus(false).ToString();
+                    keyLabel = "Melee Hit Bonus";
+                    keyValue = data.GetCorrectHitBonusMelee(false).ToString();
                 }
                 else if (kv.Key == StoryCharacterData.StatMode.ActionPoints)
                 {
@@ -294,7 +294,7 @@ public partial class PnlCharacterInfo : Control
                 }
                 else if (kv.Key == StoryCharacterData.StatMode.FocusCharge)
                 {
-                    keyLabel = "Focus Charge";
+                    keyLabel = "Mana";
                     keyValue = string.Format("{0} / {1}", data.Stats[StoryCharacterData.StatMode.FocusCharge], data.Stats[StoryCharacterData.StatMode.MaxFocusCharge]);
                 }
                 else
@@ -314,6 +314,11 @@ public partial class PnlCharacterInfo : Control
 
             if ((StoryCharacterData.RangedWeaponMode)data.RangedWeaponEquipped != StoryCharacterData.RangedWeaponMode.None)
             {
+                PnlCharacterInfoElement rangedHitElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
+                string rangedHitKey = "Ranged Hit Bonus";
+                string rangedHitVal = data.GetCorrectHitBonusRanged(false).ToString();
+                rangedHitElement.Set(rangedHitKey, rangedHitVal);
+                _vBoxStatsDisplay.AddChild(rangedHitElement);
                 PnlCharacterInfoElement rangedDiceElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
                 string rangedDiceKey = "Ranged Weapon Dice";
                 string rangedDiceVal = string.Format("{0}d{1}", data.WeaponDiceRanged[0].Item1, data.WeaponDiceRanged[0].Item2);

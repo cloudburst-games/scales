@@ -43,6 +43,17 @@ public partial class BattleVictory : Control
     [Export]
     private Label _lblFateDecided;
 
+    [Export]
+    private AudioContainer _audioDiplomacyFailed;
+
+
+    [Export]
+    private AudioContainer _audioDiplomacySuccess;
+    [Export]
+    private AudioContainer _audioIshtar;
+    [Export]
+    private AudioContainer _audioShamash;
+
     private CharacterUnit _victim = null;
 
     private int _scalesImpact = 2;
@@ -131,19 +142,24 @@ public partial class BattleVictory : Control
         Start(playertestInput, enemyTesty, 0.3f);
     }
 
-    private void StartDiplomacy()
+    private async void StartDiplomacy()
     {
         _pnlDiplomacy.Open();
         _animDiplomacy.Play("Start");
-        if (_persuadeOutcome.PersuadeSuccess)
-        {
-            BalancedFateDecided += () => this.OnFateDecided(Scales.FavourMode.Balanced);
-        }
-        else
-        {
-            _victim = null;
-            _btnDiplomacy.Visible = false;
-        }
+
+        AudioContainer audioC = _persuadeOutcome.PersuadeSuccess ? _audioDiplomacySuccess : _audioDiplomacyFailed;
+
+
+        BalancedFateDecided += () => this.OnFateDecided(Scales.FavourMode.Balanced);
+
+        await ToSignal(_animDiplomacy, AnimationPlayer.SignalName.AnimationFinished);
+        audioC.Play();
+        // }
+        // else
+        // {
+        //     _victim = null;
+        //     _btnDiplomacy.Visible = false;
+        // }
     }
 
     public delegate void MovingScalesTowardsShamashEventHandler();
@@ -240,9 +256,10 @@ public partial class BattleVictory : Control
     private async void OnFateDecided(Scales.FavourMode fate)
     {
         string godName = fate == Scales.FavourMode.Ishtar ? "Ishtar" : "Shamash";
-        _lblFateDecided.Text = fate != Scales.FavourMode.Balanced ? $"Pleased with your devotion, your Patron {godName} bestows upon you their power. You have more perks, of greater power, to select from." :
+        _lblFateDecided.Text = fate != Scales.FavourMode.Balanced ? $"Pleased with your devotion, your Patron {godName} bestows upon you their power. You have more boons, of greater power, to select from." :
             "By defying the Gods, you have lost a chance at their favour.\nYou have fewer and weaker boons to choose from.";
 
+        if (fate == Scales.FavourMode.Ishtar) { _audioIshtar.Play(); } else if (fate == Scales.FavourMode.Shamash) { _audioShamash.Play(); }
         _fateDecidedAnim.Play("Start");
         await ToSignal(_btnFadeDecidedContinue, BaseTextureButton.SignalName.Pressed);
         _fateDecidedAnim.Play("RESET");

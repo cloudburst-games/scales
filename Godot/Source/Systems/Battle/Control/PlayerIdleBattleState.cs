@@ -21,11 +21,15 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
         IdleBattleState.Battler.SetOutlineColours();
         SetContextualAction(IdleBattleState.Battler.BattleGrid.WorldToGrid(IdleBattleState.Battler.GetGlobalMousePosition()));
         _moveHexes = IdleBattleState.GetValidMoveHexes();
+
+        // Bug: move hexes are sometimes empty at start of turn. It is not an AP problem as when this occurs AP is normal. Could be invalid character position? Or everything set as obstacles?
+        // GD.Print("move hex count: ", _moveHexes.Count);
         // _allHexes = IdleBattleState.Battler.GetAllNonObstacleGridPositions();
         _halfMoveHexes = IdleBattleState.GetValidHalfMoveHexes();
         IdleBattleState.Battler.SetGridUserHexes(_moveHexes, _halfMoveHexes, IdleBattleState.Battler.CurrentDisplayMode);
         // IdleBattleState.Battler. SetGridUserHexes(_moveHexes, _halfMoveHexes, IdleBattleState.Battler.CurrentDisplayMode); // welp it turns out it didnt work. the sprites must be hdden some other way
         IdleBattleState.Battler.ToggleGrid(true);
+        // GD.Print("tur pending: ", IdleBattleState.Battler.CharactersAwaitingTurn[0].TurnPending);
     }
 
     // private void EnsureHexDisplay()

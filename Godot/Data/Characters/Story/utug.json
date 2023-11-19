@@ -6,6 +6,21 @@
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png",
     "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png",
     "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait2.png",
+    "AudioWalkPath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/HumanWalk.wav"
+    ],
+    "AudioHurtPath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/FemHumanHurt1.wav",
+        "res://Assets/Audio/Effects/PlaceholderSFX/FemHumanHurt2.wav",
+        "res://Assets/Audio/Effects/PlaceholderSFX/FemHumanHurt3.wav"
+    ],
+    "AudioDiePath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/FemHumanDie.wav"
+    ],
+    "AudioMeleePath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch.wav",
+        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
+    ],
     "Perks": [
         0,
         3,

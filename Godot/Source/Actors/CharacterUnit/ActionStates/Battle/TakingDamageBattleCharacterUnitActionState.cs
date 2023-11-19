@@ -15,6 +15,7 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
         // this.CharacterUnit.AnimationTree.Set("parameters/conditions/ranged", true);
         // GD.Print("Entering taking damage state ", CharacterUnit.CharacterData.Name);
         TakeDamage();
+        this.CharacterUnit.GetNode<AudioContainer>("AudioHurt").Play();
     }
 
     // private bool _runOnce = false;
@@ -60,7 +61,7 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
             TakingDamageAnim();
         }
 
-        CharacterUnit.EmitSignal(CharacterUnit.SignalName.TakingDamage, CharacterUnit.TakingDamageResult, CharacterUnit.CharacterData.Name, CharacterUnit.GlobalPosition);
+        CharacterUnit.EmitSignal(CharacterUnit.SignalName.TakingDamage, CharacterUnit.TakingDamageResult, CharacterUnit.CharacterData.Name, CharacterUnit.GlobalPosition, CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] <= 0);
         // GD.Print(string.Format("{0} takes {1} damage and has {2} health remaining.", CharacterUnit.CharacterData.Name, CharacterUnit.TakingDamageResult.FinalDamage, CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health]));
 
     }

@@ -88,7 +88,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Choose an Adventure"
+text = "Gilgamesh scale adventure title"
 label_settings = SubResource("LabelSettings_6y1lg")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -104,6 +104,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BasePanel/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -151,8 +152,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Want to see more?
-Let us know what you think!"
 label_settings = SubResource("LabelSettings_wlli7")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -197,6 +196,7 @@ size_flags_stretch_ratio = 0.8
 [node name="BtnEasy" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "An ally joins you each battle."
 toggle_mode = true
 button_group = ExtResource("9_k5wjp")
 texture_normal = ExtResource("6_bmndb")
@@ -220,6 +220,7 @@ vertical_alignment = 1
 [node name="BtnMedium" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Normal amount of enemies and allies."
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("9_k5wjp")
@@ -245,6 +246,7 @@ vertical_alignment = 1
 [node name="BtnHard" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "You face an additional enemy each battle."
 toggle_mode = true
 button_group = ExtResource("9_k5wjp")
 texture_normal = ExtResource("6_bmndb")
@@ -273,6 +275,7 @@ size_flags_stretch_ratio = 0.8
 [node name="BtnContinue" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Continue following your last victory."
 texture_normal = ExtResource("3_gtib0")
 texture_pressed = ExtResource("4_01gsx")
 texture_hover = ExtResource("5_xhugv")
@@ -296,6 +299,7 @@ vertical_alignment = 1
 [node name="BtnNew" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Start a new adventure"
 texture_normal = ExtResource("3_gtib0")
 texture_pressed = ExtResource("4_01gsx")
 texture_hover = ExtResource("5_xhugv")

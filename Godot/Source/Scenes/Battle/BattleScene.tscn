@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=91 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
@@ -23,7 +23,9 @@
 [ext_resource type="Texture2D" uid="uid://t18ucy7fdeli" path="res://Assets/Graphics/Interface/Buttons/Actions/Wait.png" id="12_n0ccq"]
 [ext_resource type="Texture2D" uid="uid://4osa8ri0ekrt" path="res://Assets/Graphics/Interface/Images/9patchEgyptianSymbols.png" id="13_alkka"]
 [ext_resource type="Texture2D" uid="uid://dxwbq4clp1pyr" path="res://Assets/Graphics/Interface/Buttons/Actions/WaitHover.png" id="13_nvwr6"]
+[ext_resource type="AudioStream" uid="uid://u8vvnphooeai" path="res://addons/BaseTextureButtonPlugin/hover.wav" id="15_h183d"]
 [ext_resource type="Texture2D" uid="uid://dxhgtad82y7mx" path="res://Assets/Graphics/Interface/Buttons/Actions/Bow.png" id="16_e3j1o"]
+[ext_resource type="AudioStream" uid="uid://in1epaq47smy" path="res://addons/BaseTextureButtonPlugin/click.wav" id="16_g43m3"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/HUD/HBoxTurnOrder.cs" id="17_7pg5c"]
 [ext_resource type="Texture2D" uid="uid://v6ejl6f1cf4" path="res://Assets/Graphics/Interface/Buttons/Actions/BowHover.png" id="17_enl43"]
 [ext_resource type="Texture2D" uid="uid://debj5xxrq0rro" path="res://Assets/Graphics/Interface/Buttons/Actions/Move.png" id="18_7qj1f"]
@@ -58,11 +60,18 @@
 [ext_resource type="PackedScene" uid="uid://d3fkaury6ig66" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfo.tscn" id="49_8ah3x"]
 [ext_resource type="PackedScene" uid="uid://dab158j4ohebo" path="res://Source/Systems/HexGrid/HexGridUserDisplay.tscn" id="50_rack7"]
 [ext_resource type="PackedScene" uid="uid://dhnf1jm0vtok8" path="res://Source/Interface/Panel/CharacterUpgrade/CntCharacterUpgrade.tscn" id="54_82j32"]
+[ext_resource type="AudioStream" uid="uid://wh6raoilaqyn" path="res://Assets/Audio/Effects/PlaceholderSFX/SpellFizzle.wav" id="54_fvkb8"]
 [ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="57_5fh2h"]
 [ext_resource type="PackedScene" uid="uid://bb71nh8f38a0g" path="res://addons/SceneTransitionPlugin/SceneTransition.tscn" id="57_cjqrl"]
 [ext_resource type="PackedScene" uid="uid://4extw10vut0x" path="res://Source/Systems/AdventureStoriesHandler/GilgamStoryHandler.tscn" id="58_27mia"]
 [ext_resource type="LabelSettings" uid="uid://bok3h2cnuw41n" path="res://Assets/Graphics/Themes/Witch/playWitchyLabel.tres" id="58_mwwbn"]
 [ext_resource type="PackedScene" uid="uid://udu41fk3ega5" path="res://Source/Scenes/Battle/BattleVictory.tscn" id="59_tgswr"]
+[ext_resource type="AudioStream" uid="uid://picwhekd1ufi" path="res://Assets/Audio/Effects/PlaceholderSFX/CloseBook.wav" id="60_pfahi"]
+[ext_resource type="AudioStream" uid="uid://css5v5pstlfbn" path="res://Assets/Audio/Effects/PlaceholderSFX/OpenBook.wav" id="61_5lh3e"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="64_ascdd"]
+[ext_resource type="AudioStream" uid="uid://c5tl1eo4tb4il" path="res://Assets/Audio/Music/World/EpicBattle_L3.ogg" id="65_61tou"]
+[ext_resource type="AudioStream" uid="uid://dwtxn4yfwg1hk" path="res://Assets/Audio/Effects/PlaceholderSFX/BattleDefeat.wav" id="66_lmq6k"]
+[ext_resource type="AudioStream" uid="uid://bxomd0bqaolbr" path="res://Assets/Audio/Effects/PlaceholderSFX/GameVictory.wav" id="68_gp8wv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ge4m1"]
 bg_color = Color(1, 0, 0, 1)
@@ -315,8 +324,9 @@ _data = {
 "Unloading": SubResource("Animation_gafb4")
 }
 
-[node name="BattleScene" type="Node" node_paths=PackedStringArray("_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnActions", "_battleScalesAnim", "_cntSpellBook", "_cursorControl", "_spellEffectManager", "_hBoxTurnOrder", "_pnlCharacterInfo", "_pnlScales", "_animScalesStart", "_adventureStoriesHandler", "_battleVictory", "_mainMenuSceneTransition", "_cntCharacterUpgrade", "_pnlPerkSelect", "_loadingAnim")]
+[node name="BattleScene" type="Node" node_paths=PackedStringArray("_audioBattleDefeat", "_anim", "_cntBattleLevel", "_HUD", "_battler", "_pnlAction", "_btnIntro", "_btnChooseSpell", "_btnEndTurn", "_btnMenu", "_btnActions", "_battleScalesAnim", "_cntSpellBook", "_cursorControl", "_spellEffectManager", "_hBoxTurnOrder", "_pnlCharacterInfo", "_pnlScales", "_animScalesStart", "_adventureStoriesHandler", "_battleVictory", "_mainMenuSceneTransition", "_cntCharacterUpgrade", "_pnlPerkSelect", "_loadingAnim", "_audioBattleVictory")]
 script = ExtResource("1_2w8r3")
+_audioBattleDefeat = NodePath("BattleDefeat")
 _anim = NodePath("Anim")
 _cntBattleLevel = NodePath("CntBattleLevel")
 _HUD = NodePath("BattleHUD")
@@ -342,13 +352,14 @@ _mainMenuSceneTransition = NodePath("MainMenuSceneTransition")
 _cntCharacterUpgrade = NodePath("BattleHUD/CntCharacterUpgrade")
 _pnlPerkSelect = NodePath("BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect")
 _loadingAnim = NodePath("BattleHUD/CtrlLoading/LoadingAnim")
+_audioBattleVictory = NodePath("BattleVictory")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 3840.0
 offset_bottom = 2160.0
 color = Color(0.568627, 0.862745, 1, 1)
 
-[node name="BattleHUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("_characterInfoPanel", "_pnlBattleIntro", "_btnBattleIntroContinue", "_lblIntro", "_lblShortLog", "_btnLog", "_pnlFullLog", "_RLblFullLog", "_pnlSpellBook", "_btnCloseSpellBook", "_cntSpellBook", "_lblHint", "_pnlShortLog", "_pnlAction", "_texActiveCharacter", "_barHealth", "_barHerbs", "_barCharge", "_pnlScales")]
+[node name="BattleHUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("_characterInfoPanel", "_pnlBattleIntro", "_btnBattleIntroContinue", "_lblIntro", "_lblShortLog", "_btnLog", "_pnlFullLog", "_RLblFullLog", "_pnlSpellBook", "_btnCloseSpellBook", "_cntSpellBook", "_lblHint", "_pnlShortLog", "_pnlAction", "_texActiveCharacter", "_barHealth", "_barHerbs", "_barCharge", "_pnlScales", "_audioCloseBook", "_audioOpenBook")]
 script = ExtResource("8_p64pw")
 _characterInfoPanel = NodePath("CntHUD/CharacterInfoPanel")
 _pnlBattleIntro = NodePath("CntHUD/PnlBattleIntro")
@@ -370,6 +381,8 @@ _barHealth = NodePath("CntHUD/PnlAction/HBoxContainer/PnlActiveCharacter/HBoxCon
 _barHerbs = NodePath("CntHUD/PnlAction/HBoxContainer/PnlActiveCharacter/HBoxContainer2/HBoxContainer/BarHerbs")
 _barCharge = NodePath("CntHUD/PnlAction/HBoxContainer/PnlActiveCharacter/HBoxContainer2/HBoxContainer/BarCharge")
 _pnlScales = NodePath("CntHUD/PnlScales")
+_audioCloseBook = NodePath("AudioCloseBook")
+_audioOpenBook = NodePath("AudioOpenBook")
 
 [node name="CntHUD" type="Control" parent="BattleHUD"]
 modulate = Color(1, 1, 1, 0)
@@ -508,6 +521,8 @@ texture_hover = ExtResource("9_rwm3w")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="PnlShortLog" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
 layout_mode = 2
@@ -582,6 +597,8 @@ texture_normal = ExtResource("13_alkka")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BtnEndTurn" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
 layout_mode = 2
@@ -591,6 +608,8 @@ texture_hover = ExtResource("13_nvwr6")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BtnMenu" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
 layout_mode = 2
@@ -599,6 +618,8 @@ texture_normal = ExtResource("19_hl42s")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="HBoxTurnOrder" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -637,6 +658,8 @@ texture_hover = ExtResource("6_7olrp")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BtnShoot" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/PnlActions/HBoxContainer"]
 layout_mode = 2
@@ -646,6 +669,8 @@ texture_hover = ExtResource("17_enl43")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BtnCastSpell" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/PnlActions/HBoxContainer"]
 layout_mode = 2
@@ -655,6 +680,8 @@ texture_hover = ExtResource("9_rwm3w")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BtnMove" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/PnlActions/HBoxContainer"]
 layout_mode = 2
@@ -664,6 +691,8 @@ texture_hover = ExtResource("19_hrgya")
 ignore_texture_size = true
 stretch_mode = 4
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="PnlBattleIntro" type="Panel" parent="BattleHUD/CntHUD"]
 layout_mode = 1
@@ -720,6 +749,8 @@ texture_disabled = ExtResource("2_mer2l")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="PnlFullLog" type="Panel" parent="BattleHUD/CntHUD"]
 layout_mode = 1
@@ -819,6 +850,8 @@ texture_hover = ExtResource("30_x3r6m")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 metadata/_edit_use_anchors_ = true
 
 [node name="SunSpells" type="Control" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook"]
@@ -839,6 +872,8 @@ texture_hover = ExtResource("32_cedin")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BtnJudgementFlame" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
@@ -851,6 +886,8 @@ texture_hover = ExtResource("34_u602w")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BtnBlindingLight" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
@@ -863,6 +900,8 @@ texture_hover = ExtResource("36_jqi6p")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BtnSolarBlast" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
@@ -875,6 +914,8 @@ texture_hover = ExtResource("38_b65e7")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BodySpells" type="Control" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook"]
 anchors_preset = 0
@@ -894,6 +935,8 @@ texture_hover = ExtResource("40_d0yd3")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BtnElixirSwiftness" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
@@ -906,6 +949,8 @@ texture_hover = ExtResource("42_s4io6")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BtnRegenOintment" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
@@ -918,6 +963,8 @@ texture_hover = ExtResource("44_s1m13")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BtnVialFury" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
@@ -930,6 +977,15 @@ texture_hover = ExtResource("46_7l2d4")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
+
+[node name="AudioFizzle" type="Node2D" parent="BattleHUD/CntHUD/CntSpellBook"]
+script = ExtResource("64_ascdd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BattleHUD/CntHUD/CntSpellBook/AudioFizzle"]
+stream = ExtResource("54_fvkb8")
+bus = &"Effects"
 
 [node name="CharacterInfoPanel" parent="BattleHUD/CntHUD" instance=ExtResource("49_8ah3x")]
 
@@ -942,24 +998,60 @@ _characterSelectBtnGroup = SubResource("ButtonGroup_twrr5")
 
 [node name="BaseTextureButton" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="0"]
 button_group = SubResource("ButtonGroup_twrr5")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BaseTextureButton2" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="1"]
 button_group = SubResource("ButtonGroup_twrr5")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BaseTextureButton3" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="2"]
 button_group = SubResource("ButtonGroup_twrr5")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BaseTextureButton4" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="3"]
 button_group = SubResource("ButtonGroup_twrr5")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="BaseTextureButton5" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="4"]
 button_group = SubResource("ButtonGroup_twrr5")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="PnlPerkSelect" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer" index="1"]
 _perkSelectButtonGroup = SubResource("ButtonGroup_jvt5r")
 
 [node name="BaseTextureButton4" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="0"]
 button_group = SubResource("ButtonGroup_jvt5r")
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
+
+[node name="BaseTextureButton5" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="1"]
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
+
+[node name="BaseTextureButton6" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="2"]
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
+
+[node name="BaseTextureButton7" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="3"]
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
+
+[node name="BaseTextureButton8" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="4"]
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
+
+[node name="BaseTextureButton9" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="5"]
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
+
+[node name="BtnContinue" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect" index="2"]
+_hoverSample = ExtResource("15_h183d")
+_clickedSample = ExtResource("16_g43m3")
 
 [node name="GilgamStoryHandler" parent="BattleHUD" instance=ExtResource("58_27mia")]
 offset_left = 101.0
@@ -1045,6 +1137,20 @@ libraries = {
 "": SubResource("AnimationLibrary_p2po7")
 }
 
+[node name="AudioCloseBook" type="Node2D" parent="BattleHUD"]
+script = ExtResource("64_ascdd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BattleHUD/AudioCloseBook"]
+stream = ExtResource("60_pfahi")
+bus = &"Effects"
+
+[node name="AudioOpenBook" type="Node2D" parent="BattleHUD"]
+script = ExtResource("64_ascdd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BattleHUD/AudioOpenBook"]
+stream = ExtResource("61_5lh3e")
+bus = &"Effects"
+
 [node name="CntBattleLevel" type="Node2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 
@@ -1068,6 +1174,34 @@ libraries = {
 
 [node name="MainMenuSceneTransition" parent="." instance=ExtResource("57_cjqrl")]
 DestinationPath = "res://Source/Scenes/MainMenu/MainMenuScene.tscn"
+
+[node name="MusicContainer" type="Node2D" parent="."]
+process_mode = 3
+script = ExtResource("64_ascdd")
+Start = true
+_playOrder = 0
+_loop = 2
+_globalAudio = true
+GlobalName = "World"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="MusicContainer"]
+stream = ExtResource("65_61tou")
+volume_db = -15.0
+bus = &"Music"
+
+[node name="BattleDefeat" type="Node2D" parent="."]
+script = ExtResource("64_ascdd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BattleDefeat"]
+stream = ExtResource("66_lmq6k")
+bus = &"Effects"
+
+[node name="BattleVictory" type="Node2D" parent="."]
+script = ExtResource("64_ascdd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BattleVictory"]
+stream = ExtResource("68_gp8wv")
+bus = &"Effects"
 
 [editable path="BattleHUD/CntHUD/PnlScales"]
 [editable path="BattleHUD/CntCharacterUpgrade"]

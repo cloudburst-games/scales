@@ -57,7 +57,7 @@ public class BattleLogParser
                 output = "Reagents remaining. Used for Ishtari rites.";
                 break;
             case PnlAction.UIHint.CurrentCharge:
-                output = "Charge remaining. Used for Shamashian invocations.";
+                output = "Mana remaining. Used for Shamashian invocations.";
                 break;
         }
         return output;
@@ -119,7 +119,7 @@ public class BattleLogParser
         return output;
     }
 
-    internal static string ParseSpellHint(SpellEffectManager.Spell spell)
+    internal static string ParseSpellHint(SpellEffectManager.Spell spell, bool canAfford)
     {
         string output = "";
 
@@ -128,6 +128,7 @@ public class BattleLogParser
             output = spell.Description;
             string cost = spell.ChargeCost > 0 ? "Cost: " + spell.ChargeCost.ToString() + " Charge" : spell.ReagentCost > 0 ? "Cost: " + spell.ReagentCost + " Reagents" : "";
             output += (spell.ChargeCost > 0 || spell.ReagentCost > 0) ? "\n" + cost : "";
+            output += canAfford ? "" : "\n Insufficient resources";
         }
 
         return output;

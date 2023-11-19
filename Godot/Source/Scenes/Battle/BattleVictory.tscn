@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://udu41fk3ega5"]
+[gd_scene load_steps=27 format=3 uid="uid://udu41fk3ega5"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleVictory.cs" id="1_xe3mj"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_nyqk7"]
@@ -9,6 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="5_tpefe"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="6_l1aks"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_cm0lb"]
+[ext_resource type="AudioStream" uid="uid://u8vvnphooeai" path="res://addons/BaseTextureButtonPlugin/hover.wav" id="10_3qxd1"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="10_4dgm0"]
+[ext_resource type="AudioStream" uid="uid://in1epaq47smy" path="res://addons/BaseTextureButtonPlugin/click.wav" id="11_82de5"]
+[ext_resource type="AudioStream" uid="uid://clxygyjqckwul" path="res://Assets/Audio/Effects/PlaceholderSFX/DiplomacyFailed.wav" id="11_chsem"]
+[ext_resource type="AudioStream" uid="uid://c5e3fp71fypqr" path="res://Assets/Audio/Effects/PlaceholderSFX/DiplomacySuccess.wav" id="12_soipb"]
+[ext_resource type="AudioStream" uid="uid://b6fnl6va48cc8" path="res://Assets/Audio/Effects/PlaceholderSFX/IshtarSound.wav" id="13_7ijky"]
+[ext_resource type="AudioStream" uid="uid://cusxunhf85vum" path="res://Assets/Audio/Effects/PlaceholderSFX/ShamashSound.wav" id="14_5nd6r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i2ruh"]
 font_size = 56
@@ -18,6 +25,45 @@ font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_8kv4v"]
 font_size = 84
+
+[sub_resource type="Animation" id="Animation_mbd2c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BtnFadeDecidedContinue:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LblFateDecided:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_0qgmm"]
 resource_name = "Start"
@@ -57,45 +103,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_mbd2c"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BtnFadeDecidedContinue:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("LblFateDecided:visible_ratio")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0ve0y"]
@@ -168,7 +175,7 @@ _data = {
 "Start": SubResource("Animation_x2yqf")
 }
 
-[node name="BattleVictory" type="Control" node_paths=PackedStringArray("_btnMercy", "_btnDiplomacy", "_btnWrath", "_pnlDiplomacy", "_pnlFate", "_btnDiplomacyContinue", "_animDiplomacy", "_animScalesStart", "_animScales", "_lblDiplomacyOutcome", "_opponentTex", "_lblDecideFate", "_fateDecidedAnim", "_btnFadeDecidedContinue", "_lblFateDecided")]
+[node name="BattleVictory" type="Control" node_paths=PackedStringArray("_btnMercy", "_btnDiplomacy", "_btnWrath", "_pnlDiplomacy", "_pnlFate", "_btnDiplomacyContinue", "_animDiplomacy", "_animScalesStart", "_animScales", "_lblDiplomacyOutcome", "_opponentTex", "_lblDecideFate", "_fateDecidedAnim", "_btnFadeDecidedContinue", "_lblFateDecided", "_audioDiplomacyFailed", "_audioDiplomacySuccess", "_audioIshtar", "_audioShamash")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -192,6 +199,10 @@ _lblDecideFate = NodePath("PnlFate/VBoxContainer/LblDecideFate")
 _fateDecidedAnim = NodePath("PnlFate/PnlOutcome/AnimFateDecided")
 _btnFadeDecidedContinue = NodePath("PnlFate/PnlOutcome/BtnFadeDecidedContinue")
 _lblFateDecided = NodePath("PnlFate/PnlOutcome/LblFateDecided")
+_audioDiplomacyFailed = NodePath("AudioDiplomacyFailed")
+_audioDiplomacySuccess = NodePath("AudioDiplomacySuccess")
+_audioIshtar = NodePath("AudioIshtar")
+_audioShamash = NodePath("AudioShamash")
 
 [node name="PnlFate" type="Panel" parent="."]
 layout_mode = 1
@@ -242,8 +253,6 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="PnlScales" parent="PnlFate/VBoxContainer/HBoxContainer2" instance=ExtResource("3_r2gv2")]
-visible = false
-modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.0
@@ -263,6 +272,8 @@ texture_disabled = ExtResource("6_l1aks")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_cm0lb")
+_hoverSample = ExtResource("10_3qxd1")
+_clickedSample = ExtResource("11_82de5")
 
 [node name="Label" type="Label" parent="PnlFate/VBoxContainer/HBoxContainer/BtnMercy"]
 layout_mode = 1
@@ -286,6 +297,8 @@ texture_disabled = ExtResource("6_l1aks")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_cm0lb")
+_hoverSample = ExtResource("10_3qxd1")
+_clickedSample = ExtResource("11_82de5")
 
 [node name="Label" type="Label" parent="PnlFate/VBoxContainer/HBoxContainer/BtnDiplomacy"]
 layout_mode = 1
@@ -309,6 +322,8 @@ texture_disabled = ExtResource("6_l1aks")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_cm0lb")
+_hoverSample = ExtResource("10_3qxd1")
+_clickedSample = ExtResource("11_82de5")
 
 [node name="Label" type="Label" parent="PnlFate/VBoxContainer/HBoxContainer/BtnWrath"]
 layout_mode = 1
@@ -367,6 +382,8 @@ texture_disabled = ExtResource("6_l1aks")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_cm0lb")
+_hoverSample = ExtResource("10_3qxd1")
+_clickedSample = ExtResource("11_82de5")
 
 [node name="Label" type="Label" parent="PnlFate/PnlOutcome/BtnFadeDecidedContinue"]
 layout_mode = 1
@@ -441,6 +458,8 @@ texture_disabled = ExtResource("6_l1aks")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_cm0lb")
+_hoverSample = ExtResource("10_3qxd1")
+_clickedSample = ExtResource("11_82de5")
 
 [node name="Label" type="Label" parent="PnlDiplomacy/BtnDiplomacyContinue"]
 layout_mode = 1
@@ -453,5 +472,33 @@ text = "Continue"
 label_settings = SubResource("LabelSettings_o6e5d")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioDiplomacyFailed" type="Node2D" parent="."]
+script = ExtResource("10_4dgm0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioDiplomacyFailed"]
+stream = ExtResource("11_chsem")
+bus = &"Effects"
+
+[node name="AudioDiplomacySuccess" type="Node2D" parent="."]
+script = ExtResource("10_4dgm0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioDiplomacySuccess"]
+stream = ExtResource("12_soipb")
+bus = &"Effects"
+
+[node name="AudioIshtar" type="Node2D" parent="."]
+script = ExtResource("10_4dgm0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioIshtar"]
+stream = ExtResource("13_7ijky")
+bus = &"Effects"
+
+[node name="AudioShamash" type="Node2D" parent="."]
+script = ExtResource("10_4dgm0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioShamash"]
+stream = ExtResource("14_5nd6r")
+bus = &"Effects"
 
 [editable path="PnlFate/VBoxContainer/HBoxContainer2/PnlScales"]

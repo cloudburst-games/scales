@@ -5,24 +5,24 @@
 [ext_resource type="Texture2D" uid="uid://ntwqxa3epx7p" path="res://Assets/Graphics/Sprites/Actors/Townsfolk_AFAB/AFAB_IdleStyleColour1.png" id="6_jc26n"]
 [ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="19_njj6w"]
 [ext_resource type="Texture2D" uid="uid://cfuusircm3spu" path="res://Assets/Graphics/Sprites/Actors/DeathSprites/DeadSpritesAll.png" id="24_7r1bs"]
-[ext_resource type="Animation" uid="uid://cfbsj1pgkiu0d" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit1_afab1.tres" id="27_gxlft"]
-[ext_resource type="Animation" uid="uid://c4ewbdmwkf4ub" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit2_afab1.tres" id="28_j4etp"]
-[ext_resource type="Animation" uid="uid://ckt52oo1f7xta" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit3_afab1.tres" id="29_dcjk5"]
-[ext_resource type="Animation" uid="uid://viucy3obmbdx" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit4_afab1.tres" id="30_hrcwo"]
-[ext_resource type="Animation" uid="uid://djj4ydgwjm0db" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit5_afab1.tres" id="31_5olgr"]
-[ext_resource type="Animation" uid="uid://dkri4l6ai70s7" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit6_afab1.tres" id="32_abndq"]
-[ext_resource type="Animation" uid="uid://dnn8egi0c1is1" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle1_afab1.tres" id="33_csskj"]
-[ext_resource type="Animation" uid="uid://b12srsyodobvl" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle2_afab1.tres" id="34_22gmv"]
-[ext_resource type="Animation" uid="uid://by4xpci3unl7e" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle3_afab1.tres" id="35_n307y"]
-[ext_resource type="Animation" uid="uid://bekq3xdc2e8e6" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle4_afab1.tres" id="36_rjci8"]
-[ext_resource type="Animation" uid="uid://28by4n24vgmp" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle5_afab1.tres" id="37_t28yx"]
-[ext_resource type="Animation" uid="uid://bn4qrdc7l3yri" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle6_afab1.tres" id="38_678sv"]
-[ext_resource type="Animation" uid="uid://cev5krfso87kt" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk1_afab1.tres" id="39_cvjiv"]
-[ext_resource type="Animation" uid="uid://cc0j3yg2kdued" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk2_afab1.tres" id="40_06u0m"]
-[ext_resource type="Animation" uid="uid://cftc5nhweupwu" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk3_afab1.tres" id="41_b3q42"]
-[ext_resource type="Animation" uid="uid://bkmm77u0pk8q4" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk4_afab1.tres" id="42_ndxea"]
-[ext_resource type="Animation" uid="uid://dq2p61d7flbh7" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk5_afab1.tres" id="43_ucj6u"]
-[ext_resource type="Animation" uid="uid://dwpi17aeaa76" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk6_afab1.tres" id="44_spn3u"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit1_afab1.tres" id="27_gxlft"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit2_afab1.tres" id="28_j4etp"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit3_afab1.tres" id="29_dcjk5"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit4_afab1.tres" id="30_hrcwo"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit5_afab1.tres" id="31_5olgr"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/hit6_afab1.tres" id="32_abndq"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle1_afab1.tres" id="33_csskj"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle2_afab1.tres" id="34_22gmv"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle3_afab1.tres" id="35_n307y"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle4_afab1.tres" id="36_rjci8"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle5_afab1.tres" id="37_t28yx"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/idle6_afab1.tres" id="38_678sv"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk1_afab1.tres" id="39_cvjiv"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk2_afab1.tres" id="40_06u0m"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk3_afab1.tres" id="41_b3q42"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk4_afab1.tres" id="42_ndxea"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk5_afab1.tres" id="43_ucj6u"]
+[ext_resource type="Animation" path="res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AnimSequences/walk6_afab1.tres" id="44_spn3u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_klsaj"]
 shader = ExtResource("2_mrgmp")
@@ -55,6 +55,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_n7l2o"]
 resource_name = "dying"
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,10 +111,10 @@ tracks/4/path = NodePath("Sprite:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.4001),
+"times": PackedFloat32Array(0, 0.36, 0.4, 0.4001),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(2, 2), Vector2(2, 2), Vector2(1, 1), Vector2(2, 2)]
+"values": [Vector2(2, 2), Vector2(2, 2), Vector2(1, 1), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wh1ac"]
@@ -323,7 +324,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("6_jc26n")
 offset = Vector2(0, -26.25)
 region_enabled = true
-region_rect = Rect2(2886.5, 2439.5, 480, 270)
+region_rect = Rect2(962.5, 2710.5, 480, 270)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1.5)

@@ -4,12 +4,7 @@ using System;
 public partial class MainMenuScene : Node, ISceneTransitionable
 {
 
-    // [Export]
-    // private PnlCharacters _pnlCharacters;
-    // [Export]
-    // private PnlCharacterDetails _pnlCharacterDetails;
-    // [Export]
-    // private BasePanel _pnlCharacterSelect;
+
     [Export]
     private PictureStoryContainer _introPictureStory;
 
@@ -21,6 +16,8 @@ public partial class MainMenuScene : Node, ISceneTransitionable
 
     [Export]
     private CntPnlAdventures _cntPnlAdventures;
+    [Export]
+    private float _musicQuietVol = -15f;
 
     private BattleDataContainer _battleData = new();
 
@@ -77,6 +74,8 @@ public partial class MainMenuScene : Node, ISceneTransitionable
             _battleSceneTransition.Start(SceneTransition.LoadType.AnimatedAuto);
         };
         _introPictureStory.Play();
+
+        GetTree().Root.GetNode<GlobalAudio>("GlobalAudio").AdjustVolume("Menu", _musicQuietVol);
     }
 
     public override void _Process(double delta)

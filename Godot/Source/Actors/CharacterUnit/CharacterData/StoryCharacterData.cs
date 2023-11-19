@@ -70,7 +70,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     public CharacterUnit.TreeLink TreeLink { get; private set; }
     public Dictionary<AttributeMode, int> Attributes { get; set; }
     public Dictionary<StatMode, int> Stats { get; set; }
-    public Dictionary<int, List<string>> Barks { get; set; }
+    public Dictionary<int, List<List<string>>> Barks { get; set; }
     public List<CharacterRoundEffect> CurrentEffects { get; set; } = new();
 
 
@@ -83,6 +83,11 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
             PatronGod = this.PatronGod,
             BodyPath = this.BodyPath,
             PortraitPath = this.PortraitPath,
+            AudioWalkPath = this.AudioWalkPath,
+            AudioHurtPath = this.AudioHurtPath,
+            AudioDiePath = this.AudioDiePath,
+            AudioMeleePath = this.AudioMeleePath,
+            Barks = this.Barks,
             CharacterBtnNormalPath = this.CharacterBtnNormalPath,
             CharacterBtnPressedPath = this.CharacterBtnPressedPath,
             _meleeWeaponEquipped = this._meleeWeaponEquipped,
@@ -421,27 +426,49 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     //         : WeaponTypeEquipped == WeaponTypeEquippedMode.Strength ? HitBonusWeapon + HitBonusStrength
     //         : HitBonusWeapon + HitBonusPrecision;
     // }
-    public int GetCorrectHitBonus(bool mystical = false)
+    public int GetCorrectHitBonusMelee(bool mystical = false)
     {
         if (mystical)
         {
-            if (WeaponTypeEquipped == WeaponTypeEquippedMode.Magical)
-            {
-                return Stats[StatMode.HitBonusPrecision] + HitBonusWeapon;
-            }
-            else
-            {
-                return Stats[StatMode.HitBonusPrecision];
-            }
+            // if (WeaponTypeEquipped == WeaponTypeEquippedMode.Magical)
+            // {
+            //     return Stats[StatMode.HitBonusPrecision] + HitBonusWeaponRanged;
+            // }
+            // else
+            // {
+            return Stats[StatMode.HitBonusPrecision];
+            // }
         }
-        else if (WeaponTypeEquipped == WeaponTypeEquippedMode.Strength)
+        if (WeaponTypeEquipped == WeaponTypeEquippedMode.Strength)
         {
-            return Stats[StatMode.HitBonusStrength] + HitBonusWeapon;
+            return Stats[StatMode.HitBonusStrength] + HitBonusWeaponMelee;
         }
         else
         {
-            return Stats[StatMode.HitBonusPrecision] + HitBonusWeapon;
+            return Stats[StatMode.HitBonusPrecision] + HitBonusWeaponMelee;
         }
+    }
+    public int GetCorrectHitBonusRanged(bool mystical = false)
+    {
+        if (mystical)
+        {
+            // if (WeaponTypeEquipped == WeaponTypeEquippedMode.Magical)
+            // {
+            return Stats[StatMode.HitBonusPrecision];
+        }
+        else
+        {
+            return Stats[StatMode.HitBonusPrecision] + HitBonusWeaponRanged;
+        }
+        // }
+        // else if (WeaponTypeEquipped == WeaponTypeEquippedMode.Strength)
+        // {
+        //     return Stats[StatMode.HitBonusStrength] + HitBonusWeaponMelee;
+        // }
+        // else
+        // {
+        //     return Stats[StatMode.HitBonusPrecision] + HitBonusWeaponMelee;
+        // }
     }
 
     public int GetCorrectMeleeWeaponDamageBonus()
@@ -495,7 +522,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
 
     public enum MeleeWeaponMode
     {
-        None, WoodenKnuckles, BrassKnuckles, AgileKnife, JewelledDagger,
+        None, WoodenKnuckles, BrassKnuckles, BluntKnife, JewelledDagger,
         Natural
     }
 
@@ -512,32 +539,37 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
             {
                 case MeleeWeaponMode.None:
                     WeaponDiceMelee = new() { new(1, 4) };
-                    MeleeWeaponDamageBonus = 0;
+                    // MeleeWeaponDamageBonus = 0;
+                    HitBonusWeaponMelee = 0;
                     WeaponTypeEquipped = WeaponTypeEquippedMode.Strength;
                     break;
                 case MeleeWeaponMode.WoodenKnuckles:
                     WeaponDiceMelee = new() { new(1, 6) };
-                    MeleeWeaponDamageBonus = 1;
+                    // MeleeWeaponDamageBonus = 1;
+                    HitBonusWeaponMelee = 1;
                     WeaponTypeEquipped = WeaponTypeEquippedMode.Strength;
                     break;
                 case MeleeWeaponMode.BrassKnuckles:
-                    WeaponDiceMelee = new() { new(1, 6) };
-                    MeleeWeaponDamageBonus = 2;
+                    WeaponDiceMelee = new() { new(1, 8) };
+                    // MeleeWeaponDamageBonus = 2;
+                    HitBonusWeaponMelee = 3;
                     WeaponTypeEquipped = WeaponTypeEquippedMode.Strength;
                     break;
-                case MeleeWeaponMode.AgileKnife:
+                case MeleeWeaponMode.BluntKnife:
                     WeaponDiceMelee = new() { new(1, 4) };
-                    MeleeWeaponDamageBonus = 2;
+                    // MeleeWeaponDamageBonus = 2;
+                    HitBonusWeaponMelee = 2;
                     WeaponTypeEquipped = WeaponTypeEquippedMode.Precision;
                     break;
                 case MeleeWeaponMode.JewelledDagger:
-                    WeaponDiceMelee = new() { new(1, 4) };
-                    MeleeWeaponDamageBonus = 3;
+                    WeaponDiceMelee = new() { new(2, 4) };
+                    // MeleeWeaponDamageBonus = 3;
+                    HitBonusWeaponMelee = 3;
                     WeaponTypeEquipped = WeaponTypeEquippedMode.Precision;
                     break;
                 case MeleeWeaponMode.Natural:
                     WeaponDiceMelee = new() { new(2, 4) };
-                    MeleeWeaponDamageBonus = 2;
+                    // MeleeWeaponDamageBonus = 2;
                     WeaponTypeEquipped = WeaponTypeEquippedMode.Strength;
                     break;
             }
@@ -562,24 +594,29 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
             switch ((RangedWeaponMode)_rangedWeaponEquipped)
             {
                 case RangedWeaponMode.None:
-                    WeaponDiceRanged = new();
-                    RangedWeaponDamageBonus = 0;
+                    WeaponDiceRanged = new() { new(0, 0) };
+                    // RangedWeaponDamageBonus = 0;
+                    HitBonusWeaponRanged = 0;
                     break;
                 case RangedWeaponMode.Sling:
                     WeaponDiceRanged = new() { new(1, 4) };
-                    RangedWeaponDamageBonus = 1;
+                    // RangedWeaponDamageBonus = 1;
+                    HitBonusWeaponRanged = 1;
                     break;
                 case RangedWeaponMode.Rock:
                     WeaponDiceRanged = new() { new(1, 8) };
-                    RangedWeaponDamageBonus = 2;
+                    // RangedWeaponDamageBonus = 2;
+                    HitBonusWeaponRanged = 2;
                     break;
                 case RangedWeaponMode.Lightning:
                     WeaponDiceRanged = new() { new(2, 6) };
-                    RangedWeaponDamageBonus = 3;
+                    // RangedWeaponDamageBonus = 3;
+                    HitBonusWeaponRanged = 3;
                     break;
                 case RangedWeaponMode.Javelin:
-                    WeaponDiceRanged = new() { new(1, 4) };
-                    RangedWeaponDamageBonus = 1;
+                    WeaponDiceRanged = new() { new(1, 8) };
+                    // RangedWeaponDamageBonus = 1;
+                    HitBonusWeaponRanged = 2;
                     break;
             }
         }
@@ -609,6 +646,10 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     public string PortraitPath { get; set; }
     public string CharacterBtnNormalPath { get; set; }
     public string CharacterBtnPressedPath { get; set; }
+    public List<string> AudioWalkPath { get; set; }
+    public List<string> AudioHurtPath { get; set; }
+    public List<string> AudioDiePath { get; set; }
+    public List<string> AudioMeleePath { get; set; }
     private List<Perk.PerkMode> _perks = new();
     public List<Perk.PerkMode> Perks
     {
@@ -659,8 +700,8 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     // public int Leadership { get; set; } = 10;
     // public int CriticalThreshold { get; set; } = 20; // This can reduce depending your luck to 19, 18, etc. to a minimum of x (11?)
     public int ArmourClass { get; set; } = 0; // Should be updated when changing armour
-    public int MeleeWeaponDamageBonus { get; set; } = 2; // Should be updated when changing weapon
-    public List<Tuple<int, int>> WeaponDiceMelee { get; set; } = new() {new Tuple<int,int>(1,8), // should be updated when changing weapon
+    public int MeleeWeaponDamageBonus { get; set; } = 0; // Should be updated when changing weapon
+    public List<Tuple<int, int>> WeaponDiceMelee { get; set; } = new() {new Tuple<int,int>(1,4), // should be updated when changing weapon
         new Tuple<int,int>(1,6)}; // e.g. 2d4 + 1d6 -> post-jam will need to change be explicit about damage types, and maybe introduce damage type resistances
 
 
@@ -672,7 +713,8 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     // public int HitBonusPrecision { get; set; } = 0; // used for magic as well
 
     // // the below are intended to be modified by equipped weapons
-    public int HitBonusWeapon { get; set; } = 0;
+    public int HitBonusWeaponMelee { get; set; } = 0;
+    public int HitBonusWeaponRanged { get; set; } = 0;
 
     public enum WeaponTypeEquippedMode { Strength, Precision, Magical }
     // // This should be modified by the weapon equipped, e.g. strength or precision (for most precision weapons or magical weapons)
@@ -696,7 +738,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     // public int ActionPoints { get; set; } = 5;
     public bool Alive { get; set; } = true;
     public bool Berserk { get; private set; } = false;
-    public int RangedWeaponDamageBonus { get; private set; }
+    public int RangedWeaponDamageBonus { get; set; }
     // public int Health { get; set; } = 10; // e.g. this will be adjusted by endurance, vigour, etc.
     // public int Endurance { get; set; } = 10;
     // public int Reagents { get; set; } = 5;

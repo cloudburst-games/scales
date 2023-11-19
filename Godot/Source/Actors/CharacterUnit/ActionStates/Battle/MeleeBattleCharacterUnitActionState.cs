@@ -14,6 +14,7 @@ public partial class MeleeBattleCharacterUnitActionState : CharacterUnitActionSt
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/melee", true);
 
         MeleeAttackTarget();
+        this.CharacterUnit.GetNode<AudioContainer>("AudioMelee").Play();
     }
 
     public override void Update(double delta)
@@ -29,7 +30,7 @@ public partial class MeleeBattleCharacterUnitActionState : CharacterUnitActionSt
         // RollerOutcomeInformation res1 = CalculateAttack(rand, targetedPhysical);
         BattleRoller.RollerInput meleeAttack = new()
         {
-            AttackerHitModifier = attackerData.GetCorrectHitBonus(),
+            AttackerHitModifier = attackerData.GetCorrectHitBonusMelee(),
             DefenderDodgeModifier = defenderData.Stats[StoryCharacterData.StatMode.Dodge],
             AttackerDamageModifier = attackerData.GetCorrectMeleeWeaponDamageBonus(),
             DefenderDamageResist = defenderData.Stats[StoryCharacterData.StatMode.PhysicalResist],

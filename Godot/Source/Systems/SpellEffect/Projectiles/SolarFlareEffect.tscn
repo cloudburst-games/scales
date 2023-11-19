@@ -1,8 +1,38 @@
-[gd_scene load_steps=15 format=3 uid="uid://bxmak83na1okj"]
+[gd_scene load_steps=16 format=3 uid="uid://bxmak83na1okj"]
 
 [ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellVisual.cs" id="1_4bcl2"]
-[ext_resource type="Texture2D" uid="uid://brxylpaqjkqy" path="res://Assets/Graphics/Effects/Arrow/arrow.png" id="2_sxer2"]
-[ext_resource type="Texture2D" uid="uid://b5wlh72sdvlly" path="res://Assets/Graphics/Effects/Generic/WhiteWoodFibreParticle.png" id="3_unkw3"]
+[ext_resource type="Texture2D" uid="uid://c6kpb6fxqpuus" path="res://Assets/Graphics/Effects/Generic/WhiteSphericalParticle.png" id="2_e38u8"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="3_ybywb"]
+[ext_resource type="AudioStream" uid="uid://1okfn5obu00h" path="res://Assets/Audio/Effects/PlaceholderSFX/SolarFlare.wav" id="4_brd6a"]
+
+[sub_resource type="Animation" id="Animation_erjcf"]
+resource_local_to_scene = true
+resource_name = "Finish"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SolarParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_uwuyd"]
 length = 0.001
@@ -48,7 +78,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -59,34 +89,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 0.309804, 0.596078), Color(1, 1, 1, 1), Color(0.792157, 0.709804, 0.47451, 0.741176)]
 }
 
-[sub_resource type="Animation" id="Animation_erjcf"]
-resource_local_to_scene = true
-resource_name = "Finish"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("SolarParticles:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rdrcq"]
 _data = {
 "Finish": SubResource("Animation_erjcf"),
@@ -94,67 +96,72 @@ _data = {
 "Start": SubResource("Animation_nmup1")
 }
 
-[sub_resource type="Gradient" id="Gradient_kush3"]
-colors = PackedColorArray(1, 0.572549, 0.321569, 0.0392157, 1, 1, 0, 0.0117647)
+[sub_resource type="Gradient" id="Gradient_kk6fx"]
+offsets = PackedFloat32Array(0, 0.632184, 0.916667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.992157, 1, 0.568627, 0.482353, 1, 0.627451, 0.0980392, 0.247059, 0.235294, 0.00392157, 0.0431373, 0.101961)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_0kmmv"]
-gradient = SubResource("Gradient_kush3")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_j7hg1"]
+gradient = SubResource("Gradient_kk6fx")
 
-[sub_resource type="Curve" id="Curve_rs1jl"]
+[sub_resource type="Curve" id="Curve_vjy7m"]
 max_value = 200.0
-_data = [Vector2(0, 0), 0.0, 503.799, 0, 0, Vector2(0.906977, 92.6316), -96.5613, 0.0, 0, 0]
+_data = [Vector2(0.0263852, 126.316), 0.0, -309.388, 0, 0, Vector2(1, 0), -96.5613, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ru6bu"]
-curve = SubResource("Curve_rs1jl")
+[sub_resource type="CurveTexture" id="CurveTexture_vlj0t"]
+curve = SubResource("Curve_vjy7m")
 
-[sub_resource type="Curve" id="Curve_38cq0"]
+[sub_resource type="Curve" id="Curve_p4hn2"]
 max_value = 2.0
-_data = [Vector2(0, 0.589474), 0.0, 0.0, 0, 0, Vector2(1, 2), -0.48641, 0.0, 0, 0]
+_data = [Vector2(0, 0.568421), 0.0, 0.0, 0, 0, Vector2(0.992084, 1.83158), -0.48641, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_uimg1"]
-curve = SubResource("Curve_38cq0")
+[sub_resource type="CurveTexture" id="CurveTexture_p2gli"]
+curve = SubResource("Curve_p4hn2")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8lxiw"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h5agg"]
+lifetime_randomness = 0.21
 particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
-spread = 20.57
+spread = 1.0
 gravity = Vector3(0, 0, 0)
-initial_velocity_min = 150.0
-initial_velocity_max = 300.0
+initial_velocity_max = 1.0
 orbit_velocity_min = -0.25
 orbit_velocity_max = 0.25
-linear_accel_curve = SubResource("CurveTexture_ru6bu")
-radial_accel_min = -25.0
-radial_accel_max = 25.0
-angle_min = 90.0
-angle_max = 90.0
-scale_max = 2.0
-scale_curve = SubResource("CurveTexture_uimg1")
-color_ramp = SubResource("GradientTexture1D_0kmmv")
+linear_accel_min = 4.0
+linear_accel_max = 6.0
+linear_accel_curve = SubResource("CurveTexture_vlj0t")
+damping_min = 80.0
+damping_max = 100.0
+scale_curve = SubResource("CurveTexture_p2gli")
+color_ramp = SubResource("GradientTexture1D_j7hg1")
 
 [node name="SolarFlareEffect" type="Node2D" node_paths=PackedStringArray("Anim")]
 position = Vector2(1285, 905)
 script = ExtResource("1_4bcl2")
 Anim = NodePath("Anim")
-Speed = 800.0
+Speed = 575.0
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_rdrcq")
 }
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(5, 5, 0, 0.75)
-scale = Vector2(0.27, 0.27)
-texture = ExtResource("2_sxer2")
-
 [node name="SolarParticles" type="GPUParticles2D" parent="."]
 show_behind_parent = true
-position = Vector2(17, 0)
 rotation = 1.5708
 emitting = false
-amount = 112
-process_material = SubResource("ParticleProcessMaterial_8lxiw")
-texture = ExtResource("3_unkw3")
+amount = 256
+process_material = SubResource("ParticleProcessMaterial_h5agg")
+texture = ExtResource("2_e38u8")
+preprocess = 10.0
+local_coords = true
+
+[node name="AudioContainer" type="Node" parent="." node_paths=PackedStringArray("SoundParent")]
+script = ExtResource("3_ybywb")
+SoundParent = NodePath("..")
+Start = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioContainer"]
+stream = ExtResource("4_brd6a")
+bus = &"Effects"

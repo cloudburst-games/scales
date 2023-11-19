@@ -67,7 +67,8 @@ public partial class PnlPerkSelect : Panel
     //     GD.Print(800);
     //     return output;
     // }
-
+    [Export]
+    private AudioContainer _audioPerkSelect;
 
     public void SetActiveCharacter(CharacterUnit activeCharacter)
     {
@@ -76,8 +77,9 @@ public partial class PnlPerkSelect : Panel
 
     public void Start(List<CharacterUnit> companions, List<Perk> perks, int maxPerCharacter)
     {
+
         _numberOfPerksPerCharacter = maxPerCharacter;
-        _lblPerkSelect.Text = string.Format($"Allocate perks amongst the heroes!\nYou may select a maximum of {maxPerCharacter} per hero.");
+        _lblPerkSelect.Text = string.Format($"Allocate boons amongst the heroes!\nYou may select a maximum of {maxPerCharacter} per hero.");
         _characterPerks.Clear();
         _perkPool = perks;
         PopulateGrid(perks);
@@ -90,6 +92,7 @@ public partial class PnlPerkSelect : Panel
                 _characterPerks[x][i] = null;
             }
         });
+        _audioPerkSelect.Play();
     }
 
 
@@ -247,7 +250,9 @@ public partial class Perk : RefCounted
     public enum PerkMode
     {
         SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment,
-        LesserArmor, GreaterArmor, BlessedWeapon, EnchantedMeleeWeapon
+        LesserArmor, GreaterArmor, BlessedWeapon, EnchantedMeleeWeapon, WoodenKnuckles, BrassKnuckles, BluntKnife, JewelledDagger,
+        Sling, Javelin, LesserMight, LesserResilience, LesserPrecision, LesserSpeed, LesserCharisma, LesserLuck, LesserIntellect,
+        GreaterMight, GreaterResilience, GreaterPrecision, GreaterSpeed, GreaterCharisma, GreaterLuck, GreaterIntellect
     }
     public PerkMode CurrentPerk;
     public SpellEffectManager.SpellMode AssociatedSpell { get; set; } = SpellEffectManager.SpellMode.None;
@@ -259,7 +264,11 @@ public partial class Perk : RefCounted
     public StoryCharacterData.RangedWeaponMode AssociatedRangedWeapon { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    public enum PerkCategory { Spell, AttributeBonus, ArmourBonus, MeleeWeapon, RangedWeapon }
+    public enum PerkCategory
+    {
+        Spell, AttributeBonus, ArmourBonus, MeleeWeapon, RangedWeapon,
+        DamageBonus
+    }
     public PerkCategory Category = PerkCategory.Spell;
     public bool Stackable { get; set; } = false;
     public bool Powerful { get; set; } = false;
@@ -444,7 +453,7 @@ public static class PerkFactory
                     Magnitude = weaponGreaterMagnitude,
                     Name = "Enchanted Weapons",
                     Description = $"Hone your melee weapon attacks with Ishtar's fury, improving damage by {weaponGreaterMagnitude}.",
-                    Category = Perk.PerkCategory.MeleeWeapon,
+                    Category = Perk.PerkCategory.DamageBonus,
                     Stackable = true,
                     Powerful = true,
                     BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
@@ -460,16 +469,357 @@ public static class PerkFactory
                     Magnitude = weaponLesserMagnitude,
                     Name = "Blessed Weapons",
                     Description = $"Secret Ishtari rites bless your attacks, improving damage by {weaponLesserMagnitude}.",
-                    Category = Perk.PerkCategory.MeleeWeapon,
+                    Category = Perk.PerkCategory.DamageBonus,
                     Stackable = true,
                     Powerful = false,
                     BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
                     BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
-
+            case Perk.PerkMode.WoodenKnuckles:
+                // int weaponLesserMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.WoodenKnuckles,
+                    AssociatedMeleeWeapon = StoryCharacterData.MeleeWeaponMode.WoodenKnuckles,
+                    // Magnitude = weaponLesserMagnitude,
+                    Name = "Bark Gauntlets",
+                    Description = $"Gauntlets of rotting bark. Strength weapon. 1d6 base damage.",
+                    Category = Perk.PerkCategory.MeleeWeapon,
+                    Stackable = false,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Ishtar
+                };
+            case Perk.PerkMode.BrassKnuckles:
+                // int weaponLesserMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.BrassKnuckles,
+                    AssociatedSpell = SpellEffectManager.SpellMode.SolarFlare,
+                    AssociatedMeleeWeapon = StoryCharacterData.MeleeWeaponMode.BrassKnuckles,
+                    // Magnitude = weaponLesserMagnitude,
+                    Name = "Brass Knuckles",
+                    Description = $"Reinforce your fists with hardened brass. Strength weapon. 1d8 base damage.",
+                    Category = Perk.PerkCategory.MeleeWeapon,
+                    Stackable = false,
+                    Powerful = true,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Ishtar
+                };
+            case Perk.PerkMode.BluntKnife:
+                // int weaponLesserMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.BluntKnife,
+                    AssociatedSpell = SpellEffectManager.SpellMode.SolarFlare,
+                    AssociatedMeleeWeapon = StoryCharacterData.MeleeWeaponMode.BluntKnife,
+                    // Magnitude = weaponLesserMagnitude,
+                    Name = "Dull Knife",
+                    Description = $"A worn dagger. Precision weapon. 1d4 base damage.",
+                    Category = Perk.PerkCategory.MeleeWeapon,
+                    Stackable = false,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Ishtar
+                };
+            case Perk.PerkMode.JewelledDagger:
+                // int weaponLesserMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.JewelledDagger,
+                    AssociatedSpell = SpellEffectManager.SpellMode.SolarFlare,
+                    AssociatedMeleeWeapon = StoryCharacterData.MeleeWeaponMode.JewelledDagger,
+                    // Magnitude = weaponLesserMagnitude,
+                    Name = "Jewelled Dagger",
+                    Description = $"Unnaturally sharp and adorned with gems. Precision weapon. 2d4 base damage.",
+                    Category = Perk.PerkCategory.MeleeWeapon,
+                    Stackable = false,
+                    Powerful = true,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Ishtar
+                };
+            case Perk.PerkMode.Sling:
+                // int weaponLesserMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.Sling,
+                    AssociatedSpell = SpellEffectManager.SpellMode.SolarFlare,
+                    AssociatedRangedWeapon = StoryCharacterData.RangedWeaponMode.Sling,
+                    // Magnitude = weaponLesserMagnitude,
+                    Name = "Sling",
+                    Description = $"A simple sling. 1d4 base damage.",
+                    Category = Perk.PerkCategory.RangedWeapon,
+                    Stackable = false,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Shamash
+                };
+            case Perk.PerkMode.Javelin:
+                // int weaponLesserMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.Javelin,
+                    AssociatedSpell = SpellEffectManager.SpellMode.SolarFlare,
+                    AssociatedRangedWeapon = StoryCharacterData.RangedWeaponMode.Javelin,
+                    // Magnitude = weaponLesserMagnitude,
+                    Name = "Javelin",
+                    Description = $"An extraordinarily light weapon, blessed by Shamash. 1d8 base damage.",
+                    Category = Perk.PerkCategory.RangedWeapon,
+                    Stackable = false,
+                    Powerful = true,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Shamash
+                };
+            case Perk.PerkMode.LesserMight:
+                int mightMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.LesserMight,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Might,
+                    Magnitude = mightMagnitude,
+                    Name = "Lesser Might",
+                    Description = $"Improve might by {mightMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Ishtar
+                };
+            case Perk.PerkMode.LesserResilience:
+                int resMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.LesserResilience,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Resilience,
+                    Magnitude = resMagnitude,
+                    Name = "Lesser Resilience",
+                    Description = $"Improve resilience by {resMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Ishtar
+                };
+            case Perk.PerkMode.LesserSpeed:
+                int speedMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.LesserSpeed,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Speed,
+                    Magnitude = speedMagnitude,
+                    Name = "Lesser Speed",
+                    Description = $"Improve speed by {speedMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Ishtar
+                };
+            case Perk.PerkMode.LesserPrecision:
+                int precMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.LesserPrecision,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Precision,
+                    Magnitude = precMagnitude,
+                    Name = "Lesser Precision",
+                    Description = $"Improve precision by {precMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Shamash
+                };
+            case Perk.PerkMode.LesserIntellect:
+                int intMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.LesserIntellect,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Intellect,
+                    Magnitude = intMagnitude,
+                    Name = "Lesser Intellect",
+                    Description = $"Improve intellect by {intMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Shamash
+                };
+            case Perk.PerkMode.LesserCharisma:
+                int chaMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.LesserCharisma,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Charisma,
+                    Magnitude = chaMagnitude,
+                    Name = "Lesser Charisma",
+                    Description = $"Improve charisma by {chaMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Shamash
+                };
+            case Perk.PerkMode.LesserLuck:
+                int luckMagnitude = 3;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.LesserLuck,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Luck,
+                    Magnitude = luckMagnitude,
+                    Name = "Lesser Luck",
+                    Description = $"Improve luck by {luckMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Shamash
+                };
+            case Perk.PerkMode.GreaterMight:
+                int gmightMagnitude = 8;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.GreaterMight,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Might,
+                    Magnitude = gmightMagnitude,
+                    Name = "Greater Might",
+                    Description = $"Improve might by {gmightMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Ishtar
+                };
+            case Perk.PerkMode.GreaterResilience:
+                int gresMagnitude = 8;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.GreaterResilience,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Resilience,
+                    Magnitude = gresMagnitude,
+                    Name = "Greater Resilience",
+                    Description = $"Improve resilience by {gresMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Ishtar
+                };
+            case Perk.PerkMode.GreaterSpeed:
+                int gspeedMagnitude = 8;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.GreaterSpeed,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Speed,
+                    Magnitude = gspeedMagnitude,
+                    Name = "Greater Speed",
+                    Description = $"Improve speed by {gspeedMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Ishtar
+                };
+            case Perk.PerkMode.GreaterPrecision:
+                int gprecMagnitude = 8;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.GreaterPrecision,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Precision,
+                    Magnitude = gprecMagnitude,
+                    Name = "Greater Precision",
+                    Description = $"Improve precision by {gprecMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Shamash
+                };
+            case Perk.PerkMode.GreaterIntellect:
+                int gintMagnitude = 8;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.GreaterIntellect,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Intellect,
+                    Magnitude = gintMagnitude,
+                    Name = "Greater Intellect",
+                    Description = $"Improve intellect by {gintMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Shamash
+                };
+            case Perk.PerkMode.GreaterCharisma:
+                int gchaMagnitude = 8;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.GreaterCharisma,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Charisma,
+                    Magnitude = gchaMagnitude,
+                    Name = "Greater Charisma",
+                    Description = $"Improve charisma by {gchaMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Shamash
+                };
+            case Perk.PerkMode.GreaterLuck:
+                int gluckMagnitude = 8;
+                return new()
+                {
+                    CurrentPerk = Perk.PerkMode.GreaterLuck,
+                    AssociatedAttribute = StoryCharacterData.AttributeMode.Luck,
+                    Magnitude = gluckMagnitude,
+                    Name = "Greater Luck",
+                    Description = $"Improve luck by {gluckMagnitude}.",
+                    Category = Perk.PerkCategory.AttributeBonus,
+                    Stackable = true,
+                    Powerful = false,
+                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
+                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Patron = Scales.FavourMode.Ishtar
+                };
         }
 
         return null;
     }
 }
+// WoodenKnuckles, BrassKnuckles, AgileKnife, JewelledDagger,
+//         Sling, Javelin, LesserMight, LesserResilience, LesserPrecision, LesserSpeed, LesserCharisma, LesserLuck, LesserIntellect,
+//         GreaterMight, GreaterResilience, GreaterPrecision, GreaterSpeed, GreaterCharisma, GreaterLuck, GreaterIntellect
+
+// ishtar
+// might
+// resilience
+// speed
+
+// shamash
+// precision
+// charisma
+// intellect
+
+// shamash lesser intellect
+
+// ishtar greater intellect

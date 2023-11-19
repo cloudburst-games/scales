@@ -92,6 +92,7 @@ public class IdleBattleState : BattleState
 
         if (!Battler.CharactersAwaitingTurn[0].TurnPending)
         {
+            Battler.CharactersAwaitingTurn[0].TryBark();
             SetAPAtStartOfTurn();
             Battler.CharactersAwaitingTurn[0].TurnPending = true;
         }

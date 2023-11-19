@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dhnf1jm0vtok8"]
+[gd_scene load_steps=23 format=3 uid="uid://dhnf1jm0vtok8"]
 
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="1_fokrj"]
 [ext_resource type="Script" path="res://Source/Interface/Panel/CharacterUpgrade/CntCharacterUpgrade.cs" id="1_jr58n"]
@@ -13,8 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="5_s1y87"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="6_5qvhe"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="7_2sduo"]
+[ext_resource type="AudioStream" uid="uid://u8vvnphooeai" path="res://addons/BaseTextureButtonPlugin/hover.wav" id="8_0lmux"]
 [ext_resource type="Script" path="res://Source/Interface/Panel/CharacterUpgrade/PnlPerkSelect.cs" id="8_i318h"]
+[ext_resource type="AudioStream" uid="uid://in1epaq47smy" path="res://addons/BaseTextureButtonPlugin/click.wav" id="9_8rsr2"]
 [ext_resource type="ButtonGroup" uid="uid://bvs4kji7i5kun" path="res://Source/Interface/Panel/CharacterUpgrade/PerkSelectButtonGroup.tres" id="9_nlmap"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="16_0xu7d"]
+[ext_resource type="AudioStream" uid="uid://chb5ynx8cgaew" path="res://Assets/Audio/Effects/PlaceholderSFX/PerkSelect.wav" id="17_2sd8e"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1jtql"]
 font_size = 48
@@ -113,6 +117,8 @@ texture_disabled = ExtResource("2_7trrt")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="BaseTextureButton2" type="TextureButton" parent="BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect"]
 layout_mode = 2
@@ -126,6 +132,8 @@ texture_disabled = ExtResource("2_7trrt")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="BaseTextureButton3" type="TextureButton" parent="BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect"]
 layout_mode = 2
@@ -139,6 +147,8 @@ texture_disabled = ExtResource("2_7trrt")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="BaseTextureButton4" type="TextureButton" parent="BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect"]
 layout_mode = 2
@@ -152,6 +162,8 @@ texture_disabled = ExtResource("2_7trrt")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="BaseTextureButton5" type="TextureButton" parent="BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect"]
 layout_mode = 2
@@ -165,6 +177,8 @@ texture_disabled = ExtResource("2_7trrt")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="Panel" type="Panel" parent="BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer"]
 layout_mode = 2
@@ -194,7 +208,7 @@ texture = ExtResource("2_7trrt")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="PnlPerkSelect" type="Panel" parent="BasePanel/Panel/HBoxContainer" node_paths=PackedStringArray("_gridContainer", "_btnContinue", "_lblPerkSelect")]
+[node name="PnlPerkSelect" type="Panel" parent="BasePanel/Panel/HBoxContainer" node_paths=PackedStringArray("_gridContainer", "_btnContinue", "_lblPerkSelect", "_audioPerkSelect")]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("8_i318h")
@@ -202,6 +216,7 @@ _gridContainer = NodePath("GridContainer")
 _perkSelectButtonGroup = ExtResource("9_nlmap")
 _btnContinue = NodePath("BtnContinue")
 _lblPerkSelect = NodePath("LblPerkSelect")
+_audioPerkSelect = NodePath("AudioPerkSelect")
 
 [node name="LblPerkSelect" type="Label" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect"]
 layout_mode = 1
@@ -240,6 +255,8 @@ texture_pressed = ExtResource("5_iush6")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="LblCharacterName" type="Label" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer/BaseTextureButton4"]
 layout_mode = 1
@@ -261,6 +278,8 @@ texture_pressed = ExtResource("5_iush6")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="BaseTextureButton6" type="TextureButton" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer"]
 layout_mode = 2
@@ -272,6 +291,8 @@ texture_pressed = ExtResource("5_iush6")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="BaseTextureButton7" type="TextureButton" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer"]
 layout_mode = 2
@@ -283,6 +304,8 @@ texture_pressed = ExtResource("5_iush6")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="BaseTextureButton8" type="TextureButton" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer"]
 layout_mode = 2
@@ -294,6 +317,8 @@ texture_pressed = ExtResource("5_iush6")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="BaseTextureButton9" type="TextureButton" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer"]
 layout_mode = 2
@@ -305,6 +330,8 @@ texture_pressed = ExtResource("5_iush6")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="BtnContinue" type="TextureButton" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect"]
 layout_mode = 1
@@ -322,6 +349,8 @@ texture_disabled = ExtResource("7_2sduo")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("3_avqhj")
+_hoverSample = ExtResource("8_0lmux")
+_clickedSample = ExtResource("9_8rsr2")
 
 [node name="Label" type="Label" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect/BtnContinue"]
 layout_mode = 1
@@ -334,3 +363,10 @@ text = "Continue"
 label_settings = SubResource("LabelSettings_8drrn")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioPerkSelect" type="Node2D" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect"]
+script = ExtResource("16_0xu7d")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect/AudioPerkSelect"]
+stream = ExtResource("17_2sd8e")
+bus = &"Effects"

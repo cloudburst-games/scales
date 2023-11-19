@@ -52,6 +52,11 @@ public partial class BattleHUD : CanvasLayer
     private ProgressBar _barCharge;
     [Export]
     private Panel _pnlScales;
+    [Export]
+    private AudioContainer _audioCloseBook;
+    [Export]
+    private AudioContainer _audioOpenBook;
+
 
     public enum StateMode
     {
@@ -101,6 +106,7 @@ public partial class BattleHUD : CanvasLayer
 
     private void OnCloseSpellBookPressed()
     {
+        _audioCloseBook.Play();
         SetState(StateMode.SpellBookClosed);
     }
 
@@ -135,9 +141,11 @@ public partial class BattleHUD : CanvasLayer
             case StateMode.LogOpened:
                 _pnlFullLog.Open();
                 _pnlSpellBook.Close();
+                _audioOpenBook.Play();
                 EmitSignal(BattleHUD.SignalName.UIPause, true);
                 break;
             case StateMode.LogClosed:
+                _audioCloseBook.Play();
                 EmitSignal(BattleHUD.SignalName.UIPause, false);
                 break;
             case StateMode.SpellBookClosed:
@@ -147,6 +155,7 @@ public partial class BattleHUD : CanvasLayer
             case StateMode.SpellBookOpened:
                 _pnlSpellBook.Open();
                 _pnlFullLog.Close();
+                _audioOpenBook.Play();
                 EmitSignal(BattleHUD.SignalName.UIPause, true);
                 break;
             case StateMode.HintClickedCharacterLeftClick:
@@ -212,9 +221,9 @@ public partial class BattleHUD : CanvasLayer
         }
     }
 
-    internal void SetSpellBookDisplayedSpells(Array<SpellEffectManager.SpellMode> spells)
+    internal void SetSpellBookDisplayedSpells(Array<SpellEffectManager.SpellMode> spells, int reagents, int mana)
     {
-        _cntSpellBook.ShowSpells(spells);
+        _cntSpellBook.ShowSpells(spells, reagents, mana);
     }
 
     internal void OnCharacterRoundEffectApplied(CharacterUnit characterUnit, CharacterRoundEffect roundEffect)
@@ -241,12 +250,12 @@ public partial class BattleHUD : CanvasLayer
         OnBattleLogEntry(BattleLogParser.ParseUIHint(hint), false);
     }
 
-    public void OnSpellBookUIHint(SpellEffectManager.Spell spell)
+    public void OnSpellBookUIHint(SpellEffectManager.Spell spell, bool canAfford)
     {
-        OnBattleLogEntry(BattleLogParser.ParseSpellHint(spell), false);
+        OnBattleLogEntry(BattleLogParser.ParseSpellHint(spell, canAfford), false);
     }
 
-    internal void OnCharacterTakingDamage(BattleRoller.RollerOutcomeInformation result, string defender, Vector2 globalPosition)
+    internal void OnCharacterTakingDamage(BattleRoller.RollerOutcomeInformation result, string defender, Vector2 globalPosition, bool died)
     {
         if (result.RollerInput == null)
         {
@@ -280,7 +289,7 @@ public partial class BattleHUD : CanvasLayer
 
         lbl.Text = string.Format("{0}{1}", hit, damage != "" ? "\n" + damage : "");
         lbl.Start(globalPosition - new Vector2(0, 300)); ;
-        OnBattleLogEntry(string.Format("{3}{0}\n{1} takes {2} damage!", hit, defender, result.FinalDamage, roll == "" ? "" : "Roll " + roll + ": "), true);
+        OnBattleLogEntry(string.Format("{3}{0}\n{1} takes {2} damage!{4}", hit, defender, result.FinalDamage, roll == "" ? "" : "Roll " + roll + ": ", died ? $" {defender} falls!" : ""), true);
     }
 
     public void OnHintClickCharacter(bool rightClick, StoryCharacterData data)

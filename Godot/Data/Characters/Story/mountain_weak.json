@@ -6,6 +6,21 @@
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/MOUntainMan.png",
     "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/MOUntainMan.png",
     "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/MOUntainMan.png",
+    "AudioWalkPath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/MountainWalk.wav"
+    ],
+    "AudioHurtPath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/MountainHurt1.wav",
+        "res://Assets/Audio/Effects/PlaceholderSFX/MountainHurt2.wav",
+        "res://Assets/Audio/Effects/PlaceholderSFX/MountainHurt3.wav"
+    ],
+    "AudioDiePath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/MountainDie.wav"
+    ],
+    "AudioMeleePath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch.wav",
+        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
+    ],
     "Perks": [],
     "_rangedWeaponEquipped": 2,
     "_meleeWeaponEquipped": 5,

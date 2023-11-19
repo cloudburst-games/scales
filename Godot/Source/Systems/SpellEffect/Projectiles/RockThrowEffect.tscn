@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cncl7ki38rp2a"]
+[gd_scene load_steps=12 format=3 uid="uid://cncl7ki38rp2a"]
 
 [ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellVisual.cs" id="1_skafu"]
 [ext_resource type="Texture2D" uid="uid://ceqamemn0nf6r" path="res://Assets/Graphics/Effects/Rock/Rock.png" id="2_4j0xp"]
 [ext_resource type="Texture2D" uid="uid://c6kpb6fxqpuus" path="res://Assets/Graphics/Effects/Generic/WhiteSphericalParticle.png" id="3_8370f"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="4_sjjdc"]
+[ext_resource type="AudioStream" uid="uid://d4jj2qmfaw6k6" path="res://Assets/Audio/Effects/PlaceholderSFX/SlingRockJavelinLaunch.wav" id="5_w082s"]
+[ext_resource type="AudioStream" uid="uid://bt4qe4lcun00o" path="res://Assets/Audio/Effects/PlaceholderSFX/RockLand.wav" id="6_smwvg"]
 
 [sub_resource type="Animation" id="Animation_rs8j2"]
 resource_local_to_scene = true
@@ -32,6 +35,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioLands:Start")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_fi65d"]
 length = 0.001
@@ -58,6 +73,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioLands:Start")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_gq4kq"]
@@ -138,3 +165,19 @@ emitting = false
 amount = 128
 process_material = SubResource("ParticleProcessMaterial_f38qs")
 texture = ExtResource("3_8370f")
+
+[node name="AudioContainer" type="Node" parent="." node_paths=PackedStringArray("SoundParent")]
+script = ExtResource("4_sjjdc")
+SoundParent = NodePath("..")
+Start = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioContainer"]
+stream = ExtResource("5_w082s")
+bus = &"Effects"
+
+[node name="AudioLands" type="Node" parent="."]
+script = ExtResource("4_sjjdc")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioLands"]
+stream = ExtResource("6_smwvg")
+bus = &"Effects"

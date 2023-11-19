@@ -1,10 +1,16 @@
-[gd_scene load_steps=37 format=3 uid="uid://dqjaiy3w7l06y"]
+[gd_scene load_steps=43 format=3 uid="uid://dqjaiy3w7l06y"]
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/CharacterUnit.cs" id="1_yf2yq"]
 [ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="2_r588w"]
+[ext_resource type="Animation" uid="uid://t1e7xhps57bf" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/idle1_gilg.tres" id="3_qu7h7"]
 [ext_resource type="Texture2D" uid="uid://be6aghcesf6v3" path="res://Assets/Graphics/Effects/Generic/WhiteFuzzyParticle.png" id="3_tsm1p"]
-[ext_resource type="Texture2D" uid="uid://b5wlh72sdvlly" path="res://Assets/Graphics/Effects/Generic/WhiteWoodFibreParticle.png" id="4_1mnxw"]
 [ext_resource type="Texture2D" uid="uid://cmf5fyadvx2ne" path="res://Assets/Graphics/Sprites/Actors/Gilga/GilgaIdleV2Stylised.png" id="4_ld332"]
+[ext_resource type="Texture2D" uid="uid://cqxp0ghbuc5r4" path="res://Assets/Graphics/Effects/Generic/WhiteWatercolorParticle.png" id="5_pkwcp"]
+[ext_resource type="PackedScene" uid="uid://b0eddwhos0ra1" path="res://Source/Interface/Label/LblBark.tscn" id="7_uxprq"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="8_lc52i"]
+[ext_resource type="AudioStream" uid="uid://c8jdcpxdarsb2" path="res://Assets/Audio/Effects/PlaceholderSFX/BerserkLands.wav" id="9_1iy51"]
+[ext_resource type="AudioStream" uid="uid://ckp4wiw2fdk7t" path="res://Assets/Audio/Effects/PlaceholderSFX/BuffSpellLands.wav" id="10_fiv4b"]
+[ext_resource type="AudioStream" uid="uid://cyuaxiyfqwcwn" path="res://Assets/Audio/Effects/PlaceholderSFX/EffectNegative.wav" id="11_t1ved"]
 
 [sub_resource type="Animation" id="Animation_yqugo"]
 length = 0.001
@@ -24,6 +30,7 @@ tracks/0/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hwv8y"]
 _data = {
 "RESET": SubResource("Animation_yqugo"),
+"idle1_gilg": ExtResource("3_qu7h7"),
 "take_damage": ExtResource("2_r588w")
 }
 
@@ -44,6 +51,54 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RoundEffectHealthDamage:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RoundEffectAttFortify:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RoundEffectAttDamage:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioBerserk:Start")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_u1odt"]
 resource_name = "Damage"
@@ -58,6 +113,54 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RoundEffectAttFortify:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RoundEffectAttDamage:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RoundEffectBerserk:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioNegativeEffect:Start")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_5p7eg"]
@@ -74,6 +177,54 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RoundEffectHealthDamage:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RoundEffectBerserk:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RoundEffectAttFortify:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioNegativeEffect:Start")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_urhmx"]
 resource_name = "FortifyAttribute"
@@ -88,6 +239,54 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RoundEffectHealthDamage:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RoundEffectBerserk:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RoundEffectAttDamage:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioBuff:Start")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_uorqy"]
@@ -140,6 +339,42 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioBerserk:Start")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioBuff:Start")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioNegativeEffect:Start")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_se8aj"]
 _data = {
@@ -151,19 +386,22 @@ _data = {
 }
 
 [sub_resource type="Gradient" id="Gradient_k1ba6"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.352941)
+colors = PackedColorArray(1, 1, 1, 0.533333, 1, 1, 1, 0.352941)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_tqgh4"]
 gradient = SubResource("Gradient_k1ba6")
 
 [sub_resource type="Curve" id="Curve_7lf3q"]
-_data = [Vector2(0.00527705, 0.0842105), 0.0, 0.0, 0, 0, Vector2(1, 0.88421), 0.0, 0.0, 0, 0]
+max_value = 3.0
+_data = [Vector2(0, 1.26316), 0.0, 0.0, 0, 0, Vector2(0.989446, 2.84211), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_qgkca"]
 curve = SubResource("Curve_7lf3q")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e2l5r"]
+emission_shape = 3
+emission_box_extents = Vector3(75, 1, 1)
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 32.35
@@ -177,19 +415,22 @@ color = Color(1, 0.231373, 0, 0.231373)
 color_ramp = SubResource("GradientTexture1D_tqgh4")
 
 [sub_resource type="Gradient" id="Gradient_7obcq"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.352941)
+colors = PackedColorArray(1, 1, 1, 0.423529, 1, 1, 1, 0.352941)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_y67nj"]
 gradient = SubResource("Gradient_7obcq")
 
 [sub_resource type="Curve" id="Curve_41nna"]
-_data = [Vector2(0.00527705, 0.0842105), 0.0, 0.0, 0, 0, Vector2(1, 0.88421), 0.0, 0.0, 0, 0]
+max_value = 3.0
+_data = [Vector2(0, 1.73684), 0.0, 0.0, 0, 0, Vector2(1, 3), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_w224a"]
 curve = SubResource("Curve_41nna")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ms2ci"]
+emission_shape = 3
+emission_box_extents = Vector3(75, 1, 1)
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 32.35
@@ -201,6 +442,8 @@ orbit_velocity_max = 0.0
 scale_curve = SubResource("CurveTexture_w224a")
 color = Color(1, 0.231373, 0, 0.231373)
 color_ramp = SubResource("GradientTexture1D_y67nj")
+hue_variation_min = 0.26
+hue_variation_max = 0.83
 
 [sub_resource type="Gradient" id="Gradient_noi1j"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.352941)
@@ -209,7 +452,8 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.352941)
 gradient = SubResource("Gradient_noi1j")
 
 [sub_resource type="Curve" id="Curve_bekhm"]
-_data = [Vector2(0.00527705, 0.0842105), 0.0, 0.0, 0, 0, Vector2(1, 0.88421), 0.0, 0.0, 0, 0]
+max_value = 3.0
+_data = [Vector2(0, 0.568421), 0.0, 0.0, 0, 0, Vector2(1, 2.77895), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_qqmod"]
@@ -228,20 +472,23 @@ scale_curve = SubResource("CurveTexture_qqmod")
 color = Color(0.333333, 1, 0, 0.231373)
 color_ramp = SubResource("GradientTexture1D_6ry20")
 
-[sub_resource type="Gradient" id="Gradient_nw717"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.352941)
+[sub_resource type="Gradient" id="Gradient_h1f16"]
+colors = PackedColorArray(1, 1, 1, 0.662745, 1, 1, 1, 0.301961)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_d8tya"]
-gradient = SubResource("Gradient_nw717")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8jrtf"]
+gradient = SubResource("Gradient_h1f16")
 
-[sub_resource type="Curve" id="Curve_0fpnl"]
-_data = [Vector2(0.00527705, 0.0842105), 0.0, 0.0, 0, 0, Vector2(1, 0.88421), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_5j7j3"]
+max_value = 3.0
+_data = [Vector2(0.00527705, 0.947368), 0.0, 0.0, 0, 0, Vector2(0.994723, 2.90526), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_w8nkp"]
-curve = SubResource("Curve_0fpnl")
+[sub_resource type="CurveTexture" id="CurveTexture_1gymm"]
+curve = SubResource("Curve_5j7j3")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fbrl4"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_61sa6"]
+emission_shape = 3
+emission_box_extents = Vector3(75, 1, 1)
 particle_flag_disable_z = true
 direction = Vector3(0, -1, 0)
 spread = 32.35
@@ -250,9 +497,9 @@ initial_velocity_min = 50.0
 initial_velocity_max = 174.32
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
-scale_curve = SubResource("CurveTexture_w8nkp")
+scale_curve = SubResource("CurveTexture_1gymm")
 color = Color(0.333333, 1, 1, 0.231373)
-color_ramp = SubResource("GradientTexture1D_d8tya")
+color_ramp = SubResource("GradientTexture1D_8jrtf")
 
 [sub_resource type="Shader" id="Shader_47m4j"]
 code = "shader_type canvas_item;
@@ -286,10 +533,11 @@ shader_parameter/width = 0.0
 shader_parameter/speed = 10.0
 shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
 
-[node name="CharacterUnit" type="CharacterBody2D" node_paths=PackedStringArray("RoundEffectAnim")]
+[node name="CharacterUnit" type="CharacterBody2D" node_paths=PackedStringArray("_lblBark", "RoundEffectAnim")]
 z_index = 1
 position = Vector2(1746, 1016)
 script = ExtResource("1_yf2yq")
+_lblBark = NodePath("LblBark")
 RoundEffectAnim = NodePath("RoundEffectAnim")
 
 [node name="Shape" type="CollisionShape2D" parent="."]
@@ -338,38 +586,84 @@ libraries = {
 [node name="RoundEffectHealthDamage" type="GPUParticles2D" parent="."]
 z_index = 1
 emitting = false
-amount = 64
+amount = 128
 process_material = SubResource("ParticleProcessMaterial_e2l5r")
 texture = ExtResource("3_tsm1p")
 
 [node name="RoundEffectBerserk" type="GPUParticles2D" parent="."]
 z_index = 1
+position = Vector2(0, 12)
 emitting = false
 amount = 256
 process_material = SubResource("ParticleProcessMaterial_ms2ci")
-texture = ExtResource("4_1mnxw")
+texture = ExtResource("5_pkwcp")
 lifetime = 2.0
 
 [node name="RoundEffectAttDamage" type="GPUParticles2D" parent="."]
 z_index = 1
 emitting = false
-amount = 64
+amount = 128
 process_material = SubResource("ParticleProcessMaterial_28tdg")
 texture = ExtResource("3_tsm1p")
 
 [node name="RoundEffectAttFortify" type="GPUParticles2D" parent="."]
 z_index = 1
+position = Vector2(0, 19)
 emitting = false
-amount = 64
-process_material = SubResource("ParticleProcessMaterial_fbrl4")
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_61sa6")
 texture = ExtResource("3_tsm1p")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_1vlie")
 position = Vector2(0, -52.5)
+scale = Vector2(2, 2)
 texture = ExtResource("4_ld332")
 region_enabled = true
-region_rect = Rect2(1, 2169, 960, 540)
+region_rect = Rect2(0.5, 0.5, 480, 270)
+
+[node name="LblBark" parent="." instance=ExtResource("7_uxprq")]
+offset_top = -1425.0
+
+[node name="AudioBerserk" type="Node2D" parent="." node_paths=PackedStringArray("SoundParent")]
+script = ExtResource("8_lc52i")
+SoundParent = NodePath("..")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioBerserk"]
+stream = ExtResource("9_1iy51")
+bus = &"Effects"
+
+[node name="AudioBuff" type="Node2D" parent="." node_paths=PackedStringArray("SoundParent")]
+script = ExtResource("8_lc52i")
+SoundParent = NodePath("..")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioBuff"]
+stream = ExtResource("10_fiv4b")
+bus = &"Effects"
+
+[node name="AudioNegativeEffect" type="Node2D" parent="." node_paths=PackedStringArray("SoundParent")]
+script = ExtResource("8_lc52i")
+SoundParent = NodePath("..")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioNegativeEffect"]
+stream = ExtResource("11_t1ved")
+bus = &"Effects"
+
+[node name="AudioWalk" type="Node2D" parent="." node_paths=PackedStringArray("SoundParent")]
+script = ExtResource("8_lc52i")
+SoundParent = NodePath("..")
+
+[node name="AudioHurt" type="Node2D" parent="." node_paths=PackedStringArray("SoundParent")]
+script = ExtResource("8_lc52i")
+SoundParent = NodePath("..")
+
+[node name="AudioDie" type="Node2D" parent="." node_paths=PackedStringArray("SoundParent")]
+script = ExtResource("8_lc52i")
+SoundParent = NodePath("..")
+
+[node name="AudioMelee" type="Node2D" parent="." node_paths=PackedStringArray("SoundParent")]
+script = ExtResource("8_lc52i")
+SoundParent = NodePath("..")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="OnNavAgentVelocityComputed"]
 [connection signal="gui_input" from="ClickArea" to="." method="OnClickAreaGUIInput"]

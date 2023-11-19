@@ -7,7 +7,7 @@
     "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/Tornado2.png",
     "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/Tornado2.png",
     "Perks": [],
-    "RangedAttack": 3,
+    "_rangedWeaponEquipped": 3,
     "Level": 4,
     "Might": 8,
     "Resilience": 18,

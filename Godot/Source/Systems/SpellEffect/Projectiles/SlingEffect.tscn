@@ -1,0 +1,150 @@
+[gd_scene load_steps=11 format=3 uid="uid://ciouc2ful8qii"]
+
+[ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellVisual.cs" id="1_khnio"]
+[ext_resource type="Texture2D" uid="uid://ceqamemn0nf6r" path="res://Assets/Graphics/Effects/Rock/Rock.png" id="2_stg8b"]
+[ext_resource type="Texture2D" uid="uid://c6kpb6fxqpuus" path="res://Assets/Graphics/Effects/Generic/WhiteSphericalParticle.png" id="3_04e2e"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="4_hcbop"]
+[ext_resource type="AudioStream" uid="uid://d4jj2qmfaw6k6" path="res://Assets/Audio/Effects/PlaceholderSFX/SlingRockJavelinLaunch.wav" id="5_qt7nl"]
+
+[sub_resource type="Animation" id="Animation_rs8j2"]
+resource_local_to_scene = true
+resource_name = "Finish"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArrowParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fi65d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArrowParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gq4kq"]
+resource_name = "Start"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ArrowParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pnoqm"]
+_data = {
+"Finish": SubResource("Animation_rs8j2"),
+"RESET": SubResource("Animation_fi65d"),
+"Start": SubResource("Animation_gq4kq")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nph6g"]
+emission_shape = 1
+emission_sphere_radius = 30.0
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 26.27
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = 90.0
+angle_max = 90.0
+scale_max = 2.0
+color = Color(1, 1, 1, 0.0392157)
+
+[node name="SlingEffect" type="Node2D" node_paths=PackedStringArray("Anim")]
+position = Vector2(1285, 905)
+script = ExtResource("1_khnio")
+Anim = NodePath("Anim")
+Speed = 1500.0
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pnoqm")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_stg8b")
+region_rect = Rect2(3, 459, 150, 102)
+
+[node name="ArrowParticles" type="GPUParticles2D" parent="."]
+show_behind_parent = true
+position = Vector2(-14, 0)
+rotation = 1.5708
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_nph6g")
+texture = ExtResource("3_04e2e")
+
+[node name="AudioContainer" type="Node" parent="." node_paths=PackedStringArray("SoundParent")]
+script = ExtResource("4_hcbop")
+SoundParent = NodePath("..")
+Start = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="AudioContainer"]
+stream = ExtResource("5_qt7nl")
+bus = &"Effects"
