@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ce0b88lumohl8"]
+[gd_scene load_steps=27 format=3 uid="uid://ce0b88lumohl8"]
 
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/PnlAdventures/CntPnlAdventures.cs" id="1_56uah"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="1_tow4p"]
@@ -13,6 +13,13 @@
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_2peo6"]
 [ext_resource type="Texture2D" uid="uid://ceqamemn0nf6r" path="res://Assets/Graphics/Effects/Rock/Rock.png" id="8_nqfgg"]
 [ext_resource type="ButtonGroup" uid="uid://cu7266orn7505" path="res://Source/Scenes/MainMenu/PnlAdventures/BtnGroupDifficulty.tres" id="9_k5wjp"]
+[ext_resource type="ButtonGroup" uid="uid://ubri10n1qy5" path="res://Source/Scenes/MainMenu/PnlAdventures/BtnGroupPerk.tres" id="11_xf5ct"]
+[ext_resource type="Texture2D" uid="uid://cbyii1ox4bjnh" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/SolarBlast3.png" id="13_6sr7w"]
+[ext_resource type="Texture2D" uid="uid://b22dmqqn2fl6o" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Vigor.png" id="16_3m0nd"]
+[ext_resource type="Texture2D" uid="uid://cw3lbijo4gktn" path="res://Assets/Graphics/Sprites/Perks/PerksUIStart/SolarSelected.png" id="16_ewx0o"]
+[ext_resource type="Texture2D" uid="uid://c572w7cv52i8e" path="res://Assets/Graphics/Sprites/Perks/PerksUIStart/SlingSelected.png" id="18_uinw7"]
+[ext_resource type="Texture2D" uid="uid://c57hfr315tngh" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Sling.png" id="19_6lr5f"]
+[ext_resource type="Texture2D" uid="uid://buo4dai38nyts" path="res://Assets/Graphics/Sprites/Perks/PerksUIStart/VigorSelected.png" id="20_4ts43"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6y1lg"]
 font_size = 72
@@ -29,7 +36,10 @@ font_size = 48
 [sub_resource type="LabelSettings" id="LabelSettings_t624p"]
 font_size = 64
 
-[node name="CntPnlAdventures" type="Control" node_paths=PackedStringArray("_btnEasy", "_btnMedium", "_btnHard", "_btnContinue", "_btnNew", "_btnClose")]
+[sub_resource type="LabelSettings" id="LabelSettings_ixgyo"]
+font_size = 72
+
+[node name="CntPnlAdventures" type="Control" node_paths=PackedStringArray("_btnEasy", "_btnMedium", "_btnHard", "_btnContinue", "_btnNew", "_btnClose", "_btnClosePerks", "_btnSolarFlare", "_btnElixirVigour", "_btnSling", "_btnFinalNew", "_pnlPerks")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,21 +54,25 @@ _btnHard = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContain
 _btnContinue = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay/BtnContinue")
 _btnNew = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay/BtnNew")
 _btnClose = NodePath("BasePanel/BtnClose")
+_btnClosePerks = NodePath("PnlPerks/BtnClose2")
+_btnSolarFlare = NodePath("PnlPerks/VBoxPerkSelect/BtnSolarFlare")
+_btnElixirVigour = NodePath("PnlPerks/VBoxPerkSelect/BtnElixirVigour")
+_btnSling = NodePath("PnlPerks/VBoxPerkSelect/BtnSling")
+_btnFinalNew = NodePath("PnlPerks/VBoxPerkSelect/HBoxContainer/BtnFinalNew")
+_pnlPerks = NodePath("PnlPerks")
 
 [node name="BasePanel" type="Panel" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1093.0
-offset_top = -762.0
-offset_right = 1093.0
-offset_bottom = 762.0
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tow4p")
+_snapToEdges = false
+_draggable = false
 
 [node name="BtnClose" type="TextureButton" parent="BasePanel"]
 layout_mode = 1
@@ -102,6 +116,7 @@ anchor_right = 0.99
 anchor_bottom = 0.99
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 10
 
 [node name="ScrollContainer" type="ScrollContainer" parent="BasePanel/HBoxContainer"]
 visible = false
@@ -164,22 +179,39 @@ size_flags_stretch_ratio = 3.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.01
-anchor_top = 0.01
-anchor_right = 0.99
-anchor_bottom = 0.99
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TexAdventure" type="TextureRect" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 5.0
+size_flags_stretch_ratio = 4.0
+theme_override_constants/separation = 25
+
+[node name="Panel2" type="Panel" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TexAdventure" type="TextureRect" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxContainer/Panel2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
 texture = ExtResource("8_nqfgg")
 expand_mode = 2
 
-[node name="LblDescription" type="Label" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
+[node name="LblDescription" type="Label" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxContainer/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
 text = "In a cosmic game between Shamash and Ishtar, Gilgamesh grapples with justice. His journey tests gods' concepts, shaping the fate of mortals."
@@ -191,7 +223,11 @@ autowrap_mode = 2
 [node name="HBoxDifficulty" type="HBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
+size_flags_stretch_ratio = 0.5
+
+[node name="Control" type="Control" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="BtnEasy" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty"]
 layout_mode = 2
@@ -267,10 +303,18 @@ label_settings = SubResource("LabelSettings_t624p")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Control2" type="Control" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="HBoxPlay" type="HBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.8
+size_flags_stretch_ratio = 0.6
+
+[node name="Control3" type="Control" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay"]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="BtnContinue" type="TextureButton" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay"]
 layout_mode = 2
@@ -319,3 +363,131 @@ text = "New"
 label_settings = SubResource("LabelSettings_t624p")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Control4" type="Control" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PnlPerks" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.15
+anchor_right = 0.75
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+script = ExtResource("1_tow4p")
+_startClosed = true
+
+[node name="VBoxPerkSelect" type="VBoxContainer" parent="PnlPerks"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="PnlPerks/VBoxPerkSelect"]
+layout_mode = 2
+text = "Select a starting boon: "
+label_settings = SubResource("LabelSettings_ixgyo")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BtnSolarFlare" type="TextureButton" parent="PnlPerks/VBoxPerkSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Solar Flare. A minor damaging spell of Shamash."
+toggle_mode = true
+button_group = ExtResource("11_xf5ct")
+texture_normal = ExtResource("13_6sr7w")
+texture_pressed = ExtResource("16_ewx0o")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_2peo6")
+
+[node name="BtnSling" type="TextureButton" parent="PnlPerks/VBoxPerkSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Sling. Grants a basic ranged attack."
+toggle_mode = true
+button_pressed = true
+button_group = ExtResource("11_xf5ct")
+texture_normal = ExtResource("19_6lr5f")
+texture_pressed = ExtResource("18_uinw7")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_2peo6")
+
+[node name="BtnElixirVigour" type="TextureButton" parent="PnlPerks/VBoxPerkSelect"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+tooltip_text = "Elixir of Vigour. A subtly strengthening boon of Ishtar."
+toggle_mode = true
+button_group = ExtResource("11_xf5ct")
+texture_normal = ExtResource("16_3m0nd")
+texture_pressed = ExtResource("20_4ts43")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_2peo6")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PnlPerks/VBoxPerkSelect"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.35
+
+[node name="Control5" type="Control" parent="PnlPerks/VBoxPerkSelect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnFinalNew" type="TextureButton" parent="PnlPerks/VBoxPerkSelect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.9
+tooltip_text = "Start a new adventure"
+texture_normal = ExtResource("3_gtib0")
+texture_pressed = ExtResource("4_01gsx")
+texture_hover = ExtResource("5_xhugv")
+texture_disabled = ExtResource("6_bmndb")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_2peo6")
+
+[node name="Label" type="Label" parent="PnlPerks/VBoxPerkSelect/HBoxContainer/BtnFinalNew"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Begin"
+label_settings = SubResource("LabelSettings_t624p")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control4" type="Control" parent="PnlPerks/VBoxPerkSelect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnClose2" type="TextureButton" parent="PnlPerks"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -149.0
+offset_bottom = 150.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_1c1hm")
+texture_pressed = ExtResource("4_poyb0")
+texture_hover = ExtResource("5_pq74w")
+script = ExtResource("7_2peo6")

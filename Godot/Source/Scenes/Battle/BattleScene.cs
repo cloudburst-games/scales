@@ -70,8 +70,18 @@ public partial class BattleScene : Node, ISceneTransitionable
             else
             {
                 GD.Print("loading new level");
+
                 // do new stuff here
-                NewCharacter(StoryCharacter.StoryCharacterMode.Gilgam, CharacterUnit.StatusToPlayerMode.Player);
+                CharacterUnit newChar = NewCharacter(StoryCharacter.StoryCharacterMode.Gilgam, CharacterUnit.StatusToPlayerMode.Player);
+                Perk.PerkMode selectedPerk = (Perk.PerkMode)battleData.PerkSelected;
+                if (!newChar.CharacterData.Perks.Contains(selectedPerk))
+                {
+                    newChar.CharacterData.Perks.Add(selectedPerk);
+
+                    Perk perk = PerkFactory.GeneratePerk(selectedPerk);
+                    // GD.Print(perk.Name);
+                    newChar.ApplyPerk(perk);
+                }
             }
             GD.Print("difficulty is: ", _difficulty);
 
@@ -147,6 +157,7 @@ public partial class BattleScene : Node, ISceneTransitionable
 
         _cntSpellBook.SpellBtnPressed += this.OnSpellSelected;
         _cntSpellBook.SpellUIHint += (int spell, bool canAfford) => _HUD.OnSpellBookUIHint(_spellEffectManager.AllSpells[(SpellEffectManager.SpellMode)spell], canAfford);
+        _cntSpellBook.ManaReagentUIHint += (SignalValueHolder values, int display) => _HUD.OnSpellBookCostsUIHint(values, display);
         _battleScalesAnim.CurrentAnimation = "Start";
 
         _adventureStoriesHandler.DefeatStoryFinished += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
@@ -155,7 +166,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         _battleVictory.FavouredGod += (int which, int scalesImpact, CharacterUnit victim) => OnVictoryFavouredGod((Scales.FavourMode)which, scalesImpact, victim);
         // _cntCharacterUpgrade.UpgradeFinished += OnBattleVictoryUpgradesFinished;
         _pnlPerkSelect.FinishedSelectingPerks += OnBattleVictoryUpgradesFinished;
-        _masterPerkPool = Enum.GetValues(typeof(Perk.PerkMode)).Cast<Perk.PerkMode>().ToList();
+        _masterPerkPool = Enum.GetValues(typeof(Perk.PerkMode)).Cast<Perk.PerkMode>().Where(x => x != Perk.PerkMode.None).ToList();
         // _adventureStoriesHandler.VictoryPictureStoryFinished += () 
         // _adventureStoriesHandler.FinalVictoryStoryFinished += ()
 
@@ -185,21 +196,24 @@ public partial class BattleScene : Node, ISceneTransitionable
     private async void OnBattleVictoryUpgradesFinished(System.Collections.Generic.Dictionary<CharacterUnit, Perk[]> characterPerks)
     {
         _cntCharacterUpgrade.Exit();
-        // give characters their perks in the perkmode list
-        foreach (CharacterUnit cUnit in characterPerks.Keys)
+        if (characterPerks != null)
         {
-            foreach (Perk p in characterPerks[cUnit])
+            // give characters their perks in the perkmode list
+            foreach (CharacterUnit cUnit in characterPerks.Keys)
             {
-                if (p == null)
+                foreach (Perk p in characterPerks[cUnit])
                 {
-                    continue;
+                    if (p == null)
+                    {
+                        continue;
+                    }
+                    cUnit.CharacterData.Perks.Add(p.CurrentPerk);
+                    cUnit.ApplyPerk(p);
+                    // if (!p.Stackable)
+                    // {
+                    //     _masterPerkPool.Remove(p.CurrentPerk);
+                    // }
                 }
-                cUnit.CharacterData.Perks.Add(p.CurrentPerk);
-                cUnit.ApplyPerk(p);
-                // if (!p.Stackable)
-                // {
-                //     _masterPerkPool.Remove(p.CurrentPerk);
-                // }
             }
         }
 
@@ -257,7 +271,9 @@ public partial class BattleScene : Node, ISceneTransitionable
                     victim.StatusToPlayer = CharacterUnit.StatusToPlayerMode.Player;
                     victim.InitStatusToPlayer();
                 }
-                break;
+                OnBattleVictoryUpgradesFinished(null);
+                return;
+            // break;
             case Scales.FavourMode.Shamash:
                 _scales.FavourShamash(scalesImpact);
                 break;
@@ -376,7 +392,10 @@ public partial class BattleScene : Node, ISceneTransitionable
         _btnActions.OnCharacterTurnStart(_battler.CharactersAwaitingTurn[0]);
         SetFavourForCharacters();
 
-
+        if (_battler.CharactersAwaitingTurn[0].StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player && _nextLevel == 0)
+        {
+            _HUD.TutorialHint();
+        }
     }
 
 
@@ -413,12 +432,12 @@ public partial class BattleScene : Node, ISceneTransitionable
         _cursorControl.SetCursor(paused ? CursorControl.CursorMode.Select : _cursorControl.GetCursor());
     }
 
-    private void NewCharacter(StoryCharacter.StoryCharacterMode selectedChar, CharacterUnit.StatusToPlayerMode status)
+    private CharacterUnit NewCharacter(StoryCharacter.StoryCharacterMode selectedChar, CharacterUnit.StatusToPlayerMode status)
     {
         CharacterUnit newChar = _characterScene.Instantiate<CharacterUnit>();
         newChar.SetFromJSON(selectedChar);
         NewCharacterCommon(newChar, status);
-        // return newChar;
+        return newChar;
     }
 
     private void NewCharacterCommon(CharacterUnit newChar, CharacterUnit.StatusToPlayerMode status)
@@ -666,15 +685,15 @@ public partial class BattleScene : Node, ISceneTransitionable
         // }
     }
 
-    // public override void _Input(InputEvent ev)
-    // {
-    //     if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
-    //     {
-    //         if (evk.Keycode == Key.Space)
-    //         {
-    //             OnBattleEnded(true);
-    //         }
-    //     }
-    // }
+    public override void _Input(InputEvent ev)
+    {
+        if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
+        {
+            if (evk.Keycode == Key.Space)
+            {
+                OnBattleEnded(true);
+            }
+        }
+    }
 
 }

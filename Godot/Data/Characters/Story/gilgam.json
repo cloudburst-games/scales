@@ -19,25 +19,19 @@
         "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch.wav",
         "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
     ],
-    "Perks": [
-        0,
-        3,
-        4,
-        7,
-        16
-    ],
+    "Perks": [],
     "Level": 1,
-    "Might": 100,
-    "Resilience": 100,
-    "Precision": 100,
+    "Might": 10,
+    "Resilience": 10,
+    "Precision": 10,
     "Speed": 100,
-    "Intellect": 100,
-    "Charisma": 100,
-    "Luck": 100,
+    "Intellect": 10,
+    "Charisma": 10,
+    "Luck": 10,
     "Barks": {
         "0": [
             [
-                "hi enki face",
+                "HELLO MY NAME GILGA",
                 "blah blah",
                 "first bark"
             ],

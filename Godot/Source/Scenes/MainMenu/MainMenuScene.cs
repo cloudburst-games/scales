@@ -37,7 +37,7 @@ public partial class MainMenuScene : Node, ISceneTransitionable
         GetTree().Root.GetNode<GlobalAudio>("GlobalAudio").Pause("World");
         GetTree().Root.GetNode<GlobalAudio>("GlobalAudio").Resume("Menu");
         _cntPnlAdventures.Visible = false;
-        _cntPnlAdventures.NewPressed += (int adventure, int difficulty) => this.OnNewAdventure((CntPnlAdventures.AdventureSelectedMode)adventure, (CntPnlAdventures.DifficultyMode)difficulty);
+        _cntPnlAdventures.NewPressed += (int adventure, int difficulty, int perk) => this.OnNewAdventure((CntPnlAdventures.AdventureSelectedMode)adventure, (CntPnlAdventures.DifficultyMode)difficulty, (Perk.PerkMode)perk);
         // ConnectDifficultyBtns();
         _cntPnlAdventures.ContinuePressed += (int adventure, int difficulty) => this.OnContinueAdventure((CntPnlAdventures.AdventureSelectedMode)adventure, (CntPnlAdventures.DifficultyMode)difficulty);
         _btnAdventure.Pressed += () => _cntPnlAdventures.Visible = true;
@@ -53,7 +53,7 @@ public partial class MainMenuScene : Node, ISceneTransitionable
         CheckpointData data = dataHandler.LoadFromJSON<CheckpointData>(savePath);
         _battleData.CheckpointData = data;
         _battleData.Difficulty = (int)difficulty;
-        // TODO when checkpoint stuff implemented
+        _battleData.PerkSelected = (int)Perk.PerkMode.None;
         _battleData.AdventureSelected = (int)adventure;
         GetNode<SettingsManager>("Control/SettingsManager").Exit();
         _battleSceneTransition.SharedData = _battleData;
@@ -62,11 +62,12 @@ public partial class MainMenuScene : Node, ISceneTransitionable
         // _battleData.STOREJSON DATA SOMEHOW FOR TRANSFER!
     }
 
-    private void OnNewAdventure(CntPnlAdventures.AdventureSelectedMode adventure, CntPnlAdventures.DifficultyMode difficulty)
+    private void OnNewAdventure(CntPnlAdventures.AdventureSelectedMode adventure, CntPnlAdventures.DifficultyMode difficulty, Perk.PerkMode perkSelected)
     {
         // In future, connect the right adventure with the right picture story. for now just go directly to gilga
         _battleData.Difficulty = (int)difficulty;
         _battleData.AdventureSelected = (int)adventure;
+        _battleData.PerkSelected = (int)perkSelected;
         _introPictureStory.Finished += () =>
         {
             GetNode<SettingsManager>("Control/SettingsManager").Exit();

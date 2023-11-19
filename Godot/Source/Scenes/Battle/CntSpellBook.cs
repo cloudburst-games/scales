@@ -11,8 +11,9 @@ public partial class CntSpellBook : Control
     [Signal]
     public delegate void SpellBtnPressedEventHandler(SpellEffectManager.SpellMode spellSelected);
 
-    private int _reagents;
-    private int _mana;
+    // private int _reagents;
+    // private int _mana;
+    private SignalValueHolder _manaReagents = new();
     private System.Collections.Generic.Dictionary<SpellEffectManager.SpellMode, SpellEffectManager.Spell> _allSpells;
 
     [Export]
@@ -27,10 +28,16 @@ public partial class CntSpellBook : Control
             btn.MouseEntered += () => OnMouseEntered(kv.Key);
             btn.MouseExited += () => OnMouseExited();
         }
+        GetNode<BaseTextureButton>("PnlSpellBook/BtnMana").MouseEntered += () => EmitSignal(SignalName.ManaReagentUIHint, _manaReagents, (int)SignalValueHolder.DisplayMode.Mana);
+        GetNode<BaseTextureButton>("PnlSpellBook/BtnMana").MouseExited += () => EmitSignal(SignalName.ManaReagentUIHint, _manaReagents, (int)SignalValueHolder.DisplayMode.None);
+        GetNode<BaseTextureButton>("PnlSpellBook/BtnReagents").MouseEntered += () => EmitSignal(SignalName.ManaReagentUIHint, _manaReagents, (int)SignalValueHolder.DisplayMode.Reagent);
+        GetNode<BaseTextureButton>("PnlSpellBook/BtnReagents").MouseExited += () => EmitSignal(SignalName.ManaReagentUIHint, _manaReagents, (int)SignalValueHolder.DisplayMode.None);
     }
 
     [Signal]
     public delegate void SpellUIHintEventHandler(int spell, bool canAfford = true);
+    [Signal]
+    public delegate void ManaReagentUIHintEventHandler(SignalValueHolder manaReagentTotal, int displayMode);
 
     private void OnMouseEntered(SpellEffectManager.SpellMode spell)
     {
@@ -64,7 +71,7 @@ public partial class CntSpellBook : Control
 
     private bool CanAffordSpell(SpellEffectManager.SpellMode spell)
     {
-        return _allSpells[spell].ReagentCost <= _reagents && _allSpells[spell].ChargeCost <= _mana;
+        return _allSpells[spell].ReagentCost <= _manaReagents.Reagent && _allSpells[spell].ChargeCost <= _manaReagents.Mana;
     }
 
     private void HideAllSpellBtns()
@@ -78,12 +85,30 @@ public partial class CntSpellBook : Control
 
     public void ShowSpells(Array<SpellEffectManager.SpellMode> spells, int reagents, int mana)
     {
-        _reagents = reagents;
-        _mana = mana;
+        _manaReagents.Reagent = reagents;
+        _manaReagents.Mana = mana;
+        GetNode<Label>("PnlSpellBook/BtnReagents/LblReagents").Text = _manaReagents.Reagent.ToString();
+        GetNode<Label>("PnlSpellBook/BtnMana/LblMana").Text = _manaReagents.Mana.ToString();
         HideAllSpellBtns();
         foreach (SpellEffectManager.SpellMode spell in spells)
         {
             GetNode<BaseTextureButton>(_allSpellBtns[spell]).Visible = true;
+            SetSpellLabel(spell);
+        }
+    }
+
+    private void SetSpellLabel(SpellEffectManager.SpellMode spell)
+    {
+        if (_allSpells.ContainsKey(spell))
+        {
+            SpellEffectManager.Spell s = _allSpells[spell];
+            string costType = s.ReagentCost > 0 ? "Reagents: " : "Mana: ";
+            int cost = s.ReagentCost > 0 ? s.ReagentCost : s.ChargeCost;
+            BaseTextureButton btn = GetNode<BaseTextureButton>(_allSpellBtns[spell]);
+            if (btn.GetChildCount() > 0 && btn.GetChildren()[0] is Label l)
+            {
+                l.Text = $"{costType}{cost.ToString()}";
+            }
         }
     }
 
@@ -91,4 +116,12 @@ public partial class CntSpellBook : Control
     {
         this._allSpells = allSpells;
     }
+}
+
+public partial class SignalValueHolder : RefCounted
+{
+    public enum DisplayMode { Mana, Reagent, None }
+    public int Mana { get; set; }
+
+    public int Reagent { get; set; }
 }

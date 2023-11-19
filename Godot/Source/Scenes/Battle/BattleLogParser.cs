@@ -98,7 +98,7 @@ public class BattleLogParser
                         output = "Insufficient reagents.";
                         break;
                     case InvalidReasonMode.NotEnoughCharge:
-                        output = "Insufficient charge.";
+                        output = "Insufficient mana.";
                         break;
                     case InvalidReasonMode.LOSBlocked:
                         output = "Line of sight blocked.";
@@ -125,10 +125,12 @@ public class BattleLogParser
 
         if (spell.SpellMode != SpellEffectManager.SpellMode.None)
         {
-            output = spell.Description;
-            string cost = spell.ChargeCost > 0 ? "Cost: " + spell.ChargeCost.ToString() + " Charge" : spell.ReagentCost > 0 ? "Cost: " + spell.ReagentCost + " Reagents" : "";
-            output += (spell.ChargeCost > 0 || spell.ReagentCost > 0) ? "\n" + cost : "";
-            output += canAfford ? "" : "\n Insufficient resources";
+            output = spell.Name + ": " + spell.Description;
+            string patron = spell.Patron == SpellEffectManager.Spell.PatronMode.Ishtar ? "Patron: Ishtar" : "Patron: Shamash";
+            string cost = spell.ChargeCost > 0 ? "Cost: " + spell.ChargeCost.ToString() + " Mana" : spell.ReagentCost > 0 ? "Cost: " + spell.ReagentCost + " Reagents" : "";
+            output += "\n" + patron + ".";
+            output += (spell.ChargeCost > 0 || spell.ReagentCost > 0) ? " " + cost + "." : "";
+            output += canAfford ? "" : "\nInsufficient resources";
         }
 
         return output;

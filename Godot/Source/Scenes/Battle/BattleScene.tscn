@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=134 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
@@ -13,16 +13,16 @@
 [ext_resource type="Texture2D" uid="uid://5ua02qta6fs2" path="res://Assets/Graphics/Interface/Buttons/Actions/MeleeHover.png" id="6_7olrp"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BtnActions.cs" id="6_8u3hr"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_8jqkl"]
-[ext_resource type="Texture2D" uid="uid://fcvswpr4arvt" path="res://Assets/Graphics/Interface/Buttons/Actions/Spell.png" id="8_o6igi"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleHUD.cs" id="8_p64pw"]
 [ext_resource type="PackedScene" uid="uid://bw5lq1gqo82tm" path="res://Data/Levels/Battle/BattleLevelTemplate.tscn" id="9_4plr1"]
-[ext_resource type="Texture2D" uid="uid://dgis40l8kw0ig" path="res://Assets/Graphics/Interface/Buttons/Actions/SpellHover.png" id="9_rwm3w"]
 [ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="10_a18qy"]
 [ext_resource type="PackedScene" uid="uid://dycfwnor58bnr" path="res://Source/Systems/Battle/Battler.tscn" id="10_hfvdy"]
 [ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="11_b5csu"]
+[ext_resource type="Texture2D" uid="uid://bji64q2o5d2ma" path="res://Assets/Graphics/Sprites/Spellbook/SpellbookSmall.png" id="12_fjdpr"]
 [ext_resource type="Texture2D" uid="uid://t18ucy7fdeli" path="res://Assets/Graphics/Interface/Buttons/Actions/Wait.png" id="12_n0ccq"]
 [ext_resource type="Texture2D" uid="uid://4osa8ri0ekrt" path="res://Assets/Graphics/Interface/Images/9patchEgyptianSymbols.png" id="13_alkka"]
 [ext_resource type="Texture2D" uid="uid://dxwbq4clp1pyr" path="res://Assets/Graphics/Interface/Buttons/Actions/WaitHover.png" id="13_nvwr6"]
+[ext_resource type="Texture2D" uid="uid://c1h71w4tf13wc" path="res://Assets/Graphics/Sprites/Spellbook/SpellbookSmallHover.png" id="13_xc721"]
 [ext_resource type="AudioStream" uid="uid://u8vvnphooeai" path="res://addons/BaseTextureButtonPlugin/hover.wav" id="15_h183d"]
 [ext_resource type="Texture2D" uid="uid://dxhgtad82y7mx" path="res://Assets/Graphics/Interface/Buttons/Actions/Bow.png" id="16_e3j1o"]
 [ext_resource type="AudioStream" uid="uid://in1epaq47smy" path="res://addons/BaseTextureButtonPlugin/click.wav" id="16_g43m3"]
@@ -35,28 +35,14 @@
 [ext_resource type="PackedScene" uid="uid://cgdolyn63ljtp" path="res://Source/Scenes/Battle/PnlScales.tscn" id="19_tnek7"]
 [ext_resource type="PackedScene" uid="uid://dm31ruvvjwfml" path="res://Source/Interface/Buttons/BtnClosePlaceholder.tscn" id="23_0fs1l"]
 [ext_resource type="LabelSettings" uid="uid://cnydnjeqvs3kr" path="res://Source/Interface/Label/test_label_settings.tres" id="24_m03nf"]
-[ext_resource type="Texture2D" uid="uid://dcm1rx18j0c5h" path="res://Assets/Graphics/Interface/Images/Spellbook.png" id="27_40yck"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/CntSpellBook.cs" id="27_fhn5x"]
 [ext_resource type="PackedScene" uid="uid://dx62avxvwtb0l" path="res://Source/Systems/SpellEffect/SpellEffectManager.tscn" id="27_gplcg"]
-[ext_resource type="Texture2D" uid="uid://y60lspk4s5rc" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSNORMAL.png" id="28_f3gvm"]
-[ext_resource type="Texture2D" uid="uid://c8q2bdypfy7w7" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSPRESSED.png" id="29_0k2ke"]
-[ext_resource type="Texture2D" uid="uid://cwpt2tnkrjdhs" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSHOVER.png" id="30_x3r6m"]
-[ext_resource type="Texture2D" uid="uid://cuw3myxdwkdv5" path="res://Assets/Graphics/Interface/Buttons/Spells/SolarFlare.png" id="31_fgym1"]
-[ext_resource type="Texture2D" uid="uid://bwpy5a48jfhb8" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/SolarFlareHover.png" id="32_cedin"]
-[ext_resource type="Texture2D" uid="uid://bjuht3k4qvun5" path="res://Assets/Graphics/Interface/Buttons/Spells/JudgementFlame.png" id="33_fjsma"]
-[ext_resource type="Texture2D" uid="uid://kl3y322cr22v" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/JudgementFlameHover.png" id="34_u602w"]
-[ext_resource type="Texture2D" uid="uid://yt78vp7o1i6a" path="res://Assets/Graphics/Interface/Buttons/Spells/BlindingLight.png" id="35_m5lff"]
-[ext_resource type="Texture2D" uid="uid://dywpnwo4hul6g" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/BlindingLightHover.png" id="36_jqi6p"]
-[ext_resource type="Texture2D" uid="uid://dkblllpdthfm4" path="res://Assets/Graphics/Interface/Buttons/Spells/SolarBlast.png" id="37_v4o4t"]
-[ext_resource type="Texture2D" uid="uid://dlkwa80s53mwp" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/SolarBlastHover.png" id="38_b65e7"]
-[ext_resource type="Texture2D" uid="uid://bpl1n8o00bsjd" path="res://Assets/Graphics/Interface/Buttons/Spells/ElixirVigour.png" id="39_c1hge"]
-[ext_resource type="Texture2D" uid="uid://chemg0rj522df" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/ElixirVigourHover.png" id="40_d0yd3"]
-[ext_resource type="Texture2D" uid="uid://cntrnbs3xihjr" path="res://Assets/Graphics/Interface/Buttons/Spells/ElixirSwiftness.png" id="41_0647k"]
-[ext_resource type="Texture2D" uid="uid://dk768b8ttkmo5" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/ElixirSwiftnessHover.png" id="42_s4io6"]
-[ext_resource type="Texture2D" uid="uid://qa8skfvubumv" path="res://Assets/Graphics/Interface/Buttons/Spells/RegenOintment.png" id="43_8r5rj"]
-[ext_resource type="Texture2D" uid="uid://b5y2sla7shloo" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/OintmentHover.png" id="44_s1m13"]
-[ext_resource type="Texture2D" uid="uid://dsknwp4qky61j" path="res://Assets/Graphics/Interface/Buttons/Spells/VialFury.png" id="45_dlkfi"]
-[ext_resource type="Texture2D" uid="uid://8i2158h3ph0k" path="res://Assets/Graphics/Interface/Buttons/Spells/Hover/VialFuryHover.png" id="46_7l2d4"]
+[ext_resource type="Texture2D" uid="uid://djimffomyg0y4" path="res://Assets/Graphics/Sprites/Spellbook/SpellbookSheet.png" id="35_vxnel"]
+[ext_resource type="Texture2D" uid="uid://wuc2rkx50rmq" path="res://Assets/Graphics/Sprites/Spellbook/template_atlas.tres" id="39_ns2iq"]
+[ext_resource type="Texture2D" uid="uid://espodc73mlr4" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed.png" id="40_yvmrb"]
+[ext_resource type="Texture2D" uid="uid://14orytikjbvq" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksHover.png" id="41_s5x0e"]
+[ext_resource type="Texture2D" uid="uid://c37j54kghr2yk" path="res://Assets/Graphics/Sprites/Spellbook/template_atlas_pressed.tres" id="44_hudfb"]
+[ext_resource type="Texture2D" uid="uid://cuo2n7dmv7qap" path="res://Assets/Graphics/Sprites/Spellbook/template_atlas_hover.tres" id="45_bqq33"]
 [ext_resource type="PackedScene" uid="uid://d3fkaury6ig66" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfo.tscn" id="49_8ah3x"]
 [ext_resource type="PackedScene" uid="uid://dab158j4ohebo" path="res://Source/Systems/HexGrid/HexGridUserDisplay.tscn" id="50_rack7"]
 [ext_resource type="PackedScene" uid="uid://dhnf1jm0vtok8" path="res://Source/Interface/Panel/CharacterUpgrade/CntCharacterUpgrade.tscn" id="54_82j32"]
@@ -101,15 +87,243 @@ border_color = Color(0.0352941, 0.392157, 0.8, 1)
 line_spacing = 1.0
 font_size = 36
 
+[sub_resource type="Animation" id="Animation_sd4lj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_svn45"]
+resource_name = "Start"
+length = 2.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2, 1.8, 2.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(3, 3, 3, 1), Color(1, 1, 1, 1), Color(3, 3, 3, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uuywb"]
+_data = {
+"RESET": SubResource("Animation_sd4lj"),
+"Start": SubResource("Animation_svn45")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_1b6cn"]
 line_spacing = 1.0
 font_size = 36
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uou2"]
+atlas = ExtResource("12_fjdpr")
+region = Rect2(0, 3, 512, 314)
+
 [sub_resource type="LabelSettings" id="LabelSettings_21ipa"]
 font_size = 64
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uucgk"]
-texture = ExtResource("27_40yck")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xonns"]
+atlas = ExtResource("35_vxnel")
+region = Rect2(2, 264, 2065, 1269)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j3j5c"]
+texture = SubResource("AtlasTexture_xonns")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mfasf"]
+atlas = ExtResource("35_vxnel")
+region = Rect2(1451, 2, 188, 243)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noppn"]
+atlas = ExtResource("35_vxnel")
+region = Rect2(1658, 2, 188, 243)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpa6o"]
+atlas = ExtResource("35_vxnel")
+region = Rect2(1244, 2, 188, 243)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vbv48"]
+font_size = 36
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i4hum"]
+load_path = "res://.godot/imported/SpellbookSheet.png-d6a1311f82cc26d6443f7d5c0855e81d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5qpf"]
+atlas = SubResource("CompressedTexture2D_i4hum")
+region = Rect2(830, 2, 189, 243)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xefpy"]
+font_size = 28
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8pa2q"]
+load_path = "res://.godot/imported/SpellbookSheet.png-d6a1311f82cc26d6443f7d5c0855e81d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qgcg0"]
+atlas = SubResource("CompressedTexture2D_8pa2q")
+region = Rect2(2072, 1, 189, 244)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_whi0x"]
+load_path = "res://.godot/imported/SpellbookSheet.png-d6a1311f82cc26d6443f7d5c0855e81d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6lhof"]
+atlas = SubResource("CompressedTexture2D_whi0x")
+region = Rect2(1865, 1, 189, 244)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mueba"]
+atlas = ExtResource("40_yvmrb")
+region = Rect2(48, 1558, 324, 329)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g27qn"]
+atlas = ExtResource("41_s5x0e")
+region = Rect2(48, 1558, 324, 329)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7sx5v"]
+font_size = 28
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v4bin"]
+load_path = "res://.godot/imported/SpellsPerksNormal.png-a5ada911078db929172eae04443972e8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sis7p"]
+atlas = SubResource("CompressedTexture2D_v4bin")
+region = Rect2(21, 385, 371, 301)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b80x4"]
+load_path = "res://.godot/imported/SpellsPerksPressed.png-9f82d045420592fe0e5280a2e555171d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qoy46"]
+atlas = SubResource("CompressedTexture2D_b80x4")
+region = Rect2(21, 385, 371, 301)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_la116"]
+load_path = "res://.godot/imported/SpellsPerksHover.png-1741b19dac0999aa3f404201603c6928.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f35kn"]
+atlas = SubResource("CompressedTexture2D_la116")
+region = Rect2(21, 385, 371, 301)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4iofa"]
+load_path = "res://.godot/imported/SpellsPerksNormal.png-a5ada911078db929172eae04443972e8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_melju"]
+atlas = SubResource("CompressedTexture2D_4iofa")
+region = Rect2(851, 50, 490, 329)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xxjff"]
+load_path = "res://.godot/imported/SpellsPerksPressed.png-9f82d045420592fe0e5280a2e555171d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cogt4"]
+atlas = SubResource("CompressedTexture2D_xxjff")
+region = Rect2(851, 50, 490, 329)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_evk6m"]
+load_path = "res://.godot/imported/SpellsPerksHover.png-1741b19dac0999aa3f404201603c6928.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c5d6"]
+atlas = SubResource("CompressedTexture2D_evk6m")
+region = Rect2(851, 50, 490, 329)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mht0k"]
+load_path = "res://.godot/imported/SpellsPerksNormal.png-a5ada911078db929172eae04443972e8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjwsn"]
+atlas = SubResource("CompressedTexture2D_mht0k")
+region = Rect2(422, 1533, 408, 381)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wr6hn"]
+load_path = "res://.godot/imported/SpellsPerksNormal.png-a5ada911078db929172eae04443972e8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa541"]
+atlas = SubResource("CompressedTexture2D_wr6hn")
+region = Rect2(1760, 1567, 269, 329)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5mr5t"]
+load_path = "res://.godot/imported/SpellsPerksPressed.png-9f82d045420592fe0e5280a2e555171d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xujvu"]
+atlas = SubResource("CompressedTexture2D_5mr5t")
+region = Rect2(1760, 1567, 269, 329)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_76oof"]
+load_path = "res://.godot/imported/SpellsPerksHover.png-1741b19dac0999aa3f404201603c6928.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvcyv"]
+atlas = SubResource("CompressedTexture2D_76oof")
+region = Rect2(1760, 1567, 269, 329)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_475nj"]
+load_path = "res://.godot/imported/SpellsPerksNormal.png-a5ada911078db929172eae04443972e8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abvjg"]
+atlas = SubResource("CompressedTexture2D_475nj")
+region = Rect2(850, 1557, 404, 313)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2b85p"]
+load_path = "res://.godot/imported/SpellsPerksPressed.png-9f82d045420592fe0e5280a2e555171d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcpt0"]
+atlas = SubResource("CompressedTexture2D_2b85p")
+region = Rect2(850, 1557, 404, 313)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rsjwj"]
+load_path = "res://.godot/imported/SpellsPerksHover.png-1741b19dac0999aa3f404201603c6928.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q3rm"]
+atlas = SubResource("CompressedTexture2D_rsjwj")
+region = Rect2(850, 1557, 404, 313)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gtxo3"]
+load_path = "res://.godot/imported/SpellsPerksNormal.png-a5ada911078db929172eae04443972e8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_027bf"]
+atlas = SubResource("CompressedTexture2D_gtxo3")
+region = Rect2(68, 1203, 276, 243)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0tavs"]
+load_path = "res://.godot/imported/SpellsPerksPressed.png-9f82d045420592fe0e5280a2e555171d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysdsl"]
+atlas = SubResource("CompressedTexture2D_0tavs")
+region = Rect2(68, 1203, 276, 243)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lm8vk"]
+load_path = "res://.godot/imported/SpellsPerksHover.png-1741b19dac0999aa3f404201603c6928.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sd8yb"]
+atlas = SubResource("CompressedTexture2D_lm8vk")
+region = Rect2(68, 1203, 276, 243)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kyyr2"]
+load_path = "res://.godot/imported/SpellsPerksNormal.png-a5ada911078db929172eae04443972e8.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufaq5"]
+atlas = SubResource("CompressedTexture2D_kyyr2")
+region = Rect2(1308, 1533, 299, 353)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5g88k"]
+load_path = "res://.godot/imported/SpellsPerksPressed.png-9f82d045420592fe0e5280a2e555171d.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cnmka"]
+atlas = SubResource("CompressedTexture2D_5g88k")
+region = Rect2(1308, 1533, 299, 353)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4b8ur"]
+load_path = "res://.godot/imported/SpellsPerksHover.png-1741b19dac0999aa3f404201603c6928.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t45v"]
+atlas = SubResource("CompressedTexture2D_4b8ur")
+region = Rect2(1308, 1533, 299, 353)
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_twrr5"]
 
@@ -359,7 +573,7 @@ offset_right = 3840.0
 offset_bottom = 2160.0
 color = Color(0.568627, 0.862745, 1, 1)
 
-[node name="BattleHUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("_characterInfoPanel", "_pnlBattleIntro", "_btnBattleIntroContinue", "_lblIntro", "_lblShortLog", "_btnLog", "_pnlFullLog", "_RLblFullLog", "_pnlSpellBook", "_btnCloseSpellBook", "_cntSpellBook", "_lblHint", "_pnlShortLog", "_pnlAction", "_texActiveCharacter", "_barHealth", "_barHerbs", "_barCharge", "_pnlScales", "_audioCloseBook", "_audioOpenBook")]
+[node name="BattleHUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("_characterInfoPanel", "_pnlBattleIntro", "_btnBattleIntroContinue", "_lblIntro", "_lblShortLog", "_btnLog", "_pnlFullLog", "_RLblFullLog", "_pnlSpellBook", "_btnCloseSpellBook", "_cntSpellBook", "_lblHint", "_pnlShortLog", "_pnlAction", "_texActiveCharacter", "_barHealth", "_barHerbs", "_barCharge", "_pnlScales", "_audioCloseBook", "_audioOpenBook", "_animTutorial")]
 script = ExtResource("8_p64pw")
 _characterInfoPanel = NodePath("CntHUD/CharacterInfoPanel")
 _pnlBattleIntro = NodePath("CntHUD/PnlBattleIntro")
@@ -383,6 +597,7 @@ _barCharge = NodePath("CntHUD/PnlAction/HBoxContainer/PnlActiveCharacter/HBoxCon
 _pnlScales = NodePath("CntHUD/PnlScales")
 _audioCloseBook = NodePath("AudioCloseBook")
 _audioOpenBook = NodePath("AudioOpenBook")
+_animTutorial = NodePath("CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/HBoxContainer/VBoxContainer/PnlShortLog/AnimTutorial")
 
 [node name="CntHUD" type="Control" parent="BattleHUD"]
 modulate = Color(1, 1, 1, 0)
@@ -509,17 +724,17 @@ size_flags_horizontal = 3
 texture_normal = ExtResource("5_728wm")
 texture_hover = ExtResource("6_7olrp")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 script = ExtResource("6_8u3hr")
 _actionPnl = NodePath("../../../../PnlActions")
 
 [node name="BtnChooseSpell" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("8_o6igi")
-texture_hover = ExtResource("9_rwm3w")
+texture_normal = ExtResource("12_fjdpr")
+texture_hover = ExtResource("13_xc721")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 script = ExtResource("7_8jqkl")
 _hoverSample = ExtResource("15_h183d")
 _clickedSample = ExtResource("16_g43m3")
@@ -560,6 +775,12 @@ size_flags_stretch_ratio = 20.0
 label_settings = SubResource("LabelSettings_gqkdd")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimTutorial" type="AnimationPlayer" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/HBoxContainer/VBoxContainer/PnlShortLog"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_uuywb")
+}
 
 [node name="PnlHint" type="Panel" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/PnlShortLog/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -675,10 +896,10 @@ _clickedSample = ExtResource("16_g43m3")
 [node name="BtnCastSpell" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/PnlActions/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("8_o6igi")
-texture_hover = ExtResource("9_rwm3w")
+texture_normal = SubResource("AtlasTexture_0uou2")
+texture_hover = ExtResource("13_xc721")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 script = ExtResource("7_8jqkl")
 _hoverSample = ExtResource("15_h183d")
 _clickedSample = ExtResource("16_g43m3")
@@ -798,7 +1019,7 @@ grow_horizontal = 2
 text = "Battle Log"
 label_settings = ExtResource("24_m03nf")
 
-[node name="CntSpellBook" type="Control" parent="BattleHUD/CntHUD"]
+[node name="CntSpellBook" type="Control" parent="BattleHUD/CntHUD" node_paths=PackedStringArray("_audioFizzle")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -817,18 +1038,21 @@ _allSpellBtns = {
 6: NodePath("PnlSpellBook/BodySpells/BtnElixirSwiftness"),
 7: NodePath("PnlSpellBook/BodySpells/BtnRegenOintment")
 }
+_audioFizzle = NodePath("AudioFizzle")
 
 [node name="PnlSpellBook" type="Panel" parent="BattleHUD/CntHUD/CntSpellBook"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 299.0
-offset_right = -430.0
-offset_bottom = -470.0
+offset_left = 600.0
+offset_top = 60.0
+offset_right = -1173.0
+offset_bottom = -758.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_uucgk")
+scale = Vector2(1.25, 1.25)
+theme_override_styles/panel = SubResource("StyleBoxTexture_j3j5c")
 script = ExtResource("2_5xh84")
 _snapToEdges = false
 _draggable = false
@@ -837,16 +1061,18 @@ _startClosed = true
 [node name="BtnClose" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.820052
-anchor_top = 0.075
-anchor_right = 0.820052
-anchor_bottom = 0.075
+anchor_left = 1.01711
+anchor_top = 0.0536513
+anchor_right = 1.01711
+anchor_bottom = 0.0536513
 offset_left = -149.0
 offset_bottom = 150.0
 grow_horizontal = 0
-texture_normal = ExtResource("28_f3gvm")
-texture_pressed = ExtResource("29_0k2ke")
-texture_hover = ExtResource("30_x3r6m")
+rotation = 1.371
+scale = Vector2(1.25, 1.25)
+texture_normal = SubResource("AtlasTexture_mfasf")
+texture_pressed = SubResource("AtlasTexture_noppn")
+texture_hover = SubResource("AtlasTexture_gpa6o")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
@@ -854,131 +1080,345 @@ _hoverSample = ExtResource("15_h183d")
 _clickedSample = ExtResource("16_g43m3")
 metadata/_edit_use_anchors_ = true
 
+[node name="Label" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BtnClose"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 130.0
+offset_right = 139.0
+offset_bottom = 183.0
+rotation = -1.5708
+text = "Close"
+label_settings = SubResource("LabelSettings_vbv48")
+
+[node name="BtnMana" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.08527
+anchor_top = 0.632489
+anchor_right = 1.08527
+anchor_bottom = 0.632489
+offset_left = -149.0
+offset_bottom = 150.0
+grow_horizontal = 0
+rotation = 1.41059
+scale = Vector2(1.25, 1.25)
+texture_normal = SubResource("AtlasTexture_b5qpf")
+texture_hover = SubResource("AtlasTexture_gpa6o")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_8jqkl")
+metadata/_edit_use_anchors_ = true
+
+[node name="LblMana" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BtnMana"]
+layout_mode = 0
+offset_left = 51.4679
+offset_top = 126.834
+offset_right = 158.468
+offset_bottom = 179.834
+rotation = -1.5708
+scale = Vector2(0.75, 0.75)
+text = "100/100"
+label_settings = SubResource("LabelSettings_xefpy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnReagents" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.07443
+anchor_top = 0.537109
+anchor_right = 1.07443
+anchor_bottom = 0.537109
+offset_left = -149.0
+offset_bottom = 150.0
+grow_horizontal = 0
+rotation = 1.41059
+scale = Vector2(1.25, 1.25)
+texture_normal = SubResource("AtlasTexture_qgcg0")
+texture_hover = SubResource("AtlasTexture_6lhof")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_8jqkl")
+metadata/_edit_use_anchors_ = true
+
+[node name="LblReagents" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BtnReagents"]
+layout_mode = 0
+offset_left = 51.4679
+offset_top = 126.834
+offset_right = 158.468
+offset_bottom = 179.834
+rotation = -1.5708
+scale = Vector2(0.75, 0.75)
+text = "100/100"
+label_settings = SubResource("LabelSettings_xefpy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="SunSpells" type="Control" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook"]
+layout_mode = 3
 anchors_preset = 0
-offset_left = 551.0
-offset_top = 229.0
-offset_right = 1820.0
-offset_bottom = 1774.0
+offset_left = 280.8
+offset_top = 133.6
+offset_right = 1549.8
+offset_bottom = 1678.6
+mouse_filter = 2
 
 [node name="BtnSolarFlare" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 27.0
-offset_right = 440.0
-offset_bottom = 427.0
-texture_normal = ExtResource("31_fgym1")
-texture_hover = ExtResource("32_cedin")
+offset_left = 13.6
+offset_top = 42.4
+offset_right = 313.6
+offset_bottom = 342.4
+texture_normal = ExtResource("39_ns2iq")
+texture_pressed = SubResource("AtlasTexture_mueba")
+texture_hover = SubResource("AtlasTexture_g27qn")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
+
+[node name="Label4" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells/BtnSolarFlare"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 1.51
+offset_left = -150.0
+offset_top = 75.0
+offset_right = 131.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cost: "
+label_settings = SubResource("LabelSettings_7sx5v")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BtnJudgementFlame" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
-offset_left = -23.0
-offset_top = 652.0
-offset_right = 377.0
-offset_bottom = 1052.0
-texture_normal = ExtResource("33_fjsma")
-texture_hover = ExtResource("34_u602w")
+offset_left = -28.0001
+offset_top = 512.0
+offset_right = 272.0
+offset_bottom = 812.0
+texture_normal = SubResource("AtlasTexture_sis7p")
+texture_pressed = SubResource("AtlasTexture_qoy46")
+texture_hover = SubResource("AtlasTexture_f35kn")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
+
+[node name="Label5" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells/BtnJudgementFlame"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 1.51
+offset_left = -150.0
+offset_top = 75.0
+offset_right = 131.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cost: "
+label_settings = SubResource("LabelSettings_7sx5v")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BtnBlindingLight" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
-offset_left = 378.0
-offset_top = 504.0
-offset_right = 778.0
-offset_bottom = 904.0
-texture_normal = ExtResource("35_m5lff")
-texture_hover = ExtResource("36_jqi6p")
+offset_left = 344.0
+offset_top = 564.8
+offset_right = 644.0
+offset_bottom = 864.8
+texture_normal = SubResource("AtlasTexture_melju")
+texture_pressed = SubResource("AtlasTexture_cogt4")
+texture_hover = SubResource("AtlasTexture_6c5d6")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
+
+[node name="Label6" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells/BtnBlindingLight"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 1.51
+offset_left = -150.0
+offset_top = 75.0
+offset_right = 131.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cost: "
+label_settings = SubResource("LabelSettings_7sx5v")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BtnSolarBlast" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
-offset_left = 450.0
-offset_top = -35.0
-offset_right = 850.0
-offset_bottom = 365.0
-texture_normal = ExtResource("37_v4o4t")
-texture_hover = ExtResource("38_b65e7")
+offset_left = 351.2
+offset_top = 113.6
+offset_right = 651.2
+offset_bottom = 413.6
+texture_normal = SubResource("AtlasTexture_fjwsn")
+texture_pressed = ExtResource("44_hudfb")
+texture_hover = ExtResource("45_bqq33")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
+
+[node name="Label7" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells/BtnSolarBlast"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 1.51
+offset_left = -150.0
+offset_top = 75.0
+offset_right = 131.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cost: "
+label_settings = SubResource("LabelSettings_7sx5v")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BodySpells" type="Control" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook"]
+layout_mode = 3
 anchors_preset = 0
-offset_left = 2017.0
-offset_top = 229.0
-offset_right = 3286.0
-offset_bottom = 1774.0
+offset_left = 1078.4
+offset_top = 175.2
+offset_right = 2347.4
+offset_bottom = 1720.2
+mouse_filter = 2
 
 [node name="BtnElixirVigor" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
-offset_left = -329.0
-offset_top = -14.0
-offset_right = 71.0
-offset_bottom = 386.0
-texture_normal = ExtResource("39_c1hge")
-texture_hover = ExtResource("40_d0yd3")
+offset_left = -25.5999
+offset_top = 22.4
+offset_right = 274.4
+offset_bottom = 322.4
+texture_normal = SubResource("AtlasTexture_pa541")
+texture_pressed = SubResource("AtlasTexture_xujvu")
+texture_hover = SubResource("AtlasTexture_pvcyv")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
+
+[node name="Label11" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells/BtnElixirVigor"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 1.51
+offset_left = -150.0
+offset_top = 75.0
+offset_right = 131.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cost: "
+label_settings = SubResource("LabelSettings_7sx5v")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BtnElixirSwiftness" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
-offset_left = 188.0
-offset_top = 91.0
-offset_right = 588.0
-offset_bottom = 491.0
-texture_normal = ExtResource("41_0647k")
-texture_hover = ExtResource("42_s4io6")
+offset_left = 337.6
+offset_top = -22.4
+offset_right = 637.6
+offset_bottom = 277.6
+texture_normal = SubResource("AtlasTexture_abvjg")
+texture_pressed = SubResource("AtlasTexture_tcpt0")
+texture_hover = SubResource("AtlasTexture_6q3rm")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
+
+[node name="Label9" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells/BtnElixirSwiftness"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 1.51
+offset_left = -150.0
+offset_top = 75.0
+offset_right = 131.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cost: "
+label_settings = SubResource("LabelSettings_7sx5v")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BtnRegenOintment" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
-offset_left = -273.0
-offset_top = 579.0
-offset_right = 127.0
-offset_bottom = 979.0
-texture_normal = ExtResource("43_8r5rj")
-texture_hover = ExtResource("44_s1m13")
+offset_left = 36.8002
+offset_top = 491.2
+offset_right = 336.8
+offset_bottom = 791.2
+texture_normal = SubResource("AtlasTexture_027bf")
+texture_pressed = SubResource("AtlasTexture_ysdsl")
+texture_hover = SubResource("AtlasTexture_sd8yb")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
+
+[node name="Label8" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells/BtnRegenOintment"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 1.51
+offset_left = -150.0
+offset_top = 75.0
+offset_right = 131.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cost: "
+label_settings = SubResource("LabelSettings_7sx5v")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BtnVialFury" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 646.0
-offset_right = 632.0
-offset_bottom = 1046.0
-texture_normal = ExtResource("45_dlkfi")
-texture_hover = ExtResource("46_7l2d4")
+offset_left = 420.0
+offset_top = 451.2
+offset_right = 720.0
+offset_bottom = 751.2
+texture_normal = SubResource("AtlasTexture_ufaq5")
+texture_pressed = SubResource("AtlasTexture_cnmka")
+texture_hover = SubResource("AtlasTexture_5t45v")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
+
+[node name="Label10" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells/BtnVialFury"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 1.51
+offset_left = -150.0
+offset_top = 75.0
+offset_right = 131.0
+offset_bottom = -75.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Cost: "
+label_settings = SubResource("LabelSettings_7sx5v")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AudioFizzle" type="Node2D" parent="BattleHUD/CntHUD/CntSpellBook"]
 script = ExtResource("64_ascdd")
@@ -988,70 +1428,37 @@ stream = ExtResource("54_fvkb8")
 bus = &"Effects"
 
 [node name="CharacterInfoPanel" parent="BattleHUD/CntHUD" instance=ExtResource("49_8ah3x")]
+visible = false
 
 [node name="BattleVictory" parent="BattleHUD" instance=ExtResource("59_tgswr")]
+visible = false
 
 [node name="CntCharacterUpgrade" parent="BattleHUD" instance=ExtResource("54_82j32")]
+visible = false
 
 [node name="PnlCharacterSelect" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer" index="0"]
 _characterSelectBtnGroup = SubResource("ButtonGroup_twrr5")
 
 [node name="BaseTextureButton" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="0"]
 button_group = SubResource("ButtonGroup_twrr5")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
 
 [node name="BaseTextureButton2" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="1"]
 button_group = SubResource("ButtonGroup_twrr5")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
 
 [node name="BaseTextureButton3" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="2"]
 button_group = SubResource("ButtonGroup_twrr5")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
 
 [node name="BaseTextureButton4" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="3"]
 button_group = SubResource("ButtonGroup_twrr5")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
 
 [node name="BaseTextureButton5" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="4"]
 button_group = SubResource("ButtonGroup_twrr5")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
 
 [node name="PnlPerkSelect" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer" index="1"]
 _perkSelectButtonGroup = SubResource("ButtonGroup_jvt5r")
 
 [node name="BaseTextureButton4" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="0"]
 button_group = SubResource("ButtonGroup_jvt5r")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
-
-[node name="BaseTextureButton5" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="1"]
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
-
-[node name="BaseTextureButton6" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="2"]
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
-
-[node name="BaseTextureButton7" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="3"]
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
-
-[node name="BaseTextureButton8" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="4"]
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
-
-[node name="BaseTextureButton9" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="5"]
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
-
-[node name="BtnContinue" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect" index="2"]
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
 
 [node name="GilgamStoryHandler" parent="BattleHUD" instance=ExtResource("58_27mia")]
 offset_left = 101.0

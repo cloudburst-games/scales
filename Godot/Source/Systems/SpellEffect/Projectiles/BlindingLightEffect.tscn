@@ -9,6 +9,7 @@
 [sub_resource type="Animation" id="Animation_nqm2t"]
 resource_local_to_scene = true
 resource_name = "Finish"
+length = 1.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,7 +29,7 @@ tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0.8, 1.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -44,6 +45,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Finish:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_jtxcd"]
@@ -79,6 +92,18 @@ tracks/2/path = NodePath("Light:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Finish:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -246,6 +271,16 @@ process_material = SubResource("ParticleProcessMaterial_r2as5")
 texture = ExtResource("3_foy3o")
 lifetime = 0.5
 preprocess = 10.0
+local_coords = true
+
+[node name="Finish" type="GPUParticles2D" parent="."]
+rotation = 1.5708
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_r2as5")
+texture = ExtResource("3_foy3o")
+one_shot = true
+explosiveness = 0.5
 local_coords = true
 
 [node name="AudioContainer" type="Node" parent="." node_paths=PackedStringArray("SoundParent")]

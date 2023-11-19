@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cuo2n7dmv7qap"]
+
+[ext_resource type="Texture2D" uid="uid://14orytikjbvq" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksHover.png" id="1_el4ny"]
+
+[resource]
+atlas = ExtResource("1_el4ny")
+region = Rect2(48, 1558, 324, 329)

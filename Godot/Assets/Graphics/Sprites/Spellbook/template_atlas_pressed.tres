@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://c37j54kghr2yk"]
+
+[ext_resource type="Texture2D" uid="uid://espodc73mlr4" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed.png" id="1_lemsv"]
+
+[resource]
+atlas = ExtResource("1_lemsv")
+region = Rect2(422, 1533, 408, 381)

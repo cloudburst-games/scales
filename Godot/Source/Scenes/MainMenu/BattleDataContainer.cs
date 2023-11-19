@@ -8,4 +8,5 @@ public class BattleDataContainer : ISceneTransitionShareableData
 
     // TODO
     public CheckpointData CheckpointData { get; set; } = null;
+    public int PerkSelected { get; internal set; }
 }

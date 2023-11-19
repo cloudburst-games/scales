@@ -66,7 +66,7 @@ public partial class SettingsGraphics : Control
         _confineMouseBtnCallable = new Callable(this, nameof(OnConfineMouseBtnToggled));
         _screenShakeSliderCallable = new Callable(this, nameof(OnScreenShakeSliderValueChanged));
         _VSyncOptionsCallable = new Callable(this, nameof(OnVSyncOptionSelected));
-        
+
         InitScreenOptions();
         InitWindowSizeOptions();
 
@@ -93,7 +93,8 @@ public partial class SettingsGraphics : Control
     private void OnWindowSizeOptionSelected(int index)
     {
         _previousWindowSize = GetViewport().GetWindow().Size;
-        if (_windowSizes.Contains(GetViewport().GetWindow().Size)) {
+        if (_windowSizes.Contains(GetViewport().GetWindow().Size))
+        {
             _previousIndex = _windowSizes.IndexOf(GetViewport().GetWindow().Size);
         }
         GetViewport().GetWindow().Size = _windowSizes[index];
@@ -109,7 +110,7 @@ public partial class SettingsGraphics : Control
         DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
         await ToSignal(GetTree(), "process_frame");
         // set to specified screen
-        DisplayServer.WindowSetCurrentScreen( DisplayServer.GetScreenCount() > index ? index : 0);
+        DisplayServer.WindowSetCurrentScreen(DisplayServer.GetScreenCount() > index ? index : 0);
         await ToSignal(GetTree(), "process_frame");
         AnnounceSettingsChanged();
         // change back to original windowmode
@@ -121,7 +122,7 @@ public partial class SettingsGraphics : Control
         var currentScreen = DisplayServer.WindowGetCurrentScreen();
         await ToSignal(GetTree(), "process_frame");
 
-		DisplayServer.WindowSetMode(index == 0 ? DisplayServer.WindowMode.Windowed : index == 1 
+        DisplayServer.WindowSetMode(index == 0 ? DisplayServer.WindowMode.Windowed : index == 1
             ? DisplayServer.WindowMode.Maximized : index == 2 ? DisplayServer.WindowMode.Fullscreen
             : DisplayServer.WindowMode.ExclusiveFullscreen);
 
@@ -140,41 +141,42 @@ public partial class SettingsGraphics : Control
 
     private void OnScreenShakeSliderValueChanged(float value)
     {
-        GetTree().Root.GetNode<GlobalSettings>("GlobalSettings").ScreenShakePercentModifier = value/100f;
+        GetTree().Root.GetNode<GlobalSettings>("GlobalSettings").ScreenShakePercentModifier = value / 100f;
     }
 
     private void OnVSyncOptionSelected(int index)
     {
-        DisplayServer.WindowSetVsyncMode((DisplayServer.VSyncMode) index);
+        DisplayServer.WindowSetVsyncMode((DisplayServer.VSyncMode)index);
     }
 
     private void AnnounceSettingsChanged()
     {
         if (!_refreshing)
         {
-		    SettingsChanged?.Invoke();
+            SettingsChanged?.Invoke();
         }
     }
 
     private void ConnectControlCallable(Control control, string signal, Callable callable)
     {
         if (!control.IsConnected(signal, callable))
-		{
+        {
             control.Connect(signal, callable);
-		}
+        }
     }
 
-	public void Refresh()
-	{
+    public void Refresh()
+    {
         _refreshing = true;
-        
+
         // Display mode:
         _windowModeOptions.Selected = DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Windowed ? 0 :
             DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Maximized ? 1 :
             DisplayServer.WindowGetMode() == DisplayServer.WindowMode.Fullscreen ? 2 : 3;
         ConnectControlCallable(_windowModeOptions, "item_selected", _windowModeOptionsCallable);
         // Window size:
-        if (_windowSizes.Contains(GetViewport().GetWindow().Size)) {
+        if (_windowSizes.Contains(GetViewport().GetWindow().Size))
+        {
             _windowSizeOptions.Selected = _windowSizes.IndexOf(GetViewport().GetWindow().Size);
         }
         ConnectControlCallable(_windowSizeOptions, "item_selected", _windowSizeOptionsCallable);
@@ -186,26 +188,27 @@ public partial class SettingsGraphics : Control
         _confineMouseBtn.SetPressedNoSignal(Input.MouseMode == Input.MouseModeEnum.Confined);
         ConnectControlCallable(_confineMouseBtn, "toggled", _confineMouseBtnCallable);
         // Screen shake slider
-        _screenShakeSlider.SetValueNoSignal(GetTree().Root.GetNode<GlobalSettings>("GlobalSettings").ScreenShakePercentModifier*100);
+        _screenShakeSlider.SetValueNoSignal(GetTree().Root.GetNode<GlobalSettings>("GlobalSettings").ScreenShakePercentModifier * 100);
         ConnectControlCallable(_screenShakeSlider, "value_changed", _screenShakeSliderCallable);
         // VSync
-        _VSyncOptions.Selected = (int) DisplayServer.WindowGetVsyncMode();
+        _VSyncOptions.Selected = (int)DisplayServer.WindowGetVsyncMode();
         ConnectControlCallable(_VSyncOptions, "item_selected", _VSyncOptionsCallable);
 
         _refreshing = false;
-	}
+    }
 
     private void OnWSizeBtnCancelPressed()
     {
         GetViewport().GetWindow().Size = _previousWindowSize;
-        _windowSizeOptions.Selected = _previousIndex;        
+        _windowSizeOptions.Selected = _previousIndex;
         GetNode<BasePanel>("PnlWindowSizeConfirm").Close();
     }
 
     private void OnWSizeBtnConfirmPressed()
     {
-        AnnounceSettingsChanged();        
+        AnnounceSettingsChanged();
         GetNode<BasePanel>("PnlWindowSizeConfirm").Close();
+        GetNode<Timer>("PnlWindowSizeConfirm/Timer").Stop();
     }
 
     public void Exit()
@@ -214,134 +217,134 @@ public partial class SettingsGraphics : Control
     }
 }
 
-    /*
+/*
 
-    // THIS MAY NOT BE NEEDED, but proof of concept for variable texture settings in Godot 4.0:
+// THIS MAY NOT BE NEEDED, but proof of concept for variable texture settings in Godot 4.0:
 
-    HOW:
-    1. Create a script that allows to select a folder, and in all subdirs renames all png if not already done with _HI.png suffix, and generates _MED at half res (/2), and _LO and quart res (/4) 
+HOW:
+1. Create a script that allows to select a folder, and in all subdirs renames all png if not already done with _HI.png suffix, and generates _MED at half res (/2), and _LO and quart res (/4) 
 
-    2. Create a setting stored in global settings for low med or high texture quality 
+2. Create a setting stored in global settings for low med or high texture quality 
 
-    3. Be able to run e.g. at end of ready in worldscn to set all the textures. If the first sprite or texturerect or texturebutton is already set to the specified suffix, can abort. Perhaps save the scene at the end of this process (first time) as long as not saving scenedata, to save time in future. At high find the HI png if exists and set it at x1 scale, med do med png at .5 scale, low do low png at .25 scale 
-    
-    TESTS:
-    string projectDir = ProjectSettings.GlobalizePath("res://");
-    List<string> allFiles = FindAllFiles(new List<string>(), projectDir);
-    // test png creation
-    // CreateScaledPng("res://addons/AudioContainerPlugin/AudioContainerIcon.png", 0.5);
-    // CreateScaledPng("res://addons/AudioContainerPlugin/AudioContainerIcon.png", 0.25);
+3. Be able to run e.g. at end of ready in worldscn to set all the textures. If the first sprite or texturerect or texturebutton is already set to the specified suffix, can abort. Perhaps save the scene at the end of this process (first time) as long as not saving scenedata, to save time in future. At high find the HI png if exists and set it at x1 scale, med do med png at .5 scale, low do low png at .25 scale 
 
-    // test setting sprite texture
-    SetSpriteTextureQuality(GetNode<Sprite2D>("AudioContainerIcon"), TextureQuality.High);
-    SetSpriteTextureQuality(GetNode<Sprite2D>("AudioContainerIcon2"), TextureQuality.Med);
-    SetSpriteTextureQuality(GetNode<Sprite2D>("AudioContainerIcon3"), TextureQuality.Low);
+TESTS:
+string projectDir = ProjectSettings.GlobalizePath("res://");
+List<string> allFiles = FindAllFiles(new List<string>(), projectDir);
+// test png creation
+// CreateScaledPng("res://addons/AudioContainerPlugin/AudioContainerIcon.png", 0.5);
+// CreateScaledPng("res://addons/AudioContainerPlugin/AudioContainerIcon.png", 0.25);
 
-    // FindAllFiles(projectDir);
-        
+// test setting sprite texture
+SetSpriteTextureQuality(GetNode<Sprite2D>("AudioContainerIcon"), TextureQuality.High);
+SetSpriteTextureQuality(GetNode<Sprite2D>("AudioContainerIcon2"), TextureQuality.Med);
+SetSpriteTextureQuality(GetNode<Sprite2D>("AudioContainerIcon3"), TextureQuality.Low);
 
-    CONSTITUENT METHODS:
-    // FIRST loop through all files (BEFORE EXPORT) and create medium and low quality versions
+// FindAllFiles(projectDir);
 
-    private List<string> FindAllFiles(List<string> res, string targetDir)
+
+CONSTITUENT METHODS:
+// FIRST loop through all files (BEFORE EXPORT) and create medium and low quality versions
+
+private List<string> FindAllFiles(List<string> res, string targetDir)
+{
+    foreach (string dir in Directory.GetDirectories(targetDir))
     {
-        foreach (string dir in Directory.GetDirectories(targetDir))
+        foreach (string filename in Directory.GetFiles(dir))
         {
-            foreach (string filename in Directory.GetFiles(dir))
+            if (filename.Substring(Math.Max(0,filename.Length-4)).ToLower() == ".png")
             {
-                if (filename.Substring(Math.Max(0,filename.Length-4)).ToLower() == ".png")
-                {
-                    // GD.Print(filename);
-                    res.Add(filename);
-                }
+                // GD.Print(filename);
+                res.Add(filename);
             }
-            FindAllFiles(res, dir);
         }
-        return res;
+        FindAllFiles(res, dir);
     }
+    return res;
+}
 
-    private void CreateAllScaledPngs()
+private void CreateAllScaledPngs()
+{
+    List<string> allFiles = FindAllFiles(new List<string>(), ProjectSettings.GlobalizePath("res://"));
+    foreach (string filename in allFiles)
     {
-        List<string> allFiles = FindAllFiles(new List<string>(), ProjectSettings.GlobalizePath("res://"));
-        foreach (string filename in allFiles)
+        CreateScaledPng(filename, 0.5);
+        CreateScaledPng(filename, 0.25);
+    }
+}
+
+
+private void CreateScaledPng(string filename, double scale)
+{
+    var image = new Image();
+    image.Load(filename);
+    int newWidth = Convert.ToInt32(image.GetWidth() * scale);
+    int newHeight = Convert.ToInt32(image.GetHeight() * scale);
+    image.Resize(newWidth, newHeight);
+    int dotLocation = filename.LastIndexOf('.');
+    string newFilenamePrefix = filename.Substring(0, dotLocation);
+    string newFilenameSuffix = scale == 0.25 ? "_LO.png" : "_MED.png";
+    if (!ResourceLoader.Exists(newFilenamePrefix + newFilenameSuffix))
+    {
+        image.SavePng(newFilenamePrefix + newFilenameSuffix);
+    }
+}
+
+// THEN IN THE GAME, WHENEVER ANYTHING IS ADDED TO THE SCENE TREE, NEED TO RUN THIS
+
+private void SetAllSpriteTextureQuality(TextureQuality quality, Node n)
+{
+    foreach (Sprite2D sprite in BaseProject.Utils.Node.GetNodesRecursive(new List<Sprite2D>(), n))
+    {
+        if (SpriteIsOfTargetQuality(sprite, quality))
         {
-            CreateScaledPng(filename, 0.5);
-            CreateScaledPng(filename, 0.25);
+            return;
         }
+        SetSpriteTextureQuality(sprite, quality);
     }
+}
 
+private enum TextureQuality { High, Med, Low}
 
-    private void CreateScaledPng(string filename, double scale)
+private bool SpriteIsOfTargetQuality(Sprite2D sprite, TextureQuality quality)
+{
+    //TODO
+    // ALSO TODO CLEANUP OF MED AND LO
+    return false;
+}
+
+private void SetSpriteTextureQuality(Sprite2D s, TextureQuality quality)
+{
+    string texturePath = s.Texture.ResourcePath;
+    int dotLocation = texturePath.LastIndexOf('.');
+    string currentSuffix = texturePath.Substring(Math.Max(0, texturePath.Length-5));
+    TextureQuality oldQuality = currentSuffix == "D.png" ? TextureQuality.Med : 
+        currentSuffix == "O.png" ? TextureQuality.Low : TextureQuality.High;
+    string basePath = currentSuffix == "D.png" ? texturePath.Substring(0, dotLocation-4) : 
+        currentSuffix == "O.png" ? texturePath.Substring(0, dotLocation-3) : texturePath.Substring(0, dotLocation);
+    string suffix = quality == TextureQuality.High ? ".png" : quality == TextureQuality.Med ? "_MED.png" : "_LO.png";
+    float scaleMultiplier = textureScaleConversion[new Tuple<TextureQuality, TextureQuality>(oldQuality, quality)];
+    // GD.Print(s.Texture.ResourcePath);
+    // GD.Print(basePath);
+    // GD.Print(basePath + suffix);
+    string targetTexturePath = basePath + suffix;
+    if (ResourceLoader.Exists(targetTexturePath))
     {
-        var image = new Image();
-        image.Load(filename);
-        int newWidth = Convert.ToInt32(image.GetWidth() * scale);
-        int newHeight = Convert.ToInt32(image.GetHeight() * scale);
-        image.Resize(newWidth, newHeight);
-        int dotLocation = filename.LastIndexOf('.');
-        string newFilenamePrefix = filename.Substring(0, dotLocation);
-        string newFilenameSuffix = scale == 0.25 ? "_LO.png" : "_MED.png";
-        if (!ResourceLoader.Exists(newFilenamePrefix + newFilenameSuffix))
-        {
-            image.SavePng(newFilenamePrefix + newFilenameSuffix);
-        }
+        s.Texture = GD.Load<Texture2D>(targetTexturePath);
+        s.Scale *= scaleMultiplier;
     }
+}
 
-    // THEN IN THE GAME, WHENEVER ANYTHING IS ADDED TO THE SCENE TREE, NEED TO RUN THIS
+private System.Collections.Generic.Dictionary<Tuple<TextureQuality, TextureQuality>, float> textureScaleConversion = new() {
+    {new Tuple<TextureQuality, TextureQuality>(TextureQuality.High, TextureQuality.High), 1},
+    {new Tuple<TextureQuality, TextureQuality>(TextureQuality.High, TextureQuality.Med), 2},
+    {new Tuple<TextureQuality, TextureQuality>(TextureQuality.High, TextureQuality.Low), 4},
+    {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Med, TextureQuality.High), 0.5f},
+    {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Med, TextureQuality.Med), 1},
+    {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Med, TextureQuality.Low), 2},
+    {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Low, TextureQuality.High), 0.25f},
+    {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Low, TextureQuality.Med), 0.5f},
+    {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Low, TextureQuality.Low), 1},
+};
 
-    private void SetAllSpriteTextureQuality(TextureQuality quality, Node n)
-    {
-        foreach (Sprite2D sprite in BaseProject.Utils.Node.GetNodesRecursive(new List<Sprite2D>(), n))
-        {
-            if (SpriteIsOfTargetQuality(sprite, quality))
-            {
-                return;
-            }
-            SetSpriteTextureQuality(sprite, quality);
-        }
-    }
-
-    private enum TextureQuality { High, Med, Low}
-
-    private bool SpriteIsOfTargetQuality(Sprite2D sprite, TextureQuality quality)
-    {
-        //TODO
-        // ALSO TODO CLEANUP OF MED AND LO
-        return false;
-    }
-
-    private void SetSpriteTextureQuality(Sprite2D s, TextureQuality quality)
-    {
-        string texturePath = s.Texture.ResourcePath;
-        int dotLocation = texturePath.LastIndexOf('.');
-        string currentSuffix = texturePath.Substring(Math.Max(0, texturePath.Length-5));
-        TextureQuality oldQuality = currentSuffix == "D.png" ? TextureQuality.Med : 
-            currentSuffix == "O.png" ? TextureQuality.Low : TextureQuality.High;
-        string basePath = currentSuffix == "D.png" ? texturePath.Substring(0, dotLocation-4) : 
-            currentSuffix == "O.png" ? texturePath.Substring(0, dotLocation-3) : texturePath.Substring(0, dotLocation);
-        string suffix = quality == TextureQuality.High ? ".png" : quality == TextureQuality.Med ? "_MED.png" : "_LO.png";
-        float scaleMultiplier = textureScaleConversion[new Tuple<TextureQuality, TextureQuality>(oldQuality, quality)];
-        // GD.Print(s.Texture.ResourcePath);
-        // GD.Print(basePath);
-        // GD.Print(basePath + suffix);
-        string targetTexturePath = basePath + suffix;
-        if (ResourceLoader.Exists(targetTexturePath))
-        {
-            s.Texture = GD.Load<Texture2D>(targetTexturePath);
-            s.Scale *= scaleMultiplier;
-        }
-    }
-
-    private System.Collections.Generic.Dictionary<Tuple<TextureQuality, TextureQuality>, float> textureScaleConversion = new() {
-        {new Tuple<TextureQuality, TextureQuality>(TextureQuality.High, TextureQuality.High), 1},
-        {new Tuple<TextureQuality, TextureQuality>(TextureQuality.High, TextureQuality.Med), 2},
-        {new Tuple<TextureQuality, TextureQuality>(TextureQuality.High, TextureQuality.Low), 4},
-        {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Med, TextureQuality.High), 0.5f},
-        {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Med, TextureQuality.Med), 1},
-        {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Med, TextureQuality.Low), 2},
-        {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Low, TextureQuality.High), 0.25f},
-        {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Low, TextureQuality.Med), 0.5f},
-        {new Tuple<TextureQuality, TextureQuality>(TextureQuality.Low, TextureQuality.Low), 1},
-    };
-
-    */
+*/

@@ -18,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://cusxunhf85vum" path="res://Assets/Audio/Effects/PlaceholderSFX/ShamashSound.wav" id="14_5nd6r"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_i2ruh"]
-font_size = 56
+font_size = 48
 
 [sub_resource type="LabelSettings" id="LabelSettings_o6e5d"]
 font_size = 64
@@ -235,7 +235,8 @@ size_flags_stretch_ratio = 0.5
 text = "VICTORY!
 Decide the fate of your opponents!
 Ishtar would be pleased with a show of retribution.
-Shamash advises a display of mercy."
+Shamash advises a display of mercy.
+Both would be displeased with any attempt at persuasion."
 label_settings = SubResource("LabelSettings_i2ruh")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -260,7 +261,7 @@ size_flags_stretch_ratio = 1.0
 [node name="HBoxContainer" type="HBoxContainer" parent="PnlFate/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.25
 
 [node name="BtnMercy" type="TextureButton" parent="PnlFate/VBoxContainer/HBoxContainer"]
 layout_mode = 2

@@ -96,7 +96,6 @@ text = "Window Size"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_dyjtb")
-selected = 0
 
 [node name="HScreen" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2

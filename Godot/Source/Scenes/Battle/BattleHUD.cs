@@ -56,7 +56,10 @@ public partial class BattleHUD : CanvasLayer
     private AudioContainer _audioCloseBook;
     [Export]
     private AudioContainer _audioOpenBook;
-
+    [Export]
+    private AnimationPlayer _animTutorial;
+    [Export]
+    private BaseTextureButton _btnMenu;
 
     public enum StateMode
     {
@@ -255,6 +258,26 @@ public partial class BattleHUD : CanvasLayer
         OnBattleLogEntry(BattleLogParser.ParseSpellHint(spell, canAfford), false);
     }
 
+    List<string> _tutorialHints = new() {
+        "Hint: clicking on a purple hex will allow you to still act after moving.",
+        "Hint: click the icon to the right of your hero's portrait to change the default action.",
+        "Hint: moving onto a blue hex prevents you from attacking or casting spells.",
+        "Hint: if you know any spells, you can click on the spellbook icon to cast a spell.",
+        "Hint: when you have a spell selected, click on an enemy if it is a hostile spell, or an ally otherwise.",
+        "Hint: to end your turn early, click on the tick button",
+        "Hint: right click on other heroes to view their strengths and weaknesses",
+    };
+
+    public void TutorialHint()
+    {
+        if (_tutorialHints.Count > 0)
+        {
+            OnBattleLogEntry(_tutorialHints[0], true);
+            _tutorialHints.RemoveAt(0);
+            _animTutorial.Play("Start");
+        }
+    }
+
     internal void OnCharacterTakingDamage(BattleRoller.RollerOutcomeInformation result, string defender, Vector2 globalPosition, bool died)
     {
         if (result.RollerInput == null)
@@ -306,6 +329,21 @@ public partial class BattleHUD : CanvasLayer
         }
     }
 
+    internal void OnSpellBookCostsUIHint(SignalValueHolder values, int display)
+    {
+        if (((SignalValueHolder.DisplayMode)display) == SignalValueHolder.DisplayMode.None)
+        {
+
+            OnBattleLogEntry("", false);
+        }
+        else
+        {
+            SignalValueHolder.DisplayMode dis = (SignalValueHolder.DisplayMode)display;
+            string output = dis == SignalValueHolder.DisplayMode.Mana ? values.Mana.ToString() + " mana remaining. Used for the magicks of Shamash."
+                : values.Reagent.ToString() + " reagents remaining. Used for Ishtari rituals.";
+            OnBattleLogEntry(output, false);
+        }
+    }
 }
 
 // internal void OnCharacterTakingDamage(BattleRoller.RollerOutcomeInformation result, string defender, Vector2 globalPosition)

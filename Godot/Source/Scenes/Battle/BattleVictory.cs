@@ -256,8 +256,8 @@ public partial class BattleVictory : Control
     private async void OnFateDecided(Scales.FavourMode fate)
     {
         string godName = fate == Scales.FavourMode.Ishtar ? "Ishtar" : "Shamash";
-        _lblFateDecided.Text = fate != Scales.FavourMode.Balanced ? $"Pleased with your devotion, your Patron {godName} bestows upon you their power. You have more boons, of greater power, to select from." :
-            "By defying the Gods, you have lost a chance at their favour.\nYou have fewer and weaker boons to choose from.";
+        _lblFateDecided.Text = fate != Scales.FavourMode.Balanced ? $"Pleased with your devotion, your Patron {godName} bestows upon you their power." :
+            "By defying the Gods, you have lost a chance at their favour. Neither bestow their boons upon you this day.";
 
         if (fate == Scales.FavourMode.Ishtar) { _audioIshtar.Play(); } else if (fate == Scales.FavourMode.Shamash) { _audioShamash.Play(); }
         _fateDecidedAnim.Play("Start");

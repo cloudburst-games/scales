@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://balkgyfmr6mkv"
+path="res://.godot/imported/SpellBookClickMaskVert.png-98f3c08a5b7491db33f8ba3f7cde3610.res"
+
+[deps]
+
+source_file="res://Assets/Graphics/Sprites/Spellbook/SpellBookClickMaskVert.png"
+dest_files=["res://.godot/imported/SpellBookClickMaskVert.png-98f3c08a5b7491db33f8ba3f7cde3610.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

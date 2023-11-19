@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://b7tboe3r62yl2"
+path="res://.godot/imported/SpellBookClickMaskRot.png-f4fecb170a5a3fea47379e3198d3a51c.res"
+
+[deps]
+
+source_file="res://Assets/Graphics/Sprites/Spellbook/SpellBookClickMaskRot.png"
+dest_files=["res://.godot/imported/SpellBookClickMaskRot.png-f4fecb170a5a3fea47379e3198d3a51c.res"]
+
+[params]
+
+create_from=0
+threshold=0.5

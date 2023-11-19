@@ -24,27 +24,82 @@ public partial class BtnActions : TextureButton
 
         // Texture2D testTexture2D = GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/SolarFlare.png");
         // magic strings because EXPORTING DICTIONARIES IS SO BUGGED IN GODOT NKASDNJASJDJSDOSNF bevy pls make editor
-        _spellTextures = new()  {
-            {SpellEffectManager.SpellMode.SolarFlare, new Texture2D[2]
-                {GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/SolarFlare.png"),GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/Hover/SolarFlareHover.png")}},
-            {SpellEffectManager.SpellMode.SolarBlast, new Texture2D[2]
-                {GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/SolarBlast.png"),GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/Hover/SolarBlastHover.png")}},
-            {SpellEffectManager.SpellMode.BlindingLight, new Texture2D[2]
-                {GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/BlindingLight.png"),GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/Hover/BlindingLightHover.png")}},
-            {SpellEffectManager.SpellMode.JudgementOfFlame, new Texture2D[2]
-                {GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/JudgementFlame.png"),GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/Hover/JudgementFlameHover.png")}},
-            {SpellEffectManager.SpellMode.VialOfFury, new Texture2D[2]
-                {GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/VialFury.png"),GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/Hover/VialFuryHover.png")}},
-            {SpellEffectManager.SpellMode.ElixirOfSwiftness, new Texture2D[2]
-                {GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/ElixirSwiftness.png"),GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/Hover/ElixirSwiftnessHover.png")}},
-            {SpellEffectManager.SpellMode.ElixirOfVigour, new Texture2D[2]
-                {GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/ElixirVigour.png"),GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/Hover/ElixirVigourHover.png")}},
-            {SpellEffectManager.SpellMode.RegenerativeOintment, new Texture2D[2]
-                {GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/RegenOintment.png"),GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Spells/Hover/OintmentHover.png")}},
-            {SpellEffectManager.SpellMode.None, new Texture2D[2]
-                {GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Actions/Spell.png"),GD.Load<Texture2D>("res://Assets/Graphics/Interface/Buttons/Actions/SpellHover.png")}},
-
+        _spellTextures = new Dictionary<SpellEffectManager.SpellMode, Texture2D[]>
+        {
+            {
+                SpellEffectManager.SpellMode.SolarFlare, new Texture2D[3]
+                {
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/SolarBlast3.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/SolarBlast3.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/SolarBlast3.png")
+                }
+            },
+            {
+                SpellEffectManager.SpellMode.SolarBlast, new Texture2D[3]
+                {
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/SolarBlastFinalNormal.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/SolarBlastFinalNormal.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/SolarBlastFinalNormal.png")
+                }
+            },
+            {
+                SpellEffectManager.SpellMode.BlindingLight, new Texture2D[3]
+                {
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/BlindingLigh.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/BlindingLigh.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/BlindingLigh.png")
+                }
+            },
+            {
+                SpellEffectManager.SpellMode.JudgementOfFlame, new Texture2D[3]
+                {
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/FlameJudgement.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/FlameJudgement.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/FlameJudgement.png")
+                }
+            },
+            {
+                SpellEffectManager.SpellMode.VialOfFury, new Texture2D[3]
+                {
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/VialOfFury.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/VialOfFury.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/VialOfFury.png")
+                }
+            },
+            {
+                SpellEffectManager.SpellMode.ElixirOfSwiftness, new Texture2D[3]
+                {
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Swift.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Swift.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Swift.png")
+                }
+            },
+            {
+                SpellEffectManager.SpellMode.ElixirOfVigour, new Texture2D[3]
+                {
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Vigor.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Vigor.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Vigor.png")
+                }
+            },
+            {
+                SpellEffectManager.SpellMode.RegenerativeOintment, new Texture2D[3]
+                {
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Healing.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Healing.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Healing.png")
+                }
+            },
+            {
+                SpellEffectManager.SpellMode.None, new Texture2D[3]
+                {
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Spellbook/SpellbookSmall.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Spellbook/SpellbookSmallHover.png"),
+                    GD.Load<Texture2D>("res://Assets/Graphics/Sprites/Spellbook/SpellbookSmallPressed.png")
+                }
+            }
         };
+
         Pressed += this.OnPressed;
     }
 
@@ -108,6 +163,7 @@ public partial class BtnActions : TextureButton
 
         TextureNormal = _spellTextures[spellSelected][0];
         TextureHover = _spellTextures[spellSelected][1];
+        TexturePressed = _spellTextures[spellSelected][2];
 
     }
 
@@ -116,6 +172,7 @@ public partial class BtnActions : TextureButton
         TextureButton btn = ActionBtns[Battler.ActionMode.Cast];
         btn.TextureNormal = _spellTextures[spellSelected][0];
         btn.TextureHover = _spellTextures[spellSelected][1];
+        btn.TexturePressed = _spellTextures[spellSelected][2];
 
         if (_currentAction == Battler.ActionMode.Cast)
         {

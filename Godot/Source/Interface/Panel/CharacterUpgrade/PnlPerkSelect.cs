@@ -208,6 +208,7 @@ public partial class PnlPerkSelect : Panel
             StretchMode = TextureButton.StretchModeEnum.KeepAspectCentered,
             TextureNormal = GD.Load<Texture2D>(perk.BtnNormalPath),
             TexturePressed = GD.Load<Texture2D>(perk.BtnPressedPath),
+            TextureHover = GD.Load<Texture2D>(perk.BtnHoverPath),
             SizeFlagsHorizontal = SizeFlags.ExpandFill,
             SizeFlagsVertical = SizeFlags.ExpandFill,
             ToggleMode = true,
@@ -219,7 +220,7 @@ public partial class PnlPerkSelect : Panel
             LayoutMode = 1,
             AnchorBottom = 1,
             AnchorLeft = 0,
-            AnchorTop = 0.75f,
+            AnchorTop = 0.9f,
             AnchorRight = 1,
             HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Top,
@@ -252,7 +253,7 @@ public partial class Perk : RefCounted
         SolarFlare, SolarBlast, JudgementOfFlame, BlindingLight, VialOfFury, ElixirOfVigour, ElixirOfSwiftness, RegenerativeOintment,
         LesserArmor, GreaterArmor, BlessedWeapon, EnchantedMeleeWeapon, WoodenKnuckles, BrassKnuckles, BluntKnife, JewelledDagger,
         Sling, Javelin, LesserMight, LesserResilience, LesserPrecision, LesserSpeed, LesserCharisma, LesserLuck, LesserIntellect,
-        GreaterMight, GreaterResilience, GreaterPrecision, GreaterSpeed, GreaterCharisma, GreaterLuck, GreaterIntellect
+        GreaterMight, GreaterResilience, GreaterPrecision, GreaterSpeed, GreaterCharisma, GreaterLuck, GreaterIntellect, None
     }
     public PerkMode CurrentPerk;
     public SpellEffectManager.SpellMode AssociatedSpell { get; set; } = SpellEffectManager.SpellMode.None;
@@ -274,6 +275,7 @@ public partial class Perk : RefCounted
     public bool Powerful { get; set; } = false;
     public string BtnNormalPath { get; set; }
     public string BtnPressedPath { get; set; }
+    public string BtnHoverPath { get; set; }
 }
 
 // hey this style turned out more useful than i thought, i should do the same for spelleffects and ?spells, ??items
@@ -292,12 +294,13 @@ public static class PerkFactory
                     AssociatedSpell = SpellEffectManager.SpellMode.SolarFlare,
                     Magnitude = 5,
                     Name = "Solar Flare",
-                    Description = "Launch a jolt of solar energy at an enemy. Patron God Shamash. Costs charge.",
+                    Description = "Launch a jolt of solar energy at an enemy. Patron God Shamash. Costs mana.",
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/SolarBlast3.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/SolarBlast3.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/SolarBlast3.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.SolarBlast:
@@ -307,12 +310,13 @@ public static class PerkFactory
                     AssociatedSpell = SpellEffectManager.SpellMode.SolarBlast,
                     Magnitude = 5,
                     Name = "Solar Blast",
-                    Description = "Blast your enemies with the power of the sun. Patron God Shamash. Costs charge.",
+                    Description = "Blast your enemies with the power of the sun. Patron God Shamash. Costs mana.",
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/SolarBlastFinalNormal.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/SolarBlastFinalNormal.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/SolarBlastFinalNormal.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.BlindingLight:
@@ -322,12 +326,13 @@ public static class PerkFactory
                     AssociatedSpell = SpellEffectManager.SpellMode.BlindingLight,
                     Magnitude = 3,
                     Name = "Blinding Light",
-                    Description = $"Reduces an opponent's hit chance. Patron God Shamash. Costs charge.",
+                    Description = $"Reduces an opponent's hit chance. Patron God Shamash. Costs mana.",
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
-                    Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Powerful = true,
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/BlindingLigh.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/BlindingLigh.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/BlindingLigh.png",
                     Patron = Scales.FavourMode.Shamash
                 };
 
@@ -338,12 +343,13 @@ public static class PerkFactory
                     AssociatedSpell = SpellEffectManager.SpellMode.JudgementOfFlame,
                     Magnitude = 3,
                     Name = "Judgement of Flame",
-                    Description = $"Burn an enemy over time and reduce their might and precision. Patron God Shamash. Costs charge.",
+                    Description = $"Burn an enemy over time and reduce their might and precision. Patron God Shamash. Costs mana.",
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/FlameJudgement.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/FlameJudgement.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/FlameJudgement.png",
                     Patron = Scales.FavourMode.Shamash
                 };
 
@@ -359,8 +365,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Vigor.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Vigor.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Vigor.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
 
@@ -374,9 +381,10 @@ public static class PerkFactory
                     Description = $"Grants an ally improved precision and speed. Patron God Ishtar. Costs reagents.",
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
-                    Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    Powerful = true,
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Swift.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Swift.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Swift.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
 
@@ -391,8 +399,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Healing.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Healing.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Healing.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
 
@@ -407,8 +416,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/VialOfFury.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/VialOfFury.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/VialOfFury.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
 
@@ -424,12 +434,13 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.ArmourBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/LesserArmor.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/LesserArmor.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/LesserArmor.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.GreaterArmor:
-                int armorGreaterMagnitude = 6;
+                int armorGreaterMagnitude = 8;
                 return new()
                 {
                     CurrentPerk = Perk.PerkMode.LesserArmor,
@@ -440,8 +451,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.ArmourBonus,
                     Stackable = true,
                     Powerful = true,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/GreaterArmor.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/GreaterArmor.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/GreaterArmor.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.EnchantedMeleeWeapon:
@@ -456,12 +468,13 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.DamageBonus,
                     Stackable = true,
                     Powerful = true,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/EnchantedWeapon.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/EnchantedWeapon.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/EnchantedWeapon.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.BlessedWeapon:
-                int weaponLesserMagnitude = 3;
+                int weaponLesserMagnitude = 2;
                 return new()
                 {
                     CurrentPerk = Perk.PerkMode.BlessedWeapon,
@@ -472,8 +485,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.DamageBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/BlessedWeapon.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/BlessedWeapon.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/BlessedWeapon.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.WoodenKnuckles:
@@ -483,13 +497,14 @@ public static class PerkFactory
                     CurrentPerk = Perk.PerkMode.WoodenKnuckles,
                     AssociatedMeleeWeapon = StoryCharacterData.MeleeWeaponMode.WoodenKnuckles,
                     // Magnitude = weaponLesserMagnitude,
-                    Name = "Bark Gauntlets",
-                    Description = $"Gauntlets of rotting bark. Strength weapon. 1d6 base damage.",
+                    Name = "Fists of bark",
+                    Description = $"Knuckles of carved wood. Strength weapon. 1d6 base damage.",
                     Category = Perk.PerkCategory.MeleeWeapon,
                     Stackable = false,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/WoodKnuckles.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/WoodKnuckles.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/WoodKnuckles.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.BrassKnuckles:
@@ -505,8 +520,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.MeleeWeapon,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/BrassKnuckles.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/BrassKnuckles.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/BrassKnuckles.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.BluntKnife:
@@ -522,8 +538,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.MeleeWeapon,
                     Stackable = false,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/AgileKnife.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/AgileKnife.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/AgileKnife.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.JewelledDagger:
@@ -539,8 +556,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.MeleeWeapon,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/JewelKnife.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/JewelKnife.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/JewelKnife.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.Sling:
@@ -556,8 +574,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.RangedWeapon,
                     Stackable = false,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Sling.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Sling.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Sling.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.Javelin:
@@ -573,8 +592,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.RangedWeapon,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Javelin.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Javelin.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Javelin.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.LesserMight:
@@ -589,8 +609,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/lesser_LesserMight.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/lesser_LesserMight.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/lesser_LesserMight.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.LesserResilience:
@@ -605,8 +626,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/lesser_Resilience.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/lesser_Resilience.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/lesser_Resilience.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.LesserSpeed:
@@ -621,8 +643,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/lesser_Speed.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/lesser_Speed.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/lesser_Speed.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.LesserPrecision:
@@ -637,8 +660,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/lesser_Precision.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/lesser_Precision.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/lesser_Precision.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.LesserIntellect:
@@ -653,8 +677,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/lesser_Intellect.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/lesser_Intellect.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/lesser_Intellect.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.LesserCharisma:
@@ -669,8 +694,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/lesser_Charisma.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/lesser_Charisma.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/lesser_Charisma.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.LesserLuck:
@@ -685,8 +711,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/lesser_Luck.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/lesser_Luck.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/lesser_Luck.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.GreaterMight:
@@ -701,8 +728,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/GreaterMight.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/GreaterMight.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/GreaterMight.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.GreaterResilience:
@@ -717,8 +745,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Greater_Resilience.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Greater_Resilience.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Greater_Resilience.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.GreaterSpeed:
@@ -733,8 +762,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Greater_Speed.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Greater_Speed.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Greater_Speed.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
             case Perk.PerkMode.GreaterPrecision:
@@ -749,8 +779,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Greater_Precision.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Greater_Precision.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Greater_Precision.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.GreaterIntellect:
@@ -765,8 +796,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Greater_Intellect.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Greater_Intellect.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Greater_Intellect.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.GreaterCharisma:
@@ -781,8 +813,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Greater_Charisma.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Greater_Charisma.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Greater_Charisma.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.GreaterLuck:
@@ -797,8 +830,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.AttributeBonus,
                     Stackable = true,
                     Powerful = false,
-                    BtnNormalPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0000.png",
-                    BtnPressedPath = "res://Source/Utils/Terrain/Examples/SophTest/images/0001-a.png",
+                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Greater_Luck.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Greater_Luck.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Greater_Luck.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
         }
