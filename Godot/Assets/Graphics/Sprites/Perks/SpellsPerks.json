@@ -1,0 +1,655 @@
+{
+	"frames": {
+		"AgileKnife.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"BlessedWeapon.png": {
+			"frame": {
+				"x": 422,
+				"y": 1,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"BlindingLigh.png": {
+			"frame": {
+				"x": 843,
+				"y": 1,
+				"w": 512,
+				"h": 512
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 512,
+				"h": 512
+			},
+			"sourceSize": {
+				"w": 512,
+				"h": 512
+			}
+		},
+		"BrassKnuckles.png": {
+			"frame": {
+				"x": 1357,
+				"y": 1,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"EnchantedWeapon.png": {
+			"frame": {
+				"x": 1778,
+				"y": 1,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"FlameJudgement.png": {
+			"frame": {
+				"x": 1,
+				"y": 384,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"GreaterArmor.png": {
+			"frame": {
+				"x": 422,
+				"y": 384,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"GreaterMight.png": {
+			"frame": {
+				"x": 1357,
+				"y": 384,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Greater_Charisma.png": {
+			"frame": {
+				"x": 1778,
+				"y": 384,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Greater_Intellect.png": {
+			"frame": {
+				"x": 1,
+				"y": 767,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Greater_Luck.png": {
+			"frame": {
+				"x": 422,
+				"y": 767,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Greater_Precision.png": {
+			"frame": {
+				"x": 843,
+				"y": 767,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Greater_Resilience.png": {
+			"frame": {
+				"x": 1264,
+				"y": 767,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Greater_Speed.png": {
+			"frame": {
+				"x": 1685,
+				"y": 767,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Healing.png": {
+			"frame": {
+				"x": 1,
+				"y": 1150,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Javelin.png": {
+			"frame": {
+				"x": 422,
+				"y": 1150,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"JewelKnife.png": {
+			"frame": {
+				"x": 843,
+				"y": 1150,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"LesserArmor.png": {
+			"frame": {
+				"x": 1264,
+				"y": 1150,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Sling.png": {
+			"frame": {
+				"x": 1685,
+				"y": 1150,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"SolarBlast3.png": {
+			"frame": {
+				"x": 1,
+				"y": 1533,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"SolarBlastFinalNormal.png": {
+			"frame": {
+				"x": 422,
+				"y": 1533,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Swift.png": {
+			"frame": {
+				"x": 843,
+				"y": 1533,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"VialOfFury.png": {
+			"frame": {
+				"x": 1264,
+				"y": 1533,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Vigor.png": {
+			"frame": {
+				"x": 1685,
+				"y": 1533,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"WoodKnuckles.png": {
+			"frame": {
+				"x": 2199,
+				"y": 1,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"lesser_Charisma.png": {
+			"frame": {
+				"x": 2199,
+				"y": 384,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"lesser_Intellect.png": {
+			"frame": {
+				"x": 2106,
+				"y": 767,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"lesser_LesserMight.png": {
+			"frame": {
+				"x": 2106,
+				"y": 1150,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"lesser_Luck.png": {
+			"frame": {
+				"x": 2106,
+				"y": 1533,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"lesser_Precision.png": {
+			"frame": {
+				"x": 1,
+				"y": 1916,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"lesser_Resilience.png": {
+			"frame": {
+				"x": 422,
+				"y": 1916,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"lesser_Speed.png": {
+			"frame": {
+				"x": 843,
+				"y": 1916,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 2619,
+			"h": 2298
+		},
+		"scale": "1"
+	}
+}
