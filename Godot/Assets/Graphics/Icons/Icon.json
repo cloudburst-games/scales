@@ -1,0 +1,355 @@
+{
+	"frames": {
+		"BlindingLight2.png": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 512,
+				"h": 512
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 512,
+				"h": 512
+			},
+			"sourceSize": {
+				"w": 512,
+				"h": 512
+			}
+		},
+		"CheckMark.png": {
+			"frame": {
+				"x": 515,
+				"y": 1,
+				"w": 256,
+				"h": 256
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 256
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 256
+			}
+		},
+		"FlameJudgement2.png": {
+			"frame": {
+				"x": 773,
+				"y": 1,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Fury2.png": {
+			"frame": {
+				"x": 515,
+				"y": 384,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Healing2.png": {
+			"frame": {
+				"x": 936,
+				"y": 384,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Invalid.png": {
+			"frame": {
+				"x": 1194,
+				"y": 1,
+				"w": 256,
+				"h": 256
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 256
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 256
+			}
+		},
+		"MeleeCursor.png": {
+			"frame": {
+				"x": 1,
+				"y": 767,
+				"w": 256,
+				"h": 256
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 256
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 256
+			}
+		},
+		"Pointer.png": {
+			"frame": {
+				"x": 259,
+				"y": 767,
+				"w": 256,
+				"h": 256
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 256
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 256
+			}
+		},
+		"QuestionMark.png": {
+			"frame": {
+				"x": 517,
+				"y": 767,
+				"w": 256,
+				"h": 256
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 256
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 256
+			}
+		},
+		"RangedAttack.png": {
+			"frame": {
+				"x": 775,
+				"y": 767,
+				"w": 256,
+				"h": 256
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 256
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 256
+			}
+		},
+		"SolarBlast2.png": {
+			"frame": {
+				"x": 1033,
+				"y": 767,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"SolarFlare2.png": {
+			"frame": {
+				"x": 1452,
+				"y": 1,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Spear.png": {
+			"frame": {
+				"x": 1,
+				"y": 1150,
+				"w": 512,
+				"h": 512
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 512,
+				"h": 512
+			},
+			"sourceSize": {
+				"w": 512,
+				"h": 512
+			}
+		},
+		"SpellbookIcon2.png": {
+			"frame": {
+				"x": 1357,
+				"y": 384,
+				"w": 256,
+				"h": 256
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 256
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 256
+			}
+		},
+		"Swift2.png": {
+			"frame": {
+				"x": 1454,
+				"y": 642,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"Vigor2.png": {
+			"frame": {
+				"x": 515,
+				"y": 1025,
+				"w": 419,
+				"h": 381
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 381
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 381
+			}
+		},
+		"boots2.png": {
+			"frame": {
+				"x": 1615,
+				"y": 384,
+				"w": 256,
+				"h": 256
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 256,
+				"h": 256
+			},
+			"sourceSize": {
+				"w": 256,
+				"h": 256
+			}
+		}
+	},
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 1874,
+			"h": 1663
+		},
+		"scale": "1"
+	}
+}
