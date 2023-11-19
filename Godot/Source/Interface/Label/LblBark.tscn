@@ -4,6 +4,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_cvj8w"]
 font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_bib1g"]
 resource_name = "AnimBark"

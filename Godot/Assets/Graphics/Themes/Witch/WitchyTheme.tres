@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://vc7liwrqikkh"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://vc7liwrqikkh"]
 
 [ext_resource type="FontFile" uid="uid://cofx1cs3c3u03" path="res://Assets/Graphics/Fonts/Yusei_Magic/YuseiMagic-Regular.ttf" id="1_eo7a1"]
 
@@ -15,55 +15,55 @@ corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10o0u"]
-bg_color = Color(0.764706, 0.713726, 0.933333, 1)
+bg_color = Color(0.364706, 0.231373, 0, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.439216, 0.317647, 0.694118, 1)
+border_color = Color(0.0784314, 0.0509804, 0, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_alu3n"]
-bg_color = Color(0.372549, 0.258824, 0.6, 1)
+bg_color = Color(0.211765, 0.133333, 0, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.439216, 0.317647, 0.694118, 1)
+border_color = Color(0.0784314, 0.0509804, 0, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhxd5"]
-bg_color = Color(0.25098, 0.164706, 0.419608, 1)
+bg_color = Color(0.117647, 0.0745098, 0, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.439216, 0.317647, 0.694118, 1)
+border_color = Color(0.0784314, 0.0509804, 0, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lo1h8"]
-bg_color = Color(0.0784314, 0.0392157, 0.180392, 1)
+bg_color = Color(0.180392, 0.113725, 0, 1)
 border_width_left = 10
 border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
-border_color = Color(0.592157, 0.490196, 0.85098, 1)
+border_color = Color(0.15625, 0.0985054, 0, 1)
 border_blend = true
-corner_radius_top_left = 9
-corner_radius_top_right = 9
-corner_radius_bottom_right = 9
-corner_radius_bottom_left = 9
-shadow_color = Color(0.721569, 0.678431, 0.94902, 1)
-shadow_size = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0.105469, 0.0664912, 0, 1)
+shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jgcfl"]
 bg_color = Color(0.0784314, 0.176471, 0.341176, 1)
@@ -82,6 +82,9 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.203922, 0.380392, 0.67451, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5e15k"]
+bg_color = Color(0.0784314, 0.0509804, 0, 1)
+
 [resource]
 default_font = ExtResource("1_eo7a1")
 default_font_size = 18
@@ -94,3 +97,12 @@ Label/fonts/font = ExtResource("1_eo7a1")
 Panel/styles/panel = SubResource("StyleBoxFlat_lo1h8")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_jgcfl")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_gtxp8")
+TooltipLabel/colors/font_color = Color(1, 1, 1, 1)
+TooltipLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+TooltipLabel/colors/font_shadow_color = Color(0, 0, 0, 1)
+TooltipLabel/constants/outline_size = 0
+TooltipLabel/constants/shadow_offset_x = 0
+TooltipLabel/constants/shadow_offset_y = 0
+TooltipLabel/font_sizes/font_size = 48
+TooltipLabel/fonts/font = ExtResource("1_eo7a1")
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_5e15k")

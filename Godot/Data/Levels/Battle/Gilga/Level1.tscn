@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://b0bhqhrvxb7ho"]
 
 [ext_resource type="Script" path="res://Source/Systems/Battle/Level/BattleLevel.cs" id="1_pkkmy"]
-[ext_resource type="Texture2D" uid="uid://svqt0hhvt5pj" path="res://Assets/Graphics/Interface/Images/9patchSimpleBrownFat.png" id="2_jmru8"]
+[ext_resource type="Texture2D" uid="uid://coyf54vlm0b4f" path="res://Assets/Graphics/Interface/BattlefieldBorder9Patch.png" id="2_jub4l"]
 [ext_resource type="Texture2D" uid="uid://b28t0p7j7p7sq" path="res://Assets/Graphics/Sprites/Terrain/Beach/Beach4.png" id="3_4oubu"]
 [ext_resource type="Shader" path="res://Source/Effects/Water/water_shader_test_3.gdshader" id="4_p3t88"]
 [ext_resource type="Texture2D" uid="uid://bnryhyrkdbak6" path="res://Assets/Graphics/Sprites/Terrain/Beach/Beach4White.png" id="5_6v1jh"]
@@ -40,9 +40,8 @@ HexModifier = NodePath("HexGrid/HexModifier")
 _background = NodePath("Battlefield/Background/Terrain")
 CharacterUnitsContainer = NodePath("Entities/CharacterUnits")
 LevelID = 1
-IntroMessage = "u meet inkydoo fighting nature"
-StartingEnemies = [10, 8]
-StartingAllies = [0]
+IntroMessage = "Pitying the people, the goddess Aruru created a wild beast man to rival even the mighty gilgamesh, his name was Enkidu. Pure of heart, a friend to animals and a friend to all, Enkidu heard the tales of the tyrant and stopped in him the tracks of his tyranny."
+StartingEnemies = [0, 6]
 _playerPositionCnt = NodePath("Positions/Players")
 _enemyPositionCnt = NodePath("Positions/Enemies")
 _allyPositionCnt = NodePath("Positions/Allies")
@@ -58,12 +57,15 @@ mouse_filter = 2
 [node name="NinePatchRect" type="NinePatchRect" parent="Borders"]
 layout_mode = 1
 anchors_preset = -1
-offset_right = 3840.0
-offset_bottom = 1810.0
-texture = ExtResource("2_jmru8")
-patch_margin_left = 127
-patch_margin_top = 159
-patch_margin_right = 126
+offset_left = -11.0
+offset_top = -34.0
+offset_right = 3489.0
+offset_bottom = 1659.0
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_jub4l")
+patch_margin_left = 133
+patch_margin_top = 161
+patch_margin_right = 132
 patch_margin_bottom = 159
 
 [node name="Battlefield" type="Node2D" parent="."]

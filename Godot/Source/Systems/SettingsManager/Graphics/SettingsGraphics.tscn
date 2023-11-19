@@ -42,15 +42,11 @@ mouse_filter = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1390.5
-offset_top = -678.5
-offset_right = 1390.5
-offset_bottom = 678.5
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.1
+anchor_right = 0.95
+anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -58,6 +54,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 100
 
 [node name="HDisplayMode" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -148,6 +145,7 @@ size_flags_horizontal = 3
 button_pressed = true
 
 [node name="HScreenShake" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HScreenShake"]
@@ -214,13 +212,13 @@ popup/item_2/text = "Adaptive"
 popup/item_2/id = 2
 
 [node name="LabelTitle" type="Label" parent="Panel"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -33.0
-offset_top = 8.0
-offset_right = 33.0
-offset_bottom = 34.0
+offset_left = -136.5
+offset_right = 136.5
+offset_bottom = 91.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "Graphics"

@@ -298,9 +298,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = false,
-                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/SolarBlast3.png",
-                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/SolarBlast3.png",
-                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/SolarBlast3.png",
+                    BtnNormalPath = "res://Assets/Graphics/Icons/IconNormal/SolarFlare2.png",
+                    BtnPressedPath = "res://Assets/Graphics/Icons/IconPressed/SolarFlare2.png",
+                    BtnHoverPath = "res://Assets/Graphics/Icons/IconHover/SolarFlare2.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.SolarBlast:
@@ -314,9 +314,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/SolarBlastFinalNormal.png",
-                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/SolarBlastFinalNormal.png",
-                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/SolarBlastFinalNormal.png",
+                    BtnNormalPath = "res://Assets/Graphics/Icons/IconNormal/SolarBlast2.png",
+                    BtnPressedPath = "res://Assets/Graphics/Icons/IconPressed/SolarBlast2.png",
+                    BtnHoverPath = "res://Assets/Graphics/Icons/IconHover/SolarBlast2.png",
                     Patron = Scales.FavourMode.Shamash
                 };
             case Perk.PerkMode.BlindingLight:
@@ -330,9 +330,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/BlindingLigh.png",
-                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/BlindingLigh.png",
-                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/BlindingLigh.png",
+                    BtnNormalPath = "res://Assets/Graphics/Icons/IconNormal/BlindingLight2.png",
+                    BtnPressedPath = "res://Assets/Graphics/Icons/IconPressed/BlindingLight2.png",
+                    BtnHoverPath = "res://Assets/Graphics/Icons/IconHover/BlindingLight2.png",
                     Patron = Scales.FavourMode.Shamash
                 };
 
@@ -347,9 +347,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/FlameJudgement.png",
-                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/FlameJudgement.png",
-                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/FlameJudgement.png",
+                    BtnNormalPath = "res://Assets/Graphics/Icons/IconNormal/FlameJudgement2.png",
+                    BtnPressedPath = "res://Assets/Graphics/Icons/IconPressed/FlameJudgement2.png",
+                    BtnHoverPath = "res://Assets/Graphics/Icons/IconHover/FlameJudgement2.png",
                     Patron = Scales.FavourMode.Shamash
                 };
 
@@ -365,9 +365,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = false,
-                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Vigor.png",
-                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Vigor.png",
-                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Vigor.png",
+                    BtnNormalPath = "res://Assets/Graphics/Icons/IconNormal/Vigor2.png",
+                    BtnPressedPath = "res://Assets/Graphics/Sprites/IconPressed/SpellsPerksPressed/Vigor.png",
+                    BtnHoverPath = "res://Assets/Graphics/Sprites/IconHover/SpellsPerksHover/Vigor.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
 
@@ -382,9 +382,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Swift.png",
-                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Swift.png",
-                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Swift.png",
+                    BtnNormalPath = "res://Assets/Graphics/Icons/IconNormal/Swift2.png",
+                    BtnPressedPath = "res://Assets/Graphics/Icons/IconPressed/Swift2.png",
+                    BtnHoverPath = "res://Assets/Graphics/Icons/IconHover/Swift2.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
 
@@ -399,9 +399,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Healing.png",
-                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Healing.png",
-                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/Healing.png",
+                    BtnNormalPath = "res://Assets/Graphics/Icons/IconNormal/Healing2.png",
+                    BtnPressedPath = "res://Assets/Graphics/Icons/IconPressed/Healing2.png",
+                    BtnHoverPath = "res://Assets/Graphics/Icons/IconHover/Healing2.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
 
@@ -416,9 +416,9 @@ public static class PerkFactory
                     Category = Perk.PerkCategory.Spell,
                     Stackable = false,
                     Powerful = true,
-                    BtnNormalPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/VialOfFury.png",
-                    BtnPressedPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/VialOfFury.png",
-                    BtnHoverPath = "res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/VialOfFury.png",
+                    BtnNormalPath = "res://Assets/Graphics/Icons/IconNormal/Fury2.png",
+                    BtnPressedPath = "res://Assets/Graphics/Icons/IconPressed/Fury2.png",
+                    BtnHoverPath = "res://Assets/Graphics/Icons/IconHover/Fury2.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
 

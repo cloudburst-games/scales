@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://bes3oet5iq1e1"]
+[gd_scene load_steps=13 format=3 uid="uid://bes3oet5iq1e1"]
 
 [ext_resource type="Script" path="res://Source/Systems/SettingsManager/SettingsManager.cs" id="1_yrkw0"]
+[ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="2_1lh7l"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_4rrv3"]
 [ext_resource type="PackedScene" uid="uid://dkahi7sg2bq1x" path="res://Source/Systems/SettingsManager/Audio/SettingsAudio.tscn" id="2_rvyrg"]
 [ext_resource type="PackedScene" uid="uid://bc1i562j47oui" path="res://Source/Systems/SettingsManager/Controls/SettingsControl.tscn" id="3_k0f7g"]
@@ -12,6 +13,11 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_s2vhd"]
 font_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_wprcd"]
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [node name="SettingsManager" type="Node"]
 script = ExtResource("1_yrkw0")
@@ -29,7 +35,9 @@ offset_right = 1500.0
 offset_bottom = 898.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_1lh7l")
 script = ExtResource("2_4rrv3")
+_draggable = false
 _startClosed = true
 
 [node name="SettingsAudio" parent="Panel" instance=ExtResource("2_rvyrg")]
@@ -75,10 +83,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.5
-offset_top = -40.0
-offset_right = 15.5
-offset_bottom = 40.0
+offset_left = -43.0
+offset_top = -58.0
+offset_right = 43.0
+offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "x"
@@ -215,6 +223,7 @@ offset_right = 500.0
 offset_bottom = 499.0
 grow_horizontal = 2
 text = "Changes are unsaved. Revert to previous settings?"
+label_settings = SubResource("LabelSettings_wprcd")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

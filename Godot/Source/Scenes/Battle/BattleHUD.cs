@@ -60,11 +60,16 @@ public partial class BattleHUD : CanvasLayer
     private AnimationPlayer _animTutorial;
     [Export]
     private BaseTextureButton _btnMenu;
+    [Export]
+    private BaseTextureButton _btnMenuClose;
+    [Export]
+    private BasePanel _pnlMenu;
 
     public enum StateMode
     {
         BattleIntro, BattleStarted, LogOpened, LogClosed, SpellBookOpened, SpellBookClosed,
-        HintClickedCharacterLeftClick, HintClickedCharacterRightClick, HintClickedCharacterEnded
+        HintClickedCharacterLeftClick, HintClickedCharacterRightClick, HintClickedCharacterEnded,
+        MenuOpened, MenuClosed
     }
 
     // private StateMode _state = StateMode.BattleIntro;
@@ -74,7 +79,7 @@ public partial class BattleHUD : CanvasLayer
         // connect buttons
         _btnBattleIntroContinue.Pressed += this.OnBtnBattleIntroPressed;
         _btnLog.Pressed += this.OnBtnLogPressed;
-        _pnlFullLog.CloseBtn.Pressed += this.OnCloseLogPressed;
+        GetNode<BaseTextureButton>("CntHUD/PnlFullLog/BtnLogClose").Pressed += this.OnCloseLogPressed;
         _btnCloseSpellBook.Pressed += this.OnCloseSpellBookPressed;
         _pnlShortLog.Visible = false;
         _characterInfoPanel.HintClickCharacterEnded += () => this.SetState(StateMode.HintClickedCharacterEnded);
@@ -83,7 +88,8 @@ public partial class BattleHUD : CanvasLayer
         _pnlScales.MouseEntered += () => OnBattleLogEntry("Mystical gauges reflecting the cosmic balance between Shamash and Ishtar.", false);
         _pnlScales.MouseExited += () => OnBattleLogEntry("", false);
         _characterInfoPanel.PlaceableArea = new Vector2(_characterInfoPanel.GetViewportRect().Size.X, _pnlAction.GlobalPosition.Y);
-
+        _btnMenu.Pressed += () => this.SetState(StateMode.MenuOpened);
+        _btnMenuClose.Pressed += () => { GD.Print("signally"); this.SetState(StateMode.MenuClosed); };
         // SetState(StateMode.BattleIntro);
         InitActionBtns();
     }
@@ -133,6 +139,7 @@ public partial class BattleHUD : CanvasLayer
 
     public void SetState(StateMode stateMode)
     {
+        // GD.Print(stateMode.ToString());
         switch (stateMode)
         {
             case StateMode.BattleIntro:
@@ -144,11 +151,13 @@ public partial class BattleHUD : CanvasLayer
             case StateMode.LogOpened:
                 _pnlFullLog.Open();
                 _pnlSpellBook.Close();
+                _pnlMenu.Close();
                 _audioOpenBook.Play();
                 EmitSignal(BattleHUD.SignalName.UIPause, true);
                 break;
             case StateMode.LogClosed:
                 _audioCloseBook.Play();
+                _pnlFullLog.Close();
                 EmitSignal(BattleHUD.SignalName.UIPause, false);
                 break;
             case StateMode.SpellBookClosed:
@@ -158,6 +167,7 @@ public partial class BattleHUD : CanvasLayer
             case StateMode.SpellBookOpened:
                 _pnlSpellBook.Open();
                 _pnlFullLog.Close();
+                _pnlMenu.Close();
                 _audioOpenBook.Play();
                 EmitSignal(BattleHUD.SignalName.UIPause, true);
                 break;
@@ -169,6 +179,16 @@ public partial class BattleHUD : CanvasLayer
                 break;
             case StateMode.HintClickedCharacterEnded:
                 EmitSignal(BattleHUD.SignalName.UIPause, false);
+                break;
+            case StateMode.MenuClosed:
+                _pnlMenu.Close();
+                EmitSignal(BattleHUD.SignalName.UIPause, false);
+                break;
+            case StateMode.MenuOpened:
+                EmitSignal(BattleHUD.SignalName.UIPause, true);
+                _pnlSpellBook.Close();
+                _pnlFullLog.Close();
+                _pnlMenu.Open();
                 break;
 
         }
@@ -258,23 +278,51 @@ public partial class BattleHUD : CanvasLayer
         OnBattleLogEntry(BattleLogParser.ParseSpellHint(spell, canAfford), false);
     }
 
-    List<string> _tutorialHints = new() {
-        "Hint: clicking on a purple hex will allow you to still act after moving.",
-        "Hint: click the icon to the right of your hero's portrait to change the default action.",
-        "Hint: moving onto a blue hex prevents you from attacking or casting spells.",
-        "Hint: if you know any spells, you can click on the spellbook icon to cast a spell.",
-        "Hint: when you have a spell selected, click on an enemy if it is a hostile spell, or an ally otherwise.",
-        "Hint: to end your turn early, click on the tick button",
-        "Hint: right click on other heroes to view their strengths and weaknesses",
+    public enum HintMode { ActionHex, DefaultAction, MoveHex, Spellbook, SpellTarget, EndTurn, RightClick }
+
+    public System.Collections.Generic.Dictionary<HintMode, string> _tutorialHintStrings = new()
+    {
+        {HintMode.ActionHex,        "Hint: clicking on a purple hex will allow you to still act after moving."},
+        {HintMode.DefaultAction, "Hint: click on the flashing action button to change the default action."},
+        {HintMode.MoveHex,"Hint: moving onto a blue hex prevents you from attacking or casting spells."},
+        {HintMode.Spellbook, "Hint: if you know any spells, you can click on the spellbook icon to cast a spell."},
+        {HintMode.SpellTarget,"Hint: when you have a spell selected, click on an enemy if it is a hostile spell, or an ally otherwise."},
+        {HintMode.EndTurn,"Hint: to end your turn early, click on the tick button"},
+        {HintMode.RightClick, "Hint: right click on other heroes to view their strengths and weaknesses"},
     };
+
+    public System.Collections.Generic.Dictionary<HintMode, string> _tutorialHintAnims = new()
+    {
+        {HintMode.ActionHex,        "Start"},
+        {HintMode.DefaultAction, "Action"},
+        {HintMode.MoveHex,"Start"},
+        {HintMode.Spellbook, "Spellbook"},
+        {HintMode.SpellTarget,"Start"},
+        {HintMode.EndTurn,"EndTurn"},
+        {HintMode.RightClick, "Start"},
+    };
+
+    private List<HintMode> _hints = new() { HintMode.ActionHex, HintMode.DefaultAction, HintMode.MoveHex, HintMode.Spellbook, HintMode.SpellTarget, HintMode.EndTurn, HintMode.RightClick };
+
+    [Export]
+    private TextureButton _btnActions;
+    [Export]
+    private TextureButton _btnSpellbook;
+    [Export]
+    private TextureButton _btnEndTurn;
 
     public void TutorialHint()
     {
-        if (_tutorialHints.Count > 0)
+        if (_hints.Count > 0)
         {
-            OnBattleLogEntry(_tutorialHints[0], true);
-            _tutorialHints.RemoveAt(0);
-            _animTutorial.Play("Start");
+            _animTutorial.Stop();
+            _pnlShortLog.Modulate = new Color(1, 1, 1);
+            _btnActions.Modulate = new Color(1, 1, 1);
+            _btnSpellbook.Modulate = new Color(1, 1, 1);
+            _btnEndTurn.Modulate = new Color(1, 1, 1);
+            OnBattleLogEntry(_tutorialHintStrings[_hints[0]], true);
+            _animTutorial.Play(_tutorialHintAnims[_hints[0]]);
+            _hints.RemoveAt(0);
         }
     }
 

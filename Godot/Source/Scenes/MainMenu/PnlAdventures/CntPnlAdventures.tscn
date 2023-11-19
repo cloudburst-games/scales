@@ -1,28 +1,29 @@
-[gd_scene load_steps=27 format=3 uid="uid://ce0b88lumohl8"]
+[gd_scene load_steps=28 format=3 uid="uid://ce0b88lumohl8"]
 
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/PnlAdventures/CntPnlAdventures.cs" id="1_56uah"]
+[ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="1_cf8rx"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="1_tow4p"]
-[ext_resource type="Texture2D" uid="uid://y60lspk4s5rc" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSNORMAL.png" id="3_1c1hm"]
 [ext_resource type="ButtonGroup" uid="uid://2p2q5sndksxv" path="res://Source/Scenes/MainMenu/PnlAdventures/BtnGroupAdventures.tres" id="3_5i4tn"]
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="3_gtib0"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="4_01gsx"]
-[ext_resource type="Texture2D" uid="uid://c8q2bdypfy7w7" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSPRESSED.png" id="4_poyb0"]
-[ext_resource type="Texture2D" uid="uid://cwpt2tnkrjdhs" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSHOVER.png" id="5_pq74w"]
+[ext_resource type="PackedScene" uid="uid://7jwg3stf3hw2" path="res://Source/Interface/Buttons/BtnClosePlaceholder2.tscn" id="4_wbufx"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="5_xhugv"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="6_bmndb"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_2peo6"]
-[ext_resource type="Texture2D" uid="uid://ceqamemn0nf6r" path="res://Assets/Graphics/Effects/Rock/Rock.png" id="8_nqfgg"]
 [ext_resource type="ButtonGroup" uid="uid://cu7266orn7505" path="res://Source/Scenes/MainMenu/PnlAdventures/BtnGroupDifficulty.tres" id="9_k5wjp"]
+[ext_resource type="Texture2D" uid="uid://du12fi24yk15b" path="res://Assets/Graphics/Sprites/Actors/ScalesOfPowerOrJustice/Scales.png" id="11_lviu7"]
 [ext_resource type="ButtonGroup" uid="uid://ubri10n1qy5" path="res://Source/Scenes/MainMenu/PnlAdventures/BtnGroupPerk.tres" id="11_xf5ct"]
-[ext_resource type="Texture2D" uid="uid://cbyii1ox4bjnh" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/SolarBlast3.png" id="13_6sr7w"]
-[ext_resource type="Texture2D" uid="uid://b22dmqqn2fl6o" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Vigor.png" id="16_3m0nd"]
-[ext_resource type="Texture2D" uid="uid://cw3lbijo4gktn" path="res://Assets/Graphics/Sprites/Perks/PerksUIStart/SolarSelected.png" id="16_ewx0o"]
-[ext_resource type="Texture2D" uid="uid://c572w7cv52i8e" path="res://Assets/Graphics/Sprites/Perks/PerksUIStart/SlingSelected.png" id="18_uinw7"]
+[ext_resource type="Texture2D" uid="uid://sb2gh4wm7rd" path="res://Assets/Graphics/Icons/IconNormal/SolarFlare2.png" id="15_1ke5p"]
+[ext_resource type="Texture2D" uid="uid://bkj77yrqu42x" path="res://Assets/Graphics/Icons/IconPressed/SolarFlare2.png" id="16_hyk0x"]
+[ext_resource type="Texture2D" uid="uid://baxjk47lmbfkn" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Sling.png" id="17_toxvx"]
 [ext_resource type="Texture2D" uid="uid://c57hfr315tngh" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Sling.png" id="19_6lr5f"]
-[ext_resource type="Texture2D" uid="uid://buo4dai38nyts" path="res://Assets/Graphics/Sprites/Perks/PerksUIStart/VigorSelected.png" id="20_4ts43"]
+[ext_resource type="Texture2D" uid="uid://bcefps23nm10a" path="res://Assets/Graphics/Icons/IconNormal/Vigor2.png" id="19_gum6e"]
+[ext_resource type="Texture2D" uid="uid://d3cavpjymrh73" path="res://Assets/Graphics/Icons/IconPressed/Vigor2.png" id="20_664tg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6y1lg"]
-font_size = 72
+font_size = 96
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_80fgo"]
 font_size = 56
@@ -30,14 +31,23 @@ font_size = 56
 [sub_resource type="LabelSettings" id="LabelSettings_wlli7"]
 font_size = 84
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4ear"]
+atlas = ExtResource("11_lviu7")
+region = Rect2(2376, 142, 698, 801)
+
 [sub_resource type="LabelSettings" id="LabelSettings_0yb4y"]
-font_size = 48
+font_size = 84
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_t624p"]
 font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_ixgyo"]
 font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_iwxgo"]
+font_size = 56
 
 [node name="CntPnlAdventures" type="Control" node_paths=PackedStringArray("_btnEasy", "_btnMedium", "_btnHard", "_btnContinue", "_btnNew", "_btnClose", "_btnClosePerks", "_btnSolarFlare", "_btnElixirVigour", "_btnSling", "_btnFinalNew", "_pnlPerks")]
 layout_mode = 3
@@ -47,6 +57,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_cf8rx")
 script = ExtResource("1_56uah")
 _btnEasy = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty/BtnEasy")
 _btnMedium = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty/BtnMedium")
@@ -54,7 +65,7 @@ _btnHard = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContain
 _btnContinue = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay/BtnContinue")
 _btnNew = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay/BtnNew")
 _btnClose = NodePath("BasePanel/BtnClose")
-_btnClosePerks = NodePath("PnlPerks/BtnClose2")
+_btnClosePerks = NodePath("PnlPerks/BtnClosePerks")
 _btnSolarFlare = NodePath("PnlPerks/VBoxPerkSelect/BtnSolarFlare")
 _btnElixirVigour = NodePath("PnlPerks/VBoxPerkSelect/BtnElixirVigour")
 _btnSling = NodePath("PnlPerks/VBoxPerkSelect/BtnSling")
@@ -74,18 +85,8 @@ script = ExtResource("1_tow4p")
 _snapToEdges = false
 _draggable = false
 
-[node name="BtnClose" type="TextureButton" parent="BasePanel"]
+[node name="BtnClose" parent="BasePanel" instance=ExtResource("4_wbufx")]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
-grow_horizontal = 0
-texture_normal = ExtResource("3_1c1hm")
-texture_pressed = ExtResource("4_poyb0")
-texture_hover = ExtResource("5_pq74w")
-script = ExtResource("7_2peo6")
 
 [node name="PnlTitle" type="Panel" parent="BasePanel"]
 layout_mode = 1
@@ -102,7 +103,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Gilgamesh scale adventure title"
+text = "Gilgamesh: Weight of Destiny"
 label_settings = SubResource("LabelSettings_6y1lg")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -208,8 +209,9 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
-texture = ExtResource("8_nqfgg")
+texture = SubResource("AtlasTexture_k4ear")
 expand_mode = 2
+stretch_mode = 5
 
 [node name="LblDescription" type="Label" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxContainer/Panel2/VBoxContainer"]
 layout_mode = 2
@@ -235,7 +237,7 @@ size_flags_horizontal = 3
 tooltip_text = "An ally joins you each battle."
 toggle_mode = true
 button_group = ExtResource("9_k5wjp")
-texture_normal = ExtResource("6_bmndb")
+texture_normal = ExtResource("3_gtib0")
 texture_pressed = ExtResource("4_01gsx")
 ignore_texture_size = true
 stretch_mode = 0
@@ -260,7 +262,7 @@ tooltip_text = "Normal amount of enemies and allies."
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("9_k5wjp")
-texture_normal = ExtResource("6_bmndb")
+texture_normal = ExtResource("3_gtib0")
 texture_pressed = ExtResource("4_01gsx")
 ignore_texture_size = true
 stretch_mode = 0
@@ -285,7 +287,7 @@ size_flags_horizontal = 3
 tooltip_text = "You face an additional enemy each battle."
 toggle_mode = true
 button_group = ExtResource("9_k5wjp")
-texture_normal = ExtResource("6_bmndb")
+texture_normal = ExtResource("3_gtib0")
 texture_pressed = ExtResource("4_01gsx")
 ignore_texture_size = true
 stretch_mode = 0
@@ -369,7 +371,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="PnlPerks" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25
@@ -381,6 +382,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
 script = ExtResource("1_tow4p")
+_draggable = false
+CloseOnLoseFocus = true
 _startClosed = true
 
 [node name="VBoxPerkSelect" type="VBoxContainer" parent="PnlPerks"]
@@ -407,8 +410,8 @@ size_flags_vertical = 3
 tooltip_text = "Solar Flare. A minor damaging spell of Shamash."
 toggle_mode = true
 button_group = ExtResource("11_xf5ct")
-texture_normal = ExtResource("13_6sr7w")
-texture_pressed = ExtResource("16_ewx0o")
+texture_normal = ExtResource("15_1ke5p")
+texture_pressed = ExtResource("16_hyk0x")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_2peo6")
@@ -421,8 +424,8 @@ tooltip_text = "Sling. Grants a basic ranged attack."
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("11_xf5ct")
-texture_normal = ExtResource("19_6lr5f")
-texture_pressed = ExtResource("18_uinw7")
+texture_normal = ExtResource("17_toxvx")
+texture_pressed = ExtResource("19_6lr5f")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_2peo6")
@@ -434,8 +437,8 @@ size_flags_vertical = 3
 tooltip_text = "Elixir of Vigour. A subtly strengthening boon of Ishtar."
 toggle_mode = true
 button_group = ExtResource("11_xf5ct")
-texture_normal = ExtResource("16_3m0nd")
-texture_pressed = ExtResource("20_4ts43")
+texture_normal = ExtResource("19_gum6e")
+texture_pressed = ExtResource("20_664tg")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_2peo6")
@@ -479,15 +482,36 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BtnClose2" type="TextureButton" parent="PnlPerks"]
+[node name="BtnClosePerks" type="TextureButton" parent="PnlPerks"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -149.0
-offset_bottom = 150.0
+offset_left = -89.0
+offset_bottom = 95.0
 grow_horizontal = 0
-texture_normal = ExtResource("3_1c1hm")
-texture_pressed = ExtResource("4_poyb0")
-texture_hover = ExtResource("5_pq74w")
+texture_normal = ExtResource("3_gtib0")
+texture_pressed = ExtResource("4_01gsx")
+texture_hover = ExtResource("5_xhugv")
+texture_disabled = ExtResource("6_bmndb")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("7_2peo6")
+
+[node name="Label" type="Label" parent="PnlPerks/BtnClosePerks"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -48.5
+offset_right = 43.0
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "x"
+label_settings = SubResource("LabelSettings_iwxgo")
+horizontal_alignment = 1
+vertical_alignment = 1

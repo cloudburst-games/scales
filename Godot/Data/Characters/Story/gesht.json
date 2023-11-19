@@ -1,5 +1,5 @@
 {
-    "Name": "Gesht",
+    "Name": "Follower",
     "Description": "Geshtinanna, a goddess associated with wine and the grape harvest, represents the pleasures and indulgences of life.",
     "PatronGod": "Enlil",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AmabBody2.tscn",
@@ -19,12 +19,7 @@
         "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch.wav",
         "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
     ],
-    "Perks": [
-        0,
-        3,
-        4,
-        7
-    ],
+    "Perks": [],
     "Level": 1,
     "Might": 12,
     "Resilience": 6,

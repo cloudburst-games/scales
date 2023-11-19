@@ -22,10 +22,8 @@
         "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
     ],
     "Perks": [
-        0,
-        3,
-        4,
-        7
+        16,
+        12
     ],
     "Level": 1,
     "Might": 12,

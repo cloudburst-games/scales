@@ -76,6 +76,8 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
 
     public CharacterCheckpointData PackData()
     {
+        // remove current effects first
+        ReverseAllEffects();
         return new CharacterCheckpointData
         {
             Name = this.Name,

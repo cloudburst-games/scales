@@ -277,11 +277,6 @@ public partial class PnlCharacterInfo : Control
                     keyLabel = "Ranged Dmg Bonus";
                     keyValue = data.GetCorrectRangedWeaponDamageBonus().ToString();
                 }
-                else if (kv.Key == StoryCharacterData.StatMode.HitBonusStrength)
-                {
-                    keyLabel = "Melee Hit Bonus";
-                    keyValue = data.GetCorrectHitBonusMelee(false).ToString();
-                }
                 else if (kv.Key == StoryCharacterData.StatMode.ActionPoints)
                 {
                     keyLabel = "Action Points";
@@ -296,6 +291,11 @@ public partial class PnlCharacterInfo : Control
                 {
                     keyLabel = "Mana";
                     keyValue = string.Format("{0} / {1}", data.Stats[StoryCharacterData.StatMode.FocusCharge], data.Stats[StoryCharacterData.StatMode.MaxFocusCharge]);
+                }
+                else if (kv.Key == StoryCharacterData.StatMode.HitBonusStrength)
+                {
+                    keyLabel = "Melee Hit Bonus";
+                    keyValue = data.GetCorrectHitBonusMelee(false).ToString();
                 }
                 else
                 {

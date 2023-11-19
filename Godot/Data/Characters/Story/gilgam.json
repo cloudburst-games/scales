@@ -1,5 +1,5 @@
 {
-    "Name": "Gilgam",
+    "Name": "Gilgamesh",
     "Description": "Gilgamesh, the legendary king of Uruk, embarks on epic adventures in his quest for wisdom and immortality.",
     "PatronGod": "Enlil",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/GilgameshBody.tscn",
@@ -24,30 +24,43 @@
     "Might": 10,
     "Resilience": 10,
     "Precision": 10,
-    "Speed": 100,
+    "Speed": 10,
     "Intellect": 10,
     "Charisma": 10,
     "Luck": 10,
     "Barks": {
         "0": [
             [
-                "HELLO MY NAME GILGA",
-                "blah blah",
-                "first bark"
+                "For glory and honor!",
+                "Epic quests await, onward!"
             ],
             [
-                "no"
+                "Steel and courage prevail!"
             ],
             [
-                "why"
+                "Monsters beware, I'm here!"
             ]
         ],
         "1": [
             [
-                "dreadful"
+                "To new horizons, onward!"
             ],
             [
-                "bore"
+                "In battle, I find purpose."
+            ]
+        ],
+        "2": [
+            [
+                "Gilgamesh never backs down!"
+            ],
+            [
+                "Adventure calls, I answer!"
+            ],
+            [
+                "Swords sing, foes fall!"
+            ],
+            [
+                "Through peril, I endure!"
             ]
         ]
     },

@@ -18,12 +18,17 @@ public partial class MainMenuScene : Node, ISceneTransitionable
     private CntPnlAdventures _cntPnlAdventures;
     [Export]
     private float _musicQuietVol = -15f;
-
+    [Export]
+    private BaseTextureButton _btnAbout;
     private BattleDataContainer _battleData = new();
+    [Export]
+    private BasePanel _pnlAbout;
 
     public override void _Ready()
     {
         GetNode<SettingsManager>("Control/SettingsManager").Hide();
+        // GetNode<BasePanel>("Control/SettingsManager/Panel").CloseOnLoseFocus = true;
+        _pnlAbout.GetNode<BaseTextureButton>("BtnClose").Pressed += () => _pnlAbout.Close();
         // _pnlCharacterSelect.Close();
         // GetNode<BasePanel>("Control/PnlAbout").Visible = false;
         // GetNode<PictureStoryContainer>("Control/IntroPictureStory").Finished += this.OnIntroPictureStoryFinished;
@@ -41,7 +46,7 @@ public partial class MainMenuScene : Node, ISceneTransitionable
         // ConnectDifficultyBtns();
         _cntPnlAdventures.ContinuePressed += (int adventure, int difficulty) => this.OnContinueAdventure((CntPnlAdventures.AdventureSelectedMode)adventure, (CntPnlAdventures.DifficultyMode)difficulty);
         _btnAdventure.Pressed += () => _cntPnlAdventures.Visible = true;
-
+        _btnAbout.Pressed += () => _pnlAbout.Open();
         // _pnlCharacters.CharacterClicked += (int num) => _pnlCharacterDetails.OnCharacterSelected((StoryCharacter.StoryCharacterMode)num);
 
     }

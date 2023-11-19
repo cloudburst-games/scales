@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cmsrvkqdk8j1b"]
 
 [ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellVisual.cs" id="1_q7yuf"]
-[ext_resource type="Texture2D" uid="uid://brxylpaqjkqy" path="res://Assets/Graphics/Effects/Arrow/arrow.png" id="2_daci0"]
+[ext_resource type="Texture2D" uid="uid://bux6ia6hd42wc" path="res://Assets/Graphics/Icons/IconNormal/Spear.png" id="2_bud3o"]
 [ext_resource type="Texture2D" uid="uid://daxgpyrdyuu2b" path="res://Assets/Graphics/Effects/rain_drop.png" id="3_30cke"]
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="4_5tnsq"]
 [ext_resource type="AudioStream" uid="uid://d4jj2qmfaw6k6" path="res://Assets/Audio/Effects/PlaceholderSFX/SlingRockJavelinLaunch.wav" id="5_xqtxa"]
@@ -124,9 +124,8 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.631373, 0.631373, 0.631373, 1)
-scale = Vector2(0.27, 0.27)
-texture = ExtResource("2_daci0")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_bud3o")
 
 [node name="ArrowParticles" type="GPUParticles2D" parent="."]
 show_behind_parent = true

@@ -110,10 +110,10 @@ texture = ExtResource("4_y3arb")
 [node name="PnlTitle" type="Panel" parent="DefeatStory/PictureStorySlide"]
 visible = false
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.3
-anchor_right = 0.7
-anchor_bottom = 0.7
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -123,12 +123,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 57.0
+offset_top = 40.0
+offset_right = -47.0
+offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "DAMN! YOU LOSE!!"
+text = "As the dust settles on the battleground, a somber silence envelops the fallen hero. The gods, their laughter echoing through the celestial expanse, lament the unraveling threads of fate, while Mesopotamia succumbs to the looming shadows of an unchecked cosmic imbalance."
 label_settings = SubResource("LabelSettings_6fmmq")
-horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="AfterLevel0Story" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
@@ -154,10 +158,10 @@ texture = ExtResource("4_y3arb")
 [node name="PnlTitle" type="Panel" parent="AfterLevel0Story/PictureStorySlide"]
 visible = false
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.3
-anchor_right = 0.7
-anchor_bottom = 0.7
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -167,12 +171,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -104.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "OH?!?!? YOU WIN!! lvl 0"
+text = "Basking in victory, the king’s arrogance soared higher than the city walls. The citizens of Uruk prayed to the mountains and the stars for deliverance. After seven long nights, it was the goddess Aruru who answered their pleas…"
 label_settings = SubResource("LabelSettings_6fmmq")
-horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="AfterLevel1Story" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
@@ -198,10 +204,10 @@ texture = ExtResource("4_y3arb")
 [node name="PnlTitle" type="Panel" parent="AfterLevel1Story/PictureStorySlide"]
 visible = false
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.3
-anchor_right = 0.7
-anchor_bottom = 0.7
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -211,12 +217,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -104.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "OH?!?!? YOU WIN!! lvl 1"
+text = "Not yet implemented."
 label_settings = SubResource("LabelSettings_6fmmq")
-horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="AfterLevel2Story" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
@@ -242,10 +250,10 @@ texture = ExtResource("4_y3arb")
 [node name="PnlTitle" type="Panel" parent="AfterLevel2Story/PictureStorySlide"]
 visible = false
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.3
-anchor_right = 0.7
-anchor_bottom = 0.7
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -255,13 +263,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -104.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "OH?!?!? YOU WIN!! lvl 2
-"
+text = "Not yet implemented."
 label_settings = SubResource("LabelSettings_6fmmq")
-horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="FinalVictoryStoryShamash" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
@@ -287,10 +296,10 @@ texture = ExtResource("4_y3arb")
 [node name="PnlTitle" type="Panel" parent="FinalVictoryStoryShamash/PictureStorySlide"]
 visible = false
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.3
-anchor_right = 0.7
-anchor_bottom = 0.7
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -300,12 +309,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -104.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "OH?!?!? YOU WIN!!or real!praise SHSAMAMASH"
+text = "Not yet implemented."
 label_settings = SubResource("LabelSettings_6fmmq")
-horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="FinalVictoryStoryBalanced" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
@@ -331,10 +342,10 @@ texture = ExtResource("4_y3arb")
 [node name="PnlTitle" type="Panel" parent="FinalVictoryStoryBalanced/PictureStorySlide"]
 visible = false
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.3
-anchor_right = 0.7
-anchor_bottom = 0.7
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -344,12 +355,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -104.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "OH?!?!? YOU WIN!! for real! i hate shamash and ishtar!!"
+text = "Not yet implemented."
 label_settings = SubResource("LabelSettings_6fmmq")
-horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="FinalVictoryStoryIshtar" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
@@ -375,10 +388,10 @@ texture = ExtResource("4_y3arb")
 [node name="PnlTitle" type="Panel" parent="FinalVictoryStoryIshtar/PictureStorySlide"]
 visible = false
 anchors_preset = -1
-anchor_left = 0.3
-anchor_top = 0.3
-anchor_right = 0.7
-anchor_bottom = 0.7
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -388,9 +401,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -104.0
+offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "OH?!?!? YOU WIN!! for real! praise isthar!!"
+text = "Not yet implemented."
 label_settings = SubResource("LabelSettings_6fmmq")
-horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2

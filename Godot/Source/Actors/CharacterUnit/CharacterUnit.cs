@@ -554,7 +554,7 @@ public partial class CharacterUnit : CharacterBody2D
     }
     internal void OnBattleFavour(Scales.FavourMode favour, bool extreme)
     {
-        int magnitude = 5;
+        int magnitude = 3;
         if (extreme)
         {
             magnitude *= 2;

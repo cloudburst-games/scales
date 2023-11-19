@@ -45,7 +45,7 @@ public partial class CntPnlAdventures : Control
         ConnectDifficultySignals();
         ConnectPerkSignals();
         _btnContinue.Disabled = !CheckpointDataExists();
-        _btnContinue.Pressed += () => EmitSignal(SignalName.ContinuePressed, (int)AdventureSelectedMode.Gilgamesh, (int)_difficultySelected, (int)_perkSelected);
+        _btnContinue.Pressed += () => EmitSignal(SignalName.ContinuePressed, (int)AdventureSelectedMode.Gilgamesh, (int)_difficultySelected);
         _btnNew.Pressed += () => _pnlPerks.Open(); //EmitSignal(SignalName.NewPressed, (int)AdventureSelectedMode.Gilgamesh, (int)_difficultySelected, (int)_perkSelected);
         _btnFinalNew.Pressed += OnFinalNew;
         _btnClose.Pressed += () =>

@@ -27,7 +27,7 @@ public partial class AnimationJSONMaker : Node
     [Export]
     private float _relativeSpeed = 1;
     [Export]
-    private float _scaleFactor = 0.5f;
+    private float _scaleFactor = 1f;
     [Export]
     private Animation.LoopModeEnum _loop = Animation.LoopModeEnum.Linear;
     public class Frame

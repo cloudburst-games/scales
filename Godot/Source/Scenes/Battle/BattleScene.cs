@@ -41,6 +41,8 @@ public partial class BattleScene : Node, ISceneTransitionable
     private BtnActions _btnActions;
     [Export]
     private AnimationPlayer _battleScalesAnim;
+    [Export]
+    private BaseTextureButton _btnMainMenu;
     // [Export]
     // private Godot.Collections.Array<BaseTextureButton> _actionBtns = new();
     // exporting here doesn#t work so we are unfortunately using magic string
@@ -167,6 +169,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         // _cntCharacterUpgrade.UpgradeFinished += OnBattleVictoryUpgradesFinished;
         _pnlPerkSelect.FinishedSelectingPerks += OnBattleVictoryUpgradesFinished;
         _masterPerkPool = Enum.GetValues(typeof(Perk.PerkMode)).Cast<Perk.PerkMode>().Where(x => x != Perk.PerkMode.None).ToList();
+        _btnMainMenu.Pressed += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
         // _adventureStoriesHandler.VictoryPictureStoryFinished += () 
         // _adventureStoriesHandler.FinalVictoryStoryFinished += ()
 

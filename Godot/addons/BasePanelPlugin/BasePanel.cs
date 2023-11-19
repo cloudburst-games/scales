@@ -11,7 +11,7 @@ public partial class BasePanel : Panel
     [Export]
     private bool _draggable = true;
     [Export]
-    private bool _closeOnLoseFocus = false;
+    public bool CloseOnLoseFocus { get; set; } = false;
     [Export]
     private bool _bringToFrontOnClick = true;
     [Export]
@@ -249,7 +249,7 @@ public partial class BasePanel : Panel
         }
         else
         {
-            if (_closeOnLoseFocus)
+            if (CloseOnLoseFocus)
             {
                 if (Input.IsMouseButtonPressed(MouseButton.Left))
                 {

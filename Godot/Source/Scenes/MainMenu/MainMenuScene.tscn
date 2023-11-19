@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b6v34iwdchsgi"]
+[gd_scene load_steps=36 format=3 uid="uid://b6v34iwdchsgi"]
 
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/MainMenuScene.cs" id="1_66m4n"]
 [ext_resource type="Script" path="res://addons/SceneTransitionPlugin/SceneTransition.cs" id="2_lc0ma"]
@@ -6,34 +6,30 @@
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="4_g6wc5"]
 [ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="4_jn681"]
 [ext_resource type="Texture2D" uid="uid://bu4tecsgh5hbl" path="res://Assets/Graphics/Sprites/Terrain/Beach/PinkPlain.png" id="5_4qe3k"]
+[ext_resource type="Texture2D" uid="uid://du12fi24yk15b" path="res://Assets/Graphics/Sprites/Actors/ScalesOfPowerOrJustice/Scales.png" id="7_e1fsh"]
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="11_y5a11"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="12_jst7q"]
 [ext_resource type="AudioStream" uid="uid://u8vvnphooeai" path="res://addons/BaseTextureButtonPlugin/hover.wav" id="12_rhirg"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="13_p3vmq"]
 [ext_resource type="AudioStream" uid="uid://in1epaq47smy" path="res://addons/BaseTextureButtonPlugin/click.wav" id="13_wyj12"]
-[ext_resource type="Texture2D" uid="uid://birpy4r4g8whd" path="res://Assets/Graphics/Interface/Buttons/Settings/barsHorizontal.png" id="14_a3v78"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="14_e2huy"]
-[ext_resource type="Texture2D" uid="uid://bdtpl1p43aar2" path="res://Assets/Graphics/Interface/Buttons/Settings/barsHorizontalPressed.png" id="15_17057"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="15_q258l"]
-[ext_resource type="Texture2D" uid="uid://rtcfl7soe54s" path="res://Assets/Graphics/Interface/Buttons/Settings/barsHorizontalHover.png" id="16_hvmuu"]
-[ext_resource type="LabelSettings" uid="uid://bok3h2cnuw41n" path="res://Assets/Graphics/Themes/Witch/playWitchyLabel.tres" id="17_8vav3"]
+[ext_resource type="LabelSettings" uid="uid://cnydnjeqvs3kr" path="res://Source/Interface/Label/test_label_settings.tres" id="15_r6vsh"]
 [ext_resource type="Texture2D" uid="uid://dyvqcrqq7l5d2" path="res://Assets/Graphics/Interface/Buttons/Leaderboard/leaderboardsComplex.png" id="19_gf2h3"]
 [ext_resource type="Texture2D" uid="uid://bvhklxpq1kx1w" path="res://Assets/Graphics/Interface/Buttons/Leaderboard/leaderboardsComplexPressed.png" id="20_xyxyu"]
 [ext_resource type="Texture2D" uid="uid://bti2xh8sbgo6t" path="res://Assets/Graphics/Interface/Buttons/Leaderboard/leaderboardsComplexHover.png" id="21_2dvak"]
 [ext_resource type="PackedScene" uid="uid://bes3oet5iq1e1" path="res://Source/Systems/SettingsManager/SettingsManager.tscn" id="23_7c4m2"]
 [ext_resource type="Script" path="res://addons/PictureStoryPlugin/PictureStoryContainer/PictureStoryContainer.cs" id="26_s1oqk"]
 [ext_resource type="Script" path="res://addons/PictureStoryPlugin/PictureStorySlide/PictureStorySlide.cs" id="27_3ioox"]
-[ext_resource type="Texture2D" uid="uid://b8lrqyev7uyvy" path="res://addons/SceneTransitionPlugin/ContinueDisabled.png" id="28_lloqx"]
+[ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="28_5f6ek"]
 [ext_resource type="Script" path="res://addons/AutoScrollLabelPlugin/AutoScrollLabel.cs" id="29_lwbti"]
-[ext_resource type="Texture2D" uid="uid://dw55h30ros4ye" path="res://addons/SceneTransitionPlugin/ContinueNormal.png" id="30_og3b7"]
-[ext_resource type="Texture2D" uid="uid://y60lspk4s5rc" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSNORMAL.png" id="30_u87ob"]
-[ext_resource type="Texture2D" uid="uid://rbn5wog65ufi" path="res://addons/SceneTransitionPlugin/ContinuePressed.png" id="31_fpwb5"]
-[ext_resource type="Texture2D" uid="uid://c8q2bdypfy7w7" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSPRESSED.png" id="31_n13wt"]
-[ext_resource type="Texture2D" uid="uid://dfljrleew8t8j" path="res://addons/SceneTransitionPlugin/ContinueHover.png" id="32_0g8su"]
-[ext_resource type="Texture2D" uid="uid://cwpt2tnkrjdhs" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSHOVER.png" id="32_5k237"]
 [ext_resource type="PackedScene" uid="uid://ce0b88lumohl8" path="res://Source/Scenes/MainMenu/PnlAdventures/CntPnlAdventures.tscn" id="32_h085b"]
 [ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="34_16yq6"]
 [ext_resource type="FontFile" uid="uid://cofx1cs3c3u03" path="res://Assets/Graphics/Fonts/Yusei_Magic/YuseiMagic-Regular.ttf" id="41_og7ub"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7umc"]
+atlas = ExtResource("7_e1fsh")
+region = Rect2(2376, 142, 698, 801)
 
 [sub_resource type="Animation" id="Animation_c81ia"]
 resource_name = "Default"
@@ -107,12 +103,27 @@ _data = {
 "Default": SubResource("Animation_dumji")
 }
 
-[node name="MainMenuScene" type="Node" node_paths=PackedStringArray("_introPictureStory", "_btnAdventure", "_battleSceneTransition", "_cntPnlAdventures")]
+[sub_resource type="LabelSettings" id="LabelSettings_ha8g4"]
+font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_38jr5"]
+font_size = 64
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2mvgc"]
+font_size = 48
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MainMenuScene" type="Node" node_paths=PackedStringArray("_introPictureStory", "_btnAdventure", "_battleSceneTransition", "_cntPnlAdventures", "_btnAbout", "_pnlAbout")]
 script = ExtResource("1_66m4n")
 _introPictureStory = NodePath("Control/IntroPictureStory")
 _btnAdventure = NodePath("Control/BtnsContainer/BtnStory")
 _battleSceneTransition = NodePath("SceneTransition")
 _cntPnlAdventures = NodePath("Control/CntPnlAdventures")
+_btnAbout = NodePath("Control/BtnsContainer/BtnAbout")
+_pnlAbout = NodePath("Control/PnlAbout")
 
 [node name="MusicContainer" type="Node2D" parent="."]
 process_mode = 3
@@ -157,29 +168,39 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 64
 theme_override_fonts/font = ExtResource("41_og7ub")
 theme_override_font_sizes/font_size = 200
-text = "SCALE FACE! SARAH GIVE ME A TITLE!!"
+text = "Judgement of the Gods"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BtnsContainer" type="VBoxContainer" parent="Control"]
+[node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.35
-anchor_top = 0.6
-anchor_right = 0.35
-anchor_bottom = 0.6
-offset_top = -779.5
-offset_right = 1000.0
-offset_bottom = 779.5
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("AtlasTexture_q7umc")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="BtnsContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.871
+anchor_right = 0.9
+anchor_bottom = 0.96
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_constants/separation = 50
 alignment = 1
 
 [node name="BtnStory" type="TextureButton" parent="Control/BtnsContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.5
 texture_normal = ExtResource("11_y5a11")
 texture_pressed = ExtResource("12_jst7q")
 texture_hover = ExtResource("13_p3vmq")
@@ -203,14 +224,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Adventure"
-label_settings = ExtResource("17_8vav3")
+label_settings = ExtResource("15_r6vsh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BtnEndless" type="TextureButton" parent="Control/BtnsContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 1.5
 tooltip_text = "Not implemented yet"
 disabled = true
 texture_normal = ExtResource("11_y5a11")
@@ -236,7 +257,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Endless"
-label_settings = ExtResource("17_8vav3")
+label_settings = ExtResource("15_r6vsh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -244,14 +265,51 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture_normal = ExtResource("14_a3v78")
-texture_pressed = ExtResource("15_17057")
-texture_hover = ExtResource("16_hvmuu")
+texture_normal = ExtResource("11_y5a11")
+texture_pressed = ExtResource("12_jst7q")
+texture_hover = ExtResource("13_p3vmq")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 0
 script = ExtResource("15_q258l")
 _hoverSample = ExtResource("12_rhirg")
 _clickedSample = ExtResource("13_wyj12")
+
+[node name="Label" type="Label" parent="Control/BtnsContainer/BtnSettings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Settings"
+label_settings = ExtResource("15_r6vsh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnAbout" type="TextureButton" parent="Control/BtnsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("11_y5a11")
+texture_pressed = ExtResource("12_jst7q")
+texture_hover = ExtResource("13_p3vmq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("15_q258l")
+_hoverSample = ExtResource("12_rhirg")
+_clickedSample = ExtResource("13_wyj12")
+
+[node name="Label" type="Label" parent="Control/BtnsContainer/BtnAbout"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "About"
+label_settings = ExtResource("15_r6vsh")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="BtnLeaderboard" type="TextureButton" parent="Control/BtnsContainer"]
 visible = false
@@ -263,7 +321,7 @@ texture_normal = ExtResource("19_gf2h3")
 texture_pressed = ExtResource("20_xyxyu")
 texture_hover = ExtResource("21_2dvak")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 0
 script = ExtResource("15_q258l")
 _hoverSample = ExtResource("12_rhirg")
 _clickedSample = ExtResource("13_wyj12")
@@ -272,14 +330,26 @@ _clickedSample = ExtResource("13_wyj12")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture_normal = ExtResource("30_u87ob")
-texture_pressed = ExtResource("31_n13wt")
-texture_hover = ExtResource("32_5k237")
+texture_normal = ExtResource("11_y5a11")
+texture_pressed = ExtResource("12_jst7q")
+texture_hover = ExtResource("13_p3vmq")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 0
 script = ExtResource("15_q258l")
 _hoverSample = ExtResource("12_rhirg")
 _clickedSample = ExtResource("13_wyj12")
+
+[node name="Label" type="Label" parent="Control/BtnsContainer/BtnQuit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Quit"
+label_settings = ExtResource("15_r6vsh")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="SettingsManager" parent="Control" instance=ExtResource("23_7c4m2")]
 
@@ -305,55 +375,188 @@ libraries = {
 script = ExtResource("27_3ioox")
 AutoTransitionEnabled = false
 InputSkipsSlide = false
-ButtonToContinue = NodePath("Button")
+ButtonToContinue = NodePath("BtnContinueStory")
 
-[node name="TextureRect2" type="ColorRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
+[node name="TextureRect2" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
 visible = false
-self_modulate = Color(0.141176, 0.0588235, 0.235294, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.337255, 0.870588, 1, 1)
+texture = ExtResource("5_4qe3k")
 
-[node name="AutoScrollLabel" type="RichTextLabel" parent="Control/IntroPictureStory/PictureStorySlide2"]
+[node name="Panel" type="Panel" parent="Control/IntroPictureStory/PictureStorySlide2"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1072.5
-offset_top = -770.5
-offset_right = 1072.5
-offset_bottom = 770.5
+offset_left = -1293.5
+offset_top = -714.0
+offset_right = 1293.5
+offset_bottom = 714.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0.0470588, 0.0156863, 0.109804, 1)
-theme_override_constants/outline_size = 15
-theme_override_fonts/normal_font = ExtResource("41_og7ub")
-theme_override_font_sizes/normal_font_size = 128
-text = "blah blah blah"
-script = ExtResource("29_lwbti")
 
-[node name="Button" type="TextureButton" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
-offset_left = 1661.0
-offset_top = 1876.0
-offset_right = 2379.0
-offset_bottom = 2035.0
-texture_normal = ExtResource("30_og3b7")
-texture_pressed = ExtResource("31_fpwb5")
-texture_hover = ExtResource("32_0g8su")
-texture_disabled = ExtResource("28_lloqx")
+[node name="AutoScrollLabel" type="RichTextLabel" parent="Control/IntroPictureStory/PictureStorySlide2/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1173.5
+offset_top = -543.5
+offset_right = 1173.5
+offset_bottom = 543.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("41_og7ub")
+theme_override_font_sizes/normal_font_size = 84
+text = "
+
+
+
+
+
+
+
+In the theater of gods, Ishtar, the goddess of love and war, challenges Shamash, the god of wisdom and order, to a comic game, with Gilgamesh as their pawn upon the mortal stage.
+
+\"I challenge you to shape him into a just and noble ruler,\" Ishtar smirked.
+
+Shamash stroked his beard, \"Do you doubt his potential for wisdom, Ishtar?\"
+
+Ishtar's laughter echoed through the heavens. \"Humans embrace their primal instincts. His blood will boil in battle. He cannot learn to show mercy.” 
+
+Shamash’s eyes came alive, “And if I teach him the way of order?”
+
+Ishtar replied, \"The crown shall be yours.\"
+
+As these two deities vie to tip the scales of power, the destiny of Gilgamesh and his people hang on the choices you make."
+script = ExtResource("29_lwbti")
+_scrollSpeed = 30.0
+
+[node name="BtnContinueStory" type="TextureButton" parent="Control/IntroPictureStory/PictureStorySlide2"]
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.88
+anchor_right = 0.58
+anchor_bottom = 0.95
+grow_horizontal = 0
+texture_normal = ExtResource("11_y5a11")
+texture_pressed = ExtResource("12_jst7q")
+texture_hover = ExtResource("13_p3vmq")
+texture_disabled = ExtResource("14_e2huy")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("15_q258l")
 
+[node name="Label" type="Label" parent="Control/IntroPictureStory/PictureStorySlide2/BtnContinueStory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -48.5
+offset_right = 43.0
+offset_bottom = 36.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Continue"
+label_settings = SubResource("LabelSettings_ha8g4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="CntPnlAdventures" parent="Control" instance=ExtResource("32_h085b")]
 visible = false
 layout_mode = 1
+
+[node name="PnlAbout" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -865.0
+offset_top = -494.0
+offset_right = 866.0
+offset_bottom = 525.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("28_5f6ek")
+_draggable = false
+CloseOnLoseFocus = true
+_startClosed = true
+
+[node name="Panel" type="Panel" parent="Control/PnlAbout"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.85
+offset_left = 0.449997
+offset_top = 36.05
+offset_right = 0.550049
+offset_bottom = 53.85
+
+[node name="Label2" type="Label" parent="Control/PnlAbout/Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+text = "Made for Github Game Off 2023
+
+Find us on discord! We are: SarahSsss7#9089, hnuqweasd#3731
+
+Want to see the game completed?
+Suggestions on what you'd like to see?
+Leave a comment with your thoughts!
+"
+label_settings = SubResource("LabelSettings_38jr5")
+autowrap_mode = 2
+
+[node name="BtnClose" type="TextureButton" parent="Control/PnlAbout"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -53.0
+offset_bottom = 58.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("11_y5a11")
+texture_pressed = ExtResource("12_jst7q")
+texture_hover = ExtResource("13_p3vmq")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("15_q258l")
+_hoverSample = ExtResource("12_rhirg")
+_clickedSample = ExtResource("13_wyj12")
+
+[node name="Label" type="Label" parent="Control/PnlAbout/BtnClose"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "x"
+label_settings = SubResource("LabelSettings_2mvgc")
+horizontal_alignment = 1
 
 [node name="SceneTransition" type="Node" parent="."]
 script = ExtResource("2_lc0ma")

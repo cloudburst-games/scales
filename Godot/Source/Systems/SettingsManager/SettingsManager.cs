@@ -30,8 +30,11 @@ public partial class SettingsManager : Node
         SetPnlConfirmCloseVisible(false);
         LoadOrDefault();
         RefreshSettingsDisplay();
-        GetNode<TabBar>("Panel/TabBar").CurrentTab = 0;
-        OnTabChanged(0);
+        GetNode<TabBar>("Panel/TabBar").CurrentTab = 1;
+        OnTabChanged(1);
+        // FOR THE CURRENT GAME
+        GetNode<TabBar>("Panel/TabBar").SetTabHidden(0, true);
+        //
         Hide();
     }
 
