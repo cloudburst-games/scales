@@ -40,7 +40,8 @@ public partial class CharacterUnit : CharacterBody2D
     public StatusToPlayerMode StatusToPlayer { get; set; } = StatusToPlayerMode.Neutral;
     [Export]
     private LblBark _lblBark;
-
+    [Export]
+    public ProgressBar BarHealth { get; set; }
     private PackedScene _body;// = GD.Load<PackedScene>("res://Source/Actors/CharacterUnit/Bodies/PlayerBody.tscn");
 
     // For adventure map selection
@@ -253,11 +254,15 @@ public partial class CharacterUnit : CharacterBody2D
                 SetControlState(ControlMode.Player);
                 ValidEnemyTargets = new() { StatusToPlayerMode.Hostile, StatusToPlayerMode.Neutral };
                 ValidAllyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Neutral, StatusToPlayerMode.Allied };
+                BarHealth.AddThemeStyleboxOverride("background", GD.Load<StyleBoxFlat>("res://Source/Actors/CharacterUnit/HealthBars/BarPlayerBG.tres"));
+                BarHealth.AddThemeStyleboxOverride("fill", GD.Load<StyleBoxFlat>("res://Source/Actors/CharacterUnit/HealthBars/BarPlayerFill.tres"));
                 break;
             case StatusToPlayerMode.Allied:
                 SetControlState(ControlMode.AI);
                 ValidEnemyTargets = new() { StatusToPlayerMode.Hostile };
                 ValidAllyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Neutral, StatusToPlayerMode.Allied };
+                BarHealth.AddThemeStyleboxOverride("background", GD.Load<StyleBoxFlat>("res://Source/Actors/CharacterUnit/HealthBars/BarAllyBG.tres"));
+                BarHealth.AddThemeStyleboxOverride("fill", GD.Load<StyleBoxFlat>("res://Source/Actors/CharacterUnit/HealthBars/BarAllyFill.tres"));
                 break;
             case StatusToPlayerMode.Neutral:
                 SetControlState(ControlMode.AI);
@@ -268,6 +273,8 @@ public partial class CharacterUnit : CharacterBody2D
                 SetControlState(ControlMode.AI);
                 ValidEnemyTargets = new() { StatusToPlayerMode.Player, StatusToPlayerMode.Allied };
                 ValidAllyTargets = new() { StatusToPlayerMode.Hostile };
+                BarHealth.AddThemeStyleboxOverride("background", GD.Load<StyleBoxFlat>("res://Source/Actors/CharacterUnit/HealthBars/BarEnemyBG.tres"));
+                BarHealth.AddThemeStyleboxOverride("fill", GD.Load<StyleBoxFlat>("res://Source/Actors/CharacterUnit/HealthBars/BarEnemyFill.tres"));
                 break;
         }
     }

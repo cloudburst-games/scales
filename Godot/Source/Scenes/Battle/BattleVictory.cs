@@ -29,7 +29,7 @@ public partial class BattleVictory : Control
     private Label _lblDiplomacyOutcome;
     private BattleRoller.PersuadeOutcomeInformation _persuadeOutcome;
     [Signal]
-    public delegate void FavouredGodEventHandler(int which, int scalesImpact, CharacterUnit victim);
+    public delegate void FavouredGodEventHandler(int which, int scalesImpact, CharacterUnit victim, bool persuadeSuccess);
     [Export]
     private TextureRect _opponentTex;
     [Export]
@@ -222,7 +222,7 @@ public partial class BattleVictory : Control
             _persuadeOutcome.AttackerRoll, _persuadeOutcome.AttackerPersuade, _persuadeOutcome.DefenderRoll, _persuadeOutcome.DefenderPersuadeResist, persuader.CharacterData.Name);
         string consequenceString = string.Format(_persuadeOutcome.PersuadeSuccess ?
         "Your charisma has swayed " + victim.CharacterData.Name + ". You have a new companion." :
-        "Your opponent rejects your attempts at persuasion. You must decide on mercy or execution. The Gods are watching.");
+        "Your opponent rejects your attempts at persuasion. The Gods turn away.");
         _lblDiplomacyOutcome.Text = persuaderString + "\n\n" + rollString + "\n\n" + consequenceString;
 
         if (victim.CharacterData.Name == "Enkidu" || victim.CharacterData.Name == "marzipan")
@@ -272,7 +272,7 @@ public partial class BattleVictory : Control
         _btnDiplomacy.Visible = true;
         _pnlFate.Close();
         Visible = false;
-        EmitSignal(SignalName.FavouredGod, (int)fate, _scalesImpact, _victim); // neutral - no impact. otherwise, impact as per scalesimpact
+        EmitSignal(SignalName.FavouredGod, (int)fate, _scalesImpact, _victim, _persuadeOutcome.PersuadeSuccess); // neutral - no impact. otherwise, impact as per scalesimpact
 
     }
 }

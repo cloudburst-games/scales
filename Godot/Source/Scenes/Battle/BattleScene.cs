@@ -165,7 +165,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         _adventureStoriesHandler.DefeatStoryFinished += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
         _adventureStoriesHandler.FinalVictoryStoryFinished += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
         _adventureStoriesHandler.VictoryPictureStoryFinished += OnVictoryStoryFinished;
-        _battleVictory.FavouredGod += (int which, int scalesImpact, CharacterUnit victim) => OnVictoryFavouredGod((Scales.FavourMode)which, scalesImpact, victim);
+        _battleVictory.FavouredGod += (int which, int scalesImpact, CharacterUnit victim, bool persuadeSuccess) => OnVictoryFavouredGod((Scales.FavourMode)which, scalesImpact, victim, persuadeSuccess);
         // _cntCharacterUpgrade.UpgradeFinished += OnBattleVictoryUpgradesFinished;
         _pnlPerkSelect.FinishedSelectingPerks += OnBattleVictoryUpgradesFinished;
         _masterPerkPool = Enum.GetValues(typeof(Perk.PerkMode)).Cast<Perk.PerkMode>().Where(x => x != Perk.PerkMode.None).ToList();
@@ -264,12 +264,12 @@ public partial class BattleScene : Node, ISceneTransitionable
         return checkpointData;
     }
 
-    private void OnVictoryFavouredGod(Scales.FavourMode finalFavour, int scalesImpact, CharacterUnit victim)
+    private void OnVictoryFavouredGod(Scales.FavourMode finalFavour, int scalesImpact, CharacterUnit victim, bool persuadeSuccess)
     {
         switch (finalFavour)
         {
             case Scales.FavourMode.Balanced:
-                if (victim != null)
+                if (victim != null && persuadeSuccess)
                 {
                     victim.StatusToPlayer = CharacterUnit.StatusToPlayerMode.Player;
                     victim.InitStatusToPlayer();

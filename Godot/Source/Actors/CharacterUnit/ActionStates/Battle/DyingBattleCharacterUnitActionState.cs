@@ -34,6 +34,7 @@ public partial class DyingBattleCharacterUnitActionState : CharacterUnitActionSt
         // await ToSignal(CharacterUnit.AnimationTree, AnimationTree.SignalName.AnimationFinished);
         // todo - anything needed after the dying animation completes
         CharacterUnit.CharacterData.Alive = false;
+        CharacterUnit.BarHealth.Visible = false;
 
 
         // signal that died so removed from turn queue

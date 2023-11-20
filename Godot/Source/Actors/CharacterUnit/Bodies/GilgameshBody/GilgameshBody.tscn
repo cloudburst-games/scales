@@ -1,7 +1,7 @@
 [gd_scene load_steps=67 format=3 uid="uid://c1ujk6eg2xhpo"]
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_plx1y"]
-[ext_resource type="Texture2D" uid="uid://7odii45w3yxl" path="res://Assets/Graphics/Sprites/Actors/Gilga/IdleGilga.png" id="2_eadvr"]
+[ext_resource type="Texture2D" uid="uid://cmf5fyadvx2ne" path="res://Assets/Graphics/Sprites/Actors/Gilga/GilgaIdleV2Stylised.png" id="2_eadvr"]
 [ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="5_n47vm"]
 [ext_resource type="Animation" uid="uid://b558sgwoaj0ia" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit1_gilg.tres" id="12_1i1kh"]
 [ext_resource type="Animation" uid="uid://cuo3v5tl8yqvg" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit2_gilg.tres" id="13_yw76s"]

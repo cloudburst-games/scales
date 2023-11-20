@@ -13,6 +13,7 @@ config_version=5
 config/name="Judgement of the Gods"
 run/main_scene="res://Source/Scenes/MainMenu/MainMenuScene.tscn"
 config/features=PackedStringArray("4.1", "C#")
+boot_splash/image="res://Assets/Graphics/Interface/Images/Background.png"
 config/icon="res://icon.png"
 
 [autoload]
@@ -25,6 +26,7 @@ SilentWolf="*res://addons/silent_wolf/SilentWolf.gd"
 
 window/size/viewport_width=3840
 window/size/viewport_height=2160
+window/size/mode=4
 window/stretch/mode="viewport"
 
 [dotnet]

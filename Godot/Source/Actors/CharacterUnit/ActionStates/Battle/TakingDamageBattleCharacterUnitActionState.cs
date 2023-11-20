@@ -47,11 +47,25 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
             CharacterUnit.SetActionState(CharacterUnit.ActionMode.WaitingBattle);
         }
     }
-
+    // 🐱
+    // 😺
+    // 😸
+    // 😻
+    // 😽
+    // 🐾
     public void TakeDamage()
     {
         // BattleRoller.RollerOutcomeInformation.DebugPrint(res);
         CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] -= CharacterUnit.TakingDamageResult.FinalDamage;
+        float
+            // if (CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth] != 0)
+            // {
+            fract = (float)CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] / (float)CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth] * 100;
+        // }
+        GD.Print(CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health]);
+        GD.Print(CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth]);
+        GD.Print(fract);
+        CharacterUnit.BarHealth.Value = fract;
         if (CharacterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] <= 0)
         {
             CharacterUnit.SetActionState(CharacterUnit.ActionMode.DyingBattle);

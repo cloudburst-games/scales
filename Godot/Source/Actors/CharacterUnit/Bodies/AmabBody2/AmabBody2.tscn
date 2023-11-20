@@ -339,9 +339,9 @@ modulate = Color(0, 0, 0, 1)
 material = SubResource("ShaderMaterial_btc0f")
 scale = Vector2(2, 2)
 texture = ExtResource("6_c7bce")
-offset = Vector2(0, -52.5)
+offset = Vector2(0, -26.25)
 region_enabled = true
-region_rect = Rect2(2405.5, 0.5, 480, 270)
+region_rect = Rect2(2405.5, 542.5, 480, 270)
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1.5)

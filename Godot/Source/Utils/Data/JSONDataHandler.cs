@@ -10,28 +10,40 @@ public class JSONDataHandler
     public void SaveToDisk(IJSONSaveable dataContainer, string path, bool user = true) // e.g. path might be /Config/Settings.json
     {
         string absolutePath = user ? OS.GetUserDataDir() + path : path;
-		string jsonStr = JsonConvert.SerializeObject(dataContainer);
-		string dir = new System.IO.FileInfo(absolutePath).Directory.FullName;
-		System.IO.Directory.CreateDirectory(dir);
-		System.IO.File.WriteAllText(absolutePath, jsonStr);
+        string jsonStr = JsonConvert.SerializeObject(dataContainer);
+        string dir = new System.IO.FileInfo(absolutePath).Directory.FullName;
+        System.IO.Directory.CreateDirectory(dir);
+        System.IO.File.WriteAllText(absolutePath, jsonStr);
 
     }
 
-	public T LoadFromJSON<T>(string path, bool user = true) // e.g. path might be /Config/Settings.json
-	{
-        string absolutePath = user ? OS.GetUserDataDir() + path : path;
-		if (! System.IO.File.Exists(absolutePath)){
-			GD.Print("JSONDataHandler.cs: ERROR, file at " + absolutePath + " does not exist.");
-			throw new Exception();
-		}
-
-		string loaded = System.IO.File.ReadAllText(absolutePath);
-		T deserialized = JsonConvert.DeserializeObject<T>(loaded);
-		if (! (deserialized is IJSONSaveable))
+    public T LoadFromJSON<T>(string path, bool user = true) // e.g. path might be /Config/Settings.json
+    {
+        string finalPath = user ? OS.GetUserDataDir() + path : "res://" + path;
+        FileAccess file = FileAccess.Open(finalPath, FileAccess.ModeFlags.Read);
+        GD.Print("\n\n" + finalPath);
+        GD.Print(file);
+        GD.Print(file == null ? "Invalid file access" : "valid file access\n\n");
+        // res://DirectionTest.png
+        // string absolutePath = user ? OS.GetUserDataDir() + path : path;
+        if (file == null)
         {
-			GD.Print("JSONDataHandler.cs: WARNING, accessing object without interface + ", nameof(IJSONSaveable));
+            // {
+            GD.Print("JSONDataHandler.cs: ERROR, file at " + finalPath + " may not exist.");
+            //     throw new Exception();
         }
-		return deserialized;
-	}
+
+        // string loaded = System.IO.File.ReadAllText(absolutePath);
+        string loaded = file.GetAsText();
+
+        // GD.Print(loaded);
+
+        T deserialized = JsonConvert.DeserializeObject<T>(loaded);
+        if (!(deserialized is IJSONSaveable))
+        {
+            GD.Print("JSONDataHandler.cs: WARNING, accessing object without interface + ", nameof(IJSONSaveable));
+        }
+        return deserialized;
+    }
 
 }

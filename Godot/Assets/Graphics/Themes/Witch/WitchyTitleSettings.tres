@@ -1,6 +1,6 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b83hi2q28gfjr"]
 
-[ext_resource type="FontFile" uid="uid://ccahggyk5iyiy" path="res://Assets/Interface/Fonts/Julee/Julee-Regular.ttf" id="1_jfpdq"]
+[ext_resource type="FontFile" uid="uid://ccahggyk5iyiy" path="res://Assets/Graphics/Fonts/Yusei_Magic/YuseiMagic-Regular.ttf" id="1_jfpdq"]
 
 [resource]
 font = ExtResource("1_jfpdq")

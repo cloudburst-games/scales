@@ -3,6 +3,8 @@ using System;
 
 public partial class MeleeBattleCharacterUnitActionState : CharacterUnitActionState
 {
+
+    private float _animHitTime = 0.2f; // in future, would be nice to populate this separately for each body type
     public MeleeBattleCharacterUnitActionState(CharacterUnit characterUnit)
     {
         this.CharacterUnit = characterUnit;
@@ -39,10 +41,13 @@ public partial class MeleeBattleCharacterUnitActionState : CharacterUnitActionSt
         };
 
         BattleRoller.RollerOutcomeInformation res = BattleRoller.CalculateAttack(CharacterUnit.Rand, meleeAttack); // can potentially return this to improve the battle log!
-
-        await ToSignal(CharacterUnit.AnimationTree, AnimationTree.SignalName.AnimationFinished);
+        await ToSignal(CharacterUnit.GetTree().CreateTimer(0.2), SceneTreeTimer.SignalName.Timeout);
         CharacterUnit.MeleeTarget.TakeDamageOrder(res); // this should force them into TakeDamage state and they take the damage
-
+        // // if (CharacterUnit.Anim.IsPlaying())
+        // {
+        //     CharacterUnit.AnimationTree.GetCurr
+        //     }
+        await ToSignal(CharacterUnit.AnimationTree, AnimationTree.SignalName.AnimationFinished);
         EndBattleTurn();
     }
 

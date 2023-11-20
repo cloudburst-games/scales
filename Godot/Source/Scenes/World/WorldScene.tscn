@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://bb7784g1iyh6h"]
 
 [ext_resource type="Script" path="res://Source/Scenes/World/WorldScene.cs" id="1_pym4l"]
-[ext_resource type="AudioStream" uid="uid://bdorx8jxhcvl8" path="res://Assets/Audio/Music/World/Native DreamOgg.ogg" id="3_1xlcl"]
+[ext_resource type="AudioStream" uid="uid://bdorx8jxhcvl8" path="res://Assets/Audio/Music/World/EpicBattle_L3.ogg" id="3_1xlcl"]
 [ext_resource type="Script" path="res://addons/SceneTransitionPlugin/SceneTransition.cs" id="3_2tjvv"]
 [ext_resource type="Script" path="res://Source/Scenes/World/HUD.cs" id="3_botg1"]
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="3_vuk0j"]
