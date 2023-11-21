@@ -37,6 +37,12 @@ public class IdleBattleState : BattleState
         }
     }
 
+
+    public override void RedisplayHexGrid()
+    {
+        _controlIdleBattleState.RedisplayHexGrid();
+    }
+
     private bool IsAdjacentToEnemy(Vector2 originPos)
     {
         CharacterUnit activeCharacter = Battler.CharactersAwaitingTurn[0];

@@ -10,6 +10,8 @@ public partial class ControlIdleBattleState : RefCounted
 
     }
 
+    public virtual void RedisplayHexGrid() { }
+
     public virtual void OnInitCurrentTurn()
     {
 

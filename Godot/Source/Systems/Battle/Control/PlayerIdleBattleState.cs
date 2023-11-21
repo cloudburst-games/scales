@@ -32,6 +32,11 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
         // GD.Print("tur pending: ", IdleBattleState.Battler.CharactersAwaitingTurn[0].TurnPending);
     }
 
+    public override void RedisplayHexGrid()
+    {
+        IdleBattleState.Battler.SetGridUserHexes(_moveHexes, _halfMoveHexes, IdleBattleState.Battler.CurrentDisplayMode);
+    }
+
     // private void EnsureHexDisplay()
     // {
     //     if (_moveHexes == null || _allHexes == null)
@@ -401,7 +406,7 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
     private bool IsOverUI(Vector2 mousePos)
     {
         Battler battler = IdleBattleState.Battler;
-        return battler.UIBounds.HasPoint(mousePos);// || battler.ScalesBounds.HasPoint(mousePos);
+        return battler.UIBounds.HasPoint(mousePos) || battler.ScalesBounds.HasPoint(mousePos);
     }
 
 }

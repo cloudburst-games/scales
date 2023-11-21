@@ -137,16 +137,19 @@ public partial class SettingsGraphics : Control
     private void OnConfineMouseBtnToggled(bool toggled)
     {
         Input.MouseMode = toggled ? Input.MouseModeEnum.Confined : Input.MouseModeEnum.Visible;
+        AnnounceSettingsChanged();
     }
 
     private void OnScreenShakeSliderValueChanged(float value)
     {
         GetTree().Root.GetNode<GlobalSettings>("GlobalSettings").ScreenShakePercentModifier = value / 100f;
+        AnnounceSettingsChanged();
     }
 
     private void OnVSyncOptionSelected(int index)
     {
         DisplayServer.WindowSetVsyncMode((DisplayServer.VSyncMode)index);
+        AnnounceSettingsChanged();
     }
 
     private void AnnounceSettingsChanged()

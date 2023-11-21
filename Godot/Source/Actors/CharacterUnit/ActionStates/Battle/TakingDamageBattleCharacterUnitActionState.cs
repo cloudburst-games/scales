@@ -15,7 +15,6 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
         // this.CharacterUnit.AnimationTree.Set("parameters/conditions/ranged", true);
         // GD.Print("Entering taking damage state ", CharacterUnit.CharacterData.Name);
         TakeDamage();
-        this.CharacterUnit.GetNode<AudioContainer>("AudioHurt").Play();
     }
 
     // private bool _runOnce = false;
@@ -32,6 +31,7 @@ public partial class TakingDamageBattleCharacterUnitActionState : CharacterUnitA
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/melee", false);
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/takingdamage", true);
         this.CharacterUnit.AnimationTree.Set("parameters/conditions/dying", false);
+        this.CharacterUnit.GetNode<AudioContainer>("AudioHurt").Play();
         await ToSignal(CharacterUnit.AnimationTree, AnimationTree.SignalName.AnimationFinished);
         // so modulate doesnt work with the shader, so we first remove the shader during the anim, then reapply it -it needs to be duplicated after the anim as a result
         // temporary hack until we have real taking damage anims that dont rely on modulate

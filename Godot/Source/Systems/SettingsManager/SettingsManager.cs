@@ -10,6 +10,9 @@ public partial class SettingsManager : Node
     private GlobalSettings _globalSettings;
     private SettingsDataHandler _dataHandler = new SettingsDataHandler();
 
+    [Signal]
+    public delegate void FinalClosedEventHandler();
+
     public override void _Ready()
     {
         if (GetTree().Root.HasNode("GlobalSettings"))
@@ -100,6 +103,7 @@ public partial class SettingsManager : Node
         if (GetNode<TextureButton>("Panel/HBoxContainer/BtnApply").Disabled)
         {
             GetNode<BasePanel>("Panel").Close();
+            EmitSignal(SignalName.FinalClosed);
         }
         else
         {
@@ -129,6 +133,7 @@ public partial class SettingsManager : Node
         RefreshSettingsDisplay();
         SetPnlConfirmCloseVisible(false);
         GetNode<Panel>("Panel").Visible = false;
+        EmitSignal(SignalName.FinalClosed);
     }
 
     private void OnBtnApplyPressed()

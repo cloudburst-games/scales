@@ -64,12 +64,26 @@ public partial class BattleHUD : CanvasLayer
     private BaseTextureButton _btnMenuClose;
     [Export]
     private BasePanel _pnlMenu;
+    [Export]
+    private BaseTextureButton _btnGridAll;
+    [Export]
+    private BaseTextureButton _btnGridContextual;
+    [Export]
+    private BaseTextureButton _btnGridNone;
+    [Signal]
+    public delegate void GridDisplayBtnPressedEventHandler(int gridDisplay);
+    [Export]
+    private BaseTextureButton _btnSettings;
+    [Export]
+    private SettingsManager _settingsManager;
 
     public enum StateMode
     {
         BattleIntro, BattleStarted, LogOpened, LogClosed, SpellBookOpened, SpellBookClosed,
         HintClickedCharacterLeftClick, HintClickedCharacterRightClick, HintClickedCharacterEnded,
-        MenuOpened, MenuClosed
+        MenuOpened, MenuClosed,
+        SettingsOpened,
+        SettingsClosed
     }
 
     // private StateMode _state = StateMode.BattleIntro;
@@ -89,7 +103,13 @@ public partial class BattleHUD : CanvasLayer
         _pnlScales.MouseExited += () => OnBattleLogEntry("", false);
         _characterInfoPanel.PlaceableArea = new Vector2(_characterInfoPanel.GetViewportRect().Size.X, _pnlAction.GlobalPosition.Y);
         _btnMenu.Pressed += () => this.SetState(StateMode.MenuOpened);
-        _btnMenuClose.Pressed += () => { GD.Print("signally"); this.SetState(StateMode.MenuClosed); };
+        _btnMenuClose.Pressed += () => { this.SetState(StateMode.MenuClosed); };
+        _btnSettings.Pressed += () => { this.SetState(StateMode.SettingsOpened); };
+        _settingsManager.FinalClosed += () => this.SetState(StateMode.SettingsClosed);
+
+        _btnGridAll.Pressed += () => EmitSignal(SignalName.GridDisplayBtnPressed, (int)HexGridUserDisplay.DisplayMode.ShowAllHexes);
+        _btnGridContextual.Pressed += () => EmitSignal(SignalName.GridDisplayBtnPressed, (int)HexGridUserDisplay.DisplayMode.ShowContextualHexes);
+        _btnGridNone.Pressed += () => EmitSignal(SignalName.GridDisplayBtnPressed, (int)HexGridUserDisplay.DisplayMode.HideAllHexes);
         // SetState(StateMode.BattleIntro);
         InitActionBtns();
     }
@@ -152,6 +172,7 @@ public partial class BattleHUD : CanvasLayer
                 _pnlFullLog.Open();
                 _pnlSpellBook.Close();
                 _pnlMenu.Close();
+                _settingsManager.Hide();
                 _audioOpenBook.Play();
                 EmitSignal(BattleHUD.SignalName.UIPause, true);
                 break;
@@ -168,6 +189,7 @@ public partial class BattleHUD : CanvasLayer
                 _pnlSpellBook.Open();
                 _pnlFullLog.Close();
                 _pnlMenu.Close();
+                _settingsManager.Hide();
                 _audioOpenBook.Play();
                 EmitSignal(BattleHUD.SignalName.UIPause, true);
                 break;
@@ -188,7 +210,19 @@ public partial class BattleHUD : CanvasLayer
                 EmitSignal(BattleHUD.SignalName.UIPause, true);
                 _pnlSpellBook.Close();
                 _pnlFullLog.Close();
+                _settingsManager.Hide();
                 _pnlMenu.Open();
+                break;
+            case StateMode.SettingsClosed:
+                _settingsManager.Hide();
+                EmitSignal(BattleHUD.SignalName.UIPause, false);
+                break;
+            case StateMode.SettingsOpened:
+                _settingsManager.Show();
+                _pnlSpellBook.Close();
+                _pnlFullLog.Close();
+                _pnlMenu.Close();
+                EmitSignal(BattleHUD.SignalName.UIPause, true);
                 break;
 
         }

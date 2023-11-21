@@ -42,6 +42,7 @@ CharacterUnitsContainer = NodePath("Entities/CharacterUnits")
 LevelID = 1
 IntroMessage = "Pitying the people, the goddess Aruru created a wild beast man to rival even the mighty gilgamesh, his name was Enkidu. Pure of heart, a friend to animals and a friend to all, Enkidu heard the tales of the tyrant and stopped in him the tracks of his tyranny."
 StartingEnemies = [0, 6]
+StartingAllies = [2]
 _playerPositionCnt = NodePath("Positions/Players")
 _enemyPositionCnt = NodePath("Positions/Enemies")
 _allyPositionCnt = NodePath("Positions/Allies")

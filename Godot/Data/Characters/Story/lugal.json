@@ -1,5 +1,5 @@
 {
-    "Name": "Lugal",
+    "Name": "Disciple",
     "Description": "Lugal, often a title for kingship in Sumerian culture, symbolizes authority and rulership.",
     "PatronGod": "Innana",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AfabBody1.tscn",
@@ -22,14 +22,15 @@
         "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
     ],
     "Perks": [
-        16
+        16,
+        6
     ],
     "Level": 1,
-    "Might": 12,
+    "Might": 6,
     "Resilience": 6,
-    "Precision": 8,
+    "Precision": 18,
     "Speed": 5,
-    "Intellect": 13,
+    "Intellect": 6,
     "Charisma": 11,
     "Luck": 6
 }

@@ -47,8 +47,8 @@ public partial class ProjectileSpellEffectState : SpellEffectState
     {
         _finishing = true;
         SpellEffect.Anim.Play("Finish");
-        await ToSignal(SpellEffect.Anim, AnimationPlayer.SignalName.AnimationFinished);
         SpellEffect.EmitSignal(SpellVisual.SignalName.Finished, _spell);
+        await ToSignal(SpellEffect.Anim, AnimationPlayer.SignalName.AnimationFinished);
         SpellEffect.QueueFree();
     }
 }

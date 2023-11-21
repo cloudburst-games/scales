@@ -143,6 +143,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         // _spellEffectManager.SpellEffectFinished += this.OnSpellEffectFinished;
         _spellEffectManager.AreaHitCalculated += _battler.ParseAreaAttack;
         _battler.UIBounds = _pnlAction.GetRect();
+        _battler.ScalesBounds = _pnlScales.GetRect();
         _battler.LogBattleText += (string text, bool persist) => _HUD.OnBattleLogEntry(text, persist);
         _battler.HUDActionRequested += _HUD.SetState;
         _battler.TurnStarted += this.OnCharacterTurnStarted;//_HUD.OnTurnStarted;
@@ -162,14 +163,15 @@ public partial class BattleScene : Node, ISceneTransitionable
         _cntSpellBook.ManaReagentUIHint += (SignalValueHolder values, int display) => _HUD.OnSpellBookCostsUIHint(values, display);
         _battleScalesAnim.CurrentAnimation = "Start";
 
-        _adventureStoriesHandler.DefeatStoryFinished += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
-        _adventureStoriesHandler.FinalVictoryStoryFinished += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
+        _adventureStoriesHandler.DefeatStoryFinished += () => GoToMainMenu();
+        _adventureStoriesHandler.FinalVictoryStoryFinished += () => GoToMainMenu();
         _adventureStoriesHandler.VictoryPictureStoryFinished += OnVictoryStoryFinished;
         _battleVictory.FavouredGod += (int which, int scalesImpact, CharacterUnit victim, bool persuadeSuccess) => OnVictoryFavouredGod((Scales.FavourMode)which, scalesImpact, victim, persuadeSuccess);
         // _cntCharacterUpgrade.UpgradeFinished += OnBattleVictoryUpgradesFinished;
         _pnlPerkSelect.FinishedSelectingPerks += OnBattleVictoryUpgradesFinished;
         _masterPerkPool = Enum.GetValues(typeof(Perk.PerkMode)).Cast<Perk.PerkMode>().Where(x => x != Perk.PerkMode.None).ToList();
-        _btnMainMenu.Pressed += () => _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
+        _btnMainMenu.Pressed += () => GoToMainMenu();
+        _HUD.GridDisplayBtnPressed += (int gridDisplayMode) => _battler.ChangeHexDisplayMode((HexGridUserDisplay.DisplayMode)gridDisplayMode);
         // _adventureStoriesHandler.VictoryPictureStoryFinished += () 
         // _adventureStoriesHandler.FinalVictoryStoryFinished += ()
 
@@ -178,6 +180,12 @@ public partial class BattleScene : Node, ISceneTransitionable
 
         LoadLevel(_loadedCheckpointData);
 
+    }
+
+    private void GoToMainMenu()
+    {
+        GetNode<SettingsManager>("BattleHUD/SettingsManager").Exit();
+        _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
     }
 
     [Export]

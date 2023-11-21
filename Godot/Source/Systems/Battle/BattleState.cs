@@ -70,6 +70,11 @@ public class BattleState
 
     }
 
+    public virtual void RedisplayHexGrid()
+    {
+
+    }
+
 
     public virtual void SetPlayerAction(Battler.ActionMode action)
     {

@@ -31,7 +31,8 @@ public partial class Battler : Node2D
 
 
     public Rect2 UIBounds { get; set; } = new(new Vector2(0, 0), new Vector2(0, 0));
-    // public Rect2 ScalesBounds { get; set; } = new();
+    // public object ScalesBounds { get; internal set; }
+    public Rect2 ScalesBounds { get; set; } = new();
     public List<CharacterUnit> AllCharacters { get; set; } = new();
     public List<CharacterUnit> CharactersAwaitingTurn { get; set; }
 
@@ -96,6 +97,12 @@ public partial class Battler : Node2D
         AllCharacters = involvedCharacters.ToList();
 
         SetState(BattleMode.Starting); // this is when character obstacles are made
+    }
+
+    public void ChangeHexDisplayMode(HexGridUserDisplay.DisplayMode mode)
+    {
+        CurrentDisplayMode = mode;
+        _battleState.RedisplayHexGrid();
     }
 
     // public void Exit()
