@@ -77,6 +77,12 @@ public partial class BattleHUD : CanvasLayer
     [Export]
     private SettingsManager _settingsManager;
 
+    // public delegate void PortraitMouseEnteredEventHandler(StoryCharacterData data);
+    // public event PortraitMouseEnteredEventHandler PortraitMouseEntered;
+
+    private HBoxTurnOrder _hBoxTurnOrder;
+    // private Callable _hBoxOnEnteredCallable;
+    // private Callable _hBoxOnExited;
     public enum StateMode
     {
         BattleIntro, BattleStarted, LogOpened, LogClosed, SpellBookOpened, SpellBookClosed,
@@ -110,6 +116,13 @@ public partial class BattleHUD : CanvasLayer
         _btnGridAll.Pressed += () => EmitSignal(SignalName.GridDisplayBtnPressed, (int)HexGridUserDisplay.DisplayMode.ShowAllHexes);
         _btnGridContextual.Pressed += () => EmitSignal(SignalName.GridDisplayBtnPressed, (int)HexGridUserDisplay.DisplayMode.ShowContextualHexes);
         _btnGridNone.Pressed += () => EmitSignal(SignalName.GridDisplayBtnPressed, (int)HexGridUserDisplay.DisplayMode.HideAllHexes);
+        _hBoxTurnOrder = GetNode<HBoxTurnOrder>("CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxTurnOrder");
+        _texActiveCharacter.MouseExited += () => _hBoxTurnOrder.OnMouseExited();
+        _texActiveCharacter.MouseEntered += this.OnTexActiveCharacterMouseEntered;
+        _hBoxTurnOrder.CharacterClicked += OnHintClickCharacter;
+
+        // _hBoxOnEnteredCallable = new Callable(_hBoxTurnOrder, HBoxTurnOrder.MethodName.OnMouseEntered);
+        // _hBoxOnExited = new Callable(_hBoxTurnOrder, HBoxTurnOrder.MethodName.OnMouseExited);
         // SetState(StateMode.BattleIntro);
         InitActionBtns();
     }
@@ -228,9 +241,31 @@ public partial class BattleHUD : CanvasLayer
         }
     }
 
+    private StoryCharacterData _mouseOverPortraitData = null;
+
+    private void OnTexActiveCharacterMouseEntered()
+    {
+        if (_mouseOverPortraitData != null)
+        {
+            _hBoxTurnOrder.OnMouseEntered(_mouseOverPortraitData);
+        }
+
+    }
+
+    // if (!cUnit.IsConnected(CharacterUnit.SignalName.BattleTurnEnded, _battleTurnEndedCallable))
     public void OnCharacterStartTurn(StoryCharacterData characterData)
     {
+        // if (_texActiveCharacter.IsConnected(TextureRect.SignalName.MouseEntered, _hBoxOnEnteredCallable))
+        // {
+        //     _texActiveCharacter.Disconnect(TextureRect.SignalName.MouseEntered, _hBoxOnEnteredCallable);
+        // }
+        // _texActiveCharacter.Connect(TextureRect.SignalName.MouseEntered, _hBoxOnEnteredCallable);
+        // _texActiveCharacter.MouseEntered += () => _hBoxTurnOrder.OnMouseEntered(characterData);
+        // PortraitMouseEntered = null;
+        // PortraitMouseEntered += _hBoxTurnOrder.OnMouseEntered;
+        _mouseOverPortraitData = characterData;
         _characterInfoPanel.SetPortrait(_texActiveCharacter, characterData);
+
         UpdateBars(characterData);
     }
 
@@ -425,6 +460,10 @@ public partial class BattleHUD : CanvasLayer
                 : values.Reagent.ToString() + " reagents remaining. Used for Ishtari rituals.";
             OnBattleLogEntry(output, false);
         }
+    }
+    public void Exit()
+    {
+        // PortraitMouseEntered = null;
     }
 }
 

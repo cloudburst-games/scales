@@ -185,6 +185,7 @@ public partial class BattleScene : Node, ISceneTransitionable
     private void GoToMainMenu()
     {
         GetNode<SettingsManager>("BattleHUD/SettingsManager").Exit();
+        _HUD.Exit();
         _mainMenuSceneTransition.Start(SceneTransition.LoadType.Simple);
     }
 

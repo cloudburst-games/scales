@@ -379,22 +379,22 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
 
     private int GetUpdatedPhysicalDamageStrength()
     {
-        return UpdateStat(Attributes[AttributeMode.Might], 0.25f, 0.05f);
+        return UpdateStat(Attributes[AttributeMode.Might], 0.35f, 0.05f);
     }
 
     private int GetUpdatedPhysicalDamagePrecision()
     {
-        return UpdateStat(Attributes[AttributeMode.Precision], 0.5f, 0.05f);
+        return UpdateStat(Attributes[AttributeMode.Precision], 0.4f, 0.05f);
     }
 
     private int GetUpdatedPhysicalDamageRanged()
     {
-        return UpdateStat(Attributes[AttributeMode.Precision], 0.2f, 0.05f);
+        return UpdateStat(Attributes[AttributeMode.Precision], 0.3f, 0.05f);
     }
 
     private int GetUpdatedMysticism()
     {
-        return UpdateStat(Attributes[AttributeMode.Intellect], 0.6f, 0.035f);
+        return UpdateStat(Attributes[AttributeMode.Intellect], 0.4f, 0.045f);
     }
 
     private int GetUpdatedInitiative()
@@ -415,7 +415,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
 
     private int GetUpdatedHitBonusStrength()
     {
-        return UpdateStat(Attributes[AttributeMode.Might], 0.5f, 0.02f) + UpdateStat(Attributes[AttributeMode.Precision], 0.25f, 0.02f);
+        return UpdateStat(Attributes[AttributeMode.Might], 0.7f, 0.02f) + UpdateStat(Attributes[AttributeMode.Precision], 0.25f, 0.02f);
     }
     private int GetUpdatedHitBonusPrecision()
     {

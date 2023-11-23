@@ -17,11 +17,8 @@ public partial class HBoxTurnOrder : HBoxContainer
     [Export]
     private PackedScene _roundSeparatorScn;
 
-    [Export]
     private const float TOTAL_WIDTH_CAPACITY = 2960;
-    [Export]
     private const float PORTRAIT_WIDTH = 140;
-    [Export]
     private const float SEPARATOR_WIDTH = 14;
 
 
@@ -85,6 +82,8 @@ public partial class HBoxTurnOrder : HBoxContainer
         };
         AddChild(portrait);
         _currentElements.Add(portrait);
+        portrait.MouseEntered += () => this.OnMouseEntered(character);
+        portrait.MouseExited += this.OnMouseExited;
     }
     private void CreateRoundSeparator()
     {
@@ -93,4 +92,46 @@ public partial class HBoxTurnOrder : HBoxContainer
         AddChild(roundSeparator);
         _currentElements.Add(roundSeparator);
     }
+
+    public void OnMouseEntered(StoryCharacterData storyCharacter)
+    {
+        _currentMouseover = storyCharacter;
+    }
+
+    public void OnMouseExited()
+    {
+        _currentMouseover = null;
+    }
+
+    private StoryCharacterData _currentMouseover = null;
+
+    [Signal]
+    public delegate void CharacterClickedEventHandler(bool rightClick, StoryCharacterData data);
+
+    public override void _Input(InputEvent ev)
+    {
+        if (!ev.IsEcho())
+        {
+            if (ev.IsPressed())
+            {
+
+                if (ev is InputEventMouseButton btn && (btn.ButtonIndex == MouseButton.Left || btn.ButtonIndex == MouseButton.Right))
+                {
+                    if (_currentMouseover != null)
+                    {
+                        // GD.Print("clicked on ", _currentMouseover.Name);
+                        EmitSignal(SignalName.CharacterClicked, btn.ButtonIndex == MouseButton.Right, _currentMouseover);
+                    }
+                }
+
+            }
+        }
+    }
+
+    // todo - something simlar for single portrait (accessed in BattleHUD)
+    // converge code and reduce duplication
+    // connect signals to pnlcharacterinfo access
+    // ? mouse cursor
+
+
 }

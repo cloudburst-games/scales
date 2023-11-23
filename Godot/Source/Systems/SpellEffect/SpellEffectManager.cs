@@ -405,7 +405,7 @@ public partial class SpellEffectManager : Node
             SpellMode = SpellMode.SolarFlare,
             Description = "Launch a jolt of solar energy at an enemy.",
             ReagentCost = 0,
-            ChargeCost = 2,
+            ChargeCost = 5,
             Patron = Spell.PatronMode.Shamash,
         };
         AllSpells[SpellMode.SolarBlast] = new()
@@ -419,7 +419,7 @@ public partial class SpellEffectManager : Node
             SpellMode = SpellMode.SolarBlast,
             Description = "Blast your enemies with the power of the sun.",
             ReagentCost = 0,
-            ChargeCost = 4,
+            ChargeCost = 8,
             Patron = Spell.PatronMode.Shamash,
         };
         AllSpells[SpellMode.JudgementOfFlame] = new()
@@ -432,7 +432,7 @@ public partial class SpellEffectManager : Node
             SpellMode = SpellMode.JudgementOfFlame,
             Description = "Burn an enemy over time and reduce their might and precision.",
             ReagentCost = 0,
-            ChargeCost = 5,
+            ChargeCost = 8,
             Patron = Spell.PatronMode.Shamash,
         };
         AllSpells[SpellMode.BlindingLight] = new()
@@ -445,7 +445,7 @@ public partial class SpellEffectManager : Node
             SpellMode = SpellMode.BlindingLight,
             Description = "Reduces an opponent's hit chance.",
             ReagentCost = 0,
-            ChargeCost = 3,
+            ChargeCost = 6,
             Patron = Spell.PatronMode.Shamash,
         };
         AllSpells[SpellMode.VialOfFury] = new()
@@ -457,7 +457,7 @@ public partial class SpellEffectManager : Node
             Target = Spell.TargetMode.Enemy,
             SpellMode = SpellMode.VialOfFury,
             Description = "Cause an enemy to go berserk, attacking the nearest creature.",
-            ReagentCost = 5,
+            ReagentCost = 9,
             ChargeCost = 0,
             Patron = Spell.PatronMode.Ishtar,
         };
@@ -470,7 +470,7 @@ public partial class SpellEffectManager : Node
             Target = Spell.TargetMode.Ally,
             SpellMode = SpellMode.ElixirOfVigour,
             Description = "Enhances an ally's strength and resilience.",
-            ReagentCost = 2,
+            ReagentCost = 5,
             ChargeCost = 0,
             Patron = Spell.PatronMode.Ishtar,
         };
@@ -483,7 +483,7 @@ public partial class SpellEffectManager : Node
             Target = Spell.TargetMode.Ally,
             SpellMode = SpellMode.ElixirOfSwiftness,
             Description = "Grants an ally improved precision and speed.",
-            ReagentCost = 2,
+            ReagentCost = 5,
             ChargeCost = 0,
             Patron = Spell.PatronMode.Ishtar,
         };
@@ -496,7 +496,7 @@ public partial class SpellEffectManager : Node
             Target = Spell.TargetMode.Ally,
             SpellMode = SpellMode.RegenerativeOintment,
             Description = "Improves an ally's health regeneration.",
-            ReagentCost = 3,
+            ReagentCost = 6,
             ChargeCost = 0,
             Patron = Spell.PatronMode.Ishtar,
         };
@@ -688,7 +688,7 @@ public partial class SpellEffectManager : Node
             AttackType = BattleRoller.AttackType.Undodgeable,
         };
         BattleRoller.RollerOutcomeInformation res = BattleRoller.CalculateAttack(originCharacter.Rand, unmissable);
-        GD.Print("amount: ", res.FinalDamage);
+        // GD.Print("amount: ", res.FinalDamage);
         CharacterRoundEffect roundEffect = new(
 
             name: spell.Name + ": " + spellEffect.Name,

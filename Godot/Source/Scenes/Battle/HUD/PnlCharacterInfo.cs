@@ -230,10 +230,10 @@ public partial class PnlCharacterInfo : Control
 
     private Dictionary<StoryCharacterData.AttributeMode, string> _attributeDescriptions = new() {
             {StoryCharacterData.AttributeMode.Might, "Boosts health, as well as skill and damage with strength weapons."},
-            {StoryCharacterData.AttributeMode.Precision, "Improves skill and damage with precision weapons, as well as critical chance."},
+            {StoryCharacterData.AttributeMode.Precision, "Improves skill and damage with precision weapons, overall accuracy, as well as critical chance."},
             {StoryCharacterData.AttributeMode.Resilience, "Enhances health, health regeneration, and both physical and mystical resistance."},
             {StoryCharacterData.AttributeMode.Speed, "Improves chance to dodge, number of action points, and allows to act earlier in combat."},
-            {StoryCharacterData.AttributeMode.Intellect, "Elevates mysticism, mystical resist, number of reagents, and magical charge."},
+            {StoryCharacterData.AttributeMode.Intellect, "Elevates mysticism, mystical resist, number of reagents, and mana capacity."},
             {StoryCharacterData.AttributeMode.Charisma, "Augments leadership, boosting abilities of nearby allies."},
             {StoryCharacterData.AttributeMode.Luck, "Improves ability to dodge, resist mystical attacks, and land critical blows."}
     };
