@@ -17,6 +17,8 @@ public partial class SpellVisual : Node2D
 
     private SpellEffectState _spellEffectState;
 
+    public bool FinishOnHit { get; internal set; }
+
     public enum SpellEffectMode { Projectile }
 
     // public enum SpellEffectVisualMode { Projectile, Self, FromSky }

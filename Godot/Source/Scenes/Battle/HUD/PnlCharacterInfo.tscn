@@ -6,9 +6,9 @@
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="4_1i2fg"]
 [ext_resource type="Texture2D" uid="uid://bpniavkv1psk3" path="res://addons/AutoScrollLabelPlugin/AutoScrollLabelIcon.png" id="4_r4fpf"]
 [ext_resource type="PackedScene" uid="uid://bl1edev0p0c1d" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfoElement.tscn" id="5_db1ly"]
-[ext_resource type="Texture2D" uid="uid://y60lspk4s5rc" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSNORMAL.png" id="6_3efnn"]
-[ext_resource type="Texture2D" uid="uid://c8q2bdypfy7w7" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSPRESSED.png" id="7_c25ac"]
-[ext_resource type="Texture2D" uid="uid://cwpt2tnkrjdhs" path="res://Assets/Graphics/Interface/Buttons/Quit/CROSSHOVER.png" id="8_3isf5"]
+[ext_resource type="Texture2D" uid="uid://crxm7cjirqta8" path="res://Assets/Graphics/UI icons/Close.png" id="7_5b0j8"]
+[ext_resource type="Texture2D" uid="uid://cp0nvngfnqwds" path="res://Assets/Graphics/UI icons/ClosePressed.png" id="8_7t31o"]
+[ext_resource type="Texture2D" uid="uid://b6j67d6me2irx" path="res://Assets/Graphics/UI icons/CloseHover.png" id="9_morwe"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0so4a"]
 font_size = 28
@@ -238,9 +238,9 @@ offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-texture_normal = ExtResource("6_3efnn")
-texture_pressed = ExtResource("7_c25ac")
-texture_hover = ExtResource("8_3isf5")
+texture_normal = ExtResource("7_5b0j8")
+texture_pressed = ExtResource("8_7t31o")
+texture_hover = ExtResource("9_morwe")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("4_1i2fg")

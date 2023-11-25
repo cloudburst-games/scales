@@ -19,16 +19,14 @@
         "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch.wav",
         "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
     ],
-    "Perks": [
-        8
-    ],
+    "Perks": [],
     "_rangedWeaponEquipped": 3,
     "Level": 3,
-    "Might": 8,
-    "Resilience": 14,
-    "Precision": 14,
-    "Speed": 14,
-    "Intellect": 25,
-    "Charisma": 6,
-    "Luck": 10
+    "Might": 2,
+    "Resilience": 2,
+    "Precision": 4,
+    "Speed": 6,
+    "Intellect": 4,
+    "Charisma": 4,
+    "Luck": 4
 }

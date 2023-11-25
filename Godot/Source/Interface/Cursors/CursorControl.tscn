@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://jmpy6jo7v3f8" path="res://Assets/Graphics/Interface/Cursors/Art/Spell.PNG" id="5_58166"]
 [ext_resource type="Texture2D" uid="uid://beaxfdy07nokw" path="res://Assets/Graphics/Interface/Cursors/Art/Move.PNG" id="6_1xeum"]
 [ext_resource type="Texture2D" uid="uid://ctpd2a8t8sk67" path="res://Assets/Graphics/Interface/Cursors/Art/Invalid.PNG" id="7_omnbp"]
-[ext_resource type="Texture2D" uid="uid://iouuy02jxnkp" path="res://Assets/Graphics/Interface/Cursors/Art/Wait.PNG" id="8_pgtph"]
+[ext_resource type="Texture2D" uid="uid://bsd0oefmdr0o4" path="res://Assets/Graphics/Interface/Cursors/Art/New/Hourglass.png" id="8_rjfww"]
 [ext_resource type="Texture2D" uid="uid://0ycu1ka5drml" path="res://Assets/Graphics/Interface/Cursors/Art/Hint.PNG" id="9_nequx"]
 
 [node name="CursorControl" type="Node"]
@@ -18,5 +18,5 @@ _ranged = ExtResource("4_uedjh")
 _spell = ExtResource("5_58166")
 _move = ExtResource("6_1xeum")
 _invalid = ExtResource("7_omnbp")
-_wait = ExtResource("8_pgtph")
+_wait = ExtResource("8_rjfww")
 _hint = ExtResource("9_nequx")

@@ -9,10 +9,11 @@ public partial class PnlCharacterInfoElement : Panel
     [Export]
     private Label _value;
 
-    public void Set(string key, string value)
+    public void Set(string key, string value, Color color)
     {
         _key.Text = key;
         _value.Text = value;
+        _value.Modulate = color;
     }
 
     // Called when the node enters the scene tree for the first time.

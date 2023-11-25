@@ -674,7 +674,7 @@ public class IdleBattleState : BattleState
 
     public override void OnActionBtnPressed(Battler.ActionMode action)
     {
-        Battler.PlayerSelectedAction = action;
+        // Battler.PlayerSelectedAction = action;
         Battler.CharactersAwaitingTurn[0].UISelectedAction = action;
     }
 

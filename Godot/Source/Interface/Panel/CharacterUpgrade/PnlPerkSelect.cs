@@ -366,8 +366,8 @@ public static class PerkFactory
                     Stackable = false,
                     Powerful = false,
                     BtnNormalPath = "res://Assets/Graphics/Icons/IconNormal/Vigor2.png",
-                    BtnPressedPath = "res://Assets/Graphics/Sprites/IconPressed/SpellsPerksPressed/Vigor.png",
-                    BtnHoverPath = "res://Assets/Graphics/Sprites/IconHover/SpellsPerksHover/Vigor.png",
+                    BtnPressedPath = "res://Assets/Graphics/Icons/IconPressed/Vigor2.png",
+                    BtnHoverPath = "res://Assets/Graphics/Icons/IconHover/Vigor2.png",
                     Patron = Scales.FavourMode.Ishtar
                 };
 
@@ -443,7 +443,7 @@ public static class PerkFactory
                 int armorGreaterMagnitude = 8;
                 return new()
                 {
-                    CurrentPerk = Perk.PerkMode.LesserArmor,
+                    CurrentPerk = Perk.PerkMode.GreaterArmor,
                     AssociatedSpell = SpellEffectManager.SpellMode.SolarFlare,
                     Magnitude = armorGreaterMagnitude,
                     Name = "Greater Armor Bonus",

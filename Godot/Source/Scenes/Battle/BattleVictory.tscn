@@ -233,10 +233,8 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 text = "VICTORY!
-Decide the fate of your opponents!
-Ishtar would be pleased with a show of retribution.
-Shamash advises a display of mercy.
-Both would be displeased with any attempt at persuasion."
+Determine your opponents' fate—Ishtar delights in retribution, while Shamash recommends mercy. 
+Both would frown upon any collusion with these heathens."
 label_settings = SubResource("LabelSettings_i2ruh")
 horizontal_alignment = 1
 vertical_alignment = 1

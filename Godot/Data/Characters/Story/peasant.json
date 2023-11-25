@@ -21,11 +21,11 @@
     ],
     "Perks": [],
     "Level": 1,
-    "Might": 12,
-    "Resilience": 6,
-    "Precision": 8,
+    "Might": 4,
+    "Resilience": 4,
+    "Precision": 4,
     "Speed": 5,
-    "Intellect": 13,
-    "Charisma": 11,
-    "Luck": 6
+    "Intellect": 6,
+    "Charisma": 4,
+    "Luck": 5
 }

@@ -1,15 +1,16 @@
-[gd_scene load_steps=145 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=154 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
+[ext_resource type="PackedScene" uid="uid://dt3b4b1tj800g" path="res://Data/Levels/Battle/Gilga/Level0.tscn" id="2_kik3c"]
 [ext_resource type="PackedScene" uid="uid://b0bhqhrvxb7ho" path="res://Data/Levels/Battle/Gilga/Level1.tscn" id="3_nng1n"]
+[ext_resource type="PackedScene" uid="uid://cclorm7y56hv" path="res://Data/Levels/Battle/Gilga/Level2.tscn" id="4_mjxet"]
 [ext_resource type="Texture2D" uid="uid://bu4tecsgh5hbl" path="res://Assets/Graphics/Sprites/Terrain/Beach/PinkPlain.png" id="4_wuwoc"]
 [ext_resource type="PackedScene" uid="uid://f880l6fqx7bi" path="res://Source/Interface/Label/LblFloatingText.tscn" id="4_x84xo"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/PnlAction.cs" id="5_5obug"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BtnActions.cs" id="6_8u3hr"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_8jqkl"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleHUD.cs" id="8_p64pw"]
-[ext_resource type="PackedScene" uid="uid://bw5lq1gqo82tm" path="res://Data/Levels/Battle/BattleLevelTemplate.tscn" id="9_4plr1"]
 [ext_resource type="Texture2D" uid="uid://c7865n0ba4ho8" path="res://Assets/Graphics/Icons/IconNormal/MeleeCursor.png" id="9_i5kht"]
 [ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="10_a18qy"]
 [ext_resource type="Texture2D" uid="uid://bx1ln2pejwell" path="res://Assets/Graphics/Icons/IconPressed/MeleeCursor.png" id="10_crl6l"]
@@ -17,23 +18,28 @@
 [ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="11_b5csu"]
 [ext_resource type="Texture2D" uid="uid://d1s5d6rv4tmqd" path="res://Assets/Graphics/Icons/IconHover/MeleeCursor.png" id="11_cp6hm"]
 [ext_resource type="Texture2D" uid="uid://bji64q2o5d2ma" path="res://Assets/Graphics/Sprites/Spellbook/SpellbookSmall.png" id="12_fjdpr"]
-[ext_resource type="Texture2D" uid="uid://4osa8ri0ekrt" path="res://Assets/Graphics/Interface/Images/9patchEgyptianSymbols.png" id="13_alkka"]
 [ext_resource type="Texture2D" uid="uid://c1h71w4tf13wc" path="res://Assets/Graphics/Sprites/Spellbook/SpellbookSmallHover.png" id="13_xc721"]
 [ext_resource type="Texture2D" uid="uid://ciflwe77oio84" path="res://Assets/Graphics/Sprites/Spellbook/SpellbookSmallPressed.png" id="14_csqql"]
 [ext_resource type="AudioStream" uid="uid://u8vvnphooeai" path="res://addons/BaseTextureButtonPlugin/hover.wav" id="15_h183d"]
 [ext_resource type="AudioStream" uid="uid://in1epaq47smy" path="res://addons/BaseTextureButtonPlugin/click.wav" id="16_g43m3"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/HUD/HBoxTurnOrder.cs" id="17_7pg5c"]
+[ext_resource type="Texture2D" uid="uid://dga80ayyo2b86" path="res://Assets/Graphics/UI icons/BattleLOG.png" id="18_4nmye"]
 [ext_resource type="PackedScene" uid="uid://mcjj6hspcagt" path="res://Source/Scenes/Battle/HUD/TurnOrderRoundSeparator.tscn" id="18_popda"]
+[ext_resource type="Texture2D" uid="uid://fln6nxij0bnm" path="res://Assets/Graphics/UI icons/BattleLogPressed.png" id="19_eekbh"]
 [ext_resource type="PackedScene" uid="uid://cgdolyn63ljtp" path="res://Source/Scenes/Battle/PnlScales.tscn" id="19_tnek7"]
+[ext_resource type="Texture2D" uid="uid://b8i6p0vu5c1bw" path="res://Assets/Graphics/UI icons/BattleLogHover.png" id="20_ch485"]
 [ext_resource type="Texture2D" uid="uid://b4jeq5gj5rejc" path="res://Assets/Graphics/Icons/IconHover/CheckMark.png" id="20_qnsyb"]
 [ext_resource type="Texture2D" uid="uid://benn1hd5gns8v" path="res://Assets/Graphics/Icons/IconPressed/CheckMark.png" id="21_v1pjx"]
 [ext_resource type="Texture2D" uid="uid://c7bjvfuqw81ox" path="res://Assets/Graphics/Icons/IconNormal/CheckMark.png" id="22_yj0us"]
 [ext_resource type="LabelSettings" uid="uid://cnydnjeqvs3kr" path="res://Source/Interface/Label/test_label_settings.tres" id="24_m03nf"]
+[ext_resource type="Texture2D" uid="uid://c4pcrxn7v810b" path="res://Assets/Graphics/UI icons/Settings.png" id="26_bl8wc"]
 [ext_resource type="Texture2D" uid="uid://d2kwipl48otjy" path="res://Assets/Graphics/Icons/IconNormal/RangedAttack.png" id="26_cv1ci"]
 [ext_resource type="Texture2D" uid="uid://d2kp7wdhipjir" path="res://Assets/Graphics/Icons/IconPressed/RangedAttack.png" id="27_67lrp"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/CntSpellBook.cs" id="27_fhn5x"]
 [ext_resource type="PackedScene" uid="uid://dx62avxvwtb0l" path="res://Source/Systems/SpellEffect/SpellEffectManager.tscn" id="27_gplcg"]
+[ext_resource type="Texture2D" uid="uid://o3bixymop6tw" path="res://Assets/Graphics/UI icons/SettingsPressed.png" id="27_m7pjy"]
 [ext_resource type="Texture2D" uid="uid://dww53xo74r4v4" path="res://Assets/Graphics/Icons/IconHover/RangedAttack.png" id="28_4fm4s"]
+[ext_resource type="Texture2D" uid="uid://bu25ru0fi0fud" path="res://Assets/Graphics/UI icons/SettingsHover.png" id="28_rjj6i"]
 [ext_resource type="Texture2D" uid="uid://bkmrjnfuoi26u" path="res://Assets/Graphics/Icons/IconNormal/boots2.png" id="29_v0xc3"]
 [ext_resource type="Texture2D" uid="uid://bc16f3u1jtvph" path="res://Assets/Graphics/Icons/IconPressed/boots2.png" id="30_px0w4"]
 [ext_resource type="Texture2D" uid="uid://bxmpqnw6v6ykh" path="res://Assets/Graphics/Icons/IconHover/boots2.png" id="31_ku3bx"]
@@ -46,18 +52,21 @@
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="41_blf7c"]
 [ext_resource type="Texture2D" uid="uid://14orytikjbvq" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksHover.png" id="41_s5x0e"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="42_vrdt6"]
+[ext_resource type="Texture2D" uid="uid://crxm7cjirqta8" path="res://Assets/Graphics/UI icons/Close.png" id="43_ln4bc"]
+[ext_resource type="Texture2D" uid="uid://b6j67d6me2irx" path="res://Assets/Graphics/UI icons/CloseHover.png" id="44_fjg6u"]
 [ext_resource type="Texture2D" uid="uid://c37j54kghr2yk" path="res://Assets/Graphics/Sprites/Spellbook/template_atlas_pressed.tres" id="44_hudfb"]
-[ext_resource type="Texture2D" uid="uid://cuo2n7dmv7qap" path="res://Assets/Graphics/Sprites/Spellbook/template_atlas_hover.tres" id="45_bqq33"]
+[ext_resource type="Texture2D" uid="uid://cp0nvngfnqwds" path="res://Assets/Graphics/UI icons/ClosePressed.png" id="45_fn3ih"]
 [ext_resource type="PackedScene" uid="uid://d3fkaury6ig66" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfo.tscn" id="49_8ah3x"]
 [ext_resource type="PackedScene" uid="uid://dab158j4ohebo" path="res://Source/Systems/HexGrid/HexGridUserDisplay.tscn" id="50_rack7"]
+[ext_resource type="Texture2D" uid="uid://drhqcjscwlo64" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/SolarBlastFinalNormal.png" id="54_7t022"]
 [ext_resource type="PackedScene" uid="uid://dhnf1jm0vtok8" path="res://Source/Interface/Panel/CharacterUpgrade/CntCharacterUpgrade.tscn" id="54_82j32"]
 [ext_resource type="AudioStream" uid="uid://wh6raoilaqyn" path="res://Assets/Audio/Effects/PlaceholderSFX/SpellFizzle.wav" id="54_fvkb8"]
 [ext_resource type="PackedScene" uid="uid://bes3oet5iq1e1" path="res://Source/Systems/SettingsManager/SettingsManager.tscn" id="55_r8byv"]
 [ext_resource type="PackedScene" uid="uid://bb71nh8f38a0g" path="res://addons/SceneTransitionPlugin/SceneTransition.tscn" id="57_cjqrl"]
 [ext_resource type="PackedScene" uid="uid://4extw10vut0x" path="res://Source/Systems/AdventureStoriesHandler/GilgamStoryHandler.tscn" id="58_27mia"]
 [ext_resource type="PackedScene" uid="uid://udu41fk3ega5" path="res://Source/Scenes/Battle/BattleVictory.tscn" id="59_tgswr"]
-[ext_resource type="Texture2D" uid="uid://4fthurgkq0hl" path="res://Assets/Graphics/Icons/IconPressed/FlameJudgement2.png" id="60_6w6c4"]
 [ext_resource type="AudioStream" uid="uid://picwhekd1ufi" path="res://Assets/Audio/Effects/PlaceholderSFX/CloseBook.wav" id="60_pfahi"]
+[ext_resource type="Texture2D" uid="uid://cvncg5ve0xc5k" path="res://Assets/Graphics/UI icons/Hourglass.png" id="60_q72yi"]
 [ext_resource type="AudioStream" uid="uid://css5v5pstlfbn" path="res://Assets/Audio/Effects/PlaceholderSFX/OpenBook.wav" id="61_5lh3e"]
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="64_ascdd"]
 [ext_resource type="AudioStream" uid="uid://c5tl1eo4tb4il" path="res://Assets/Audio/Music/World/EpicBattle_L3.ogg" id="65_61tou"]
@@ -689,7 +698,7 @@ _btnMenu = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBox
 _btnActions = NodePath("BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnActions")
 _battleScalesAnim = NodePath("BattleHUD/CntHUD/PnlScales/AnimScales")
 _btnMainMenu = NodePath("BattleHUD/CntHUD/PnlMenu/VBoxContainer/BtnMainMenu")
-_levelScenePaths = [ExtResource("9_4plr1"), ExtResource("3_nng1n")]
+_levelScenePaths = [ExtResource("2_kik3c"), ExtResource("3_nng1n"), ExtResource("4_mjxet")]
 _cntSpellBook = NodePath("BattleHUD/CntHUD/CntSpellBook")
 _cursorControl = NodePath("Battler/CursorControl")
 _spellEffectManager = NodePath("SpellEffectManager")
@@ -963,7 +972,9 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("13_alkka")
+texture_normal = ExtResource("18_4nmye")
+texture_pressed = ExtResource("19_eekbh")
+texture_hover = ExtResource("20_ch485")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
@@ -985,9 +996,9 @@ _clickedSample = ExtResource("16_g43m3")
 [node name="BtnMenu" type="TextureButton" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("39_ovjc1")
-texture_pressed = ExtResource("40_n3uxa")
-texture_hover = ExtResource("41_blf7c")
+texture_normal = ExtResource("26_bl8wc")
+texture_pressed = ExtResource("27_m7pjy")
+texture_hover = ExtResource("28_rjj6i")
 texture_disabled = ExtResource("42_vrdt6")
 ignore_texture_size = true
 stretch_mode = 0
@@ -996,6 +1007,7 @@ _hoverSample = ExtResource("15_h183d")
 _clickedSample = ExtResource("16_g43m3")
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnMenu"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1107,7 +1119,7 @@ offset_right = 1010.5
 offset_bottom = 301.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "As you traverse the ancient city of Uruk, you unexpectedly cross paths with a trio of formidable adversaries. They emerge from the shadows, clad in weathered leather armor adorned with the emblem of the 'Sons of the Sand,' a ruthless warrior brotherhood native to these lands. Their leader, a battle-hardened veteran, steps forward and warns, 'You've ventured into the heart of our territory, stranger. The 'Sons of the Sand' are bound by duty to protect these ancient lands, and you shall answer for your intrusion.'"
+text = "Mere whispers of Gilgamesh’s name once sent his people cowering, afraid of him and his tyrannical games. Until one day, their life of fear became a burden heavier than their fear of death. The citizens dared to challenge him in battle."
 label_settings = SubResource("LabelSettings_21ipa")
 autowrap_mode = 2
 
@@ -1201,15 +1213,16 @@ anchor_right = 1.0
 offset_left = -89.0
 offset_bottom = 95.0
 grow_horizontal = 0
-texture_normal = ExtResource("39_ovjc1")
-texture_pressed = ExtResource("40_n3uxa")
-texture_hover = ExtResource("41_blf7c")
+texture_normal = ExtResource("43_ln4bc")
+texture_pressed = ExtResource("45_fn3ih")
+texture_hover = ExtResource("44_fjg6u")
 texture_disabled = ExtResource("42_vrdt6")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_8jqkl")
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlFullLog/BtnLogClose"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1248,15 +1261,16 @@ anchor_right = 1.0
 offset_left = -89.0
 offset_bottom = 95.0
 grow_horizontal = 0
-texture_normal = ExtResource("39_ovjc1")
-texture_pressed = ExtResource("40_n3uxa")
-texture_hover = ExtResource("41_blf7c")
+texture_normal = ExtResource("43_ln4bc")
+texture_pressed = ExtResource("45_fn3ih")
+texture_hover = ExtResource("44_fjg6u")
 texture_disabled = ExtResource("42_vrdt6")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_8jqkl")
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlMenu/BtnMenuClose"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1446,8 +1460,10 @@ _allSpellBtns = {
 7: NodePath("PnlSpellBook/BodySpells/BtnRegenOintment")
 }
 _audioFizzle = NodePath("AudioFizzle")
+metadata/_edit_use_anchors_ = true
 
 [node name="PnlSpellBook" type="Panel" parent="BattleHUD/CntHUD/CntSpellBook"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -1671,7 +1687,7 @@ offset_right = 651.2
 offset_bottom = 413.6
 texture_normal = SubResource("AtlasTexture_fjwsn")
 texture_pressed = ExtResource("44_hudfb")
-texture_hover = ExtResource("45_bqq33")
+texture_hover = ExtResource("54_7t022")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
@@ -1894,7 +1910,7 @@ texture = ExtResource("4_wuwoc")
 [node name="Icon" type="Sprite2D" parent="BattleHUD/CtrlLoading/ColorRect"]
 position = Vector2(1920, 1062)
 scale = Vector2(3, 3)
-texture = ExtResource("60_6w6c4")
+texture = ExtResource("60_q72yi")
 
 [node name="Panel" type="Panel" parent="BattleHUD/CtrlLoading/ColorRect"]
 layout_mode = 1

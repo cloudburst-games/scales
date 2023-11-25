@@ -8,11 +8,11 @@ public class StoryCharacterJSONInterface
         string filename = storyCharacter switch
         {
             StoryCharacter.StoryCharacterMode.Enkidu => "Data/Characters/Story/enkidu.json",
-            StoryCharacter.StoryCharacterMode.Eresh => "Data/Characters/Story/eresj.json",
-            StoryCharacter.StoryCharacterMode.Dumuzi => "Data/Characters/Story/dumuzi.json",
+            StoryCharacter.StoryCharacterMode.Peasant => "Data/Characters/Story/peasant.json",
+            StoryCharacter.StoryCharacterMode.Villager => "Data/Characters/Story/villager.json",
             StoryCharacter.StoryCharacterMode.Gesht => "Data/Characters/Story/gesht.json",
             StoryCharacter.StoryCharacterMode.Gilgam => "Data/Characters/Story/gilgam.json",
-            StoryCharacter.StoryCharacterMode.Lugal => "Data/Characters/Story/lugal.json",
+            StoryCharacter.StoryCharacterMode.Priestess => "Data/Characters/Story/priestess.json",
             StoryCharacter.StoryCharacterMode.Ningal => "Data/Characters/Story/ningal.json",
             StoryCharacter.StoryCharacterMode.Utug => "Data/Characters/Story/utug.json",
             StoryCharacter.StoryCharacterMode.Mountain => "Data/Characters/Story/mountain_weak.json",

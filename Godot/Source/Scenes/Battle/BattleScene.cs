@@ -275,6 +275,11 @@ public partial class BattleScene : Node, ISceneTransitionable
 
     private void OnVictoryFavouredGod(Scales.FavourMode finalFavour, int scalesImpact, CharacterUnit victim, bool persuadeSuccess)
     {
+        if (victim != null && victim.CharacterData.Name == "Enkidu")
+        {
+            victim.StatusToPlayer = CharacterUnit.StatusToPlayerMode.Player;
+            victim.InitStatusToPlayer();
+        }
         switch (finalFavour)
         {
             case Scales.FavourMode.Balanced:
@@ -403,6 +408,8 @@ public partial class BattleScene : Node, ISceneTransitionable
 
         _btnActions.OnCharacterTurnStart(_battler.CharactersAwaitingTurn[0]);
         SetFavourForCharacters();
+
+        _battler.CharactersAwaitingTurn[0].UpdateBarHealth();
 
         if (_battler.CharactersAwaitingTurn[0].StatusToPlayer == CharacterUnit.StatusToPlayerMode.Player && _nextLevel == 0)
         {
@@ -625,7 +632,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         _battler.ProcessMode = ProcessModeEnum.Inherit;
         _pnlAction.ProcessMode = ProcessModeEnum.Inherit;
         _btnActions.OnActionBtnPressed(Battler.ActionMode.Melee);
-        _battler.PlayerSelectedAction = Battler.ActionMode.Melee;
+        // _battler.PlayerSelectedAction = Battler.ActionMode.Melee;
         _cursorControl.SetCursor(CursorControl.CursorMode.Wait);
         _battleScalesAnim.Seek(_scales.GetScaleAnimationTime(), true);
         if (!_pnlScales.Visible)
@@ -686,26 +693,26 @@ public partial class BattleScene : Node, ISceneTransitionable
     // and the bark string itself
     // maybe the data for this should be in the character JSON!
 
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
+    // public override void _Process(double delta)
+    // {
+    //     base._Process(delta);
 
-        // TESTING
-        // if (Input.IsKeyPressed(Key.Space))
-        // {
-        //     UnloadLevel();
-        // }
-    }
+    //     // TESTING
+    //     // if (Input.IsKeyPressed(Key.Space))
+    //     // {
+    //     //     UnloadLevel();
+    //     // }
+    // }
 
-    public override void _Input(InputEvent ev)
-    {
-        if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
-        {
-            if (evk.Keycode == Key.Space)
-            {
-                OnBattleEnded(true);
-            }
-        }
-    }
+    // public override void _Input(InputEvent ev)
+    // {
+    //     if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
+    //     {
+    //         if (evk.Keycode == Key.Space)
+    //         {
+    //             OnBattleEnded(true);
+    //         }
+    //     }
+    // }
 
 }

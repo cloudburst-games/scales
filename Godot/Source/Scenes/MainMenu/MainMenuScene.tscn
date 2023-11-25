@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://b6v34iwdchsgi"]
+[gd_scene load_steps=40 format=3 uid="uid://b6v34iwdchsgi"]
 
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/MainMenuScene.cs" id="1_66m4n"]
 [ext_resource type="Script" path="res://addons/SceneTransitionPlugin/SceneTransition.cs" id="2_lc0ma"]
@@ -19,8 +19,11 @@
 [ext_resource type="Texture2D" uid="uid://bvhklxpq1kx1w" path="res://Assets/Graphics/Interface/Buttons/Leaderboard/leaderboardsComplexPressed.png" id="20_xyxyu"]
 [ext_resource type="Texture2D" uid="uid://bti2xh8sbgo6t" path="res://Assets/Graphics/Interface/Buttons/Leaderboard/leaderboardsComplexHover.png" id="21_2dvak"]
 [ext_resource type="PackedScene" uid="uid://bes3oet5iq1e1" path="res://Source/Systems/SettingsManager/SettingsManager.tscn" id="23_7c4m2"]
+[ext_resource type="Texture2D" uid="uid://crxm7cjirqta8" path="res://Assets/Graphics/UI icons/Close.png" id="25_38bd0"]
+[ext_resource type="Texture2D" uid="uid://b6j67d6me2irx" path="res://Assets/Graphics/UI icons/CloseHover.png" id="26_kyqmb"]
 [ext_resource type="Script" path="res://addons/PictureStoryPlugin/PictureStoryContainer/PictureStoryContainer.cs" id="26_s1oqk"]
 [ext_resource type="Script" path="res://addons/PictureStoryPlugin/PictureStorySlide/PictureStorySlide.cs" id="27_3ioox"]
+[ext_resource type="Texture2D" uid="uid://cp0nvngfnqwds" path="res://Assets/Graphics/UI icons/ClosePressed.png" id="27_dpbi1"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="28_5f6ek"]
 [ext_resource type="Script" path="res://addons/AutoScrollLabelPlugin/AutoScrollLabel.cs" id="29_lwbti"]
 [ext_resource type="PackedScene" uid="uid://ce0b88lumohl8" path="res://Source/Scenes/MainMenu/PnlAdventures/CntPnlAdventures.tscn" id="32_h085b"]
@@ -105,6 +108,10 @@ _data = {
 
 [sub_resource type="LabelSettings" id="LabelSettings_ha8g4"]
 font_size = 72
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_weltr"]
+atlas = ExtResource("7_e1fsh")
+region = Rect2(2340.48, 95.333, 808.868, 884.819)
 
 [sub_resource type="LabelSettings" id="LabelSettings_38jr5"]
 font_size = 64
@@ -378,7 +385,6 @@ InputSkipsSlide = false
 ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="TextureRect2" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -387,30 +393,21 @@ grow_vertical = 2
 texture = ExtResource("5_4qe3k")
 
 [node name="Panel" type="Panel" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1293.5
-offset_top = -714.0
-offset_right = 1293.5
-offset_bottom = 714.0
+anchor_top = 0.025
+anchor_right = 0.975
+anchor_bottom = 0.875
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AutoScrollLabel" type="RichTextLabel" parent="Control/IntroPictureStory/PictureStorySlide2/Panel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1173.5
-offset_top = -543.5
-offset_right = 1173.5
-offset_bottom = 543.5
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.025
+anchor_right = 0.975
+anchor_bottom = 0.975
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -424,19 +421,24 @@ text = "
 
 
 
-In the theater of gods, Ishtar, the goddess of love and war, challenges Shamash, the god of wisdom and order, to a comic game, with Gilgamesh as their pawn upon the mortal stage.
 
-\"I challenge you to shape him into a just and noble ruler,\" Ishtar smirked.
 
-Shamash stroked his beard, \"Do you doubt his potential for wisdom, Ishtar?\"
 
-Ishtar's laughter echoed through the heavens. \"Humans embrace their primal instincts. His blood will boil in battle. He cannot learn to show mercy.” 
 
-Shamash’s eyes came alive, “And if I teach him the way of order?”
 
-Ishtar replied, \"The crown shall be yours.\"
+In the theater of gods, Ishtar, the goddess of love and war, challenges Shamash, the god of wisdom and order, to a game of justice, with Gilgamesh as their pawn upon the mortal stage.
 
-As these two deities vie to tip the scales of power, the destiny of Gilgamesh and his people hang on the choices you make."
+“I challenge you to shape him into a just and noble ruler,” Ishtar smirked.
+
+Shamash stroked his beard. “Do you doubt his potential for wisdom, Ishtar?”
+
+Ishtar’s laughter echoed through the heavens. “Humans embrace their primal instincts. His blood will boil in battle. He will always choose wrath and live a great, but short, mortal life.”
+
+Shamash’s eyes came alive. “And if I teach him the way of mercy?”
+
+Ishtar replied, “You may grant him immortality.”
+
+As these two deities vie to tip the scales of judgement, the destiny of Gilgamesh and his people hang on the choices you make."
 script = ExtResource("29_lwbti")
 _scrollSpeed = 30.0
 
@@ -472,6 +474,14 @@ text = "Continue"
 label_settings = SubResource("LabelSettings_ha8g4")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.9
+texture = SubResource("AtlasTexture_weltr")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="CntPnlAdventures" parent="Control" instance=ExtResource("32_h085b")]
 visible = false
@@ -537,9 +547,9 @@ offset_bottom = 58.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture_normal = ExtResource("11_y5a11")
-texture_pressed = ExtResource("12_jst7q")
-texture_hover = ExtResource("13_p3vmq")
+texture_normal = ExtResource("25_38bd0")
+texture_pressed = ExtResource("26_kyqmb")
+texture_hover = ExtResource("27_dpbi1")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("15_q258l")
@@ -547,6 +557,7 @@ _hoverSample = ExtResource("12_rhirg")
 _clickedSample = ExtResource("13_wyj12")
 
 [node name="Label" type="Label" parent="Control/PnlAbout/BtnClose"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

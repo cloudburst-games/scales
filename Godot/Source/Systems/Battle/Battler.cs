@@ -45,7 +45,7 @@ public partial class Battler : Node2D
     public int Round { get; private set; } = 1;
 
     // the action that the player selects via the UI
-    public ActionMode PlayerSelectedAction { get; set; } = ActionMode.Move;
+    // public ActionMode PlayerSelectedAction { get; set; } = ActionMode.Move;
 
     public Dictionary<SpellEffectManager.SpellMode, SpellEffectManager.Spell> AllSpells { get; set; }
 
@@ -234,6 +234,7 @@ public partial class Battler : Node2D
             {
                 GD.Print("waiting a bit, delete this code in 228 Battler.cs if buged");
                 await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
+                break;
             }
         }
         // Is there a winner?

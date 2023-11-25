@@ -344,6 +344,12 @@ public partial class CharacterUnit : CharacterBody2D
         // CharacterStats.ResourceLocalToScene = true;
     }
 
+    public void UpdateBarHealth()
+    {
+        float fract = (float)CharacterData.Stats[StoryCharacterData.StatMode.Health] / (float)CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth] * 100;
+        BarHealth.Value = fract;
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         if (_controlState == null || _actionState == null)
@@ -673,7 +679,17 @@ public partial class CharacterUnit : CharacterBody2D
             Speed = data.Speed,
             Intellect = data.Intellect,
             Charisma = data.Charisma,
-            Luck = data.Luck
+            Luck = data.Luck,
+            ArmourClass = data.ArmourClass,
+
+            Attributes = new() { { StoryCharacterData.AttributeMode.Might, data.Might },
+            { StoryCharacterData.AttributeMode.Resilience, data.Resilience },
+            { StoryCharacterData.AttributeMode.Precision, data.Precision },
+            { StoryCharacterData.AttributeMode.Speed, data.Speed },
+            { StoryCharacterData.AttributeMode.Intellect, data.Intellect },
+            { StoryCharacterData.AttributeMode.Charisma, data.Charisma },
+            { StoryCharacterData.AttributeMode.Luck, data.Luck }, }
+
         };
         CharacterData.Initialise(RoundEffectAnim, CharacterDataTreeLink);
         _body = GD.Load<PackedScene>(CharacterData.BodyPath);

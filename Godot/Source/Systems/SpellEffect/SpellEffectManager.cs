@@ -47,6 +47,7 @@ public partial class SpellEffectManager : Node
     {
         public PackedScene SpellEffectScn { get; set; }
         public SpellEffectManager.SpellEffectVisualMode VisualMode = SpellEffectManager.SpellEffectVisualMode.Projectile;
+        public bool FinishOnHit { get; set; } = true;
     }
 
     // public enum BattleSpellMode
@@ -295,32 +296,38 @@ public partial class SpellEffectManager : Node
         _allSpellVisuals[SpellMode.JudgementOfFlame] = new()
         {
             SpellEffectScn = _spellVisualScns[SpellMode.JudgementOfFlame],
-            VisualMode = SpellEffectVisualMode.Projectile
+            VisualMode = SpellEffectVisualMode.Projectile,
+            FinishOnHit = false
         };
         _allSpellVisuals[SpellMode.BlindingLight] = new()
         {
             SpellEffectScn = _spellVisualScns[SpellMode.BlindingLight],
-            VisualMode = SpellEffectVisualMode.Projectile
+            VisualMode = SpellEffectVisualMode.Projectile,
+            FinishOnHit = false
         };
         _allSpellVisuals[SpellMode.VialOfFury] = new()
         {
             SpellEffectScn = _spellVisualScns[SpellMode.VialOfFury],
-            VisualMode = SpellEffectVisualMode.Projectile
+            VisualMode = SpellEffectVisualMode.Projectile,
+            FinishOnHit = false
         };
         _allSpellVisuals[SpellMode.ElixirOfVigour] = new()
         {
             SpellEffectScn = _spellVisualScns[SpellMode.ElixirOfVigour],
-            VisualMode = SpellEffectVisualMode.Projectile
+            VisualMode = SpellEffectVisualMode.Projectile,
+            FinishOnHit = false
         };
         _allSpellVisuals[SpellMode.ElixirOfSwiftness] = new()
         {
             SpellEffectScn = _spellVisualScns[SpellMode.ElixirOfSwiftness],
-            VisualMode = SpellEffectVisualMode.Projectile
+            VisualMode = SpellEffectVisualMode.Projectile,
+            FinishOnHit = false
         };
         _allSpellVisuals[SpellMode.RegenerativeOintment] = new()
         {
             SpellEffectScn = _spellVisualScns[SpellMode.RegenerativeOintment],
-            VisualMode = SpellEffectVisualMode.Projectile
+            VisualMode = SpellEffectVisualMode.Projectile,
+            FinishOnHit = false
         };
         _allSpellVisuals[SpellMode.Lightning] = new()
         {
@@ -457,7 +464,7 @@ public partial class SpellEffectManager : Node
             Target = Spell.TargetMode.Enemy,
             SpellMode = SpellMode.VialOfFury,
             Description = "Cause an enemy to go berserk, attacking the nearest creature.",
-            ReagentCost = 9,
+            ReagentCost = 8,
             ChargeCost = 0,
             Patron = Spell.PatronMode.Ishtar,
         };
@@ -470,7 +477,7 @@ public partial class SpellEffectManager : Node
             Target = Spell.TargetMode.Ally,
             SpellMode = SpellMode.ElixirOfVigour,
             Description = "Enhances an ally's strength and resilience.",
-            ReagentCost = 5,
+            ReagentCost = 4,
             ChargeCost = 0,
             Patron = Spell.PatronMode.Ishtar,
         };
@@ -483,7 +490,7 @@ public partial class SpellEffectManager : Node
             Target = Spell.TargetMode.Ally,
             SpellMode = SpellMode.ElixirOfSwiftness,
             Description = "Grants an ally improved precision and speed.",
-            ReagentCost = 5,
+            ReagentCost = 4,
             ChargeCost = 0,
             Patron = Spell.PatronMode.Ishtar,
         };
@@ -496,7 +503,7 @@ public partial class SpellEffectManager : Node
             Target = Spell.TargetMode.Ally,
             SpellMode = SpellMode.RegenerativeOintment,
             Description = "Improves an ally's health regeneration.",
-            ReagentCost = 6,
+            ReagentCost = 5,
             ChargeCost = 0,
             Patron = Spell.PatronMode.Ishtar,
         };
@@ -540,6 +547,7 @@ public partial class SpellEffectManager : Node
 
         spellVisual.Finished += this.OnSpellFinished;
         spellVisual.SetSpellEffectState(spell.SpellEffectVisual.VisualMode);
+        spellVisual.FinishOnHit = visualController.FinishOnHit;
 
         spellVisual.Start(spell);
     }
@@ -682,7 +690,7 @@ public partial class SpellEffectManager : Node
         CharacterUnit targetCharacter = spell.TargetCharacter;
         BattleRoller.RollerInput unmissable = new()
         {
-            AttackerDamageModifier = attackerData.Stats[StoryCharacterData.StatMode.Mysticism] / 2, // or do only dice roll damage?
+            AttackerDamageModifier = attackerData.Stats[StoryCharacterData.StatMode.Mysticism], // or do only dice roll damage?
             DamageDice = spellEffect.DamageDice,
             DefenderDamageResist = 0, // do not reduce attribute damage
             AttackType = BattleRoller.AttackType.Undodgeable,

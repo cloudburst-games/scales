@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ce0b88lumohl8"]
+[gd_scene load_steps=32 format=3 uid="uid://ce0b88lumohl8"]
 
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/PnlAdventures/CntPnlAdventures.cs" id="1_56uah"]
 [ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="1_cf8rx"]
@@ -18,7 +18,10 @@
 [ext_resource type="Texture2D" uid="uid://baxjk47lmbfkn" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Sling.png" id="17_toxvx"]
 [ext_resource type="Texture2D" uid="uid://c57hfr315tngh" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Sling.png" id="19_6lr5f"]
 [ext_resource type="Texture2D" uid="uid://bcefps23nm10a" path="res://Assets/Graphics/Icons/IconNormal/Vigor2.png" id="19_gum6e"]
+[ext_resource type="Texture2D" uid="uid://crxm7cjirqta8" path="res://Assets/Graphics/UI icons/Close.png" id="20_661dq"]
 [ext_resource type="Texture2D" uid="uid://d3cavpjymrh73" path="res://Assets/Graphics/Icons/IconPressed/Vigor2.png" id="20_664tg"]
+[ext_resource type="Texture2D" uid="uid://cp0nvngfnqwds" path="res://Assets/Graphics/UI icons/ClosePressed.png" id="21_86151"]
+[ext_resource type="Texture2D" uid="uid://b6j67d6me2irx" path="res://Assets/Graphics/UI icons/CloseHover.png" id="22_nkux2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6y1lg"]
 font_size = 96
@@ -43,6 +46,9 @@ outline_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_t624p"]
 font_size = 64
 
+[sub_resource type="LabelSettings" id="LabelSettings_rahv7"]
+font_size = 84
+
 [sub_resource type="LabelSettings" id="LabelSettings_ixgyo"]
 font_size = 72
 
@@ -66,10 +72,10 @@ _btnContinue = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxCon
 _btnNew = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay/BtnNew")
 _btnClose = NodePath("BasePanel/BtnClose")
 _btnClosePerks = NodePath("PnlPerks/BtnClosePerks")
-_btnSolarFlare = NodePath("PnlPerks/VBoxPerkSelect/BtnSolarFlare")
-_btnElixirVigour = NodePath("PnlPerks/VBoxPerkSelect/BtnElixirVigour")
-_btnSling = NodePath("PnlPerks/VBoxPerkSelect/BtnSling")
-_btnFinalNew = NodePath("PnlPerks/VBoxPerkSelect/HBoxContainer/BtnFinalNew")
+_btnSolarFlare = NodePath("PnlPerks/VBoxContainer/HBoxPerkSelect/BtnSolarFlare")
+_btnElixirVigour = NodePath("PnlPerks/VBoxContainer/HBoxPerkSelect/BtnElixirVigour")
+_btnSling = NodePath("PnlPerks/VBoxContainer/HBoxPerkSelect/BtnSling")
+_btnFinalNew = NodePath("PnlPerks/VBoxContainer/HBoxContainer/BtnFinalNew")
 _pnlPerks = NodePath("PnlPerks")
 
 [node name="BasePanel" type="Panel" parent="."]
@@ -216,7 +222,7 @@ stretch_mode = 5
 [node name="LblDescription" type="Label" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxContainer/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "In a cosmic game between Shamash and Ishtar, Gilgamesh grapples with justice. His journey tests gods' concepts, shaping the fate of mortals."
+text = "Embark on a journey as King Gilgamesh, as he battles for power and eternal life, under the watchful eye of the gods. Be careful of your choices - the gods favor, or their wrath, could tip the scales of justice and shape your destiny."
 label_settings = SubResource("LabelSettings_0yb4y")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -371,6 +377,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="PnlPerks" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.25
@@ -386,24 +393,38 @@ _draggable = false
 CloseOnLoseFocus = true
 _startClosed = true
 
-[node name="VBoxPerkSelect" type="VBoxContainer" parent="PnlPerks"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PnlPerks"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.025
+anchor_right = 0.975
+anchor_bottom = 0.975
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label2" type="Label" parent="PnlPerks/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 7
+size_flags_stretch_ratio = 0.25
+text = "Select a starting boon"
+label_settings = SubResource("LabelSettings_rahv7")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="PnlPerks/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 7
+text = "Embark on your journey, choosing a boon: Solar Flare for Shamash's radiance, Elixir of Vigor for Ishtar's rejuvenation, or the Sling for an independent path. The gods' favor tips the scales of fate, influencing power dynamics and weaving the tapestry of your journey's end."
+label_settings = SubResource("LabelSettings_ixgyo")
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="HBoxPerkSelect" type="HBoxContainer" parent="PnlPerks/VBoxContainer"]
+layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Label2" type="Label" parent="PnlPerks/VBoxPerkSelect"]
-layout_mode = 2
-text = "Select a starting boon: "
-label_settings = SubResource("LabelSettings_ixgyo")
-horizontal_alignment = 1
-vertical_alignment = 2
-
-[node name="BtnSolarFlare" type="TextureButton" parent="PnlPerks/VBoxPerkSelect"]
+[node name="BtnSolarFlare" type="TextureButton" parent="PnlPerks/VBoxContainer/HBoxPerkSelect"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -416,7 +437,7 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_2peo6")
 
-[node name="BtnSling" type="TextureButton" parent="PnlPerks/VBoxPerkSelect"]
+[node name="BtnSling" type="TextureButton" parent="PnlPerks/VBoxContainer/HBoxPerkSelect"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -430,7 +451,7 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_2peo6")
 
-[node name="BtnElixirVigour" type="TextureButton" parent="PnlPerks/VBoxPerkSelect"]
+[node name="BtnElixirVigour" type="TextureButton" parent="PnlPerks/VBoxContainer/HBoxPerkSelect"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -443,16 +464,17 @@ ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_2peo6")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PnlPerks/VBoxPerkSelect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PnlPerks/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.35
 
-[node name="Control5" type="Control" parent="PnlPerks/VBoxPerkSelect/HBoxContainer"]
+[node name="Control5" type="Control" parent="PnlPerks/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BtnFinalNew" type="TextureButton" parent="PnlPerks/VBoxPerkSelect/HBoxContainer"]
+[node name="BtnFinalNew" type="TextureButton" parent="PnlPerks/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -466,7 +488,7 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_2peo6")
 
-[node name="Label" type="Label" parent="PnlPerks/VBoxPerkSelect/HBoxContainer/BtnFinalNew"]
+[node name="Label" type="Label" parent="PnlPerks/VBoxContainer/HBoxContainer/BtnFinalNew"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -478,7 +500,7 @@ label_settings = SubResource("LabelSettings_t624p")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Control4" type="Control" parent="PnlPerks/VBoxPerkSelect/HBoxContainer"]
+[node name="Control4" type="Control" parent="PnlPerks/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -490,15 +512,16 @@ anchor_right = 1.0
 offset_left = -89.0
 offset_bottom = 95.0
 grow_horizontal = 0
-texture_normal = ExtResource("3_gtib0")
-texture_pressed = ExtResource("4_01gsx")
-texture_hover = ExtResource("5_xhugv")
+texture_normal = ExtResource("20_661dq")
+texture_pressed = ExtResource("21_86151")
+texture_hover = ExtResource("22_nkux2")
 texture_disabled = ExtResource("6_bmndb")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_2peo6")
 
 [node name="Label" type="Label" parent="PnlPerks/BtnClosePerks"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

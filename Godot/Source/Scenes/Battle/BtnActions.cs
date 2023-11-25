@@ -105,6 +105,8 @@ public partial class BtnActions : TextureButton
 
     public void OnCharacterTurnStart(CharacterUnit characterUnit)
     {
+        GD.Print("is this actiating each turn?");
+        GD.Print("is the UI SELECTED ACTION correct? ", characterUnit.UISelectedAction);
         OnActionBtnPressed(characterUnit.UISelectedAction);
         ToggleRangedVisibility(characterUnit.CharacterData);
 

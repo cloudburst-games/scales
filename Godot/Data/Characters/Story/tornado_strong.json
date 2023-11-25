@@ -6,14 +6,27 @@
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/Tornado2.png",
     "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/Tornado2.png",
     "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/Tornado2.png",
+    "AudioWalkPath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/TornadoWalk.wav"
+    ],
+    "AudioHurtPath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/TornadoHurt.wav"
+    ],
+    "AudioDiePath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/TornadoDie.wav"
+    ],
+    "AudioMeleePath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch.wav",
+        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
+    ],
     "Perks": [],
     "_rangedWeaponEquipped": 3,
     "Level": 4,
-    "Might": 8,
-    "Resilience": 18,
-    "Precision": 18,
-    "Speed": 18,
-    "Intellect": 35,
-    "Charisma": 6,
-    "Luck": 10
+    "Might": 4,
+    "Resilience": 5,
+    "Precision": 5,
+    "Speed": 7,
+    "Intellect": 5,
+    "Charisma": 5,
+    "Luck": 5
 }

@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://7jwg3stf3hw2"]
 
-[ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="1_dg1id"]
-[ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="2_y4tca"]
-[ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="3_pdk0a"]
+[ext_resource type="Texture2D" uid="uid://crxm7cjirqta8" path="res://Assets/Graphics/UI icons/Close.png" id="1_x4hiq"]
+[ext_resource type="Texture2D" uid="uid://cp0nvngfnqwds" path="res://Assets/Graphics/UI icons/ClosePressed.png" id="2_ksbg1"]
+[ext_resource type="Texture2D" uid="uid://b6j67d6me2irx" path="res://Assets/Graphics/UI icons/CloseHover.png" id="3_7yhen"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="4_vplf8"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="5_oy4a2"]
 
@@ -16,15 +16,16 @@ anchor_right = 1.0
 offset_left = -89.0
 offset_bottom = 95.0
 grow_horizontal = 0
-texture_normal = ExtResource("1_dg1id")
-texture_pressed = ExtResource("2_y4tca")
-texture_hover = ExtResource("3_pdk0a")
+texture_normal = ExtResource("1_x4hiq")
+texture_pressed = ExtResource("2_ksbg1")
+texture_hover = ExtResource("3_7yhen")
 texture_disabled = ExtResource("4_vplf8")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("5_oy4a2")
 
 [node name="_Label_422754" type="Label" parent="."]
+visible = false
 layout_mode = 1
 offset_right = 89.0
 offset_bottom = 95.0
@@ -33,6 +34,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

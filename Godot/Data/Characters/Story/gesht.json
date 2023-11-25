@@ -1,5 +1,5 @@
 {
-    "Name": "Follower",
+    "Name": "Villager",
     "Description": "Geshtinanna, a goddess associated with wine and the grape harvest, represents the pleasures and indulgences of life.",
     "PatronGod": "Enlil",
     "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AmabBody2/AmabBody2.tscn",

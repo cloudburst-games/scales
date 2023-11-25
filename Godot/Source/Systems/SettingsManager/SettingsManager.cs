@@ -10,6 +10,9 @@ public partial class SettingsManager : Node
     private GlobalSettings _globalSettings;
     private SettingsDataHandler _dataHandler = new SettingsDataHandler();
 
+    [Export]
+    public bool _loadSettingsOnReady { get; set; } = true;
+
     [Signal]
     public delegate void FinalClosedEventHandler();
 
@@ -31,8 +34,11 @@ public partial class SettingsManager : Node
         GetNode<SettingsAudio>("Panel/SettingsAudio").SettingsChanged += this.OnSettingsChanged;
         GetNode<SettingsGraphics>("Panel/SettingsGraphics").SettingsChanged += this.OnSettingsChanged;
         SetPnlConfirmCloseVisible(false);
-        LoadOrDefault();
-        RefreshSettingsDisplay();
+        if (_loadSettingsOnReady)
+        {
+            LoadOrDefault();
+            RefreshSettingsDisplay();
+        }
         GetNode<TabBar>("Panel/TabBar").CurrentTab = 1;
         OnTabChanged(1);
         // FOR THE CURRENT GAME
@@ -64,11 +70,11 @@ public partial class SettingsManager : Node
     public void Show()
     {
         RefreshSettingsDisplay();
-        GetNode<Panel>("Panel").Visible = true;
+        GetNode<BasePanel>("Panel").Open();
     }
     public void Hide()
     {
-        GetNode<Panel>("Panel").Visible = false;
+        GetNode<BasePanel>("Panel").Close();
     }
 
     private void RefreshSettingsDisplay()
@@ -132,7 +138,7 @@ public partial class SettingsManager : Node
         LoadOrDefault();
         RefreshSettingsDisplay();
         SetPnlConfirmCloseVisible(false);
-        GetNode<Panel>("Panel").Visible = false;
+        GetNode<BasePanel>("Panel").Close();
         EmitSignal(SignalName.FinalClosed);
     }
 

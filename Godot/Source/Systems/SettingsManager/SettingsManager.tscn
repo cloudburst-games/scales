@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bes3oet5iq1e1"]
+[gd_scene load_steps=16 format=3 uid="uid://bes3oet5iq1e1"]
 
 [ext_resource type="Script" path="res://Source/Systems/SettingsManager/SettingsManager.cs" id="1_yrkw0"]
 [ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="2_1lh7l"]
@@ -9,7 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="5_4h8nn"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="6_kbtxo"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="7_jgsky"]
+[ext_resource type="Texture2D" uid="uid://crxm7cjirqta8" path="res://Assets/Graphics/UI icons/Close.png" id="7_scgoc"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="8_3yqni"]
+[ext_resource type="Texture2D" uid="uid://cp0nvngfnqwds" path="res://Assets/Graphics/UI icons/ClosePressed.png" id="8_i1o3n"]
+[ext_resource type="Texture2D" uid="uid://b6j67d6me2irx" path="res://Assets/Graphics/UI icons/CloseHover.png" id="9_ayqpt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s2vhd"]
 font_size = 56
@@ -69,14 +72,15 @@ anchor_right = 1.0
 offset_left = -96.0
 offset_bottom = 96.0
 grow_horizontal = 0
-texture_normal = ExtResource("5_4h8nn")
-texture_pressed = ExtResource("6_kbtxo")
-texture_hover = ExtResource("7_jgsky")
+texture_normal = ExtResource("7_scgoc")
+texture_pressed = ExtResource("8_i1o3n")
+texture_hover = ExtResource("9_ayqpt")
 texture_disabled = ExtResource("8_3yqni")
 ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Label" type="Label" parent="Panel/BtnClose"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

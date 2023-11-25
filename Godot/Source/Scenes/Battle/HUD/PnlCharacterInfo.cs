@@ -59,12 +59,10 @@ public partial class PnlCharacterInfo : Control
     };
     private Dictionary<StoryCharacterData.StatMode, string> _statNames = new Dictionary<StoryCharacterData.StatMode, string>
     {
-        {StoryCharacterData.StatMode.Health, "Health"},
+        {StoryCharacterData.StatMode.MaxHealth, "Health"},
         // {StoryCharacterData.StatMode.Endurance, "Endurance"},
         {StoryCharacterData.StatMode.HealthRegen, "Health Regen"},
-        {StoryCharacterData.StatMode.PhysicalDamageStrength, "PhysicalDamageStrength"},
-        {StoryCharacterData.StatMode.PhysicalDamageRanged, "PhysicalDamageRanged"},
-        {StoryCharacterData.StatMode.HitBonusStrength, "HitBonusStrength"},
+        // {StoryCharacterData.StatMode.HitBonusStrength, "HitBonusStrength"},
         // {StoryCharacterData.StatMode.HitBonusPrecision, "HitBonusPrecision"},
         {StoryCharacterData.StatMode.CriticalThreshold, "Critical Threshold"},
         {StoryCharacterData.StatMode.Mysticism, "Mysticism"},
@@ -77,6 +75,8 @@ public partial class PnlCharacterInfo : Control
         {StoryCharacterData.StatMode.Leadership, "Leadership"},
         {StoryCharacterData.StatMode.Reagents, "Reagents"},
         {StoryCharacterData.StatMode.FocusCharge, "FocusCharge"},
+        {StoryCharacterData.StatMode.PhysicalDamageStrength, "PhysicalDamageStrength"},
+        {StoryCharacterData.StatMode.PhysicalDamageRanged, "PhysicalDamageRanged"},
         // {StoryCharacterData.StatMode.Persuasion, "Persuasion"},
         // {StoryCharacterData.StatMode.PersuasionResist, "PersuasionResist"},
         // {StoryCharacterData.StatMode.MoveSpeed, "MoveSpeed"},
@@ -248,8 +248,17 @@ public partial class PnlCharacterInfo : Control
         {
             foreach (KeyValuePair<StoryCharacterData.AttributeMode, string> kv in _attributeNames)
             {
+                Color color = data.CurrentEffects
+                    .Where(effect => effect.EffectType == CharacterRoundEffect.EffectTypeMode.Attribute && effect.AttributeAffected == kv.Key)
+                    .Sum(effect => effect.Magnitude) switch
+                {
+                    var sum when sum > 0 => new Color(0, 1, 0), // g
+                    var sum when sum < 0 => new Color(1, 0, 0), // r
+                    _ => new Color(1, 1, 1)
+                };
+
                 PnlCharacterInfoElement pnlCharacterInfoElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
-                pnlCharacterInfoElement.Set(kv.Value, data.Attributes[kv.Key].ToString());
+                pnlCharacterInfoElement.Set(kv.Value, data.Attributes[kv.Key].ToString(), color);
                 pnlCharacterInfoElement.MouseEntered += () => OnPnlElementAttributeMouseEntered(kv.Key);
                 pnlCharacterInfoElement.MouseExited += OnPnlElementAttributeMouseExited;
                 _vBoxStatsDisplay.AddChild(pnlCharacterInfoElement);
@@ -259,10 +268,18 @@ public partial class PnlCharacterInfo : Control
         {
             foreach (KeyValuePair<StoryCharacterData.StatMode, string> kv in _statNames)
             {
+                Color color = data.CurrentEffects
+                    .Where(effect => effect.EffectType == CharacterRoundEffect.EffectTypeMode.Stat && effect.StatAffected == kv.Key)
+                    .Sum(effect => effect.Magnitude) switch
+                {
+                    var sum when sum > 0 => new Color(0, 1, 0), // g
+                    var sum when sum < 0 => new Color(1, 0, 0), // r
+                    _ => new Color(1, 1, 1)
+                };
                 PnlCharacterInfoElement pnlCharacterInfoElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
                 string keyLabel;
                 string keyValue;
-                if (kv.Key == StoryCharacterData.StatMode.Health)
+                if (kv.Key == StoryCharacterData.StatMode.MaxHealth)
                 {
                     keyLabel = "Health";
                     keyValue = string.Format("{0} / {1}", data.Stats[StoryCharacterData.StatMode.Health], data.Stats[StoryCharacterData.StatMode.MaxHealth]);
@@ -294,22 +311,31 @@ public partial class PnlCharacterInfo : Control
                 }
                 else if (kv.Key == StoryCharacterData.StatMode.HitBonusStrength)
                 {
-                    keyLabel = "Melee Hit Bonus";
-                    keyValue = data.GetCorrectHitBonusMelee(false).ToString();
+                    continue;
                 }
                 else
                 {
                     keyLabel = kv.Value;
                     keyValue = data.Stats[kv.Key].ToString();
                 }
-                pnlCharacterInfoElement.Set(keyLabel, keyValue);
+                pnlCharacterInfoElement.Set(keyLabel, keyValue, color);
                 _vBoxStatsDisplay.AddChild(pnlCharacterInfoElement);
             }
+            PnlCharacterInfoElement armourClassElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
+            string armourKey = "Armour Class";
+            string armourValue = data.ArmourClass.ToString();
+            armourClassElement.Set(armourKey, armourValue, new Color(1, 1, 1));
+            _vBoxStatsDisplay.AddChild(armourClassElement);
 
+            PnlCharacterInfoElement meleeHitElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
+            string meleeHitKey = "Melee Hit Bonus";
+            string meleeHitValue = data.GetCorrectHitBonusMelee(false).ToString();
+            meleeHitElement.Set(meleeHitKey, meleeHitValue, GetElementColor(data, StoryCharacterData.StatMode.HitBonusStrength, StoryCharacterData.AttributeMode.Luck, false));
+            _vBoxStatsDisplay.AddChild(meleeHitElement);
             PnlCharacterInfoElement meleeDiceElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
             string weaponDiceKey = "Melee Weapon Dice";
             string weaponDiceVal = string.Format("{0}d{1}", data.WeaponDiceMelee[0].Item1, data.WeaponDiceMelee[0].Item2);
-            meleeDiceElement.Set(weaponDiceKey, weaponDiceVal);
+            meleeDiceElement.Set(weaponDiceKey, weaponDiceVal, new Color(1, 1, 1));
             _vBoxStatsDisplay.AddChild(meleeDiceElement);
 
             if ((StoryCharacterData.RangedWeaponMode)data.RangedWeaponEquipped != StoryCharacterData.RangedWeaponMode.None)
@@ -317,16 +343,33 @@ public partial class PnlCharacterInfo : Control
                 PnlCharacterInfoElement rangedHitElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
                 string rangedHitKey = "Ranged Hit Bonus";
                 string rangedHitVal = data.GetCorrectHitBonusRanged(false).ToString();
-                rangedHitElement.Set(rangedHitKey, rangedHitVal);
+                rangedHitElement.Set(rangedHitKey, rangedHitVal, GetElementColor(data, StoryCharacterData.StatMode.HitBonusPrecision, StoryCharacterData.AttributeMode.Luck, false));
                 _vBoxStatsDisplay.AddChild(rangedHitElement);
                 PnlCharacterInfoElement rangedDiceElement = _pnlCharacterInfoElementScene.Instantiate<PnlCharacterInfoElement>();
                 string rangedDiceKey = "Ranged Weapon Dice";
                 string rangedDiceVal = string.Format("{0}d{1}", data.WeaponDiceRanged[0].Item1, data.WeaponDiceRanged[0].Item2);
-                rangedDiceElement.Set(rangedDiceKey, rangedDiceVal);
+                rangedDiceElement.Set(rangedDiceKey, rangedDiceVal, new Color(1, 1, 1));
                 _vBoxStatsDisplay.AddChild(rangedDiceElement);
             }
 
         }
 
+
     }
+    private Color GetElementColor(StoryCharacterData data, StoryCharacterData.StatMode statAffected, StoryCharacterData.AttributeMode attributeMode, bool attribute)
+    {
+        bool condition = attribute ?
+            data.CurrentEffects.Any(effect => effect.EffectType == CharacterRoundEffect.EffectTypeMode.Attribute && effect.AttributeAffected == attributeMode) :
+            data.CurrentEffects.Any(effect => effect.EffectType == CharacterRoundEffect.EffectTypeMode.Stat && effect.StatAffected == statAffected);
+
+        return data.CurrentEffects
+            .Where(eff => condition)
+            .Sum(eff => eff.Magnitude) switch
+        {
+            var sum when sum > 0 => new Color(0, 1, 0), // Green for positive magnitude
+            var sum when sum < 0 => new Color(1, 0, 0), // Red for negative magnitude
+            _ => new Color(1, 1, 1)
+        };
+    }
+
 }

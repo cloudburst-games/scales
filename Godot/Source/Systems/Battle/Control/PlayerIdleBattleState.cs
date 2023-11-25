@@ -224,12 +224,13 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
     private BattleLogParser.InvalidReasonMode GetInvalidReasonMode(Vector2 characterGridPos, Vector2 mouseGridPos)
     {
         Battler battler = IdleBattleState.Battler;
+        Battler.ActionMode selectedAction = battler.CharactersAwaitingTurn[0].UISelectedAction;
         // if (action == Battler.ActionMode.Move)
         // {
-        if (battler.PlayerSelectedAction == Battler.ActionMode.Move || battler.PlayerSelectedAction == Battler.ActionMode.Melee)
+        if (selectedAction == Battler.ActionMode.Move || selectedAction == Battler.ActionMode.Melee)
         {
             int moveCost = IdleBattleState.GridMoveCost(characterGridPos, mouseGridPos);
-            if (battler.PlayerSelectedAction == Battler.ActionMode.Melee)
+            if (selectedAction == Battler.ActionMode.Melee)
             {
                 if (!IdleBattleState.CanAfford(IdleBattleState.MeleeRangedCastAPCost()))
                 {
@@ -247,7 +248,7 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
                 return BattleLogParser.InvalidReasonMode.NotEnoughAP;
             }
         }
-        else if (battler.PlayerSelectedAction == Battler.ActionMode.Cast)
+        else if (selectedAction == Battler.ActionMode.Cast)
         {
             SpellEffectManager.SpellMode spell = battler.CharactersAwaitingTurn[0].UISelectedSpell;
             if (!IdleBattleState.IsValidSpellTarget(mouseGridPos, spell))
@@ -276,7 +277,7 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
             }
 
         }
-        else if (battler.PlayerSelectedAction == Battler.ActionMode.Shoot)
+        else if (selectedAction == Battler.ActionMode.Shoot)
         {
             if (!IdleBattleState.IsValidRangedTarget(mouseGridPos))
             {
@@ -325,19 +326,20 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
         Battler battler = IdleBattleState.Battler;
         CharacterUnit targetCharacter = battler.CharacterAtGridPos(mouseGridPos);
         Vector2 characterGridPos = battler.BattleGrid.WorldToGrid(battler.CharactersAwaitingTurn[0].GlobalPosition);
+        Battler.ActionMode selectedAction = battler.CharactersAwaitingTurn[0].UISelectedAction;
         battler.AllSpells[battler.CharactersAwaitingTurn[0].UISelectedSpell].TargetCharacter = targetCharacter;
         IdleBattleState.SetSpriteOutlines(battler.GetGlobalMousePosition());
 
         CurrentAction = Battler.ActionMode.Invalid;
         // CAST
-        if (IdleBattleState.IsValidSpell(mouseGridPos, battler.CharactersAwaitingTurn[0].UISelectedSpell) && battler.PlayerSelectedAction == Battler.ActionMode.Cast)
+        if (IdleBattleState.IsValidSpell(mouseGridPos, battler.CharactersAwaitingTurn[0].UISelectedSpell) && selectedAction == Battler.ActionMode.Cast)
         {
             battler.CursorControl.SetCursor(CursorControl.CursorMode.Spell);
             CurrentAction = Battler.ActionMode.Cast;
             // battler.EmitSignal(battler.SignalName.LogBattleText, String.Format("Cast {0}", battler.AllSpells[battler.CharactersAwaitingTurn[0].UISelectedSpell].Name), false);
         }
         // RANGED
-        else if ((StoryCharacterData.RangedWeaponMode)battler.CharactersAwaitingTurn[0].CharacterData.RangedWeaponEquipped != StoryCharacterData.RangedWeaponMode.None && IdleBattleState.IsValidRanged(mouseGridPos, battler.AllSpells[SpellEffectManager.SpellMode.Sling].Range) && battler.PlayerSelectedAction == Battler.ActionMode.Shoot)
+        else if ((StoryCharacterData.RangedWeaponMode)battler.CharactersAwaitingTurn[0].CharacterData.RangedWeaponEquipped != StoryCharacterData.RangedWeaponMode.None && IdleBattleState.IsValidRanged(mouseGridPos, battler.AllSpells[SpellEffectManager.SpellMode.Sling].Range) && selectedAction == Battler.ActionMode.Shoot)
         {
             battler.CursorControl.SetCursor(CursorControl.CursorMode.Ranged);
             CurrentAction = Battler.ActionMode.Shoot;
@@ -359,7 +361,7 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
         }
         // HINT
         else if (IsMouseOverAlly(mouseGridPos) &&
-            !(battler.PlayerSelectedAction == Battler.ActionMode.Cast &&
+            !(selectedAction == Battler.ActionMode.Cast &&
             battler.AllSpells[battler.CharactersAwaitingTurn[0].UISelectedSpell].Target == SpellEffectManager.Spell.TargetMode.Ally))
         {
             battler.CursorControl.SetCursor(CursorControl.CursorMode.Hint);

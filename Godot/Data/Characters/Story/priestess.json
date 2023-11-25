@@ -1,8 +1,8 @@
 {
-    "Name": "Villager",
-    "Description": "Dumuzi, the shepherd god, is a symbol of the changing seasons, fertility, and renewal.",
-    "PatronGod": "Enki",
-    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AfabBody2.tscn",
+    "Name": "Priestess",
+    "Description": "Lugal, often a title for kingship in Sumerian culture, symbolizes authority and rulership.",
+    "PatronGod": "Innana",
+    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AfabBody1/AfabBody1.tscn",
     "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png",
     "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png",
     "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png",
@@ -25,11 +25,11 @@
         0
     ],
     "Level": 1,
-    "Might": 12,
-    "Resilience": 6,
-    "Precision": 8,
-    "Speed": 5,
-    "Intellect": 13,
-    "Charisma": 11,
-    "Luck": 6
+    "Might": 2,
+    "Resilience": 2,
+    "Precision": 6,
+    "Speed": 6,
+    "Intellect": 6,
+    "Charisma": 6,
+    "Luck": 3
 }

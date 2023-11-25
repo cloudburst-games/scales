@@ -25,11 +25,11 @@
     "_rangedWeaponEquipped": 2,
     "_meleeWeaponEquipped": 5,
     "Level": 2,
-    "Might": 20,
-    "Resilience": 16,
-    "Precision": 12,
+    "Might": 4,
+    "Resilience": 4,
+    "Precision": 2,
     "Speed": 4,
-    "Intellect": 6,
+    "Intellect": 4,
     "Charisma": 4,
-    "Luck": 10
+    "Luck": 4
 }

@@ -31,11 +31,11 @@ public partial class PnlCharacters : Panel
     {
         _enkidu.Pressed += () => OnCharacterPressed(StoryCharacter.StoryCharacterMode.Enkidu);
         _gilgam.Pressed += () => OnCharacterPressed(StoryCharacter.StoryCharacterMode.Gilgam);
-        _lugal.Pressed += () => OnCharacterPressed(StoryCharacter.StoryCharacterMode.Lugal);
+        _lugal.Pressed += () => OnCharacterPressed(StoryCharacter.StoryCharacterMode.Priestess);
         _ningal.Pressed += () => OnCharacterPressed(StoryCharacter.StoryCharacterMode.Ningal);
         _utug.Pressed += () => OnCharacterPressed(StoryCharacter.StoryCharacterMode.Utug);
-        _eresh.Pressed += () => OnCharacterPressed(StoryCharacter.StoryCharacterMode.Eresh);
-        _dumuzi.Pressed += () => OnCharacterPressed(StoryCharacter.StoryCharacterMode.Dumuzi);
+        _eresh.Pressed += () => OnCharacterPressed(StoryCharacter.StoryCharacterMode.Peasant);
+        _dumuzi.Pressed += () => OnCharacterPressed(StoryCharacter.StoryCharacterMode.Villager);
         _gesht.Pressed += () => OnCharacterPressed(StoryCharacter.StoryCharacterMode.Gesht);
 
 

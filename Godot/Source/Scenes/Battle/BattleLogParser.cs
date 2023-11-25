@@ -130,7 +130,7 @@ public class BattleLogParser
             string cost = spell.ChargeCost > 0 ? "Cost: " + spell.ChargeCost.ToString() + " Mana" : spell.ReagentCost > 0 ? "Cost: " + spell.ReagentCost + " Reagents" : "";
             output += "\n" + patron + ".";
             output += (spell.ChargeCost > 0 || spell.ReagentCost > 0) ? " " + cost + "." : "";
-            output += canAfford ? "" : "\nInsufficient resources";
+            output += canAfford ? "" : " Insufficient resources.";
         }
 
         return output;

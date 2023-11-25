@@ -94,6 +94,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
             CharacterBtnPressedPath = this.CharacterBtnPressedPath,
             _meleeWeaponEquipped = this._meleeWeaponEquipped,
             _rangedWeaponEquipped = this._rangedWeaponEquipped,
+            ArmourClass = this.ArmourClass,
             Perks = this.Perks.Select(x => (int)x).ToList(),
             Level = this.Level,
             Might = this.Attributes[AttributeMode.Might],
@@ -363,13 +364,13 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     private int GetUpdatedMysticResist()
     {
         return UpdateStat(Attributes[AttributeMode.Resilience], 0.2f, 0.025f) +
-            UpdateStat(Attributes[AttributeMode.Intellect], 0.1f, 0.05f) +
+            UpdateStat(Attributes[AttributeMode.Intellect], 0.2f, 0.05f) +
             UpdateStat(Attributes[AttributeMode.Luck], 0.1f, 0.05f);
     }
 
     private int GetUpdatedPhysicalResist()
     {
-        return UpdateStat(ArmourClass, 1f, 0.025f) + UpdateStat(Attributes[AttributeMode.Resilience], 0.2f, 0.025f);
+        return UpdateStat(ArmourClass, 0.4f, 0.025f) + UpdateStat(Attributes[AttributeMode.Resilience], 0.2f, 0.025f);
     }
 
     private int GetUpdatedDodge()
@@ -415,11 +416,11 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
 
     private int GetUpdatedHitBonusStrength()
     {
-        return UpdateStat(Attributes[AttributeMode.Might], 0.7f, 0.02f) + UpdateStat(Attributes[AttributeMode.Precision], 0.25f, 0.02f);
+        return UpdateStat(Attributes[AttributeMode.Might], 0.85f, 0.02f) + UpdateStat(Attributes[AttributeMode.Precision], 0.25f, 0.02f);
     }
     private int GetUpdatedHitBonusPrecision()
     {
-        return UpdateStat(Attributes[AttributeMode.Precision], 1f, 0.02f);
+        return UpdateStat(Attributes[AttributeMode.Precision], 1.25f, 0.02f);
     }
 
     // public int GetCorrectHitBonus(bool mystical = false)
@@ -503,7 +504,7 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     }
     private int GetUpdatedMoveSpeed()
     {
-        return UpdateStat(Attributes[AttributeMode.Speed], 1f, 0.03f) * 100;
+        return UpdateStat(Attributes[AttributeMode.Speed], 0.75f, 0.03f) * 100;
     }
     private void UpdateKnownSpells()
     {

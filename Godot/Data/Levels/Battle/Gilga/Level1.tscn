@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b0bhqhrvxb7ho"]
+[gd_scene load_steps=16 format=3 uid="uid://b0bhqhrvxb7ho"]
 
 [ext_resource type="Script" path="res://Source/Systems/Battle/Level/BattleLevel.cs" id="1_pkkmy"]
 [ext_resource type="Texture2D" uid="uid://coyf54vlm0b4f" path="res://Assets/Graphics/Interface/BattlefieldBorder9Patch.png" id="2_jub4l"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bnryhyrkdbak6" path="res://Assets/Graphics/Sprites/Terrain/Beach/Beach4White.png" id="5_6v1jh"]
 [ext_resource type="TileSet" uid="uid://bc4qi0pryan6r" path="res://Source/Utils/Terrain/Examples/ExampleTilesheet/TIlesheet.tres" id="6_fngou"]
 [ext_resource type="Texture2D" uid="uid://b5wi5gtg4d7hy" path="res://Assets/Graphics/Sprites/Terrain/Beach/TreesStyled.png" id="7_fnw8i"]
+[ext_resource type="Texture2D" uid="uid://bx0jyl30ulogw" path="res://Assets/Graphics/Sprites/Terrain/Beach/Rocks.png" id="8_vvpvj"]
 [ext_resource type="PackedScene" uid="uid://byrap2l8cfdxd" path="res://Source/Systems/HexGrid/HexGrid.tscn" id="9_24ok7"]
 [ext_resource type="Script" path="res://Source/Systems/LevelSystem/HexModifier.cs" id="10_es3r7"]
 
@@ -41,8 +42,7 @@ _background = NodePath("Battlefield/Background/Terrain")
 CharacterUnitsContainer = NodePath("Entities/CharacterUnits")
 LevelID = 1
 IntroMessage = "Pitying the people, the goddess Aruru created a wild beast man to rival even the mighty gilgamesh, his name was Enkidu. Pure of heart, a friend to animals and a friend to all, Enkidu heard the tales of the tyrant and stopped in him the tracks of his tyranny."
-StartingEnemies = [0, 6]
-StartingAllies = [2]
+StartingEnemies = [0, 2]
 _playerPositionCnt = NodePath("Positions/Players")
 _enemyPositionCnt = NodePath("Positions/Enemies")
 _allyPositionCnt = NodePath("Positions/Allies")
@@ -108,29 +108,73 @@ position = Vector2(0, -148)
 polygon = PackedVector2Array(132, 287, 2409, 287, 2214, 392, 1807, 423, 1162, 369, 919, 408, 599, 539, 313, 539, 194, 482, 138, 493)
 
 [node name="Trees" type="StaticBody2D" parent="Entities/Doodads"]
-position = Vector2(1961, 770)
+position = Vector2(1591, 815)
 
 [node name="Sprite2D" type="Sprite2D" parent="Entities/Doodads/Trees"]
-position = Vector2(37, 160)
-scale = Vector2(2, 2)
+position = Vector2(-3, -93)
 texture = ExtResource("7_fnw8i")
 region_enabled = true
 region_rect = Rect2(3433, 3, 682, 595)
 
-[node name="Sprite2D2" type="Sprite2D" parent="Entities/Doodads/Trees"]
-position = Vector2(-492, -38)
-scale = Vector2(2, 2)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Entities/Doodads/Trees"]
+position = Vector2(-70, -145)
+polygon = PackedVector2Array(-187, 126, -139, 118, -83, 135, -71, 163, -111, 203, -179, 205, -215, 160)
+
+[node name="Trees2" type="StaticBody2D" parent="Entities/Doodads"]
+position = Vector2(1854, 1132)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Entities/Doodads/Trees2"]
+position = Vector2(0, -67.5)
 texture = ExtResource("7_fnw8i")
 region_enabled = true
 region_rect = Rect2(2956, 4, 464, 375)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Entities/Doodads/Trees"]
-position = Vector2(-229, 242)
-polygon = PackedVector2Array(-211, 111, -137, 77, -60, 117, -26, 183, -88, 230, -198, 232, -258, 160)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Entities/Doodads/Trees"]
-position = Vector2(-375, 76)
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Entities/Doodads/Trees2"]
+position = Vector2(175, -46.5)
 polygon = PackedVector2Array(-310, 45, -298, 10, -216, 8, -148, 16, -138, 48, -152, 94, -155, 131, -224, 131, -291, 127, -315, 74)
+
+[node name="Rocks" type="StaticBody2D" parent="Entities/Doodads"]
+position = Vector2(1630, 1438)
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Doodads/Rocks"]
+texture = ExtResource("8_vvpvj")
+region_enabled = true
+region_rect = Rect2(7.62939e-05, 143, 180, 210)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Entities/Doodads/Rocks"]
+position = Vector2(138, -130)
+polygon = PackedVector2Array(-197, 119, -129, 96, -72, 119, -64, 164, -103, 190, -177, 187, -222, 156)
+
+[node name="Rocks3" type="StaticBody2D" parent="Entities/Doodads"]
+position = Vector2(2049, 632)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Entities/Doodads/Rocks3"]
+texture = ExtResource("8_vvpvj")
+region_enabled = true
+region_rect = Rect2(-24.6371, -3.59879, 191.585, 151.435)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Entities/Doodads/Rocks3"]
+position = Vector2(209, -31)
+polygon = PackedVector2Array(-276, 9, -216, 8, -177, 17, -180, 68, -223, 85, -265, 62)
+
+[node name="Rocks2" type="StaticBody2D" parent="Entities/Doodads"]
+position = Vector2(2433, 943)
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities/Doodads/Rocks2"]
+position = Vector2(8, 3)
+texture = ExtResource("8_vvpvj")
+region_enabled = true
+region_rect = Rect2(-2.20448, 456.651, 165.576, 106.796)
+
+[node name="Sprite2D2" type="Sprite2D" parent="Entities/Doodads/Rocks2"]
+position = Vector2(54, 48)
+texture = ExtResource("8_vvpvj")
+region_enabled = true
+region_rect = Rect2(-3.41013, 336.898, 152, 124.718)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Entities/Doodads/Rocks2"]
+position = Vector2(135.6, -122)
+polygon = PackedVector2Array(-188.6, 111, -137.6, 94, -75.6001, 117, -55.6001, 168, -100.6, 204, -182.6, 173, -196.6, 156)
 
 [node name="Effects" type="Node2D" parent="Entities"]
 z_index = 1
@@ -167,7 +211,7 @@ position = Vector2(2645, 549)
 position = Vector2(2944, 553)
 
 [node name="Marker2D16" type="Marker2D" parent="Positions/Enemies"]
-position = Vector2(3393, 596)
+position = Vector2(3124, 769)
 
 [node name="Marker2D17" type="Marker2D" parent="Positions/Enemies"]
 position = Vector2(3144, 424)
