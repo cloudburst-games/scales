@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Judgement of the Gods"
+config/name="Mythic Battles: Judgement of Gods"
 run/main_scene="res://Source/Scenes/MainMenu/MainMenuScene.tscn"
 config/features=PackedStringArray("4.1", "C#")
 boot_splash/image="res://Assets/Graphics/Interface/Images/Background.png"
