@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b6v34iwdchsgi"]
+[gd_scene load_steps=43 format=3 uid="uid://b6v34iwdchsgi"]
 
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/MainMenuScene.cs" id="1_66m4n"]
 [ext_resource type="Script" path="res://addons/SceneTransitionPlugin/SceneTransition.cs" id="2_lc0ma"]
@@ -6,7 +6,11 @@
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="4_g6wc5"]
 [ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="4_jn681"]
 [ext_resource type="Texture2D" uid="uid://bu4tecsgh5hbl" path="res://Assets/Graphics/Sprites/Terrain/Beach/PinkPlain.png" id="5_4qe3k"]
+[ext_resource type="Texture2D" uid="uid://dcqac4haanwa5" path="res://Assets/Graphics/Front Cover/BackgroundPlain.png" id="5_n7jpa"]
+[ext_resource type="FontFile" uid="uid://8u4c4rsvwp2o" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf" id="6_06dfr"]
+[ext_resource type="FontFile" uid="uid://dvgrbl3tedigj" path="res://Assets/Graphics/Fonts/Meddon/Meddon-Regular.ttf" id="6_8cgfm"]
 [ext_resource type="Texture2D" uid="uid://du12fi24yk15b" path="res://Assets/Graphics/Sprites/Actors/ScalesOfPowerOrJustice/Scales.png" id="7_e1fsh"]
+[ext_resource type="Texture2D" uid="uid://bsrd8gulhp0jw" path="res://Assets/Graphics/Front Cover/ScalesGraphic.png" id="7_m7jnm"]
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="11_y5a11"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="12_jst7q"]
 [ext_resource type="AudioStream" uid="uid://u8vvnphooeai" path="res://addons/BaseTextureButtonPlugin/hover.wav" id="12_rhirg"]
@@ -14,7 +18,7 @@
 [ext_resource type="AudioStream" uid="uid://in1epaq47smy" path="res://addons/BaseTextureButtonPlugin/click.wav" id="13_wyj12"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="14_e2huy"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="15_q258l"]
-[ext_resource type="LabelSettings" uid="uid://cnydnjeqvs3kr" path="res://Source/Interface/Label/test_label_settings.tres" id="15_r6vsh"]
+[ext_resource type="FontFile" uid="uid://birtuq7kdeqwx" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Bold.ttf" id="16_5iud1"]
 [ext_resource type="Texture2D" uid="uid://dyvqcrqq7l5d2" path="res://Assets/Graphics/Interface/Buttons/Leaderboard/leaderboardsComplex.png" id="19_gf2h3"]
 [ext_resource type="Texture2D" uid="uid://bvhklxpq1kx1w" path="res://Assets/Graphics/Interface/Buttons/Leaderboard/leaderboardsComplexPressed.png" id="20_xyxyu"]
 [ext_resource type="Texture2D" uid="uid://bti2xh8sbgo6t" path="res://Assets/Graphics/Interface/Buttons/Leaderboard/leaderboardsComplexHover.png" id="21_2dvak"]
@@ -29,10 +33,6 @@
 [ext_resource type="PackedScene" uid="uid://ce0b88lumohl8" path="res://Source/Scenes/MainMenu/PnlAdventures/CntPnlAdventures.tscn" id="32_h085b"]
 [ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="34_16yq6"]
 [ext_resource type="FontFile" uid="uid://cofx1cs3c3u03" path="res://Assets/Graphics/Fonts/Yusei_Magic/YuseiMagic-Regular.ttf" id="41_og7ub"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q7umc"]
-atlas = ExtResource("7_e1fsh")
-region = Rect2(2376, 142, 698, 801)
 
 [sub_resource type="Animation" id="Animation_c81ia"]
 resource_name = "Default"
@@ -162,43 +162,80 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_4qe3k")
+texture = ExtResource("5_n7jpa")
 
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 490.0
+anchors_preset = -1
+anchor_left = 0.058
+anchor_top = 0.037
+anchor_right = 0.615
+anchor_bottom = 0.279
+offset_left = -35.72
+offset_top = 96.08
+offset_right = -0.600098
+offset_bottom = -0.640015
 grow_horizontal = 2
 theme = ExtResource("4_jn681")
+theme_override_colors/font_color = Color(0.682353, 0.588235, 0.345098, 1)
+theme_override_colors/font_shadow_color = Color(0.0705882, 0.294118, 0.282353, 1)
+theme_override_colors/font_outline_color = Color(0.882353, 0.839216, 0.698039, 1)
+theme_override_constants/shadow_offset_x = 25
+theme_override_constants/outline_size = 24
+theme_override_constants/line_spacing = -1
+theme_override_fonts/font = ExtResource("6_06dfr")
+theme_override_font_sizes/font_size = 216
+text = "Mythic Battles"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.199
+anchor_top = 0.219
+anchor_right = 0.533
+anchor_bottom = 0.324
+offset_left = -92.16
+offset_top = -1.04004
+offset_right = 193.28
+offset_bottom = 10.16
+grow_horizontal = 2
+theme = ExtResource("4_jn681")
+theme_override_colors/font_color = Color(0.247059, 0.203922, 0.0941176, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 64
-theme_override_fonts/font = ExtResource("41_og7ub")
-theme_override_font_sizes/font_size = 200
-text = "Judgement of the Gods"
-horizontal_alignment = 1
+theme_override_fonts/font = ExtResource("6_8cgfm")
+theme_override_font_sizes/font_size = 111
+text = "Judgement of Gods"
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.2
+anchor_left = 0.46
 anchor_top = 0.2
-anchor_right = 0.8
-anchor_bottom = 0.8
+anchor_right = 0.971
+anchor_bottom = 0.896
+offset_left = 177.6
+offset_top = 203.0
+offset_right = -0.640381
+offset_bottom = -0.360107
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_q7umc")
+texture = ExtResource("7_m7jnm")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="BtnsContainer" type="HBoxContainer" parent="Control"]
+[node name="BtnsContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.871
-anchor_right = 0.9
-anchor_bottom = 0.96
+anchor_left = 0.177
+anchor_top = 0.396
+anchor_right = 0.414
+anchor_bottom = 0.895
+offset_left = -0.679993
+offset_top = 0.639954
+offset_right = 1.23987
+offset_bottom = -0.200073
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 50
@@ -230,12 +267,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.682353, 0.588235, 0.345098, 1)
+theme_override_fonts/font = ExtResource("16_5iud1")
+theme_override_font_sizes/font_size = 78
 text = "Adventure"
-label_settings = ExtResource("15_r6vsh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="BtnEndless" type="TextureButton" parent="Control/BtnsContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -263,8 +303,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.682353, 0.588235, 0.345098, 1)
+theme_override_fonts/font = ExtResource("16_5iud1")
+theme_override_font_sizes/font_size = 78
 text = "Endless"
-label_settings = ExtResource("15_r6vsh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -288,8 +330,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.682353, 0.588235, 0.345098, 1)
+theme_override_fonts/font = ExtResource("16_5iud1")
+theme_override_font_sizes/font_size = 78
 text = "Settings"
-label_settings = ExtResource("15_r6vsh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -313,8 +357,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.682353, 0.588235, 0.345098, 1)
+theme_override_fonts/font = ExtResource("16_5iud1")
+theme_override_font_sizes/font_size = 78
 text = "About"
-label_settings = ExtResource("15_r6vsh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -353,14 +399,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.682353, 0.588235, 0.345098, 1)
+theme_override_fonts/font = ExtResource("16_5iud1")
+theme_override_font_sizes/font_size = 78
 text = "Quit"
-label_settings = ExtResource("15_r6vsh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SettingsManager" parent="Control" instance=ExtResource("23_7c4m2")]
 
 [node name="IntroPictureStory" type="Control" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -385,6 +434,7 @@ InputSkipsSlide = false
 ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="TextureRect2" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -393,6 +443,7 @@ grow_vertical = 2
 texture = ExtResource("5_4qe3k")
 
 [node name="Panel" type="Panel" parent="Control/IntroPictureStory/PictureStorySlide2"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.025
@@ -443,11 +494,16 @@ script = ExtResource("29_lwbti")
 _scrollSpeed = 30.0
 
 [node name="BtnContinueStory" type="TextureButton" parent="Control/IntroPictureStory/PictureStorySlide2"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
 anchor_right = 0.58
 anchor_bottom = 0.95
+offset_left = 52.2
+offset_top = -4.80005
+offset_right = 52.2
+offset_bottom = -4.80005
 grow_horizontal = 0
 texture_normal = ExtResource("11_y5a11")
 texture_pressed = ExtResource("12_jst7q")
@@ -476,6 +532,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
+visible = false
 anchors_preset = -1
 anchor_right = 0.5
 anchor_bottom = 0.9
@@ -488,6 +545,7 @@ visible = false
 layout_mode = 1
 
 [node name="PnlAbout" type="Panel" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
