@@ -1,11 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3joihesrdch0"]
+[gd_scene load_steps=21 format=3 uid="uid://b3joihesrdch0"]
 
 [ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellVisual.cs" id="1_qvmhq"]
-[ext_resource type="Texture2D" uid="uid://bpl1n8o00bsjd" path="res://Assets/Graphics/Interface/Buttons/Spells/ElixirVigour.png" id="2_lfp35"]
+[ext_resource type="Texture2D" uid="uid://b5wlh72sdvlly" path="res://Assets/Graphics/Effects/Generic/WhiteWoodFibreParticle.png" id="2_rqcd3"]
 
 [sub_resource type="Animation" id="Animation_o28ux"]
 resource_local_to_scene = true
 resource_name = "Finish"
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -25,7 +26,7 @@ tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.7, 1),
+"times": PackedFloat32Array(1.3, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -156,11 +157,50 @@ scale_max = 2.0
 scale_curve = SubResource("CurveTexture_pjdnv")
 color_ramp = SubResource("GradientTexture1D_qeget")
 
+[sub_resource type="Gradient" id="Gradient_rrdld"]
+offsets = PackedFloat32Array(0, 0.166667, 1)
+colors = PackedColorArray(1, 1, 0, 0.313726, 1, 0.537255, 0.529412, 0.0392157, 1, 0.976471, 0.984314, 0.0196078)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3kbvk"]
+gradient = SubResource("Gradient_rrdld")
+
+[sub_resource type="Curve" id="Curve_rox36"]
+max_value = 10.0
+_data = [Vector2(0, 10.5263), 0.0, -41.4906, 0, 0, Vector2(1, 2.10526), -15.198, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bjvop"]
+curve = SubResource("Curve_rox36")
+
+[sub_resource type="Curve" id="Curve_eghio"]
+max_value = 2.0
+_data = [Vector2(0, 0.315789), 0.0, 0.0, 0, 0, Vector2(1, 0.694737), -0.48641, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qr1i4"]
+curve = SubResource("Curve_eghio")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mrdd7"]
+emission_shape = 1
+emission_sphere_radius = 1.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 1.0
+orbit_velocity_max = 3.0
+linear_accel_min = -24.6
+linear_accel_max = 28.38
+linear_accel_curve = SubResource("CurveTexture_bjvop")
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_qr1i4")
+color_ramp = SubResource("GradientTexture1D_3kbvk")
+
 [node name="ElixirOfVigourEffect" type="Node2D" node_paths=PackedStringArray("Anim")]
-position = Vector2(1285, 905)
+position = Vector2(38, 41)
 script = ExtResource("1_qvmhq")
 Anim = NodePath("Anim")
-Speed = 300.0
+Speed = 750.0
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -171,7 +211,7 @@ libraries = {
 emitting = false
 amount = 120
 process_material = SubResource("ParticleProcessMaterial_rxhsp")
-texture = ExtResource("2_lfp35")
+texture = ExtResource("2_rqcd3")
 lifetime = 5.0
 preprocess = 10.0
 local_coords = true
@@ -179,9 +219,9 @@ local_coords = true
 [node name="Finish" type="GPUParticles2D" parent="."]
 emitting = false
 amount = 120
-process_material = SubResource("ParticleProcessMaterial_rxhsp")
-texture = ExtResource("2_lfp35")
-lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_mrdd7")
+texture = ExtResource("2_rqcd3")
+lifetime = 1.5
 one_shot = true
 explosiveness = 0.5
 local_coords = true

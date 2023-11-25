@@ -34,4 +34,6 @@ public class CharacterCheckpointData : IJSONSaveable
     public List<string> AudioMeleePath { get; set; }
     public Dictionary<int, List<List<string>>> Barks { get; set; }
     public int ArmourClass { get; set; }
+    public int MeleeWeaponDamageBonus { get; set; }
+    public int RangedWeaponDamageBonus { get; set; }
 }

@@ -246,6 +246,7 @@ public partial class BattleScene : Node, ISceneTransitionable
             await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         }
 
+        _btnIntro.Disabled = true;
         _adventureStoriesHandler.DoVictoryStory(_nextLevel - 1, _scales.GetCurrentFavour(), _levelScenePaths.Count - 1);
     }
 
@@ -334,7 +335,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         GetTree().Root.GetNode<GlobalAudio>("GlobalAudio").AdjustVolume("World", _musicQuietVol);
         _battler.ProcessMode = ProcessModeEnum.Disabled;
         _pnlAction.ProcessMode = ProcessModeEnum.Disabled;
-        _btnIntro.Disabled = true;
+        // _btnIntro.Disabled = true;
         _cursorControl.SetCursor(CursorControl.CursorMode.Select);
         if (playerWon)
         {
@@ -355,7 +356,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         else
         {
             _audioBattleDefeat.Play();
-            _adventureStoriesHandler.DoDefeatStory();
+            _adventureStoriesHandler.DoDefeatStory(_nextLevel);
         }
     }
 

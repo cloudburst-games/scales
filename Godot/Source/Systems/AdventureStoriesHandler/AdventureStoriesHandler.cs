@@ -11,7 +11,8 @@ public partial class AdventureStoriesHandler : Control
     // public enum EndingType { Shamash, Balanced, Ishtar } // need to make this independent of this class oin future
 
     [Export]
-    private PictureStoryContainer _defeatPictureStory;
+    private Godot.Collections.Dictionary<int, NodePath> _defeatPictureStoriesNodePaths = new();
+    private Dictionary<int, PictureStoryContainer> _defeatPictureStoriesByLevel;
     // [Export]
     // private PictureStoryContainer _finalVictoryStory;
 
@@ -38,8 +39,18 @@ public partial class AdventureStoriesHandler : Control
 
     public override void _Ready()
     {
-        _defeatPictureStory.Finished += () => this.EmitSignal(SignalName.DefeatStoryFinished);
+        // _defeatPictureStory.Finished += () => this.EmitSignal(SignalName.DefeatStoryFinished);
         // _finalVictoryStory.Finished += () => this.EmitSignal(SignalName.FinalVictoryStoryFinished);
+
+        _defeatPictureStoriesByLevel = new();
+        foreach (KeyValuePair<int, NodePath> kv in _defeatPictureStoriesNodePaths)
+        {
+            _defeatPictureStoriesByLevel[kv.Key] = GetNode<PictureStoryContainer>(kv.Value);
+        }
+        foreach (KeyValuePair<int, PictureStoryContainer> kv in _defeatPictureStoriesByLevel)
+        {
+            kv.Value.Finished += () => this.EmitSignal(SignalName.DefeatStoryFinished);
+        }
 
         _victoryPictureStoriesByLevel = new();
         foreach (KeyValuePair<int, NodePath> kv in _victoryPictureStoriesNodePaths)
@@ -82,9 +93,9 @@ public partial class AdventureStoriesHandler : Control
 
     }
 
-    public void DoDefeatStory()
+    public void DoDefeatStory(int level)
     {
         // Visible = true;
-        _defeatPictureStory.Play();
+        _defeatPictureStoriesByLevel[level].Play();
     }
 }

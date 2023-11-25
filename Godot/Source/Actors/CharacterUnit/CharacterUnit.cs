@@ -681,6 +681,8 @@ public partial class CharacterUnit : CharacterBody2D
             Charisma = data.Charisma,
             Luck = data.Luck,
             ArmourClass = data.ArmourClass,
+            MeleeWeaponDamageBonus = data.MeleeWeaponDamageBonus,
+            RangedWeaponDamageBonus = data.RangedWeaponDamageBonus,
 
             Attributes = new() { { StoryCharacterData.AttributeMode.Might, data.Might },
             { StoryCharacterData.AttributeMode.Resilience, data.Resilience },

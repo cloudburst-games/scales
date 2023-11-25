@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://bocl4i20k52jo"]
+
+[ext_resource type="Script" path="res://Source/Effects/Rain/RectThunder.cs" id="1_6jdd5"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="2_vjnop"]
+[ext_resource type="AudioStream" uid="uid://cbcfw34kbl7iv" path="res://Assets/Audio/Effects/Ambient/rain_long.wav" id="3_a0qfn"]
+[ext_resource type="AudioStream" uid="uid://bbowgb78uv0bp" path="res://Assets/Audio/Effects/Ambient/thunder1.wav" id="4_570hq"]
+[ext_resource type="AudioStream" uid="uid://1tjki60qbxph" path="res://Assets/Audio/Effects/Ambient/thunder2.wav" id="5_h6t6p"]
+
+[sub_resource type="Animation" id="Animation_xa0yj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioThunder:Start")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_gml1b"]
+resource_name = "Thunder"
+length = 0.1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(5, 5, 5, 0.662745), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioThunder:Start")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dmoxw"]
+_data = {
+"RESET": SubResource("Animation_xa0yj"),
+"Thunder": SubResource("Animation_gml1b")
+}
+
+[node name="RectThunder" type="ColorRect" node_paths=PackedStringArray("_thunderTimer", "_thunderAnim")]
+z_index = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -35.0
+offset_right = 3828.0
+offset_bottom = 1813.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+script = ExtResource("1_6jdd5")
+_thunderTimer = NodePath("ThunderTimer")
+_thunderAnim = NodePath("Anim")
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dmoxw")
+}
+
+[node name="AudioRain" type="Node" parent="."]
+script = ExtResource("2_vjnop")
+Start = true
+_loop = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioRain"]
+stream = ExtResource("3_a0qfn")
+volume_db = -12.5
+
+[node name="AudioThunder" type="Node" parent="."]
+script = ExtResource("2_vjnop")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioThunder"]
+stream = ExtResource("4_570hq")
+volume_db = -5.0
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="AudioThunder"]
+stream = ExtResource("5_h6t6p")
+volume_db = -5.0
+
+[node name="ThunderTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true

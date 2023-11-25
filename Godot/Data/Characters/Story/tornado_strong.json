@@ -20,6 +20,19 @@
         "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
     ],
     "Perks": [],
+    "Barks": {
+        "2": [
+            [
+                "Hear the howls of peril that await you!"
+            ],
+            [
+                "The demon’s threats ride on my winds. Heed them!"
+            ],
+            [
+                "Foolish king, you cannot conquer nature!"
+            ]
+        ]
+    },
     "_rangedWeaponEquipped": 3,
     "Level": 4,
     "Might": 4,

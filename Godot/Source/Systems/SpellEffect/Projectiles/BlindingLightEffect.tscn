@@ -24,7 +24,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -245,10 +245,10 @@ scale_curve = SubResource("CurveTexture_uenha")
 color_ramp = SubResource("GradientTexture1D_da756")
 
 [node name="BlindingLightEffect" type="Node2D" node_paths=PackedStringArray("Anim")]
-position = Vector2(1285, 905)
+position = Vector2(32, 25)
 script = ExtResource("1_qdm1s")
 Anim = NodePath("Anim")
-Speed = 400.0
+Speed = 800.0
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -258,7 +258,7 @@ libraries = {
 [node name="Core" type="GPUParticles2D" parent="."]
 rotation = 1.5708
 emitting = false
-amount = 32
+amount = 64
 process_material = SubResource("ParticleProcessMaterial_ws1nq")
 texture = ExtResource("2_nsvjq")
 local_coords = true
@@ -266,7 +266,7 @@ local_coords = true
 [node name="Light" type="GPUParticles2D" parent="."]
 rotation = 1.5708
 emitting = false
-amount = 32
+amount = 64
 process_material = SubResource("ParticleProcessMaterial_r2as5")
 texture = ExtResource("3_foy3o")
 lifetime = 0.5
@@ -276,7 +276,7 @@ local_coords = true
 [node name="Finish" type="GPUParticles2D" parent="."]
 rotation = 1.5708
 emitting = false
-amount = 128
+amount = 256
 process_material = SubResource("ParticleProcessMaterial_r2as5")
 texture = ExtResource("3_foy3o")
 one_shot = true

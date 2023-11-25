@@ -1,13 +1,48 @@
-[gd_scene load_steps=9 format=3 uid="uid://cclorm7y56hv"]
+[gd_scene load_steps=16 format=3 uid="uid://cclorm7y56hv"]
 
 [ext_resource type="Script" path="res://Source/Systems/Battle/Level/BattleLevel.cs" id="1_7mt0y"]
 [ext_resource type="Texture2D" uid="uid://coyf54vlm0b4f" path="res://Assets/Graphics/Interface/BattlefieldBorder9Patch.png" id="2_n884f"]
 [ext_resource type="Texture2D" uid="uid://bu4tecsgh5hbl" path="res://Assets/Graphics/Sprites/Terrain/Beach/PinkPlain.png" id="3_vp1rl"]
+[ext_resource type="Texture2D" uid="uid://kr8ctvsfq0xb" path="res://Assets/Graphics/Effects/rain_drop_dark.png" id="4_5jxwo"]
+[ext_resource type="PackedScene" uid="uid://bocl4i20k52jo" path="res://Source/Effects/Rain/RectThunder.tscn" id="5_j830j"]
 [ext_resource type="TileSet" uid="uid://bc4qi0pryan6r" path="res://Source/Utils/Terrain/Examples/ExampleTilesheet/TIlesheet.tres" id="6_0mu2v"]
 [ext_resource type="Texture2D" uid="uid://b5wi5gtg4d7hy" path="res://Assets/Graphics/Sprites/Terrain/Beach/TreesStyled.png" id="7_1x3ln"]
 [ext_resource type="Texture2D" uid="uid://bx0jyl30ulogw" path="res://Assets/Graphics/Sprites/Terrain/Beach/Rocks.png" id="8_6i0vl"]
 [ext_resource type="PackedScene" uid="uid://byrap2l8cfdxd" path="res://Source/Systems/HexGrid/HexGrid.tscn" id="9_xbl6f"]
 [ext_resource type="Script" path="res://Source/Systems/LevelSystem/HexModifier.cs" id="10_ykgvn"]
+
+[sub_resource type="Gradient" id="Gradient_tl1pa"]
+offsets = PackedFloat32Array(0, 0.208494)
+colors = PackedColorArray(1, 1, 1, 0.294118, 1, 1, 1, 0.2)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4ipey"]
+gradient = SubResource("Gradient_tl1pa")
+
+[sub_resource type="Curve" id="Curve_jp0po"]
+max_value = 4.0
+_data = [Vector2(0.0103448, 1.93684), 0.0, 0.0, 0, 0, Vector2(0.993103, 3.03158), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_xaya6"]
+curve = SubResource("Curve_jp0po")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nfct1"]
+emission_shape = 3
+emission_box_extents = Vector3(2332.8, 1080, 1)
+particle_flag_disable_z = true
+direction = Vector3(0.25, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 98, 0)
+initial_velocity_min = 4000.0
+initial_velocity_max = 4000.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+linear_accel_min = 1500.0
+linear_accel_max = 1500.0
+angle_min = 5.0
+angle_max = 5.0
+scale_curve = SubResource("CurveTexture_xaya6")
+color_ramp = SubResource("GradientTexture1D_4ipey")
 
 [node name="Level2" type="Node2D" node_paths=PackedStringArray("HexGrid", "_dummyTilemap", "HexModifier", "_background", "CharacterUnitsContainer", "_playerPositionCnt", "_enemyPositionCnt", "_allyPositionCnt")]
 script = ExtResource("1_7mt0y")
@@ -17,7 +52,7 @@ HexModifier = NodePath("HexGrid/HexModifier")
 _background = NodePath("Battlefield/Background/Terrain")
 CharacterUnitsContainer = NodePath("Entities/CharacterUnits")
 LevelID = 2
-IntroMessage = "In the nightmare realm, where reality twists into surreal landscapes, Gilgamesh and Enkidu confront elemental foes of cataclysmic proportions. Tornadoes swirl with malicious intent, unleashing the chaotic winds of the otherworld, while towering mountains animate, their peaks echoing with ominous roars. In this surreal battleground, the duo faces the wrath of nature incarnate, a testament to the surreal and perilous challenges that await them on their mythic odyssey."
+IntroMessage = "Enkidu gestured towards the horizon, “A true test of our might lies deep in the Cedar forest. A celestial creature towers above the tallest trees, guards the real, and swallows lost humans whole. When we vanquish it, our people will sing of our victory!”The two friends journeyed on, leaving the relieved city-folk behind. After a day’s travel, they stopped in a field of tamarisk trees, kindled a fire and pitched camp upon the soft petals. As night fell, the heavens shook with rain, the mountains groaned, and their dreams plagued them, for their next battle was a battle of the mind…"
 StartingEnemies = [8, 9, 10, 11]
 StartingAllies = [2]
 _playerPositionCnt = NodePath("Positions/Players")
@@ -51,8 +86,21 @@ patch_margin_bottom = 159
 [node name="Background" type="Node2D" parent="Battlefield"]
 
 [node name="Terrain" type="Sprite2D" parent="Battlefield/Background"]
-position = Vector2(1914, 903.5)
+position = Vector2(1914, 894)
+scale = Vector2(1, 1.01762)
 texture = ExtResource("3_vp1rl")
+
+[node name="RainParticles" type="GPUParticles2D" parent="Battlefield/Background"]
+z_index = 10
+z_as_relative = false
+position = Vector2(1861, 51)
+amount = 150
+process_material = SubResource("ParticleProcessMaterial_nfct1")
+texture = ExtResource("4_5jxwo")
+lifetime = 0.4
+preprocess = 5.0
+
+[node name="RectThunder" parent="Battlefield/Background" instance=ExtResource("5_j830j")]
 
 [node name="TileMap" type="TileMap" parent="Battlefield"]
 visible = false

@@ -36,11 +36,11 @@ public partial class SpellVisual : Node2D
     {
         SetPhysicsProcess(false);
         // DEBUGGING
-        // SetSpellEffectState(SpellEffectMode.Projectile);
-        // Start(new BattleSpellData()
+        // SetSpellEffectState(SpellEffectManager.SpellEffectVisualMode.Projectile);
+        // Start(new SpellEffectManager.Spell
         // {
         //     Origin = GlobalPosition,
-        //     Destination = new Vector2(3000, 3000),
+        //     Destination = new Vector2(1500, 1500),
         // });
 
     }

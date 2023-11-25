@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1eto8aeeitsp"]
+[gd_scene load_steps=18 format=3 uid="uid://b1eto8aeeitsp"]
 
 [ext_resource type="Script" path="res://Source/Systems/SpellEffect/SpellVisual.cs" id="1_v021o"]
 [ext_resource type="Texture2D" uid="uid://dkblllpdthfm4" path="res://Assets/Graphics/Interface/Buttons/Spells/SolarBlast.png" id="2_eau64"]
@@ -10,6 +10,7 @@
 [sub_resource type="Animation" id="Animation_un2wt"]
 resource_local_to_scene = true
 resource_name = "Finish"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -24,7 +25,7 @@ tracks/0/keys = {
 }
 tracks/1/type = "value"
 tracks/1/imported = false
-tracks/1/enabled = true
+tracks/1/enabled = false
 tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
@@ -121,11 +122,54 @@ _data = {
 "Start": SubResource("Animation_lla3h")
 }
 
+[sub_resource type="Gradient" id="Gradient_svvx2"]
+offsets = PackedFloat32Array(0, 0.632184, 0.916667, 1)
+colors = PackedColorArray(1, 1, 1, 0.294118, 0.992157, 1, 0.568627, 0.196078, 1, 0.627451, 0.0980392, 0.196078, 0.235294, 0.00392157, 0.0431373, 0.0392157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4gg5u"]
+gradient = SubResource("Gradient_svvx2")
+
+[sub_resource type="Curve" id="Curve_27kw7"]
+max_value = 200.0
+_data = [Vector2(0.0263852, 126.316), 0.0, -309.388, 0, 0, Vector2(1, 0), -96.5613, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_w1jjf"]
+curve = SubResource("Curve_27kw7")
+
+[sub_resource type="Curve" id="Curve_py238"]
+max_value = 4.0
+_data = [Vector2(0, 2.17895), 0.0, 0.0, 0, 0, Vector2(1, 3.78947), -0.48641, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_78xth"]
+curve = SubResource("Curve_py238")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pa3rb"]
+lifetime_randomness = 0.21
+emission_shape = 1
+emission_sphere_radius = 1.0
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+orbit_velocity_min = -0.25
+orbit_velocity_max = 0.25
+linear_accel_min = 10.0
+linear_accel_max = 10.0
+linear_accel_curve = SubResource("CurveTexture_w1jjf")
+damping_min = 80.0
+damping_max = 100.0
+scale_curve = SubResource("CurveTexture_78xth")
+color_ramp = SubResource("GradientTexture1D_4gg5u")
+
 [node name="SolarBlastEffect" type="Node2D" node_paths=PackedStringArray("Anim")]
-position = Vector2(1285, 905)
+position = Vector2(12, 19)
 script = ExtResource("1_v021o")
 Anim = NodePath("Anim")
-Speed = 450.0
+Speed = 900.0
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -133,13 +177,14 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.27, 0.27)
 texture = ExtResource("2_eau64")
 
 [node name="Particles" type="GPUParticles2D" parent="."]
 rotation = 1.5708
 emitting = false
-amount = 35
+amount = 500
 process_material = ExtResource("3_aebrt")
 texture = ExtResource("4_x3xtk")
 lifetime = 0.5
@@ -148,12 +193,11 @@ local_coords = true
 [node name="Final" type="GPUParticles2D" parent="."]
 rotation = 1.5708
 emitting = false
-amount = 300
-process_material = ExtResource("3_aebrt")
+amount = 600
+process_material = SubResource("ParticleProcessMaterial_pa3rb")
 texture = ExtResource("4_x3xtk")
-lifetime = 1.5
 one_shot = true
-explosiveness = 0.5
+explosiveness = 1.0
 local_coords = true
 
 [node name="AudioContainer" type="Node" parent="." node_paths=PackedStringArray("SoundParent")]

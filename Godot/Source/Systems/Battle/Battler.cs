@@ -295,6 +295,7 @@ public partial class Battler : Node2D
         if (characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] + characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.HealthRegen] <= characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxHealth])
         {
             characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Health] += characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.HealthRegen];
+            characterUnit.UpdateBarHealth();
         }
 
         // if (characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.Endurance] < characterUnit.CharacterData.Stats[StoryCharacterData.StatMode.MaxEndurance])

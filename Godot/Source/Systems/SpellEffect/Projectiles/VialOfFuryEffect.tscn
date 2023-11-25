@@ -9,6 +9,7 @@
 [sub_resource type="Animation" id="Animation_nqm2t"]
 resource_local_to_scene = true
 resource_name = "Finish"
+length = 1.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -28,7 +29,7 @@ tracks/1/path = NodePath(".:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(1.1, 1.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -149,7 +150,7 @@ curve = SubResource("Curve_1n4w2")
 
 [sub_resource type="Curve" id="Curve_givds"]
 max_value = 2.0
-_data = [Vector2(0, 0.610526), 0.0, 0.0, 0, 0, Vector2(1, 1.07368), -0.48641, 0.0, 0, 0]
+_data = [Vector2(0, 1.01053), 0.0, 0.0, 0, 0, Vector2(1, 1.95789), -0.48641, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_enjvj"]
@@ -157,7 +158,7 @@ curve = SubResource("Curve_givds")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8kgqi"]
 emission_shape = 1
-emission_sphere_radius = 1.0
+emission_sphere_radius = 5.51
 particle_flag_disable_z = true
 direction = Vector3(0, 0, 0)
 spread = 180.0
@@ -187,8 +188,8 @@ point_count = 2
 curve = SubResource("Curve_qt3e5")
 
 [sub_resource type="Curve" id="Curve_krl0n"]
-max_value = 2.0
-_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 0.442105), -0.48641, 0.0, 0, 0]
+max_value = 3.0
+_data = [Vector2(0, 1.07368), 0.0, 3.49474, 0, 0, Vector2(1, 0.442105), -0.48641, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_yf0gi"]
@@ -196,10 +197,10 @@ curve = SubResource("Curve_krl0n")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_apwiu"]
 emission_shape = 1
-emission_sphere_radius = 0.2
+emission_sphere_radius = 0.01
 particle_flag_disable_z = true
 direction = Vector3(0, 1, 0)
-spread = 133.43
+spread = 180.0
 gravity = Vector3(0, 0, 0)
 initial_velocity_min = 10.0
 initial_velocity_max = 10.0
@@ -207,20 +208,20 @@ angular_velocity_min = -234.86
 angular_velocity_max = 249.08
 orbit_velocity_min = -32.68
 orbit_velocity_max = 11.06
-linear_accel_min = 1.0
-linear_accel_max = 2.0
+linear_accel_min = 5.0
+linear_accel_max = 5.0
 linear_accel_curve = SubResource("CurveTexture_k6px1")
 radial_accel_min = -25.0
 radial_accel_max = 25.0
-scale_max = 2.0
+scale_max = 3.0
 scale_curve = SubResource("CurveTexture_yf0gi")
 color_ramp = SubResource("GradientTexture1D_6f4sb")
 
 [node name="VialOfFuryEffect" type="Node2D" node_paths=PackedStringArray("Anim")]
-position = Vector2(1285, 905)
+position = Vector2(81, 63)
 script = ExtResource("1_n6o1n")
 Anim = NodePath("Anim")
-Speed = 300.0
+Speed = 800.0
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -239,7 +240,7 @@ preprocess = 10.0
 [node name="Light" type="GPUParticles2D" parent="."]
 rotation = 1.5708
 emitting = false
-amount = 72
+amount = 512
 process_material = SubResource("ParticleProcessMaterial_apwiu")
 texture = ExtResource("3_tj7fa")
 lifetime = 0.5

@@ -20,6 +20,19 @@
         "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
     ],
     "Perks": [],
+    "Barks": {
+        "0": [
+            [
+                "Ishtar, guide our blades against tyranny!"
+            ],
+            [
+                "Shamash, aid us in this righteous battle!"
+            ],
+            [
+                "Ishtar, protect us!"
+            ]
+        ]
+    },
     "Level": 1,
     "Might": 4,
     "Resilience": 4,

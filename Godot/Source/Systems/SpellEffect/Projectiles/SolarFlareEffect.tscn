@@ -202,10 +202,10 @@ scale_curve = SubResource("CurveTexture_mavh6")
 color_ramp = SubResource("GradientTexture1D_7jj61")
 
 [node name="SolarFlareEffect" type="Node2D" node_paths=PackedStringArray("Anim")]
-position = Vector2(1285, 905)
+position = Vector2(191, 147)
 script = ExtResource("1_4bcl2")
 Anim = NodePath("Anim")
-Speed = 575.0
+Speed = 1000.0
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 libraries = {

@@ -22,6 +22,19 @@
         "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
     ],
     "Perks": [],
+    "Barks": {
+        "2": [
+            [
+                "Feel the weight of my ancient strength upon you!"
+            ],
+            [
+                "The elements will haunt you. Turn back!"
+            ],
+            [
+                "You are nothing. A mere flash of life within the immensity of time."
+            ]
+        ]
+    },
     "_rangedWeaponEquipped": 2,
     "_meleeWeaponEquipped": 5,
     "Level": 3,

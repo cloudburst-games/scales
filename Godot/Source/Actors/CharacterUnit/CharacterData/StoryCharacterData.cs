@@ -95,6 +95,8 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
             _meleeWeaponEquipped = this._meleeWeaponEquipped,
             _rangedWeaponEquipped = this._rangedWeaponEquipped,
             ArmourClass = this.ArmourClass,
+            MeleeWeaponDamageBonus = this.MeleeWeaponDamageBonus,
+            RangedWeaponDamageBonus = this.RangedWeaponDamageBonus,
             Perks = this.Perks.Select(x => (int)x).ToList(),
             Level = this.Level,
             Might = this.Attributes[AttributeMode.Might],
@@ -336,13 +338,9 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     }
 
 
-    // todo
-    // updatearmour - based on equipped
-    // updateweapon - based on equipped
-
     private int GetUpdatedHealth()
     {
-        return UpdateStat(Attributes[AttributeMode.Might], 3, 0.025f) + UpdateStat(Attributes[AttributeMode.Resilience], 1f, 0.025f);
+        return UpdateStat(Attributes[AttributeMode.Might], 1.75f, 0.025f) + UpdateStat(Attributes[AttributeMode.Resilience], 1f, 0.025f);
     }
 
     private int GetUpdatedEndurance()
