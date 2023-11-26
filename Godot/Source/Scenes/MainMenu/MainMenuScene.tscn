@@ -1,11 +1,10 @@
-[gd_scene load_steps=49 format=3 uid="uid://b6v34iwdchsgi"]
+[gd_scene load_steps=50 format=3 uid="uid://b6v34iwdchsgi"]
 
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/MainMenuScene.cs" id="1_66m4n"]
 [ext_resource type="Script" path="res://addons/SceneTransitionPlugin/SceneTransition.cs" id="2_lc0ma"]
 [ext_resource type="AudioStream" uid="uid://cpjemto7cnwo7" path="res://Assets/Audio/Music/Menu/SinisterHellFlute_L1L2.ogg" id="3_t16c1"]
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="4_g6wc5"]
 [ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="4_jn681"]
-[ext_resource type="Texture2D" uid="uid://bu4tecsgh5hbl" path="res://Assets/Graphics/Sprites/Terrain/Beach/PinkPlain.png" id="5_4qe3k"]
 [ext_resource type="Texture2D" uid="uid://dcqac4haanwa5" path="res://Assets/Graphics/Front Cover/BackgroundPlain.png" id="5_n7jpa"]
 [ext_resource type="FontFile" uid="uid://8u4c4rsvwp2o" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf" id="6_06dfr"]
 [ext_resource type="FontFile" uid="uid://dvgrbl3tedigj" path="res://Assets/Graphics/Fonts/Meddon/Meddon-Regular.ttf" id="6_8cgfm"]
@@ -26,16 +25,18 @@
 [ext_resource type="Texture2D" uid="uid://bvhklxpq1kx1w" path="res://Assets/Graphics/Interface/Buttons/Leaderboard/leaderboardsComplexPressed.png" id="20_xyxyu"]
 [ext_resource type="Texture2D" uid="uid://bti2xh8sbgo6t" path="res://Assets/Graphics/Interface/Buttons/Leaderboard/leaderboardsComplexHover.png" id="21_2dvak"]
 [ext_resource type="PackedScene" uid="uid://bes3oet5iq1e1" path="res://Source/Systems/SettingsManager/SettingsManager.tscn" id="23_7c4m2"]
+[ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="24_cal1b"]
 [ext_resource type="Texture2D" uid="uid://crxm7cjirqta8" path="res://Assets/Graphics/UI icons/Close.png" id="25_38bd0"]
 [ext_resource type="Texture2D" uid="uid://b6j67d6me2irx" path="res://Assets/Graphics/UI icons/CloseHover.png" id="26_kyqmb"]
 [ext_resource type="Script" path="res://addons/PictureStoryPlugin/PictureStoryContainer/PictureStoryContainer.cs" id="26_s1oqk"]
 [ext_resource type="Script" path="res://addons/PictureStoryPlugin/PictureStorySlide/PictureStorySlide.cs" id="27_3ioox"]
+[ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="27_53gdo"]
 [ext_resource type="Texture2D" uid="uid://cp0nvngfnqwds" path="res://Assets/Graphics/UI icons/ClosePressed.png" id="27_dpbi1"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="28_5f6ek"]
+[ext_resource type="FontFile" uid="uid://b0cbe0222uo2c" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-Regular.ttf" id="28_fy7og"]
 [ext_resource type="Script" path="res://addons/AutoScrollLabelPlugin/AutoScrollLabel.cs" id="29_lwbti"]
 [ext_resource type="PackedScene" uid="uid://ce0b88lumohl8" path="res://Source/Scenes/MainMenu/PnlAdventures/CntPnlAdventures.tscn" id="32_h085b"]
 [ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="34_16yq6"]
-[ext_resource type="FontFile" uid="uid://cofx1cs3c3u03" path="res://Assets/Graphics/Fonts/Yusei_Magic/YuseiMagic-Regular.ttf" id="41_og7ub"]
 
 [sub_resource type="Animation" id="Animation_djx7x"]
 length = 0.001
@@ -518,17 +519,17 @@ vertical_alignment = 1
 [node name="SettingsManager" parent="Control" instance=ExtResource("23_7c4m2")]
 
 [node name="IntroPictureStory" type="Control" parent="Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 24.0
 offset_top = -7.0
-offset_right = 3864.0
-offset_bottom = 2153.0
+offset_right = 24.0
+offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("24_cal1b")
 script = ExtResource("26_s1oqk")
 _blendFadeTime = 0.5
 _transitionTypeEnd = "None"
@@ -543,35 +544,36 @@ InputSkipsSlide = false
 ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="TextureRect2" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_4qe3k")
+texture = ExtResource("5_n7jpa")
 
 [node name="Label" type="Label" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
 offset_right = 3825.0
 offset_bottom = 226.0
-text = "Chapter 1"
+theme = ExtResource("24_cal1b")
+theme_override_colors/font_color = Color(0.462168, 0.381421, 0.115605, 1)
+text = "Prologue: Divine Judgment"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
+self_modulate = Color(1, 1, 1, 0.858824)
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.025
 anchor_right = 0.975
 anchor_bottom = 0.875
-offset_top = 171.0
+offset_top = 272.0
+offset_bottom = -107.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("27_53gdo")
 
 [node name="AutoScrollLabel" type="RichTextLabel" parent="Control/IntroPictureStory/PictureStorySlide2/Panel"]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.025
@@ -580,9 +582,11 @@ anchor_right = 0.975
 anchor_bottom = 0.975
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/default_color = Color(0.977908, 0.910331, 0.710409, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("41_og7ub")
+theme_override_fonts/normal_font = ExtResource("28_fy7og")
 theme_override_font_sizes/normal_font_size = 84
+bbcode_enabled = true
 text = "
 
 
@@ -598,22 +602,21 @@ text = "
 
 In the theater of gods, Ishtar, the goddess of love and war, challenges Shamash, the god of wisdom and order, to a game of justice, with Gilgamesh as their pawn upon the mortal stage.
 
-“I challenge you to shape him into a just and noble ruler,” Ishtar smirked.
+“I challenge you to shape him into a just and noble ruler,” Ishtar smirks.
 
-Shamash stroked his beard. “Do you doubt his potential for wisdom, Ishtar?”
+Shamash strokes his beard. “Do you doubt his potential for wisdom, Ishtar?”
 
-Ishtar’s laughter echoed through the heavens. “Humans embrace their primal instincts. His blood will boil in battle. He will always choose wrath and live a great, but short, mortal life.”
+Her laughter echoes through the heavens. “Humans embrace their primal instincts. His blood will boil in battle. He will always choose wrath and live a great, but short, mortal life.”
 
-Shamash’s eyes came alive. “And if I teach him the way of mercy?”
+Shamash’s eyes come alive. “And if I teach him the way of mercy?”
 
-Ishtar replied, “You may grant him immortality.”
+Ishtar replied, “You may judge him worthy of immortality.”
 
-As these two deities vie to tip the scales of judgement, the destiny of Gilgamesh and his people hang on the choices you make."
+As these two deities vie to tip the scales of justice, Gilgamesh’s destiny hangs on the choices you make."
 script = ExtResource("29_lwbti")
 _scrollSpeed = 30.0
 
 [node name="BtnContinueStory" type="TextureButton" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
@@ -651,7 +654,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
 anchors_preset = -1
 anchor_right = 0.5
 anchor_bottom = 0.9

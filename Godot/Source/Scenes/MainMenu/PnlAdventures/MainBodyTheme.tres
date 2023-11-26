@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://5wc2objj7tpd"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://5wc2objj7tpd"]
 
 [ext_resource type="FontFile" uid="uid://b0cbe0222uo2c" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-Regular.ttf" id="1_5hx47"]
+[ext_resource type="Texture2D" uid="uid://cq0c3oj86ct15" path="res://AtlasScrollBarBorder.tres" id="2_dxaur"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocjko"]
 bg_color = Color(0.0392157, 0.176471, 0.168627, 1)
@@ -11,8 +12,22 @@ corner_radius_top_right = 40
 corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jmxms"]
+texture = ExtResource("2_dxaur")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lf17j"]
+texture = ExtResource("2_dxaur")
+modulate_color = Color(0.572549, 0.572549, 0.572549, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f04vh"]
+texture = ExtResource("2_dxaur")
+modulate_color = Color(0.478431, 0.478431, 0.478431, 1)
+
 [resource]
 Label/colors/font_color = Color(0.792157, 0.745098, 0.588235, 1)
 Label/font_sizes/font_size = 80
 Label/fonts/font = ExtResource("1_5hx47")
 Panel/styles/panel = SubResource("StyleBoxFlat_ocjko")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_jmxms")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_lf17j")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_f04vh")
