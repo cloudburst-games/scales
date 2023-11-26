@@ -86,8 +86,8 @@ _victoryPictureStoriesNodePaths = {
 }
 _finalVictoryStoryNodePaths = {
 0: NodePath("FinalVictoryStoryShamash"),
-1: NodePath("FinalVictoryStoryBalanced"),
-2: NodePath("FinalVictoryStoryIshtar")
+1: NodePath("FinalVictoryStoryIshtar"),
+2: NodePath("FinalVictoryStoryBalanced")
 }
 
 [node name="DefeatStory0" parent="." instance=ExtResource("2_fg2x8")]

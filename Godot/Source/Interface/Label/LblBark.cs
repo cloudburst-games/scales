@@ -53,7 +53,7 @@ public partial class LblBark : Label
             {
                 Rect2 intersection = GetGlobalRect().Intersection(b.GetGlobalRect());
 
-                Vector2 moveDirection = b.GlobalPosition - GlobalPosition;
+                Vector2 moveDirection = new(b.GlobalPosition.X - GlobalPosition.X, 0);
 
                 b.GlobalPosition += moveDirection.Normalized() * intersection.Size.X;
             }
