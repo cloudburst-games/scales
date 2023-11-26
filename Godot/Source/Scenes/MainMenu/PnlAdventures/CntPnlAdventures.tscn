@@ -1,20 +1,27 @@
-[gd_scene load_steps=32 format=3 uid="uid://ce0b88lumohl8"]
+[gd_scene load_steps=38 format=3 uid="uid://ce0b88lumohl8"]
 
+[ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="1_4xm35"]
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/PnlAdventures/CntPnlAdventures.cs" id="1_56uah"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="1_tow4p"]
 [ext_resource type="ButtonGroup" uid="uid://2p2q5sndksxv" path="res://Source/Scenes/MainMenu/PnlAdventures/BtnGroupAdventures.tres" id="3_5i4tn"]
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="3_gtib0"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="4_01gsx"]
 [ext_resource type="PackedScene" uid="uid://7jwg3stf3hw2" path="res://Source/Interface/Buttons/BtnClosePlaceholder2.tscn" id="4_wbufx"]
+[ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="5_24k5n"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="5_xhugv"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="6_bmndb"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="7_2peo6"]
 [ext_resource type="ButtonGroup" uid="uid://cu7266orn7505" path="res://Source/Scenes/MainMenu/PnlAdventures/BtnGroupDifficulty.tres" id="9_k5wjp"]
-[ext_resource type="Texture2D" uid="uid://cp6n6r11g7sgd" path="res://Assets/Graphics/Sprites/Actors/Portraits/GigaPortraitv1.png" id="10_8sfwf"]
 [ext_resource type="Texture2D" uid="uid://du12fi24yk15b" path="res://Assets/Graphics/Sprites/Actors/ScalesOfPowerOrJustice/Scales.png" id="11_lviu7"]
+[ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="11_rn4dl"]
 [ext_resource type="ButtonGroup" uid="uid://ubri10n1qy5" path="res://Source/Scenes/MainMenu/PnlAdventures/BtnGroupPerk.tres" id="11_xf5ct"]
+[ext_resource type="Texture2D" uid="uid://bjxt0kqmp264k" path="res://Assets/Graphics/Sprites/Actors/Portraits/GigaPortraitv2.png" id="12_yoh15"]
+[ext_resource type="Texture2D" uid="uid://dfhsk763q33vh" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/NormalAlt.png" id="14_od7eq"]
 [ext_resource type="Texture2D" uid="uid://sb2gh4wm7rd" path="res://Assets/Graphics/Icons/IconNormal/SolarFlare2.png" id="15_1ke5p"]
+[ext_resource type="Texture2D" uid="uid://c4wghdo3y7rbl" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/PressedAlt.png" id="15_id56s"]
 [ext_resource type="Texture2D" uid="uid://bkj77yrqu42x" path="res://Assets/Graphics/Icons/IconPressed/SolarFlare2.png" id="16_hyk0x"]
+[ext_resource type="Texture2D" uid="uid://cmdbnulfqljfm" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/HoverAlt.png" id="16_qt2mm"]
+[ext_resource type="FontFile" uid="uid://birtuq7kdeqwx" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Bold.ttf" id="17_8cbf6"]
 [ext_resource type="Texture2D" uid="uid://baxjk47lmbfkn" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksNormal/Sling.png" id="17_toxvx"]
 [ext_resource type="Texture2D" uid="uid://c57hfr315tngh" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed/Sling.png" id="19_6lr5f"]
 [ext_resource type="Texture2D" uid="uid://bcefps23nm10a" path="res://Assets/Graphics/Icons/IconNormal/Vigor2.png" id="19_gum6e"]
@@ -27,10 +34,9 @@
 atlas = ExtResource("11_lviu7")
 region = Rect2(0, 0, 466.818, 478.485)
 
-[sub_resource type="LabelSettings" id="LabelSettings_6y1lg"]
-font_size = 96
-outline_size = 20
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehf72"]
+atlas = ExtResource("11_lviu7")
+region = Rect2(0, 0, 466.818, 478.485)
 
 [sub_resource type="LabelSettings" id="LabelSettings_80fgo"]
 font_size = 56
@@ -38,19 +44,14 @@ font_size = 56
 [sub_resource type="LabelSettings" id="LabelSettings_wlli7"]
 font_size = 84
 
-[sub_resource type="LabelSettings" id="LabelSettings_0yb4y"]
-font_size = 84
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_t624p"]
-font_size = 64
-
 [sub_resource type="LabelSettings" id="LabelSettings_rahv7"]
 font_size = 84
 
 [sub_resource type="LabelSettings" id="LabelSettings_ixgyo"]
 font_size = 72
+
+[sub_resource type="LabelSettings" id="LabelSettings_t624p"]
+font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_iwxgo"]
 font_size = 56
@@ -63,6 +64,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("1_4xm35")
 script = ExtResource("1_56uah")
 _btnEasy = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty/BtnEasy")
 _btnMedium = NodePath("BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty/BtnMedium")
@@ -86,6 +88,7 @@ anchor_right = 0.95
 anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4xm35")
 script = ExtResource("1_tow4p")
 _snapToEdges = false
 _draggable = false
@@ -97,19 +100,28 @@ layout_mode = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
+anchor_top = 0.016
 anchor_right = 0.9
 anchor_bottom = 0.1
+offset_left = 0.399994
+offset_top = 88.896
+offset_right = 0.600098
+offset_bottom = 45.6
 grow_horizontal = 2
+theme = ExtResource("5_24k5n")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BasePanel/PnlTitle"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 0.283
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 1.775
+offset_top = 0.0400009
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect2" type="TextureRect" parent="BasePanel/PnlTitle/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_f764m")
@@ -119,25 +131,30 @@ stretch_mode = 5
 [node name="Label" type="Label" parent="BasePanel/PnlTitle/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "THE TRIALS OF GILGAMESH"
-label_settings = SubResource("LabelSettings_6y1lg")
+size_flags_stretch_ratio = 9.6
+text = "The Trials of Gilgamesh"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect3" type="TextureRect" parent="BasePanel/PnlTitle/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
-texture = SubResource("AtlasTexture_f764m")
+texture = SubResource("AtlasTexture_ehf72")
 expand_mode = 2
 stretch_mode = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BasePanel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.01
-anchor_top = 0.11
-anchor_right = 0.99
-anchor_bottom = 0.99
+anchor_left = 0.045
+anchor_top = 0.171
+anchor_right = 0.955
+anchor_bottom = 0.919
+offset_left = -0.520004
+offset_top = 0.575989
+offset_right = -0.480225
+offset_bottom = 0.463989
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -200,12 +217,16 @@ autowrap_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 3.0
+theme = ExtResource("11_rn4dl")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.024
+anchor_right = 0.982
 anchor_bottom = 1.0
+offset_left = -1.264
+offset_right = -1.05225
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -221,9 +242,15 @@ size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxContainer/Panel2"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.041
+anchor_top = 0.052
+anchor_right = 0.953
+anchor_bottom = 0.945
+offset_left = -0.0039978
+offset_top = -10.316
+offset_right = -0.532227
+offset_bottom = -5.68506
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
@@ -231,16 +258,18 @@ size_flags_horizontal = 3
 [node name="TexAdventure" type="TextureRect" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxContainer/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
-texture = ExtResource("10_8sfwf")
+size_flags_stretch_ratio = 1.71
+texture = ExtResource("12_yoh15")
 expand_mode = 2
 stretch_mode = 5
 
 [node name="LblDescription" type="Label" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxContainer/Panel2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "Embark on a journey as King Gilgamesh, as he battles for power and eternal life, under the watchful eye of the gods. Be careful of your choices - the gods favor, or their wrath, could tip the scales of justice and shape your destiny."
-label_settings = SubResource("LabelSettings_0yb4y")
+theme = ExtResource("11_rn4dl")
+theme_override_colors/font_color = Color(0.79243, 0.746023, 0.588994, 1)
+theme_override_font_sizes/font_size = 0
+text = "Embark on a journey as King Gilgamesh, battling  for power and eternal life under the watchful eye of the gods. Be careful with your choices; the favor or wrath of the gods can tip the scales of justice and shape your destiny"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -248,7 +277,7 @@ autowrap_mode = 2
 [node name="HBoxDifficulty" type="HBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.4
 
 [node name="Control" type="Control" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty"]
 layout_mode = 2
@@ -260,8 +289,9 @@ size_flags_horizontal = 3
 tooltip_text = "An ally joins you each battle."
 toggle_mode = true
 button_group = ExtResource("9_k5wjp")
-texture_normal = ExtResource("3_gtib0")
-texture_pressed = ExtResource("4_01gsx")
+texture_normal = ExtResource("14_od7eq")
+texture_pressed = ExtResource("15_id56s")
+texture_hover = ExtResource("16_qt2mm")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_2peo6")
@@ -273,8 +303,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.0392157, 0.176471, 0.168627, 1)
+theme_override_fonts/font = ExtResource("17_8cbf6")
+theme_override_font_sizes/font_size = 70
 text = "Easy"
-label_settings = SubResource("LabelSettings_t624p")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -285,8 +317,9 @@ tooltip_text = "Normal amount of enemies and allies."
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("9_k5wjp")
-texture_normal = ExtResource("3_gtib0")
-texture_pressed = ExtResource("4_01gsx")
+texture_normal = ExtResource("14_od7eq")
+texture_pressed = ExtResource("15_id56s")
+texture_hover = ExtResource("16_qt2mm")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_2peo6")
@@ -298,9 +331,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.0392157, 0.176471, 0.168627, 1)
+theme_override_fonts/font = ExtResource("17_8cbf6")
+theme_override_font_sizes/font_size = 70
 text = "Medium
 "
-label_settings = SubResource("LabelSettings_t624p")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -310,8 +345,9 @@ size_flags_horizontal = 3
 tooltip_text = "You face an additional enemy each battle."
 toggle_mode = true
 button_group = ExtResource("9_k5wjp")
-texture_normal = ExtResource("3_gtib0")
-texture_pressed = ExtResource("4_01gsx")
+texture_normal = ExtResource("14_od7eq")
+texture_pressed = ExtResource("15_id56s")
+texture_hover = ExtResource("16_qt2mm")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_2peo6")
@@ -323,14 +359,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.0392157, 0.176471, 0.168627, 1)
+theme_override_fonts/font = ExtResource("17_8cbf6")
+theme_override_font_sizes/font_size = 70
 text = "Hard"
-label_settings = SubResource("LabelSettings_t624p")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Control2" type="Control" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxDifficulty"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Control2" type="Control" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.05
 
 [node name="HBoxPlay" type="HBoxContainer" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
 layout_mode = 2
@@ -360,8 +403,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.56508, 0.468497, 0.151033, 1)
+theme_override_fonts/font = ExtResource("17_8cbf6")
 text = "Continue"
-label_settings = SubResource("LabelSettings_t624p")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -384,14 +428,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.56508, 0.468497, 0.151033, 1)
+theme_override_fonts/font = ExtResource("17_8cbf6")
 text = "New"
-label_settings = SubResource("LabelSettings_t624p")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Control4" type="Control" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer/HBoxPlay"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="BasePanel/HBoxContainer/PnlAdventureDescription/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
 
 [node name="PnlPerks" type="Panel" parent="."]
 visible = false

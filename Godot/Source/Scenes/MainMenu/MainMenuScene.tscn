@@ -518,14 +518,15 @@ vertical_alignment = 1
 [node name="SettingsManager" parent="Control" instance=ExtResource("23_7c4m2")]
 
 [node name="IntroPictureStory" type="Control" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 24.0
 offset_top = -7.0
-offset_right = 24.0
-offset_bottom = -7.0
+offset_right = 3864.0
+offset_bottom = 2153.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("26_s1oqk")
@@ -542,6 +543,7 @@ InputSkipsSlide = false
 ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="TextureRect2" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -550,6 +552,7 @@ grow_vertical = 2
 texture = ExtResource("5_4qe3k")
 
 [node name="Label" type="Label" parent="Control/IntroPictureStory/PictureStorySlide2"]
+visible = false
 offset_right = 3825.0
 offset_bottom = 226.0
 text = "Chapter 1"
@@ -557,6 +560,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="Control/IntroPictureStory/PictureStorySlide2"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.025
@@ -567,6 +571,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="AutoScrollLabel" type="RichTextLabel" parent="Control/IntroPictureStory/PictureStorySlide2/Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.025
@@ -608,6 +613,7 @@ script = ExtResource("29_lwbti")
 _scrollSpeed = 30.0
 
 [node name="BtnContinueStory" type="TextureButton" parent="Control/IntroPictureStory/PictureStorySlide2"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
@@ -645,6 +651,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
+visible = false
 anchors_preset = -1
 anchor_right = 0.5
 anchor_bottom = 0.9
