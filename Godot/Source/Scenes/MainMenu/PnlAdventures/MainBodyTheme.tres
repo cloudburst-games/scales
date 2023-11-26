@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://5wc2objj7tpd"]
+
+[ext_resource type="FontFile" uid="uid://b0cbe0222uo2c" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-Regular.ttf" id="1_5hx47"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocjko"]
+bg_color = Color(0.0392157, 0.176471, 0.168627, 1)
+border_color = Color(0.882353, 0.839216, 0.698039, 1)
+border_blend = true
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[resource]
+Label/colors/font_color = Color(0.792157, 0.745098, 0.588235, 1)
+Label/font_sizes/font_size = 80
+Label/fonts/font = ExtResource("1_5hx47")
+Panel/styles/panel = SubResource("StyleBoxFlat_ocjko")

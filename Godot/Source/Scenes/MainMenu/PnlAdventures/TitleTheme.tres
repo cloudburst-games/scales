@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://rllhbeqgvm58"]
+
+[ext_resource type="FontFile" uid="uid://8u4c4rsvwp2o" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf" id="1_nc5ij"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ocjko"]
+bg_color = Color(0.0392157, 0.176471, 0.168627, 1)
+border_color = Color(0.882353, 0.839216, 0.698039, 1)
+border_blend = true
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[resource]
+Label/colors/font_color = Color(0.67451, 0.560784, 0.192157, 1)
+Label/font_sizes/font_size = 100
+Label/fonts/font = ExtResource("1_nc5ij")
+Panel/styles/panel = SubResource("StyleBoxFlat_ocjko")
