@@ -23,6 +23,8 @@ public partial class BattleLevel : Node2D
     public int LevelID { get; set; } = 0;
     [Export]
     public string IntroMessage { get; set; } = "Let battle be joined!";
+    [Export]
+    public string IntroTitle { get; set; } = "";
 
     [Export]
     public Godot.Collections.Array<StoryCharacter.StoryCharacterMode> StartingEnemies = new();

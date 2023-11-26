@@ -13,14 +13,27 @@ public partial class AutoScrollLabel : RichTextLabel
     private int _skippedFrame = 1;
     private double _lastScrollValue = -1;
 
-	public override void _Ready()
-	{
+    private bool _acceptInput = false;
+
+    public override void _Ready()
+    {
+        Init();
         GetVScrollBar().GuiInput += OnScrollBarGUIInput;
-	}
+    }
+
+    private async void Init()
+    {
+        await ToSignal(GetTree().CreateTimer(0.5), SceneTreeTimer.SignalName.Timeout);
+        _acceptInput = true;
+    }
 
     // Stop autoscroll when the user attempts to scroll the bar manually
     private void OnScrollBarGUIInput(InputEvent ev)
     {
+        if (!_acceptInput)
+        {
+            return;
+        }
         if (ev is InputEventMouseButton)
         {
             _autoScroll = false;
@@ -28,7 +41,7 @@ public partial class AutoScrollLabel : RichTextLabel
     }
 
     public override void _Process(double delta)
-	{
+    {
         if (!_autoScroll)
         {
             return;
@@ -38,7 +51,7 @@ public partial class AutoScrollLabel : RichTextLabel
         {
             int framesToSkip = Convert.ToInt32(30 / _scrollSpeed);
             _skippedFrame = (_skippedFrame + 1) % framesToSkip;
-            
+
             if (_skippedFrame != 0)
             {
                 return;
@@ -50,6 +63,6 @@ public partial class AutoScrollLabel : RichTextLabel
             _lastScrollValue = GetVScrollBar().Value;
             GetVScrollBar().Value += Math.Max(30, _scrollSpeed) * delta;
         }
-	}
+    }
 
 }

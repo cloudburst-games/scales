@@ -157,8 +157,9 @@ public partial class BattleHUD : CanvasLayer
         SetState(StateMode.LogOpened);
     }
 
-    public void SetIntroText(string text)
+    public void SetIntroText(string introTitleText, string text)
     {
+        _lblIntroTitle.Text = introTitleText;
         _lblIntro.Text = text;
     }
 
@@ -379,6 +380,8 @@ public partial class BattleHUD : CanvasLayer
     private TextureButton _btnSpellbook;
     [Export]
     private TextureButton _btnEndTurn;
+    [Export]
+    private Label _lblIntroTitle;
 
     public void TutorialHint()
     {
@@ -464,6 +467,11 @@ public partial class BattleHUD : CanvasLayer
     public void Exit()
     {
         // PortraitMouseEntered = null;
+    }
+
+    internal void SetIntroText(object introTitle, string introMessage)
+    {
+        throw new NotImplementedException();
     }
 }
 

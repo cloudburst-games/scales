@@ -21,7 +21,7 @@ public partial class LblBark : Label
         if (_anim.IsPlaying())
         {
             _anim.Stop();
-            Text += "\n\n" + text;
+            Text = text;
 
         }
         else

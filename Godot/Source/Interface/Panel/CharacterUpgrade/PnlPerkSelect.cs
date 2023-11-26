@@ -79,7 +79,7 @@ public partial class PnlPerkSelect : Panel
     {
 
         _numberOfPerksPerCharacter = maxPerCharacter;
-        _lblPerkSelect.Text = string.Format($"Allocate boons amongst the heroes!\nYou may select a maximum of {maxPerCharacter} per hero.");
+        _lblPerkSelect.Text = string.Format($"Choose a hero and allocate a boon.\nSelect a maximum of {maxPerCharacter} per hero.");
         _characterPerks.Clear();
         _perkPool = perks;
         PopulateGrid(perks);

@@ -32,12 +32,12 @@ public partial class HBoxTurnOrder : HBoxContainer
         _portraitElementsDict = portraits;
     }
 
-    public void OnCharacterTurnStart(List<StoryCharacterData> charactersRemaining, List<StoryCharacterData> allCharacters)
+    public void OnCharacterTurnStart(List<StoryCharacterData> charactersRemaining, List<StoryCharacterData> allCharacters, int currentRound)
     {
-        UpdateTurnOrderUI(charactersRemaining, allCharacters);
+        UpdateTurnOrderUI(charactersRemaining, allCharacters, currentRound);
     }
 
-    private void UpdateTurnOrderUI(List<StoryCharacterData> charactersRemaining, List<StoryCharacterData> allCharacters)
+    private void UpdateTurnOrderUI(List<StoryCharacterData> charactersRemaining, List<StoryCharacterData> allCharacters, int currentRound)
     {
         foreach (Control element in _currentElements)
         {
@@ -48,6 +48,7 @@ public partial class HBoxTurnOrder : HBoxContainer
 
         float currentCapacity = 0;
         bool firstRound = true;
+        int roundNum = currentRound;
 
         while (currentCapacity < TOTAL_WIDTH_CAPACITY)
         {
@@ -66,7 +67,8 @@ public partial class HBoxTurnOrder : HBoxContainer
             {
                 break;
             }
-            CreateRoundSeparator();
+            CreateRoundSeparator(roundNum);
+            roundNum += 1;
             currentCapacity += SEPARATOR_WIDTH;
             firstRound = false;
         }
@@ -85,9 +87,10 @@ public partial class HBoxTurnOrder : HBoxContainer
         portrait.MouseEntered += () => this.OnMouseEntered(character);
         portrait.MouseExited += this.OnMouseExited;
     }
-    private void CreateRoundSeparator()
+    private void CreateRoundSeparator(int roundNum)
     {
-        Control roundSeparator = _roundSeparatorScn.Instantiate<Control>();
+        TurnOrderRoundSeparator roundSeparator = _roundSeparatorScn.Instantiate<TurnOrderRoundSeparator>();
+        roundSeparator.SetRound(roundNum);
         // roundSeparator.SizeFlagsStretchRatio = 0.1f;
         AddChild(roundSeparator);
         _currentElements.Add(roundSeparator);

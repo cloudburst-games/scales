@@ -106,6 +106,7 @@ HexModifier = NodePath("HexGrid/HexModifier")
 _background = NodePath("Battlefield/Background/Terrain")
 CharacterUnitsContainer = NodePath("Entities/CharacterUnits")
 IntroMessage = "Mere whispers of Gilgamesh’s name once sent his people cowering, afraid of him and his tyrannical games. Until one day, their life of fear became a burden heavier than their fear of death. The citizens dared to challenge him in battle."
+IntroTitle = "Chapter 1: Gilgamesh vs. the citizens"
 StartingEnemies = [5, 6]
 _playerPositionCnt = NodePath("Positions/Players")
 _enemyPositionCnt = NodePath("Positions/Enemies")

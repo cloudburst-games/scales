@@ -53,6 +53,7 @@ _background = NodePath("Battlefield/Background/Terrain")
 CharacterUnitsContainer = NodePath("Entities/CharacterUnits")
 LevelID = 2
 IntroMessage = "Enkidu gestured towards the horizon, “A true test of our might lies deep in the Cedar forest. A celestial creature towers above the tallest trees, guards the real, and swallows lost humans whole. When we vanquish it, our people will sing of our victory!”The two friends journeyed on, leaving the relieved city-folk behind. After a day’s travel, they stopped in a field of tamarisk trees, kindled a fire and pitched camp upon the soft petals. As night fell, the heavens shook with rain, the mountains groaned, and their dreams plagued them, for their next battle was a battle of the mind…"
+IntroTitle = "Chapter 3. Gilgamesh vs The Nightmares"
 StartingEnemies = [8, 9, 10, 11]
 StartingAllies = [2]
 _playerPositionCnt = NodePath("Positions/Players")

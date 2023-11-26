@@ -1,8 +1,9 @@
-[gd_scene load_steps=51 format=3 uid="uid://p3kekxcppf08"]
+[gd_scene load_steps=66 format=3 uid="uid://p3kekxcppf08"]
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_5it47"]
 [ext_resource type="Texture2D" uid="uid://cki452xaqevu3" path="res://Assets/Graphics/Sprites/Actors/Tornado/TornadoIdleStye2.png" id="2_n7tyg"]
 [ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="2_ojpyn"]
+[ext_resource type="Texture2D" uid="uid://be6aghcesf6v3" path="res://Assets/Graphics/Effects/Generic/WhiteFuzzyParticle.png" id="4_0wnix"]
 [ext_resource type="Animation" uid="uid://csc6llgup7h2p" path="res://Source/Actors/CharacterUnit/Bodies/hit_by_scale.res" id="4_jeksn"]
 [ext_resource type="Animation" uid="uid://0utxbnri2k3v" path="res://Source/Actors/CharacterUnit/Bodies/dying_single_sprite.res" id="5_6qjmk"]
 [ext_resource type="Animation" uid="uid://c6l2yt312lgl5" path="res://Source/Actors/CharacterUnit/Bodies/take_damage_anim.res" id="5_by1ct"]
@@ -14,6 +15,94 @@ shader = ExtResource("2_ojpyn")
 shader_parameter/width = 0.0
 shader_parameter/speed = 10.0
 shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_041yv"]
+offsets = PackedFloat32Array(0, 0.632184, 0.916667, 1)
+colors = PackedColorArray(0.941176, 0.941176, 0.941176, 0.121569, 0.643137, 0.682353, 0.690196, 0.196078, 0.717647, 0.686275, 0.686275, 0.196078, 0.686275, 0.686275, 0.686275, 0.0392157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6qhak"]
+gradient = SubResource("Gradient_041yv")
+
+[sub_resource type="Curve" id="Curve_2h524"]
+max_value = 200.0
+_data = [Vector2(0.0263852, 126.316), 0.0, -309.388, 0, 0, Vector2(1, 0), -96.5613, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_1vdbi"]
+curve = SubResource("Curve_2h524")
+
+[sub_resource type="Curve" id="Curve_o13ei"]
+max_value = 3.0
+_data = [Vector2(0, 0.789474), 0.0, 0.0, 0, 0, Vector2(1, 1.86316), -0.48641, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kne0d"]
+curve = SubResource("Curve_o13ei")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r13hx"]
+lifetime_randomness = 0.21
+emission_shape = 1
+emission_sphere_radius = 128.0
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+orbit_velocity_min = -0.25
+orbit_velocity_max = 0.25
+linear_accel_min = 5.0
+linear_accel_max = 5.0
+linear_accel_curve = SubResource("CurveTexture_1vdbi")
+damping_min = 80.0
+damping_max = 100.0
+scale_curve = SubResource("CurveTexture_kne0d")
+color = Color(1, 1, 1, 0.188235)
+color_ramp = SubResource("GradientTexture1D_6qhak")
+
+[sub_resource type="Gradient" id="Gradient_lv0jd"]
+offsets = PackedFloat32Array(0, 0.632184, 0.916667, 1)
+colors = PackedColorArray(0.792157, 0.792157, 0.792157, 0.121569, 0.623529, 0.662745, 0.670588, 0.196078, 0.647059, 0.619608, 0.619608, 0.196078, 0.729412, 0.729412, 0.729412, 0.0392157)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cjh61"]
+gradient = SubResource("Gradient_lv0jd")
+
+[sub_resource type="Curve" id="Curve_10gp7"]
+max_value = 200.0
+_data = [Vector2(0.0263852, 126.316), 0.0, -309.388, 0, 0, Vector2(1, 0), -96.5613, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_m4ie1"]
+curve = SubResource("Curve_10gp7")
+
+[sub_resource type="Curve" id="Curve_nda8h"]
+max_value = 3.0
+_data = [Vector2(0, 0.852632), 0.0, 0.0, 0, 0, Vector2(1, 1.98947), -0.48641, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_8itjq"]
+curve = SubResource("Curve_nda8h")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aasdc"]
+lifetime_randomness = 0.21
+emission_shape = 1
+emission_sphere_radius = 128.0
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+orbit_velocity_min = -0.25
+orbit_velocity_max = 0.25
+linear_accel_min = 5.0
+linear_accel_max = 5.0
+linear_accel_curve = SubResource("CurveTexture_m4ie1")
+damping_min = 80.0
+damping_max = 100.0
+scale_curve = SubResource("CurveTexture_8itjq")
+color = Color(1, 1, 1, 0.596078)
+color_ramp = SubResource("GradientTexture1D_cjh61")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xdano"]
 radius = 20.2237
@@ -54,7 +143,31 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 0, 1)]
+"values": [Color(1, 1, 1, 0.498039)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite/Particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite/Particles2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sbsm8"]
@@ -248,12 +361,31 @@ graph_offset = Vector2(-14, -89.9099)
 script = ExtResource("1_5it47")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(1, 1, 1, 0.498039)
 material = SubResource("ShaderMaterial_btc0f")
 texture = ExtResource("2_n7tyg")
 offset = Vector2(0, -52.5)
 region_enabled = true
 region_rect = Rect2(963, 1085, 960, 540)
+
+[node name="Particles" type="GPUParticles2D" parent="Sprite"]
+position = Vector2(0, -49)
+rotation = 1.5708
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_r13hx")
+texture = ExtResource("4_0wnix")
+lifetime = 0.5
+local_coords = true
+
+[node name="Particles2" type="GPUParticles2D" parent="Sprite"]
+show_behind_parent = true
+position = Vector2(0, -49)
+rotation = 1.5708
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_aasdc")
+texture = ExtResource("4_0wnix")
+lifetime = 0.5
+local_coords = true
 
 [node name="Shape" type="CollisionShape2D" parent="."]
 position = Vector2(-3, -1.5)

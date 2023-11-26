@@ -402,7 +402,8 @@ public partial class BattleScene : Node, ISceneTransitionable
                 .ToList(),
             _battler.AllCharacters
                 .Where(x => x.CharacterData.Alive)
-                .Select(x => x.CharacterData).ToList());
+                .Select(x => x.CharacterData).ToList(),
+            _battler.Round + 1);
         // if (_battler.CharactersAwaitingTurn[0].UISelectedSpell != SpellEffectManager.SpellMode.None)
         // {
         SetSpell(_battler.CharactersAwaitingTurn[0].UISelectedSpell);
@@ -529,7 +530,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         _lvlToLoad = _levelScenePaths[_nextLevel].Instantiate<BattleLevel>();
         _cntBattleLevel.AddChild(_lvlToLoad);
         _spellEffectManager.CurrentLevel = _lvlToLoad;
-        _HUD.SetIntroText(_lvlToLoad.IntroMessage);
+        _HUD.SetIntroText(_lvlToLoad.IntroTitle, _lvlToLoad.IntroMessage);
         _HUD.SetState(BattleHUD.StateMode.BattleIntro);
 
         GD.Print("marking obstacles");
@@ -705,15 +706,15 @@ public partial class BattleScene : Node, ISceneTransitionable
     //     // }
     // }
 
-    // public override void _Input(InputEvent ev)
-    // {
-    //     if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
-    //     {
-    //         if (evk.Keycode == Key.Space)
-    //         {
-    //             OnBattleEnded(true);
-    //         }
-    //     }
-    // }
+    public override void _Input(InputEvent ev)
+    {
+        if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
+        {
+            if (evk.Keycode == Key.Space)
+            {
+                OnBattleEnded(true);
+            }
+        }
+    }
 
 }

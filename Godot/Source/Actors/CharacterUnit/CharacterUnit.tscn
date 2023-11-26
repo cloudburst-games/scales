@@ -626,6 +626,7 @@ region_enabled = true
 region_rect = Rect2(0.5, 0.5, 480, 270)
 
 [node name="LblBark" parent="." instance=ExtResource("7_uxprq")]
+anchors_preset = 15
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -682,9 +683,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -55.5
-offset_top = -296.0
+offset_top = -271.07
 offset_right = 55.5
-offset_bottom = -243.0
+offset_bottom = -246.07
 grow_horizontal = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1

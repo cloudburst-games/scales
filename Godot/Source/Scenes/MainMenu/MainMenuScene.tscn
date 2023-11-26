@@ -37,6 +37,45 @@
 [ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="34_16yq6"]
 [ext_resource type="FontFile" uid="uid://cofx1cs3c3u03" path="res://Assets/Graphics/Fonts/Yusei_Magic/YuseiMagic-Regular.ttf" id="41_og7ub"]
 
+[sub_resource type="Animation" id="Animation_djx7x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Clouds1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3954, 436)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Clouds2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4521, 1678)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4724, 1065)]
+}
+
 [sub_resource type="Animation" id="Animation_ijra6"]
 resource_name = "Start"
 length = 10.0
@@ -76,45 +115,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(4724, 1065), Vector2(-800, 1065), Vector2(-829, -488), Vector2(4887, -550), Vector2(4724, 1065)]
-}
-
-[sub_resource type="Animation" id="Animation_djx7x"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Clouds1:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(3954, 436)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Clouds2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4521, 1678)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4724, 1065)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_83ygp"]
@@ -518,7 +518,6 @@ vertical_alignment = 1
 [node name="SettingsManager" parent="Control" instance=ExtResource("23_7c4m2")]
 
 [node name="IntroPictureStory" type="Control" parent="Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -543,7 +542,6 @@ InputSkipsSlide = false
 ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="TextureRect2" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -551,13 +549,20 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_4qe3k")
 
+[node name="Label" type="Label" parent="Control/IntroPictureStory/PictureStorySlide2"]
+offset_right = 3825.0
+offset_bottom = 226.0
+text = "Chapter 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Panel" type="Panel" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.025
 anchor_right = 0.975
 anchor_bottom = 0.875
+offset_top = 171.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -603,7 +608,6 @@ script = ExtResource("29_lwbti")
 _scrollSpeed = 30.0
 
 [node name="BtnContinueStory" type="TextureButton" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
@@ -641,10 +645,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
-visible = false
 anchors_preset = -1
 anchor_right = 0.5
 anchor_bottom = 0.9
+offset_top = 227.0
+offset_right = 24.0
 texture = SubResource("AtlasTexture_weltr")
 expand_mode = 2
 stretch_mode = 5

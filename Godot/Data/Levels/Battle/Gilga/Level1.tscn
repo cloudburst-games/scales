@@ -42,6 +42,7 @@ _background = NodePath("Battlefield/Background/Terrain")
 CharacterUnitsContainer = NodePath("Entities/CharacterUnits")
 LevelID = 1
 IntroMessage = "The goddess Aruru forged the wild man, Enkidu. He roamed the wilderness, living and eating with wolves until he met an Ishtari priestess. She tamed him, befriended him, and regaled him with tales of the tyrant king. Fueled by righteous fury, Enkidu vowed to bring Gilgamesh to justice."
+IntroTitle = "Chapter 2. Gilgamesh vs Enkidu and Priestess Shamhat"
 StartingEnemies = [0, 2]
 _playerPositionCnt = NodePath("Positions/Players")
 _enemyPositionCnt = NodePath("Positions/Enemies")

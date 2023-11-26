@@ -107,7 +107,7 @@ public partial class CntSpellBook : Control
             BaseTextureButton btn = GetNode<BaseTextureButton>(_allSpellBtns[spell]);
             if (btn.GetChildCount() > 0 && btn.GetChildren()[0] is Label l)
             {
-                l.Text = $"{costType}{cost.ToString()}";
+                l.Text = $"{s.Name}\n{costType}{cost.ToString()}";
             }
         }
     }

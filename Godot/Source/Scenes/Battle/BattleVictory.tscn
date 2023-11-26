@@ -243,6 +243,13 @@ autowrap_mode = 3
 [node name="HBoxContainer2" type="HBoxContainer" parent="PnlFate/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+alignment = 1
+
+[node name="Control" type="Control" parent="PnlFate/VBoxContainer/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
 
 [node name="OpponentTex" type="TextureRect" parent="PnlFate/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
@@ -261,59 +268,10 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="BtnMercy" type="TextureButton" parent="PnlFate/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-texture_normal = ExtResource("3_ji255")
-texture_pressed = ExtResource("4_5yl26")
-texture_hover = ExtResource("5_tpefe")
-texture_disabled = ExtResource("6_l1aks")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("7_cm0lb")
-_hoverSample = ExtResource("10_3qxd1")
-_clickedSample = ExtResource("11_82de5")
-
-[node name="Label" type="Label" parent="PnlFate/VBoxContainer/HBoxContainer/BtnMercy"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Mercy"
-label_settings = SubResource("LabelSettings_o6e5d")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="BtnDiplomacy" type="TextureButton" parent="PnlFate/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-texture_normal = ExtResource("3_ji255")
-texture_pressed = ExtResource("4_5yl26")
-texture_hover = ExtResource("5_tpefe")
-texture_disabled = ExtResource("6_l1aks")
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("7_cm0lb")
-_hoverSample = ExtResource("10_3qxd1")
-_clickedSample = ExtResource("11_82de5")
-
-[node name="Label" type="Label" parent="PnlFate/VBoxContainer/HBoxContainer/BtnDiplomacy"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Diplomacy"
-label_settings = SubResource("LabelSettings_o6e5d")
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="BtnWrath" type="TextureButton" parent="PnlFate/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Rob the heathens of their possessions and leave them to die, as advised by Ishtar."
 texture_normal = ExtResource("3_ji255")
 texture_pressed = ExtResource("4_5yl26")
 texture_hover = ExtResource("5_tpefe")
@@ -332,6 +290,58 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Wrath"
+label_settings = SubResource("LabelSettings_o6e5d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnDiplomacy" type="TextureButton" parent="PnlFate/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Attempt to recruit a heathen to your own cult, against the will of the Gods."
+texture_normal = ExtResource("3_ji255")
+texture_pressed = ExtResource("4_5yl26")
+texture_hover = ExtResource("5_tpefe")
+texture_disabled = ExtResource("6_l1aks")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_cm0lb")
+_hoverSample = ExtResource("10_3qxd1")
+_clickedSample = ExtResource("11_82de5")
+
+[node name="Label" type="Label" parent="PnlFate/VBoxContainer/HBoxContainer/BtnDiplomacy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Recruit"
+label_settings = SubResource("LabelSettings_o6e5d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BtnMercy" type="TextureButton" parent="PnlFate/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Spare the heathens at Shamash's behest, though they may challenge you once more."
+texture_normal = ExtResource("3_ji255")
+texture_pressed = ExtResource("4_5yl26")
+texture_hover = ExtResource("5_tpefe")
+texture_disabled = ExtResource("6_l1aks")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_cm0lb")
+_hoverSample = ExtResource("10_3qxd1")
+_clickedSample = ExtResource("11_82de5")
+
+[node name="Label" type="Label" parent="PnlFate/VBoxContainer/HBoxContainer/BtnMercy"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mercy"
 label_settings = SubResource("LabelSettings_o6e5d")
 horizontal_alignment = 1
 vertical_alignment = 1

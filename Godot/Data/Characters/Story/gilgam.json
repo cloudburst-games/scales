@@ -22,10 +22,10 @@
     "Perks": [],
     "Level": 1,
     "Might": 10,
-    "Resilience": 10,
+    "Resilience": 100,
     "Precision": 10,
     "Speed": 10,
-    "Intellect": 10,
+    "Intellect": 10000,
     "Charisma": 10,
     "Luck": 10,
     "Barks": {

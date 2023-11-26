@@ -227,6 +227,19 @@ public partial class BattleVictory : Control
 
         if (victim.CharacterData.Name == "Enkidu" || victim.CharacterData.Name == "marzipan")
         {
+            CharacterUnit notEnkidu = enemies
+                .Where(x => x.CharacterData.Name != "Enkidu" && x.CharacterData.Name != "marzipan")
+                .OrderBy(_ => persuader.Rand.Next())
+                .FirstOrDefault();
+            if (notEnkidu != null)
+            {
+                _opponentTex.Texture = GD.Load<Texture2D>(notEnkidu.CharacterData.PortraitPath);
+            }
+            else
+            {
+                GetNode<Control>("PnlFate/VBoxContainer/HBoxContainer2/Control").Visible = true;
+                _opponentTex.Visible = false;
+            }
             _lblDiplomacyOutcome.Text = "Victory!\n" + victim.CharacterData.Name + " recognises your might, and joins you on your quest!";
             _lblDecideFate.Text = "Decide the fate of your remaining opponents!\nIshtar would be pleased with a show of retribution.\nShamash advises a display of mercy.";
             _animDiplomacy.SpeedScale *= 2;
