@@ -39,7 +39,7 @@ public partial class CharacterUnit : CharacterBody2D
     [Export]
     public StatusToPlayerMode StatusToPlayer { get; set; } = StatusToPlayerMode.Neutral;
     [Export]
-    private LblBark _lblBark;
+    public LblBark LblBark { get; set; }
     [Export]
     public ProgressBar BarHealth { get; set; }
     private PackedScene _body;// = GD.Load<PackedScene>("res://Source/Actors/CharacterUnit/Bodies/PlayerBody.tscn");
@@ -465,11 +465,11 @@ public partial class CharacterUnit : CharacterBody2D
     /// barks for the current level before playing a random one. After playing a bark, it removes
     /// the entire set of barks for the current level, allowing progression to the next set of barks.
     /// </summary>
-    public void TryBark()
+    public string TryBark()
     {
         if (CharacterData.Barks == null)
         {
-            return;
+            return "";
         }
 
         if (CharacterData.Barks.TryGetValue(CurrentLevel, out List<List<string>> barksForLevel) && barksForLevel != null && barksForLevel.Count > 0)
@@ -477,10 +477,12 @@ public partial class CharacterUnit : CharacterBody2D
             if (barksForLevel[0] != null && barksForLevel[0].Count > 0)
             {
                 string randomBark = barksForLevel[0][Rand.Next(0, barksForLevel[0].Count)];
-                _lblBark.Bark(randomBark);
+                LblBark.Bark(randomBark);
                 CharacterData.Barks[CurrentLevel].RemoveAt(0);
+                return randomBark;
             }
         }
+        return "";
     }
 
 

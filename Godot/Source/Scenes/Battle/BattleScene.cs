@@ -706,15 +706,15 @@ public partial class BattleScene : Node, ISceneTransitionable
     //     // }
     // }
 
-    public override void _Input(InputEvent ev)
-    {
-        if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
-        {
-            if (evk.Keycode == Key.Space)
-            {
-                OnBattleEnded(true);
-            }
-        }
-    }
+    // public override void _Input(InputEvent ev)
+    // {
+    //     if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
+    //     {
+    //         if (evk.Keycode == Key.Space)
+    //         {
+    //             OnBattleEnded(true);
+    //         }
+    //     }
+    // }
 
 }
