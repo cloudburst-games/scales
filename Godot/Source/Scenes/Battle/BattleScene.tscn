@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://dt3b4b1tj800g" path="res://Data/Levels/Battle/Gilga/Level0.tscn" id="2_kik3c"]
 [ext_resource type="PackedScene" uid="uid://b0bhqhrvxb7ho" path="res://Data/Levels/Battle/Gilga/Level1.tscn" id="3_nng1n"]
 [ext_resource type="PackedScene" uid="uid://cclorm7y56hv" path="res://Data/Levels/Battle/Gilga/Level2.tscn" id="4_mjxet"]
-[ext_resource type="Texture2D" uid="uid://bu4tecsgh5hbl" path="res://Assets/Graphics/Sprites/Terrain/Beach/PinkPlain.png" id="4_wuwoc"]
 [ext_resource type="PackedScene" uid="uid://f880l6fqx7bi" path="res://Source/Interface/Label/LblFloatingText.tscn" id="4_x84xo"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/PnlAction.cs" id="5_5obug"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BtnActions.cs" id="6_8u3hr"]
@@ -68,6 +67,7 @@
 [ext_resource type="AudioStream" uid="uid://picwhekd1ufi" path="res://Assets/Audio/Effects/PlaceholderSFX/CloseBook.wav" id="60_pfahi"]
 [ext_resource type="Texture2D" uid="uid://cvncg5ve0xc5k" path="res://Assets/Graphics/UI icons/Hourglass.png" id="60_q72yi"]
 [ext_resource type="AudioStream" uid="uid://css5v5pstlfbn" path="res://Assets/Audio/Effects/PlaceholderSFX/OpenBook.wav" id="61_5lh3e"]
+[ext_resource type="Texture2D" uid="uid://mqqe65f56imb" path="res://Assets/Graphics/Interface/PanelBorder9Patch.png" id="61_gjyxt"]
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="64_ascdd"]
 [ext_resource type="AudioStream" uid="uid://c5tl1eo4tb4il" path="res://Assets/Audio/Music/World/EpicBattle_L3.ogg" id="65_61tou"]
 [ext_resource type="AudioStream" uid="uid://dwtxn4yfwg1hk" path="res://Assets/Audio/Effects/PlaceholderSFX/BattleDefeat.wav" id="66_lmq6k"]
@@ -717,7 +717,7 @@ _audioBattleVictory = NodePath("BattleVictory")
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 3840.0
 offset_bottom = 2160.0
-texture = ExtResource("4_wuwoc")
+texture = ExtResource("61_gjyxt")
 
 [node name="BattleHUD" type="CanvasLayer" parent="." node_paths=PackedStringArray("_characterInfoPanel", "_pnlBattleIntro", "_btnBattleIntroContinue", "_lblIntro", "_lblShortLog", "_btnLog", "_pnlFullLog", "_RLblFullLog", "_pnlSpellBook", "_btnCloseSpellBook", "_cntSpellBook", "_lblHint", "_pnlShortLog", "_pnlAction", "_texActiveCharacter", "_barHealth", "_barHerbs", "_barCharge", "_pnlScales", "_audioCloseBook", "_audioOpenBook", "_animTutorial", "_btnMenu", "_btnMenuClose", "_pnlMenu", "_btnGridAll", "_btnGridContextual", "_btnGridNone", "_btnSettings", "_settingsManager", "_btnActions", "_btnSpellbook", "_btnEndTurn", "_lblIntroTitle")]
 script = ExtResource("8_p64pw")
@@ -1922,7 +1922,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_wuwoc")
+texture = ExtResource("61_gjyxt")
 
 [node name="Icon" type="Sprite2D" parent="BattleHUD/CtrlLoading/ColorRect"]
 position = Vector2(1920, 1062)

@@ -14,13 +14,19 @@ corner_radius_bottom_left = 40
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jmxms"]
 texture = ExtResource("2_dxaur")
+texture_margin_left = 5.0
+texture_margin_right = 5.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lf17j"]
 texture = ExtResource("2_dxaur")
+texture_margin_left = 5.0
+texture_margin_right = 5.0
 modulate_color = Color(0.572549, 0.572549, 0.572549, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f04vh"]
 texture = ExtResource("2_dxaur")
+texture_margin_left = 5.0
+texture_margin_right = 5.0
 modulate_color = Color(0.478431, 0.478431, 0.478431, 1)
 
 [resource]

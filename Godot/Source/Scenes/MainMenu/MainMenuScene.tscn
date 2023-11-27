@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://b6v34iwdchsgi"]
+[gd_scene load_steps=52 format=3 uid="uid://b6v34iwdchsgi"]
 
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/MainMenuScene.cs" id="1_66m4n"]
 [ext_resource type="Script" path="res://addons/SceneTransitionPlugin/SceneTransition.cs" id="2_lc0ma"]
@@ -32,10 +32,13 @@
 [ext_resource type="Script" path="res://addons/PictureStoryPlugin/PictureStorySlide/PictureStorySlide.cs" id="27_3ioox"]
 [ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="27_53gdo"]
 [ext_resource type="Texture2D" uid="uid://cp0nvngfnqwds" path="res://Assets/Graphics/UI icons/ClosePressed.png" id="27_dpbi1"]
+[ext_resource type="Texture2D" uid="uid://jy5vwcfb2yga" path="res://SkyBackgroundFace.tres" id="27_tv8i1"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="28_5f6ek"]
 [ext_resource type="FontFile" uid="uid://b0cbe0222uo2c" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-Regular.ttf" id="28_fy7og"]
 [ext_resource type="Script" path="res://addons/AutoScrollLabelPlugin/AutoScrollLabel.cs" id="29_lwbti"]
 [ext_resource type="PackedScene" uid="uid://ce0b88lumohl8" path="res://Source/Scenes/MainMenu/PnlAdventures/CntPnlAdventures.tscn" id="32_h085b"]
+[ext_resource type="Texture2D" uid="uid://bgrwjyqr7jua2" path="res://Assets/Graphics/Front Cover/OliveBranch2.png" id="32_koa8o"]
+[ext_resource type="Texture2D" uid="uid://ih2vd2uecvt8" path="res://Assets/Graphics/Front Cover/Knife.png" id="33_vcl1s"]
 [ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="34_16yq6"]
 
 [sub_resource type="Animation" id="Animation_djx7x"]
@@ -195,9 +198,6 @@ length = 3.0
 _data = {
 "Default": SubResource("Animation_dumji")
 }
-
-[sub_resource type="LabelSettings" id="LabelSettings_ha8g4"]
-font_size = 72
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_weltr"]
 atlas = ExtResource("7_e1fsh")
@@ -549,14 +549,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("5_n7jpa")
+texture = ExtResource("27_tv8i1")
 
 [node name="Label" type="Label" parent="Control/IntroPictureStory/PictureStorySlide2"]
-offset_right = 3825.0
-offset_bottom = 226.0
+anchors_preset = -1
+anchor_top = 0.037
+anchor_right = 0.996
+anchor_bottom = 0.132
+offset_top = 0.0800018
+offset_right = 0.359863
+offset_bottom = -0.119995
 theme = ExtResource("24_cal1b")
 theme_override_colors/font_color = Color(0.462168, 0.381421, 0.115605, 1)
-text = "Prologue: Divine Judgment"
+text = "Prologue: Divine Judgement"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -585,7 +590,7 @@ grow_vertical = 2
 theme_override_colors/default_color = Color(0.977908, 0.910331, 0.710409, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("28_fy7og")
-theme_override_font_sizes/normal_font_size = 84
+theme_override_font_sizes/normal_font_size = 71
 bbcode_enabled = true
 text = "
 
@@ -642,14 +647,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -43.0
-offset_top = -48.5
-offset_right = 43.0
-offset_bottom = 36.5
+offset_left = -183.2
+offset_top = -48.6
+offset_right = 182.8
+offset_bottom = 53.4
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("24_cal1b")
+theme_override_font_sizes/font_size = 60
 text = "Continue"
-label_settings = SubResource("LabelSettings_ha8g4")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -662,6 +668,32 @@ offset_right = 24.0
 texture = SubResource("AtlasTexture_weltr")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
+anchors_preset = -1
+anchor_left = 0.376
+anchor_top = 0.477
+anchor_right = 0.376
+anchor_bottom = 0.477
+offset_left = -56.8401
+offset_top = -156.32
+offset_right = 180.16
+offset_bottom = 77.6799
+rotation = 0.453786
+texture = ExtResource("32_koa8o")
+
+[node name="TextureRect4" type="TextureRect" parent="Control/IntroPictureStory/PictureStorySlide2"]
+anchors_preset = -1
+anchor_left = 0.131
+anchor_top = 0.479
+anchor_right = 0.131
+anchor_bottom = 0.489
+offset_left = -95.04
+offset_top = -142.64
+offset_right = 203.96
+offset_bottom = 33.76
+rotation = 0.453786
+texture = ExtResource("33_vcl1s")
 
 [node name="CntPnlAdventures" parent="Control" instance=ExtResource("32_h085b")]
 visible = false
