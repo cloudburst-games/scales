@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://c5cfodgyxs3u7"]
+
+[ext_resource type="FontFile" uid="uid://b0cbe0222uo2c" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-Regular.ttf" id="1_ijeck"]
+[ext_resource type="StyleBox" uid="uid://douo7gqqagnba" path="res://PanelPanelBorder.tres" id="2_qe48r"]
+[ext_resource type="Texture2D" uid="uid://cq0c3oj86ct15" path="res://AtlasScrollBarBorder.tres" id="2_womql"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jmxms"]
+texture = ExtResource("2_womql")
+texture_margin_left = 5.0
+texture_margin_right = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lf17j"]
+texture = ExtResource("2_womql")
+texture_margin_left = 5.0
+texture_margin_right = 5.0
+modulate_color = Color(0.572549, 0.572549, 0.572549, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f04vh"]
+texture = ExtResource("2_womql")
+texture_margin_left = 5.0
+texture_margin_right = 5.0
+modulate_color = Color(0.478431, 0.478431, 0.478431, 1)
+
+[resource]
+Label/colors/font_color = Color(0.792157, 0.745098, 0.588235, 1)
+Label/font_sizes/font_size = 45
+Label/fonts/font = ExtResource("1_ijeck")
+Panel/styles/panel = ExtResource("2_qe48r")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_jmxms")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_lf17j")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_f04vh")

@@ -103,8 +103,6 @@ _data = {
 
 [node name="Battler" type="Node2D"]
 script = ExtResource("1_nsprq")
-ActiveCharacterOutline = Color(1, 1, 0, 1)
-EnemiesOutline = Color(1, 0, 0, 1)
 FriendliesOutline = Color(0, 0, 1, 1)
 NeutralsOutline = Color(0, 1, 0, 1)
 
