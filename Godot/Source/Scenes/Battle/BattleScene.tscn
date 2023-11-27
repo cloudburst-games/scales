@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=162 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
@@ -62,14 +62,26 @@
 [ext_resource type="Texture2D" uid="uid://c37j54kghr2yk" path="res://Assets/Graphics/Sprites/Spellbook/template_atlas_pressed.tres" id="44_hudfb"]
 [ext_resource type="Texture2D" uid="uid://cp0nvngfnqwds" path="res://Assets/Graphics/UI icons/ClosePressed.png" id="45_fn3ih"]
 [ext_resource type="PackedScene" uid="uid://d3fkaury6ig66" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfo.tscn" id="49_8ah3x"]
+[ext_resource type="FontFile" uid="uid://8u4c4rsvwp2o" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf" id="49_ywlu8"]
 [ext_resource type="PackedScene" uid="uid://dab158j4ohebo" path="res://Source/Systems/HexGrid/HexGridUserDisplay.tscn" id="50_rack7"]
+[ext_resource type="FontFile" uid="uid://b0cbe0222uo2c" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-Regular.ttf" id="50_t37jo"]
+[ext_resource type="FontFile" uid="uid://d4kabkagmfeq" path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" id="51_1dgj8"]
 [ext_resource type="Texture2D" uid="uid://drhqcjscwlo64" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksHover/SolarBlastFinalNormal.png" id="54_7t022"]
 [ext_resource type="PackedScene" uid="uid://dhnf1jm0vtok8" path="res://Source/Interface/Panel/CharacterUpgrade/CntCharacterUpgrade.tscn" id="54_82j32"]
 [ext_resource type="AudioStream" uid="uid://wh6raoilaqyn" path="res://Assets/Audio/Effects/PlaceholderSFX/SpellFizzle.wav" id="54_fvkb8"]
+[ext_resource type="Texture2D" uid="uid://dvomwxry6tsg3" path="res://Assets/Graphics/Icons/IconNormal/Labels/BookMarkRedNormal.png" id="55_8nfhn"]
+[ext_resource type="Texture2D" uid="uid://8f36v2kuvapy" path="res://Assets/Graphics/Icons/IconNormal/Labels/BookMarkTRedPressed.png" id="55_kemkt"]
 [ext_resource type="PackedScene" uid="uid://bes3oet5iq1e1" path="res://Source/Systems/SettingsManager/SettingsManager.tscn" id="55_r8byv"]
+[ext_resource type="Texture2D" uid="uid://csbicvv3rlr5i" path="res://Assets/Graphics/Icons/IconNormal/Labels/BookMarkOrangePressed.png" id="56_v8qtq"]
 [ext_resource type="PackedScene" uid="uid://bb71nh8f38a0g" path="res://addons/SceneTransitionPlugin/SceneTransition.tscn" id="57_cjqrl"]
+[ext_resource type="Texture2D" uid="uid://dspae1g1aaga" path="res://Assets/Graphics/Icons/IconNormal/Labels/BookMarkTealPressed.png" id="57_oi338"]
+[ext_resource type="Texture2D" uid="uid://b7aykbq32qiui" path="res://Assets/Graphics/Icons/IconNormal/Labels/BookMarkOrangeNormal.png" id="57_sii2k"]
 [ext_resource type="PackedScene" uid="uid://4extw10vut0x" path="res://Source/Systems/AdventureStoriesHandler/GilgamStoryHandler.tscn" id="58_27mia"]
+[ext_resource type="Texture2D" uid="uid://dfhsk763q33vh" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/NormalAlt.png" id="58_bi0kt"]
+[ext_resource type="Texture2D" uid="uid://cltwqm55avf0s" path="res://Assets/Graphics/Icons/IconNormal/Labels/BookMarkTealNormal.png" id="59_kiper"]
+[ext_resource type="Texture2D" uid="uid://c4wghdo3y7rbl" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/PressedAlt.png" id="59_rb008"]
 [ext_resource type="PackedScene" uid="uid://udu41fk3ega5" path="res://Source/Scenes/Battle/BattleVictory.tscn" id="59_tgswr"]
+[ext_resource type="Texture2D" uid="uid://cmdbnulfqljfm" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/HoverAlt.png" id="60_oics8"]
 [ext_resource type="AudioStream" uid="uid://picwhekd1ufi" path="res://Assets/Audio/Effects/PlaceholderSFX/CloseBook.wav" id="60_pfahi"]
 [ext_resource type="Texture2D" uid="uid://cvncg5ve0xc5k" path="res://Assets/Graphics/UI icons/Hourglass.png" id="60_q72yi"]
 [ext_resource type="AudioStream" uid="uid://css5v5pstlfbn" path="res://Assets/Audio/Effects/PlaceholderSFX/OpenBook.wav" id="61_5lh3e"]
@@ -269,48 +281,54 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqxef"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58gom"]
+bg_color = Color(0.211765, 0.168627, 0.0313726, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.521569, 0.435294, 0.129412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmol5"]
+bg_color = Color(0.0392157, 0.176471, 0.168627, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.520919, 0.436128, 0.129309, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="Theme" id="Theme_ypna4"]
+Label/colors/font_color = Color(0.67451, 0.560784, 0.192157, 1)
+Label/font_sizes/font_size = 100
+Label/fonts/font = ExtResource("49_ywlu8")
+Panel/styles/panel = SubResource("StyleBoxFlat_cmol5")
+TooltipLabel/colors/font_color = Color(0.56508, 0.468497, 0.151033, 1)
+TooltipLabel/font_sizes/font_size = 80
+TooltipLabel/fonts/font = ExtResource("50_t37jo")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kx53"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nfua4"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jkj8"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_xonns"]
 atlas = ExtResource("35_vxnel")
 region = Rect2(2, 264, 2065, 1269)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j3j5c"]
 texture = SubResource("AtlasTexture_xonns")
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mfasf"]
-atlas = ExtResource("35_vxnel")
-region = Rect2(1451, 2, 188, 243)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_noppn"]
-atlas = ExtResource("35_vxnel")
-region = Rect2(1658, 2, 188, 243)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gpa6o"]
-atlas = ExtResource("35_vxnel")
-region = Rect2(1244, 2, 188, 243)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_i4hum"]
-load_path = "res://.godot/imported/SpellbookSheet.png-d6a1311f82cc26d6443f7d5c0855e81d.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b5qpf"]
-atlas = SubResource("CompressedTexture2D_i4hum")
-region = Rect2(830, 2, 189, 243)
-
-[sub_resource type="LabelSettings" id="LabelSettings_xefpy"]
-font_size = 28
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8pa2q"]
-load_path = "res://.godot/imported/SpellbookSheet.png-d6a1311f82cc26d6443f7d5c0855e81d.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qgcg0"]
-atlas = SubResource("CompressedTexture2D_8pa2q")
-region = Rect2(2072, 1, 189, 244)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_whi0x"]
-load_path = "res://.godot/imported/SpellbookSheet.png-d6a1311f82cc26d6443f7d5c0855e81d.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6lhof"]
-atlas = SubResource("CompressedTexture2D_whi0x")
-region = Rect2(1865, 1, 189, 244)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mueba"]
 atlas = ExtResource("40_yvmrb")
@@ -1028,6 +1046,7 @@ offset_right = -2139.71
 offset_bottom = 29.49
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_58gom")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlAction/PnlActions"]
 layout_mode = 1
@@ -1181,6 +1200,7 @@ offset_right = 888.5
 offset_bottom = 567.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_ypna4")
 script = ExtResource("2_5xh84")
 _snapToEdges = false
 _draggable = false
@@ -1199,7 +1219,10 @@ offset_right = 819.5
 offset_bottom = 540.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 32
+theme_override_colors/default_color = Color(0.793902, 0.736541, 0.549815, 1)
+theme_override_colors/font_selected_color = Color(0.793902, 0.736541, 0.549815, 1)
+theme_override_fonts/normal_font = ExtResource("51_1dgj8")
+theme_override_font_sizes/normal_font_size = 40
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlFullLog"]
 layout_mode = 1
@@ -1210,6 +1233,7 @@ offset_left = -203.5
 offset_right = 203.5
 offset_bottom = 118.0
 grow_horizontal = 2
+theme_override_font_sizes/font_size = 80
 text = "Battle Log"
 
 [node name="BtnLogClose" type="TextureButton" parent="BattleHUD/CntHUD/PnlFullLog"]
@@ -1247,12 +1271,17 @@ vertical_alignment = 1
 [node name="PnlMenu" type="Panel" parent="BattleHUD/CntHUD"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.4
-anchor_top = 0.3
-anchor_right = 0.6
+anchor_left = 0.33
+anchor_top = 0.228
+anchor_right = 0.677
 anchor_bottom = 0.7
+offset_left = 127.8
+offset_top = 0.519958
+offset_right = -87.6802
+offset_bottom = -0.00012207
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("40_ojhn2")
 script = ExtResource("2_5xh84")
 _snapToEdges = false
 _draggable = false
@@ -1291,13 +1320,18 @@ vertical_alignment = 1
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlMenu"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -203.5
-offset_right = 203.5
-offset_bottom = 118.0
+anchors_preset = -1
+anchor_left = 0.386
+anchor_top = 0.103
+anchor_right = 0.615
+anchor_bottom = 0.239
+offset_left = 0.761963
+offset_top = 0.0429916
+offset_right = -0.545044
+offset_bottom = 0.459
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.67451, 0.560784, 0.192157, 1)
+theme_override_fonts/font = ExtResource("42_s3urr")
 text = "Menu
 "
 horizontal_alignment = 1
@@ -1305,9 +1339,14 @@ horizontal_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="BattleHUD/CntHUD/PnlMenu"]
 layout_mode = 1
 anchors_preset = -1
+anchor_left = 0.068
 anchor_top = 0.194
-anchor_right = 1.0
+anchor_right = 0.943
 anchor_bottom = 0.877
+offset_left = 55.288
+offset_top = 89.314
+offset_right = -51.962
+offset_bottom = 0.336975
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1323,16 +1362,31 @@ stretch_mode = 5
 script = ExtResource("7_8jqkl")
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer/BtnSettings"]
-layout_mode = 0
-offset_top = 20.384
-offset_right = 765.0
-offset_bottom = 119.384
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.238
+anchor_right = 0.763
+anchor_bottom = 1.0
+offset_left = 0.0639954
+offset_top = 20.0
+offset_right = 0.263977
+offset_bottom = -25.0
+theme_override_fonts/font = ExtResource("42_s3urr")
+theme_override_font_sizes/font_size = 40
 text = "Settings"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Space" type="Panel" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.31
+theme_override_styles/panel = SubResource("StyleBoxFlat_0kx53")
+
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("42_s3urr")
+theme_override_font_sizes/font_size = 50
 text = "Grid Display:"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1340,15 +1394,16 @@ vertical_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.57
 
 [node name="BtnGridAll" type="TextureButton" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 button_group = ExtResource("38_xkh6r")
-texture_normal = ExtResource("39_ovjc1")
-texture_pressed = ExtResource("40_n3uxa")
-texture_hover = ExtResource("41_blf7c")
+texture_normal = ExtResource("58_bi0kt")
+texture_pressed = ExtResource("59_rb008")
+texture_hover = ExtResource("60_oics8")
 texture_disabled = ExtResource("42_vrdt6")
 ignore_texture_size = true
 stretch_mode = 5
@@ -1361,9 +1416,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.0509804, 0.188235, 0.184314, 1)
+theme_override_fonts/font = ExtResource("42_s3urr")
+theme_override_font_sizes/font_size = 30
 text = "Full"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Space" type="Panel" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nfua4")
 
 [node name="BtnGridContextual" type="TextureButton" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -1371,9 +1435,9 @@ size_flags_horizontal = 3
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("38_xkh6r")
-texture_normal = ExtResource("39_ovjc1")
-texture_pressed = ExtResource("40_n3uxa")
-texture_hover = ExtResource("41_blf7c")
+texture_normal = ExtResource("58_bi0kt")
+texture_pressed = ExtResource("59_rb008")
+texture_hover = ExtResource("60_oics8")
 texture_disabled = ExtResource("42_vrdt6")
 ignore_texture_size = true
 stretch_mode = 5
@@ -1386,18 +1450,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Contextual"
+theme_override_colors/font_color = Color(0.0509804, 0.188235, 0.184314, 1)
+theme_override_fonts/font = ExtResource("42_s3urr")
+theme_override_font_sizes/font_size = 30
+text = "Context"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Space2" type="Panel" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_nfua4")
 
 [node name="BtnHide" type="TextureButton" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 toggle_mode = true
 button_group = ExtResource("38_xkh6r")
-texture_normal = ExtResource("39_ovjc1")
-texture_pressed = ExtResource("40_n3uxa")
-texture_hover = ExtResource("41_blf7c")
+texture_normal = ExtResource("58_bi0kt")
+texture_pressed = ExtResource("59_rb008")
+texture_hover = ExtResource("60_oics8")
 texture_disabled = ExtResource("42_vrdt6")
 ignore_texture_size = true
 stretch_mode = 5
@@ -1410,9 +1483,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.0509804, 0.188235, 0.184314, 1)
+theme_override_fonts/font = ExtResource("42_s3urr")
+theme_override_font_sizes/font_size = 30
 text = "None"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Space2" type="Panel" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.31
+theme_override_styles/panel = SubResource("StyleBoxFlat_3jkj8")
 
 [node name="BtnMainMenu" type="TextureButton" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer"]
 layout_mode = 2
@@ -1426,13 +1508,26 @@ stretch_mode = 5
 script = ExtResource("7_8jqkl")
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer/BtnMainMenu"]
-layout_mode = 0
-offset_top = 23.384
-offset_right = 765.0
-offset_bottom = 122.384
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.238
+anchor_right = 0.769
+anchor_bottom = 1.0
+offset_left = 0.0639954
+offset_top = 23.0
+offset_right = 0.231934
+offset_bottom = -32.0
+theme_override_fonts/font = ExtResource("42_s3urr")
+theme_override_font_sizes/font_size = 40
 text = "Main Menu"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Space3" type="Panel" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.31
+theme_override_styles/panel = SubResource("StyleBoxFlat_3jkj8")
 
 [node name="CntSpellBook" type="Control" parent="BattleHUD/CntHUD" node_paths=PackedStringArray("_audioFizzle")]
 layout_mode = 1
@@ -1456,6 +1551,7 @@ _allSpellBtns = {
 _audioFizzle = NodePath("AudioFizzle")
 
 [node name="PnlSpellBook" type="Panel" parent="BattleHUD/CntHUD/CntSpellBook"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -1485,9 +1581,9 @@ offset_bottom = 150.0
 grow_horizontal = 0
 rotation = 1.371
 scale = Vector2(1.25, 1.25)
-texture_normal = SubResource("AtlasTexture_mfasf")
-texture_pressed = SubResource("AtlasTexture_noppn")
-texture_hover = SubResource("AtlasTexture_gpa6o")
+texture_normal = ExtResource("55_8nfhn")
+texture_pressed = ExtResource("55_kemkt")
+texture_hover = ExtResource("55_kemkt")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
@@ -1497,11 +1593,17 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BtnClose"]
 layout_mode = 0
-offset_left = 45.0
+offset_left = 60.0
 offset_top = 130.0
-offset_right = 139.0
-offset_bottom = 183.0
+offset_right = 154.0
+offset_bottom = 168.0
 rotation = -1.5708
+theme_override_colors/font_color = Color(0.977908, 0.910331, 0.710409, 1)
+theme_override_colors/font_outline_color = Color(0.0132363, 0.0923993, 0.0874028, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("42_s3urr")
+theme_override_font_sizes/font_size = 25
 text = "Close"
 
 [node name="BtnMana" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook"]
@@ -1516,8 +1618,9 @@ offset_bottom = 150.0
 grow_horizontal = 0
 rotation = 1.41059
 scale = Vector2(1.25, 1.25)
-texture_normal = SubResource("AtlasTexture_b5qpf")
-texture_hover = SubResource("AtlasTexture_gpa6o")
+texture_normal = ExtResource("57_sii2k")
+texture_pressed = ExtResource("56_v8qtq")
+texture_hover = ExtResource("56_v8qtq")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
@@ -1531,8 +1634,13 @@ offset_right = 158.468
 offset_bottom = 179.834
 rotation = -1.5708
 scale = Vector2(0.75, 0.75)
+theme_override_colors/font_color = Color(0.977908, 0.910331, 0.710409, 1)
+theme_override_colors/font_outline_color = Color(0.0132363, 0.0923993, 0.0874028, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("42_s3urr")
+theme_override_font_sizes/font_size = 40
 text = "100/100"
-label_settings = SubResource("LabelSettings_xefpy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1548,8 +1656,9 @@ offset_bottom = 150.0
 grow_horizontal = 0
 rotation = 1.41059
 scale = Vector2(1.25, 1.25)
-texture_normal = SubResource("AtlasTexture_qgcg0")
-texture_hover = SubResource("AtlasTexture_6lhof")
+texture_normal = ExtResource("59_kiper")
+texture_pressed = ExtResource("57_oi338")
+texture_hover = ExtResource("57_oi338")
 ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
@@ -1563,8 +1672,12 @@ offset_right = 158.468
 offset_bottom = 179.834
 rotation = -1.5708
 scale = Vector2(0.75, 0.75)
+theme_override_colors/font_color = Color(0.977908, 0.910331, 0.710409, 1)
+theme_override_colors/font_outline_color = Color(0.0132363, 0.0923993, 0.0874028, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("42_s3urr")
+theme_override_font_sizes/font_size = 40
 text = "100/100"
-label_settings = SubResource("LabelSettings_xefpy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1947,6 +2060,7 @@ modulate = Color(1, 1, 1, 0)
 
 [node name="Battler" parent="." node_paths=PackedStringArray("CursorControl", "_hexGridUserDisplay") instance=ExtResource("10_hfvdy")]
 process_mode = 4
+position = Vector2(166, 162)
 CursorControl = NodePath("CursorControl")
 _hexGridUserDisplay = NodePath("HexGridUserDisplay")
 FriendliesOutline = Color(0, 1, 1, 1)

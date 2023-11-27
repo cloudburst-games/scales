@@ -38,21 +38,13 @@ _snapToEdges = false
 _draggable = false
 _closeBtnScn = ExtResource("2_2n27j")
 
-[node name="PnlCharacters" type="Panel" parent="." node_paths=PackedStringArray("_enkidu", "_gilgam", "_lugal", "_ningal", "_utug", "_eresh", "_dumuzi", "_gesht")]
+[node name="PnlCharacters" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 136.0
 offset_top = 268.0
 offset_right = 1920.0
 offset_bottom = 1886.0
 script = ExtResource("3_w20c0")
-_enkidu = NodePath("")
-_gilgam = NodePath("")
-_lugal = NodePath("")
-_ningal = NodePath("")
-_utug = NodePath("")
-_eresh = NodePath("")
-_dumuzi = NodePath("")
-_gesht = NodePath("")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PnlCharacters"]
 layout_mode = 1
@@ -132,19 +124,13 @@ texture_normal = ExtResource("4_bt2dr")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="PnlCharacterDetails" type="Panel" parent="." node_paths=PackedStringArray("_characterName", "_patron", "_description", "_physicalDamage", "_perksGrid", "_btnConfirmStory")]
+[node name="PnlCharacterDetails" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 2031.0
 offset_top = 238.0
 offset_right = 3585.0
 offset_bottom = 1932.0
 script = ExtResource("5_5jwok")
-_characterName = NodePath("")
-_patron = NodePath("")
-_description = NodePath("")
-_physicalDamage = NodePath("")
-_perksGrid = NodePath("")
-_btnConfirmStory = NodePath("")
 
 [node name="PnlTitle" type="Panel" parent="PnlCharacterDetails"]
 layout_mode = 0

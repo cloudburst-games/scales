@@ -1,30 +1,33 @@
-[gd_scene load_steps=13 format=3 uid="uid://d3fkaury6ig66"]
+[gd_scene load_steps=16 format=3 uid="uid://d3fkaury6ig66"]
 
-[ext_resource type="Theme" uid="uid://d2eakbmaefnt6" path="res://addons/silent_wolf/assets/themes/sw_theme.tres" id="1_g6s5i"]
+[ext_resource type="Theme" uid="uid://c5cfodgyxs3u7" path="res://PanelMainBodyTheme.tres" id="1_2ojqa"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfo.cs" id="2_66dwa"]
-[ext_resource type="Texture2D" uid="uid://4osa8ri0ekrt" path="res://Assets/Graphics/Interface/Images/9patchEgyptianSymbols.png" id="3_w6dgf"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="4_1i2fg"]
+[ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="4_jdje8"]
 [ext_resource type="Texture2D" uid="uid://bpniavkv1psk3" path="res://addons/AutoScrollLabelPlugin/AutoScrollLabelIcon.png" id="4_r4fpf"]
 [ext_resource type="PackedScene" uid="uid://bl1edev0p0c1d" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfoElement.tscn" id="5_db1ly"]
+[ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="6_eivtc"]
+[ext_resource type="FontFile" uid="uid://bwfi4bc6403ae" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-ExtraBold.ttf" id="6_gtmqk"]
 [ext_resource type="Texture2D" uid="uid://crxm7cjirqta8" path="res://Assets/Graphics/UI icons/Close.png" id="7_5b0j8"]
 [ext_resource type="Texture2D" uid="uid://cp0nvngfnqwds" path="res://Assets/Graphics/UI icons/ClosePressed.png" id="8_7t31o"]
+[ext_resource type="FontFile" uid="uid://d4kabkagmfeq" path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" id="8_gpcg5"]
 [ext_resource type="Texture2D" uid="uid://b6j67d6me2irx" path="res://Assets/Graphics/UI icons/CloseHover.png" id="9_morwe"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_0so4a"]
-font_size = 28
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjnoy"]
+bg_color = Color(0.0196078, 0.113725, 0.109804, 0.686275)
 
-[sub_resource type="LabelSettings" id="LabelSettings_bbake"]
-font_size = 32
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85d16"]
+bg_color = Color(0.0196078, 0.113725, 0.109804, 0.686275)
 
-[sub_resource type="LabelSettings" id="LabelSettings_3e83s"]
-font_size = 32
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rito0"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [node name="CharacterInfoPanel" type="Control" node_paths=PackedStringArray("_lblCharacterName", "_lblAttributesStats", "_vBoxStatsDisplay", "_lblPerks", "_lblStatuses", "_btnClose", "_btnAttributesStats", "_pnlClose", "_portraitRect")]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1192.0
-offset_bottom = 1152.0
-theme = ExtResource("1_g6s5i")
+offset_right = 1150.0
+offset_bottom = 1221.0
+theme = ExtResource("1_2ojqa")
 script = ExtResource("2_66dwa")
 _lblCharacterName = NodePath("MainPanel/VBoxContainer/PnlName/LblCharacterName")
 _lblAttributesStats = NodePath("MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer/BtnToggleAttributesStats/LblAttributesStats")
@@ -61,6 +64,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
+theme = ExtResource("4_jdje8")
 
 [node name="LblCharacterName" type="Label" parent="MainPanel/VBoxContainer/PnlName"]
 layout_mode = 1
@@ -69,6 +73,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 60
 text = "Character Name"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -127,6 +132,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.67451, 0.560784, 0.192157, 1)
+theme_override_fonts/font = ExtResource("6_gtmqk")
 text = "Active Boons"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -144,8 +151,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("6_eivtc")
+theme_override_fonts/font = ExtResource("8_gpcg5")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_tjnoy")
 text = "Example perk 1, example perk 2, example perk 3, example perk 4, example perk 5, example perk 6, example perk 7"
-label_settings = SubResource("LabelSettings_0so4a")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -166,7 +176,6 @@ grow_vertical = 2
 [node name="BtnToggleAttributesStats" type="TextureButton" parent="MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture_normal = ExtResource("3_w6dgf")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("4_1i2fg")
@@ -184,8 +193,9 @@ offset_right = 85.0
 offset_bottom = 20.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.67451, 0.560784, 0.192157, 1)
+theme_override_fonts/font = ExtResource("6_gtmqk")
 text = "Attributes"
-label_settings = SubResource("LabelSettings_bbake")
 
 [node name="PnlStatsDisplay" type="Panel" parent="MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer"]
 layout_mode = 2
@@ -217,8 +227,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_gpcg5")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_85d16")
 text = "Status effect 1, status effect 2, status effect 3, status effect 4Status effect 1, status effect 2, status effect 3, status effect 4Status effect 1, status effect 2, status effect 3, status effect 4"
-label_settings = SubResource("LabelSettings_3e83s")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -226,6 +238,7 @@ autowrap_mode = 2
 [node name="PnlClose" type="Panel" parent="MainPanel/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rito0")
 
 [node name="BtnClose" type="TextureButton" parent="MainPanel/VBoxContainer/HBoxContainer2/PnlClose"]
 layout_mode = 1
