@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=157 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
@@ -47,9 +47,13 @@
 [ext_resource type="Texture2D" uid="uid://wuc2rkx50rmq" path="res://Assets/Graphics/Sprites/Spellbook/template_atlas.tres" id="39_ns2iq"]
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="39_ovjc1"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="40_n3uxa"]
+[ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="40_nldjr"]
+[ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="40_ojhn2"]
 [ext_resource type="Texture2D" uid="uid://espodc73mlr4" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed.png" id="40_yvmrb"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="41_blf7c"]
 [ext_resource type="Texture2D" uid="uid://14orytikjbvq" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksHover.png" id="41_s5x0e"]
+[ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="42_gqpeq"]
+[ext_resource type="FontFile" uid="uid://birtuq7kdeqwx" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Bold.ttf" id="42_s3urr"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="42_vrdt6"]
 [ext_resource type="Texture2D" uid="uid://crxm7cjirqta8" path="res://Assets/Graphics/UI icons/Close.png" id="43_ln4bc"]
 [ext_resource type="Texture2D" uid="uid://b6j67d6me2irx" path="res://Assets/Graphics/UI icons/CloseHover.png" id="44_fjg6u"]
@@ -264,9 +268,6 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_1b6cn"]
 line_spacing = 1.0
 font_size = 36
-
-[sub_resource type="LabelSettings" id="LabelSettings_21ipa"]
-font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_iwxgo"]
 font_size = 56
@@ -1008,7 +1009,6 @@ _hoverSample = ExtResource("15_h183d")
 _clickedSample = ExtResource("16_g43m3")
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlAction/HBoxContainer/VBoxContainer/HBoxBtnsLog/BtnMenu"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1028,7 +1028,6 @@ script = ExtResource("17_7pg5c")
 _roundSeparatorScn = ExtResource("18_popda")
 
 [node name="PnlActions" type="Panel" parent="BattleHUD/CntHUD/PnlAction"]
-visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1103,6 +1102,7 @@ offset_right = 1426.5
 offset_bottom = 700.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("40_ojhn2")
 script = ExtResource("2_5xh84")
 _snapToEdges = false
 _draggable = false
@@ -1116,13 +1116,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -1010.5
-offset_top = -619.0
+offset_top = -585.001
 offset_right = 1010.5
-offset_bottom = -462.0
+offset_bottom = -462.001
 grow_horizontal = 2
 grow_vertical = 2
-text = "Chapter 1"
-label_settings = SubResource("LabelSettings_21ipa")
+theme_override_fonts/font = ExtResource("42_s3urr")
+theme_override_font_sizes/font_size = 76
+text = "Chapter 1: King Gilgamesh vs. The Citizens"
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlBattleIntro"]
@@ -1138,23 +1140,25 @@ offset_right = 1010.5
 offset_bottom = 302.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Mere whispers of Gilgamesh’s name once sent his people cowering, afraid of him and his tyrannical games. Until one day, their life of fear became a burden heavier than their fear of death. The citizens dared to challenge him in battle."
-label_settings = SubResource("LabelSettings_21ipa")
+theme = ExtResource("42_gqpeq")
+text = "Once, mere whispers of Gilgamesh’s name sent his people cowering, afraid of him and his tyrannical games. Until one day, their life of fear became a burden heavier than their fear of death. The citizens dared to rise up and challenge him in battle."
+horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="BtnIntro" type="TextureButton" parent="BattleHUD/CntHUD/PnlBattleIntro"]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -445.0
-offset_top = -276.0
-offset_right = 445.0
-offset_bottom = -71.0
+anchors_preset = -1
+anchor_left = 0.494
+anchor_top = 0.799275
+anchor_right = 0.494
+anchor_bottom = 0.799275
+offset_left = -427.382
+offset_top = -93.8914
+offset_right = 424.618
+offset_bottom = 94.1086
 grow_horizontal = 2
 grow_vertical = 0
+theme = ExtResource("40_nldjr")
 disabled = true
 texture_normal = ExtResource("39_ovjc1")
 texture_pressed = ExtResource("40_n3uxa")
@@ -1174,8 +1178,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Continue..."
-label_settings = ExtResource("24_m03nf")
+theme_override_font_sizes/font_size = 71
+text = "Continue"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1241,7 +1245,6 @@ stretch_mode = 0
 script = ExtResource("7_8jqkl")
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlFullLog/BtnLogClose"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1289,7 +1292,6 @@ stretch_mode = 0
 script = ExtResource("7_8jqkl")
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlMenu/BtnMenuClose"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1868,13 +1870,10 @@ stream = ExtResource("54_fvkb8")
 bus = &"Effects"
 
 [node name="CharacterInfoPanel" parent="BattleHUD/CntHUD" instance=ExtResource("49_8ah3x")]
-visible = false
 
 [node name="BattleVictory" parent="BattleHUD" instance=ExtResource("59_tgswr")]
-visible = false
 
 [node name="CntCharacterUpgrade" parent="BattleHUD" instance=ExtResource("54_82j32")]
-visible = false
 
 [node name="PnlCharacterSelect" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer" index="0"]
 _characterSelectBtnGroup = SubResource("ButtonGroup_twrr5")

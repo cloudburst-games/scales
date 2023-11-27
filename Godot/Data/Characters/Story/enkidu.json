@@ -1,67 +1,67 @@
 {
-    "Name": "Enkidu",
-    "Description": "Enkidu, a primal and untamed being, transformed by friendship and connection from a wild creature to a loyal companion in the epic of Gilgamesh.",
-    "PatronGod": "Innana",
-    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/EnkiduBody.tscn",
-    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/EnkiPortrait1Final2.png",
-    "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/EnkiPortrait1Final2.png",
-    "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/EnkiPortrait1Final2.png",
-    "AudioWalkPath": [
-        "res://Assets/Audio/Effects/PlaceholderSFX/HumanWalk.wav"
-    ],
-    "AudioHurtPath": [
-        "res://Assets/Audio/Effects/PlaceholderSFX/HumanHurt.wav"
-    ],
-    "AudioDiePath": [
-        "res://Assets/Audio/Effects/PlaceholderSFX/HumanDie.wav"
-    ],
-    "AudioMeleePath": [
-        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch.wav",
-        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
-    ],
-    "Perks": [
-        7,
-        12
-    ],
-    "Level": 1,
-    "Might": 10,
-    "Resilience": 10,
-    "Precision": 4,
-    "Speed": 6,
-    "Intellect": 8,
-    "Charisma": 6,
-    "Luck": 4,
-    "Barks": {
-        "1": [
-            [
-                "You have conquered small folk; today you face an equal."
-            ],
-            [
-                "I shall break the chains of your oppression."
-            ],
-            [
-                "Wilderness, grant me strength!"
-            ],
-            [
-                "Your arrogance blinds you, Gilgamesh!"
-            ],
-            [
-                "Mere might cannot save you from your fate."
-            ],
-            [
-                "Ishtar’s wrath shall be swift and just!"
-            ]
-        ],
-        "2": [
-            [
-                "I fear nothing, not even a mountain!"
-            ],
-            [
-                "I will crush this mountain into a little hill."
-            ],
-            [
-                "The earth may shake and tremble, yet I will stand firm."
-            ]
-        ]
-    }
+	"Name": "Enkidu",
+	"Description": "Enkidu, a primal and untamed being, transformed by friendship and connection from a wild creature to a loyal companion in the epic of Gilgamesh.",
+	"PatronGod": "Innana",
+	"BodyPath": "res://Source/Actors/CharacterUnit/Bodies/EnkiduBody/EnkiduBody.tscn",
+	"PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/EnkiPortrait1Final2.png",
+	"CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/EnkiPortrait1Final2.png",
+	"CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/EnkiPortrait1Final2.png",
+	"AudioWalkPath": [
+		"res://Assets/Audio/Effects/PlaceholderSFX/HumanWalk.wav"
+	],
+	"AudioHurtPath": [
+		"res://Assets/Audio/Effects/PlaceholderSFX/HumanHurt.wav"
+	],
+	"AudioDiePath": [
+		"res://Assets/Audio/Effects/PlaceholderSFX/HumanDie.wav"
+	],
+	"AudioMeleePath": [
+		"res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch.wav",
+		"res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
+	],
+	"Perks": [
+		7,
+		12
+	],
+	"Level": 1,
+	"Might": 10,
+	"Resilience": 10,
+	"Precision": 4,
+	"Speed": 6,
+	"Intellect": 8,
+	"Charisma": 6,
+	"Luck": 4,
+	"Barks": {
+		"1": [
+			[
+				"You have conquered small folk; today you face an equal."
+			],
+			[
+				"I shall break the chains of your oppression."
+			],
+			[
+				"Wilderness, grant me strength!"
+			],
+			[
+				"Your arrogance blinds you, Gilgamesh!"
+			],
+			[
+				"Mere might cannot save you from your fate."
+			],
+			[
+				"Ishtar’s wrath shall be swift and just!"
+			]
+		],
+		"2": [
+			[
+				"I fear nothing, not even a mountain!"
+			],
+			[
+				"I will crush this mountain into a little hill."
+			],
+			[
+				"The earth may shake and tremble, yet I will stand firm."
+			]
+		]
+	}
 }

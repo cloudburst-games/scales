@@ -525,8 +525,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 24.0
 offset_top = -7.0
-offset_right = 24.0
-offset_bottom = -7.0
+offset_right = 3864.0
+offset_bottom = 2153.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("24_cal1b")
@@ -611,11 +611,11 @@ In the theater of gods, Ishtar, the goddess of love and war, challenges Shamash,
 
 Shamash strokes his beard. “Do you doubt his potential for wisdom, Ishtar?”
 
-Her laughter echoes through the heavens. “Humans embrace their primal instincts. His blood will boil in battle. He will always choose wrath and live a great, but short, mortal life.”
+Her laughter echoes through the heavens. “Humans embrace their primal instincts. His blood will boil in battle. He will always choose wrath and live a short, but legendary life as one of my disciples.”
 
-Shamash’s eyes come alive. “And if I teach him the way of mercy?”
+Shamash’s eyes glitter. “And if I teach him the way of mercy?”
 
-Ishtar replied, “You may judge him worthy of immortality.”
+Ishtar replies, “He may serve your cult and live forever among the gods.”
 
 As these two deities vie to tip the scales of justice, Gilgamesh’s destiny hangs on the choices you make."
 script = ExtResource("29_lwbti")
