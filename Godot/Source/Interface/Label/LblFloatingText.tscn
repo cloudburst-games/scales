@@ -1,11 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://f880l6fqx7bi"]
 
+[ext_resource type="FontFile" uid="uid://birtuq7kdeqwx" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Bold.ttf" id="1_h7mh6"]
 [ext_resource type="Script" path="res://Source/Interface/Label/LblFloatingText.cs" id="2_8y246"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_fmyv1"]
-font_size = 64
-outline_size = 16
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_1o158"]
 length = 0.001
@@ -47,8 +43,12 @@ _data = {
 [node name="LblFloatingText" type="Label"]
 offset_right = 694.0
 offset_bottom = 118.0
+theme_override_colors/font_color = Color(0.793902, 0.736541, 0.549815, 1)
+theme_override_colors/font_outline_color = Color(0.185194, 0.147605, 0.0254475, 1)
+theme_override_constants/outline_size = 20
+theme_override_fonts/font = ExtResource("1_h7mh6")
+theme_override_font_sizes/font_size = 80
 text = "Test test damage"
-label_settings = SubResource("LabelSettings_fmyv1")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_8y246")
