@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleVictory.cs" id="1_xe3mj"]
 [ext_resource type="Theme" uid="uid://c5cfodgyxs3u7" path="res://PanelMainBodyTheme.tres" id="1_yh8la"]
-[ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="2_e77pl"]
+[ext_resource type="Theme" uid="uid://3wrce77vvtdx" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="2_e77pl"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_nyqk7"]
 [ext_resource type="Texture2D" uid="uid://c23nfsjgg2nop" path="res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png" id="3_77pkm"]
 [ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="3_8046d"]

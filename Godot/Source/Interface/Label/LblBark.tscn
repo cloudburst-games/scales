@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b0eddwhos0ra1"]
 
-[ext_resource type="FontFile" uid="uid://dgsyh4xa470vs" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-SemiBold.ttf" id="1_h7hji"]
+[ext_resource type="FontFile" uid="uid://36d7b1r67nad" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-Bold.ttf" id="1_boiwg"]
 [ext_resource type="Script" path="res://Source/Interface/Label/LblBark.cs" id="1_ytyam"]
 
 [sub_resource type="Animation" id="Animation_bib1g"]
@@ -53,9 +53,9 @@ offset_right = 225.0
 offset_bottom = -270.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.185194, 0.147605, 0.0254475, 1)
-theme_override_colors/font_outline_color = Color(0.793902, 0.736541, 0.549815, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("1_h7hji")
+theme_override_colors/font_outline_color = Color(0.627451, 0.564706, 0.380392, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("1_boiwg")
 theme_override_font_sizes/font_size = 55
 text = "Heya it's meur boy GILGAMESH!"
 horizontal_alignment = 1

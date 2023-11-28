@@ -1,4 +1,4 @@
-[gd_scene load_steps=162 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=163 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
@@ -89,6 +89,7 @@
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="64_ascdd"]
 [ext_resource type="AudioStream" uid="uid://c5tl1eo4tb4il" path="res://Assets/Audio/Music/World/EpicBattle_L3.ogg" id="65_61tou"]
 [ext_resource type="AudioStream" uid="uid://dwtxn4yfwg1hk" path="res://Assets/Audio/Effects/PlaceholderSFX/BattleDefeat.wav" id="66_lmq6k"]
+[ext_resource type="Theme" uid="uid://uacecxotdrx8" path="res://MainBodyDarkText.tres" id="67_5mgew"]
 [ext_resource type="AudioStream" uid="uid://bxomd0bqaolbr" path="res://Assets/Audio/Effects/PlaceholderSFX/GameVictory.wav" id="68_gp8wv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ge4m1"]
@@ -1145,6 +1146,7 @@ offset_bottom = 302.5
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("42_gqpeq")
+theme_override_font_sizes/font_size = 60
 text = "Once, mere whispers of Gilgamesh’s name sent his people cowering, afraid of him and his tyrannical games. Until one day, their life of fear became a burden heavier than their fear of death. The citizens dared to rise up and challenge him in battle."
 horizontal_alignment = 1
 autowrap_mode = 2
@@ -1689,6 +1691,7 @@ offset_top = 133.6
 offset_right = 1549.8
 offset_bottom = 1678.6
 mouse_filter = 2
+theme = ExtResource("67_5mgew")
 
 [node name="BtnSolarFlare" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/SunSpells"]
 layout_mode = 0
@@ -1820,6 +1823,7 @@ offset_top = 175.2
 offset_right = 2347.4
 offset_bottom = 1720.2
 mouse_filter = 2
+theme = ExtResource("67_5mgew")
 
 [node name="BtnElixirVigor" type="TextureButton" parent="BattleHUD/CntHUD/CntSpellBook/PnlSpellBook/BodySpells"]
 layout_mode = 0
@@ -1976,8 +1980,11 @@ button_group = SubResource("ButtonGroup_twrr5")
 [node name="BaseTextureButton5" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/HBoxCharacterSelect" index="4"]
 button_group = SubResource("ButtonGroup_twrr5")
 
-[node name="PnlPerkSelect" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer" index="1"]
+[node name="PnlPerkSelect" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer" index="2"]
 _perkSelectButtonGroup = SubResource("ButtonGroup_jvt5r")
+
+[node name="GridContainer" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect" index="1"]
+theme_override_constants/v_separation = 110
 
 [node name="BaseTextureButton4" parent="BattleHUD/CntCharacterUpgrade/BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer" index="0"]
 button_group = SubResource("ButtonGroup_jvt5r")

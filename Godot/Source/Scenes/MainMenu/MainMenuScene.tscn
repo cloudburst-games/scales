@@ -40,6 +40,8 @@
 [ext_resource type="Texture2D" uid="uid://bgrwjyqr7jua2" path="res://Assets/Graphics/Front Cover/OliveBranch2.png" id="32_koa8o"]
 [ext_resource type="Texture2D" uid="uid://ih2vd2uecvt8" path="res://Assets/Graphics/Front Cover/Knife.png" id="33_vcl1s"]
 [ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="34_16yq6"]
+[ext_resource type="Theme" uid="uid://3wrce77vvtdx" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="35_dkqyj"]
+[ext_resource type="Theme" uid="uid://c5cfodgyxs3u7" path="res://PanelMainBodyTheme.tres" id="37_gunll"]
 
 [sub_resource type="Animation" id="Animation_djx7x"]
 length = 0.001
@@ -202,16 +204,6 @@ _data = {
 [sub_resource type="AtlasTexture" id="AtlasTexture_weltr"]
 atlas = ExtResource("7_e1fsh")
 region = Rect2(2340.48, 95.333, 808.868, 884.819)
-
-[sub_resource type="LabelSettings" id="LabelSettings_38jr5"]
-font_size = 64
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_2mvgc"]
-font_size = 48
-outline_size = 16
-outline_color = Color(0, 0, 0, 1)
 
 [node name="MainMenuScene" type="Node" node_paths=PackedStringArray("_introPictureStory", "_btnAdventure", "_battleSceneTransition", "_cntPnlAdventures", "_btnAbout", "_pnlAbout")]
 script = ExtResource("1_66m4n")
@@ -713,6 +705,7 @@ offset_right = 866.0
 offset_bottom = 525.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("35_dkqyj")
 script = ExtResource("28_5f6ek")
 _draggable = false
 CloseOnLoseFocus = true
@@ -729,6 +722,7 @@ offset_left = 0.449997
 offset_top = 36.05
 offset_right = 0.550049
 offset_bottom = 53.85
+theme = ExtResource("37_gunll")
 
 [node name="Label2" type="Label" parent="Control/PnlAbout/Panel"]
 layout_mode = 1
@@ -739,24 +733,23 @@ anchor_right = 0.95
 anchor_bottom = 0.95
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 60
 text = "Made for Github Game Off 2023
 
-Find us on discord! We are: SarahSsss7#9089, hnuqweasd#3731
+Find us on discord! We are: SarahSage7; Mo3217
 
 Want to see the game completed?
-Suggestions on what you'd like to see?
 Leave a comment with your thoughts!
 "
-label_settings = SubResource("LabelSettings_38jr5")
-autowrap_mode = 2
+autowrap_mode = 3
 
 [node name="BtnClose" type="TextureButton" parent="Control/PnlAbout"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -53.0
-offset_bottom = 58.0
+offset_left = -91.0
+offset_bottom = 94.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -778,8 +771,6 @@ anchor_bottom = 1.0
 offset_top = -15.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "x"
-label_settings = SubResource("LabelSettings_2mvgc")
 horizontal_alignment = 1
 
 [node name="SceneTransition" type="Node" parent="."]

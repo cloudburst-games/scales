@@ -1,9 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://dhnf1jm0vtok8"]
+[gd_scene load_steps=29 format=3 uid="uid://dhnf1jm0vtok8"]
 
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="1_fokrj"]
 [ext_resource type="Script" path="res://Source/Interface/Panel/CharacterUpgrade/CntCharacterUpgrade.cs" id="1_jr58n"]
 [ext_resource type="Texture2D" uid="uid://c23nfsjgg2nop" path="res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png" id="2_7trrt"]
-[ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="2_jnbiw"]
+[ext_resource type="Theme" uid="uid://3wrce77vvtdx" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="2_jnbiw"]
 [ext_resource type="Texture2D" uid="uid://busmul3oplrc6" path="res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait2.png" id="3_17mkl"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="3_avqhj"]
 [ext_resource type="Script" path="res://Source/Interface/Panel/CharacterUpgrade/PnlCharacterSelect.cs" id="3_hybyh"]
@@ -15,7 +15,6 @@
 [ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="5_md6uv"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="5_s1y87"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="6_5qvhe"]
-[ext_resource type="StyleBox" uid="uid://douo7gqqagnba" path="res://PanelPanelBorder.tres" id="6_6hmwx"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="7_2sduo"]
 [ext_resource type="AudioStream" uid="uid://u8vvnphooeai" path="res://addons/BaseTextureButtonPlugin/hover.wav" id="8_0lmux"]
 [ext_resource type="Script" path="res://Source/Interface/Panel/CharacterUpgrade/PnlPerkSelect.cs" id="8_i318h"]
@@ -25,6 +24,34 @@
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="16_0xu7d"]
 [ext_resource type="AudioStream" uid="uid://chb5ynx8cgaew" path="res://Assets/Audio/Effects/PlaceholderSFX/PerkSelect.wav" id="17_2sd8e"]
 [ext_resource type="FontFile" uid="uid://b0cbe0222uo2c" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-Regular.ttf" id="17_ncfsv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f33vb"]
+bg_color = Color(0.0392157, 0.176471, 0.168627, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.545098, 0.447059, 0.160784, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dunqf"]
+bg_color = Color(0.0392157, 0.176471, 0.168627, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.545098, 0.447059, 0.160784, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 1
 
 [sub_resource type="Theme" id="Theme_351sf"]
 default_font_size = 42
@@ -51,9 +78,9 @@ anchor_left = 0.146
 anchor_top = 0.1
 anchor_right = 0.86
 anchor_bottom = 0.842
-offset_left = 0.359924
+offset_left = 0.359985
 offset_right = 1.59985
-offset_bottom = 0.279907
+offset_bottom = 35.28
 theme = ExtResource("2_jnbiw")
 script = ExtResource("1_fokrj")
 
@@ -105,7 +132,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.6
-theme_override_styles/panel = ExtResource("6_6hmwx")
+theme_override_styles/panel = SubResource("StyleBoxFlat_f33vb")
 script = ExtResource("3_hybyh")
 _characterSelectBtnGroup = ExtResource("4_irjxk")
 _HBoxCharacterSelect = NodePath("VBoxContainer/HBoxCharacterSelect")
@@ -204,6 +231,7 @@ _clickedSample = ExtResource("9_8rsr2")
 [node name="Panel" type="Panel" parent="BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dunqf")
 
 [node name="LblCharacterName" type="Label" parent="BasePanel/Panel/HBoxContainer/PnlCharacterSelect/VBoxContainer/Panel"]
 layout_mode = 1
@@ -230,6 +258,11 @@ grow_vertical = 2
 texture = ExtResource("2_7trrt")
 expand_mode = 2
 stretch_mode = 5
+
+[node name="Space" type="Panel" parent="BasePanel/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.01
 
 [node name="PnlPerkSelect" type="Panel" parent="BasePanel/Panel/HBoxContainer" node_paths=PackedStringArray("_gridContainer", "_btnContinue", "_lblPerkSelect", "_audioPerkSelect")]
 layout_mode = 2
@@ -289,13 +322,14 @@ _clickedSample = ExtResource("9_8rsr2")
 [node name="LblCharacterName" type="Label" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer/BaseTextureButton4"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.826
+anchor_top = 1.047
 anchor_right = 1.0
-anchor_bottom = 1.071
-offset_top = -0.0140076
-offset_bottom = -0.0690308
+anchor_bottom = 1.234
+offset_top = -29.886
+offset_bottom = -30.092
 text = "Gilga the Geomancer"
 horizontal_alignment = 1
+vertical_alignment = 2
 autowrap_mode = 2
 
 [node name="BaseTextureButton5" type="TextureButton" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer"]
@@ -367,9 +401,13 @@ _clickedSample = ExtResource("9_8rsr2")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
-anchor_top = 0.91
+anchor_top = 1.0
 anchor_right = 0.7
-anchor_bottom = 0.99
+anchor_bottom = 1.124
+offset_left = 88.7
+offset_top = -2.0
+offset_right = -60.7001
+offset_bottom = 0.739868
 size_flags_horizontal = 3
 disabled = true
 texture_normal = ExtResource("4_gm8ac")
@@ -384,9 +422,13 @@ _clickedSample = ExtResource("9_8rsr2")
 
 [node name="Label" type="Label" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect/BtnContinue"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 33.0
+offset_top = 19.0
+offset_right = -35.0
+offset_bottom = -19.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Continue"
