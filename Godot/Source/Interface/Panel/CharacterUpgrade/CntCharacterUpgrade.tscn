@@ -1,27 +1,30 @@
-[gd_scene load_steps=23 format=3 uid="uid://dhnf1jm0vtok8"]
+[gd_scene load_steps=28 format=3 uid="uid://dhnf1jm0vtok8"]
 
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="1_fokrj"]
 [ext_resource type="Script" path="res://Source/Interface/Panel/CharacterUpgrade/CntCharacterUpgrade.cs" id="1_jr58n"]
 [ext_resource type="Texture2D" uid="uid://c23nfsjgg2nop" path="res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait1.png" id="2_7trrt"]
+[ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="2_jnbiw"]
 [ext_resource type="Texture2D" uid="uid://busmul3oplrc6" path="res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait2.png" id="3_17mkl"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="3_avqhj"]
 [ext_resource type="Script" path="res://Source/Interface/Panel/CharacterUpgrade/PnlCharacterSelect.cs" id="3_hybyh"]
 [ext_resource type="Texture2D" uid="uid://dw55h30ros4ye" path="res://addons/SceneTransitionPlugin/ContinueNormal.png" id="4_0ty0j"]
+[ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="4_fpmdk"]
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="4_gm8ac"]
 [ext_resource type="ButtonGroup" uid="uid://c6u1fmus5pp31" path="res://Source/Interface/Panel/CharacterUpgrade/CharacterSelectButtonGroup.tres" id="4_irjxk"]
 [ext_resource type="Texture2D" uid="uid://rbn5wog65ufi" path="res://addons/SceneTransitionPlugin/ContinuePressed.png" id="5_iush6"]
+[ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="5_md6uv"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="5_s1y87"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="6_5qvhe"]
+[ext_resource type="StyleBox" uid="uid://douo7gqqagnba" path="res://PanelPanelBorder.tres" id="6_6hmwx"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="7_2sduo"]
 [ext_resource type="AudioStream" uid="uid://u8vvnphooeai" path="res://addons/BaseTextureButtonPlugin/hover.wav" id="8_0lmux"]
 [ext_resource type="Script" path="res://Source/Interface/Panel/CharacterUpgrade/PnlPerkSelect.cs" id="8_i318h"]
 [ext_resource type="AudioStream" uid="uid://in1epaq47smy" path="res://addons/BaseTextureButtonPlugin/click.wav" id="9_8rsr2"]
 [ext_resource type="ButtonGroup" uid="uid://bvs4kji7i5kun" path="res://Source/Interface/Panel/CharacterUpgrade/PerkSelectButtonGroup.tres" id="9_nlmap"]
+[ext_resource type="FontFile" uid="uid://mgyek3wg1hie" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf" id="14_2dx8s"]
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="16_0xu7d"]
 [ext_resource type="AudioStream" uid="uid://chb5ynx8cgaew" path="res://Assets/Audio/Effects/PlaceholderSFX/PerkSelect.wav" id="17_2sd8e"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_1jtql"]
-font_size = 48
+[ext_resource type="FontFile" uid="uid://b0cbe0222uo2c" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-Regular.ttf" id="17_ncfsv"]
 
 [sub_resource type="Theme" id="Theme_351sf"]
 default_font_size = 42
@@ -44,21 +47,29 @@ _btnContinue = NodePath("BasePanel/Panel/HBoxContainer/PnlPerkSelect/BtnContinue
 [node name="BasePanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.15
+anchor_left = 0.146
 anchor_top = 0.1
-anchor_right = 0.85
-anchor_bottom = 0.8
-offset_right = 40.0
-offset_bottom = 40.0
+anchor_right = 0.86
+anchor_bottom = 0.842
+offset_left = 0.359924
+offset_right = 1.59985
+offset_bottom = 0.279907
+theme = ExtResource("2_jnbiw")
 script = ExtResource("1_fokrj")
 
 [node name="Label" type="Label" parent="BasePanel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.09
+anchor_left = 0.049
+anchor_top = 0.084
+anchor_right = 0.952
+anchor_bottom = 0.204
+offset_left = 0.592987
+offset_top = 0.347992
+offset_right = -0.336182
+offset_bottom = -0.0120239
+theme = ExtResource("4_fpmdk")
 text = "Upgrade Characters"
-label_settings = SubResource("LabelSettings_1jtql")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -70,14 +81,23 @@ anchor_left = 0.05
 anchor_top = 0.08
 anchor_right = 0.95
 anchor_bottom = 0.975
+offset_left = -15.15
+offset_top = 173.76
+offset_right = 0.150146
+offset_bottom = -95.925
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_md6uv")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BasePanel/Panel"]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_top = 0.039
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.971
+offset_top = -0.435001
+offset_right = 4.0
+offset_bottom = -0.215088
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -85,6 +105,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.6
+theme_override_styles/panel = ExtResource("6_6hmwx")
 script = ExtResource("3_hybyh")
 _characterSelectBtnGroup = ExtResource("4_irjxk")
 _HBoxCharacterSelect = NodePath("VBoxContainer/HBoxCharacterSelect")
@@ -189,8 +210,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.125
+theme_override_colors/font_color = Color(0.698789, 0.588417, 0.190446, 1)
+theme_override_fonts/font = ExtResource("14_2dx8s")
+theme_override_font_sizes/font_size = 61
 text = "Gilga the Geomancer"
-label_settings = SubResource("LabelSettings_1jtql")
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 2
@@ -223,9 +246,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.1
+theme_override_fonts/font = ExtResource("17_ncfsv")
+theme_override_font_sizes/font_size = 59
 text = "Allocate perks amongst the heroes! 
 You may select a maximum of (1/2) per hero."
-label_settings = SubResource("LabelSettings_1jtql")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -234,9 +258,13 @@ autowrap_mode = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
-anchor_top = 0.1
+anchor_top = 0.18
 anchor_right = 0.95
 anchor_bottom = 0.85
+offset_left = 0.349998
+offset_top = 0.519989
+offset_right = 0.649902
+offset_bottom = -0.100037
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_351sf")
@@ -261,9 +289,11 @@ _clickedSample = ExtResource("9_8rsr2")
 [node name="LblCharacterName" type="Label" parent="BasePanel/Panel/HBoxContainer/PnlPerkSelect/GridContainer/BaseTextureButton4"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.75
+anchor_top = 0.826
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 1.071
+offset_top = -0.0140076
+offset_bottom = -0.0690308
 text = "Gilga the Geomancer"
 horizontal_alignment = 1
 autowrap_mode = 2

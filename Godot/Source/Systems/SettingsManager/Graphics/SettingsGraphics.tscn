@@ -1,18 +1,21 @@
-[gd_scene load_steps=8 format=3 uid="uid://8i0p12smcyf"]
+[gd_scene load_steps=13 format=3 uid="uid://8i0p12smcyf"]
 
 [ext_resource type="Script" path="res://Source/Systems/SettingsManager/Graphics/SettingsGraphics.cs" id="1_q6g2w"]
+[ext_resource type="StyleBox" uid="uid://douo7gqqagnba" path="res://PanelPanelBorder.tres" id="2_0hiry"]
+[ext_resource type="FontFile" uid="uid://birtuq7kdeqwx" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Bold.ttf" id="3_h4718"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="3_ouknf"]
 [ext_resource type="Script" path="res://Source/Systems/SettingsManager/SettingsLabelHint.cs" id="3_sonvt"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="4_d74he"]
+[ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="4_na3ba"]
+[ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="5_4s3si"]
+[ext_resource type="FontFile" uid="uid://36d7b1r67nad" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-Bold.ttf" id="7_dctef"]
+[ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="8_b2k6t"]
 
 [sub_resource type="Theme" id="Theme_dyjtb"]
 default_font_size = 56
 
 [sub_resource type="Theme" id="Theme_5jwy7"]
 default_font_size = 56
-
-[sub_resource type="LabelSettings" id="LabelSettings_6sym4"]
-font_size = 56
 
 [node name="SettingsGraphics" type="Control"]
 layout_mode = 3
@@ -39,6 +42,7 @@ offset_bottom = 792.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme_override_styles/panel = ExtResource("2_0hiry")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
 layout_mode = 1
@@ -62,13 +66,15 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HDisplayMode"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 56
+theme = ExtResource("8_b2k6t")
 text = "Window Mode"
 
 [node name="OptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer/HDisplayMode"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = SubResource("Theme_dyjtb")
+theme_override_colors/font_color = Color(0.710859, 0.508452, 0, 1)
+theme_override_fonts/font = ExtResource("3_h4718")
+theme_override_font_sizes/font_size = 40
 item_count = 4
 selected = 0
 popup/item_0/text = "Windowed"
@@ -86,7 +92,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HWindowSize"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 56
+theme = ExtResource("8_b2k6t")
 text = "Window Size"
 
 [node name="OptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer/HWindowSize"]
@@ -100,7 +106,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HScreen"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 56
+theme = ExtResource("8_b2k6t")
 text = "Screen"
 
 [node name="OptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer/HScreen"]
@@ -120,7 +126,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HLockMouse"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 56
+theme = ExtResource("8_b2k6t")
 text = "Confine Mouse To Game Window"
 
 [node name="Panel" type="Panel" parent="Panel/ScrollContainer/VBoxContainer/HLockMouse"]
@@ -195,7 +201,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/HVSync"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 56
+theme = ExtResource("8_b2k6t")
 text = "V-Sync"
 
 [node name="OptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer/HVSync"]
@@ -220,6 +226,7 @@ offset_left = -136.5
 offset_right = 136.5
 offset_bottom = 91.0
 grow_horizontal = 2
+theme = ExtResource("4_na3ba")
 theme_override_font_sizes/font_size = 64
 text = "Graphics"
 horizontal_alignment = 1
@@ -255,34 +262,42 @@ offset_right = 385.5
 offset_bottom = 300.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_4s3si")
 script = ExtResource("3_ouknf")
 _startClosed = true
 
 [node name="Label" type="Label" parent="PnlWindowSizeConfirm"]
 layout_mode = 0
-offset_left = 69.5
-offset_top = 32.5
-offset_right = 724.5
-offset_bottom = 322.5
+offset_left = 81.0
+offset_top = 89.0
+offset_right = 696.0
+offset_bottom = 430.0
+theme_override_colors/font_color = Color(0.710859, 0.508452, 0, 1)
+theme_override_fonts/font = ExtResource("7_dctef")
+theme_override_font_sizes/font_size = 56
 text = "Window Size has been changed. Confirm? Reverting in 10 seconds."
-label_settings = SubResource("LabelSettings_6sym4")
 autowrap_mode = 2
 
 [node name="BtnConfirm" type="TextureButton" parent="PnlWindowSizeConfirm"]
 layout_mode = 0
-offset_left = 464.5
-offset_top = 443.5
-offset_right = 707.5
-offset_bottom = 569.5
+offset_left = 419.0
+offset_top = 402.0
+offset_right = 709.0
+offset_bottom = 506.0
+theme = ExtResource("8_b2k6t")
 script = ExtResource("4_d74he")
 _text = "Confirm"
 
 [node name="BtnCancel" type="TextureButton" parent="PnlWindowSizeConfirm"]
-layout_mode = 0
-offset_left = 53.5
-offset_top = 443.5
-offset_right = 296.5
-offset_bottom = 569.5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 80.0
+offset_top = 397.0
+offset_right = -384.0
+offset_bottom = -92.0
+theme = ExtResource("8_b2k6t")
 script = ExtResource("4_d74he")
 _text = "Cancel"
 

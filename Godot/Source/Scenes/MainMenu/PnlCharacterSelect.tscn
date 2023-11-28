@@ -1,22 +1,21 @@
-[gd_scene load_steps=15 format=3 uid="uid://di7cjmpln42qj"]
+[gd_scene load_steps=18 format=3 uid="uid://di7cjmpln42qj"]
 
+[ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="1_6oq68"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="1_krpko"]
 [ext_resource type="PackedScene" uid="uid://dm31ruvvjwfml" path="res://Source/Interface/Buttons/BtnClosePlaceholder.tscn" id="2_2n27j"]
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/PnlCharacters.cs" id="3_w20c0"]
+[ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="4_20eew"]
 [ext_resource type="Texture2D" uid="uid://bec17woawwggp" path="res://Assets/Graphics/Sprites/Actors/Gilga/0001.png" id="4_bt2dr"]
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/PnlCharacterDetails.cs" id="5_5jwok"]
 [ext_resource type="Texture2D" uid="uid://c1kuwxb4e7kda" path="res://icon.png" id="6_4ukgb"]
+[ext_resource type="StyleBox" uid="uid://douo7gqqagnba" path="res://PanelPanelBorder.tres" id="7_60ua6"]
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="7_e3pgx"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="8_nj2kh"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="9_3lkp4"]
+[ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="9_7e48t"]
+[ext_resource type="FontFile" uid="uid://mgyek3wg1hie" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf" id="10_4005s"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="10_bhtiq"]
 [ext_resource type="Script" path="res://addons/SceneTransitionPlugin/SceneTransition.cs" id="11_m83tb"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_lvpsb"]
-font_size = 128
-
-[sub_resource type="LabelSettings" id="LabelSettings_2ebqt"]
-font_size = 44
 
 [sub_resource type="LabelSettings" id="LabelSettings_ovobt"]
 font_size = 64
@@ -33,6 +32,7 @@ offset_right = 1827.0
 offset_bottom = 1014.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_6oq68")
 script = ExtResource("1_krpko")
 _snapToEdges = false
 _draggable = false
@@ -44,6 +44,7 @@ offset_left = 136.0
 offset_top = 268.0
 offset_right = 1920.0
 offset_bottom = 1886.0
+theme = ExtResource("4_20eew")
 script = ExtResource("3_w20c0")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PnlCharacters"]
@@ -127,17 +128,19 @@ stretch_mode = 4
 [node name="PnlCharacterDetails" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 2031.0
-offset_top = 238.0
-offset_right = 3585.0
-offset_bottom = 1932.0
+offset_top = 142.0
+offset_right = 3471.0
+offset_bottom = 1848.0
+theme_override_styles/panel = ExtResource("7_60ua6")
 script = ExtResource("5_5jwok")
 
 [node name="PnlTitle" type="Panel" parent="PnlCharacterDetails"]
 layout_mode = 0
-offset_left = 60.0
+offset_left = 39.0
 offset_top = 23.0
-offset_right = 1508.0
+offset_right = 1415.0
 offset_bottom = 305.0
+theme = ExtResource("9_7e48t")
 
 [node name="Label" type="Label" parent="PnlCharacterDetails/PnlTitle"]
 layout_mode = 1
@@ -153,7 +156,6 @@ offset_bottom = 94.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Character Details"
-label_settings = SubResource("LabelSettings_lvpsb")
 
 [node name="LblDescription" type="Label" parent="PnlCharacterDetails"]
 layout_mode = 0
@@ -161,8 +163,9 @@ offset_left = 170.0
 offset_top = 378.0
 offset_right = 1392.0
 offset_bottom = 764.0
+theme = ExtResource("4_20eew")
+theme_override_font_sizes/font_size = 65
 text = "Description of each character goes here (populated programatically)"
-label_settings = SubResource("LabelSettings_2ebqt")
 autowrap_mode = 2
 
 [node name="LblPatron" type="Label" parent="PnlCharacterDetails"]
@@ -171,8 +174,9 @@ offset_left = 170.0
 offset_top = 597.0
 offset_right = 1392.0
 offset_bottom = 1077.0
+theme = ExtResource("4_20eew")
+theme_override_font_sizes/font_size = 65
 text = "Description of each character goes here (populated programatically)"
-label_settings = SubResource("LabelSettings_2ebqt")
 autowrap_mode = 2
 
 [node name="LblPhysicalDamage" type="Label" parent="PnlCharacterDetails"]
@@ -181,24 +185,27 @@ offset_left = 170.0
 offset_top = 763.0
 offset_right = 1392.0
 offset_bottom = 933.0
+theme = ExtResource("4_20eew")
+theme_override_font_sizes/font_size = 65
 text = "Description of each character goes here (populated programatically)"
-label_settings = SubResource("LabelSettings_2ebqt")
 autowrap_mode = 2
 
 [node name="LblPerks" type="Label" parent="PnlCharacterDetails"]
 layout_mode = 0
 offset_left = 170.0
-offset_top = 963.0
+offset_top = 1025.0
 offset_right = 1392.0
 offset_bottom = 1133.0
-text = "PERKS"
-label_settings = SubResource("LabelSettings_2ebqt")
+theme = ExtResource("4_20eew")
+theme_override_colors/font_color = Color(0.698789, 0.588417, 0.190446, 1)
+theme_override_fonts/font = ExtResource("10_4005s")
+text = "Boons"
 autowrap_mode = 2
 
 [node name="GridPerks" type="GridContainer" parent="PnlCharacterDetails"]
 layout_mode = 0
 offset_left = 170.0
-offset_top = 1053.0
+offset_top = 1149.0
 offset_right = 902.0
 offset_bottom = 1453.0
 columns = 6
