@@ -535,11 +535,11 @@ shader_parameter/width = 0.0
 shader_parameter/speed = 10.0
 shader_parameter/outline_color_origin = Color(0, 1, 1, 0)
 
-[node name="CharacterUnit" type="CharacterBody2D" node_paths=PackedStringArray("_lblBark", "BarHealth", "RoundEffectAnim")]
+[node name="CharacterUnit" type="CharacterBody2D" node_paths=PackedStringArray("LblBark", "BarHealth", "RoundEffectAnim")]
 z_index = 1
 position = Vector2(1746, 1016)
 script = ExtResource("1_yf2yq")
-_lblBark = NodePath("LblBark")
+LblBark = NodePath("LblBark")
 BarHealth = NodePath("BarHealth")
 RoundEffectAnim = NodePath("RoundEffectAnim")
 

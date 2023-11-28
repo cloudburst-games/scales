@@ -98,7 +98,10 @@ public class IdleBattleState : BattleState
 
         if (!Battler.CharactersAwaitingTurn[0].TurnPending)
         {
-            Battler.CharactersAwaitingTurn[0].TryBark();
+
+            Battler.CharactersAwaitingTurn[0].LblBark.SetCorrectedPosition(Battler.CharactersAwaitingTurn[0].TryBark(),
+                Battler.AllCharacters.Select(x => x.LblBark).Where(x => x != Battler.CharactersAwaitingTurn[0].LblBark).ToList());
+
             SetAPAtStartOfTurn();
             Battler.CharactersAwaitingTurn[0].TurnPending = true;
         }

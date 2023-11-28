@@ -482,11 +482,11 @@ public partial class StoryCharacterData : RefCounted, IJSONSaveable
     }
     private int GetUpdatedReagents()
     {
-        return UpdateStat(Attributes[AttributeMode.Intellect], 1f, 0.02f);
+        return UpdateStat(Attributes[AttributeMode.Intellect], 1.75f, 0.02f);
     }
     private int GetUpdatedFocusCharge()
     {
-        return UpdateStat(Attributes[AttributeMode.Intellect], 2f, 0.015f);
+        return UpdateStat(Attributes[AttributeMode.Intellect], 1.5f, 0.015f);
     }
     private int GetUpdatedPersuasion()
     {

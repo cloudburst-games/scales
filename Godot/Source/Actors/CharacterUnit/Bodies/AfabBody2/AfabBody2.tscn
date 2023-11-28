@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Source/Actors/CharacterUnit/Bodies/CharacterBody.cs" id="1_3ftxh"]
 [ext_resource type="Shader" path="res://Source/Interface/Shaders/Outline/OutlineShader.gdshader" id="5_wa6p3"]
-[ext_resource type="Texture2D" uid="uid://7odii45w3yxl" path="res://Assets/Graphics/Sprites/Actors/Townsfolk_AFAB/AFAB_IdleStyleColour2.png" id="6_ax2fp"]
+[ext_resource type="Texture2D" uid="uid://cxwwof8vwlooe" path="res://Assets/Graphics/Sprites/Actors/Townsfolk_AFAB/AFAB_IdleStyleColour2.png" id="6_ax2fp"]
 [ext_resource type="Animation" uid="uid://b558sgwoaj0ia" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit1_gilg.tres" id="7_27ick"]
 [ext_resource type="Animation" uid="uid://cuo3v5tl8yqvg" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit2_gilg.tres" id="8_nub1t"]
 [ext_resource type="Animation" uid="uid://bhqbf8gnwee7x" path="res://Source/Actors/CharacterUnit/Bodies/GilgameshBody/AnimSequences/hit3_gilg.tres" id="9_pur81"]

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=4 format=3 uid="uid://djlwvyj5ciyk8"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://3wrce77vvtdx"]
 
 [ext_resource type="FontFile" uid="uid://mgyek3wg1hie" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf" id="1_cgl34"]
 [ext_resource type="Texture2D" uid="uid://mqqe65f56imb" path="res://Assets/Graphics/Interface/PanelBorder9Patch.png" id="2_vkoev"]
