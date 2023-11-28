@@ -89,7 +89,7 @@
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="64_ascdd"]
 [ext_resource type="AudioStream" uid="uid://c5tl1eo4tb4il" path="res://Assets/Audio/Music/World/EpicBattle_L3.ogg" id="65_61tou"]
 [ext_resource type="AudioStream" uid="uid://dwtxn4yfwg1hk" path="res://Assets/Audio/Effects/PlaceholderSFX/BattleDefeat.wav" id="66_lmq6k"]
-[ext_resource type="Theme" uid="uid://uacecxotdrx8" path="res://MainBodyDarkText.tres" id="67_5mgew"]
+[ext_resource type="Theme" uid="uid://b8x6alhiocepk" path="res://MainBodyDarkText.tres" id="67_5mgew"]
 [ext_resource type="AudioStream" uid="uid://bxomd0bqaolbr" path="res://Assets/Audio/Effects/PlaceholderSFX/GameVictory.wav" id="68_gp8wv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ge4m1"]
@@ -1035,6 +1035,7 @@ script = ExtResource("17_7pg5c")
 _roundSeparatorScn = ExtResource("18_popda")
 
 [node name="PnlActions" type="Panel" parent="BattleHUD/CntHUD/PnlAction"]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -1064,6 +1065,7 @@ size_flags_horizontal = 3
 texture_normal = ExtResource("11_k820p")
 texture_pressed = ExtResource("32_e4g8p")
 texture_hover = ExtResource("33_065qa")
+ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
 
@@ -1073,6 +1075,7 @@ size_flags_horizontal = 3
 texture_normal = ExtResource("30_bxuro")
 texture_pressed = ExtResource("35_oyrt0")
 texture_hover = ExtResource("36_50r6s")
+ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
 
@@ -1082,6 +1085,7 @@ size_flags_horizontal = 3
 texture_normal = ExtResource("15_ol0c6")
 texture_pressed = ExtResource("16_wx0tv")
 texture_hover = ExtResource("17_y8xrv")
+ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
 
@@ -1091,6 +1095,7 @@ size_flags_horizontal = 3
 texture_normal = ExtResource("35_v4nmx")
 texture_pressed = ExtResource("38_rxgx7")
 texture_hover = ExtResource("39_guwqc")
+ignore_texture_size = true
 stretch_mode = 5
 script = ExtResource("7_8jqkl")
 
