@@ -35,7 +35,6 @@ public partial class HexGridUserDisplay : Node2D
     [Export]
     private float _opacity = 0.3f;
 
-
     public void Init(HexGrid hexGrid)
     {
         _grid = hexGrid;

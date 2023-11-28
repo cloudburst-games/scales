@@ -50,7 +50,7 @@
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="39_ovjc1"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="40_n3uxa"]
 [ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="40_nldjr"]
-[ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="40_ojhn2"]
+[ext_resource type="Theme" uid="uid://3wrce77vvtdx" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="40_ojhn2"]
 [ext_resource type="Texture2D" uid="uid://espodc73mlr4" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksPressed.png" id="40_yvmrb"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="41_blf7c"]
 [ext_resource type="Texture2D" uid="uid://14orytikjbvq" path="res://Assets/Graphics/Sprites/Perks/SpellsPerksHover.png" id="41_s5x0e"]
@@ -2060,7 +2060,6 @@ modulate = Color(1, 1, 1, 0)
 
 [node name="Battler" parent="." node_paths=PackedStringArray("CursorControl", "_hexGridUserDisplay") instance=ExtResource("10_hfvdy")]
 process_mode = 4
-position = Vector2(166, 162)
 CursorControl = NodePath("CursorControl")
 _hexGridUserDisplay = NodePath("HexGridUserDisplay")
 FriendliesOutline = Color(0, 1, 1, 1)

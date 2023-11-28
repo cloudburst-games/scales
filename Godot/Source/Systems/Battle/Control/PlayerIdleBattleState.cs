@@ -86,6 +86,7 @@ public partial class PlayerIdleBattleState : ControlIdleBattleState
 
         _moveHexes = IdleBattleState.GetValidMoveHexes();
         _halfMoveHexes = IdleBattleState.GetValidHalfMoveHexes();
+        // GD.Print(IdleBattleState.Battler.CurrentDisplayMode);
         IdleBattleState.Battler.SetGridUserHexes(_moveHexes, _halfMoveHexes, IdleBattleState.Battler.CurrentDisplayMode);
 
         SetContextualAction(mouseGridPos);
