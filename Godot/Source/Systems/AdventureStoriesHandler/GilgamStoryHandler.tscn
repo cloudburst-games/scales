@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dsuh3j8ljsqnb" path="res://addons/PictureStoryPlugin/PictureStorySlide/PictureStorySlide.tscn" id="3_gl0nt"]
 [ext_resource type="Texture2D" uid="uid://521nj34wg5a7" path="res://Assets/Graphics/Sprites/Terrain/Beach/sandyhill2.png" id="4_dtmnm"]
 [ext_resource type="Texture2D" uid="uid://bu4tecsgh5hbl" path="res://Assets/Graphics/Sprites/Terrain/Beach/PinkPlain.png" id="4_y3arb"]
-[ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="5_2qfus"]
+[ext_resource type="Theme" uid="uid://3wrce77vvtdx" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="5_2qfus"]
 [ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="6_kuuyo"]
 [ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="7_o11pe"]
 
