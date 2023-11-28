@@ -7,7 +7,6 @@ using System.Linq;
 public partial class BattleScene : Node, ISceneTransitionable
 {
 
-
     [Export]
     private AudioContainer _audioBattleDefeat;
 

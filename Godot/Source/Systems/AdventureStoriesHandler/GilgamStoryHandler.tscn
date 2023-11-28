@@ -1,9 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://4extw10vut0x"]
+[gd_scene load_steps=24 format=3 uid="uid://4extw10vut0x"]
 
 [ext_resource type="Script" path="res://Source/Systems/AdventureStoriesHandler/AdventureStoriesHandler.cs" id="1_6s68q"]
 [ext_resource type="PackedScene" uid="uid://chnigbtasy7v4" path="res://addons/PictureStoryPlugin/PictureStoryContainer/PictureStoryContainer.tscn" id="2_fg2x8"]
 [ext_resource type="PackedScene" uid="uid://dsuh3j8ljsqnb" path="res://addons/PictureStoryPlugin/PictureStorySlide/PictureStorySlide.tscn" id="3_gl0nt"]
+[ext_resource type="Texture2D" uid="uid://521nj34wg5a7" path="res://Assets/Graphics/Sprites/Terrain/Beach/sandyhill2.png" id="4_dtmnm"]
 [ext_resource type="Texture2D" uid="uid://bu4tecsgh5hbl" path="res://Assets/Graphics/Sprites/Terrain/Beach/PinkPlain.png" id="4_y3arb"]
+[ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="5_2qfus"]
+[ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="6_kuuyo"]
+[ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="7_o11pe"]
 
 [sub_resource type="Animation" id="Animation_ucjkr"]
 resource_name = "sdf"
@@ -12,9 +16,6 @@ resource_name = "sdf"
 _data = {
 "sdf": SubResource("Animation_ucjkr")
 }
-
-[sub_resource type="LabelSettings" id="LabelSettings_6fmmq"]
-font_size = 72
 
 [sub_resource type="Animation" id="Animation_uwyks"]
 resource_name = "Default"
@@ -40,6 +41,9 @@ resource_name = "new_animation"
 _data = {
 "new_animation": SubResource("Animation_xt3ct")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_6fmmq"]
+font_size = 72
 
 [sub_resource type="Animation" id="Animation_oesux"]
 resource_name = "new_animation"
@@ -91,6 +95,7 @@ _finalVictoryStoryNodePaths = {
 }
 
 [node name="DefeatStory0" parent="." instance=ExtResource("2_fg2x8")]
+visible = false
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -109,7 +114,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_y3arb")
+texture = ExtResource("4_dtmnm")
 
 [node name="PnlTitle" type="Panel" parent="DefeatStory0/PictureStorySlide"]
 visible = false
@@ -120,6 +125,23 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_2qfus")
+
+[node name="Label2" type="Label" parent="DefeatStory0/PictureStorySlide/PnlTitle"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.063
+anchor_top = 0.093
+anchor_right = 0.941
+anchor_bottom = 0.201
+offset_left = 0.847992
+offset_top = 0.472
+offset_right = -0.064209
+offset_bottom = -0.496002
+theme = ExtResource("6_kuuyo")
+text = "DEFEAT"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="DefeatStory0/PictureStorySlide/PnlTitle"]
 visible = false
@@ -127,18 +149,19 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 57.0
-offset_top = 40.0
-offset_right = -47.0
-offset_bottom = -56.0
+offset_left = 167.0
+offset_top = 236.0
+offset_right = -146.0
+offset_bottom = -152.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Gilgamesh, the once-mighty king, stumbles and falls. He squints against the sun and gazes at the citizens who have gathered around him in disbelief. As the gods lose interest, and his name and legacy fade into oblivion. Perhaps a just and noble leader will rise up among the citizens of Uruk?"
-label_settings = SubResource("LabelSettings_6fmmq")
+theme = ExtResource("7_o11pe")
+text = "Gilgamesh, the once-mighty king, stumbles and falls. He squints against the sun and gazes at the citizens who have gathered around him in disbelief. As the gods lose interest, his name and legacy fade into oblivion. Perhaps a just and noble leader will rise up among the citizens of Uruk?"
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="DefeatStory1" parent="." instance=ExtResource("2_fg2x8")]
+visible = false
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -157,7 +180,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_y3arb")
+texture = ExtResource("4_dtmnm")
 
 [node name="PnlTitle" type="Panel" parent="DefeatStory1/PictureStorySlide"]
 visible = false
@@ -168,25 +191,46 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_2qfus")
+
+[node name="Label3" type="Label" parent="DefeatStory1/PictureStorySlide/PnlTitle"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.063
+anchor_top = 0.093
+anchor_right = 0.941
+anchor_bottom = 0.201
+offset_left = 0.847992
+offset_top = 0.472
+offset_right = -0.064209
+offset_bottom = -0.496002
+theme = ExtResource("6_kuuyo")
+text = "DEFEAT"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="DefeatStory1/PictureStorySlide/PnlTitle"]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 57.0
-offset_top = 40.0
-offset_right = -47.0
-offset_bottom = -56.0
+anchors_preset = -1
+anchor_left = 0.059
+anchor_top = 0.237
+anchor_right = 0.944
+anchor_bottom = 0.863
+offset_left = -0.936005
+offset_top = -0.152039
+offset_right = 0.0239258
+offset_bottom = 0.552002
 grow_horizontal = 2
 grow_vertical = 2
-text = "Overwhelmed by Enkidu’s strength, Gilgamesh stumbled and fell to the ground, his body engulfed by the wild-man’s great shadow. The gods lose interest in the insignificant king. His name and legacy fade into oblivion. Perhaps Enkidu could be the just and noble leader the people have been praying for?"
-label_settings = SubResource("LabelSettings_6fmmq")
+theme = ExtResource("7_o11pe")
+theme_override_colors/font_color = Color(0.793902, 0.736541, 0.549815, 1)
+text = "Overwhelmed by Enkidu’s strength, Gilgamesh stumbles and falls to the ground, his body engulfed by the wild-man’s great shadow. The gods lose interest in the insignificant king. His name and legacy fade into oblivion. Perhaps Enkidu will be the just and noble leader the people have been praying for?"
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="DefeatStory2" parent="." instance=ExtResource("2_fg2x8")]
+visible = false
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -216,21 +260,40 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_2qfus")
+
+[node name="Label4" type="Label" parent="DefeatStory2/PictureStorySlide/PnlTitle"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.063
+anchor_top = 0.093
+anchor_right = 0.941
+anchor_bottom = 0.201
+offset_left = 0.847992
+offset_top = 0.472
+offset_right = -0.064209
+offset_bottom = -0.496002
+theme = ExtResource("6_kuuyo")
+text = "DEFEAT"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="DefeatStory2/PictureStorySlide/PnlTitle"]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 57.0
-offset_top = 40.0
-offset_right = -47.0
-offset_bottom = -56.0
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.223
+anchor_right = 0.939
+anchor_bottom = 0.88
+offset_left = 0.759995
+offset_top = -0.00799561
+offset_right = 0.543945
+offset_bottom = -0.480103
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_o11pe")
 text = "Gilgamesh succumbs to the creatures of his mind and slips into the realm of madness. He wanders aimlessly in the pink fields of tamarisk, eating bitter beetles and drinking rainwater to stay alive. His broken minds strings together a shattered prayer to the gods, a wish to be unshackled from the eternal torment of his thoughts."
-label_settings = SubResource("LabelSettings_6fmmq")
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -253,7 +316,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_y3arb")
+texture = ExtResource("4_dtmnm")
 
 [node name="PnlTitle" type="Panel" parent="AfterLevel0Story/PictureStorySlide"]
 visible = false
@@ -264,23 +327,45 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_2qfus")
+
+[node name="Label5" type="Label" parent="AfterLevel0Story/PictureStorySlide/PnlTitle"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.063
+anchor_top = 0.093
+anchor_right = 0.941
+anchor_bottom = 0.201
+offset_left = 0.847992
+offset_top = 0.472
+offset_right = -0.064209
+offset_bottom = -0.496002
+theme = ExtResource("6_kuuyo")
+text = "Victory"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="AfterLevel0Story/PictureStorySlide/PnlTitle"]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -104.0
-offset_bottom = -96.0
+anchors_preset = -1
+anchor_left = 0.057
+anchor_top = 0.22
+anchor_right = 0.944
+anchor_bottom = 0.89
+offset_left = 0.671997
+offset_top = -0.120026
+offset_right = 0.0239258
+offset_bottom = -264.44
 grow_horizontal = 2
 grow_vertical = 2
-text = "As the king basked in victory, his arrogance soared higher than the city walls. Desperate citizens prayed to the mountains and the stars for deliverance. After seven long nights, the goddess Aruru answered their pleas with a new challenger to confront Gilgamesh."
-label_settings = SubResource("LabelSettings_6fmmq")
+theme = ExtResource("7_o11pe")
+text = "As the king basks in victory, his arrogance soars higher than the city walls. Desperate citizens pray to the mountains and the stars for deliverance. After seven long nights, the goddess Aruru answers their pleas with a new challenger to confront Gilgamesh..."
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="AfterLevel1Story" parent="." instance=ExtResource("2_fg2x8")]
+visible = false
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -299,7 +384,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("4_y3arb")
+texture = ExtResource("4_dtmnm")
 
 [node name="PnlTitle" type="Panel" parent="AfterLevel1Story/PictureStorySlide"]
 visible = false
@@ -310,23 +395,47 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_2qfus")
+
+[node name="Label6" type="Label" parent="AfterLevel1Story/PictureStorySlide/PnlTitle"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.063
+anchor_top = 0.093
+anchor_right = 0.941
+anchor_bottom = 0.201
+offset_left = 0.847992
+offset_top = 0.472
+offset_right = -0.064209
+offset_bottom = -0.496002
+theme = ExtResource("6_kuuyo")
+text = "Victory"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="AfterLevel1Story/PictureStorySlide/PnlTitle"]
-visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -104.0
-offset_bottom = -96.0
+anchors_preset = -1
+anchor_left = 0.067
+anchor_top = 0.198
+anchor_right = 0.935
+anchor_bottom = 0.891
+offset_left = -0.368011
+offset_top = -0.608032
+offset_right = -0.240234
+offset_bottom = 0.263916
 grow_horizontal = 2
 grow_vertical = 2
-text = "Bathed in the glow of victory, Gilgamesh extended the hand of friendship to Enkidu, lifting him from the ground. Pointing his thumb at the gathering crowd, Gilgamesh said, “Let us continue our battles, Enkidu; fight by my side!” "
-label_settings = SubResource("LabelSettings_6fmmq")
+theme = ExtResource("7_o11pe")
+text = "Astonished by the closely matched battle, Gilgamesh basks in the glow of sweat and victory. He extends the hand of friendship to Enkidu, lifting him from the ground. 
+
+Pointing his thumb at the gathering crowd, Gilgamesh says, “Let us continue our battles, Enkidu; fight by my side!” 
+
+But Enkidu had other ideas..."
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="AfterLevel2Story" parent="." instance=ExtResource("2_fg2x8")]
+visible = false
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -358,7 +467,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="AfterLevel2Story/PictureStorySlide/PnlTitle"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -372,6 +480,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="FinalVictoryStoryShamash" parent="." instance=ExtResource("2_fg2x8")]
+visible = false
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -401,27 +510,47 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_2qfus")
+
+[node name="Label7" type="Label" parent="FinalVictoryStoryShamash/PictureStorySlide/PnlTitle"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.063
+anchor_top = 0.093
+anchor_right = 0.941
+anchor_bottom = 0.201
+offset_left = 0.847992
+offset_top = 0.472
+offset_right = -0.064209
+offset_bottom = -0.496002
+theme = ExtResource("6_kuuyo")
+text = "Victory"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="FinalVictoryStoryShamash/PictureStorySlide/PnlTitle"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 228.0
 offset_right = -104.0
 offset_bottom = -96.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Empowered by Shamash’s favour, Gilgamesh conquers the haunting spectres of his mind and deciphers the omen within them: The path to divinity is only a battle away. 
+theme = ExtResource("7_o11pe")
+theme_override_font_sizes/font_size = 74
+text = "Gilgamesh conquers the spectres of his mind to reveal an omen on the battlefield, burnt into the ground by Shamash himself:  The demise of two thousand eyes shall mark your rise.
 
-The fragile calm is soured by the breathy bellow of the beast that lies ahead.  The creature with a thousand faces, Humbaba, now bars their path to glory… 
+The fragile calm is soured by the breathy bellow of a beast.  The call of the legendary Humbaba - the creature with a thousand faces now bars their path to glory.  
 
-[Story to be continued…]"
-label_settings = SubResource("LabelSettings_6fmmq")
+To be continued..."
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="FinalVictoryStoryBalanced" parent="." instance=ExtResource("2_fg2x8")]
+visible = false
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -451,25 +580,49 @@ anchor_right = 0.8
 anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_2qfus")
 
-[node name="Label" type="Label" parent="FinalVictoryStoryBalanced/PictureStorySlide/PnlTitle"]
+[node name="Label8" type="Label" parent="FinalVictoryStoryBalanced/PictureStorySlide/PnlTitle"]
 visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -104.0
-offset_bottom = -96.0
+anchors_preset = -1
+anchor_left = 0.063
+anchor_top = 0.093
+anchor_right = 0.941
+anchor_bottom = 0.201
+offset_left = 0.847992
+offset_top = 0.472
+offset_right = -0.064209
+offset_bottom = -0.496002
+theme = ExtResource("6_kuuyo")
+text = "Victory"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="FinalVictoryStoryBalanced/PictureStorySlide/PnlTitle"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.048
+anchor_top = 0.176
+anchor_right = 0.941
+anchor_bottom = 0.893
+offset_left = -0.592003
+offset_top = -0.0960236
+offset_right = -0.064209
+offset_bottom = 42.6719
 grow_horizontal = 2
 grow_vertical = 2
-text = "Gilgamesh dispels the haunting specters tormenting his mind, but without divine favour, the whispered omen remains a mystery. Restless upon the pink fields, the friends peer upwards at the night sky full of stars dulled by the fog of uncertainty. The fragile calm is swiftly shaken by the breathy bellow of the beast that lies ahead.  The creature with a thousand faces, Humbaba, now bars their path to glory…
+theme = ExtResource("7_o11pe")
+theme_override_font_sizes/font_size = 65
+text = "Gilgamesh dispels the haunting specters tormenting his mind. A message appears on the ground, scortched upon the earth. An omen. Gilgamesh's followers look to him for guidance, but without divine favour, the omen remains a mystery. 
 
-[Story to be continued…]"
-label_settings = SubResource("LabelSettings_6fmmq")
+Gilgamesh and Enkidu peer at the night sky, full of stars dulled by the fog of uncertainty. The fragile calm is swiftly shaken by the bellow of a beast. The friends follow the trail of the beast's sour breath. Humbaba, the creature with a thousand faces, now bars their path to glory. 
+
+To be continued..."
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="FinalVictoryStoryIshtar" parent="." instance=ExtResource("2_fg2x8")]
+visible = false
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -496,9 +649,27 @@ anchors_preset = -1
 anchor_left = 0.2
 anchor_top = 0.2
 anchor_right = 0.8
-anchor_bottom = 0.8
+anchor_bottom = 0.846
+offset_bottom = 0.640015
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_2qfus")
+
+[node name="Label9" type="Label" parent="FinalVictoryStoryIshtar/PictureStorySlide/PnlTitle"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.063
+anchor_top = 0.093
+anchor_right = 0.941
+anchor_bottom = 0.201
+offset_left = 0.847992
+offset_top = 0.472
+offset_right = -0.064209
+offset_bottom = -0.496002
+theme = ExtResource("6_kuuyo")
+text = "Victory"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="FinalVictoryStoryIshtar/PictureStorySlide/PnlTitle"]
 visible = false
@@ -506,15 +677,18 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -104.0
-offset_bottom = -96.0
+offset_left = 146.0
+offset_top = 245.0
+offset_right = -133.0
+offset_bottom = -142.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_o11pe")
+theme_override_font_sizes/font_size = 70
 text = "Guided by Ishtar’s favour, Gilgamesh dispels the haunting specters tormenting his mind, unravelling their whispered omens: Meaning lies ahead. The meaning of life, and the meaning of death.
 
-At peace for now, the friends recline upon the pink fields and gaze above at the glittering stars above - no, not stars, but eyes. The creature with a thousand faces, Humbaba, peers upon them in silence, beckoning them towards their destiny. 
+At peace for now, the friends recline upon the tamarisk dusted fields and gaze  at the glittering stars above - no, not stars. Eyes. A creature with a thousand faces peers upon them in silence, beckoning them towards their destiny. 
 
-[Story to be continued…]"
-label_settings = SubResource("LabelSettings_6fmmq")
+To be continued..."
 vertical_alignment = 1
 autowrap_mode = 2

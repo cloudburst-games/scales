@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ce0b88lumohl8"]
+[gd_scene load_steps=35 format=3 uid="uid://ce0b88lumohl8"]
 
 [ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="1_4xm35"]
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/PnlAdventures/CntPnlAdventures.cs" id="1_56uah"]
@@ -43,15 +43,6 @@ font_size = 56
 
 [sub_resource type="LabelSettings" id="LabelSettings_wlli7"]
 font_size = 84
-
-[sub_resource type="LabelSettings" id="LabelSettings_rahv7"]
-font_size = 84
-
-[sub_resource type="LabelSettings" id="LabelSettings_ixgyo"]
-font_size = 72
-
-[sub_resource type="LabelSettings" id="LabelSettings_t624p"]
-font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_iwxgo"]
 font_size = 56
@@ -269,7 +260,7 @@ size_flags_vertical = 6
 theme = ExtResource("11_rn4dl")
 theme_override_colors/font_color = Color(0.79243, 0.746023, 0.588994, 1)
 theme_override_font_sizes/font_size = 0
-text = "Embark on a journey as King Gilgamesh, battling  for power and eternal life under the watchful eye of the gods. Be careful with your choices; the favor or wrath of the gods can tip the scales of justice and shape your destiny"
+text = "Embark on a journey as King Gilgamesh, battling  for power and eternal life under the judgement of the gods. Be careful with your choices; the favor or wrath of the gods can tip the scales of justice and shape your destiny"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -444,7 +435,6 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.15
 
 [node name="PnlPerks" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.04
@@ -463,25 +453,31 @@ _startClosed = true
 [node name="VBoxContainer" type="VBoxContainer" parent="PnlPerks"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.025
-anchor_right = 0.975
-anchor_bottom = 0.975
+anchor_left = 0.05
+anchor_top = 0.119
+anchor_right = 0.952
+anchor_bottom = 0.897
+offset_left = 0.360001
+offset_top = -0.617599
+offset_right = -0.225586
+offset_bottom = 0.731201
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_24k5n")
 
 [node name="Label2" type="Label" parent="PnlPerks/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 7
 size_flags_stretch_ratio = 0.42
-text = "Boons"
-label_settings = SubResource("LabelSettings_rahv7")
+text = "You stumble upon a gift from the gods"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="PnlPerks/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 7
-text = "Choose one:"
-label_settings = SubResource("LabelSettings_ixgyo")
+theme = ExtResource("11_rn4dl")
+theme_override_font_sizes/font_size = 120
+text = "Pick one:"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -496,7 +492,7 @@ size_flags_stretch_ratio = 1.2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-tooltip_text = "Solar Flare. A minor damaging spell of Shamash."
+tooltip_text = "A minor damaging spell of Shamash"
 toggle_mode = true
 button_group = ExtResource("11_xf5ct")
 texture_normal = ExtResource("15_1ke5p")
@@ -509,7 +505,7 @@ script = ExtResource("7_2peo6")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-tooltip_text = "Sling. Grants a basic ranged attack."
+tooltip_text = "A basic ranged attack"
 toggle_mode = true
 button_pressed = true
 button_group = ExtResource("11_xf5ct")
@@ -523,7 +519,7 @@ script = ExtResource("7_2peo6")
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-tooltip_text = "Elixir of Vigour. A subtly strengthening boon of Ishtar."
+tooltip_text = "A subtly strengthening boon of Ishtar"
 toggle_mode = true
 button_group = ExtResource("11_xf5ct")
 texture_normal = ExtResource("19_gum6e")
@@ -541,7 +537,9 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "Solar Flare: magical damage attack"
+theme = ExtResource("11_rn4dl")
+text = "Solar Flare
+Magical ranged attack"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -549,7 +547,9 @@ autowrap_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "Sling: unlimited physical ranged attack"
+theme = ExtResource("11_rn4dl")
+text = "Slingshot
+Basic ranged attack"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -557,7 +557,9 @@ autowrap_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
-text = "Elixir of Vigour: increase health and damage"
+theme = ExtResource("11_rn4dl")
+text = "Elixir of Vigour
+Increase health and damage"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -593,8 +595,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 70
 text = "Begin"
-label_settings = SubResource("LabelSettings_t624p")
 horizontal_alignment = 1
 vertical_alignment = 1
 

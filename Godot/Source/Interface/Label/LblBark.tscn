@@ -1,11 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://b0eddwhos0ra1"]
 
+[ext_resource type="FontFile" uid="uid://dgsyh4xa470vs" path="res://Assets/Graphics/Fonts/EB_Garamond/static/EBGaramond-SemiBold.ttf" id="1_h7hji"]
 [ext_resource type="Script" path="res://Source/Interface/Label/LblBark.cs" id="1_ytyam"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_cvj8w"]
-font_size = 48
-outline_size = 16
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_bib1g"]
 resource_name = "AnimBark"
@@ -56,8 +52,12 @@ offset_top = -455.0
 offset_right = 225.0
 offset_bottom = -270.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0.185194, 0.147605, 0.0254475, 1)
+theme_override_colors/font_outline_color = Color(0.793902, 0.736541, 0.549815, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_h7hji")
+theme_override_font_sizes/font_size = 55
 text = "Heya it's meur boy GILGAMESH!"
-label_settings = SubResource("LabelSettings_cvj8w")
 horizontal_alignment = 1
 vertical_alignment = 2
 autowrap_mode = 2

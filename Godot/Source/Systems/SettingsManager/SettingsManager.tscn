@@ -1,64 +1,111 @@
-[gd_scene load_steps=16 format=3 uid="uid://bes3oet5iq1e1"]
+[gd_scene load_steps=20 format=3 uid="uid://bes3oet5iq1e1"]
 
 [ext_resource type="Script" path="res://Source/Systems/SettingsManager/SettingsManager.cs" id="1_yrkw0"]
-[ext_resource type="Theme" uid="uid://vc7liwrqikkh" path="res://Assets/Graphics/Themes/Witch/WitchyTheme.tres" id="2_1lh7l"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_4rrv3"]
 [ext_resource type="PackedScene" uid="uid://dkahi7sg2bq1x" path="res://Source/Systems/SettingsManager/Audio/SettingsAudio.tscn" id="2_rvyrg"]
+[ext_resource type="Theme" uid="uid://djlwvyj5ciyk8" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="2_s7bn3"]
 [ext_resource type="PackedScene" uid="uid://bc1i562j47oui" path="res://Source/Systems/SettingsManager/Controls/SettingsControl.tscn" id="3_k0f7g"]
 [ext_resource type="PackedScene" uid="uid://8i0p12smcyf" path="res://Source/Systems/SettingsManager/Graphics/SettingsGraphics.tscn" id="4_r5ubs"]
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="5_4h8nn"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="6_kbtxo"]
+[ext_resource type="StyleBox" uid="uid://dgh67ax0l635g" path="res://TabStyle.tres" id="7_i6l5p"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="7_jgsky"]
 [ext_resource type="Texture2D" uid="uid://crxm7cjirqta8" path="res://Assets/Graphics/UI icons/Close.png" id="7_scgoc"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="8_3yqni"]
 [ext_resource type="Texture2D" uid="uid://cp0nvngfnqwds" path="res://Assets/Graphics/UI icons/ClosePressed.png" id="8_i1o3n"]
 [ext_resource type="Texture2D" uid="uid://b6j67d6me2irx" path="res://Assets/Graphics/UI icons/CloseHover.png" id="9_ayqpt"]
+[ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="14_3i441"]
+[ext_resource type="FontFile" uid="uid://mgyek3wg1hie" path="res://Assets/Graphics/Fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf" id="15_4s214"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_s2vhd"]
-font_size = 56
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ojs8r"]
+bg_color = Color(0.0784314, 0.270588, 0.262745, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_color = Color(0.564706, 0.466667, 0.152941, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
 
-[sub_resource type="LabelSettings" id="LabelSettings_wprcd"]
-font_size = 64
-outline_size = 16
-outline_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_echae"]
+bg_color = Color(0.0156863, 0.101961, 0.0941176, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(0.564706, 0.466667, 0.152941, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_detail = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_otk1v"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_color = Color(0.564706, 0.466667, 0.152941, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
 
 [node name="SettingsManager" type="Node"]
 script = ExtResource("1_yrkw0")
 
 [node name="Panel" type="Panel" parent="."]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -1500.0
-offset_top = -898.0
-offset_right = 1500.0
-offset_bottom = 898.0
+offset_left = -1640.0
+offset_top = -1005.0
+offset_right = 1678.0
+offset_bottom = 974.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_1lh7l")
+theme = ExtResource("2_s7bn3")
 script = ExtResource("2_4rrv3")
 _draggable = false
 _startClosed = true
 
 [node name="SettingsAudio" parent="Panel" instance=ExtResource("2_rvyrg")]
 layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.017
+offset_left = 129.0
+offset_top = 105.357
+offset_right = -246.0
+offset_bottom = -136.0
 
 [node name="SettingsControl" parent="Panel" instance=ExtResource("3_k0f7g")]
 layout_mode = 1
+offset_left = -112.0
+offset_top = 181.0
+offset_right = -8.0
+offset_bottom = -176.0
 
 [node name="SettingsGraphics" parent="Panel" instance=ExtResource("4_r5ubs")]
 layout_mode = 1
+offset_left = -110.0
+offset_top = -3.0
 
 [node name="TabBar" type="TabBar" parent="Panel"]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 16.0
-offset_right = 844.0
-offset_bottom = 112.0
-theme_override_font_sizes/font_size = 64
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.046
+anchor_top = 0.008
+anchor_right = 0.299
+anchor_bottom = 0.099
+offset_left = 1.37199
+offset_top = 59.168
+offset_right = 48.9179
+offset_bottom = -0.921021
+theme_override_colors/font_selected_color = Color(0.710859, 0.508452, 0, 1)
+theme_override_colors/font_hovered_color = Color(0.87451, 0.631373, 0, 1)
+theme_override_colors/font_unselected_color = Color(0.710859, 0.508452, 0, 1)
+theme_override_fonts/font = ExtResource("15_4s214")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/tab_selected = ExtResource("7_i6l5p")
+theme_override_styles/tab_hovered = SubResource("StyleBoxFlat_ojs8r")
+theme_override_styles/tab_unselected = SubResource("StyleBoxFlat_echae")
+theme_override_styles/tab_disabled = SubResource("StyleBoxFlat_otk1v")
 tab_count = 3
 tab_0/title = "Controls"
 tab_1/title = "Audio"
@@ -93,8 +140,6 @@ offset_right = 43.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "x"
-label_settings = SubResource("LabelSettings_s2vhd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -134,9 +179,9 @@ offset_right = 12.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 51
 text = "Default
 "
-label_settings = SubResource("LabelSettings_s2vhd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -162,9 +207,9 @@ offset_right = 12.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 51
 text = "Cancel
 "
-label_settings = SubResource("LabelSettings_s2vhd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -190,12 +235,13 @@ offset_right = 12.0
 offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 51
 text = "Apply"
-label_settings = SubResource("LabelSettings_s2vhd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InputDisabler" type="ColorRect" parent="Panel"]
+visible = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -204,6 +250,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.392157)
 
 [node name="PnlConfirmClose" type="Panel" parent="Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -222,26 +269,28 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -500.0
-offset_right = 500.0
-offset_bottom = 499.0
+offset_left = -499.5
+offset_top = 91.0
+offset_right = 500.5
+offset_bottom = 369.0
 grow_horizontal = 2
+theme = ExtResource("14_3i441")
 text = "Changes are unsaved. Revert to previous settings?"
-label_settings = SubResource("LabelSettings_wprcd")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel/PnlConfirmClose"]
 layout_mode = 1
-anchors_preset = 7
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.576
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -274.0
-offset_top = -160.0
-offset_right = 274.0
+anchor_bottom = 0.808
+offset_left = -273.5
+offset_top = 0.263977
+offset_right = 274.5
+offset_bottom = -0.0880127
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -267,8 +316,9 @@ offset_right = 16.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("15_4s214")
+theme_override_font_sizes/font_size = 51
 text = "Cancel"
-label_settings = SubResource("LabelSettings_s2vhd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -294,8 +344,9 @@ offset_right = 16.5
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("15_4s214")
+theme_override_font_sizes/font_size = 51
 text = "Revert"
-label_settings = SubResource("LabelSettings_s2vhd")
 horizontal_alignment = 1
 vertical_alignment = 1
 

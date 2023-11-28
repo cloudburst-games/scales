@@ -1,12 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://bl1edev0p0c1d"]
+[gd_scene load_steps=5 format=3 uid="uid://bl1edev0p0c1d"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/HUD/PnlCharacterInfoElement.cs" id="1_b07j0"]
+[ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="1_k7mc3"]
+[ext_resource type="FontFile" uid="uid://d4kabkagmfeq" path="res://addons/silent_wolf/assets/fonts/Comfortaa-Bold.ttf" id="3_0p5xo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_05dk3"]
+bg_color = Color(0.0196078, 0.113725, 0.109804, 0.686275)
 
 [node name="PnlCharacterInfoElement" type="Panel" node_paths=PackedStringArray("_key", "_value")]
-offset_right = 458.0
+offset_left = 14.0
+offset_right = 441.0
 offset_bottom = 40.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_k7mc3")
+theme_override_styles/panel = SubResource("StyleBoxFlat_05dk3")
 script = ExtResource("1_b07j0")
 _key = NodePath("HBoxContainer/Key")
 _value = NodePath("HBoxContainer/Value")
@@ -16,8 +24,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_right = -10.0
+offset_left = 21.0
+offset_top = -1.0
+offset_right = -26.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -25,6 +35,9 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
+theme_override_colors/font_color = Color(0.977908, 0.910331, 0.710409, 1)
+theme_override_fonts/font = ExtResource("3_0p5xo")
+theme_override_font_sizes/font_size = 28
 text = "example stat"
 vertical_alignment = 1
 
@@ -32,6 +45,9 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 5
+theme_override_colors/font_color = Color(0.977908, 0.910331, 0.710409, 1)
+theme_override_fonts/font = ExtResource("3_0p5xo")
+theme_override_font_sizes/font_size = 28
 text = "24"
 horizontal_alignment = 2
 vertical_alignment = 1

@@ -698,4 +698,5 @@ public partial class CharacterUnit : CharacterBody2D
         CharacterData.Initialise(RoundEffectAnim, CharacterDataTreeLink);
         _body = GD.Load<PackedScene>(CharacterData.BodyPath);
     }
+>>>>>>> main
 }
