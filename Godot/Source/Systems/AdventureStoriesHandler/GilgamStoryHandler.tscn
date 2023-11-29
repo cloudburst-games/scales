@@ -97,8 +97,6 @@ _finalVictoryStoryNodePaths = {
 [node name="DefeatStory0" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="DefeatStory0" instance=ExtResource("3_gl0nt")]
@@ -156,15 +154,13 @@ offset_bottom = -152.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_o11pe")
-text = "Gilgamesh, the once-mighty king, stumbles and falls. He squints against the sun and gazes at the citizens who have gathered around him in disbelief. As the gods lose interest, his name and legacy fade into oblivion. Perhaps a just and noble leader will rise up among the citizens of Uruk?"
+text = "Gilgamesh, the once-mighty king, stumbles and falls. He squints against the sun and gazes at the citizens who have gathered around him in disbelief. As the gods lose interest, his name and legacy fade into oblivion. Perhaps a just and noble leader will rise among the citizens of Uruk?"
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="DefeatStory1" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="DefeatStory1" instance=ExtResource("3_gl0nt")]
@@ -232,8 +228,6 @@ autowrap_mode = 2
 [node name="DefeatStory2" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="DefeatStory2" instance=ExtResource("3_gl0nt")]
@@ -299,8 +293,6 @@ autowrap_mode = 2
 
 [node name="AfterLevel0Story" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "Blend"
 
 [node name="PictureStorySlide" parent="AfterLevel0Story" instance=ExtResource("3_gl0nt")]
@@ -360,15 +352,13 @@ offset_bottom = -264.44
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_o11pe")
-text = "As the king basks in victory, his arrogance soars higher than the city walls. Desperate citizens pray to the mountains and the stars for deliverance. After seven long nights, the goddess Aruru answers their pleas with a new challenger to confront Gilgamesh..."
+text = "Basking in victory against his people’s rebellion, King Gilgamesh’s arrogance soars higher than the city walls. Desperate citizens pray to the mountains and the stars for deliverance. After seven long nights, the goddess Aruru answers their pleas…"
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="AfterLevel1Story" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "Blend"
 
 [node name="PictureStorySlide" parent="AfterLevel1Story" instance=ExtResource("3_gl0nt")]
@@ -437,8 +427,6 @@ autowrap_mode = 2
 [node name="AfterLevel2Story" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "Blend"
 
 [node name="PictureStorySlide" parent="AfterLevel2Story" instance=ExtResource("3_gl0nt")]
@@ -482,8 +470,6 @@ autowrap_mode = 2
 [node name="FinalVictoryStoryShamash" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="FinalVictoryStoryShamash" instance=ExtResource("3_gl0nt")]
@@ -552,8 +538,6 @@ autowrap_mode = 2
 [node name="FinalVictoryStoryBalanced" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="FinalVictoryStoryBalanced" instance=ExtResource("3_gl0nt")]
@@ -624,8 +608,6 @@ autowrap_mode = 2
 [node name="FinalVictoryStoryIshtar" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="FinalVictoryStoryIshtar" instance=ExtResource("3_gl0nt")]
