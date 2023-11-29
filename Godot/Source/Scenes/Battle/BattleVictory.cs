@@ -240,7 +240,7 @@ public partial class BattleVictory : Control
 				GetNode<Control>("PnlFate/VBoxContainer/HBoxContainer2/Control").Visible = true;
 				_opponentTex.Visible = false;
 			}
-			_lblDiplomacyOutcome.Text = "Victory!\n" + victim.CharacterData.Name + " has hope for the mighty king and offers to accompany Gilgamesh on his next adventure!";
+			_lblDiplomacyOutcome.Text = "\n" + victim.CharacterData.Name + " has hope for the mighty king and offers to accompany Gilgamesh on his next adventure!";
 			_lblDecideFate.Text = "Decide the fate of your remaining opponents!\nIshtar would be pleased with a show of retribution.\nShamash advises a display of mercy.";
 			_animDiplomacy.SpeedScale *= 2;
 			_pnlDiplomacy.Open();
