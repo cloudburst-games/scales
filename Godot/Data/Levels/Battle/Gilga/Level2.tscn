@@ -150,6 +150,7 @@ polygon = PackedVector2Array(-278, 74.5, -263, 48.5, -217, 55.5, -185, 71.5, -18
 position = Vector2(1771, 833)
 
 [node name="Sprite2D" type="Sprite2D" parent="Entities/Doodads/Rocks"]
+self_modulate = Color(0.588235, 0.588235, 0.588235, 1)
 position = Vector2(0, 29)
 texture = ExtResource("8_6i0vl")
 region_enabled = true
@@ -163,6 +164,7 @@ polygon = PackedVector2Array(-202, 115, -156, 102, -102, 108, -96, 153, -124, 19
 position = Vector2(1853, 850)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Entities/Doodads/Rocks3"]
+self_modulate = Color(0.588235, 0.588235, 0.588235, 1)
 texture = ExtResource("8_6i0vl")
 region_enabled = true
 region_rect = Rect2(-24.6371, -3.59879, 191.585, 151.435)
@@ -175,12 +177,14 @@ polygon = PackedVector2Array(-257, 38, -262, 14, -217, 16, -204, 57, -168, 91, -
 position = Vector2(1917, 825)
 
 [node name="Sprite2D" type="Sprite2D" parent="Entities/Doodads/Rocks2"]
+self_modulate = Color(0.588235, 0.588235, 0.588235, 1)
 position = Vector2(8, 3)
 texture = ExtResource("8_6i0vl")
 region_enabled = true
 region_rect = Rect2(-5.46176, 561.95, 114.063, 87.4258)
 
 [node name="Sprite2D2" type="Sprite2D" parent="Entities/Doodads/Rocks2"]
+self_modulate = Color(0.588235, 0.588235, 0.588235, 1)
 position = Vector2(54, 48)
 texture = ExtResource("8_6i0vl")
 region_enabled = true
