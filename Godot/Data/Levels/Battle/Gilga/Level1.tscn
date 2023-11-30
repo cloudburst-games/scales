@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b0bhqhrvxb7ho"]
+[gd_scene load_steps=18 format=3 uid="uid://b0bhqhrvxb7ho"]
 
 [ext_resource type="Script" path="res://Source/Systems/Battle/Level/BattleLevel.cs" id="1_pkkmy"]
 [ext_resource type="Texture2D" uid="uid://coyf54vlm0b4f" path="res://Assets/Graphics/Interface/BattlefieldBorder9Patch.png" id="2_jub4l"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bx0jyl30ulogw" path="res://Assets/Graphics/Sprites/Terrain/Beach/Rocks.png" id="8_vvpvj"]
 [ext_resource type="PackedScene" uid="uid://byrap2l8cfdxd" path="res://Source/Systems/HexGrid/HexGrid.tscn" id="9_24ok7"]
 [ext_resource type="Script" path="res://Source/Systems/LevelSystem/HexModifier.cs" id="10_es3r7"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="11_38vps"]
+[ext_resource type="AudioStream" uid="uid://cofalo1rts627" path="res://Assets/Audio/Voice/Gilga/Level2Intro_hearingtheppl.wav" id="12_04e5p"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sughd"]
 
@@ -265,3 +267,11 @@ _makeGridFromInspector = false
 
 [node name="HexModifier" type="Node" parent="HexGrid"]
 script = ExtResource("10_es3r7")
+
+[node name="AudioContainer" type="Node" parent="."]
+script = ExtResource("11_38vps")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioContainer"]
+stream = ExtResource("12_04e5p")
+volume_db = -10.0
+bus = &"Voice"

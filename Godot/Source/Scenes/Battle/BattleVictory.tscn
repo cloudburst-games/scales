@@ -391,7 +391,7 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("14_vgiol")
 theme_override_font_sizes/font_size = 45
 text = "MERCY
-Release the captive and risk their vengeance"
+Release the captive and earn a blessing"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

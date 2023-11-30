@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b6v34iwdchsgi"]
+[gd_scene load_steps=54 format=3 uid="uid://b6v34iwdchsgi"]
 
 [ext_resource type="Script" path="res://Source/Scenes/MainMenu/MainMenuScene.cs" id="1_66m4n"]
 [ext_resource type="Script" path="res://addons/SceneTransitionPlugin/SceneTransition.cs" id="2_lc0ma"]
@@ -40,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://bgrwjyqr7jua2" path="res://Assets/Graphics/Front Cover/OliveBranch2.png" id="32_koa8o"]
 [ext_resource type="Texture2D" uid="uid://ih2vd2uecvt8" path="res://Assets/Graphics/Front Cover/Knife.png" id="33_vcl1s"]
 [ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="34_16yq6"]
+[ext_resource type="AudioStream" uid="uid://cpymk4w75ogbv" path="res://Assets/Audio/Voice/Gilga/Prologue_InTheTheatre.wav" id="34_h8urq"]
 [ext_resource type="Theme" uid="uid://3wrce77vvtdx" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="35_dkqyj"]
 [ext_resource type="Theme" uid="uid://c5cfodgyxs3u7" path="res://PanelMainBodyTheme.tres" id="37_gunll"]
 
@@ -194,11 +195,39 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_dumji"]
 resource_name = "Default"
-length = 3.0
+length = 60.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide2/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_73j4l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide2/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_te6ww"]
 _data = {
-"Default": SubResource("Animation_dumji")
+"Default": SubResource("Animation_dumji"),
+"RESET": SubResource("Animation_73j4l")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_weltr"]
@@ -686,6 +715,14 @@ offset_right = 203.96
 offset_bottom = 33.76
 rotation = 0.453786
 texture = ExtResource("33_vcl1s")
+
+[node name="AudioContainer" type="Node" parent="Control/IntroPictureStory/PictureStorySlide2"]
+script = ExtResource("4_g6wc5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control/IntroPictureStory/PictureStorySlide2/AudioContainer"]
+stream = ExtResource("34_h8urq")
+volume_db = -10.0
+bus = &"Voice"
 
 [node name="CntPnlAdventures" parent="Control" instance=ExtResource("32_h085b")]
 visible = false

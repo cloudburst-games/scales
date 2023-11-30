@@ -2020,6 +2020,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("60_q72yi")
 
 [node name="Panel" type="Panel" parent="BattleHUD/CtrlLoading/ColorRect"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://4extw10vut0x"]
+[gd_scene load_steps=44 format=3 uid="uid://4extw10vut0x"]
 
 [ext_resource type="Script" path="res://Source/Systems/AdventureStoriesHandler/AdventureStoriesHandler.cs" id="1_6s68q"]
 [ext_resource type="PackedScene" uid="uid://chnigbtasy7v4" path="res://addons/PictureStoryPlugin/PictureStoryContainer/PictureStoryContainer.tscn" id="2_fg2x8"]
@@ -8,29 +8,129 @@
 [ext_resource type="Theme" uid="uid://3wrce77vvtdx" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="5_2qfus"]
 [ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="6_kuuyo"]
 [ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="7_o11pe"]
+[ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="8_c02bb"]
+[ext_resource type="AudioStream" uid="uid://cucwyf2iqbb6o" path="res://Assets/Audio/Voice/Gilga/Level1Loss_GilgaTheOnceMighty.wav" id="9_em12n"]
+[ext_resource type="AudioStream" uid="uid://bxnwdw4sid4ce" path="res://Assets/Audio/Voice/Gilga/Level2Loss_Overwhelmed.wav" id="10_b53xh"]
+[ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="10_lmjuu"]
+[ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="11_gr70r"]
+[ext_resource type="AudioStream" uid="uid://yt2iphj0pays" path="res://Assets/Audio/Voice/Gilga/Level3Loss_G_succumbs.wav" id="12_2mt52"]
+[ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="12_imedm"]
+[ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="13_awmk5"]
+[ext_resource type="AudioStream" uid="uid://bybyy5e7ba8eo" path="res://Assets/Audio/Voice/Gilga/Level1Victory_Basking.wav" id="13_ymotk"]
+[ext_resource type="AudioStream" uid="uid://dgvuwb28kp1m7" path="res://Assets/Audio/Voice/Gilga/Level2Victory_havingdefeated.wav" id="14_cctkx"]
+[ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="14_cdmj2"]
+[ext_resource type="AudioStream" uid="uid://brsre2xw414si" path="res://Assets/Audio/Voice/Gilga/Level3ShamashVictory.wav" id="15_3nolp"]
+[ext_resource type="AudioStream" uid="uid://1lsjxmy51k1y" path="res://Assets/Audio/Voice/Gilga/Level3NeutralVictory.wav" id="16_wdqi5"]
+[ext_resource type="AudioStream" uid="uid://c7jegn0h16bl3" path="res://Assets/Audio/Voice/Gilga/Level3IshtarVictory.wav" id="17_chapm"]
 
-[sub_resource type="Animation" id="Animation_ucjkr"]
+[sub_resource type="Animation" id="Animation_3831l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fgrpk"]
 resource_name = "sdf"
+length = 25.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f72yl"]
 _data = {
-"sdf": SubResource("Animation_ucjkr")
+"RESET": SubResource("Animation_3831l"),
+"sdf": SubResource("Animation_fgrpk")
 }
 
 [sub_resource type="Animation" id="Animation_uwyks"]
 resource_name = "Default"
+length = 19.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hbge5"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2avw"]
 _data = {
-"Default": SubResource("Animation_uwyks")
+"Default": SubResource("Animation_uwyks"),
+"RESET": SubResource("Animation_hbge5")
 }
 
 [sub_resource type="Animation" id="Animation_kwpto"]
 resource_name = "new_animation"
+length = 30.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xn4yt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wswtk"]
 _data = {
+"RESET": SubResource("Animation_xn4yt"),
 "new_animation": SubResource("Animation_kwpto")
 }
 
@@ -47,25 +147,112 @@ font_size = 72
 
 [sub_resource type="Animation" id="Animation_oesux"]
 resource_name = "new_animation"
+length = 27.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_p8hfh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3eycf"]
 _data = {
+"RESET": SubResource("Animation_p8hfh"),
 "new_animation": SubResource("Animation_oesux")
 }
 
 [sub_resource type="Animation" id="Animation_yvn7k"]
 resource_name = "new_animation"
+length = 35.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_412sq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5anqj"]
 _data = {
+"RESET": SubResource("Animation_412sq"),
 "new_animation": SubResource("Animation_yvn7k")
 }
 
 [sub_resource type="Animation" id="Animation_wsvtj"]
 resource_name = "new_animation"
+length = 35.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_gxeow"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qba8e"]
 _data = {
+"RESET": SubResource("Animation_gxeow"),
 "new_animation": SubResource("Animation_wsvtj")
 }
 
@@ -101,11 +288,13 @@ offset_right = 0.0
 offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
-[node name="PictureStorySlide" parent="DefeatStory0" instance=ExtResource("3_gl0nt")]
+[node name="PictureStorySlide" parent="DefeatStory0" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
 libraries = {
 "": SubResource("AnimationLibrary_f72yl")
 }
 AutoTransitionEnabled = false
+InputSkipsSlide = false
+ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="Background" type="TextureRect" parent="DefeatStory0/PictureStorySlide"]
 visible = false
@@ -160,6 +349,52 @@ text = "Gilgamesh, the once-mighty king, stumbles and falls. He squints against 
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="AudioContainer" type="Node" parent="DefeatStory0/PictureStorySlide"]
+script = ExtResource("8_c02bb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DefeatStory0/PictureStorySlide/AudioContainer"]
+stream = ExtResource("9_em12n")
+volume_db = -10.0
+bus = &"Voice"
+
+[node name="BtnContinueStory" type="TextureButton" parent="DefeatStory0/PictureStorySlide"]
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.88
+anchor_right = 0.58
+anchor_bottom = 0.95
+offset_left = 52.2
+offset_top = -4.80005
+offset_right = 52.2
+offset_bottom = -4.80005
+grow_horizontal = 0
+texture_normal = ExtResource("10_lmjuu")
+texture_pressed = ExtResource("11_gr70r")
+texture_hover = ExtResource("12_imedm")
+texture_disabled = ExtResource("13_awmk5")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("14_cdmj2")
+
+[node name="Label" type="Label" parent="DefeatStory0/PictureStorySlide/BtnContinueStory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.2
+offset_top = -48.6
+offset_right = 182.8
+offset_bottom = 53.4
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_kuuyo")
+theme_override_font_sizes/font_size = 60
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="DefeatStory1" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
@@ -167,11 +402,13 @@ offset_right = 0.0
 offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
-[node name="PictureStorySlide" parent="DefeatStory1" instance=ExtResource("3_gl0nt")]
+[node name="PictureStorySlide" parent="DefeatStory1" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
 libraries = {
 "": SubResource("AnimationLibrary_f72yl")
 }
 AutoTransitionEnabled = false
+InputSkipsSlide = false
+ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="Background" type="TextureRect" parent="DefeatStory1/PictureStorySlide"]
 visible = false
@@ -229,6 +466,52 @@ text = "Overwhelmed by Enkidu’s strength, Gilgamesh stumbles and falls to the 
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="AudioContainer" type="Node" parent="DefeatStory1/PictureStorySlide"]
+script = ExtResource("8_c02bb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DefeatStory1/PictureStorySlide/AudioContainer"]
+stream = ExtResource("10_b53xh")
+volume_db = -10.0
+bus = &"Voice"
+
+[node name="BtnContinueStory" type="TextureButton" parent="DefeatStory1/PictureStorySlide"]
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.88
+anchor_right = 0.58
+anchor_bottom = 0.95
+offset_left = 52.2
+offset_top = -4.80005
+offset_right = 52.2
+offset_bottom = -4.80005
+grow_horizontal = 0
+texture_normal = ExtResource("10_lmjuu")
+texture_pressed = ExtResource("11_gr70r")
+texture_hover = ExtResource("12_imedm")
+texture_disabled = ExtResource("13_awmk5")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("14_cdmj2")
+
+[node name="Label" type="Label" parent="DefeatStory1/PictureStorySlide/BtnContinueStory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.2
+offset_top = -48.6
+offset_right = 182.8
+offset_bottom = 53.4
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_kuuyo")
+theme_override_font_sizes/font_size = 60
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="DefeatStory2" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
@@ -236,11 +519,13 @@ offset_right = 0.0
 offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
-[node name="PictureStorySlide" parent="DefeatStory2" instance=ExtResource("3_gl0nt")]
+[node name="PictureStorySlide" parent="DefeatStory2" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
 libraries = {
 "": SubResource("AnimationLibrary_f72yl")
 }
 AutoTransitionEnabled = false
+InputSkipsSlide = false
+ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="Background" type="TextureRect" parent="DefeatStory2/PictureStorySlide"]
 visible = false
@@ -297,17 +582,65 @@ text = "Gilgamesh succumbs to the nightmares, who make their home within his hea
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="AudioContainer" type="Node" parent="DefeatStory2/PictureStorySlide"]
+script = ExtResource("8_c02bb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DefeatStory2/PictureStorySlide/AudioContainer"]
+stream = ExtResource("12_2mt52")
+volume_db = -10.0
+bus = &"Voice"
+
+[node name="BtnContinueStory" type="TextureButton" parent="DefeatStory2/PictureStorySlide"]
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.88
+anchor_right = 0.58
+anchor_bottom = 0.95
+offset_left = 52.2
+offset_top = -4.80005
+offset_right = 52.2
+offset_bottom = -4.80005
+grow_horizontal = 0
+texture_normal = ExtResource("10_lmjuu")
+texture_pressed = ExtResource("11_gr70r")
+texture_hover = ExtResource("12_imedm")
+texture_disabled = ExtResource("13_awmk5")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("14_cdmj2")
+
+[node name="Label" type="Label" parent="DefeatStory2/PictureStorySlide/BtnContinueStory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.2
+offset_top = -48.6
+offset_right = 182.8
+offset_bottom = 53.4
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_kuuyo")
+theme_override_font_sizes/font_size = 60
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AfterLevel0Story" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
 _transitionTypeEnd = "Blend"
 
-[node name="PictureStorySlide" parent="AfterLevel0Story" instance=ExtResource("3_gl0nt")]
+[node name="PictureStorySlide" parent="AfterLevel0Story" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
 libraries = {
 "": SubResource("AnimationLibrary_x2avw")
 }
 AutoTransitionEnabled = false
+InputSkipsSlide = false
+ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="Background" type="TextureRect" parent="AfterLevel0Story/PictureStorySlide"]
 visible = false
@@ -365,17 +698,65 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="AudioContainer" type="Node" parent="AfterLevel0Story/PictureStorySlide"]
+script = ExtResource("8_c02bb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AfterLevel0Story/PictureStorySlide/AudioContainer"]
+stream = ExtResource("13_ymotk")
+volume_db = -10.0
+bus = &"Voice"
+
+[node name="BtnContinueStory" type="TextureButton" parent="AfterLevel0Story/PictureStorySlide"]
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.88
+anchor_right = 0.58
+anchor_bottom = 0.95
+offset_left = 52.2
+offset_top = -4.80005
+offset_right = 52.2
+offset_bottom = -4.80005
+grow_horizontal = 0
+texture_normal = ExtResource("10_lmjuu")
+texture_pressed = ExtResource("11_gr70r")
+texture_hover = ExtResource("12_imedm")
+texture_disabled = ExtResource("13_awmk5")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("14_cdmj2")
+
+[node name="Label" type="Label" parent="AfterLevel0Story/PictureStorySlide/BtnContinueStory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.2
+offset_top = -48.6
+offset_right = 182.8
+offset_bottom = 53.4
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_kuuyo")
+theme_override_font_sizes/font_size = 60
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AfterLevel1Story" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
 _transitionTypeEnd = "Blend"
 
-[node name="PictureStorySlide" parent="AfterLevel1Story" instance=ExtResource("3_gl0nt")]
+[node name="PictureStorySlide" parent="AfterLevel1Story" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
 libraries = {
 "": SubResource("AnimationLibrary_wswtk")
 }
 AutoTransitionEnabled = false
+InputSkipsSlide = false
+ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="Background" type="TextureRect" parent="AfterLevel1Story/PictureStorySlide"]
 anchors_preset = 15
@@ -437,6 +818,52 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="AudioContainer" type="Node" parent="AfterLevel1Story/PictureStorySlide"]
+script = ExtResource("8_c02bb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AfterLevel1Story/PictureStorySlide/AudioContainer"]
+stream = ExtResource("14_cctkx")
+volume_db = -10.0
+bus = &"Voice"
+
+[node name="BtnContinueStory" type="TextureButton" parent="AfterLevel1Story/PictureStorySlide"]
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.88
+anchor_right = 0.58
+anchor_bottom = 0.95
+offset_left = 52.2
+offset_top = -4.80005
+offset_right = 52.2
+offset_bottom = -4.80005
+grow_horizontal = 0
+texture_normal = ExtResource("10_lmjuu")
+texture_pressed = ExtResource("11_gr70r")
+texture_hover = ExtResource("12_imedm")
+texture_disabled = ExtResource("13_awmk5")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("14_cdmj2")
+
+[node name="Label" type="Label" parent="AfterLevel1Story/PictureStorySlide/BtnContinueStory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.2
+offset_top = -48.6
+offset_right = 182.8
+offset_bottom = 53.4
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_kuuyo")
+theme_override_font_sizes/font_size = 60
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AfterLevel2Story" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
@@ -489,11 +916,13 @@ offset_right = 0.0
 offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
-[node name="PictureStorySlide" parent="FinalVictoryStoryShamash" instance=ExtResource("3_gl0nt")]
+[node name="PictureStorySlide" parent="FinalVictoryStoryShamash" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
 libraries = {
 "": SubResource("AnimationLibrary_3eycf")
 }
 AutoTransitionEnabled = false
+InputSkipsSlide = false
+ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="Background" type="TextureRect" parent="FinalVictoryStoryShamash/PictureStorySlide"]
 visible = false
@@ -556,6 +985,52 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="AudioContainer" type="Node" parent="FinalVictoryStoryShamash/PictureStorySlide"]
+script = ExtResource("8_c02bb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FinalVictoryStoryShamash/PictureStorySlide/AudioContainer"]
+stream = ExtResource("15_3nolp")
+volume_db = -10.0
+bus = &"Voice"
+
+[node name="BtnContinueStory" type="TextureButton" parent="FinalVictoryStoryShamash/PictureStorySlide"]
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.88
+anchor_right = 0.58
+anchor_bottom = 0.95
+offset_left = 52.2
+offset_top = -4.80005
+offset_right = 52.2
+offset_bottom = -4.80005
+grow_horizontal = 0
+texture_normal = ExtResource("10_lmjuu")
+texture_pressed = ExtResource("11_gr70r")
+texture_hover = ExtResource("12_imedm")
+texture_disabled = ExtResource("13_awmk5")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("14_cdmj2")
+
+[node name="Label" type="Label" parent="FinalVictoryStoryShamash/PictureStorySlide/BtnContinueStory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.2
+offset_top = -48.6
+offset_right = 182.8
+offset_bottom = 53.4
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_kuuyo")
+theme_override_font_sizes/font_size = 60
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="FinalVictoryStoryBalanced" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
@@ -563,11 +1038,13 @@ offset_right = 0.0
 offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
-[node name="PictureStorySlide" parent="FinalVictoryStoryBalanced" instance=ExtResource("3_gl0nt")]
+[node name="PictureStorySlide" parent="FinalVictoryStoryBalanced" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
 libraries = {
 "": SubResource("AnimationLibrary_5anqj")
 }
 AutoTransitionEnabled = false
+InputSkipsSlide = false
+ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="Background" type="TextureRect" parent="FinalVictoryStoryBalanced/PictureStorySlide"]
 visible = false
@@ -630,6 +1107,52 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="AudioContainer" type="Node" parent="FinalVictoryStoryBalanced/PictureStorySlide"]
+script = ExtResource("8_c02bb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FinalVictoryStoryBalanced/PictureStorySlide/AudioContainer"]
+stream = ExtResource("16_wdqi5")
+volume_db = -10.0
+bus = &"Voice"
+
+[node name="BtnContinueStory" type="TextureButton" parent="FinalVictoryStoryBalanced/PictureStorySlide"]
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.88
+anchor_right = 0.58
+anchor_bottom = 0.95
+offset_left = 52.2
+offset_top = -4.80005
+offset_right = 52.2
+offset_bottom = -4.80005
+grow_horizontal = 0
+texture_normal = ExtResource("10_lmjuu")
+texture_pressed = ExtResource("11_gr70r")
+texture_hover = ExtResource("12_imedm")
+texture_disabled = ExtResource("13_awmk5")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("14_cdmj2")
+
+[node name="Label" type="Label" parent="FinalVictoryStoryBalanced/PictureStorySlide/BtnContinueStory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.2
+offset_top = -48.6
+offset_right = 182.8
+offset_bottom = 53.4
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_kuuyo")
+theme_override_font_sizes/font_size = 60
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="FinalVictoryStoryIshtar" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
@@ -637,11 +1160,13 @@ offset_right = 0.0
 offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
-[node name="PictureStorySlide" parent="FinalVictoryStoryIshtar" instance=ExtResource("3_gl0nt")]
+[node name="PictureStorySlide" parent="FinalVictoryStoryIshtar" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
 libraries = {
 "": SubResource("AnimationLibrary_qba8e")
 }
 AutoTransitionEnabled = false
+InputSkipsSlide = false
+ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="Background" type="TextureRect" parent="FinalVictoryStoryIshtar/PictureStorySlide"]
 visible = false
@@ -702,3 +1227,49 @@ To be continued..."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="AudioContainer" type="Node" parent="FinalVictoryStoryIshtar/PictureStorySlide"]
+script = ExtResource("8_c02bb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FinalVictoryStoryIshtar/PictureStorySlide/AudioContainer"]
+stream = ExtResource("17_chapm")
+volume_db = -10.0
+bus = &"Voice"
+
+[node name="BtnContinueStory" type="TextureButton" parent="FinalVictoryStoryIshtar/PictureStorySlide"]
+anchors_preset = -1
+anchor_left = 0.42
+anchor_top = 0.88
+anchor_right = 0.58
+anchor_bottom = 0.95
+offset_left = 52.2
+offset_top = -4.80005
+offset_right = 52.2
+offset_bottom = -4.80005
+grow_horizontal = 0
+texture_normal = ExtResource("10_lmjuu")
+texture_pressed = ExtResource("11_gr70r")
+texture_hover = ExtResource("12_imedm")
+texture_disabled = ExtResource("13_awmk5")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("14_cdmj2")
+
+[node name="Label" type="Label" parent="FinalVictoryStoryIshtar/PictureStorySlide/BtnContinueStory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.2
+offset_top = -48.6
+offset_right = 182.8
+offset_bottom = 53.4
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_kuuyo")
+theme_override_font_sizes/font_size = 60
+text = "Continue"
+horizontal_alignment = 1
+vertical_alignment = 1
