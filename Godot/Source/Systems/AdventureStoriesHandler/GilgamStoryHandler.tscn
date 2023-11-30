@@ -284,8 +284,6 @@ _finalVictoryStoryNodePaths = {
 [node name="DefeatStory0" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="DefeatStory0" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
@@ -398,8 +396,6 @@ vertical_alignment = 1
 [node name="DefeatStory1" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="DefeatStory1" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
@@ -515,8 +511,6 @@ vertical_alignment = 1
 [node name="DefeatStory2" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="DefeatStory2" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
@@ -630,8 +624,6 @@ vertical_alignment = 1
 
 [node name="AfterLevel0Story" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "Blend"
 
 [node name="PictureStorySlide" parent="AfterLevel0Story" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
@@ -746,8 +738,6 @@ vertical_alignment = 1
 
 [node name="AfterLevel1Story" parent="." instance=ExtResource("2_fg2x8")]
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "Blend"
 
 [node name="PictureStorySlide" parent="AfterLevel1Story" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
@@ -867,8 +857,6 @@ vertical_alignment = 1
 [node name="AfterLevel2Story" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "Blend"
 
 [node name="PictureStorySlide" parent="AfterLevel2Story" instance=ExtResource("3_gl0nt")]
@@ -912,8 +900,6 @@ autowrap_mode = 2
 [node name="FinalVictoryStoryShamash" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="FinalVictoryStoryShamash" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
@@ -1034,8 +1020,6 @@ vertical_alignment = 1
 [node name="FinalVictoryStoryBalanced" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="FinalVictoryStoryBalanced" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]
@@ -1156,8 +1140,6 @@ vertical_alignment = 1
 [node name="FinalVictoryStoryIshtar" parent="." instance=ExtResource("2_fg2x8")]
 visible = false
 layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
 _transitionTypeEnd = "None"
 
 [node name="PictureStorySlide" parent="FinalVictoryStoryIshtar" node_paths=PackedStringArray("ButtonToContinue") instance=ExtResource("3_gl0nt")]

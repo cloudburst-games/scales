@@ -413,7 +413,7 @@ initial_velocity_max = 174.32
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_curve = SubResource("CurveTexture_qgkca")
-color = Color(1, 0.231373, 0, 0.231373)
+color = Color(0.788235, 0.262745, 0.145098, 0.396078)
 color_ramp = SubResource("GradientTexture1D_tqgh4")
 
 [sub_resource type="Gradient" id="Gradient_7obcq"]
@@ -471,7 +471,7 @@ initial_velocity_max = 174.32
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_curve = SubResource("CurveTexture_qqmod")
-color = Color(0.333333, 1, 0, 0.231373)
+color = Color(0, 0.6, 0.396078, 0.662745)
 color_ramp = SubResource("GradientTexture1D_6ry20")
 
 [sub_resource type="Gradient" id="Gradient_h1f16"]
@@ -500,7 +500,7 @@ initial_velocity_max = 174.32
 orbit_velocity_min = 0.0
 orbit_velocity_max = 0.0
 scale_curve = SubResource("CurveTexture_1gymm")
-color = Color(0.333333, 1, 1, 0.231373)
+color = Color(0, 0.74902, 0.713726, 0.431373)
 color_ramp = SubResource("GradientTexture1D_8jrtf")
 
 [sub_resource type="Shader" id="Shader_47m4j"]
