@@ -213,13 +213,13 @@ horizontal_alignment = 1
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.059
+anchor_left = 0.088
 anchor_top = 0.237
-anchor_right = 0.944
+anchor_right = 0.919
 anchor_bottom = 0.863
-offset_left = -0.936005
+offset_left = -0.752014
 offset_top = -0.152039
-offset_right = 0.0239258
+offset_right = -0.375977
 offset_bottom = 0.552002
 grow_horizontal = 2
 grow_vertical = 2
@@ -282,13 +282,13 @@ horizontal_alignment = 1
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.06
+anchor_left = 0.082
 anchor_top = 0.223
-anchor_right = 0.939
+anchor_right = 0.916
 anchor_bottom = 0.88
-offset_left = 0.759995
+offset_left = -0.928009
 offset_top = -0.00799561
-offset_right = 0.543945
+offset_right = -0.464111
 offset_bottom = -0.480103
 grow_horizontal = 2
 grow_vertical = 2
@@ -349,23 +349,23 @@ horizontal_alignment = 1
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.057
+anchor_left = 0.086
 anchor_top = 0.22
-anchor_right = 0.944
-anchor_bottom = 0.89
-offset_left = 0.671997
-offset_top = -0.120026
-offset_right = 0.0239258
-offset_bottom = -264.44
+anchor_right = 0.931
+anchor_bottom = 0.686
+offset_left = 0.855988
+offset_top = -0.119995
+offset_right = -1.02417
+offset_bottom = -0.0560913
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_o11pe")
 text = "Basking in victory against his people’s rebellion, King Gilgamesh’s arrogance soars higher than the city walls. Desperate citizens pray to the mountains and the stars for deliverance. After seven long nights, the goddess Aruru answers their pleas…"
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="AfterLevel1Story" parent="." instance=ExtResource("2_fg2x8")]
-visible = false
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
@@ -378,7 +378,6 @@ libraries = {
 AutoTransitionEnabled = false
 
 [node name="Background" type="TextureRect" parent="AfterLevel1Story/PictureStorySlide"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -398,6 +397,7 @@ grow_vertical = 2
 theme = ExtResource("5_2qfus")
 
 [node name="Label6" type="Label" parent="AfterLevel1Story/PictureStorySlide/PnlTitle"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.063
@@ -413,24 +413,27 @@ text = "Victory"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="AfterLevel1Story/PictureStorySlide/PnlTitle"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.067
-anchor_top = 0.198
-anchor_right = 0.935
-anchor_bottom = 0.891
-offset_left = -0.368011
-offset_top = -0.608032
-offset_right = -0.240234
-offset_bottom = 0.263916
+anchor_top = 0.169
+anchor_right = 0.931
+anchor_bottom = 0.919
+offset_left = 8.63199
+offset_top = -0.0240173
+offset_right = -0.0241699
+offset_bottom = -0.0240479
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_o11pe")
+theme_override_font_sizes/font_size = 66
 text = "Having defeated the wild man, Gilgamesh basks in the glow of sweat and conquest. Refreshed by the closely matched battle, he extends the hand of friendship to Enkidu, lifting him from the ground. 
 
 Pointing his thumb at the gathering crowd, Gilgamesh says, “Let us continue our battles, Enkidu; fight by my side!” 
 
 But Enkidu had other ideas..."
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -529,23 +532,27 @@ text = "Victory"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="FinalVictoryStoryShamash/PictureStorySlide/PnlTitle"]
+visible = false
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 128.0
-offset_top = 228.0
-offset_right = -104.0
-offset_bottom = -96.0
+anchors_preset = -1
+anchor_left = 0.061
+anchor_top = 0.176
+anchor_right = 0.943
+anchor_bottom = 0.926
+offset_left = 0.455994
+offset_top = -0.0960236
+offset_right = 0.327881
+offset_bottom = -0.0960693
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_o11pe")
-theme_override_font_sizes/font_size = 74
+theme_override_font_sizes/font_size = 71
 text = "Gilgamesh conquers the spectres of his mind to reveal an omen on the battlefield, burnt into the ground by Shamash himself: The demise of two thousand eyes shall mark your rise to the heavens.
 
 A breathy bellow sours the fragile calm: The call of the legendary Humbaba, the creature with a thousand faces, now bars their path to glory.  
 
 To be continued..."
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -599,6 +606,7 @@ text = "Victory"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="FinalVictoryStoryBalanced/PictureStorySlide/PnlTitle"]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.048
@@ -618,6 +626,7 @@ text = "With the nightmare creatures gone, a message appears, scorched upon the 
 The bellow of a beast shakes the fragile calm. Gilgamesh and Enkidu follow the scent of the creature’s sour breath. It leads to a grinning mouth with teeth as tall as cedar trees guarding the path ahead.
 
 To be continued..."
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -690,5 +699,6 @@ text = "Gilgamesh dispels the haunting specters tormenting his mind. With their 
 At peace for now, the friends recline upon the vast field and gaze at the glittering stars above - no, not stars. Eyes. A creature with a thousand faces peers upon them in silence, beckoning them towards their destiny. 
 
 To be continued..."
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
