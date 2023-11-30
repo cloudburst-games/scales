@@ -177,7 +177,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         GetTree().Root.GetNode<GlobalAudio>("GlobalAudio").Pause("Menu");
         GetTree().Root.GetNode<GlobalAudio>("GlobalAudio").Resume("World");
 
-        LoadLevel(_loadedCheckpointData);
+        LoadLevel(_loadedCheckpointData, _loadedCheckpointData != null);
 
     }
 
@@ -523,7 +523,7 @@ public partial class BattleScene : Node, ISceneTransitionable
     }
 
     // Player characters must be initialised before this is called
-    private async void LoadLevel(CheckpointData checkpointData = null)
+    private async void LoadLevel(CheckpointData checkpointData = null, bool continuing = false)
     {
         // Load level and obstacle data
         if (!_loadingAnim.IsPlaying())
@@ -558,7 +558,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         if (checkpointData != null)
         {
             // _difficulty = (CntPnlAdventures.DifficultyMode)checkpointData.Difficulty;
-            // _btnIntro.Disabled = false;
+            _btnIntro.Disabled = false;
             NewPlayerCharactersFromSaved(checkpointData.PlayerCharacters);
         }
 
@@ -619,7 +619,7 @@ public partial class BattleScene : Node, ISceneTransitionable
         _loadingLevel = false;
 
 
-        if (_nextLevel == 0 || checkpointData != null)
+        if (_nextLevel == 0 || continuing)// || checkpointData != null)
         {
             _btnIntro.Disabled = false;
             if (_anim.IsPlaying())
@@ -718,19 +718,19 @@ public partial class BattleScene : Node, ISceneTransitionable
     //     // }
     // }
 
-    public override void _Input(InputEvent ev)
-    {
-        if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
-        {
-            if (evk.Keycode == Key.Space)
-            {
-                OnBattleEnded(true);
-            }
-            else if (evk.Keycode == Key.Enter)
-            {
-                OnBattleEnded(false);
-            }
-        }
-    }
+    // public override void _Input(InputEvent ev)
+    // {
+    //     if (!ev.IsEcho() && ev.IsPressed() && ev is InputEventKey evk)
+    //     {
+    //         if (evk.Keycode == Key.Space)
+    //         {
+    //             OnBattleEnded(true);
+    //         }
+    //         else if (evk.Keycode == Key.Enter)
+    //         {
+    //             OnBattleEnded(false);
+    //         }
+    //     }
+    // }
 
 }

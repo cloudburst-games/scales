@@ -97,6 +97,21 @@ _data = {
 "RESET": SubResource("Animation_hbge5")
 }
 
+[sub_resource type="Animation" id="Animation_xn4yt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_kwpto"]
 resource_name = "new_animation"
 length = 30.0
@@ -111,21 +126,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_xn4yt"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wswtk"]
@@ -145,6 +145,21 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_6fmmq"]
 font_size = 72
 
+[sub_resource type="Animation" id="Animation_p8hfh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_oesux"]
 resource_name = "new_animation"
 length = 27.0
@@ -161,7 +176,13 @@ tracks/0/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_p8hfh"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3eycf"]
+_data = {
+"RESET": SubResource("Animation_p8hfh"),
+"new_animation": SubResource("Animation_oesux")
+}
+
+[sub_resource type="Animation" id="Animation_412sq"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -174,12 +195,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3eycf"]
-_data = {
-"RESET": SubResource("Animation_p8hfh"),
-"new_animation": SubResource("Animation_oesux")
 }
 
 [sub_resource type="Animation" id="Animation_yvn7k"]
@@ -198,7 +213,13 @@ tracks/0/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_412sq"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5anqj"]
+_data = {
+"RESET": SubResource("Animation_412sq"),
+"new_animation": SubResource("Animation_yvn7k")
+}
+
+[sub_resource type="Animation" id="Animation_gxeow"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -211,12 +232,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5anqj"]
-_data = {
-"RESET": SubResource("Animation_412sq"),
-"new_animation": SubResource("Animation_yvn7k")
 }
 
 [sub_resource type="Animation" id="Animation_wsvtj"]
@@ -233,21 +248,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_gxeow"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PictureStorySlide/AudioContainer:Start")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qba8e"]

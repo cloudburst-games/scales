@@ -461,12 +461,12 @@ material = SubResource("ShaderMaterial_btc0f")
 texture = ExtResource("3_mbq8f")
 offset = Vector2(0, -52.5)
 region_enabled = true
-region_rect = Rect2(1925, 1627, 960, 540)
+region_rect = Rect2(2887, 1085, 960, 540)
 
 [node name="Particles" type="GPUParticles2D" parent="Sprite"]
 position = Vector2(0, -49)
 rotation = 1.5708
-amount = 100
+amount = 10
 process_material = SubResource("ParticleProcessMaterial_cl3u0")
 texture = ExtResource("4_1jkw4")
 lifetime = 0.5
@@ -476,7 +476,7 @@ local_coords = true
 show_behind_parent = true
 position = Vector2(0, -49)
 rotation = 1.5708
-amount = 100
+amount = 10
 process_material = SubResource("ParticleProcessMaterial_cmrpd")
 texture = ExtResource("4_1jkw4")
 lifetime = 0.5

@@ -120,7 +120,7 @@ public partial class BtnActions : TextureButton
 
     private void OnPressed()
     {
-        _actionPnl.Visible = true;
+        _actionPnl.Visible = !_actionPnl.Visible;
     }
 
     public void OnActionBtnPressed(Battler.ActionMode actionMode)
