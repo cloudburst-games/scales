@@ -1,4 +1,4 @@
-[gd_scene load_steps=163 format=3 uid="uid://b3251ibnpr484"]
+[gd_scene load_steps=161 format=3 uid="uid://b3251ibnpr484"]
 
 [ext_resource type="Script" path="res://Source/Scenes/Battle/BattleScene.cs" id="1_2w8r3"]
 [ext_resource type="Script" path="res://addons/BasePanelPlugin/BasePanel.cs" id="2_5xh84"]
@@ -28,7 +28,6 @@
 [ext_resource type="Texture2D" uid="uid://dn1fgsort1wxv" path="res://Assets/Graphics/Icons/IconNormal/BattlelogNormalAltPressed.png" id="20_ci3rn"]
 [ext_resource type="Texture2D" uid="uid://s6kkk4hbfeea" path="res://Assets/Graphics/Icons/IconNormal/BattlelogNormalAltHover.png" id="21_2noh6"]
 [ext_resource type="Texture2D" uid="uid://cputwxjbcmbpv" path="res://Assets/Graphics/Icons/IconNormal/CheckAlt.png" id="24_bjk4y"]
-[ext_resource type="LabelSettings" uid="uid://cnydnjeqvs3kr" path="res://Source/Interface/Label/test_label_settings.tres" id="24_m03nf"]
 [ext_resource type="Texture2D" uid="uid://ww5v5gu3ut4" path="res://Assets/Graphics/Icons/IconNormal/CheckAltPressed.png" id="25_fy82n"]
 [ext_resource type="Texture2D" uid="uid://cefb2ppfcvmln" path="res://Assets/Graphics/Icons/IconNormal/CheckAltHover.png" id="26_merge"]
 [ext_resource type="Script" path="res://Source/Scenes/Battle/CntSpellBook.cs" id="27_fhn5x"]
@@ -380,9 +379,6 @@ load_path = "res://.godot/imported/SpellsPerksHover.png-1741b19dac0999aa3f404201
 [sub_resource type="AtlasTexture" id="AtlasTexture_6c5d6"]
 atlas = SubResource("CompressedTexture2D_evk6m")
 region = Rect2(851, 50, 490, 329)
-
-[sub_resource type="LabelSettings" id="LabelSettings_7sx5v"]
-font_size = 28
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mht0k"]
 load_path = "res://.godot/imported/SpellsPerksNormal.png-a5ada911078db929172eae04443972e8.ctex"
@@ -1116,7 +1112,6 @@ theme = ExtResource("40_ojhn2")
 script = ExtResource("2_5xh84")
 _snapToEdges = false
 _draggable = false
-metadata/_edit_use_anchors_ = true
 
 [node name="LblTitle" type="Label" parent="BattleHUD/CntHUD/PnlBattleIntro"]
 layout_mode = 1
@@ -1390,6 +1385,39 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.31
 theme_override_styles/panel = SubResource("StyleBoxFlat_0kx53")
 
+[node name="BtnMainMenu" type="TextureButton" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("39_ovjc1")
+texture_pressed = ExtResource("40_n3uxa")
+texture_hover = ExtResource("41_blf7c")
+texture_disabled = ExtResource("42_vrdt6")
+ignore_texture_size = true
+stretch_mode = 5
+script = ExtResource("7_8jqkl")
+
+[node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer/BtnMainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.238
+anchor_right = 0.769
+anchor_bottom = 1.0
+offset_left = 0.0639954
+offset_top = 23.0
+offset_right = 0.231934
+offset_bottom = -32.0
+theme_override_fonts/font = ExtResource("42_s3urr")
+theme_override_font_sizes/font_size = 40
+text = "Main Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Space4" type="Panel" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.31
+theme_override_styles/panel = SubResource("StyleBoxFlat_0kx53")
+
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("42_s3urr")
@@ -1502,33 +1530,6 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.31
 theme_override_styles/panel = SubResource("StyleBoxFlat_3jkj8")
-
-[node name="BtnMainMenu" type="TextureButton" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-texture_normal = ExtResource("39_ovjc1")
-texture_pressed = ExtResource("40_n3uxa")
-texture_hover = ExtResource("41_blf7c")
-texture_disabled = ExtResource("42_vrdt6")
-ignore_texture_size = true
-stretch_mode = 5
-script = ExtResource("7_8jqkl")
-
-[node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer/BtnMainMenu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.238
-anchor_right = 0.769
-anchor_bottom = 1.0
-offset_left = 0.0639954
-offset_top = 23.0
-offset_right = 0.231934
-offset_bottom = -32.0
-theme_override_fonts/font = ExtResource("42_s3urr")
-theme_override_font_sizes/font_size = 40
-text = "Main Menu"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="Space3" type="Panel" parent="BattleHUD/CntHUD/PnlMenu/VBoxContainer"]
 layout_mode = 2
@@ -1785,7 +1786,6 @@ offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Cost: "
-label_settings = SubResource("LabelSettings_7sx5v")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1816,7 +1816,6 @@ offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Cost: "
-label_settings = SubResource("LabelSettings_7sx5v")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1857,7 +1856,6 @@ offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Cost: "
-label_settings = SubResource("LabelSettings_7sx5v")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1888,7 +1886,6 @@ offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Cost: "
-label_settings = SubResource("LabelSettings_7sx5v")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1919,7 +1916,6 @@ offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Cost: "
-label_settings = SubResource("LabelSettings_7sx5v")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1950,7 +1946,6 @@ offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Cost: "
-label_settings = SubResource("LabelSettings_7sx5v")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -2035,14 +2030,13 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Label" type="Label" parent="BattleHUD/CtrlLoading/ColorRect/Panel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Loading..."
-label_settings = ExtResource("24_m03nf")
 horizontal_alignment = 1
 vertical_alignment = 1
 
