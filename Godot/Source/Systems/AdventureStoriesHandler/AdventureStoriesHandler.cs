@@ -86,7 +86,7 @@ public partial class AdventureStoriesHandler : Control
     public void DoVictoryStory(int level, Scales.FavourMode favour, int finalLevel)
     {
         // Visible = true;
-        GD.Print("is it the last level? ", +level + " " + finalLevel);
+        // GD.Print("is it the last level? ", +level + " " + finalLevel);
         if (level == finalLevel)
         {
             _finalVictoryPictureStories[favour].Play();
