@@ -148,7 +148,7 @@ texture = ExtResource("3_5vxef")
 [node name="Water" type="Sprite2D" parent="Battlefield/Background"]
 material = SubResource("ShaderMaterial_785qt")
 position = Vector2(1914, 903.5)
-scale = Vector2(1.828, 1.416)
+scale = Vector2(1.856, 1.416)
 texture = ExtResource("3_5vxef")
 
 [node name="TileMap" type="TileMap" parent="Battlefield"]

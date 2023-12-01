@@ -25,7 +25,7 @@
     ],
     "Level": 1,
     "Might": 8,
-    "Resilience": 8,
+    "Resilience": 4,
     "Precision": 4,
     "Speed": 6,
     "Intellect": 8,
@@ -34,19 +34,37 @@
     "Barks": {
         "1": [
             [
+                ""
+            ],
+            [
                 "You have conquered small folk; today you face an equal."
+            ],
+            [
+                ""
             ],
             [
                 "I shall break the chains of your oppression."
             ],
             [
+                ""
+            ],
+            [
                 "Wilderness, grant me strength!"
+            ],
+            [
+                ""
             ],
             [
                 "Your arrogance blinds you, Gilgamesh!"
             ],
             [
+                ""
+            ],
+            [
                 "Mere might cannot save you from your fate."
+            ],
+            [
+                ""
             ],
             [
                 "Ishtar’s wrath shall be swift and just!"
@@ -57,7 +75,13 @@
                 "I fear nothing, not even a mountain!"
             ],
             [
+                ""
+            ],
+            [
                 "I will crush this mountain into a little hill."
+            ],
+            [
+                ""
             ],
             [
                 "The earth may shake and tremble, yet I will stand firm."

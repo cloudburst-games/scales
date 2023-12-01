@@ -1173,8 +1173,6 @@ texture_disabled = ExtResource("42_vrdt6")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("7_8jqkl")
-_hoverSample = ExtResource("15_h183d")
-_clickedSample = ExtResource("16_g43m3")
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="BattleHUD/CntHUD/PnlBattleIntro/BtnIntro"]

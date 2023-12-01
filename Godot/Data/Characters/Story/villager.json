@@ -1,51 +1,63 @@
 {
-	"Name": "Villager",
-	"Description": "Dumuzi, the shepherd god, is a symbol of the changing seasons, fertility, and renewal.",
-	"PatronGod": "Enki",
-	"BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AfabBody2.tscn",
-	"PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait2.png",
-	"CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait2.png",
-	"CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait2.png",
-	"AudioWalkPath": [
-		"res://Assets/Audio/Effects/PlaceholderSFX/HumanWalk.wav"
-	],
-	"AudioHurtPath": [
-		"res://Assets/Audio/Effects/PlaceholderSFX/FemHumanHurt1.wav",
-		"res://Assets/Audio/Effects/PlaceholderSFX/FemHumanHurt2.wav",
-		"res://Assets/Audio/Effects/PlaceholderSFX/FemHumanHurt3.wav"
-	],
-	"AudioDiePath": [
-		"res://Assets/Audio/Effects/PlaceholderSFX/FemHumanDie.wav"
-	],
-	"AudioMeleePath": [
-		"res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch.wav",
-		"res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
-	],
-	"Perks": [
-		16
-	],
-	"Barks": {
-		"0": [
-			[
-				"Together, we will humble the mightiest of kings!"
-			],
-			[
-				"We won’t build your palace while our homes crumble!"
-			],
-			[
-				"Your tyrannical reign shall end!"
-			],
-			[
-				"Let the battle for Uruk echo through the stars!"
-			]
-		]
-	},
-	"Level": 1,
-	"Might": 3,
-	"Resilience": 3,
-	"Precision": 6,
-	"Speed": 5,
-	"Intellect": 6,
-	"Charisma": 5,
-	"Luck": 4
+    "Name": "Villager",
+    "Description": "Dumuzi, the shepherd god, is a symbol of the changing seasons, fertility, and renewal.",
+    "PatronGod": "Enki",
+    "BodyPath": "res://Source/Actors/CharacterUnit/Bodies/AfabBody2/AfabBody2.tscn",
+    "PortraitPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait2.png",
+    "CharacterBtnNormalPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait2.png",
+    "CharacterBtnPressedPath": "res://Assets/Graphics/Sprites/Actors/Portraits/AFABPortrait2.png",
+    "AudioWalkPath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/HumanWalk.wav"
+    ],
+    "AudioHurtPath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/FemHumanHurt1.wav",
+        "res://Assets/Audio/Effects/PlaceholderSFX/FemHumanHurt2.wav",
+        "res://Assets/Audio/Effects/PlaceholderSFX/FemHumanHurt3.wav"
+    ],
+    "AudioDiePath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/FemHumanDie.wav"
+    ],
+    "AudioMeleePath": [
+        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch.wav",
+        "res://Assets/Audio/Effects/PlaceholderSFX/MeleePunch2.wav"
+    ],
+    "Perks": [
+        16
+    ],
+    "Barks": {
+        "0": [
+            [
+                ""
+            ],
+            [
+                "Together, we will humble the mightiest of kings!"
+            ],
+            [
+                ""
+            ],
+            [
+                "We won’t build your palace while our homes crumble!"
+            ],
+            [
+                ""
+            ],
+            [
+                "Your tyrannical reign shall end!"
+            ],
+            [
+                ""
+            ],
+            [
+                "Let the battle for Uruk echo through the stars!"
+            ]
+        ]
+    },
+    "Level": 1,
+    "Might": 3,
+    "Resilience": 3,
+    "Precision": 6,
+    "Speed": 5,
+    "Intellect": 6,
+    "Charisma": 5,
+    "Luck": 4
 }
