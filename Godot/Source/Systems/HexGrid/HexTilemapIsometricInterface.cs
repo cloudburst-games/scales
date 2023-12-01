@@ -63,12 +63,13 @@ public partial class HexTilemapIsometricInterface : Node2D
 
     public async void MarkAllHexObstacles(int levelID)
     {
+
         string obstacleDataPath = "RuntimeData/ObstacleData" + levelID.ToString() + ".json";
-        // _JSONDataHandler.SaveToDisk(PackAllSettings(), "/Settings.json");
-        if (System.IO.File.Exists(obstacleDataPath))
+        JSONDataHandler dataHandler = new();
+        HexGridData hexGridData = dataHandler.LoadFromJSON<HexGridData>(obstacleDataPath, false);
+        GD.Print(hexGridData == null ? "Invalid hex data access" : "valid file access\n\n");
+        if (hexGridData != null)
         {
-            JSONDataHandler dataHandler = new();
-            HexGridData hexGridData = dataHandler.LoadFromJSON<HexGridData>(obstacleDataPath, false);
             foreach (Vector2 gridPos in hexGridData.ObstacleGridPositions)
             {
                 _hexGrid.Cells[gridPos].Obstacle = true;
@@ -89,7 +90,7 @@ public partial class HexTilemapIsometricInterface : Node2D
             }
             await ToSignal(this, SignalName.FinishedMarkingObstacles);
 
-            HexGridData hexGridData = new();
+            hexGridData = new();
             foreach (KeyValuePair<Vector2, Hexagon> kv in _hexGrid.Cells)
             {
                 if (kv.Value.Obstacle)
@@ -97,7 +98,6 @@ public partial class HexTilemapIsometricInterface : Node2D
                     hexGridData.ObstacleGridPositions.Add(kv.Key);
                 }
             }
-            JSONDataHandler dataHandler = new();
             dataHandler.SaveToDisk(hexGridData, obstacleDataPath, false);
         }
     }

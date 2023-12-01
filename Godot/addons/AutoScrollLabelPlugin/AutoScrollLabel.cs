@@ -27,6 +27,11 @@ public partial class AutoScrollLabel : RichTextLabel
         _acceptInput = true;
     }
 
+    public void SetAutoScroll(bool enabled)
+    {
+        _autoScroll = enabled;
+    }
+
     // Stop autoscroll when the user attempts to scroll the bar manually
     private void OnScrollBarGUIInput(InputEvent ev)
     {

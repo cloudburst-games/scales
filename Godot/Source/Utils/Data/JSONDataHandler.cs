@@ -34,7 +34,11 @@ public class JSONDataHandler
         }
 
         // string loaded = System.IO.File.ReadAllText(absolutePath);
-        string loaded = file.GetAsText();
+        string loaded = "";
+        if (file != null)
+        {
+            loaded = file.GetAsText();
+        }
 
         // GD.Print(loaded);
 

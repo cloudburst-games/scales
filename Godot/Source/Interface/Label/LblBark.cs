@@ -46,7 +46,7 @@ public partial class LblBark : Label
             return;
         }
         Position = _originalPosition;
-        if (GetGlobalRect().Position.Y < 120)
+        if (GlobalPosition.Y < 120)
         {
             GlobalPosition = new Vector2(GlobalPosition.X, 120);
         }

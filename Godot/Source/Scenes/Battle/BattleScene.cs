@@ -484,6 +484,8 @@ public partial class BattleScene : Node, ISceneTransitionable
         newChar.CharacterDataTreeLink.RoundEffectEnded += (CharacterRoundEffect roundEffect) => _HUD.OnCharacterRoundEffectFaded(newChar, roundEffect);
         newChar.CharacterDataTreeLink.RoundEffectEnded += (CharacterRoundEffect roundEffect) => _battler.OnCharacterRoundEffectFaded(newChar, roundEffect);
         newChar.TakingDamage += _HUD.OnCharacterTakingDamage;
+        newChar.BattleTurnEnded += (CharacterUnit cUnit) => _HUD.StopTutorialHint();
+        newChar.Moving += _HUD.StopTutorialHint;
         foreach (Perk.PerkMode p in newChar.CharacterData.Perks.ToList())
         {
             Perk perk = PerkFactory.GeneratePerk(p);

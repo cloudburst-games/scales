@@ -13,12 +13,20 @@ public partial class HexObstacleMarkerTool : Node2D
     }
     public async void MarkAllHexObstacles(int levelID)
     {
-        string obstacleDataPath = "RuntimeData/ObstacleData" + levelID.ToString() + ".json";
+        string obstacleDataPath = "res://" + "RuntimeData/ObstacleData" + levelID.ToString() + ".json";
+        FileAccess file = FileAccess.Open(obstacleDataPath, FileAccess.ModeFlags.Read);
+        GD.Print("\n\n" + obstacleDataPath);
+        GD.Print(file);
+        GD.Print(file == null ? "Invalid file access" : "valid file access\n\n");
+        JSONDataHandler dataHandler = new();
+        HexGridData hexGridData = dataHandler.LoadFromJSON<HexGridData>(obstacleDataPath, false);
+        GD.Print(hexGridData);
+        // string obstacleDataPath = "RuntimeData/ObstacleData" + levelID.ToString() + ".json";
         // _JSONDataHandler.SaveToDisk(PackAllSettings(), "/Settings.json");
-        if (System.IO.File.Exists(obstacleDataPath))
+        if (file != null)
         {
-            JSONDataHandler dataHandler = new();
-            HexGridData hexGridData = dataHandler.LoadFromJSON<HexGridData>(obstacleDataPath, false);
+            // JSONDataHandler dataHandler = new();
+            // HexGridData hexGridData = dataHandler.LoadFromJSON<HexGridData>(obstacleDataPath, false);
             foreach (Vector2 gridPos in hexGridData.ObstacleGridPositions)
             {
                 _hexGrid.Cells[gridPos].Obstacle = true;
@@ -36,7 +44,7 @@ public partial class HexObstacleMarkerTool : Node2D
             }
             await ToSignal(this, SignalName.FinishedMarkingObstacles);
 
-            HexGridData hexGridData = new();
+            hexGridData = new();
             foreach (KeyValuePair<Vector2, Hexagon> kv in _hexGrid.Cells)
             {
                 if (kv.Value.Obstacle)
@@ -44,7 +52,7 @@ public partial class HexObstacleMarkerTool : Node2D
                     hexGridData.ObstacleGridPositions.Add(kv.Key);
                 }
             }
-            JSONDataHandler dataHandler = new();
+            // JSONDataHandler dataHandler = new();
             dataHandler.SaveToDisk(hexGridData, obstacleDataPath, false);
         }
     }

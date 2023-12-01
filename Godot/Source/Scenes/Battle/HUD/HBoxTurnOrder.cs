@@ -17,9 +17,9 @@ public partial class HBoxTurnOrder : HBoxContainer
     [Export]
     private PackedScene _roundSeparatorScn;
 
-    private const float TOTAL_WIDTH_CAPACITY = 2960;
+    private const float TOTAL_WIDTH_CAPACITY = 3370;
     private const float PORTRAIT_WIDTH = 140;
-    private const float SEPARATOR_WIDTH = 14;
+    private const float SEPARATOR_WIDTH = 140;
 
 
     public override void _Ready()

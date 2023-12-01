@@ -176,6 +176,7 @@ grow_vertical = 2
 [node name="BtnToggleAttributesStats" type="TextureButton" parent="MainPanel/VBoxContainer/HBoxContainer/PnlStats/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+tooltip_text = "Toggle for attributes/stats"
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("4_1i2fg")
