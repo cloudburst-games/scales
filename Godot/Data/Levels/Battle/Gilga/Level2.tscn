@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://byrap2l8cfdxd" path="res://Source/Systems/HexGrid/HexGrid.tscn" id="9_xbl6f"]
 [ext_resource type="Script" path="res://Source/Systems/LevelSystem/HexModifier.cs" id="10_ykgvn"]
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="11_843d0"]
-[ext_resource type="AudioStream" uid="uid://26tsjx5dblt3" path="res://Assets/Audio/Voice/Gilga/Level3IntroEnkiduGestured.wav" id="12_e3uc0"]
+[ext_resource type="AudioStream" uid="uid://c1grephmr3uny" path="res://Assets/Audio/Voice/Gilga/Level3IntroEnkiduGestured.wav" id="12_e3uc0"]
 
 [sub_resource type="Gradient" id="Gradient_tl1pa"]
 offsets = PackedFloat32Array(0, 0.208494)
@@ -54,7 +54,7 @@ HexModifier = NodePath("HexGrid/HexModifier")
 _background = NodePath("Battlefield/Background/Terrain")
 CharacterUnitsContainer = NodePath("Entities/CharacterUnits")
 LevelID = 2
-IntroMessage = "Enkidu gestured towards the horizon, “A true test of our might lies deep in the Cedar forest. There lives a beast that towers above the tallest trees, guards the realm, and swallows lost humans whole. When we vanquish it, our people will sing of our victory!”The two friends journeyed on, leaving the relieved city-folk behind. After a day’s travel, they stopped in a field of tamarisk trees, kindled a fire and pitched camp upon the petals. As night fell, the mountains groaned. The gods sent thunder, and rain, and nightmares, for their next trial was a battle of the mind…"
+IntroMessage = "Tyrants die a hundred deaths in the minds of their people, but a hero lives forever in their hearts. So, Enkidu led the king towards the Cedar forest, where a legendary beast towers above the tallest trees and swallows lost humans whole. After a day’s travel, they stopped in a field of tamarisk, kindled a fire and pitched camp upon the petals. Night fell. Mountains groaned. The gods sent thunder, and rain, and nightmares, for their next trial was a battle of the mind…"
 IntroTitle = "Chapter 3. Gilgamesh vs The Nightmares"
 StartingEnemies = [8, 9, 10, 11]
 _playerPositionCnt = NodePath("Positions/Players")

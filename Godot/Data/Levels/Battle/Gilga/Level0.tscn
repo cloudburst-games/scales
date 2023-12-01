@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://byrap2l8cfdxd" path="res://Source/Systems/HexGrid/HexGrid.tscn" id="9_70y0v"]
 [ext_resource type="Script" path="res://Source/Systems/LevelSystem/HexModifier.cs" id="10_qy2wk"]
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="11_01pg1"]
-[ext_resource type="AudioStream" uid="uid://dvs415i4w2c5v" path="res://Assets/Audio/Voice/Gilga/Level1IntroOnceMereWhispers.wav" id="12_7wwjd"]
+[ext_resource type="AudioStream" uid="uid://curob448txtye" path="res://Assets/Audio/Voice/Gilga/Level1IntroOnceMereWhispers.wav" id="12_7wwjd"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sughd"]
 
