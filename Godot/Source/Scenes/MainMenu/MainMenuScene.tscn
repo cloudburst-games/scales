@@ -40,7 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://bgrwjyqr7jua2" path="res://Assets/Graphics/Front Cover/OliveBranch2.png" id="32_koa8o"]
 [ext_resource type="Texture2D" uid="uid://ih2vd2uecvt8" path="res://Assets/Graphics/Front Cover/Knife.png" id="33_vcl1s"]
 [ext_resource type="PackedScene" uid="uid://dxi8h2jwwdt11" path="res://Source/Interface/Cursors/CursorControl.tscn" id="34_16yq6"]
-[ext_resource type="AudioStream" uid="uid://cpymk4w75ogbv" path="res://Assets/Audio/Voice/Gilga/Prologue_InTheTheatre.wav" id="34_h8urq"]
+[ext_resource type="AudioStream" uid="uid://7d1hdnogi1y3" path="res://Assets/Audio/Voice/Gilga/Prologue_InTheTheatre.wav" id="34_h8urq"]
 [ext_resource type="Theme" uid="uid://3wrce77vvtdx" path="res://Source/Scenes/MainMenu/PnlAdventures/BaseTheme.tres" id="35_dkqyj"]
 [ext_resource type="Theme" uid="uid://c5cfodgyxs3u7" path="res://PanelMainBodyTheme.tres" id="37_gunll"]
 
@@ -626,13 +626,13 @@ text = "
 
 
 
-In the theatre of gods, Ishtar, the goddess of war, proposes a game of justice with King Gilgamesh as her pawn upon the mortal stage. She challenges Shamash, the god of wisdom, to shape the king into a noble leader. 
+In the theatre of gods, Ishtar, the goddess of war, proposes a game of judgment with King Gilgamesh as her pawn upon the mortal stage. 
 
-Shamash strokes his beard, wondering whether Ishtar doubts Gilgamesh’s potential for wisdom. 
+She challenges Shamash, the god of wisdom, to shape the king into a noble leader. Shamash strokes his beard, wondering whether Ishtar doubts Gilgamesh’s potential.
 
 Her laughter echoes through the heavens, “Humans embrace their primal instincts. His blood will boil in battle. He will always choose wrath and live a short, but legendary, life as one of my disciples.” 
 
-Tempted by the challenge, Shamash agrees on one condition: In exchange for teaching him the way of mercy, Gilgamesh will serve the cult of wisdom and live forever among the gods. 
+Tempted by the challenge, Shamash agrees on one condition: In exchange for teaching him the way of mercy, Gilgamesh will serve the cult of wisdom forever among the gods. 
 
 As these two deities vie to tip the scales of justice, Gilgamesh’s destiny hangs on the choices you make."
 script = ExtResource("29_lwbti")

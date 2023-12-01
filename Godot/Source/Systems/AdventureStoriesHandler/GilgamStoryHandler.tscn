@@ -9,19 +9,19 @@
 [ext_resource type="Theme" uid="uid://rllhbeqgvm58" path="res://Source/Scenes/MainMenu/PnlAdventures/TitleTheme.tres" id="6_kuuyo"]
 [ext_resource type="Theme" uid="uid://5wc2objj7tpd" path="res://Source/Scenes/MainMenu/PnlAdventures/MainBodyTheme.tres" id="7_o11pe"]
 [ext_resource type="Script" path="res://addons/AudioContainerPlugin/AudioContainer.cs" id="8_c02bb"]
-[ext_resource type="AudioStream" uid="uid://cucwyf2iqbb6o" path="res://Assets/Audio/Voice/Gilga/Level1Loss_GilgaTheOnceMighty.wav" id="9_em12n"]
-[ext_resource type="AudioStream" uid="uid://bxnwdw4sid4ce" path="res://Assets/Audio/Voice/Gilga/Level2Loss_Overwhelmed.wav" id="10_b53xh"]
+[ext_resource type="AudioStream" uid="uid://demb1k02ll5rc" path="res://Assets/Audio/Voice/Gilga/Level1Loss_GilgaTheOnceMighty.wav" id="9_em12n"]
+[ext_resource type="AudioStream" uid="uid://bxxttxwgtdx6d" path="res://Assets/Audio/Voice/Gilga/Level2Loss_Overwhelmed.wav" id="10_b53xh"]
 [ext_resource type="Texture2D" uid="uid://4fu8k5l8ve1a" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Normal.png" id="10_lmjuu"]
 [ext_resource type="Texture2D" uid="uid://c1csktoq8iakb" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Pressed.png" id="11_gr70r"]
-[ext_resource type="AudioStream" uid="uid://yt2iphj0pays" path="res://Assets/Audio/Voice/Gilga/Level3Loss_G_succumbs.wav" id="12_2mt52"]
+[ext_resource type="AudioStream" uid="uid://d1jms68gr23ms" path="res://Assets/Audio/Voice/Gilga/Level3Loss_G_succumbs.wav" id="12_2mt52"]
 [ext_resource type="Texture2D" uid="uid://c3r6mo1ik7w3n" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Hover.png" id="12_imedm"]
 [ext_resource type="Texture2D" uid="uid://y6lvsy2sm8rf" path="res://Assets/Graphics/Interface/Buttons/ActionRemapButton/Disabled.png" id="13_awmk5"]
-[ext_resource type="AudioStream" uid="uid://bybyy5e7ba8eo" path="res://Assets/Audio/Voice/Gilga/Level1Victory_Basking.wav" id="13_ymotk"]
-[ext_resource type="AudioStream" uid="uid://dgvuwb28kp1m7" path="res://Assets/Audio/Voice/Gilga/Level2Victory_havingdefeated.wav" id="14_cctkx"]
+[ext_resource type="AudioStream" uid="uid://iu5imfo5qxjo" path="res://Assets/Audio/Voice/Gilga/Level1Victory_Basking.wav" id="13_ymotk"]
+[ext_resource type="AudioStream" uid="uid://caph7fko82cqu" path="res://Assets/Audio/Voice/Gilga/Level2Victory_havingdefeated.wav" id="14_cctkx"]
 [ext_resource type="Script" path="res://addons/BaseTextureButtonPlugin/BaseTextureButton.cs" id="14_cdmj2"]
-[ext_resource type="AudioStream" uid="uid://brsre2xw414si" path="res://Assets/Audio/Voice/Gilga/Level3ShamashVictory.wav" id="15_3nolp"]
-[ext_resource type="AudioStream" uid="uid://1lsjxmy51k1y" path="res://Assets/Audio/Voice/Gilga/Level3NeutralVictory.wav" id="16_wdqi5"]
-[ext_resource type="AudioStream" uid="uid://c7jegn0h16bl3" path="res://Assets/Audio/Voice/Gilga/Level3IshtarVictory.wav" id="17_chapm"]
+[ext_resource type="AudioStream" uid="uid://cfyoqiarpailg" path="res://Assets/Audio/Voice/Gilga/Level3ShamashVictory.wav" id="15_3nolp"]
+[ext_resource type="AudioStream" uid="uid://5tkgbg723oue" path="res://Assets/Audio/Voice/Gilga/Level3NeutralVictory.wav" id="16_wdqi5"]
+[ext_resource type="AudioStream" uid="uid://coitdxdxr8yj4" path="res://Assets/Audio/Voice/Gilga/Level3IshtarVictory.wav" id="17_chapm"]
 
 [sub_resource type="Animation" id="Animation_3831l"]
 length = 0.001
@@ -343,7 +343,7 @@ offset_bottom = -152.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_o11pe")
-text = "Gilgamesh, the once-mighty king, stumbles and falls. He squints against the sun and gazes at the citizens who have gathered around him in disbelief. As the gods lose interest, his name and legacy fade into oblivion. Perhaps a just and noble leader will rise among the citizens of Uruk?"
+text = "Gilgamesh, the once-mighty king, stumbles and falls. He squints against the sun and gazes at the citizens gathered around him in disbelief. As the gods lose interest, his name and legacy fade into oblivion. Perhaps a just and noble leader will rise among the citizens of Uruk?"
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -356,6 +356,7 @@ volume_db = -10.0
 bus = &"Voice"
 
 [node name="BtnContinueStory" type="TextureButton" parent="DefeatStory0/PictureStorySlide"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
@@ -375,6 +376,7 @@ stretch_mode = 0
 script = ExtResource("14_cdmj2")
 
 [node name="Label" type="Label" parent="DefeatStory0/PictureStorySlide/BtnContinueStory"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -471,6 +473,7 @@ volume_db = -10.0
 bus = &"Voice"
 
 [node name="BtnContinueStory" type="TextureButton" parent="DefeatStory1/PictureStorySlide"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
@@ -490,6 +493,7 @@ stretch_mode = 0
 script = ExtResource("14_cdmj2")
 
 [node name="Label" type="Label" parent="DefeatStory1/PictureStorySlide/BtnContinueStory"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -572,7 +576,7 @@ offset_bottom = -0.480103
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("7_o11pe")
-text = "Gilgamesh succumbs to the nightmares, who make their home within his head. He meanders through the pink fields, eating bitter scarab beetles and drinking rainwater to stay alive. His broken minds strings together a shattered prayer to the gods, a wish to be unshackled from the torment of his thoughts."
+text = "Gilgamesh succumbs to the nightmares, who make their home within his head. He meanders through pink fields, eating bitter scarab beetles and drinking rainwater to stay alive. His broken minds strings together a shattered prayer to the gods, a wish to be unshackled from the torment of his thoughts."
 vertical_alignment = 1
 autowrap_mode = 2
 
@@ -585,6 +589,7 @@ volume_db = -10.0
 bus = &"Voice"
 
 [node name="BtnContinueStory" type="TextureButton" parent="DefeatStory2/PictureStorySlide"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
@@ -604,6 +609,7 @@ stretch_mode = 0
 script = ExtResource("14_cdmj2")
 
 [node name="Label" type="Label" parent="DefeatStory2/PictureStorySlide/BtnContinueStory"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -699,6 +705,7 @@ volume_db = -10.0
 bus = &"Voice"
 
 [node name="BtnContinueStory" type="TextureButton" parent="AfterLevel0Story/PictureStorySlide"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
@@ -718,6 +725,7 @@ stretch_mode = 0
 script = ExtResource("14_cdmj2")
 
 [node name="Label" type="Label" parent="AfterLevel0Story/PictureStorySlide/BtnContinueStory"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -737,6 +745,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AfterLevel1Story" parent="." instance=ExtResource("2_fg2x8")]
+visible = false
 layout_mode = 1
 _transitionTypeEnd = "Blend"
 
@@ -749,6 +758,7 @@ InputSkipsSlide = false
 ButtonToContinue = NodePath("BtnContinueStory")
 
 [node name="Background" type="TextureRect" parent="AfterLevel1Story/PictureStorySlide"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -787,13 +797,13 @@ horizontal_alignment = 1
 visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.067
+anchor_left = 0.123
 anchor_top = 0.169
-anchor_right = 0.931
+anchor_right = 0.872
 anchor_bottom = 0.919
-offset_left = 8.63199
+offset_left = 0.608002
 offset_top = -0.0240173
-offset_right = -0.0241699
+offset_right = 0.911865
 offset_bottom = -0.0240479
 grow_horizontal = 2
 grow_vertical = 2
@@ -801,9 +811,9 @@ theme = ExtResource("7_o11pe")
 theme_override_font_sizes/font_size = 66
 text = "Having defeated the wild man, Gilgamesh basks in the glow of sweat and conquest. Refreshed by the closely matched battle, he extends the hand of friendship to Enkidu, lifting him from the ground. 
 
-Pointing his thumb at the gathering crowd, Gilgamesh says, “Let us continue our battles, Enkidu; fight by my side!” 
+Pointing his thumb at the gathering crowd, Gilgamesh asks Enkidu to fight by his side.
 
-But Enkidu had other ideas..."
+But Enkidu has other ideas..."
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
@@ -817,6 +827,7 @@ volume_db = -10.0
 bus = &"Voice"
 
 [node name="BtnContinueStory" type="TextureButton" parent="AfterLevel1Story/PictureStorySlide"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
@@ -836,6 +847,7 @@ stretch_mode = 0
 script = ExtResource("14_cdmj2")
 
 [node name="Label" type="Label" parent="AfterLevel1Story/PictureStorySlide/BtnContinueStory"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -885,6 +897,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="AfterLevel2Story/PictureStorySlide/PnlTitle"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -943,7 +956,7 @@ offset_top = 0.472
 offset_right = -0.064209
 offset_bottom = -0.496002
 theme = ExtResource("6_kuuyo")
-text = "Victory"
+text = "Shamash's Radiance"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="FinalVictoryStoryShamash/PictureStorySlide/PnlTitle"]
@@ -980,6 +993,7 @@ volume_db = -10.0
 bus = &"Voice"
 
 [node name="BtnContinueStory" type="TextureButton" parent="FinalVictoryStoryShamash/PictureStorySlide"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
@@ -999,6 +1013,7 @@ stretch_mode = 0
 script = ExtResource("14_cdmj2")
 
 [node name="Label" type="Label" parent="FinalVictoryStoryShamash/PictureStorySlide/BtnContinueStory"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1063,7 +1078,7 @@ offset_top = 0.472
 offset_right = -0.064209
 offset_bottom = -0.496002
 theme = ExtResource("6_kuuyo")
-text = "Victory"
+text = "A shrouded path"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="FinalVictoryStoryBalanced/PictureStorySlide/PnlTitle"]
@@ -1100,6 +1115,7 @@ volume_db = -10.0
 bus = &"Voice"
 
 [node name="BtnContinueStory" type="TextureButton" parent="FinalVictoryStoryBalanced/PictureStorySlide"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
@@ -1119,6 +1135,7 @@ stretch_mode = 0
 script = ExtResource("14_cdmj2")
 
 [node name="Label" type="Label" parent="FinalVictoryStoryBalanced/PictureStorySlide/BtnContinueStory"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1184,7 +1201,7 @@ offset_top = 0.472
 offset_right = -0.064209
 offset_bottom = -0.496002
 theme = ExtResource("6_kuuyo")
-text = "Victory"
+text = "A prophesy from Ishtar"
 horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="FinalVictoryStoryIshtar/PictureStorySlide/PnlTitle"]
@@ -1219,6 +1236,7 @@ volume_db = -10.0
 bus = &"Voice"
 
 [node name="BtnContinueStory" type="TextureButton" parent="FinalVictoryStoryIshtar/PictureStorySlide"]
+visible = false
 anchors_preset = -1
 anchor_left = 0.42
 anchor_top = 0.88
@@ -1238,6 +1256,7 @@ stretch_mode = 0
 script = ExtResource("14_cdmj2")
 
 [node name="Label" type="Label" parent="FinalVictoryStoryIshtar/PictureStorySlide/BtnContinueStory"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
